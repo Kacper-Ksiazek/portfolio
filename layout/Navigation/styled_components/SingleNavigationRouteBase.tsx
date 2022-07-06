@@ -12,6 +12,18 @@ export default styled(ButtonBase)(({ theme }) => ({
     fontWeight: "500",
     marginLeft: "20px",
     overflow: "hidden",
+    "&::after": {
+        content: "''",
+        position: "absolute",
+        top: "50%",
+        left: "10px",
+        transform: "translateY(-50%) skew(3deg)",
+        width: "8px",
+        height: "8px",
+        background: theme.palette.primary.main,
+        opacity: 0,
+        transition: "opacity .2s .1s ease-in-out",
+    },
     "&:nth-of-type(1)": {
         marginLeft: "0",
     },

@@ -1,5 +1,6 @@
 // Tools
-import { styled } from "@mui/system";
+import { useEffect, useCallback, useState } from "react";
+import useStylesOnScoll from "./hooks/useStylesOnScoll";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
@@ -11,14 +12,18 @@ import SingleFlexWrapper from "./styled_components/SimpleFlexWrapper";
 import SingleNavigationRoute from "./SingleNavigationRoute";
 
 const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
+    const applyAfterScrollStyles = useStylesOnScoll();
+
     return (
-        <NavigationBase>
-            <Logo />
-            <SingleFlexWrapper>
-                <SingleNavigationRoute>About me</SingleNavigationRoute>
-                <SingleNavigationRoute>Projects</SingleNavigationRoute>
-                <SingleNavigationRoute>Contact</SingleNavigationRoute>
-            </SingleFlexWrapper>
+        <NavigationBase className={applyAfterScrollStyles ? "applyAfterScrollStyles" : ""}>
+            <div id="main-navigation-content">
+                <Logo />
+                <SingleFlexWrapper>
+                    <SingleNavigationRoute>About me</SingleNavigationRoute>
+                    <SingleNavigationRoute>Projects</SingleNavigationRoute>
+                    <SingleNavigationRoute>Contact</SingleNavigationRoute>
+                </SingleFlexWrapper>
+            </div>
         </NavigationBase>
     );
 };

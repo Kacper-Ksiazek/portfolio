@@ -19,8 +19,8 @@ export default createTheme({
             main: "#F57C00",
         },
         background: {
-            paper: "#F0EFF4",
-            default: "#3D2645",
+            default: "#F0EFF4",
+            paper: "#3D2645",
         },
         text: {
             primary: "#000000",

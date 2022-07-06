@@ -8,4 +8,5 @@ export default styled("main")(({ theme }) => ({
     left: "50%",
     transform: "translateX(-50%)",
     position: "relative",
+    height: "200vh",
 }));
