@@ -3,6 +3,7 @@
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import Navigation from "./Navigation";
+import ScrollButton from "./ScrollButton";
 // Styled components
 import MainWrapper from "./MainWrapper";
 
@@ -15,6 +16,7 @@ const Layout: FunctionComponent<LayoutProps> = (props) => {
         <>
             <Navigation />
             <MainWrapper>{props.children}</MainWrapper>
+            <ScrollButton />
         </>
     );
 };
