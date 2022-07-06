@@ -5,7 +5,7 @@ export default styled("div")(({ theme }) => ({
     position: "fixed",
     top: "0",
     left: "50%",
-    marginTop: "20px",
+    paddingTop: "20px",
     transform: "translateX(-50%)",
     width: "100vw",
     height: "80px",
@@ -22,7 +22,7 @@ export default styled("div")(({ theme }) => ({
         transition: "all .3s, color .15s",
     },
     "&.applyAfterScrollStyles": {
-        marginTop: "0",
+        paddingTop: "0px",
         color: "#fff",
         boxSizing: "border-box",
         background: theme.palette.background.paper,
