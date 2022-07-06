@@ -7,3 +7,7 @@ body {
     background: #f0eff4;
     color: #000;
 }
+
+.alternative-font-family {
+    font-family: "Montserrat Alternates", sans-serif;
+}
