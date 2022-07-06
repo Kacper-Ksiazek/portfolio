@@ -11,3 +11,23 @@ body {
 .alternative-font-family {
     font-family: "Montserrat Alternates", sans-serif;
 }
+
+body::-webkit-scrollbar {
+    width: 8px;
+    background: #f0eff4;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px #888;
+    opacity: 0.1;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #da4167;
+    border-radius: 2px;
+}
+
+::selection {
+    background: #832161;
+    color: #fff;
+}
