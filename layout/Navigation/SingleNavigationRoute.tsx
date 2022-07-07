@@ -13,6 +13,8 @@ const SingleNavigationRoute: FunctionComponent<SingleNavigationRouteProps> = (pr
             <span className="text">{props.children}</span>
             <span className="line left"></span>
             <span className="line right"></span>
+            <span className="line left big"></span>
+            <span className="line right big"></span>
         </SingleNavigationRouteBase>
     );
 };

@@ -23,17 +23,10 @@ export default styled("div")(({ theme }) => ({
     },
     "&.applyAfterScrollStyles": {
         paddingTop: "0px",
-        color: "#fff",
         boxSizing: "border-box",
-        background: theme.palette.background.paper,
+        background: theme.palette.background.default,
         "div#main-navigation-content": {
             maxWidth: "1400px",
-        },
-        ".MuiButtonBase-root": {
-            border: "1px solid #fff",
-            "&::after": {
-                opacity: 1,
-            },
         },
     },
 }));
