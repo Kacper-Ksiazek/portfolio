@@ -6,6 +6,8 @@ body {
     font-family: "Noto Sans", sans-serif;
     background: #f0eff4;
     color: #000;
+    width: 100vw;
+    overflow-x: hidden;
 }
 
 .alternative-font-family {

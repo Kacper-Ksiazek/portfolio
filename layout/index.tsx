@@ -2,6 +2,7 @@
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
+import Footer from "./Footer";
 import Navigation from "./Navigation";
 import ScrollButton from "./ScrollButton";
 // Styled components
@@ -17,6 +18,7 @@ const Layout: FunctionComponent<LayoutProps> = (props) => {
             <Navigation />
             <MainWrapper>{props.children}</MainWrapper>
             <ScrollButton />
+            <Footer />
         </>
     );
 };
