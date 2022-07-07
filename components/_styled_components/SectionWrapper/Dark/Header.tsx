@@ -1,42 +1,40 @@
 // Tools
 import { styled } from "@mui/system";
 // Types
-import type { FunctionComponent, ReactNode } from "react";
+import type { FunctionComponent } from "react";
 // Styled components
 const HeaderWrapper = styled("header")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
     marginBottom: "20px",
     userSelect: "none",
+    color: "#fff",
 }));
 
 const AdditionalText = styled("span")(({ theme }) => ({
-    color: theme.palette.primary.main,
-    fontWeight: 500,
+    fontWeight: 400,
     fontSize: "18px",
 }));
 
 const MainHeader = styled("h2")(({ theme }) => ({
-    fontSize: "3rem",
+    fontSize: "24px",
     fontWeight: 700,
     margin: "0 0 5px 0",
-    lineHeight: "50px",
 }));
 
-interface LightSectionHeaderProps {
+interface DarkSectionHeaderProps {
     main: string;
     label: string;
-    additionalJSX?: ReactNode;
 }
 
-const LightSectionHeader: FunctionComponent<LightSectionHeaderProps> = (props) => {
+const DarkSectionHeader: FunctionComponent<DarkSectionHeaderProps> = (props) => {
     return (
         <HeaderWrapper>
-            <AdditionalText>{props.label}</AdditionalText>
             <MainHeader className="alternative-font-family">{props.main}</MainHeader>
-            {props.additionalJSX}
+            <AdditionalText>{props.label}</AdditionalText>
         </HeaderWrapper>
     );
 };
 
-export default LightSectionHeader;
+export default DarkSectionHeader;
