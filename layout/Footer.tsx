@@ -13,16 +13,17 @@ const FooterBase = styled("footer")(({ theme }) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    height: "100px",
+    height: "80px",
     color: "#fff",
     span: {
-        fontSize: "18px",
+        fontSize: "14px",
         fontWeight: 300,
     },
+    userSelect: "none",
 }));
 const AuthorHeader = styled("h4")(({ theme }) => ({
     margin: "10px 0 0 0",
-    fontSize: "24px",
+    fontSize: "20px",
     fontWeight: 700,
 }));
 const Footer: FunctionComponent<MUIStyledCommonProps> = (props) => {
