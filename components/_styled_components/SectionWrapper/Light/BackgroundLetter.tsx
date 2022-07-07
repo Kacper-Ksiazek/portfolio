@@ -70,7 +70,7 @@ const BackgroundLetter: FunctionComponent<{ letter: string }> = (props) => {
             previousLetterElement.current?.classList.add("hide");
             previousLetterElement.current?.classList.remove("outro");
             currentLetterElement.current?.classList.add("intro");
-        }, 500);
+        }, 1800);
     }, [props.letter]);
 
     return (

@@ -1,5 +1,4 @@
 // Tools
-import { useMemo } from "react";
 import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
@@ -12,7 +11,7 @@ const Divider = styled("span")(({ theme }) => ({
     height: "20px",
     width: "2px",
     background: theme.palette.text.secondary,
-    margin: "0 12px",
+    margin: "0 10px",
 }));
 
 const NavigationStagesWrapper = styled("div")(({ theme }) => ({
@@ -26,7 +25,7 @@ const SingleNavigationStep = styled("div")(({ theme }) => ({
     position: "relative",
     cursor: "pointer",
     overflow: "hidden",
-    padding: "0 5px",
+    padding: "0 10px",
     transition: "background .2s",
     borderRadius: "3px",
     "&:before": {
