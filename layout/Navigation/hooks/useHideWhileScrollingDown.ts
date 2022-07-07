@@ -16,7 +16,6 @@ export default (): boolean => {
         if (previousScrollY.current < scrollY && !hideNavigaton && scrollY > HIDING_AVOIDING_THRESHOLD) setHideNavigaton(true);
         else if (previousScrollY.current > scrollY && hideNavigaton) setHideNavigaton(false);
         previousScrollY.current = scrollY;
-        console.log(hideNavigaton);
     }, [hideNavigaton]);
 
     useEffect(() => {
