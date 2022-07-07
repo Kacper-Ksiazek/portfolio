@@ -29,7 +29,7 @@ const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props)
                 <Header {...props.header} />
                 {props.children}
             </ContentWrapper>
-            <BackgroundLetter className="alternative-font-family">{props.backgroundLetter}</BackgroundLetter>
+            <BackgroundLetter letter={props.backgroundLetter} />
         </LightWrapperBase>
     );
 };
