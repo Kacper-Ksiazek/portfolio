@@ -7,19 +7,15 @@ import type { FunctionComponent, ReactNode } from "react";
 import Star from "@mui/icons-material/Star";
 import StarBorder from "@mui/icons-material/StarBorder";
 // Styled components
-const SingleLanguageWrapper = styled("div")(({ theme }) => ({
+const SingleLanguageWrapper = styled("div", {
+    shouldForwardProp: (prop: string) => !["animationDelay"].includes(prop),
+})<{ animationDelay: number }>(({ theme, ...props }) => ({
     marginTop: "5px",
     display: "flex",
     alignItems: "center",
+    animation: `${fadeFromLeft} .3s ${props.animationDelay}s both`,
     "&:nth-of-type(1)": {
         marginTop: 0,
-        animation: `${fadeFromLeft} .3s 1.1s both`,
-    },
-    "&:nth-of-type(2)": {
-        animation: `${fadeFromLeft} .3s 1.2s both`,
-    },
-    "&:nth-of-type(3)": {
-        animation: `${fadeFromLeft} .3s 1.3s both`,
     },
 }));
 const Description = styled("span")(({ theme }) => ({
@@ -45,6 +41,7 @@ interface SingleLanguageProps {
     name: string;
     stars: number;
     description: string;
+    animationDelay: number;
 }
 
 const SingleLanguage: FunctionComponent<SingleLanguageProps> = (props) => {
@@ -53,7 +50,7 @@ const SingleLanguage: FunctionComponent<SingleLanguageProps> = (props) => {
     for (let i = 0; i < 5 - props.stars; i++) stars.push(<StarBorder key={stars.length} />);
 
     return (
-        <SingleLanguageWrapper>
+        <SingleLanguageWrapper animationDelay={props.animationDelay}>
             <Name>{props.name}</Name>
             <StarsWrapper>{stars.map((item, index) => item)}</StarsWrapper>
             <Description>{props.description}</Description>
