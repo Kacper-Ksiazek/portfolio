@@ -13,6 +13,7 @@ const ContentWrapper = styled("div")(({ theme }) => ({
     width: "calc(50% - 50px)",
     position: "relative",
     overflow: "hidden",
+    cursor: "default",
 }));
 
 interface BreakTheIceContentProps {

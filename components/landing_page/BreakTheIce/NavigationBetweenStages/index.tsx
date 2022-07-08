@@ -17,6 +17,10 @@ const Divider = styled("span")(({ theme }) => ({
 const NavigationStagesWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
+    ".step-wrapper": {
+        display: "flex",
+        alignItems: "center",
+    },
 }));
 
 const SingleNavigationStep = styled("div")(({ theme }) => ({
@@ -84,16 +88,12 @@ const NavigationBetweenStages: FunctionComponent<NavigationBetweenStagesProps> =
         <NavigationStagesWrapper>
             {stages.map((item, index) => {
                 return (
-                    <>
-                        {index ? <Divider key={`index-${index}`} /> : <></>}
-                        <SingleNavigationStep
-                            key={item} //
-                            className={props.stage.value === item ? "selected" : ""}
-                            onClick={() => props.stage.setValue(item)}
-                        >
+                    <div key={item} className="step-wrapper">
+                        {index ? <Divider /> : <span />}
+                        <SingleNavigationStep className={props.stage.value === item ? "selected" : ""} onClick={() => props.stage.setValue(item)}>
                             <span className="text">{item}</span>
                         </SingleNavigationStep>
-                    </>
+                    </div>
                 );
             })}
         </NavigationStagesWrapper>

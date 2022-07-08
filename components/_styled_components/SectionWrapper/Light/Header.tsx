@@ -6,7 +6,7 @@ import type { FunctionComponent, ReactNode } from "react";
 const HeaderWrapper = styled("header")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
-    marginBottom: "20px",
+    marginBottom: "30px",
     userSelect: "none",
 }));
 

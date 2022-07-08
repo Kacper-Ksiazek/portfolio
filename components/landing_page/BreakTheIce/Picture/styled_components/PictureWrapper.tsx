@@ -4,7 +4,7 @@ import { styled } from "@mui/system";
 export default styled("div")(({ theme }) => ({
     position: "absolute",
     left: "50%",
-    top: "5%",
+    top: "20px",
     height: "450px",
     width: "550px",
     transform: "translateX(-50%)",
