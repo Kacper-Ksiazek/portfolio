@@ -1,5 +1,6 @@
 // Tools
-import { styled, keyframes } from "@mui/system";
+import { styled } from "@mui/system";
+import fadeSimple from "@/components/_keyframes/fadeSimple";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
@@ -10,29 +11,20 @@ import Label from "../_styled_components/Label";
 import Paragraph from "../_styled_components/Paragraph";
 import RatedInStars from "../_styled_components/RatedInStars";
 
-const fade = keyframes({
-    from: {
-        opacity: 0,
-    },
-    to: {
-        opacity: 1,
-    },
-});
-
 const DisplayTechnologiesWrapper = styled("div")(({ theme }) => ({
     ".single-technology": {
         opacity: 0,
         "&:nth-of-type(9),&:nth-of-type(3),&:nth-of-type(16),&:nth-of-type(13),&:nth-of-type(6)": {
-            animation: `${fade} .2s 1.2s both`,
+            animation: `${fadeSimple} .2s 1.2s both`,
         },
         "&:nth-of-type(5),&:nth-of-type(18),&:nth-of-type(8),&:nth-of-type(2),&:nth-of-type(15)": {
-            animation: `${fade} .2s 1.3s both`,
+            animation: `${fadeSimple} .2s 1.3s both`,
         },
         "&:nth-of-type(1),&:nth-of-type(6),&:nth-of-type(12),&:nth-of-type(19),&:nth-of-type(8)": {
-            animation: `${fade} .2s 1.4s both`,
+            animation: `${fadeSimple} .2s 1.4s both`,
         },
         "&:nth-of-type(4),&:nth-of-type(20),&:nth-of-type(10),&:nth-of-type(11),&:nth-of-type(17)": {
-            animation: `${fade} .2s 1.5s both`,
+            animation: `${fadeSimple} .2s 1.5s both`,
         },
     },
 }));
