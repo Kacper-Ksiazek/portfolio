@@ -11,7 +11,6 @@ import Rectangle from "./_Rectangle";
 
 const ContentWrapper = styled("div")(({ theme }) => ({
     width: "calc(50% - 50px)",
-    flexGrow: "1",
     position: "relative",
     overflow: "hidden",
 }));
@@ -28,7 +27,6 @@ const BreakTheIceContent: FunctionComponent<BreakTheIceContentProps> = (props) =
     useEffect(() => {
         const index: 1 | 2 = (["General", "Education"] as IceBreakingStage[]).includes(props.stage) ? 1 : 2;
 
-        console.log(props.stage);
         RectangleOneElement.current?.classList.add(`intro-${index}`);
         RectangleOneElement.current?.classList.remove("outro-1");
         RectangleOneElement.current?.classList.remove("outro-2");

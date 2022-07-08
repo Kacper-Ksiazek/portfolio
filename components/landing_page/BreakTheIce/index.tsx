@@ -1,4 +1,5 @@
 // Tools
+import { styled } from "@mui/system";
 import stated from "@/utils/client/stated";
 import { useState, useEffect } from "react";
 // Types
@@ -7,9 +8,17 @@ import type { MUIStyledCommonProps } from "@mui/system";
 import type { IceBreakingStage } from "@/components/landing_page/BreakTheIce/@types";
 // Other components
 import Content from "./Content";
+import Picture from "./Picture";
 import NavigationBetweenStages from "./NavigationBetweenStages";
 // Styled Components
 import LightSectionWrapper from "@/components/_styled_components/SectionWrapper/Light";
+
+const SimpleFlexbox = styled("div")(({ theme }) => ({
+    display: "flex",
+    flexGrow: "1",
+    justifyContent: "space-between",
+    width: "100%",
+}));
 
 const BreakTheIce: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const [stage, setStage] = useState<IceBreakingStage>("General");
@@ -45,7 +54,10 @@ const BreakTheIce: FunctionComponent<MUIStyledCommonProps> = (props) => {
             }}
             backgroundLetter={letter}
         >
-            <Content stage={stage} previousStage={previousStage} />
+            <SimpleFlexbox>
+                <Content stage={stage} previousStage={previousStage} />
+                <Picture stage={stage} previousStage={previousStage} />
+            </SimpleFlexbox>
         </LightSectionWrapper>
     );
 };

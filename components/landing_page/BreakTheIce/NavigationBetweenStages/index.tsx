@@ -85,7 +85,7 @@ const NavigationBetweenStages: FunctionComponent<NavigationBetweenStagesProps> =
             {stages.map((item, index) => {
                 return (
                     <>
-                        {index ? <Divider /> : <></>}
+                        {index ? <Divider key={`index-${index}`} /> : <></>}
                         <SingleNavigationStep
                             key={item} //
                             className={props.stage.value === item ? "selected" : ""}
