@@ -91,10 +91,12 @@ const Description = styled("p")(({ theme }) => ({
 }));
 
 interface SingleSchoolProps {
-    start: string;
     end?: string;
-    title: string;
+    //
     type: string;
+    title: string;
+    start: string;
+    schoolURL: string;
     description: string;
     thumbnailURL: string;
 }
@@ -112,13 +114,15 @@ const SingleSchool: FunctionComponent<SingleSchoolProps> = (props) => {
                 <Type>{props.type}</Type>
                 <Description>{formatTextViaBolding(props.description)}</Description>
             </ContentWrapper>
-            <ImageWrapper>
-                <Image
-                    alt={`${props.title}-thumbnail`} //
-                    src={props.thumbnailURL}
-                    layout="fill"
-                />
-            </ImageWrapper>
+            <a href={props.schoolURL} target="_blank" rel="noreferrer">
+                <ImageWrapper>
+                    <Image
+                        alt={`${props.title}-thumbnail`} //
+                        src={props.thumbnailURL}
+                        layout="fill"
+                    />
+                </ImageWrapper>
+            </a>
         </SingleSchoolWrapper>
     );
 };

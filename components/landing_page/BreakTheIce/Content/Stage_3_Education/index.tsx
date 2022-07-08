@@ -41,6 +41,7 @@ const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     thumbnailURL="/images/landing-page/schools/agh.jpg"
                     title="Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie"
                     type="University"
+                    schoolURL="https://www.agh.edu.pl/en/"
                 />
                 <SingleSchool
                     start="2018"
@@ -49,6 +50,7 @@ const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     thumbnailURL="/images/landing-page/schools/gorzen.jpg"
                     title="Centrum Kształcenia Zawodowego i Ustawicznego nr 2 im. ks. Stanisława Staszica w Wadowicach"
                     type="High school"
+                    schoolURL="https://ckziuwadowice.pl/"
                 />
             </OverflowScrollDiv>
         </>
