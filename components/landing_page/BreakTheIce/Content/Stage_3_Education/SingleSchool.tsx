@@ -1,6 +1,7 @@
 // Tools
 import { styled, keyframes } from "@mui/system";
 import fadeFromLeft from "@/components/_keyframes/fadeFromBottom";
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -109,7 +110,7 @@ const SingleSchool: FunctionComponent<SingleSchoolProps> = (props) => {
                 </Date>
                 <Header>{props.title}</Header>
                 <Type>{props.type}</Type>
-                <Description>{props.description}</Description>
+                <Description>{formatTextViaBolding(props.description)}</Description>
             </ContentWrapper>
             <ImageWrapper>
                 <Image

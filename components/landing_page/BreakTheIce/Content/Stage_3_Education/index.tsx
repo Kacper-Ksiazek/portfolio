@@ -37,7 +37,7 @@ const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 <ScrollbarHidder />
                 <SingleSchool
                     start="2022"
-                    description="I study at the faculty related to Artificial Intelligence"
+                    description="I study at the faculty related to *Artificial Intelligence*"
                     thumbnailURL="/images/landing-page/schools/agh.jpg"
                     title="Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie"
                     type="University"
@@ -45,7 +45,7 @@ const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 <SingleSchool
                     start="2018"
                     end="2022"
-                    description="I was attending there to the IT related class (technikum informatyczne) and eventually obtained all possible certification."
+                    description="I was attending there to the IT related class (*technikum informatyczne*) and eventually obtained all possible certification."
                     thumbnailURL="/images/landing-page/schools/gorzen.jpg"
                     title="Centrum Kształcenia Zawodowego i Ustawicznego nr 2 im. ks. Stanisława Staszica w Wadowicach"
                     type="High school"
