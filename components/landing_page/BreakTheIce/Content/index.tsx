@@ -14,6 +14,8 @@ const ContentWrapper = styled("div")(({ theme }) => ({
     position: "relative",
     overflow: "hidden",
     cursor: "default",
+    display: "flex",
+    flexDirection: "column",
 }));
 
 interface BreakTheIceContentProps {
