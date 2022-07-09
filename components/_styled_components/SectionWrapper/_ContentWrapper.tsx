@@ -8,4 +8,6 @@ export default styled("div")(({ theme }) => ({
     position: "relative",
     zIndex: 5,
     height: "100%",
+    display: "flex",
+    flexDirection: "column",
 }));
