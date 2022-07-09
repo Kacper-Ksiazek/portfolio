@@ -44,6 +44,16 @@ const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     schoolURL="https://www.agh.edu.pl/en/"
                 />
                 <SingleSchool
+                    start="2021"
+                    end="2022"
+                    description="During my last year of high school I enrolled myself in *english language* extra classes so as to improve my language skills. I got assigned to *B2/C1* group and was
+                    attending 90 minutes long sessions two times at week for 7 months. "
+                    thumbnailURL="/images/landing-page/schools/magic.jpg"
+                    title="Szkoła językowa Magic"
+                    type="Extra classes"
+                    schoolURL="http://www.magic.edu.pl/"
+                />
+                <SingleSchool
                     start="2018"
                     end="2022"
                     description="I was attending there to the IT related class (*technikum informatyczne*) and eventually obtained all possible certification."
