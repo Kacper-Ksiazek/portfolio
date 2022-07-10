@@ -3,11 +3,10 @@
 import type { NextPage } from "next";
 // Material UI Components
 // Other components
-import BreakTheIce from "@/components/landing_page/BreakTheIce";
 import Head from "next/head";
+import ToDoList from "@/components/landing_page/ToDoList";
+import BreakTheIce from "@/components/landing_page/BreakTheIce";
 // Material UI Icons
-// Styled components
-import Image from "next/image";
 
 const Home: NextPage = () => {
     return (
@@ -15,7 +14,8 @@ const Home: NextPage = () => {
             <Head>
                 <title>Kacper Książek</title>
             </Head>
-            <BreakTheIce />
+            {/* <BreakTheIce /> */}
+            <ToDoList />
         </>
     );
 };

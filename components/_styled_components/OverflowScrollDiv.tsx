@@ -1,8 +1,9 @@
 // Tools
+import { forwardRef } from "react";
 import { styled, alpha } from "@mui/system";
 // Types
 import type { SxProps } from "@mui/system";
-import type { FunctionComponent, ReactNode } from "react";
+import type { ReactNode, ForwardRefExoticComponent, MutableRefObject } from "react";
 // Styled components
 const Wrapper = styled("div", {
     shouldForwardProp: (prop: string) => !["maxHeightWhileScrollable"].includes(prop),
@@ -37,12 +38,17 @@ interface OverflowScrollDivProps {
     sx?: SxProps;
 }
 
-const OverflowScrollDiv: FunctionComponent<OverflowScrollDivProps> = (props) => {
+const OverflowScrollDiv = forwardRef<HTMLDivElement, OverflowScrollDivProps>((props, ref) => {
     return (
-        <Wrapper sx={props.sx} maxHeightWhileScrollable={props.maxHeight}>
+        <Wrapper
+            sx={props.sx} //
+            ref={ref as any}
+            maxHeightWhileScrollable={props.maxHeight}
+        >
             <div>{props.children}</div>
         </Wrapper>
     );
-};
+});
 
+OverflowScrollDiv.displayName = "OverflowScrollDiv";
 export default OverflowScrollDiv;

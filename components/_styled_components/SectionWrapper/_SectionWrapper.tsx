@@ -3,6 +3,6 @@ import { styled } from "@mui/system";
 // Styled components
 export default styled("section")(({ theme }) => ({
     width: "calc(100vw - 40px)",
-    margin: "0 auto",
+    margin: "0 auto 60px auto",
     position: "relative",
 }));
