@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
 // Types
+import type { SxProps } from "@mui/system";
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import Header from "./Header";
@@ -34,11 +35,12 @@ interface DarkSectionWrapperProps {
         main: string;
         label: string;
     };
+    sx?: SxProps;
 }
 
 const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) => {
     return (
-        <DarkWrapperBase>
+        <DarkWrapperBase sx={props.sx}>
             <StyledContentWrapper>
                 <Header {...props.header}></Header>
                 {props.children}
