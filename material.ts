@@ -26,18 +26,14 @@ export default createTheme({
             primary: "#000000",
         },
     },
+    typography: {
+        fontFamily: '"Noto Sans", sans-serif',
+    },
     components: {
         MuiDivider: {
             styleOverrides: {
                 root: {
                     background: alpha("#052946", 0.08),
-                },
-            },
-        },
-        MuiInputBase: {
-            styleOverrides: {
-                input: {
-                    color: "#fff",
                 },
             },
         },
