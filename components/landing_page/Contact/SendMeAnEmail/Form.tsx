@@ -1,17 +1,37 @@
 // Tools
+import { styled } from "@mui/system";
 import useSendMeAnEmailContext from "./hooks/useSendMeAnEmailContext";
+import fadeToBottom from "@/components/_keyframes/fadeToBottom";
 // Types
 import type { FunctionComponent } from "react";
 // Styled Components
 import StyledInput from "./_styled_components/StyledInput";
 import SendMailButton from "./_styled_components/SendMailButton";
 
-const EmailForm: FunctionComponent = (props) => {
-    const { name, topic, message, checkWhetherAFieldIsValid, status, disableContinueButton } = useSendMeAnEmailContext();
+const LengthNotification = styled("span")(({ theme }) => ({
+    fontSize: "14px",
+    marginTop: "4px",
+    marginBottom: "32px",
+}));
+
+const FormWrapper = styled("div")(({ theme }) => ({
+    display: "flex",
+    flexDirection: "column",
+    "&.outro-animation": {
+        animation: `${fadeToBottom} .3s linear both`,
+    },
+}));
+
+interface EmailFormProps {
+    sendRequest: () => void;
+    displayOutroAnimation: boolean;
+}
+
+const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
+    const { name, topic, message, checkWhetherAFieldIsValid, disableContinueButton } = useSendMeAnEmailContext();
 
     return (
-        <>
-            <h4>Send me an email</h4>
+        <FormWrapper className={props.displayOutroAnimation ? "outro-animation" : ""}>
             <StyledInput
                 label="Your name" //
                 color="secondary"
@@ -35,12 +55,12 @@ const EmailForm: FunctionComponent = (props) => {
                 onChange={(e) => message.setValue(e.target.value)}
                 error={checkWhetherAFieldIsValid("message")}
             />
-            <span className="length-notification">{message.value.length} / 500</span>
+            <LengthNotification>{message.value.length} / 500</LengthNotification>
 
-            <SendMailButton disabled={disableContinueButton}>
+            <SendMailButton disabled={disableContinueButton} onClick={props.sendRequest}>
                 <span className="text">Send</span>
             </SendMailButton>
-        </>
+        </FormWrapper>
     );
 };
 

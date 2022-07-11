@@ -9,6 +9,8 @@ const SendMeAnEmailWrapperBase = styled("div")(({ theme }) => ({
     position: "relative",
     padding: "10px",
     alignSelf: "flex-start",
+    height: "470px",
+    overflow: "hidden",
     "&::before,&::after": {
         content: "''",
         position: "absolute",
@@ -41,17 +43,6 @@ const SendMeAnEmailWrapperBase = styled("div")(({ theme }) => ({
                 marginTop: "16px",
             },
         },
-    },
-    "span.length-notification": {
-        fontSize: "14px",
-        marginTop: "4px",
-        marginBottom: "32px",
-    },
-    h4: {
-        fontSize: "32px",
-        margin: "0 0 20px 0",
-        fontFamily: "Montserrat Alternates",
-        fontWeight: 700,
     },
 }));
 
