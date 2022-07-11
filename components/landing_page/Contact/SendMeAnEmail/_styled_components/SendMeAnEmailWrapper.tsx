@@ -45,6 +45,7 @@ const SendMeAnEmailWrapperBase = styled("div")(({ theme }) => ({
     "span.length-notification": {
         fontSize: "14px",
         marginTop: "4px",
+        marginBottom: "32px",
     },
     h4: {
         fontSize: "32px",

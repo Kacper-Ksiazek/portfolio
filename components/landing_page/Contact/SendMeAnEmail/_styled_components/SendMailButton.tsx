@@ -6,7 +6,6 @@ import ButtonBase from "@mui/material/ButtonBase";
 export default styled(ButtonBase)(({ theme }) => ({
     background: theme.palette.primary.main,
     alignSelf: "flex-start",
-    marginTop: "32px",
     padding: "12px 32px",
     fontSize: "16px",
     borderRadius: "3px",

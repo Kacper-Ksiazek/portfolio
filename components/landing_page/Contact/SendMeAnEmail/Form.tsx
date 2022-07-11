@@ -1,0 +1,47 @@
+// Tools
+import useSendMeAnEmailContext from "./hooks/useSendMeAnEmailContext";
+// Types
+import type { FunctionComponent } from "react";
+// Styled Components
+import StyledInput from "./_styled_components/StyledInput";
+import SendMailButton from "./_styled_components/SendMailButton";
+
+const EmailForm: FunctionComponent = (props) => {
+    const { name, topic, message, checkWhetherAFieldIsValid, status, disableContinueButton } = useSendMeAnEmailContext();
+
+    return (
+        <>
+            <h4>Send me an email</h4>
+            <StyledInput
+                label="Your name" //
+                color="secondary"
+                value={name.value}
+                onChange={(e) => name.setValue(e.target.value)}
+                error={checkWhetherAFieldIsValid("name")}
+            />
+            <StyledInput
+                label="Topic" //
+                color="secondary"
+                value={topic.value}
+                onChange={(e) => topic.setValue(e.target.value)}
+                error={checkWhetherAFieldIsValid("topic")}
+            />
+            <StyledInput
+                label="Message" //
+                color="secondary"
+                multiline
+                rows={4}
+                value={message.value}
+                onChange={(e) => message.setValue(e.target.value)}
+                error={checkWhetherAFieldIsValid("message")}
+            />
+            <span className="length-notification">{message.value.length} / 500</span>
+
+            <SendMailButton disabled={disableContinueButton}>
+                <span className="text">Send</span>
+            </SendMailButton>
+        </>
+    );
+};
+
+export default EmailForm;
