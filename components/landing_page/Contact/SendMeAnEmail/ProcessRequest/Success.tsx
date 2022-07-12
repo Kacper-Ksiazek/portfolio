@@ -2,12 +2,40 @@
 import type { FunctionComponent } from "react";
 // Material UI Icons
 import Check from "@mui/icons-material/Check";
+import ArrowBack from "@mui/icons-material/ArrowBack";
+// Other components
+import ButtonWithTooltip from "../_utils_components/ButtonWIthTooltip";
 // Styled components
 import { BottomInformation, ProcessRequestStageWrapper } from "./_styled_components";
 
-const Pending: FunctionComponent = (props) => {
+interface SuccessResultProps {
+    isFeigned: boolean;
+    outroAnimation: boolean;
+    goBackToTheForm: () => void;
+}
+
+const SuccessResult: FunctionComponent<SuccessResultProps> = (props) => {
     return (
-        <ProcessRequestStageWrapper className="success">
+        <ProcessRequestStageWrapper
+            className={[
+                "success", //
+                props.outroAnimation ? "outro" : "",
+            ].join(" ")}
+        >
+            {props.isFeigned && (
+                <ButtonWithTooltip
+                    color="success" //
+                    tooltip="Return to the form"
+                    onClick={props.goBackToTheForm}
+                    icon={<ArrowBack />}
+                    sx={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px",
+                    }}
+                />
+            )}
+
             <Check className="main-icon" />
             <BottomInformation>
                 Your message has been send <strong>successfully</strong>.
@@ -16,4 +44,4 @@ const Pending: FunctionComponent = (props) => {
     );
 };
 
-export default Pending;
+export default SuccessResult;

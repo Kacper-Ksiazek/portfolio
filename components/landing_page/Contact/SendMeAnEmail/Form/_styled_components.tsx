@@ -49,3 +49,7 @@ export const ButtonsBottomWrapper = styled("footer")(({ theme }) => ({
     justifyContent: "space-between",
     alignItems: "center",
 }));
+
+export const SimpleFlexBox = styled("footer")(({ theme }) => ({
+    display: "flex",
+}));

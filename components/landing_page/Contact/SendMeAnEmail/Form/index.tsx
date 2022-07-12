@@ -1,11 +1,16 @@
 // Tools
+import useRequestFaker from "./hooks/useRequestFaker";
 import useSendMeAnEmailContext from "../hooks/useSendMeAnEmailContext";
 // Types
 import type { FunctionComponent } from "react";
+// Other components
+import ButtonWIthTooltip from "../_utils_components/ButtonWIthTooltip";
+// Material UI Icons
+import CodeOff from "@mui/icons-material/CodeOff";
 // Styled Components
 import StyledInput from "../_styled_components/StyledInput";
 import SendMailButton from "../_styled_components/SendMailButton";
-import { ButtonsBottomWrapper, FormWrapper, Header, LengthNotification } from "./_styled_components";
+import { ButtonsBottomWrapper, FormWrapper, Header, LengthNotification, SimpleFlexBox } from "./_styled_components";
 
 interface EmailFormProps {
     sendRequest: () => void;
@@ -14,6 +19,7 @@ interface EmailFormProps {
 
 const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
     const { name, topic, message, checkWhetherAFieldIsValid, disableContinueButton } = useSendMeAnEmailContext();
+    const { feignSucceededRequest, feignInvalidRequest } = useRequestFaker();
 
     return (
         <FormWrapper className={props.displayOutroAnimation ? "outro-animation" : ""}>
@@ -48,6 +54,21 @@ const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
                 <SendMailButton disabled={disableContinueButton} onClick={props.sendRequest}>
                     <span className="text">Send</span>
                 </SendMailButton>
+
+                <SimpleFlexBox>
+                    <ButtonWIthTooltip
+                        color="error" //
+                        tooltip="Feign an invalid request"
+                        onClick={feignInvalidRequest}
+                        icon={<CodeOff />}
+                    />
+                    <ButtonWIthTooltip
+                        color="success" //
+                        tooltip="Feign a succeeded request"
+                        onClick={feignSucceededRequest}
+                        icon={<CodeOff />}
+                    />
+                </SimpleFlexBox>
             </ButtonsBottomWrapper>
         </FormWrapper>
     );

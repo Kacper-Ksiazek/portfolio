@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import useBetterState from "@/hooks/useBetterState";
 import useSendMeAnEmailContext from "./hooks/useSendMeAnEmailContext";
 // Types
+import type { Status } from "./context";
 import type { FunctionComponent } from "react";
 // Other components
 import Form from "./Form";
@@ -16,15 +17,27 @@ const SendMeAnEmailContextConsumer: FunctionComponent = (props) => {
 
     const sendRequest = () => {
         status.setValue("pending");
-        extraCircumstancesOfRenderingForm.setValue("displayOutroAnimation");
-        setTimeout(() => {
-            extraCircumstancesOfRenderingForm.setValue("hideIt");
-        }, 800);
     };
 
     useEffect(() => {
-        if (status.value === "fillingForm") extraCircumstancesOfRenderingForm.setValue(null);
-    }, [status.value, extraCircumstancesOfRenderingForm]);
+        if ((["fillingForm", "fillingForm_after_error", "fillingForm_after_success"] as Status[]).includes(status.value)) {
+            extraCircumstancesOfRenderingForm.setValue(null);
+            // ---
+            // Let the outro animation end and then simply stop rendering <ProcessRequest/> component
+            if ((["fillingForm_after_error", "fillingForm_after_success"] as Status[]).includes(status.value)) {
+                setTimeout(() => {
+                    status.setValue("fillingForm");
+                }, 300);
+            }
+        }
+        //
+        else if (extraCircumstancesOfRenderingForm.value === null) {
+            extraCircumstancesOfRenderingForm.setValue("displayOutroAnimation");
+            setTimeout(() => {
+                extraCircumstancesOfRenderingForm.setValue("hideIt");
+            }, 800);
+        }
+    }, [status.value, status.setValue, extraCircumstancesOfRenderingForm, status]);
 
     return (
         <SendMeAnEmailWrapper>
