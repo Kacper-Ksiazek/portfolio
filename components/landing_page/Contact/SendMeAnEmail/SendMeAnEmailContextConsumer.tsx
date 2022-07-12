@@ -1,21 +1,14 @@
 // Tools
-import { styled } from "@mui/system";
+import { useEffect } from "react";
 import useBetterState from "@/hooks/useBetterState";
 import useSendMeAnEmailContext from "./hooks/useSendMeAnEmailContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
 import Form from "./Form";
+import ProcessRequest from "./ProcessRequest";
 // Styled Components
 import SendMeAnEmailWrapper from "./_styled_components/SendMeAnEmailWrapper";
-
-const Header = styled("h4")(({ theme }) => ({
-    fontSize: "32px",
-    margin: "0 0 20px 0",
-    fontFamily: "Montserrat Alternates",
-    fontWeight: 700,
-    userSelect: "none",
-}));
 
 const SendMeAnEmailContextConsumer: FunctionComponent = (props) => {
     const { status } = useSendMeAnEmailContext();
@@ -29,9 +22,12 @@ const SendMeAnEmailContextConsumer: FunctionComponent = (props) => {
         }, 800);
     };
 
+    useEffect(() => {
+        if (status.value === "fillingForm") extraCircumstancesOfRenderingForm.setValue(null);
+    }, [status.value, extraCircumstancesOfRenderingForm]);
+
     return (
         <SendMeAnEmailWrapper>
-            <Header>Send me an email</Header>
             {(() => {
                 if (extraCircumstancesOfRenderingForm.value !== "hideIt") {
                     return (
@@ -40,6 +36,12 @@ const SendMeAnEmailContextConsumer: FunctionComponent = (props) => {
                             sendRequest={sendRequest}
                         />
                     );
+                }
+            })()}
+
+            {(() => {
+                if (status.value !== "fillingForm") {
+                    return <ProcessRequest />;
                 }
             })()}
         </SendMeAnEmailWrapper>

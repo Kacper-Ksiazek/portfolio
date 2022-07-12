@@ -17,9 +17,9 @@ interface UseFieldsWithValidationResult {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (): UseFieldsWithValidationResult => {
-    const [name, setName] = useState<string>("");
-    const [topic, setTopic] = useState<string>("");
-    const [message, setMessage] = useState<string>("");
+    const [name, setName] = useState<string>("dasd asdasd asd");
+    const [topic, setTopic] = useState<string>("asd asdasd asdas");
+    const [message, setMessage] = useState<string>("d asd asdasd asdasdasd asd");
 
     const [invalidFields, setInvalidFields] = useState<string[]>([]);
     const [disableContinueButton, setDisableContinueButton] = useState<boolean>(false);

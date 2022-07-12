@@ -40,13 +40,13 @@ export default createTheme({
         MuiTooltip: {
             styleOverrides: {
                 tooltip: {
-                    fontSize: "1rem",
-                    letterSpacing: "1px",
-                    fontWeight: 300,
-                    textTransform: "capitalize",
-                    background: "#052946",
-                    padding: "5px 10px",
+                    fontSize: "16px",
+                    fontWeight: 400,
+                    background: alpha("#000", 0.75),
+                    padding: "4px 16px",
                     cursor: "default",
+                    borderRadius: "3px",
+                    userSelect: "none",
                 },
             },
         },
