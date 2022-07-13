@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             throw new MethodNotAllowed();
         }
 
-        const API = new HandleSendingEmailForm();
+        const API = new HandleSendingEmailForm(req);
         await API.sendEmail();
 
         return res.status(200).end();
