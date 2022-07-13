@@ -15,8 +15,9 @@ const SendMeAnEmailContextConsumer: FunctionComponent = (props) => {
     const { status } = useSendMeAnEmailContext();
     const extraCircumstancesOfRenderingForm = useBetterState<null | "displayOutroAnimation" | "hideIt">(null);
 
-    const sendRequest = () => {
+    const sendRequest = async () => {
         status.setValue("pending");
+        console.log("REQUEST");
     };
 
     useEffect(() => {
