@@ -9,7 +9,7 @@ const SendMeAnEmailWrapperBase = styled("div")(({ theme }) => ({
     position: "relative",
     padding: "10px",
     alignSelf: "flex-start",
-    height: "470px",
+    height: "520px",
     overflow: "hidden",
     "&::before,&::after": {
         content: "''",

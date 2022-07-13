@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
 import fadeFromTop from "@/components/_keyframes/fadeFromTop";
+import fadeFromLeft from "@/components/_keyframes/fadeFromLeft";
 import useSendMeAnEmailContext from "../../hooks/useSendMeAnEmailContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -25,6 +26,9 @@ const FormStage1: FunctionComponent = (props) => {
                 value={author.value}
                 onChange={(e) => author.setValue(e.target.value)}
                 error={checkWhetherAFieldIsValid("author")}
+                sx={{
+                    animation: `${fadeFromLeft} .2s .2s linear both`,
+                }}
             />
             <StyledInput
                 label="Subject" //
@@ -32,6 +36,9 @@ const FormStage1: FunctionComponent = (props) => {
                 value={subject.value}
                 onChange={(e) => subject.setValue(e.target.value)}
                 error={checkWhetherAFieldIsValid("subject")}
+                sx={{
+                    animation: `${fadeFromLeft} .2s .3s linear both`,
+                }}
             />
             <StyledInput
                 label="Message" //
@@ -41,6 +48,9 @@ const FormStage1: FunctionComponent = (props) => {
                 value={message.value}
                 onChange={(e) => message.setValue(e.target.value)}
                 error={checkWhetherAFieldIsValid("message")}
+                sx={{
+                    animation: `${fadeFromLeft} .2s .4s linear both`,
+                }}
             />
             <LengthNotification>{message.value.length} / 500</LengthNotification>
         </>
