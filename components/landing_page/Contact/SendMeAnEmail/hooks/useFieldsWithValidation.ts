@@ -6,19 +6,19 @@ import stated from "@/utils/client/stated";
 import type { StatedDataField } from "@/@types/StatedDataField";
 
 interface UseFieldsWithValidationResult {
-    name: StatedDataField<string>;
-    topic: StatedDataField<string>;
+    author: StatedDataField<string>;
+    subject: StatedDataField<string>;
     message: StatedDataField<string>;
     //
     disableContinueButton: boolean;
     //
-    checkWhetherAFieldIsValid: (fieldName: "name" | "topic" | "message") => boolean;
+    checkWhetherAFieldIsValid: (fieldName: "author" | "subject" | "message") => boolean;
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (): UseFieldsWithValidationResult => {
-    const [name, setName] = useState<string>("dasd asdasd asd");
-    const [topic, setTopic] = useState<string>("asd asdasd asdas");
+    const [author, setAuthor] = useState<string>("dasd asdasd asd");
+    const [subject, setSubject] = useState<string>("asd asdasd asdas");
     const [message, setMessage] = useState<string>("d asd asdasd asdasdasd asd");
 
     const [invalidFields, setInvalidFields] = useState<string[]>([]);
@@ -26,28 +26,28 @@ export default (): UseFieldsWithValidationResult => {
 
     const validationScheme = useMemo(() => {
         return joi.object({
-            name: joi.string().min(3).max(100).required(),
-            topic: joi.string().min(3).max(100).required(),
+            author: joi.string().min(3).max(100).required(),
+            subject: joi.string().min(3).max(100).required(),
             message: joi.string().min(10).max(500).required(),
         });
     }, []);
 
     useEffect(() => {
-        if (name.length === 0 && topic.length === 0 && message.length === 0) {
+        if (author.length === 0 && subject.length === 0 && message.length === 0) {
             setInvalidFields([]);
             setDisableContinueButton(true);
             return;
         }
 
-        const { error } = validationScheme.validate({ name, topic, message }, { abortEarly: false });
+        const { error } = validationScheme.validate({ author, subject, message }, { abortEarly: false });
         setDisableContinueButton(Boolean(error));
 
         setInvalidFields(error ? (error as any).details.map((el: any) => el.path[0]) : []);
-    }, [name, topic, message, validationScheme]);
+    }, [author, subject, message, validationScheme]);
 
     return {
-        name: stated(name, setName),
-        topic: stated(topic, setTopic),
+        author: stated(author, setAuthor),
+        subject: stated(subject, setSubject),
         message: stated(message, setMessage),
         checkWhetherAFieldIsValid: (field) => invalidFields.includes(field),
         disableContinueButton,

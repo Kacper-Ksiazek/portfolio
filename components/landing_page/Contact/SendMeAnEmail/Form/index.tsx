@@ -18,7 +18,7 @@ interface EmailFormProps {
 }
 
 const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
-    const { name, topic, message, checkWhetherAFieldIsValid, disableContinueButton } = useSendMeAnEmailContext();
+    const { author, subject, message, checkWhetherAFieldIsValid, disableContinueButton } = useSendMeAnEmailContext();
     const { feignSucceededRequest, feignInvalidRequest } = useRequestFaker();
 
     return (
@@ -28,16 +28,16 @@ const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
             <StyledInput
                 label="Your name" //
                 color="secondary"
-                value={name.value}
-                onChange={(e) => name.setValue(e.target.value)}
-                error={checkWhetherAFieldIsValid("name")}
+                value={author.value}
+                onChange={(e) => author.setValue(e.target.value)}
+                error={checkWhetherAFieldIsValid("author")}
             />
             <StyledInput
-                label="Topic" //
+                label="Subject" //
                 color="secondary"
-                value={topic.value}
-                onChange={(e) => topic.setValue(e.target.value)}
-                error={checkWhetherAFieldIsValid("topic")}
+                value={subject.value}
+                onChange={(e) => subject.setValue(e.target.value)}
+                error={checkWhetherAFieldIsValid("subject")}
             />
             <StyledInput
                 label="Message" //
@@ -52,7 +52,7 @@ const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
 
             <ButtonsBottomWrapper>
                 <SendMailButton disabled={disableContinueButton} onClick={props.sendRequest}>
-                    <span className="text">Send</span>
+                    <span className="text">Continue</span>
                 </SendMailButton>
 
                 <SimpleFlexBox>
