@@ -25,9 +25,9 @@ interface FormStageOneContextInterface {
 export const FormStageOneContext = createContext<FormStageOneContextInterface>({} as any);
 
 export const FormStageOneContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
-    const [author, setAuthor] = useState<string>("Johanes Krankenburger");
-    const [subject, setSubject] = useState<string>("Polow wielorybow");
-    const [message, setMessage] = useState<string>("Lorem ipsum dolor delfin orka salamandra i słoń");
+    const [author, setAuthor] = useState<string>("");
+    const [subject, setSubject] = useState<string>("");
+    const [message, setMessage] = useState<string>("");
 
     const [invalidFields, setInvalidFields] = useState<string[]>([]);
 

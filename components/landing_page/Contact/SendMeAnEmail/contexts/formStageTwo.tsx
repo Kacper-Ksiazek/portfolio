@@ -30,10 +30,10 @@ interface FormStageTwoContextInterface {
 export const FormStageTwoContext = createContext<FormStageTwoContextInterface>({} as any);
 
 export const FormStageTwoContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
-    const [email, setEmail] = useState<string>("rozowa_kleopatra@gmail.com");
-    const [github, setGithub] = useState<string>("https://github.com/Kacper-Ksiazek");
+    const [email, setEmail] = useState<string>("");
+    const [github, setGithub] = useState<string>("");
     const [website, setWebsite] = useState<string>("");
-    const [country, setCountry] = useState<CountryType | null>({ label: "Poland", code: "pl" });
+    const [country, setCountry] = useState<CountryType | null>(null);
 
     const [invalidFields, setInvalidFields] = useState<string[]>([]);
 

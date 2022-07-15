@@ -10,6 +10,7 @@ import { BottomInformation, ProcessRequestStageWrapper } from "./_styled_compone
 
 interface SuccessResultProps {
     isFeigned: boolean;
+    isAlreadySucceeded: boolean;
     outroAnimation: boolean;
     goBackToTheForm: () => void;
 }
@@ -38,7 +39,7 @@ const SuccessResult: FunctionComponent<SuccessResultProps> = (props) => {
 
             <Check className="main-icon" />
             <BottomInformation>
-                Your message has been send <strong>successfully</strong>.
+                Your message has been {props.isAlreadySucceeded ? <strong>ALREADY</strong> : <></>} sent <strong>successfully</strong>.
             </BottomInformation>
         </ProcessRequestStageWrapper>
     );

@@ -31,10 +31,11 @@ const ProcessRequest: FunctionComponent<ProcessRequestParams> = (props) => {
             />
 
             {(() => {
-                if ((["success", "success_but_feigned", "fillingForm_after_success"] as Status[]).includes(requestStatus)) {
+                if ((["success", "success_but_feigned", "fillingForm_after_success", "already_succeeded"] as Status[]).includes(requestStatus)) {
                     return (
                         <Success
                             isFeigned={requestStatus === "success_but_feigned"} //
+                            isAlreadySucceeded={requestStatus === "already_succeeded"}
                             outroAnimation={requestStatus === "fillingForm_after_success"}
                             goBackToTheForm={() => setRequestStatus("fillingForm_after_success")}
                         />

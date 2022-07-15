@@ -1,5 +1,6 @@
 // Tools
 import axios from "axios";
+import { useEffect } from "react";
 import { ManagementContextProvider } from "./contexts/management";
 import { FormStageOneContextProvider } from "./contexts/formStageOne";
 import { FormStageTwoContextProvider } from "./contexts/formStageTwo";
@@ -15,12 +16,12 @@ import ProcessRequest from "./ProcessRequest";
 import SendMeAnEmailWrapper from "./_styled_components/SendMeAnEmailWrapper";
 
 const SendMeAnEmail: FunctionComponent = (props) => {
-    const managementContext = useManagementContext();
+    const { setRequestStatus, ...managementContext } = useManagementContext();
     const { author, subject, message } = useFormStageOne();
     const { country, email, github, website } = useFormStageTwo();
 
     const sendRequest = async () => {
-        managementContext.setRequestStatus("pending");
+        setRequestStatus("pending");
         axios
             .post("./api/send_email", {
                 author,
@@ -34,13 +35,20 @@ const SendMeAnEmail: FunctionComponent = (props) => {
                 },
             })
             .then(() => {
-                managementContext.setRequestStatus("success");
+                setRequestStatus("success");
+                localStorage.setItem("email-has-been-already-send", new Date().toLocaleString());
             })
             .catch((res) => {
                 managementContext.setFailedRequestHTTPStatus(res.response.status);
-                managementContext.setRequestStatus("error");
+                setRequestStatus("error");
             });
     };
+
+    useEffect(() => {
+        if (localStorage && localStorage.getItem("email-has-been-already-send")) {
+            setRequestStatus("already_succeeded");
+        }
+    }, [setRequestStatus]);
 
     return (
         <SendMeAnEmailWrapper>
