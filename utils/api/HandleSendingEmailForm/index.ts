@@ -82,7 +82,10 @@ export default class HandleSendingEmailForm {
 
         const { error, value } = scheme.validate(this.req.body);
 
-        if (error) throw new InvalidRequestedBody();
+        if (error) {
+            console.log(error);
+            throw new InvalidRequestedBody();
+        }
 
         return value as ValidatedData;
     }

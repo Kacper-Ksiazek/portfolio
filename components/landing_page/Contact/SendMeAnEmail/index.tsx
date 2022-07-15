@@ -1,7 +1,10 @@
 // Tools
+import axios from "axios";
 import { ManagementContextProvider } from "./contexts/management";
 import { FormStageOneContextProvider } from "./contexts/formStageOne";
 import { FormStageTwoContextProvider } from "./contexts/formStageTwo";
+import useFormStageOne from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useFormStageOne";
+import useFormStageTwo from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useFormStageTwo";
 import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -13,10 +16,30 @@ import SendMeAnEmailWrapper from "./_styled_components/SendMeAnEmailWrapper";
 
 const SendMeAnEmail: FunctionComponent = (props) => {
     const managementContext = useManagementContext();
+    const { author, subject, message } = useFormStageOne();
+    const { country, email, github, website } = useFormStageTwo();
 
     const sendRequest = async () => {
         managementContext.setRequestStatus("pending");
-        console.log("REQUEST");
+        axios
+            .post("./api/send_email", {
+                author,
+                subject,
+                message,
+                contact: {
+                    email,
+                    country: country ? country?.label : "",
+                    ...(github.length ? { github } : null),
+                    ...(website.length ? { website } : null),
+                },
+            })
+            .then(() => {
+                managementContext.setRequestStatus("success");
+            })
+            .catch((res) => {
+                managementContext.setFailedRequestHTTPStatus(res.response.status);
+                managementContext.setRequestStatus("error");
+            });
     };
 
     return (
@@ -32,7 +55,7 @@ const SendMeAnEmail: FunctionComponent = (props) => {
                 }
             })()}
 
-            {managementContext.requestStatus !== "fillingForm" && <ProcessRequest />}
+            {managementContext.requestStatus !== "fillingForm" && <ProcessRequest sendRequest={sendRequest} />}
         </SendMeAnEmailWrapper>
     );
 };

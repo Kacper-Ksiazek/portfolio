@@ -1,5 +1,5 @@
 // Tools
-import { styled, alpha } from "@mui/system";
+import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons

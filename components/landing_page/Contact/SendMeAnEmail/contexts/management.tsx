@@ -14,6 +14,9 @@ interface ManagementContextInterface {
     requestStatus: Status;
     setRequestStatus: Dispatch<SetStateAction<Status>>;
     //
+    failedRequestHTTPStatus: number;
+    setFailedRequestHTTPStatus: Dispatch<SetStateAction<number>>;
+    //
     specialWayOfRenderingForm: SpecialWayOfRenderingForm;
 }
 
@@ -24,6 +27,7 @@ export const ManagementContextProvider: FunctionComponent<{ children: ReactNode 
     const [requestStatus, setRequestStatus] = useState<Status>("fillingForm");
     const [formFillingStage, setFormFillingStage] = useState<FormFillingStage>("purpose");
     const [specialWayOfRenderingForm, setSpecialWayOfRenderingForm] = useState<SpecialWayOfRenderingForm>(null);
+    const [failedRequestHTTPStatus, setFailedRequestHTTPStatus] = useState<number>(500);
 
     useEffect(() => {
         if ((["fillingForm", "fillingForm_after_error", "fillingForm_after_success"] as Status[]).includes(requestStatus)) {
@@ -55,6 +59,8 @@ export const ManagementContextProvider: FunctionComponent<{ children: ReactNode 
                 setFormFillingStage,
                 setRequestStatus,
                 specialWayOfRenderingForm,
+                failedRequestHTTPStatus,
+                setFailedRequestHTTPStatus,
             }}
         >
             {props.children}

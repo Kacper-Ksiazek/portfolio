@@ -1,5 +1,4 @@
 // Tools
-import useBetterState from "@/hooks/useBetterState";
 import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -9,10 +8,20 @@ import Error from "./Error";
 import Pending from "./Pending";
 import Success from "./Success";
 
-const ProcessRequest: FunctionComponent = (props) => {
-    const { setRequestStatus, requestStatus } = useManagementContext();
+interface ProcessRequestParams {
+    sendRequest: () => void;
+}
 
-    const errorHTTPCode = useBetterState<number | null>(null);
+const ProcessRequest: FunctionComponent<ProcessRequestParams> = (props) => {
+    const { setRequestStatus, requestStatus, failedRequestHTTPStatus } = useManagementContext();
+
+    const refresh = () => {
+        if (requestStatus === "error_but_feigned") {
+            return setRequestStatus("pending_but_feigned");
+        } else {
+            props.sendRequest();
+        }
+    };
 
     return (
         <>
@@ -34,8 +43,8 @@ const ProcessRequest: FunctionComponent = (props) => {
                     return (
                         <Error
                             outroAnimation={requestStatus === "fillingForm_after_error"} //
-                            code={errorHTTPCode.value ?? 500}
-                            refresh={() => setRequestStatus(requestStatus === "error" ? "pending" : "pending_but_feigned")}
+                            code={failedRequestHTTPStatus}
+                            refresh={refresh}
                             goBackToTheForm={() => setRequestStatus("fillingForm_after_error")}
                         />
                     );
