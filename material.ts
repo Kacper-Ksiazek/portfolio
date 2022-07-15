@@ -26,6 +26,9 @@ export default createTheme({
             primary: "#000000",
         },
     },
+    typography: {
+        fontFamily: '"Noto Sans", sans-serif',
+    },
     components: {
         MuiDivider: {
             styleOverrides: {
@@ -34,23 +37,35 @@ export default createTheme({
                 },
             },
         },
-        MuiInputBase: {
-            styleOverrides: {
-                input: {
-                    color: "#fff",
-                },
-            },
-        },
         MuiTooltip: {
             styleOverrides: {
                 tooltip: {
-                    fontSize: "1rem",
-                    letterSpacing: "1px",
-                    fontWeight: 300,
-                    textTransform: "capitalize",
-                    background: "#052946",
-                    padding: "5px 10px",
+                    fontSize: "16px",
+                    fontWeight: 400,
+                    background: alpha("#000", 0.75),
+                    padding: "4px 16px",
                     cursor: "default",
+                    borderRadius: "3px",
+                    userSelect: "none",
+                },
+            },
+        },
+        MuiAutocomplete: {
+            styleOverrides: {
+                root: {
+                    background: "#fff",
+                },
+                noOptions: {
+                    background: `#F0EFF4`,
+                },
+                listbox: {
+                    background: `#F0EFF4`,
+                    "&::-webkit-scrollbar": { width: "8px" },
+                    "&::-webkit-scrollbar-track": { boxShadow: `inset 0 0 2px ${alpha("#832161", 0.3)}` },
+                    "&::-webkit-scrollbar-thumb": {
+                        backgroundColor: "#832161",
+                        borderRadius: "2px",
+                    },
                 },
             },
         },
