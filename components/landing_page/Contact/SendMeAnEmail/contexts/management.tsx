@@ -1,8 +1,7 @@
 // Tools
-import { useState } from "react";
-import { createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 // Types
-import type { Status, FormFillingStage } from "./@types";
+import type { Status, FormFillingStage, SpecialWayOfRenderingForm } from "./@types";
 import type { Dispatch, SetStateAction, FunctionComponent, ReactNode } from "react";
 
 interface ManagementContextInterface {
@@ -11,6 +10,8 @@ interface ManagementContextInterface {
     //
     requestStatus: Status;
     setRequestStatus: Dispatch<SetStateAction<Status>>;
+    //
+    specialWayOfRenderingForm: SpecialWayOfRenderingForm;
 }
 
 export const ManagemetContext = createContext<ManagementContextInterface>({} as any);
@@ -18,6 +19,27 @@ export const ManagemetContext = createContext<ManagementContextInterface>({} as 
 export const ManagementContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
     const [formFillingStage, setFormFillingStage] = useState<FormFillingStage>("purpose");
     const [requestStatus, setRequestStatus] = useState<Status>("fillingForm");
+    const [specialWayOfRenderingForm, setSpecialWayOfRenderingForm] = useState<SpecialWayOfRenderingForm>(null);
+
+    useEffect(() => {
+        if ((["fillingForm", "fillingForm_after_error", "fillingForm_after_success"] as Status[]).includes(requestStatus)) {
+            setSpecialWayOfRenderingForm(null);
+            // ---
+            // Let the outro animation end and then simply stop rendering <ProcessRequest/> component
+            if ((["fillingForm_after_error", "fillingForm_after_success"] as Status[]).includes(requestStatus)) {
+                setTimeout(() => {
+                    setRequestStatus("fillingForm");
+                }, 300);
+            }
+        }
+        //
+        else if (specialWayOfRenderingForm === null) {
+            setSpecialWayOfRenderingForm("displayOutroAnimation");
+            setTimeout(() => {
+                setSpecialWayOfRenderingForm("hideIt");
+            }, 800);
+        }
+    }, [specialWayOfRenderingForm, requestStatus]);
 
     return (
         <ManagemetContext.Provider
@@ -26,6 +48,7 @@ export const ManagementContextProvider: FunctionComponent<{ children: ReactNode 
                 requestStatus,
                 setFormFillingStage,
                 setRequestStatus,
+                specialWayOfRenderingForm,
             }}
         >
             {props.children}
