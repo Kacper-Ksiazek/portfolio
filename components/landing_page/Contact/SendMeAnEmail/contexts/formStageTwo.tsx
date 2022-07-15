@@ -1,15 +1,15 @@
 // Tools
 import joi from "joi";
 import intoJoi from "./tools/intoJoi";
-import { useState, createContext, useMemo } from "react";
 import restrictions from "@/utils/restrictions/sendEmailForm";
-import distinguishInvalidProperties from "./tools/distinguishInvalidProperties";
+import { useState, createContext, useMemo, useEffect } from "react";
 // Types
+import type { CountryType } from "@/data/countries";
 import type { Dispatch, SetStateAction, FunctionComponent, ReactNode } from "react";
 
 interface FormStageTwoContextInterface {
-    country: string;
-    setCountry: Dispatch<SetStateAction<string>>;
+    country: CountryType | null;
+    setCountry: Dispatch<SetStateAction<CountryType | null>>;
     countryIsInvalid: boolean;
     //
     email: string;
@@ -23,6 +23,8 @@ interface FormStageTwoContextInterface {
     website: string;
     setWebsite: Dispatch<SetStateAction<string>>;
     websiteIsInvalid: boolean;
+    //
+    everythingIsValid: boolean;
 }
 
 export const FormStageTwoContext = createContext<FormStageTwoContextInterface>({} as any);
@@ -30,8 +32,10 @@ export const FormStageTwoContext = createContext<FormStageTwoContextInterface>({
 export const FormStageTwoContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
     const [email, setEmail] = useState<string>("");
     const [github, setGithub] = useState<string>("");
-    const [country, setCountry] = useState<string>("");
     const [website, setWebsite] = useState<string>("");
+    const [country, setCountry] = useState<CountryType | null>(null);
+
+    const [invalidFields, setInvalidFields] = useState<string[]>([]);
 
     const validationScheme = useMemo(() => {
         return joi.object({
@@ -47,29 +51,39 @@ export const FormStageTwoContextProvider: FunctionComponent<{ children: ReactNod
         });
     }, []);
 
-    const { checkWhetherAFieldIsValid } = distinguishInvalidProperties({
-        body: { email, github, country, website },
-        schema: validationScheme,
-    });
+    useEffect(() => {
+        const { error } = validationScheme.validate(
+            {
+                email,
+                ...(github.length ? { github } : null),
+                ...(website.length ? { website } : null),
+                country: country ? country.label : "",
+            },
+            { abortEarly: false }
+        );
+        setInvalidFields(error ? (error as any).details.map((el: any) => el.path[0]) : []);
+    }, [validationScheme, email, github, website, country]);
 
     return (
         <FormStageTwoContext.Provider
             value={{
                 country,
                 setCountry,
-                countryIsInvalid: checkWhetherAFieldIsValid("country"),
+                countryIsInvalid: invalidFields.includes("country"),
                 //
                 email,
                 setEmail,
-                emailIsInvalid: checkWhetherAFieldIsValid("email"),
+                emailIsInvalid: invalidFields.includes("email"),
                 //
                 github,
                 setGithub,
-                githubIsInvalid: checkWhetherAFieldIsValid("github"),
+                githubIsInvalid: invalidFields.includes("github"),
                 //
                 website,
                 setWebsite,
-                websiteIsInvalid: checkWhetherAFieldIsValid("website"),
+                websiteIsInvalid: invalidFields.includes("website"),
+                //
+                everythingIsValid: invalidFields.length === 0,
             }}
         >
             {props.children}

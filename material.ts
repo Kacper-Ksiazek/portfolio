@@ -50,5 +50,24 @@ export default createTheme({
                 },
             },
         },
+        MuiAutocomplete: {
+            styleOverrides: {
+                root: {
+                    background: "#fff",
+                },
+                noOptions: {
+                    background: `#F0EFF4`,
+                },
+                listbox: {
+                    background: `#F0EFF4`,
+                    "&::-webkit-scrollbar": { width: "8px" },
+                    "&::-webkit-scrollbar-track": { boxShadow: `inset 0 0 2px ${alpha("#832161", 0.3)}` },
+                    "&::-webkit-scrollbar-thumb": {
+                        backgroundColor: "#832161",
+                        borderRadius: "2px",
+                    },
+                },
+            },
+        },
     },
 });

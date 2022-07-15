@@ -20,7 +20,7 @@ const ButtonsBottomWrapper = styled("footer")(({ theme }) => ({
 }));
 
 interface BottomButtonsProps {
-    sendRequest: () => void;
+    onContinueButtonClick: () => void;
 }
 const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
     const managementContext = useManagementContext();
@@ -41,7 +41,7 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
 
     return (
         <ButtonsBottomWrapper>
-            <SendMailButton disabled={managementContext.blockContinueButton} onClick={props.sendRequest}>
+            <SendMailButton disabled={managementContext.blockContinueButton} onClick={props.onContinueButtonClick}>
                 <span className="text">Continue</span>
             </SendMailButton>
 

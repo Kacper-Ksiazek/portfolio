@@ -1,9 +1,8 @@
 // Tools
 import joi from "joi";
 import intoJoi from "./tools/intoJoi";
-import { useState, createContext, useMemo } from "react";
+import { useState, createContext, useMemo, useEffect } from "react";
 import restrictions from "@/utils/restrictions/sendEmailForm";
-import distinguishInvalidProperties from "./tools/distinguishInvalidProperties";
 // Types
 import type { Dispatch, SetStateAction, FunctionComponent, ReactNode } from "react";
 
@@ -30,6 +29,8 @@ export const FormStageOneContextProvider: FunctionComponent<{ children: ReactNod
     const [subject, setSubject] = useState<string>("");
     const [message, setMessage] = useState<string>("");
 
+    const [invalidFields, setInvalidFields] = useState<string[]>([]);
+
     const validationScheme = useMemo(() => {
         return joi.object({
             author: intoJoi(restrictions.author),
@@ -38,10 +39,10 @@ export const FormStageOneContextProvider: FunctionComponent<{ children: ReactNod
         });
     }, []);
 
-    const { checkWhetherAFieldIsValid, everythingIsValid } = distinguishInvalidProperties({
-        body: { message, author, subject },
-        schema: validationScheme,
-    });
+    useEffect(() => {
+        const { error } = validationScheme.validate({ author, subject, message }, { abortEarly: false });
+        setInvalidFields(error ? (error as any).details.map((el: any) => el.path[0]) : []);
+    }, [author, message, subject, validationScheme]);
 
     return (
         <FormStageOneContext.Provider
@@ -52,11 +53,11 @@ export const FormStageOneContextProvider: FunctionComponent<{ children: ReactNod
                 setSubject,
                 message,
                 setMessage,
-                authorIsInvalid: checkWhetherAFieldIsValid("author"),
-                messageIsInvalid: checkWhetherAFieldIsValid("message"),
-                subjectIsInvalid: checkWhetherAFieldIsValid("subject"),
+                authorIsInvalid: invalidFields.includes("author"),
+                messageIsInvalid: invalidFields.includes("message"),
+                subjectIsInvalid: invalidFields.includes("subject"),
                 //
-                everythingIsValid,
+                everythingIsValid: invalidFields.length === 0,
             }}
         >
             {props.children}

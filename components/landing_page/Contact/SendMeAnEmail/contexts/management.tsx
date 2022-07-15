@@ -22,7 +22,7 @@ export const ManagemetContext = createContext<ManagementContextInterface>({} as 
 export const ManagementContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
     const [blockContinueButton, setBlockContinueButton] = useState<boolean>(false);
     const [requestStatus, setRequestStatus] = useState<Status>("fillingForm");
-    const [formFillingStage, setFormFillingStage] = useState<FormFillingStage>("purpose");
+    const [formFillingStage, setFormFillingStage] = useState<FormFillingStage>("contact_details");
     const [specialWayOfRenderingForm, setSpecialWayOfRenderingForm] = useState<SpecialWayOfRenderingForm>(null);
 
     useEffect(() => {

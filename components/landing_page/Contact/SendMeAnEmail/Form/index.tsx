@@ -7,6 +7,7 @@ const Stage1 = dynamic(() => import("./stage_1"));
 const Stage2 = dynamic(() => import("./stage_2"));
 import BottomButtons from "./BottomButtons";
 import NavigationBetweenStages from "./NavigationBetweenStages";
+import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Other components
 import { FormWrapper, Header, StageWrapper } from "./_styled_components";
 
@@ -16,16 +17,34 @@ interface EmailFormProps {
 }
 
 const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
+    const { formFillingStage, setFormFillingStage } = useManagementContext();
+
+    const onContinueButtonClick = () => {
+        if (formFillingStage === "purpose") setFormFillingStage("contact_details");
+        else if (formFillingStage === "contact_details") setFormFillingStage("recaptcha");
+        else props.sendRequest();
+    };
+
     return (
         <FormWrapper className={props.displayOutroAnimation ? "outro-animation" : ""}>
             <Header>Send me an email</Header>
             <NavigationBetweenStages />
 
             <StageWrapper>
-                {/* <Stage2 /> */}
-                <Stage1 />
+                {/*  */}
+                {(() => {
+                    switch (formFillingStage) {
+                        case "purpose":
+                            return <Stage1 />;
+                        case "contact_details":
+                            return <Stage2 />;
+                        case "recaptcha":
+                            return <></>;
+                    }
+                })()}
+                {/*  */}
             </StageWrapper>
-            <BottomButtons sendRequest={props.sendRequest} />
+            <BottomButtons onContinueButtonClick={onContinueButtonClick} />
         </FormWrapper>
     );
 };
