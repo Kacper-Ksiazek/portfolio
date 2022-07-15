@@ -5,6 +5,9 @@ import type { Status, FormFillingStage, SpecialWayOfRenderingForm } from "./@typ
 import type { Dispatch, SetStateAction, FunctionComponent, ReactNode } from "react";
 
 interface ManagementContextInterface {
+    blockContinueButton: boolean;
+    setBlockContinueButton: Dispatch<SetStateAction<boolean>>;
+    //
     formFillingStage: FormFillingStage;
     setFormFillingStage: Dispatch<SetStateAction<FormFillingStage>>;
     //
@@ -17,8 +20,9 @@ interface ManagementContextInterface {
 export const ManagemetContext = createContext<ManagementContextInterface>({} as any);
 
 export const ManagementContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
-    const [formFillingStage, setFormFillingStage] = useState<FormFillingStage>("purpose");
+    const [blockContinueButton, setBlockContinueButton] = useState<boolean>(false);
     const [requestStatus, setRequestStatus] = useState<Status>("fillingForm");
+    const [formFillingStage, setFormFillingStage] = useState<FormFillingStage>("purpose");
     const [specialWayOfRenderingForm, setSpecialWayOfRenderingForm] = useState<SpecialWayOfRenderingForm>(null);
 
     useEffect(() => {
@@ -44,6 +48,8 @@ export const ManagementContextProvider: FunctionComponent<{ children: ReactNode 
     return (
         <ManagemetContext.Provider
             value={{
+                blockContinueButton,
+                setBlockContinueButton,
                 formFillingStage,
                 requestStatus,
                 setFormFillingStage,

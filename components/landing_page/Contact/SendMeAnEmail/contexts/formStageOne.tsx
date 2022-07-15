@@ -19,6 +19,8 @@ interface FormStageOneContextInterface {
     message: string;
     setMessage: Dispatch<SetStateAction<string>>;
     messageIsInvalid: boolean;
+    //
+    everythingIsValid: boolean;
 }
 
 export const FormStageOneContext = createContext<FormStageOneContextInterface>({} as any);
@@ -36,7 +38,7 @@ export const FormStageOneContextProvider: FunctionComponent<{ children: ReactNod
         });
     }, []);
 
-    const { checkWhetherAFieldIsValid } = distinguishInvalidProperties({
+    const { checkWhetherAFieldIsValid, everythingIsValid } = distinguishInvalidProperties({
         body: { message, author, subject },
         schema: validationScheme,
     });
@@ -53,6 +55,8 @@ export const FormStageOneContextProvider: FunctionComponent<{ children: ReactNod
                 authorIsInvalid: checkWhetherAFieldIsValid("author"),
                 messageIsInvalid: checkWhetherAFieldIsValid("message"),
                 subjectIsInvalid: checkWhetherAFieldIsValid("subject"),
+                //
+                everythingIsValid,
             }}
         >
             {props.children}

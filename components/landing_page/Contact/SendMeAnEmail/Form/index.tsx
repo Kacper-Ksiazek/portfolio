@@ -1,9 +1,10 @@
 // Tools
-import useBetterState from "@/hooks/useBetterState";
+import dynamic from "next/dynamic";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import Stage1 from "./stage_1";
+const Stage1 = dynamic(() => import("./stage_1"));
+const Stage2 = dynamic(() => import("./stage_2"));
 import BottomButtons from "./BottomButtons";
 import NavigationBetweenStages from "./NavigationBetweenStages";
 // Other components
@@ -15,13 +16,13 @@ interface EmailFormProps {
 }
 
 const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
-    const stage = useBetterState<"general_form" | "contact_form" | "recaptcha">("general_form");
-
     return (
         <FormWrapper className={props.displayOutroAnimation ? "outro-animation" : ""}>
             <Header>Send me an email</Header>
-            <NavigationBetweenStages stage={stage} />
+            <NavigationBetweenStages />
+
             <StageWrapper>
+                {/* <Stage2 /> */}
                 <Stage1 />
             </StageWrapper>
             <BottomButtons sendRequest={props.sendRequest} />

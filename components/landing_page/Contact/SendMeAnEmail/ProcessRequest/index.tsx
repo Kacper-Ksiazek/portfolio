@@ -1,42 +1,42 @@
 // Tools
 import useBetterState from "@/hooks/useBetterState";
-import useSendMeAnEmailContext from "../hooks/useSendMeAnEmailContext";
+import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
-import type { Status } from "../context";
 import type { FunctionComponent } from "react";
+import type { Status } from "../contexts/@types";
 // Other components
 import Error from "./Error";
 import Pending from "./Pending";
 import Success from "./Success";
 
 const ProcessRequest: FunctionComponent = (props) => {
-    const { value: status, setValue: setStatus } = useSendMeAnEmailContext().status;
+    const { setRequestStatus, requestStatus } = useManagementContext();
 
     const errorHTTPCode = useBetterState<number | null>(null);
 
     return (
         <>
             <Pending
-                outroAnimation={status !== "pending" && status !== "pending_but_feigned"} //
-                isFeigned={status === "pending_but_feigned"}
+                outroAnimation={requestStatus !== "pending" && requestStatus !== "pending_but_feigned"} //
+                isFeigned={requestStatus === "pending_but_feigned"}
             />
 
             {(() => {
-                if ((["success", "success_but_feigned", "fillingForm_after_success"] as Status[]).includes(status)) {
+                if ((["success", "success_but_feigned", "fillingForm_after_success"] as Status[]).includes(requestStatus)) {
                     return (
                         <Success
-                            isFeigned={status === "success_but_feigned"} //
-                            outroAnimation={status === "fillingForm_after_success"}
-                            goBackToTheForm={() => setStatus("fillingForm_after_success")}
+                            isFeigned={requestStatus === "success_but_feigned"} //
+                            outroAnimation={requestStatus === "fillingForm_after_success"}
+                            goBackToTheForm={() => setRequestStatus("fillingForm_after_success")}
                         />
                     );
-                } else if ((["error", "error_but_feigned", "fillingForm_after_error"] as Status[]).includes(status)) {
+                } else if ((["error", "error_but_feigned", "fillingForm_after_error"] as Status[]).includes(requestStatus)) {
                     return (
                         <Error
-                            outroAnimation={status === "fillingForm_after_error"} //
+                            outroAnimation={requestStatus === "fillingForm_after_error"} //
                             code={errorHTTPCode.value ?? 500}
-                            refresh={() => setStatus(status === "error" ? "pending" : "pending_but_feigned")}
-                            goBackToTheForm={() => setStatus("fillingForm_after_error")}
+                            refresh={() => setRequestStatus(requestStatus === "error" ? "pending" : "pending_but_feigned")}
+                            goBackToTheForm={() => setRequestStatus("fillingForm_after_error")}
                         />
                     );
                 }

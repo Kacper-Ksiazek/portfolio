@@ -1,8 +1,10 @@
 // Tools
+import { useEffect } from "react";
 import { styled } from "@mui/system";
 import fadeFromTop from "@/components/_keyframes/fadeFromTop";
 import fadeFromLeft from "@/components/_keyframes/fadeFromLeft";
-import useSendMeAnEmailContext from "../../hooks/useSendMeAnEmailContext";
+import useFormStageOne from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useFormStageOne";
+import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
 import type { FunctionComponent } from "react";
 // Styled Components
@@ -16,16 +18,21 @@ const LengthNotification = styled("span")(({ theme }) => ({
 }));
 
 const FormStage1: FunctionComponent = (props) => {
-    const { author, subject, message, checkWhetherAFieldIsValid } = useSendMeAnEmailContext();
+    const { everythingIsValid, ...formStageOneContext } = useFormStageOne();
+    const { setBlockContinueButton } = useManagementContext();
+
+    useEffect(() => {
+        setBlockContinueButton(!everythingIsValid);
+    }, [everythingIsValid, setBlockContinueButton]);
 
     return (
         <>
             <StyledInput
                 label="Your name" //
                 color="secondary"
-                value={author.value}
-                onChange={(e) => author.setValue(e.target.value)}
-                error={checkWhetherAFieldIsValid("author")}
+                value={formStageOneContext.author}
+                onChange={(e) => formStageOneContext.setAuthor(e.target.value)}
+                error={formStageOneContext.authorIsInvalid}
                 sx={{
                     animation: `${fadeFromLeft} .2s .2s linear both`,
                 }}
@@ -33,9 +40,9 @@ const FormStage1: FunctionComponent = (props) => {
             <StyledInput
                 label="Subject" //
                 color="secondary"
-                value={subject.value}
-                onChange={(e) => subject.setValue(e.target.value)}
-                error={checkWhetherAFieldIsValid("subject")}
+                value={formStageOneContext.subject}
+                onChange={(e) => formStageOneContext.setSubject(e.target.value)}
+                error={formStageOneContext.subjectIsInvalid}
                 sx={{
                     animation: `${fadeFromLeft} .2s .3s linear both`,
                 }}
@@ -45,14 +52,14 @@ const FormStage1: FunctionComponent = (props) => {
                 color="secondary"
                 multiline
                 rows={4}
-                value={message.value}
-                onChange={(e) => message.setValue(e.target.value)}
-                error={checkWhetherAFieldIsValid("message")}
+                value={formStageOneContext.message}
+                onChange={(e) => formStageOneContext.setMessage(e.target.value)}
+                error={formStageOneContext.messageIsInvalid}
                 sx={{
                     animation: `${fadeFromLeft} .2s .4s linear both`,
                 }}
             />
-            <LengthNotification>{message.value.length} / 500</LengthNotification>
+            <LengthNotification>{formStageOneContext.message.length} / 500</LengthNotification>
         </>
     );
 };

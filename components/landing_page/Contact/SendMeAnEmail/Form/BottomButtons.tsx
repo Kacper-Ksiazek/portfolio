@@ -1,7 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import useRequestFaker from "./hooks/useRequestFaker";
-import useSendMeAnEmailContext from "../hooks/useSendMeAnEmailContext";
+import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
@@ -10,7 +9,7 @@ import CodeOff from "@mui/icons-material/CodeOff";
 import SendMailButton from "../_styled_components/SendMailButton";
 import ButtonWIthTooltip from "@/components/landing_page/Contact/SendMeAnEmail/_utils_components/ButtonWIthTooltip";
 
-const SimpleFlexBox = styled("footer")(({ theme }) => ({
+const SimpleFlexBox = styled("div")(({ theme }) => ({
     display: "flex",
 }));
 
@@ -24,12 +23,25 @@ interface BottomButtonsProps {
     sendRequest: () => void;
 }
 const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
-    const { disableContinueButton } = useSendMeAnEmailContext();
-    const { feignSucceededRequest, feignInvalidRequest } = useRequestFaker();
+    const managementContext = useManagementContext();
+
+    const feignSucceededRequest = () => {
+        managementContext.setRequestStatus("pending");
+        setTimeout(() => {
+            managementContext.setRequestStatus("success_but_feigned");
+        }, 750);
+    };
+
+    const feignInvalidRequest = () => {
+        managementContext.setRequestStatus("pending");
+        setTimeout(() => {
+            managementContext.setRequestStatus("error_but_feigned");
+        }, 750);
+    };
 
     return (
         <ButtonsBottomWrapper>
-            <SendMailButton disabled={disableContinueButton} onClick={props.sendRequest}>
+            <SendMailButton disabled={managementContext.blockContinueButton} onClick={props.sendRequest}>
                 <span className="text">Continue</span>
             </SendMailButton>
 
