@@ -5,6 +5,7 @@ import type { FunctionComponent } from "react";
 // Other components
 const Stage1 = dynamic(() => import("./stage_1"));
 const Stage2 = dynamic(() => import("./stage_2"));
+const Stage3 = dynamic(() => import("./stage_3"));
 import BottomButtons from "./BottomButtons";
 import NavigationBetweenStages from "./NavigationBetweenStages";
 import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
@@ -39,7 +40,7 @@ const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
                         case "contact_details":
                             return <Stage2 />;
                         case "recaptcha":
-                            return <></>;
+                            return <Stage3 />;
                     }
                 })()}
                 {/*  */}
