@@ -5,7 +5,7 @@ import { createContext } from "react";
 import type { Status, FormFillingStage } from "./@types";
 import type { Dispatch, SetStateAction, FunctionComponent, ReactNode } from "react";
 
-interface SendMeAnEmailContext {
+interface ManagementContextInterface {
     formFillingStage: FormFillingStage;
     setFormFillingStage: Dispatch<SetStateAction<FormFillingStage>>;
     //
@@ -13,7 +13,7 @@ interface SendMeAnEmailContext {
     setRequestStatus: Dispatch<SetStateAction<Status>>;
 }
 
-export const ManagemetContext = createContext<SendMeAnEmailContext>({} as any);
+export const ManagemetContext = createContext<ManagementContextInterface>({} as any);
 
 export const ManagementContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
     const [formFillingStage, setFormFillingStage] = useState<FormFillingStage>("purpose");
