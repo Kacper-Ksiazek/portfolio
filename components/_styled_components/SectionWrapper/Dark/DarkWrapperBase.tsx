@@ -8,6 +8,6 @@ export default styled(SectionWrapper)(({ theme }) => ({
     padding: "24px 0",
     boxSizing: "border-box",
     borderRadius: "20px",
-    height: "320px",
+    height: "350px",
     overflow: "hidden",
 }));
