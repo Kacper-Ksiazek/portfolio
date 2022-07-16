@@ -1,6 +1,8 @@
 // Tools
 import { styled } from "@mui/system";
 import fadeSimple from "@/components/_keyframes/fadeSimple";
+import fadeFromLeft from "@/components/_keyframes/fadeFromLeft";
+import fadeFromRight from "@/components/_keyframes/fadeFromRight";
 // Styled components
 export default styled("div")(({ theme }) => ({
     width: "130px",
@@ -13,6 +15,12 @@ export default styled("div")(({ theme }) => ({
     cursor: "pointer",
     border: "3px solid #fff",
     boxSizing: "border-box",
+    "&:nth-of-type(1),&:nth-of-type(2),&:nth-of-type(3),&:nth-of-type(4),&:nth-of-type(5)": {
+        animation: `${fadeFromLeft} .3s .1s linear both`,
+    },
+    "&:nth-of-type(6),&:nth-of-type(7),&:nth-of-type(8),&:nth-of-type(9),&:nth-of-type(10)": {
+        animation: `${fadeFromRight} .3s .1s linear both`,
+    },
     img: {
         borderRadius: "5px 10px 5px 10px",
         transition: "transform .3s",
@@ -38,6 +46,7 @@ export default styled("div")(({ theme }) => ({
         animation: `${fadeSimple} .3s .1s linear both`,
     },
     transition: "all .3s",
+    overflow: "hidden",
     //
     // Handle image displaying and fading
     //
@@ -45,20 +54,19 @@ export default styled("div")(({ theme }) => ({
         content: '""',
         position: "absolute",
         top: "0",
-        left: "0",
         height: "100%",
-        width: "100%",
-        borderRadius: "5px 10px 5px 10px",
-    },
-    "&::after": {
-        transition: "transform .3s",
-        zIndex: 2,
+        width: "50%",
         background: "#fff",
     },
+    "&::after": {
+        transition: "transform .2s",
+        left: "0",
+        zIndex: 2,
+    },
     "&::before": {
-        transition: "transform .3s .1s",
+        right: "0",
+        transition: "transform .2s",
         zIndex: 1,
-        background: "transparent",
     },
     "&:hover": {
         img: {
@@ -67,27 +75,24 @@ export default styled("div")(({ theme }) => ({
         "span.question-mark": {
             color: "#fff",
         },
-        "&::after": {
+        "&::after, &::before": {
             background: theme.palette.primary.main,
         },
     },
     "&.display-image": {
         "&::after": {
             background: theme.palette.primary.main,
-            transform: "scale(0)",
+            transform: "translateX(calc(-100% - 10px))",
         },
         "&::before": {
             background: theme.palette.secondary.main,
-            transform: "scale(0)",
+            transform: "translateX(calc(100% + 10px))",
         },
     },
     "&.is-invalid": {
-        "&::after": {
-            transform: "scale(1)",
-            background: "#fff",
-        },
-        "&::before": {
-            transform: "scale(1)",
+        "&::after, &::before": {
+            background: "#fff !important",
+            transform: "translateX(0)",
         },
     },
 }));

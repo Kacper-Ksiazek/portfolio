@@ -61,8 +61,8 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
                 setTimeout(() => {
                     setAnimationToDisplay(null);
                     setIdsOfPicturesToDisplay([]);
-                }, 300);
-            }, 600);
+                }, 150);
+            }, 350);
         }
     };
 
