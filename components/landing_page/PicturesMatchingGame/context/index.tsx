@@ -42,7 +42,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
     }, []);
 
     const handlePictureOnClick = (id: number) => {
-        if (idsOfPicturesToDisplay.length === 2) return;
+        if (idsOfPicturesToDisplay.length === 2 || idsOfPicturesToDisplay.includes(id)) return;
         if (idsOfPicturesToDisplay.length === 0) return setIdsOfPicturesToDisplay([id]);
         setNumberOfTurns((val) => val + 1);
         //
