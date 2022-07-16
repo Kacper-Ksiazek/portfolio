@@ -8,7 +8,7 @@ import type { PictureToMatch } from "@/data/pictures_for_matching_game";
 interface PictureToMatchWithID extends PictureToMatch {
     id: number;
 }
-type AnimationToDisplay = "invalid_choose" | "valid_choose" | null;
+type AnimationToDisplay = "invalid_choose" | null;
 
 interface PicturesMatchingGameContextInterface {
     numberOfTurns: number;
@@ -42,7 +42,8 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
     }, []);
 
     const handlePictureOnClick = (id: number) => {
-        if (idsOfPicturesToDisplay.values.length === 0) return setIdsOfPicturesToDisplay([id]);
+        if (idsOfPicturesToDisplay.length === 2) return;
+        if (idsOfPicturesToDisplay.length === 0) return setIdsOfPicturesToDisplay([id]);
         setNumberOfTurns((val) => val + 1);
         //
         // Helper function to facilitate comparing of pictures reflecting by different ids
@@ -51,17 +52,16 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
         setIdsOfPicturesToDisplay((val) => [...val, id]);
         // Dedicate whether the pictures are equal
         if (_getFolderName(id) === _getFolderName(idsOfPicturesToDisplay[0])) {
-            setAnimationToDisplay("valid_choose");
-            setTimeout(() => {
-                setAnimationToDisplay(null);
-                setIdsOfPicturesToDisplay([]);
-                setAlreadyMatchedPictures((val) => [...val, _getFolderName(id)]);
-            }, 300);
+            setAlreadyMatchedPictures((val) => [...val, _getFolderName(id)]);
+            setAnimationToDisplay(null);
+            setIdsOfPicturesToDisplay([]);
         } else {
-            setAnimationToDisplay("invalid_choose");
             setTimeout(() => {
-                setAnimationToDisplay(null);
-                setIdsOfPicturesToDisplay([]);
+                setAnimationToDisplay("invalid_choose");
+                setTimeout(() => {
+                    setAnimationToDisplay(null);
+                    setIdsOfPicturesToDisplay([]);
+                }, 300);
             }, 600);
         }
     };

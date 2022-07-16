@@ -10,7 +10,7 @@ import DarkSectionWrapper from "@/components/_styled_components/SectionWrapper/D
 import { BottomInformation, PicturesWrapper } from "./_styled_components";
 
 const PicturesMatchingGame: FunctionComponent = (props) => {
-    const { allPictures, numberOfTurns } = usePicturesMatchingGameContext();
+    const { allPictures, numberOfTurns, checkWehetherAImageShouldBeShown, handlePictureOnClick, animationToDisplay, checkWhetherAImageHasBeenAlreadyMatched } = usePicturesMatchingGameContext();
 
     return (
         <DarkSectionWrapper
@@ -25,9 +25,15 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
         >
             <PicturesWrapper>
                 {allPictures.map((item) => {
+                    const displayImage = checkWehetherAImageShouldBeShown(item.id);
                     return (
                         <SinglePicture
                             key={item.id} //
+                            id={item.id}
+                            image={item.folder}
+                            isInvalid={displayImage && animationToDisplay === "invalid_choose"}
+                            onClick={() => handlePictureOnClick(item.id)}
+                            displayImage={displayImage || checkWhetherAImageHasBeenAlreadyMatched(item.folder)}
                         />
                     );
                 })}
