@@ -62,7 +62,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
                     setAnimationToDisplay(null);
                     setIdsOfPicturesToDisplay([]);
                 }, 150);
-            }, 350);
+            }, 450);
         }
     };
 
