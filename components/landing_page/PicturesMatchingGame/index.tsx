@@ -1,10 +1,11 @@
 // Tools
-import { useState } from "react";
 import { styled } from "@mui/system";
+import usePicturesMatchingGameContext from "./hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
 import SinglePicture from "./SinglePicture";
+import { PicturesMatchingGameContextProvider } from "./context";
 // Styled Components
 import DarkSectionWrapper from "@/components/_styled_components/SectionWrapper/Dark";
 
@@ -23,12 +24,12 @@ const PicturesWrapper = styled("section")(({ theme }) => ({
     justifyContent: "center",
 }));
 
-interface ImagesGuessingNameProps {
+interface PicturesMatchingGameProps {
     //
 }
 
-const ImagesGuessingName: FunctionComponent<ImagesGuessingNameProps> = (props) => {
-    const [numberOfTurns, setNumberOfTurns] = useState<number>(0);
+const PicturesMatchingGame: FunctionComponent<PicturesMatchingGameProps> = (props) => {
+    const { allPictures, numberOfTurns } = usePicturesMatchingGameContext();
 
     return (
         <DarkSectionWrapper
@@ -42,16 +43,7 @@ const ImagesGuessingName: FunctionComponent<ImagesGuessingNameProps> = (props) =
             }}
         >
             <PicturesWrapper>
-                <SinglePicture />
-                <SinglePicture />
-                <SinglePicture />
-                <SinglePicture />
-                <SinglePicture />
-                <SinglePicture />
-                <SinglePicture />
-                <SinglePicture />
-                <SinglePicture />
-                <SinglePicture />
+                <span>{JSON.stringify(allPictures)}</span>
             </PicturesWrapper>
 
             <BottomInformation>
@@ -61,4 +53,12 @@ const ImagesGuessingName: FunctionComponent<ImagesGuessingNameProps> = (props) =
     );
 };
 
-export default ImagesGuessingName;
+const PicturesMatchingGameContextProviderWrapper: FunctionComponent = () => {
+    return (
+        <PicturesMatchingGameContextProvider>
+            <PicturesMatchingGame />
+        </PicturesMatchingGameContextProvider>
+    );
+};
+
+export default PicturesMatchingGameContextProviderWrapper;
