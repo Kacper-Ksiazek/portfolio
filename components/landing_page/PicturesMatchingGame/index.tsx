@@ -26,14 +26,18 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
             <PicturesWrapper>
                 {allPictures.map((item) => {
                     const displayImage = checkWehetherAImageShouldBeShown(item.id);
+                    const isMatched = checkWhetherAImageHasBeenAlreadyMatched(item.folder);
                     return (
                         <SinglePicture
                             key={item.id} //
                             id={item.id}
                             image={item.folder}
                             isInvalid={displayImage && animationToDisplay === "invalid_choose"}
-                            onClick={() => handlePictureOnClick(item.id)}
-                            displayImage={displayImage || checkWhetherAImageHasBeenAlreadyMatched(item.folder)}
+                            onClick={() => {
+                                if (!isMatched) handlePictureOnClick(item.id);
+                            }}
+                            displayImage={displayImage || isMatched}
+                            isMatched={isMatched}
                         />
                     );
                 })}
