@@ -2,6 +2,8 @@
 import { styled, alpha } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
+// Material UI Components
+import Tooltip from "@mui/material/Tooltip";
 // Material UI Icons
 import OpenInFull from "@mui/icons-material/OpenInFull";
 
@@ -32,7 +34,9 @@ const OpenFullsizeBase = styled("span")(({ theme }) => ({
 const OpenFullsize: FunctionComponent = (props) => {
     return (
         <OpenFullsizeBase>
-            <OpenInFull />
+            <Tooltip title="Preview image" placement="top">
+                <OpenInFull />
+            </Tooltip>
         </OpenFullsizeBase>
     );
 };

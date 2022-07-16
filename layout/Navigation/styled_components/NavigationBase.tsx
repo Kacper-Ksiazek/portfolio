@@ -4,9 +4,8 @@ import { styled } from "@mui/system";
 export default styled("div")(({ theme }) => ({
     position: "fixed",
     top: "0",
-    left: "50%",
+    left: "0%",
     paddingTop: "20px",
-    transform: "translateX(-50%)",
     width: "100vw",
     height: "80px",
     zIndex: 2,

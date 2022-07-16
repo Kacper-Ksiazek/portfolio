@@ -4,13 +4,14 @@ import usePicturesMatchingGameContext from "./hooks/usePicturesMatchingGameConte
 import type { FunctionComponent } from "react";
 // Other components
 import SinglePicture from "./SinglePicture";
+import ImageModel from "@/components/_utils/ImageModel";
 import { PicturesMatchingGameContextProvider } from "./context";
 // Styled Components
 import DarkSectionWrapper from "@/components/_styled_components/SectionWrapper/Dark";
 import { BottomInformation, PicturesWrapper } from "./_styled_components";
 
 const PicturesMatchingGame: FunctionComponent = (props) => {
-    const { allPictures, numberOfTurns, checkWehetherAImageShouldBeShown, handlePictureOnClick, animationToDisplay, checkWhetherAImageHasBeenAlreadyMatched } = usePicturesMatchingGameContext();
+    const context = usePicturesMatchingGameContext();
 
     return (
         <DarkSectionWrapper
@@ -23,18 +24,31 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                 height: "450px",
             }}
         >
+            {(() => {
+                if (context.pictureToDisplayInFullsize) {
+                    return (
+                        <ImageModel
+                            open={true} //
+                            onClose={() => context.setPictureToDisplayInFullsize(null)}
+                            imageURL={`/images/landing-page/images-matching-game/${context.pictureToDisplayInFullsize.folder}/fullsize.jpg`}
+                        />
+                    );
+                }
+            })()}
+
             <PicturesWrapper>
-                {allPictures.map((item) => {
-                    const displayImage = checkWehetherAImageShouldBeShown(item.id);
-                    const isMatched = checkWhetherAImageHasBeenAlreadyMatched(item.folder);
+                {context.allPictures.map((item) => {
+                    const displayImage = context.checkWehetherAImageShouldBeShown(item.id);
+                    const isMatched = context.checkWhetherAImageHasBeenAlreadyMatched(item.folder);
                     return (
                         <SinglePicture
                             key={item.id} //
                             id={item.id}
                             image={item.folder}
-                            isInvalid={displayImage && animationToDisplay === "invalid_choose"}
+                            isInvalid={displayImage && context.animationToDisplay === "invalid_choose"}
                             onClick={() => {
-                                if (!isMatched) handlePictureOnClick(item.id);
+                                if (!isMatched) context.handlePictureOnClick(item.id);
+                                else context.setPictureToDisplayInFullsize(item);
                             }}
                             displayImage={displayImage || isMatched}
                             isMatched={isMatched}
@@ -44,7 +58,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
             </PicturesWrapper>
 
             <BottomInformation>
-                Already taken turns: <strong>{numberOfTurns}</strong>
+                Already taken turns: <strong>{context.numberOfTurns}</strong>
             </BottomInformation>
         </DarkSectionWrapper>
     );
