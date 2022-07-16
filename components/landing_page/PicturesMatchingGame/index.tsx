@@ -1,5 +1,4 @@
 // Tools
-import { styled } from "@mui/system";
 import usePicturesMatchingGameContext from "./hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -8,27 +7,9 @@ import SinglePicture from "./SinglePicture";
 import { PicturesMatchingGameContextProvider } from "./context";
 // Styled Components
 import DarkSectionWrapper from "@/components/_styled_components/SectionWrapper/Dark";
+import { BottomInformation, PicturesWrapper } from "./_styled_components";
 
-const BottomInformation = styled("span")(({ theme }) => ({
-    fontSize: "18px",
-    userSelect: "none",
-}));
-
-const PicturesWrapper = styled("section")(({ theme }) => ({
-    width: "100%",
-    marginBottom: "20px",
-    maxWidth: "800px",
-    flexGrow: 1,
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-}));
-
-interface PicturesMatchingGameProps {
-    //
-}
-
-const PicturesMatchingGame: FunctionComponent<PicturesMatchingGameProps> = (props) => {
+const PicturesMatchingGame: FunctionComponent = (props) => {
     const { allPictures, numberOfTurns } = usePicturesMatchingGameContext();
 
     return (
@@ -43,7 +24,13 @@ const PicturesMatchingGame: FunctionComponent<PicturesMatchingGameProps> = (prop
             }}
         >
             <PicturesWrapper>
-                <span>{JSON.stringify(allPictures)}</span>
+                {allPictures.map((item) => {
+                    return (
+                        <SinglePicture
+                            key={item.id} //
+                        />
+                    );
+                })}
             </PicturesWrapper>
 
             <BottomInformation>

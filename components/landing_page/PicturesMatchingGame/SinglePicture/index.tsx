@@ -28,6 +28,7 @@ const SinglePictureBase = styled("div")(({ theme }) => ({
         fontSize: "48px",
         userSelect: "none",
     },
+    transition: "all .3s",
     "&:hover, &:focus": {
         background: theme.palette.primary.main,
         color: "#fff",
