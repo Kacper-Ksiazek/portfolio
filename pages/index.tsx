@@ -7,6 +7,7 @@ import Head from "next/head";
 import Contact from "@/components/landing_page/Contact";
 import ToDoList from "@/components/landing_page/ToDoList";
 import BreakTheIce from "@/components/landing_page/BreakTheIce";
+import IamgesGuessingGame from "@/components/landing_page/ImagesGuessingGame";
 // Material UI Icons
 
 const Home: NextPage = () => {
@@ -17,7 +18,8 @@ const Home: NextPage = () => {
             </Head>
             {/* <BreakTheIce /> */}
             {/* <ToDoList /> */}
-            <Contact />
+            <IamgesGuessingGame />
+            {/* <Contact /> */}
         </>
     );
 };
