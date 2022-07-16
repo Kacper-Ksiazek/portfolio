@@ -4,6 +4,7 @@ import usePicturesMatchingGameContext from "./hooks/usePicturesMatchingGameConte
 import type { FunctionComponent } from "react";
 // Other components
 import SinglePicture from "./SinglePicture";
+import YouWonCommunique from "./YouWonCommunique";
 import ImageModel from "@/components/_utils/ImageModel";
 import { PicturesMatchingGameContextProvider } from "./context";
 // Styled Components
@@ -36,7 +37,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                 }
             })()}
 
-            <PicturesWrapper>
+            <PicturesWrapper key={context.gameNumber}>
                 {context.allPictures.map((item) => {
                     const displayImage = context.checkWehetherAImageShouldBeShown(item.id);
                     const isMatched = context.checkWhetherAImageHasBeenAlreadyMatched(item.folder);
@@ -56,6 +57,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                     );
                 })}
             </PicturesWrapper>
+            {context.gameIsOver && <YouWonCommunique />}
 
             <BottomInformation>
                 Already taken turns: <strong>{context.numberOfTurns}</strong>

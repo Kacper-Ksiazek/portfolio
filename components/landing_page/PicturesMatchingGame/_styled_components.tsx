@@ -14,4 +14,5 @@ export const PicturesWrapper = styled("section")(({ theme }) => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
+    position: "relative",
 }));

@@ -14,19 +14,26 @@ interface PicturesMatchingGameContextInterface {
     numberOfTurns: number;
     animationToDisplay: AnimationToDisplay;
     pictureToDisplayInFullsize: PictureToMatchWithID | null;
-    setPictureToDisplayInFullsize: Dispatch<SetStateAction<PictureToMatchWithID | null>>;
     allPictures: PictureToMatchWithID[];
+    gameIsOver: boolean;
+    gameNumber: number;
+    //
+    startNewGame: () => void;
     /**
      * This function is triggered each time the picture is clicked, expects one parameter- a unique id of clicked element
      */
     handlePictureOnClick: (id: number) => void;
     checkWehetherAImageShouldBeShown: (id: number) => boolean;
     checkWhetherAImageHasBeenAlreadyMatched: (folder: string) => boolean;
+    setPictureToDisplayInFullsize: Dispatch<SetStateAction<PictureToMatchWithID | null>>;
 }
 
 export const PicturesMatchingGameContext = createContext<PicturesMatchingGameContextInterface>({} as any);
 
 export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
+    // This one property is used to refresh useMemo hook and allow staring further games without refreshing the page
+    const [gameNumber, setGameNumber] = useState<number>(1);
+
     const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PictureToMatchWithID | null>(null);
     const [numberOfTurns, setNumberOfTurns] = useState<number>(0);
     const [alreadyMatchedPictures, setAlreadyMatchedPictures] = useState<string[]>([]);
@@ -39,7 +46,8 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
         return _shuffle([...fiveRandomImages, ...fiveRandomImages]).map((el: PictureToMatch, index): PictureToMatchWithID => {
             return { ...el, id: index };
         });
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [gameNumber]);
 
     const handlePictureOnClick = (id: number) => {
         if (idsOfPicturesToDisplay.length === 2 || idsOfPicturesToDisplay.includes(id)) return;
@@ -66,13 +74,25 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
         }
     };
 
+    const startNewGame = () => {
+        setGameNumber((val) => val + 1);
+        setNumberOfTurns(1);
+        setAlreadyMatchedPictures([]);
+        setIdsOfPicturesToDisplay([]);
+        setAnimationToDisplay(null);
+        setPictureToDisplayInFullsize(null);
+    };
+
     return (
         <PicturesMatchingGameContext.Provider
             value={{
+                gameNumber,
                 animationToDisplay,
                 allPictures,
                 numberOfTurns,
                 pictureToDisplayInFullsize,
+                gameIsOver: alreadyMatchedPictures.length === 5,
+                startNewGame,
                 setPictureToDisplayInFullsize,
                 handlePictureOnClick,
                 checkWehetherAImageShouldBeShown: (id: number) => idsOfPicturesToDisplay.includes(id),

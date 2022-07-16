@@ -15,12 +15,6 @@ export default styled("div")(({ theme }) => ({
     cursor: "pointer",
     border: "3px solid #fff",
     boxSizing: "border-box",
-    "&:nth-of-type(1),&:nth-of-type(2),&:nth-of-type(3),&:nth-of-type(4),&:nth-of-type(5)": {
-        animation: `${fadeFromLeft} .3s .1s linear both`,
-    },
-    "&:nth-of-type(6),&:nth-of-type(7),&:nth-of-type(8),&:nth-of-type(9),&:nth-of-type(10)": {
-        animation: `${fadeFromRight} .3s .1s linear both`,
-    },
     img: {
         borderRadius: "5px 10px 5px 10px",
         transition: "transform .3s",
@@ -28,9 +22,35 @@ export default styled("div")(({ theme }) => ({
     "&:nth-of-type(1)": {
         marginBottom: "10px",
         marginLeft: "0",
+        animation: `${fadeSimple} .3s .1s linear both`,
+    },
+    "&:nth-of-type(2)": {
+        animation: `${fadeSimple} .3s .15s linear both`,
+    },
+    "&:nth-of-type(3)": {
+        animation: `${fadeSimple} .3s .2s linear both`,
+    },
+    "&:nth-of-type(4)": {
+        animation: `${fadeSimple} .3s .25s linear both`,
+    },
+    "&:nth-of-type(5)": {
+        animation: `${fadeSimple} .3s .3s linear both`,
     },
     "&:nth-of-type(6)": {
         marginLeft: "0",
+        animation: `${fadeSimple} .3s .3s linear both`,
+    },
+    "&:nth-of-type(7)": {
+        animation: `${fadeSimple} .3s .25s linear both`,
+    },
+    "&:nth-of-type(8)": {
+        animation: `${fadeSimple} .3s .2s linear both`,
+    },
+    "&:nth-of-type(9)": {
+        animation: `${fadeSimple} .3s .15s linear both`,
+    },
+    "&:nth-of-type(10)": {
+        animation: `${fadeSimple} .3s .1s linear both`,
     },
     "span.question-mark": {
         fontWeight: 700,

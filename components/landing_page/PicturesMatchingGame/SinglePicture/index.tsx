@@ -1,4 +1,3 @@
-// Tools
 // Types
 import type { FunctionComponent } from "react";
 // Other components
