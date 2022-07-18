@@ -11,7 +11,7 @@ import Content from "./Content";
 import Picture from "./Picture";
 import NavigationBetweenStages from "./NavigationBetweenStages";
 // Styled Components
-import LightSectionWrapper from "@/components/_styled_components/SectionWrapper/Light";
+import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
 
 const SimpleFlexbox = styled("div")(({ theme }) => ({
     display: "flex",

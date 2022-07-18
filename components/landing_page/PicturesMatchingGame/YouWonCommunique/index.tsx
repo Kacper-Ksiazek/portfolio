@@ -6,7 +6,7 @@ import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
 // Styled Components
 import YouWonCommuniqueBase from "./YouWonCommuniqueBase";
-import StyledButton from "@/components/_styled_components/StyledButton";
+import StyledButton from "@/components/_styled_components/forms/StyledButton";
 
 const YouWonCommunique: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const [winsInTotal, setWinsInTotal] = useState<number>(0);

@@ -8,7 +8,7 @@ import YouWonCommunique from "./YouWonCommunique";
 import ImageModel from "@/components/_utils/ImageModel";
 import { PicturesMatchingGameContextProvider } from "./context";
 // Styled Components
-import DarkSectionWrapper from "@/components/_styled_components/SectionWrapper/Dark";
+import DarkSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Dark";
 import { BottomInformation, PicturesWrapper } from "./_styled_components";
 
 const PicturesMatchingGame: FunctionComponent = (props) => {

@@ -8,7 +8,7 @@ import type { MUIStyledCommonProps } from "@mui/system";
 import SingleSchool from "./SingleSchool";
 // Styled Components
 import Paragraph from "../_styled_components/Paragraph";
-import OverflowScrollDiv from "@/components/_styled_components/OverflowScrollDiv";
+import OverflowScrollDiv from "@/components/_styled_components/content_placement/OverflowScrollDiv";
 
 const ScrollbarHidder = styled("span")(({ theme }) => ({
     position: "absolute",

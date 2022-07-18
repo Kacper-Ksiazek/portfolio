@@ -4,7 +4,7 @@ import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";
 // Styled components
-import StyledButton from "@/components/_styled_components/StyledButton";
+import StyledButton from "@/components/_styled_components/forms/StyledButton";
 
 interface ButtonWithTooltipProps {
     tooltip: string;

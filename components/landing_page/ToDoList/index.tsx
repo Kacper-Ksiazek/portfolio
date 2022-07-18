@@ -11,8 +11,8 @@ import SingleTask from "./SingleTask";
 // Styled Components
 import NoResults from "./NoResults";
 import StyledInput from "./_styled_components/StyledInput";
-import DarkSectionWrapper from "@/components/_styled_components/SectionWrapper/Dark";
-import OverflowScrollDiv from "@/components/_styled_components/OverflowScrollDiv";
+import DarkSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Dark";
+import OverflowScrollDiv from "@/components/_styled_components/content_placement/OverflowScrollDiv";
 
 const Footer = styled("footer")(({ theme }) => ({
     display: "flex",
