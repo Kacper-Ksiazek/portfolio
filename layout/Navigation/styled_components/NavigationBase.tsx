@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
+import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
 // Styled components
 export default styled("div")(({ theme }) => ({
     position: "fixed",
@@ -22,6 +23,7 @@ export default styled("div")(({ theme }) => ({
     },
     "&.contrast-colors": {
         color: "#fff",
+        animation: `${fadeFromTop} .2s 2.6s both linear`,
         ".MuiButtonBase-root": {
             border: "1px solid #fff",
         },
