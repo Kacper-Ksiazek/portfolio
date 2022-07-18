@@ -11,4 +11,6 @@ export default styled("div")(({ theme }) => ({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
+    userSelect: "none",
+    height: "100%",
 }));
