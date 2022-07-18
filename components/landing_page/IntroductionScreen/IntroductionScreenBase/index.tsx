@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Styled Components
+import { CircleOne, CircleTwo } from "./Circles";
 import { LineTwo, LineOne, LineThree } from "./_styled_components/Lines";
 import IntroductionScreenBaseContent from "./_styled_components/IntroductionScreenBaseContent";
 import IntroductionScreenBaseWrapper from "./_styled_components/IntroductionScreenBaseWrapper";
@@ -13,14 +14,21 @@ const IntroductionScreenBase: FunctionComponent<{ children: ReactNode }> = (prop
     useEffect(() => {
         setTimeout(() => {
             setRenderContent(true);
-        }, 3000);
+        }, 2800);
     }, []);
 
     return (
         <IntroductionScreenBaseWrapper>
             {(() => {
-                if (renderContent) return <IntroductionScreenBaseContent>{props.children}</IntroductionScreenBaseContent>;
-                else {
+                if (renderContent) {
+                    return (
+                        <>
+                            <CircleOne />
+                            <CircleTwo />
+                            <IntroductionScreenBaseContent>{props.children}</IntroductionScreenBaseContent>
+                        </>
+                    );
+                } else {
                     return (
                         <>
                             <LineOne />
