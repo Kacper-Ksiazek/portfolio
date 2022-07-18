@@ -34,7 +34,7 @@ const outroAnimationTwo = keyframes({
 
 export default styled(LineBase)(({ theme }) => ({
     background: theme.palette.secondary.main,
-    zIndex: 6,
+    zIndex: 9,
     borderRadius: "5px",
     animation: `${introAnimationTwo} .8s .3s linear both , ${outroAnimationTwo} .8s 1.8s linear forwards`,
 }));

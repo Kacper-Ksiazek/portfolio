@@ -8,12 +8,28 @@ import IntroductionScreenBaseContent from "./_styled_components/IntroductionScre
 import IntroductionScreenBaseWrapper from "./_styled_components/IntroductionScreenBaseWrapper";
 
 const IntroductionScreenBase: FunctionComponent<{ children: ReactNode }> = (props) => {
+    const [renderContent, setRenderContent] = useState<boolean>(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setRenderContent(true);
+        }, 3000);
+    }, []);
+
     return (
         <IntroductionScreenBaseWrapper>
-            <LineOne />
-            <LineTwo />
-            <LineThree />
-            {/* <IntroductionScreenBaseContent>{props.children}</IntroductionScreenBaseContent> */}
+            {(() => {
+                if (renderContent) return <IntroductionScreenBaseContent>{props.children}</IntroductionScreenBaseContent>;
+                else {
+                    return (
+                        <>
+                            <LineOne />
+                            <LineTwo />
+                            <LineThree />
+                        </>
+                    );
+                }
+            })()}
         </IntroductionScreenBaseWrapper>
     );
 };

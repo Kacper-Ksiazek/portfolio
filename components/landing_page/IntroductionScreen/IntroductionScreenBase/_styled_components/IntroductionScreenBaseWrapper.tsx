@@ -43,12 +43,12 @@ export default styled(Section)(({ theme }) => ({
         backgroundSize: "cover",
         backgroundPosition: "center top",
         filter: "blur(4px)",
-        zIndex: 9,
-        animation: `${fadeSimple} 2s 2.5s both linear`,
+        zIndex: 6,
+        animation: `${fadeSimple} .5s 1.6s both linear`,
     },
     "&::after": {
-        animation: `${fadeSimple} .01s 2.5s both linear`,
+        animation: `${fadeSimple} .01s 1.6s both linear`,
         background: alpha(theme.palette.background.paper, 0.95),
-        zIndex: 10,
+        zIndex: 7,
     },
 }));
