@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import fadeFromLeft from "@/components/_keyframes/fadeFromLeft";
+import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
 // Styled components
 export default styled("p", {
     shouldForwardProp: (prop: string) => !["animationDelay"].includes(prop),

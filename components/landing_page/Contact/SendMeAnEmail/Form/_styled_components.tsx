@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
-import fadeFromLeft from "@/components/_keyframes/fadeFromLeft";
-import fadeToBottom from "@/components/_keyframes/fadeToBottom";
+import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
+import fadeToBottom from "@/components/_keyframes/outro/fadeToBottom";
 // Styled components
 export const Header = styled("h4")(({ theme }) => ({
     fontSize: "32px",

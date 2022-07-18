@@ -1,8 +1,8 @@
 // Tools
 import { styled } from "@mui/system";
 import { useEffect, useState, useRef } from "react";
-import fadeFromTop from "@/components/_keyframes/fadeFromTop";
-import fadeFromLeft from "@/components/_keyframes/fadeFromLeft";
+import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
+import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
 import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
 import type { FunctionComponent } from "react";

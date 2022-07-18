@@ -1,8 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import fadeSimple from "@/components/_keyframes/fadeSimple";
-import fadeFromLeft from "@/components/_keyframes/fadeFromLeft";
-import fadeFromRight from "@/components/_keyframes/fadeFromRight";
+import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 // Styled components
 export default styled("div")(({ theme }) => ({
     width: "130px",

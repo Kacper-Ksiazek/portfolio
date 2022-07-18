@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import fadeSimple from "@/components/_keyframes/fadeSimple";
+import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
 import type { FunctionComponent } from "react";

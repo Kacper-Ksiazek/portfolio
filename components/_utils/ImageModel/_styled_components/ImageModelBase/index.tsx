@@ -1,8 +1,8 @@
 // Tools
 import RWD from "./RWD";
 import { styled } from "@mui/system";
-import fadeToTop from "@/components/_keyframes/fadeToTop";
-import fadeFromBottom from "@/components/_keyframes/fadeFromBottom";
+import fadeToTop from "@/components/_keyframes/outro/fadeToTop";
+import fadeFromBottom from "@/components/_keyframes/intro/fadeFromBottom";
 
 export default styled("div")(({ theme }) => ({
     position: "absolute",

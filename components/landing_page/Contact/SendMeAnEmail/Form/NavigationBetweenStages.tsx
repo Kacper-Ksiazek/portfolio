@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import fadeFromLeft from "@/components/_keyframes/fadeFromLeft";
+import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
 import useFormStageOne from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useFormStageOne";
 import useFormStageTwo from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useFormStageTwo";
 import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";

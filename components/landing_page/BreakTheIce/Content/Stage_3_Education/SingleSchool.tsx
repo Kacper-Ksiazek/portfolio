@@ -1,6 +1,6 @@
 // Tools
 import { styled, keyframes } from "@mui/system";
-import fadeFromLeft from "@/components/_keyframes/fadeFromBottom";
+import fadeFromLeft from "@/components/_keyframes/intro/fadeFromBottom";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
