@@ -1,5 +1,6 @@
 // Tools
-import { useEffect, useCallback, useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import useStylesOnScoll from "./hooks/useStylesOnScoll";
 import useHideWhileScrollingDown from "./hooks/useHideWhileScrollingDown";
 // Types
@@ -17,11 +18,22 @@ import SingleNavigationRoute from "./SingleNavigationRoute";
 const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const applyAfterScrollStyles = useStylesOnScoll();
     const hideNavigaton = useHideWhileScrollingDown();
+    const [displayContrastStyles, setDisplayContrastStyles] = useState<boolean>(false);
+
+    const router = useRouter();
+    useEffect(() => {
+        setDisplayContrastStyles(router.pathname === "/");
+    }, [router.pathname]);
 
     return (
         <Fade in={!hideNavigaton}>
             <div>
-                <NavigationBase className={applyAfterScrollStyles ? "applyAfterScrollStyles" : ""}>
+                <NavigationBase
+                    className={[
+                        applyAfterScrollStyles ? "after-scroll-styles" : "", //
+                        displayContrastStyles ? "contrast-colors" : "",
+                    ].join(" ")}
+                >
                     <div id="main-navigation-content">
                         <Logo />
                         <SingleFlexWrapper>

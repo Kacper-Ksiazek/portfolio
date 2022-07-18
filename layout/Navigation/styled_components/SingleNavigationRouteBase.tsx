@@ -18,7 +18,7 @@ export default styled(ButtonBase)(({ theme }) => ({
     "span.text": {
         position: "relative",
         zIndex: 2,
-        transition: "color .5s",
+        transition: "color .2s",
     },
     "span.line": {
         position: "absolute",
