@@ -11,7 +11,7 @@ const ScrollButtonBase = styled(ButtonBase)(({ theme }) => ({
     border: `2px solid ${theme.palette.primary.main}`,
     padding: "6px 40px",
     color: theme.palette.primary.main,
-    animation: `${fadeFromTop} .2s .6s linear both`,
+    animation: `${fadeFromTop} .2s 3s linear both`,
     position: "absolute",
     bottom: "60px",
     fontWeight: 500,

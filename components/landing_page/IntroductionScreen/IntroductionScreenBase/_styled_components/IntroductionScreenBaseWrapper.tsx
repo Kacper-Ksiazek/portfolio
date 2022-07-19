@@ -28,7 +28,7 @@ export default styled(Section)(({ theme }) => ({
     alignItems: "center",
     justifyContent: "center",
     height: "100vh",
-    animation: `${introAnimation} .3s 5s both linear`,
+    animation: `${introAnimation} .2s 5.5s both linear`,
     //
     "&::before, &::after": {
         position: "absolute",
