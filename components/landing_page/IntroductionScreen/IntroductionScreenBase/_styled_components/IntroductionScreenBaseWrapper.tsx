@@ -19,9 +19,8 @@ const introAnimation = keyframes({
 });
 
 export default styled(Section)(({ theme }) => ({
-    position: "fixed",
-    left: "50%",
-    transform: "translateX(-50%)",
+    position: "relative",
+    margin: "0 auto",
     overflow: "hidden",
     color: "#fff",
     display: "flex",
