@@ -8,10 +8,11 @@ datasource db {
 }
 
 model Project {
-  id           String   @id @default(cuid())
-  title        String   @unique
-  technologies String[]
-  folder       String   @unique
-  description  Json
-  features     Json
+  id               String   @id @default(cuid())
+  title            String   @unique
+  shortDescription String
+  technologies     String[]
+  folder           String   @unique
+  description      Json
+  features         Json
 }
