@@ -3,6 +3,9 @@
 # develepment scripts
 format-images.ts
 
+# uploaded content
+*/upload/projects/*
+
 # dependencies
 /node_modules
 /.pnp
