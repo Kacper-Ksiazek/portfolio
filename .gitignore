@@ -1,5 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# develepment scripts
+format-images.ts
+
+# uploaded content
+*/upload/projects/*
+
 # dependencies
 /node_modules
 /.pnp
