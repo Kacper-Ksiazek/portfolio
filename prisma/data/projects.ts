@@ -49,6 +49,19 @@ export default [
         ],
     },
     {
+        id: "ELECTRON_WORDS_LEARNING_APP",
+        description: {
+            introduction: `The first version of this application had been built from scratch in pure python and its MVP was ready to be use after just a few days. Then, I quickly realized that in the long run this app will not do well, so I decided to revamp it entirely using some more user friendly technologies.`,
+            purpose: `The paramount reason for making such kind of application was a sheer willingness to improve my English vocabulary, because at that time I had significant difficulties with it and secondly I thought that the tech stack I took will be a great opportunity to also learn more about vue 3 Composition API alongside with vuex.`,
+            conclusion: `Besides design, I am baldly proud of the final result to that extend that I have been even using this app for over a year and I do notice a significant improvement in my English. The most important purpose of the application was matched so I cannot complain about the some obvious downsides associated with having no experience in UX and UI.`,
+        },
+        folder: "electron_words_learning_app",
+        title: "Electron words learning app",
+        technologies: [],
+        shortDescription: `Written in electron and vue3, even though while making this app I didn’t know what does UX mean, the final product has fully matched my expectations.`,
+        features: [],
+    },
+    {
         id: "OLX_2",
         title: "Olx clone",
         shortDescription: `My typescript learning playground. App about adding sell offers of various items.  Other relevant feature is rich user profile, which summarizes all previous user activity.`,
