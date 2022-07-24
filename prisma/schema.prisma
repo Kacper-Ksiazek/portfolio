@@ -15,4 +15,6 @@ model Project {
   folder           String   @unique
   description      Json
   features         Json
+  start            DateTime
+  end              DateTime
 }

@@ -4,6 +4,8 @@ export default [
     {
         id: "ABU_DHABI",
         title: "Abu Dhabi- travel agency",
+        start: new Date(2021, 9),
+        end: new Date(2022, 7),
         shortDescription: `The best project so far. Application with features such as user accounts system, rich CRUD’s, and making reviews. On the top of that, a lot of relational data split into 8 tables and 6 custom enums. `,
         folder: "abu_dhabi_images",
         description: {
@@ -50,6 +52,8 @@ export default [
     },
     {
         id: "ELECTRON_WORDS_LEARNING_APP",
+        start: new Date(2021, 5),
+        end: new Date(2021, 9),
         description: {
             introduction: `The first version of this application had been built from scratch in pure python and its MVP was ready to be use after just a few days. Then, I quickly realized that in the long run this app will not do well, so I decided to revamp it entirely using some more user friendly technologies.`,
             purpose: `The paramount reason for making such kind of application was a sheer willingness to improve my English vocabulary, because at that time I had significant difficulties with it and secondly I thought that the tech stack I took will be a great opportunity to also learn more about vue 3 Composition API alongside with vuex.`,
@@ -63,6 +67,8 @@ export default [
     },
     {
         id: "OLX_2",
+        start: new Date(2021, 3),
+        end: new Date(2021, 4),
         title: "Olx clone",
         shortDescription: `My typescript learning playground. App about adding sell offers of various items.  Other relevant feature is rich user profile, which summarizes all previous user activity.`,
         folder: "olx_clone",
@@ -89,6 +95,8 @@ export default [
     },
     {
         id: "TRENUJ_PROSTO",
+        start: new Date(2021, 1),
+        end: new Date(2021, 2),
         description: {
             introduction: `I got asked spontaneously about making this app during break between classes before remote education even started. I accepted the offer almost immediately, because I had a lot of free  time then, thus I found making something like that very nifty.`,
             purpose: `It was supposed to be just a simple website with information about their services, experience and current offers as well as blog posts. Eventually I come up with making 2 distinct CRUD for both offers and blog posts, as well as special hidden (and also guarded by authentication) admin panel to facilitate managing it. After first release of the project I was working on it for a bit longer, because the owners had a few more ideas. After spending roughly one week more, the features like changing password or terms modification (add new term, remove certain term or make a certain as sold out) for each of available offer.`,
@@ -123,15 +131,17 @@ export default [
     },
     {
         id: "GAMES_APP",
+        title: "Games app",
+        folder: "games_app",
+        start: new Date(2020, 11),
+        end: new Date(2020, 12),
+        shortDescription: `It was pretty haphazard project, I had not prepared any plan towards it. The purpose of it though was to learn basics of nodejs as well as some databases concepts.`,
+        technologies: ["Vue 2", "SASS", "NodeJS", "Sequelize"],
         description: {
             introduction: `It took me just a few days to do it and the general concept of games as primary theme of the app was justified by looming release of the game cyberpunk 2077 and at that time I was very hyped about it. Even though this app is not looking good, I paid a lot of attention to make it looks as good as I could, hence the website is fully responsible.`,
             purpose: `The aforementioned purpose of this application is here pretty self-evident, tough I may say that the another great feature of this app is reviewing system, with likes and dislikes. The pagination is also present. In retrospect, I think the web-sockets would have fit very well there. `,
             conclusion: `After finishing this app, I started to fill more confident than before with concepts like seeders, migrations and first and foremost, why ORM’s are important. I also learnt about some limitations and some approaches how to write efficient vue.js and how to combine it with styles.`,
         },
-        folder: "games_app",
-        title: "Games app",
-        technologies: ["Vue 2", "SASS", "NodeJS", "Sequelize"],
-        shortDescription: `It was pretty haphazard project, I had not prepared any plan towards it. The purpose of it though was to learn basics of nodejs as well as some databases concepts.`,
         features: [
             { title: "Landing page", imageURL: "1_landing_page" },
             { title: "Single game- landing", imageURL: "2_single_game" },
@@ -145,15 +155,17 @@ export default [
     },
     {
         id: "DAC_SZANSE",
+        title: "Dac szanse",
+        folder: "dac_szanse",
+        start: new Date(2020, 3),
+        end: new Date(2020, 7),
+        shortDescription: `My first commercial project ever made. I received expected version of the app in .pdf and was told to code it as well as connect come content managing system.`,
+        technologies: ["PHP", "Laravel", "Vue 2", "MySQL", "SASS", "Javascript"],
         description: {
             introduction: `The project was supposed to be an app for a charity in my town, which founder was an aunt of my best friend at that time, thus that is the reason why we started to work together. I got ask to do landing page and a bunch of other subpages reflecting provided by their graphic team concept. `,
             purpose: `The purpose of the app was to create a website where prospective customers might found an information about the charity, about their services and about their founders. `,
             conclusion: `The project itself was a great lesson for me about dealing with other people and about trust. In retrospect, I reckon this project was a nightmare and completely rip-off. But on the other hand, this was my first commercial, mayor and serious project and I will remain grateful for an opportunity to test myself in real-job circumstances. At the end of the day besides all those unpleasant things that had happened, I am content with the result. `,
         },
-        folder: "dac_szanse",
-        title: "Dac szanse",
-        technologies: ["PHP", "Laravel", "Vue 2", "MySQL", "SASS", "Javascript"],
-        shortDescription: `My first commercial project ever made. I received expected version of the app in .pdf and was told to code it as well as connect come content managing system.`,
         features: [],
     },
 ] as Project[];
