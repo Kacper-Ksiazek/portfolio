@@ -143,4 +143,17 @@ export default [
             { title: "Searching bar", imageURL: "8_searching" },
         ],
     },
+    {
+        id: "DAC_SZANSE",
+        description: {
+            introduction: `The project was supposed to be an app for a charity in my town, which founder was an aunt of my best friend at that time, thus that is the reason why we started to work together. I got ask to do landing page and a bunch of other subpages reflecting provided by their graphic team concept. `,
+            purpose: `The purpose of the app was to create a website where prospective customers might found an information about the charity, about their services and about their founders. `,
+            conclusion: `The project itself was a great lesson for me about dealing with other people and about trust. In retrospect, I reckon this project was a nightmare and completely rip-off. But on the other hand, this was my first commercial, mayor and serious project and I will remain grateful for an opportunity to test myself in real-job circumstances. At the end of the day besides all those unpleasant things that had happened, I am content with the result. `,
+        },
+        folder: "dac_szanse",
+        title: "Dac szanse",
+        technologies: ["PHP", "Laravel", "Vue 2", "MySQL", "SASS", "Javascript"],
+        shortDescription: `My first commercial project ever made. I received expected version of the app in .pdf and was told to code it as well as connect come content managing system.`,
+        features: [],
+    },
 ] as Project[];
