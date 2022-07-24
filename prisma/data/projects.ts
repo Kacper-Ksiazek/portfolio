@@ -3,7 +3,7 @@ import type { Project } from "@/@types/prisma/Project";
 export default [
     {
         id: "ABU_DHABI",
-        title: "Abu dhabi",
+        title: "Abu Dhabi- travel agency",
         shortDescription: `The best project so far. Application with features such as user accounts system, rich CRUD’s, and making reviews. On the top of that, a lot of relational data split into 8 tables and 6 custom enums. `,
         folder: "abu_dhabi_images",
         description: {
@@ -46,6 +46,32 @@ export default [
             },
             { title: "Single content element- newest reviews", imageURL: "8_single_content_element_reviews_page.jpg" },
             { title: "User profile", imageURL: "9_user_profile.jpg" },
+        ],
+    },
+    {
+        id: "OLX_2",
+        title: "Olx clone",
+        shortDescription: `My typescript learning playground. App about adding sell offers of various items.  Other relevant feature is rich user profile, which summarizes all previous user activity.`,
+        folder: "olx_clone",
+        description: {
+            introduction: `I started this project amid my school one month long apprenticeship in March 2021. I immediately came up with an idea of making something akin to very popular platform OLX. I chose to use typescript, because I had not write anything using it so far and I deem that writing something bigger is always the best way to learn new technologies and techniques.`,
+            purpose: `The goal of this application was simply, create a place where people can create an account and straight up are able to add new offers, then other users or even anonyms can see this offer and respond to it if they found it good for their use. `,
+            conclusion: `I had a lot of fun while writing this app and eventually managed to learn typescript, which then I started to use literally everywhere so I think I spend that month wisely and in good way.`,
+        },
+        technologies: ["Vue 3", "Vuex", "Typescript", "Express", "Sass", "Jest", "NodeJS", "PostgreSQL"],
+        features: [
+            { title: "", imageURL: "10_users_can_add_new_offers" },
+            { title: "", imageURL: "11_validation_after_something_went_wrong" },
+            { title: "", imageURL: "12_newly_created_offer" },
+            { title: "", imageURL: "1_landing_page" },
+            { title: "", imageURL: "2_select_a_category" },
+            { title: "", imageURL: "3_login" },
+            { title: "", imageURL: "4_single_item" },
+            { title: "", imageURL: "5_single_item_zoom" },
+            { title: "", imageURL: "6_recommendations_to_single_item" },
+            { title: "", imageURL: "7_user_profile" },
+            { title: "", imageURL: "8_followed_offers" },
+            { title: "", imageURL: "9_admin_can_manage_other_users_offers" },
         ],
     },
 ] as Project[];
