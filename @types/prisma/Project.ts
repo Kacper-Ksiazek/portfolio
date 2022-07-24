@@ -38,7 +38,9 @@ export type Technology =
     | "React Query"
     | "Material UI"
     | "PHP"
-    | "Laravel";
+    | "Laravel"
+    | "Sequelize"
+    | "Composition API";
 
 // Change prisma's json types into something more accurate
 export interface Project extends Omit<_Project, "features" | "description" | "technologies"> {
