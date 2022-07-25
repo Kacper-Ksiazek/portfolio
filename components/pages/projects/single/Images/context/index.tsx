@@ -1,5 +1,5 @@
 // Tools
-import { useState, useEffect, createContext } from "react";
+import { useState, createContext } from "react";
 // Tools
 import type { Feature } from "@/@types/prisma/Project";
 import type { Dispatch, SetStateAction, FunctionComponent, ReactNode } from "react";

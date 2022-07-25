@@ -10,6 +10,7 @@ export default styled(ButtonBase)(({ theme }) => ({
     zIndex: 10,
     width: "50px",
     height: "50px",
+    border: `1px solid ${theme.palette.background.default}`,
     backgroundColor: theme.palette.primary.main,
     transition: "background-color .3s, opacity .3s !important",
     "&:hover": {
