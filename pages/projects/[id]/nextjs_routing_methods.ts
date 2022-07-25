@@ -2,23 +2,7 @@
 import moment from "moment";
 import { prisma } from "@/prisma/db";
 // Types
-import type { Project } from "@/@types/pages/projects/SingleProject";
-import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
-
-interface SingleProjectProps {
-    project: Project;
-}
-
-const SingleProject: NextPage<SingleProjectProps> = (props) => {
-    return (
-        <>
-            <span>essa</span>
-            <span>{JSON.stringify(props)}</span>
-        </>
-    );
-};
-
-export default SingleProject;
+import type { GetStaticPaths, GetStaticProps } from "next";
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
     const paths = (await prisma.project.findMany({ select: { id: true } })).map((el) => {
@@ -38,6 +22,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         where: { id: context.params?.id as string },
     });
 
+    // Redirect to 404 if there is no project
     if (!project) {
         return {
             redirect: {
@@ -47,8 +32,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
         };
     }
 
-    (project as any).start = moment(project.start).format("MMMM YYYY");
-    (project as any).end = moment(project.end).format("MMMM YYYY");
+    const formatDate = (date: Date): string => moment(date).format("MMMM YYYY");
+
+    (project as any).start = formatDate(project.start);
+    (project as any).end = formatDate(project.end);
 
     return {
         props: {
