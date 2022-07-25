@@ -5,21 +5,49 @@ import type { NextPage } from "next";
 import type { Project } from "@/@types/pages/projects/SingleProject";
 // Other components
 import Head from "next/head";
+import Duration from "@/components/pages/projects/single/Duration";
+import ImagesWrapper from "@/components/pages/projects/single/Image";
+import DisplayTechnologies from "@/components/_utils/DisplayTechnologies";
+import { Paragraph, Header } from "@/components/pages/projects/single/TextStyledComponents";
+import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
 
 interface SingleProjectProps {
     project: Project;
 }
 
-const SingleProject: NextPage<SingleProjectProps> = (props) => {
+const SingleProject: NextPage<SingleProjectProps> = ({ project }) => {
     return (
         <>
             <Head>
-                <title>{props.project.title}</title>
+                <title>{project.title}</title>
             </Head>
-            <>
-                <span>essa</span>
-                <span>{JSON.stringify(props)}</span>
-            </>
+            <LightSectionWrapper
+                header={{
+                    label: "Project",
+                    main: project.title,
+                    additionalJSX: (
+                        <>
+                            <Duration start={project.start} end={project.end} />
+                            <DisplayTechnologies technologies={project.technologies} />
+                        </>
+                    ),
+                }}
+                round="left"
+                unlimitedHeight
+            >
+                <Paragraph>{project.shortDescription}</Paragraph>
+
+                <ImagesWrapper features={project.features} folder={project.folder} />
+
+                <Header>Introduction and quick overview</Header>
+                <Paragraph>{project.description.introduction}</Paragraph>
+
+                <Header>The purpose of the application</Header>
+                <Paragraph>{project.description.purpose}</Paragraph>
+
+                <Header>Conclusion and finals thoughts</Header>
+                <Paragraph>{project.description.conclusion}</Paragraph>
+            </LightSectionWrapper>
         </>
     );
 };

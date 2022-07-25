@@ -15,7 +15,9 @@ interface LightSectionWrapperProps {
         label: string;
         additionalJSX?: ReactNode;
     };
-    backgroundLetter: string;
+    backgroundLetter?: string;
+    /** By default the maximum height of the section wrapper is fixed to **800px**, by setting this property to `true` this one style is never assigned */
+    unlimitedHeight?: boolean;
 }
 
 const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props) => {
@@ -23,13 +25,14 @@ const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props)
         <LightWrapperBase
             className={[
                 props.round === "left" ? "round-left" : "round-right", //
+                props.unlimitedHeight ? "" : "limited-height",
             ].join(" ")}
         >
             <ContentWrapper>
                 <Header {...props.header} />
                 {props.children}
             </ContentWrapper>
-            <BackgroundLetter letter={props.backgroundLetter} />
+            {props.backgroundLetter && <BackgroundLetter letter={props.backgroundLetter} />}
         </LightWrapperBase>
     );
 };
