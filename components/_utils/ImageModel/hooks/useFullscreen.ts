@@ -24,7 +24,7 @@ export default (): UseFullscreenResult => {
                     top: scrollYWhileOpeningFullscreen,
                     left: 0,
                 });
-            }, 1);
+            }, 50);
         }
     };
 

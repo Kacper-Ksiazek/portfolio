@@ -1,5 +1,5 @@
 // Tools
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFullscreen from "./hooks/useFullscreen";
 // Types
 import type { FunctionComponent } from "react";
@@ -21,9 +21,16 @@ interface ImageModalProps {
 
 const ImageModal: FunctionComponent<ImageModalProps> = (props) => {
     const { isFullscreenOpened, handleFullsizeToggle } = useFullscreen();
-    const [open, setOpen] = useState<boolean>(true);
+    const [open, setOpen] = useState<boolean>(props.open);
     const [displayOutroAnimation, setDisplayOutroAnimation] = useState<boolean>(false);
     const [displayLoading, setDisplayLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        setDisplayOutroAnimation(false);
+        setOpen(props.open);
+    }, [props.open]);
+
+    console.log({ open, displayLoading, displayOutroAnimation });
 
     const closeModal = () => {
         setDisplayOutroAnimation(true);

@@ -5,7 +5,7 @@ import type { ButtonBaseProps } from "@mui/material/ButtonBase";
 // Material UI Components
 import ButtonBase from "@mui/material/ButtonBase";
 // Styled components
-type Color = "text" | "primary" | "secondary" | "error" | "success";
+export type Color = "text" | "primary" | "secondary" | "error" | "success";
 
 interface StyledButtonProps extends ButtonBaseProps {
     color?: Color;

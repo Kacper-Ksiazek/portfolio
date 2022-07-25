@@ -17,7 +17,6 @@ const PictureWrapper = styled("div")(({ theme }) => ({
 }));
 
 interface ImageProps {
-    //
     folder: string;
     features: Feature[];
 }
