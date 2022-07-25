@@ -5,6 +5,7 @@ import type { FunctionComponent } from "react";
 import type { Feature } from "@/@types/prisma/Project";
 // Other components
 import ProjectThumbnail from "./ProjectThumbnail";
+import { ImagesWrapperContextProvider } from "./context";
 // Styled components
 const PictureWrapper = styled("div")(({ theme }) => ({
     width: "100%",
@@ -13,7 +14,7 @@ const PictureWrapper = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: "10px",
     overflow: "hidden",
-    marginTop: "20px",
+    margin: "20px 0",
 }));
 
 interface ImageProps {
@@ -21,12 +22,20 @@ interface ImageProps {
     features: Feature[];
 }
 
-const Image: FunctionComponent<ImageProps> = (props) => {
+const ImagesWrapper: FunctionComponent = () => {
     return (
         <PictureWrapper>
-            <ProjectThumbnail src={`/upload/projects/${props.folder}/thumbnail/fullsize.jpg`} />
+            <ProjectThumbnail />
         </PictureWrapper>
     );
 };
 
-export default Image;
+const ContextWrapper: FunctionComponent<ImageProps> = (props) => {
+    return (
+        <ImagesWrapperContextProvider {...props}>
+            <ImagesWrapper />
+        </ImagesWrapperContextProvider>
+    );
+};
+
+export default ContextWrapper;

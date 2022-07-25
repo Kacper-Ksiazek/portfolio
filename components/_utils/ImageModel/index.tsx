@@ -30,8 +30,6 @@ const ImageModal: FunctionComponent<ImageModalProps> = (props) => {
         setOpen(props.open);
     }, [props.open]);
 
-    console.log({ open, displayLoading, displayOutroAnimation });
-
     const closeModal = () => {
         setDisplayOutroAnimation(true);
         setTimeout(() => {

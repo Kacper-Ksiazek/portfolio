@@ -6,7 +6,7 @@ import type { Project } from "@/@types/pages/projects/SingleProject";
 // Other components
 import Head from "next/head";
 import Duration from "@/components/pages/projects/single/Duration";
-import ImagesWrapper from "@/components/pages/projects/single/Image";
+import ImagesWrapper from "@/components/pages/projects/single/Images";
 import DisplayTechnologies from "@/components/_utils/DisplayTechnologies";
 import { Paragraph, Header } from "@/components/pages/projects/single/TextStyledComponents";
 import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";

@@ -83,7 +83,6 @@ export default class HandleSendingEmailForm {
         const { error, value } = scheme.validate(this.req.body);
 
         if (error) {
-            console.log(error);
             throw new InvalidRequestedBody();
         }
 
