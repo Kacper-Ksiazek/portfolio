@@ -6,6 +6,7 @@ import type { Feature } from "@/@types/prisma/Project";
 // Other components
 import ProjectThumbnail from "./ProjectThumbnail";
 import { ImagesWrapperContextProvider } from "./context";
+import BottomRightCornerActions from "./BottomRightCornerActions";
 // Styled components
 const PictureWrapper = styled("div")(({ theme }) => ({
     width: "100%",
@@ -22,20 +23,15 @@ interface ImageProps {
     features: Feature[];
 }
 
-const ImagesWrapper: FunctionComponent = () => {
-    return (
-        <PictureWrapper>
-            <ProjectThumbnail />
-        </PictureWrapper>
-    );
-};
-
-const ContextWrapper: FunctionComponent<ImageProps> = (props) => {
+const ImagesWrapper: FunctionComponent<ImageProps> = (props) => {
     return (
         <ImagesWrapperContextProvider {...props}>
-            <ImagesWrapper />
+            <PictureWrapper>
+                <ProjectThumbnail />
+                <BottomRightCornerActions />
+            </PictureWrapper>
         </ImagesWrapperContextProvider>
     );
 };
 
-export default ContextWrapper;
+export default ImagesWrapper;
