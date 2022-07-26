@@ -1,6 +1,8 @@
 // Tools
 import RWD from "./RWD";
 import { styled } from "@mui/system";
+import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
+import fadeSimpleOUT from "@/components/_keyframes/outro/fadeSimpleOUT";
 import fadeToTop from "@/components/_keyframes/outro/fadeToTop";
 import fadeFromBottom from "@/components/_keyframes/intro/fadeFromBottom";
 
@@ -18,21 +20,19 @@ export default styled("div")(({ theme }) => ({
         flexGrow: "1",
         "&.intro": {
             animation: `${fadeFromBottom} .2s linear both`,
+            ".gallery-navigation-button": {
+                animation: `${fadeSimple} .2s .5s linear both`,
+            },
         },
         "&.outro": {
             animation: `${fadeToTop} .2s linear both`,
+            ".gallery-navigation-button": {
+                animation: `${fadeSimpleOUT} .2s .5s linear both`,
+            },
         },
     },
-    h4: {
-        margin: "0",
-        color: "#fff",
-        fontSize: "32px",
+    img: {
         userSelect: "none",
-        fontWeight: 500,
-        marginBottom: "10px",
-        "span.seperator": {
-            margin: "0 10px",
-        },
     },
     ...(RWD as any),
 }));

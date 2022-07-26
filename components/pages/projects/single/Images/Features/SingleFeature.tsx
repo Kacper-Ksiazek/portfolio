@@ -19,6 +19,7 @@ const SingleFeature: FunctionComponent<SingleFeatureProps> = (props) => {
         <SingleFeatureBase
             className="single-feature" //
             sx={{ animationDelay: `${props.index * 50 + 550}ms` }}
+            onClick={props.previewThisFeature}
         >
             <Image
                 alt={props.imageURL} //

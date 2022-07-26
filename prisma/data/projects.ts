@@ -21,7 +21,7 @@ export default (
                 },
                 { title: "User profile- landmark reviews", imageURL: "10_landmarks_reviews_on_user_profile" },
                 {
-                    title: "Your reviews is always on the top",
+                    title: "Your review is always on the top",
                     imageURL: "11_auth_user_review_is_always_on_the_top",
                 },
                 { title: "Pinning reviews", imageURL: "12_review_can_be_pinned" },
