@@ -30,6 +30,16 @@ export default createTheme({
         fontFamily: '"Noto Sans", sans-serif',
     },
     components: {
+        MuiTypography: {
+            styleOverrides: {
+                body2: {
+                    cursor: "default",
+                },
+                body1: {
+                    cursor: "default",
+                },
+            },
+        },
         MuiDivider: {
             styleOverrides: {
                 root: {

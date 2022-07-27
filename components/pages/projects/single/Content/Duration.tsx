@@ -1,5 +1,5 @@
 // Tools
-import { alpha, styled } from "@mui/system";
+import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
@@ -10,6 +10,7 @@ const DurationBase = styled("div")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
     marginTop: "4px",
+    cursor: "default",
     svg: {
         marginRight: "5px",
     },
@@ -22,7 +23,7 @@ interface DurationProps {
 
 const Duration: FunctionComponent<DurationProps> = (props) => {
     return (
-        <DurationBase>
+        <DurationBase className="duration">
             <AccessTime />
             <span>{`${props.start} - ${props.end}`}</span>
         </DurationBase>

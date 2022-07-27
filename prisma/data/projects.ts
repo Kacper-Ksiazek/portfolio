@@ -3,7 +3,7 @@ export default (
     [
         {
             id: "ABU_DHABI",
-            title: "Abu Dhabi- travel agency",
+            title: "Abu Dhabi- Travel Agency",
             folder: "abu_dhabi",
             start: new Date(2021, 9),
             end: new Date(2022, 7),
