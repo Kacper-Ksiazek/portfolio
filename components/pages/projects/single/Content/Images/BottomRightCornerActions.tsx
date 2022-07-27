@@ -1,6 +1,6 @@
 // Tools
 import { useRef } from "react";
-import useImagesWrapperContext from "@/components/pages/projects/single/Images/hooks/useImagesWrapperContext";
+import useImagesWrapperContext from "@/components/pages/projects/single/Content/Images/hooks/useImagesWrapperContext";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components

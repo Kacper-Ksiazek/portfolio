@@ -1,7 +1,7 @@
 // Tools
 import { useEffect, useState } from "react";
 import uploadedProjectImageURLBuilder from "@/utils/client/uploaded_image_url_builder/project";
-import useImagesWrapperContext from "@/components/pages/projects/single/Images/hooks/useImagesWrapperContext";
+import useImagesWrapperContext from "@/components/pages/projects/single/Content/Images/hooks/useImagesWrapperContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
