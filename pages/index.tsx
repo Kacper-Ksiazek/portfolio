@@ -17,8 +17,8 @@ const Home: NextPage = () => {
             <Head>
                 <title>Kacper Książek</title>
             </Head>
-            <IntroductionScreen />
-            {/* <BreakTheIce /> */}
+            {/* <IntroductionScreen /> */}
+            <BreakTheIce />
             {/* <ToDoList /> */}
             {/* <PicturesMatchingGame /> */}
             {/* <Contact /> */}

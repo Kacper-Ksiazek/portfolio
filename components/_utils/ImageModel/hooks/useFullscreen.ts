@@ -15,16 +15,16 @@ export default (): UseFullscreenResult => {
         if (!fullscreen) {
             setScrollYWhileOpeningFullscreen(window.scrollY);
             setFullscreen(true);
-            document.body.requestFullscreen();
+            if (document) document.body.requestFullscreen();
         } else {
-            document.exitFullscreen();
+            if (document) document.exitFullscreen();
             setFullscreen(false);
             setTimeout(() => {
                 scrollTo({
                     top: scrollYWhileOpeningFullscreen,
                     left: 0,
                 });
-            }, 1);
+            }, 50);
         }
     };
 

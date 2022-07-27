@@ -9,6 +9,7 @@ const CarosuelWrapper = styled("div")(({ theme }) => ({
     position: "relative",
     width: "100%",
     flexGrow: "1",
+    overflow: "hidden",
 }));
 const ChildrenElementsWrapper = styled("div")(({ theme }) => ({
     position: "absolute",
@@ -63,15 +64,16 @@ interface CarosuelProps {
 
 const Carosuel: FunctionComponent<CarosuelProps> = (props) => {
     const [currentPage, setCurrentPage] = useState<number>(0);
-
+    const [componentHasBeenFullMounted, setComponentHasBeenFullMounted] = useState<boolean>(false);
     const generalCarosuelElement = useRef<HTMLDivElement | null>(null);
     const childrenElemenetsWrapperElement = useRef<HTMLDivElement | null>(null);
 
     const totalAdditionalPadding = useRef<number>(0);
 
+    // Set width of wrapper and of each children
     useEffect(() => {
         if (childrenElemenetsWrapperElement.current) {
-            const singleItemWidth: string = `(${generalCarosuelElement.current?.offsetWidth}px - ${props.spacing}px) / ${props.itemsPerSlide}`;
+            const singleItemWidth: string = `(${generalCarosuelElement.current?.offsetWidth}px - ${props.spacing * Math.max(props.itemsPerSlide - 1, 1)}px) / ${props.itemsPerSlide}`;
 
             totalAdditionalPadding.current = (props.itemsInTotal - 1) * props.spacing;
             childrenElemenetsWrapperElement.current.style.width = `calc(${singleItemWidth} * ${props.itemsInTotal} + ${totalAdditionalPadding.current}px)`;
@@ -82,54 +84,62 @@ const Carosuel: FunctionComponent<CarosuelProps> = (props) => {
         }
     }, [props]);
 
+    // On index change
     useEffect(() => {
-        setTimeout(() => {
-            if (childrenElemenetsWrapperElement.current) {
-                // Handle slide
-                childrenElemenetsWrapperElement.current.style.transform = `translateX(calc(-1 * (100% - ${totalAdditionalPadding.current}px) * ${currentPage} / ${props.itemsInTotal} - ${
-                    (totalAdditionalPadding.current * currentPage) / (props.itemsInTotal - 1)
-                }px))`;
-                const { childNodes } = childrenElemenetsWrapperElement.current;
-                // Add .active class to visible elements
-                [...(childNodes as any)].slice(currentPage, props.itemsPerSlide + currentPage).forEach((el: HTMLElement) => {
-                    if (el.classList.contains("initial-active")) return;
-                    el.classList.add("active");
-                });
-                // // Remove .active class from other elements
-                // setTimeout(() => {
-                //     [...[...(childNodes as any)].slice(0, currentPage), ...[...(childNodes as any)].slice(currentPage + props.itemsPerSlide)].forEach((el: HTMLElement) => {
-                //         el.classList.remove("active");
-                //     });
-                // }, 400);
-                // childrenElemenetsWrapperElement.
-            }
-        }, 10);
-    }, [currentPage, props.itemsInTotal, props.itemsPerSlide]);
+        setTimeout(
+            () => {
+                if (childrenElemenetsWrapperElement.current) {
+                    // Handle slide
+                    childrenElemenetsWrapperElement.current.style.transform = `translateX(calc(-1 * (100% - ${totalAdditionalPadding.current}px) * ${currentPage} / ${props.itemsInTotal} - ${
+                        (totalAdditionalPadding.current * currentPage) / (props.itemsInTotal - 1)
+                    }px))`;
+                    const { childNodes } = childrenElemenetsWrapperElement.current;
+                    // Add .active class to visible elements
+                    [...(childNodes as any)].slice(currentPage, props.itemsPerSlide + currentPage).forEach((el: HTMLElement) => {
+                        if (el.classList.contains("initial-active")) return;
+                        el.classList.add("active");
+                    });
+                    // // Remove .active class from other elements
+                    // setTimeout(() => {
+                    //     [...[...(childNodes as any)].slice(0, currentPage), ...[...(childNodes as any)].slice(currentPage + props.itemsPerSlide)].forEach((el: HTMLElement) => {
+                    //         el.classList.remove("active");
+                    //     });
+                    // }, 400);
+                    // childrenElemenetsWrapperElement.
+                }
+            },
+            componentHasBeenFullMounted ? 10 : props.itemsInTotal * 120
+        );
+    }, [currentPage, props.itemsInTotal, props.itemsPerSlide, componentHasBeenFullMounted]);
 
     // Fire this only once after component was mounted
     useEffect(() => {
-        setTimeout(() => {
+        setTimeout(async () => {
             if (childrenElemenetsWrapperElement.current) {
-                [...(childrenElemenetsWrapperElement.current.childNodes as any)].slice(0, 2).forEach((el) => {
+                for (const el of [...(childrenElemenetsWrapperElement.current.childNodes as any)].slice(0, props.itemsPerSlide)) {
                     el.classList.add("initial-active");
-                });
+                    await new Promise((resolve) => setTimeout(resolve, 100));
+                }
+                setComponentHasBeenFullMounted(true);
             }
         }, 1);
-    }, []);
+    }, [props.itemsPerSlide]);
 
     return (
         <>
-            <CarosuelWrapper sx={props.wrapperSx} ref={generalCarosuelElement}>
+            <CarosuelWrapper sx={props.wrapperSx} ref={generalCarosuelElement} className="carosuel-wrapper">
                 <ChildrenElementsWrapper ref={childrenElemenetsWrapperElement}>{props.children}</ChildrenElementsWrapper>
             </CarosuelWrapper>
 
-            <NavigationWrapper sx={props.navigationSx}>
+            <NavigationWrapper sx={props.navigationSx} className="carosuel-navigation">
                 {(() => {
+                    const navigationStepsInTotal = props.itemsInTotal - props.itemsPerSlide + 1;
                     const result: any[] = [];
-                    for (let i = 0; i < props.itemsInTotal - 1; i++) {
+                    for (let i = 0; i < navigationStepsInTotal; i++) {
                         result.push(
                             <SingleNagivationStep
                                 onClick={() => setCurrentPage(i)} //
+                                key={i}
                                 className={currentPage === i ? "active" : ""}
                                 role="button"
                             />
