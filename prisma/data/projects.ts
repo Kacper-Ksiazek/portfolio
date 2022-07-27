@@ -7,6 +7,7 @@ export default (
             folder: "abu_dhabi",
             start: new Date(2021, 9),
             end: new Date(2022, 7),
+            githubURL: "https://github.com/Kacper-Ksiazek/nextjs-travel-agency-2022",
             shortDescription: `The best project so far. Application with features such as user accounts system, rich CRUD’s, and making reviews. On the top of that, a lot of relational data split into 8 tables and 6 custom enums. `,
             description: {
                 introduction: `I started this project virtually at the beginning of the last high school class with the initial idea of learning react, next js and serverless approach. Due to the abundance of responsibilities related with looming finals exams, this project took decisively too much time. Although, at the end of the day I’m rather proud of the its eventual state, but at the same time I do still notice a room for further improvements. The project’s visual site has been completely altered and invented from scratch with new everything- starting with color palette and fonts through content placement and eventually even the tech stack was change. Ah, and I have done it even twice. I’m always trying to things the best I can so I always put great deal of effort into ensuring the quality is satisfying.`,
@@ -54,6 +55,7 @@ export default (
             id: "ELECTRON_WORDS_LEARNING_APP",
             start: new Date(2021, 5),
             end: new Date(2021, 9),
+            githubURL: "https://github.com/Kacper-Ksiazek/electron-words-learning-app-2021",
             description: {
                 introduction: `The first version of this application had been built from scratch in pure python and its MVP was ready to be use after just a few days. Then, I quickly realized that in the long run this app will not do well, so I decided to revamp it entirely using some more user friendly technologies.`,
                 purpose: `The paramount reason for making such kind of application was a sheer willingness to improve my English vocabulary, because at that time I had significant difficulties with it and secondly I thought that the tech stack I took will be a great opportunity to also learn more about vue 3 Composition API alongside with vuex.`,
@@ -72,6 +74,7 @@ export default (
             title: "Olx clone",
             shortDescription: `My typescript learning playground. App about adding sell offers of various items.  Other relevant feature is rich user profile, which summarizes all previous user activity.`,
             folder: "olx_clone",
+            githubURL: "https://github.com/Kacper-Ksiazek/fullstack-web-store-2021/tree/main",
             description: {
                 introduction: `I started this project amid my school one month long apprenticeship in March 2021. I immediately came up with an idea of making something akin to very popular platform OLX. I chose to use typescript, because I had not write anything using it so far and I deem that writing something bigger is always the best way to learn new technologies and techniques.`,
                 purpose: `The goal of this application was simply, create a place where people can create an account and straight up are able to add new offers, then other users or even anonyms can see this offer and respond to it if they found it good for their use. `,
@@ -97,15 +100,17 @@ export default (
             id: "TRENUJ_PROSTO",
             start: new Date(2021, 1),
             end: new Date(2021, 2),
+            title: "Trenuj Prosto",
+            shortDescription: `My second commercial project. I built it for my high school PE teacher during remote education caused by covid at the turn of January and February 2021.`,
+            folder: "trenuj_prosto",
+            githubURL: "https://github.com/Kacper-Ksiazek/trenuj_prosto-2021",
+            liveDemoURL: "http://trenujprosto.pl/",
             description: {
                 introduction: `I got asked spontaneously about making this app during break between classes before remote education even started. I accepted the offer almost immediately, because I had a lot of free  time then, thus I found making something like that very nifty.`,
                 purpose: `It was supposed to be just a simple website with information about their services, experience and current offers as well as blog posts. Eventually I come up with making 2 distinct CRUD for both offers and blog posts, as well as special hidden (and also guarded by authentication) admin panel to facilitate managing it. After first release of the project I was working on it for a bit longer, because the owners had a few more ideas. After spending roughly one week more, the features like changing password or terms modification (add new term, remove certain term or make a certain as sold out) for each of available offer.`,
                 conclusion: `The customers appreciated the work so much and they have been using this app for over a year and half so far and up to date I have not received any kind of feedback about some issues occurring neither about anything to change (expect files to download).`,
             },
-            folder: "trenuj_prosto",
-            title: "Trenuj Prosto",
             technologies: ["Vue 2", "Vuex", "Javascript", "NodeJS", "Express", "SASS", "Jest", "PostgreSQL", "Sequelize"],
-            shortDescription: `My second commercial project. I built it for my high school PE teacher during remote education caused by covid at the turn of January and February 2021.`,
             features: [
                 { title: "Landing page", imageURL: "1_landing_page" },
                 { title: "Landing page", imageURL: "2_landing_page2" },
@@ -137,6 +142,7 @@ export default (
             end: new Date(2020, 12),
             shortDescription: `It was pretty haphazard project, I had not prepared any plan towards it. The purpose of it though was to learn basics of nodejs as well as some databases concepts.`,
             technologies: ["Vue 2", "SASS", "NodeJS", "Sequelize"],
+            githubURL: "https://github.com/Kacper-Ksiazek/game-app-FRONT",
             description: {
                 introduction: `It took me just a few days to do it and the general concept of games as primary theme of the app was justified by looming release of the game cyberpunk 2077 and at that time I was very hyped about it. Even though this app is not looking good, I paid a lot of attention to make it looks as good as I could, hence the website is fully responsible.`,
                 purpose: `The aforementioned purpose of this application is here pretty self-evident, tough I may say that the another great feature of this app is reviewing system, with likes and dislikes. The pagination is also present. In retrospect, I think the web-sockets would have fit very well there. `,
@@ -159,6 +165,7 @@ export default (
             folder: "dac_szanse",
             start: new Date(2020, 3),
             end: new Date(2020, 7),
+            githubURL: "https://github.com/Kacper-Ksiazek/dac_szanse",
             shortDescription: `My first commercial project ever made. I received expected version of the app in .pdf and was told to code it as well as connect come content managing system.`,
             technologies: ["PHP", "Laravel", "Vue 2", "MySQL", "SASS", "Javascript"],
             description: {

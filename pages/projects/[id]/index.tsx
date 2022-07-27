@@ -6,6 +6,7 @@ import type { Project } from "@/@types/pages/projects/SingleProject";
 // Other components
 import Head from "next/head";
 import Duration from "@/components/pages/projects/single/Duration";
+import Redirects from "@/components/pages/projects/single/Redirects";
 import ImagesWrapper from "@/components/pages/projects/single/Images";
 import DisplayTechnologies from "@/components/_utils/DisplayTechnologies";
 import { Paragraph, Header } from "@/components/pages/projects/single/TextStyledComponents";
@@ -47,6 +48,8 @@ const SingleProject: NextPage<SingleProjectProps> = ({ project }) => {
 
                 <Header>Conclusion and finals thoughts</Header>
                 <Paragraph>{project.description.conclusion}</Paragraph>
+
+                <Redirects githubURL={project.githubURL} liveDemoURL={project.liveDemoURL} />
             </LightSectionWrapper>
         </>
     );
