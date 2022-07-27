@@ -42,9 +42,31 @@ export type Technology =
     | "Sequelize"
     | "Composition API";
 
+export type ReleventTechnology =
+    | "react"
+    | "vue"
+    | "next"
+    | "prisma"
+    | "javascript"
+    | "typescript"
+    | "jest"
+    | "sass"
+    | "express"
+    | "node"
+    | "electron"
+    | "sequelize"
+    | "redux"
+    | "material"
+    | "php"
+    | "laravel"
+    | "vue-bootstrap"
+    | "mysql"
+    | "postgresql";
+
 // Change prisma's json types into something more accurate
-export interface Project extends Omit<_Project, "features" | "description" | "technologies"> {
+export interface Project extends Omit<_Project, "features" | "description" | "technologies" | "releventTechnologies"> {
     features: Feature[];
     description: Description;
     technologies: Technology[];
+    releventTechnologies: ReleventTechnology[];
 }

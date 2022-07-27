@@ -14,6 +14,7 @@ export default (
                 purpose: `The main idea of this application is to allow users to add different travel destinations and subsequently to mark places worth to visit (landmarks) such as restaurant / museums / art galleries and many more. Furthermore, there is also exquisitely working system of reviewing both destinations and landmarks so users of the application can share each other experiences related with the content of the site. Each reviews contains score 0-10, description and relevant aspects of the reviewing subject. Other users can than rate your review by either giving you a thumb up or down.`,
                 conclusion: `I am very proud that I did manage to sustain my willingness to continue working of that project for over 6 months. I am also sure that this journey had taught me a lot and in the future I will be more aware of some evitable and now obvious mistakes. `,
             },
+            releventTechnologies: ["react", "next", "prisma", "typescript", "jest", "sass", "redux", "material"],
             technologies: ["React", "Redux", "Material UI", "Typescript", "NextJS", "Cypress", "PostgreSQL", "Prisma", "SASS"],
             features: [
                 {
@@ -63,6 +64,7 @@ export default (
             },
             folder: "electron_words_learning_app",
             title: "Electron words learning app",
+            releventTechnologies: ["electron", "vue", "typescript", "sass"],
             technologies: ["Vue 3", "Composition API", "Typescript", "Electron", "SASS"],
             shortDescription: `Written in electron and vue3, even though while making this app I didn’t know what does UX mean, the final product has fully matched my expectations.`,
             features: [],
@@ -80,6 +82,7 @@ export default (
                 purpose: `The goal of this application was simply, create a place where people can create an account and straight up are able to add new offers, then other users or even anonyms can see this offer and respond to it if they found it good for their use. `,
                 conclusion: `I had a lot of fun while writing this app and eventually managed to learn typescript, which then I started to use literally everywhere so I think I spend that month wisely and in good way.`,
             },
+            releventTechnologies: ["vue", "express", "typescript", "sass", "sequelize", "jest"],
             technologies: ["Vue 3", "Vuex", "Typescript", "Express", "Sass", "Jest", "NodeJS", "PostgreSQL", "Sequelize"],
             features: [
                 { title: "Landing page", imageURL: "1_landing_page" },
@@ -110,6 +113,7 @@ export default (
                 purpose: `It was supposed to be just a simple website with information about their services, experience and current offers as well as blog posts. Eventually I come up with making 2 distinct CRUD for both offers and blog posts, as well as special hidden (and also guarded by authentication) admin panel to facilitate managing it. After first release of the project I was working on it for a bit longer, because the owners had a few more ideas. After spending roughly one week more, the features like changing password or terms modification (add new term, remove certain term or make a certain as sold out) for each of available offer.`,
                 conclusion: `The customers appreciated the work so much and they have been using this app for over a year and half so far and up to date I have not received any kind of feedback about some issues occurring neither about anything to change (expect files to download).`,
             },
+            releventTechnologies: ["vue", "express", "javascript", "sequelize", "sass", "vue-bootstrap"],
             technologies: ["Vue 2", "Vuex", "Javascript", "NodeJS", "Express", "SASS", "Jest", "PostgreSQL", "Sequelize"],
             features: [
                 { title: "Landing page", imageURL: "1_landing_page" },
@@ -137,17 +141,18 @@ export default (
         {
             id: "GAMES_APP",
             title: "Games app",
-            folder: "games_app",
             start: new Date(2020, 11),
             end: new Date(2020, 12),
-            shortDescription: `It was pretty haphazard project, I had not prepared any plan towards it. The purpose of it though was to learn basics of nodejs as well as some databases concepts.`,
-            technologies: ["Vue 2", "SASS", "NodeJS", "Sequelize"],
+            folder: "games_app",
             githubURL: "https://github.com/Kacper-Ksiazek/game-app-FRONT",
+            shortDescription: `It was pretty haphazard project, I had not prepared any plan towards it. The purpose of it though was to learn basics of nodejs as well as some databases concepts.`,
             description: {
                 introduction: `It took me just a few days to do it and the general concept of games as primary theme of the app was justified by looming release of the game cyberpunk 2077 and at that time I was very hyped about it. Even though this app is not looking good, I paid a lot of attention to make it looks as good as I could, hence the website is fully responsible.`,
                 purpose: `The aforementioned purpose of this application is here pretty self-evident, tough I may say that the another great feature of this app is reviewing system, with likes and dislikes. The pagination is also present. In retrospect, I think the web-sockets would have fit very well there. `,
                 conclusion: `After finishing this app, I started to fill more confident than before with concepts like seeders, migrations and first and foremost, why ORM’s are important. I also learnt about some limitations and some approaches how to write efficient vue.js and how to combine it with styles.`,
             },
+            releventTechnologies: ["vue", "javascript", "mysql", "sass", "node", "postgresql"],
+            technologies: ["Vue 2", "SASS", "NodeJS", "Sequelize"],
             features: [
                 { title: "Landing page", imageURL: "1_landing_page" },
                 { title: "Single game- landing", imageURL: "2_single_game" },
@@ -167,12 +172,13 @@ export default (
             end: new Date(2020, 7),
             githubURL: "https://github.com/Kacper-Ksiazek/dac_szanse",
             shortDescription: `My first commercial project ever made. I received expected version of the app in .pdf and was told to code it as well as connect come content managing system.`,
-            technologies: ["PHP", "Laravel", "Vue 2", "MySQL", "SASS", "Javascript"],
             description: {
                 introduction: `The project was supposed to be an app for a charity in my town, which founder was an aunt of my best friend at that time, thus that is the reason why we started to work together. I got ask to do landing page and a bunch of other subpages reflecting provided by their graphic team concept. `,
                 purpose: `The purpose of the app was to create a website where prospective customers might found an information about the charity, about their services and about their founders. `,
                 conclusion: `The project itself was a great lesson for me about dealing with other people and about trust. In retrospect, I reckon this project was a nightmare and completely rip-off. But on the other hand, this was my first commercial, mayor and serious project and I will remain grateful for an opportunity to test myself in real-job circumstances. At the end of the day besides all those unpleasant things that had happened, I am content with the result. `,
             },
+            releventTechnologies: ["php", "laravel", "vue", "javascript", "mysql", "sass"],
+            technologies: ["PHP", "Laravel", "Vue 2", "MySQL", "SASS", "Javascript"],
             features: [],
         },
     ] as Project[]
