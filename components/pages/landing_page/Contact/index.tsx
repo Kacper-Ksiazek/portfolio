@@ -8,7 +8,7 @@ import SendMeAnEmail from "./SendMeAnEmail";
 import CommunicatorsIcons from "./CommunicatorsIcons";
 // Styled Components
 import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
-import Paragraph from "@/components/landing_page/BreakTheIce/Content/_styled_components/Paragraph";
+import Paragraph from "@/components/pages/landing_page/BreakTheIce/Content/_styled_components/Paragraph";
 
 const TextWrapper = styled("div")(({ theme }) => ({
     width: "calc(50% - 50px)",

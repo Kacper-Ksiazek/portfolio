@@ -1,13 +1,13 @@
 // Tools
 import { styled } from "@mui/system";
-import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
 import CodeOff from "@mui/icons-material/CodeOff";
 // Styled components
 import SendMailButton from "../_styled_components/SendMailButton";
-import ButtonWIthTooltip from "@/components/landing_page/Contact/SendMeAnEmail/_utils_components/ButtonWIthTooltip";
+import ButtonWIthTooltip from "@/components/pages/landing_page/Contact/SendMeAnEmail/_utils_components/ButtonWIthTooltip";
 
 const SimpleFlexBox = styled("div")(({ theme }) => ({
     display: "flex",

@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { ManagementContextProvider } from "./contexts/management";
 import { FormStageOneContextProvider } from "./contexts/formStageOne";
 import { FormStageTwoContextProvider } from "./contexts/formStageTwo";
-import useFormStageOne from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useFormStageOne";
-import useFormStageTwo from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useFormStageTwo";
-import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import useFormStageOne from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useFormStageOne";
+import useFormStageTwo from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useFormStageTwo";
+import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components

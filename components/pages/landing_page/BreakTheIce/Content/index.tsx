@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
-import type { IceBreakingStage } from "@/components/landing_page/BreakTheIce/@types";
+import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components
 import ContentOnCertainStage from "./ContentOnCertainStage";
 // Styled components

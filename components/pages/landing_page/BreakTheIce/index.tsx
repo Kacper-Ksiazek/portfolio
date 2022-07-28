@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
-import type { IceBreakingStage } from "@/components/landing_page/BreakTheIce/@types";
+import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components
 import Content from "./Content";
 import Picture from "./Picture";

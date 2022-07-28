@@ -8,7 +8,7 @@ const Stage2 = dynamic(() => import("./stage_2"));
 const Stage3 = dynamic(() => import("./stage_3"));
 import BottomButtons from "./BottomButtons";
 import NavigationBetweenStages from "./NavigationBetweenStages";
-import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Other components
 import { FormWrapper, Header, StageWrapper } from "./_styled_components";
 

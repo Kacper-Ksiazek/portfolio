@@ -1,6 +1,6 @@
 // Tools
 import { useEffect, useState, useMemo } from "react";
-import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
 import type { Schema } from "joi";
 

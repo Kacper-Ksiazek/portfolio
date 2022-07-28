@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
-import useManagementContext from "@/components/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";

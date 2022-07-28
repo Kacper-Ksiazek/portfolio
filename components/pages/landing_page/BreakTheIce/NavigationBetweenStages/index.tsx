@@ -3,7 +3,7 @@ import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
 import type { StatedDataField } from "@/@types/StatedDataField";
-import type { IceBreakingStage } from "@/components/landing_page/BreakTheIce/@types";
+import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Styled components
 
 const Divider = styled("span")(({ theme }) => ({

@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 // Types
 import type { FunctionComponent } from "react";
-import type { IceBreakingStage } from "@/components/landing_page/BreakTheIce/@types";
+import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components
 const Stage_1_General = dynamic(() => import("./Stage_1_General"));
 const Stage_2_Competences = dynamic(() => import("./Stage_2_Competences"));
