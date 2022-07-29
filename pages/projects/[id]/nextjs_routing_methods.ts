@@ -1,7 +1,7 @@
 // Tools
-import moment from "moment";
 import { prisma } from "@/prisma/db";
 import { NotFound } from "@/utils/api/errors";
+import { formatProjectDate } from "@/utils/api/date-formatter";
 // Types
 import type { Project, RecommendedProject, SingleProjectAPIHandlerResponse } from "@/@types/pages/projects/SingleProject";
 import type { GetStaticPaths, GetStaticProps } from "next";
@@ -65,8 +65,8 @@ class SingleProjectAPIHandler {
         });
         if (!project) throw new NotFound();
 
-        (project as any).start = this.formatSingleDate(project.start);
-        (project as any).end = this.formatSingleDate(project.end);
+        (project as any).start = formatProjectDate(project.start);
+        (project as any).end = formatProjectDate(project.end);
         return project as any;
     }
 
@@ -85,16 +85,9 @@ class SingleProjectAPIHandler {
         });
 
         return recommendedProjects.map((project) => {
-            (project as any).start = this.formatSingleDate(project.start);
-            (project as any).end = this.formatSingleDate(project.end);
+            (project as any).start = formatProjectDate(project.start);
+            (project as any).end = formatProjectDate(project.end);
             return project;
         }) as any;
-    }
-
-    /**
-     * Converts **PostgreSQL** `DataTime` format into something like `"March 2022"`
-     */
-    private formatSingleDate(date: Date): string {
-        return moment(date).format("MMMM YYYY");
     }
 }
