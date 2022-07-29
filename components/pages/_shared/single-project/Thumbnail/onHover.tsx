@@ -3,11 +3,9 @@ import type { SxProps } from "@mui/system";
 
 export const shapesOnHoverAnimations = {
     ".right": {
-        top: "100%",
-        transform: "translateY(-100%)",
+        transform: "translate(5px, 0)",
     },
     ".left": {
-        bottom: "100%",
-        transform: "translateY(100%)",
+        transform: "translate(0, 5px)",
     },
 } as SxProps;

@@ -6,7 +6,6 @@ export default styled("div")(({ theme }) => ({
     width: "100%",
     position: "relative",
     cursor: "pointer",
-    overflow: "hidden",
     boxSizing: "border-box",
     "&::before, &::after": {
         content: "''",

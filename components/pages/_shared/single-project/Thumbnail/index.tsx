@@ -1,7 +1,8 @@
 // Tools
+import { forwardRef } from "react";
 import uploadedProjectImageURLBuilder from "@/utils/client/uploaded_image_url_builder/project";
 // Types
-import type { FunctionComponent } from "react";
+import type { ForwardRefExoticComponent } from "react";
 // Other components
 import Image from "next/Image";
 // Styled components
@@ -13,7 +14,7 @@ interface ThumbnailProps {
     folder: string;
 }
 
-const Thumbnail: FunctionComponent<ThumbnailProps> = (props) => {
+const Thumbnail: ForwardRefExoticComponent<ThumbnailProps> = forwardRef((props) => {
     return (
         <ThumbnailMainWrapper className="thumbnail-wrapper">
             <ShapeBottomBig className="border-shape big left" />
@@ -33,6 +34,7 @@ const Thumbnail: FunctionComponent<ThumbnailProps> = (props) => {
             </ThumbnailSecondWrapper>
         </ThumbnailMainWrapper>
     );
-};
+});
 
+Thumbnail.displayName = "Thumbnail";
 export default Thumbnail;

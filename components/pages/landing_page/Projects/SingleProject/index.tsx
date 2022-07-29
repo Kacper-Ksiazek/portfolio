@@ -1,42 +1,45 @@
+// Tools
+import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
-// Material UI Components
-import Typography from "@mui/material/Typography";
 // Other components
-import Link from "next/Link";
+import Timeline from "./Timeline";
+import ProjectCard from "./ProjectCard";
 import YearToIndicate from "./YearToIndicate";
-import Duration from "@/components/pages/_shared/single-project/Duration";
-import Thumbnail from "@/components/pages/_shared/single-project/Thumbnail";
-import Technologies from "@/components/pages/_shared/single-project/Technologies";
 // Styled components
-import Redirection from "./styled_components/Redirection";
-import SingleProjectBase from "./styled_components/SingleProjectBase";
-import SingleProjectTextContent from "./styled_components/SingleProjectTextContent";
+
+const SingleProjectRow = styled("div")(({ theme }) => ({
+    display: "flex",
+    width: "100%",
+    position: "relative",
+    justifyContent: "flex-end",
+    "&:nth-of-type(odd)": {
+        flexDirection: "row-reverse",
+    },
+    "&.year-indicating": {
+        paddingTop: "160px",
+    },
+}));
 
 interface SingleProjectProps {
     data: Project;
+    isLast: boolean;
+    isFirst: boolean;
+    order: "even" | "odd";
 }
 
-const SingleProject: FunctionComponent<SingleProjectProps> = ({ data }) => {
+const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
+    const { data, order, isFirst, isLast } = props;
+
+    const thisRowIsAYearIndicator: boolean = !isFirst && Boolean(props.data.yearToIndicate);
+
     return (
-        <SingleProjectBase className={data.yearToIndicate ? "year-indicating" : ""}>
-            {data.yearToIndicate && <YearToIndicate year={data.yearToIndicate} />}
-
-            <Link href={`/projects/${data.id}`}>
-                <Redirection />
-            </Link>
-
-            <SingleProjectTextContent className="single-project-text-content-wrapper">
-                <Technologies technologies={data.releventTechnologies.slice(0, 5)} />
-                <Typography variant="h4">{data.title}</Typography>
-                <Duration end={data.end} start={data.start} smaller />
-                <Typography variant="body2" sx={{ mt: "16px" }}>
-                    {data.shortDescription}
-                </Typography>
-            </SingleProjectTextContent>
-            <Thumbnail folder={data.folder} />
-        </SingleProjectBase>
+        <SingleProjectRow className={thisRowIsAYearIndicator ? "year-indicating" : ""}>
+            {data.yearToIndicate && <YearToIndicate year={data.yearToIndicate} order={order} />}
+            <ProjectCard data={data} order={order} />
+            <Timeline isFirst={isFirst} order={order} thisRowIsAYearIndicator={thisRowIsAYearIndicator} isLast={isLast} />
+        </SingleProjectRow>
     );
 };
 
