@@ -1,4 +1,3 @@
-// Tools
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
@@ -6,12 +5,12 @@ import type { Project } from "@/@types/pages/LandingPage";
 import Typography from "@mui/material/Typography";
 // Other components
 import Link from "next/Link";
+import YearToIndicate from "./YearToIndicate";
 import Duration from "@/components/pages/_shared/single-project/Duration";
 import Thumbnail from "@/components/pages/_shared/single-project/Thumbnail";
 import Technologies from "@/components/pages/_shared/single-project/Technologies";
 // Styled components
 import Redirection from "./styled_components/Redirection";
-import YearToIndicate from "./styled_components/YearToIndicate";
 import SingleProjectBase from "./styled_components/SingleProjectBase";
 import SingleProjectTextContent from "./styled_components/SingleProjectTextContent";
 
@@ -22,7 +21,7 @@ interface SingleProjectProps {
 const SingleProject: FunctionComponent<SingleProjectProps> = ({ data }) => {
     return (
         <SingleProjectBase className={data.yearToIndicate ? "year-indicating" : ""}>
-            {data.yearToIndicate && <YearToIndicate className="year-indicator">{data.yearToIndicate}</YearToIndicate>}
+            {data.yearToIndicate && <YearToIndicate year={data.yearToIndicate} />}
 
             <Link href={`/projects/${data.id}`}>
                 <Redirection />

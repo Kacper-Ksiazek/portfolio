@@ -1,6 +1,7 @@
 // Tools
 import { styled, alpha } from "@mui/system";
 import { shapesOnHoverAnimations } from "@/components/pages/_shared/single-project/Thumbnail/onHover";
+
 // Styled components
 export default styled("div")(({ theme }) => ({
     width: "calc(50% - 100px)",
@@ -54,11 +55,12 @@ export default styled("div")(({ theme }) => ({
         width: "80px",
         background: alpha(theme.palette.secondary.main, 0.1),
         borderRadius: "3px",
-        transition: "width .3s ease-out, transform .3s linear",
+        transition: "width .3s ease-out, transform .3s linear, background .3s linear",
     },
     "&:hover": {
         "&::before": {
-            width: "120%",
+            width: "130%",
+            background: alpha(theme.palette.secondary.main, 0.05),
         },
         "&:nth-of-type(odd)": {
             "&::before": {
