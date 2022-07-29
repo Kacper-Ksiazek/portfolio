@@ -49,9 +49,19 @@ export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> 
         },
     });
 
+    const yearsToIndicate: Record<string, number> = {
+        ABU_DHABI: 2022,
+        ELECTRON_WORDS_LEARNING_APP: 2021,
+        GAMES_APP: 2020,
+    };
+
     return {
         props: {
             projects: projects.map((el) => {
+                if (yearsToIndicate.hasOwnProperty(el.id)) {
+                    (el as any).yearToIndicate = yearsToIndicate[el.id];
+                }
+
                 (el as any).end = formatProjectDate(el.end);
                 (el as any).start = formatProjectDate(el.start);
                 return el;

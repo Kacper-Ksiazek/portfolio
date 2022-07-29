@@ -21,6 +21,13 @@ const SingleProjectBase = styled("div")(({ theme }) => ({
     boxSizing: "border-box",
     justifyContent: "space-between",
     alignItems: "center",
+    "&:nth-of-type(1)": {
+        marginTop: "0px !important",
+    },
+    "&.year-indicating": {
+        marginTop: "160px",
+    },
+
     ".thumbnail-wrapper": {
         height: "200px",
         width: "240px",
@@ -30,7 +37,10 @@ const SingleProjectBase = styled("div")(({ theme }) => ({
             marginRight: "20px",
         },
         "&::before": {
-            left: 0,
+            right: 0,
+        },
+        ".year-indicator": {
+            right: "-700px",
         },
     },
     "&:nth-of-type(even)": {
@@ -41,6 +51,9 @@ const SingleProjectBase = styled("div")(({ theme }) => ({
         },
         "&::before": {
             left: 0,
+        },
+        ".year-indicator": {
+            left: "-700px",
         },
     },
     "&::before": {
@@ -81,16 +94,30 @@ const SingleProjectTextContent = styled("div")(({ theme }) => ({
     zIndex: 2,
 }));
 
+const YearToIndicate = styled("span")(({ theme }) => ({
+    position: "absolute",
+    top: "50%",
+    fontSize: "160px",
+    fontWeight: 900,
+    color: alpha(theme.palette.secondary.main, 0.05),
+    letterSpacing: "10px",
+    userSelect: "none",
+    transform: "translateY(-50%)",
+}));
+
 interface SingleProjectProps {
     data: Project;
 }
 
 const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
     return (
-        <SingleProjectBase>
+        <SingleProjectBase className={props.data.yearToIndicate ? "year-indicating" : ""}>
+            {props.data.yearToIndicate && <YearToIndicate className="year-indicator">{props.data.yearToIndicate}</YearToIndicate>}
+
             <Link href={`/projects/${props.data.id}`}>
                 <Redirection />
             </Link>
+
             <SingleProjectTextContent className="single-project-text-content-wrapper">
                 <Technologies technologies={props.data.releventTechnologies.slice(0, 5)} />
                 <Typography variant="h4">{props.data.title}</Typography>

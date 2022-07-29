@@ -8,6 +8,7 @@ export interface Project {
     start: string;
     shortDescription: _Project["shortDescription"];
     releventTechnologies: _Project["releventTechnologies"];
+    yearToIndicate?: number;
 }
 
 export interface LandingPageServerSideProps {
