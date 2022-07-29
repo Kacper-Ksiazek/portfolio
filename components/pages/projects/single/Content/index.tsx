@@ -2,7 +2,7 @@
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/projects/SingleProject";
 // Other components
-import Duration from "./Duration";
+import Duration from "../../../_shared/single-project/Duration";
 import Redirects from "./Redirects";
 import ImagesWrapper from "./Images";
 import { Paragraph, Header } from "./TextStyledComponents";

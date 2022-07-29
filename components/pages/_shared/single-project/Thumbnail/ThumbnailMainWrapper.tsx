@@ -2,7 +2,6 @@
 import { styled } from "@mui/system";
 // Styled components
 export default styled("div")(({ theme }) => ({
-    height: "250px",
     margin: "16px 0",
     width: "100%",
     position: "relative",

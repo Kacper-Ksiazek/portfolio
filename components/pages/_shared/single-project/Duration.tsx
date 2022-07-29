@@ -14,16 +14,28 @@ const DurationBase = styled("div")(({ theme }) => ({
     svg: {
         marginRight: "5px",
     },
+    "&.smaller": {
+        fontSize: "14px",
+        svg: {
+            fontSize: "18px",
+        },
+    },
 }));
 
 interface DurationProps {
     start: string;
     end: string;
+    smaller?: boolean;
 }
 
 const Duration: FunctionComponent<DurationProps> = (props) => {
     return (
-        <DurationBase className="duration">
+        <DurationBase
+            className={[
+                "duration", //
+                props.smaller ? "smaller" : "",
+            ].join(" ")}
+        >
             <AccessTime />
             <span>{`${props.start} - ${props.end}`}</span>
         </DurationBase>
