@@ -21,7 +21,7 @@ const Thumbnail: ForwardRefExoticComponent<ThumbnailProps> = forwardRef((props) 
             <ShapeBottomSmall className="border-shape small left" />
             <ShapeTopBig className="border-shape big right" />
             <ShapeTopSmall className="border-shape small right" />
-            <ThumbnailSecondWrapper>
+            <ThumbnailSecondWrapper className="direct-img-wrapper">
                 <Image
                     alt={props.folder}
                     layout="fill"

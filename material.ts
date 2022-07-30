@@ -36,7 +36,7 @@ export default createTheme({
                     fontWeight: 700,
                     fontFamily: "Montserrat Alternates",
                     fontSize: "32px",
-                    lineHeight: "32px",
+                    lineHeight: "34px",
                     cursor: "default",
                     margin: "10px 0 0px 0",
                 },

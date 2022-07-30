@@ -30,9 +30,9 @@ const VisibilitySensor: FunctionComponent<UnfadeOnScrollProps> = (props) => {
                 (wrapperElement.current.firstChild as any).classList.add("visible");
             }
             //
-            // else {
-            //     (wrapperElement.current.firstChild as any).classList.remove("visible");
-            // }
+            else {
+                (wrapperElement.current.firstChild as any).classList.remove("visible");
+            }
         }
     }, [isVisible]);
 

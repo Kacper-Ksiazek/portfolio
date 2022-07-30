@@ -20,6 +20,7 @@ export default styled("div")(({ theme }) => ({
         position: "absolute",
     },
     "&.odd": {
+        flexDirection: "row-reverse",
         ".single-project-text-content-wrapper": {
             marginLeft: "20px",
         },

@@ -37,7 +37,7 @@ const Connection = styled("span")(({ theme }) => ({
     height: "10px",
     transform: "translateY(-50%)",
     background: theme.palette.secondary.main,
-    "&.year-indicator": {
+    "&.year-indicating-timeline": {
         top: "calc(50% + 160px)",
         transform: "translateY(calc(-50% - 90px))",
     },
@@ -95,7 +95,7 @@ const Timeline: FunctionComponent<TimelineProps> = (props) => {
         >
             <Connection
                 className={[
-                    props.thisRowIsAYearIndicator ? "year-indicator" : "", //
+                    props.thisRowIsAYearIndicator ? "year-indicating-timeline" : "", //
                     props.order,
                     "timeline-connection",
                 ].join(" ")}

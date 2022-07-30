@@ -22,6 +22,7 @@ export const introForFirstProject = keyframes({
 export const introForRightSideProjects = keyframes({
     "0%": {
         left: 0,
+        right: "auto",
         display: "none",
         width: "0%",
         height: "32px",
@@ -33,6 +34,7 @@ export const introForRightSideProjects = keyframes({
         height: "32px",
     },
     "100%": {
+        right: "auto",
         height: "100%",
         width: "100%",
         top: "50%",
@@ -43,6 +45,7 @@ export const introForRightSideProjects = keyframes({
 
 export const introForLeftSideProjects = keyframes({
     "0%": {
+        left: "auto",
         right: 0,
         display: "none",
         width: "0%",
@@ -55,6 +58,7 @@ export const introForLeftSideProjects = keyframes({
         height: "32px",
     },
     "100%": {
+        left: "auto",
         height: "100%",
         width: "100%",
         top: "50%",

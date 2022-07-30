@@ -31,10 +31,12 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
 
             <SingleProjectTextContent className="single-project-text-content-wrapper">
                 <Technologies technologies={data.releventTechnologies.slice(0, 5)} />
-                <Typography variant="h4">{data.title}</Typography>
+                <Typography variant="h4">
+                    <span>{data.title}</span>
+                </Typography>
                 <Duration end={data.end} start={data.start} smaller />
                 <Typography variant="body2" sx={{ mt: "16px" }}>
-                    {data.shortDescription}
+                    <span> {data.shortDescription}</span>
                 </Typography>
             </SingleProjectTextContent>
             <Thumbnail folder={data.folder} />

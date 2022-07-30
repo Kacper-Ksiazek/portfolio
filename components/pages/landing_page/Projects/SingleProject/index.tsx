@@ -20,6 +20,64 @@ import YearToIndicate from "./YearToIndicate";
 import VisibilitySensor from "@/components/_utils/VisibilitySensor";
 // Styled components
 
+const introScaleYFromTop = keyframes({
+    from: {
+        height: "0%",
+    },
+    to: {
+        height: "100%",
+    },
+});
+const outroScaleXToRight = keyframes({
+    from: {
+        left: "auto",
+        right: 0,
+        width: "100%",
+    },
+    to: {
+        left: "auto",
+        right: 0,
+        width: "0%",
+    },
+});
+const outroScaleXToLeft = keyframes({
+    from: {
+        right: "auto",
+        left: 0,
+        width: "100%",
+    },
+    to: {
+        right: "auto",
+        left: 0,
+        width: "0%",
+    },
+});
+
+const introScaleXFromRight = keyframes({
+    from: {
+        left: "auto",
+        right: 0,
+        width: "0%",
+    },
+    to: {
+        left: "auto",
+        right: 0,
+        width: "100%",
+    },
+});
+const introScaleXFromLeft = keyframes({
+    from: {
+        right: "auto",
+        left: 0,
+        width: "0%",
+    },
+    to: {
+        right: "auto",
+        left: 0,
+        width: "100%",
+    },
+});
+
 const SingleProjectRow = styled("div")(({ theme }) => ({
     display: "flex",
     width: "100%",
@@ -64,17 +122,49 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
         },
 
         ".project-card": {
+            "&::before": {
+                animation: `${introScaleYFromTop} .4s 3.6s both ease-out`,
+            },
             // Elements on left side
             "&.even": {
                 ".intro-bar1": {
                     background: theme.palette.secondary.main,
                     zIndex: 10,
-                    animation: `${introForLeftSideProjects} .6s 1s linear both , ${outroForLeftSideProjects} .6s 2.1s linear forwards `,
+                    animation: `${introForLeftSideProjects} .5s .9s linear both , ${outroForLeftSideProjects} .5s 2s linear forwards `,
                 },
                 ".intro-bar2": {
                     background: theme.palette.primary.main,
                     zIndex: 11,
-                    animation: `${introForLeftSideProjects} .6s 1.1s linear both , ${outroForLeftSideProjects} .6s 2s linear forwards `,
+                    animation: `${introForLeftSideProjects} .5s 1s linear both , ${outroForLeftSideProjects} .5s 1.9s linear forwards `,
+                },
+                // Thumbnail picture animation
+                ".thumbnail-wrapper": {
+                    "&::before": {
+                        animation: `${introForLeftSideProjects} .4s 2.2s linear both, ${outroScaleXToLeft} .2s 2.8s forwards linear`,
+                    },
+                },
+                // Text content
+                ".single-project-text-content-wrapper": {
+                    ".technologies-wrapper": {
+                        "&::after": {
+                            animation: `${introScaleXFromRight} .2s 3s linear both, ${outroForLeftSideProjects} .4s 3.3s forwards linear`,
+                        },
+                    },
+                    h4: {
+                        "&::after": {
+                            animation: `${introScaleXFromRight} .2s 3.05s linear both, ${outroForLeftSideProjects} .4s 3.35s forwards linear`,
+                        },
+                    },
+                    ".duration": {
+                        "&::after": {
+                            animation: `${introScaleXFromRight} .2s 3.1s linear both, ${outroForLeftSideProjects} .4s 3.4s forwards linear`,
+                        },
+                    },
+                    p: {
+                        "&::after": {
+                            animation: `${introScaleXFromRight} .2s 3.15s linear both, ${outroForLeftSideProjects} .4s 3.45s forwards linear`,
+                        },
+                    },
                 },
             },
             // Elements on right side
@@ -82,12 +172,80 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
                 ".intro-bar1": {
                     background: theme.palette.secondary.main,
                     zIndex: 10,
-                    animation: `${introForRightSideProjects} .6s 1s linear both, ${outroForRightSideProjects} .6s 2.1s linear forwards `,
+                    animation: `${introForRightSideProjects} .5s .9s linear both, ${outroForRightSideProjects} .5s 2s linear forwards `,
                 },
                 ".intro-bar2": {
                     background: theme.palette.primary.main,
                     zIndex: 11,
-                    animation: `${introForRightSideProjects} .6s 1.1s linear both, ${outroForRightSideProjects} .6s 2s linear forwards`,
+                    animation: `${introForRightSideProjects} .5s 1s linear both, ${outroForRightSideProjects} .5s 1.9s linear forwards`,
+                },
+                // Thumbnail picture animation
+                ".thumbnail-wrapper": {
+                    "&::before": {
+                        animation: `${introForRightSideProjects} .4s 2.2s linear both, ${outroScaleXToRight} .2s 2.8s forwards linear`,
+                    },
+                },
+                // Text content
+                ".single-project-text-content-wrapper": {
+                    ".technologies-wrapper": {
+                        "&::after": {
+                            animation: `${introScaleXFromLeft} .2s 3s linear both, ${outroForRightSideProjects} .4s 3.3s forwards linear`,
+                        },
+                    },
+                    h4: {
+                        "&::after": {
+                            animation: `${introScaleXFromLeft} .2s 3.05s linear both, ${outroForRightSideProjects} .4s 3.35s forwards linear`,
+                        },
+                    },
+                    ".duration": {
+                        "&::after": {
+                            animation: `${introScaleXFromLeft} .2s 3.1s linear both, ${outroForRightSideProjects} .4s 3.4s forwards linear`,
+                        },
+                    },
+                    p: {
+                        "&::after": {
+                            animation: `${introScaleXFromLeft} .2s 3.15s linear both, ${outroForRightSideProjects} .4s 3.45s forwards linear`,
+                        },
+                    },
+                },
+            },
+            ".thumbnail-wrapper": {
+                "&::before": {
+                    background: theme.palette.primary.main,
+                },
+                ".direct-img-wrapper, .border-shape": {
+                    animation: `${fadeSimple} .001s 2.6s both`,
+                },
+            },
+            ".single-project-text-content-wrapper": {
+                ".technologies-wrapper, h4, .duration, p ": {
+                    position: "relative",
+                    "&::after": {
+                        content: "''",
+                        position: "absolute",
+                        background: "#F2E8EF",
+                        width: "100%",
+                        height: "100%",
+                        top: 0,
+                        left: 0,
+                    },
+                },
+                ".technologies-wrapper>*": {
+                    animation: `${fadeSimple} .001s 3.2s both`,
+                },
+                "h4>*": {
+                    animation: `${fadeSimple} .001s 3.25s both`,
+                },
+                ".duration>*": {
+                    animation: `${fadeSimple} .001s 3.3s both`,
+                },
+                "p>*": {
+                    animation: `${fadeSimple} .001s 3.35s both`,
+                },
+                h4: {
+                    "&::after": {
+                        height: "calc(100% + 10px)",
+                    },
                 },
             },
         },
@@ -113,29 +271,29 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
                 ".intro-bar1": {
                     background: theme.palette.secondary.main,
                     zIndex: 10,
-                    animation: `${introForFirstProject} .6s linear both, ${outroForFirstProject} .6s 1.1s linear forwards`,
+                    animation: `${introForFirstProject} .5s linear both, ${outroForFirstProject} .5s 1s linear forwards`,
                 },
                 ".intro-bar2": {
                     background: theme.palette.primary.main,
                     zIndex: 11,
-                    animation: `${introForFirstProject} .6s .1s linear both, ${outroForFirstProject} .6s 1s linear forwards`,
+                    animation: `${introForFirstProject} .5s .1s linear both, ${outroForFirstProject} .5s .9s linear forwards`,
                 },
             },
             ".timeline-core": {
                 "&.first-project": {
                     "&::before": {
                         top: "50%",
-                        animation: `${timelineCoreHalfIntro} .3s 2.5s both linear`,
+                        animation: `${timelineCoreHalfIntro} .3s 2s both linear`,
                     },
                 },
                 ".timeline-connection": {
                     transformOrigin: "left",
-                    animation: `${scaleX} .2s 1.7s both linear`,
+                    animation: `${scaleX} .2s 1.4s both linear`,
                     "&::before": {
-                        animation: `${fadeSimple} .2s 2s both linear`,
+                        animation: `${fadeSimple} .2s 1.6s both linear`,
                     },
                     "&::after": {
-                        animation: `${fadeSimple} .2s 2.2s both linear`,
+                        animation: `${fadeSimple} .2s 1.8s both linear`,
                     },
                 },
             },
