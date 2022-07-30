@@ -11,7 +11,6 @@ const ProjectsWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     marginBottom: "50px",
-    marginTop: "100vh",
 }));
 
 interface ProjectsProps {
@@ -28,7 +27,7 @@ const Projects: FunctionComponent<ProjectsProps> = ({ projects }) => {
                     <span>I have always found building larger scale projects the best way to learn thouroughly new technologies, thus in 3 years I managed to create a nice collection</span>
                 ),
             }}
-            round="left"
+            round="right"
             unlimitedHeight
         >
             <ProjectsWrapper>

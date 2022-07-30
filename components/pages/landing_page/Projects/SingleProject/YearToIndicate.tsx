@@ -24,7 +24,19 @@ interface YearToIndicateProps {
 }
 
 const YearToIndicate: FunctionComponent<YearToIndicateProps> = (props) => {
-    return <YearToIndicateBase className={["year-indicator", props.order].join(" ")}>{props.year}</YearToIndicateBase>;
+    return (
+        <YearToIndicateBase className={["year-indicator", props.order].join(" ")}>
+            {String(props.year)
+                .split("")
+                .map((item, index) => {
+                    return (
+                        <span className="digit" key={index}>
+                            {item}
+                        </span>
+                    );
+                })}
+        </YearToIndicateBase>
+    );
 };
 
 export default YearToIndicate;

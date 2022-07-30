@@ -94,6 +94,22 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
 
     "&.visible": {
         visibility: "visible",
+        ".year-indicator": {
+            ".digit": {
+                "&:nth-of-type(1)": {
+                    animation: `${fadeSimple} .2s .9s both linear`,
+                },
+                "&:nth-of-type(2)": {
+                    animation: `${fadeSimple} .2s 1.2s both linear`,
+                },
+                "&:nth-of-type(3)": {
+                    animation: `${fadeSimple} .2s 1.5s both linear`,
+                },
+                "&:nth-of-type(4)": {
+                    animation: `${fadeSimple} .2s 1.8s both linear`,
+                },
+            },
+        },
         "&.odd": {
             ".timeline-core": {
                 ".timeline-connection": {
