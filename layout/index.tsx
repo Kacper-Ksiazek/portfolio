@@ -1,10 +1,12 @@
 // Tools
+import { useState } from "react";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import Footer from "./Footer";
 import Navigation from "./Navigation";
 import ScrollButton from "./ScrollButton";
+import TransitionBetweenPages from "./TransitionBetweenPages";
 // Styled components
 import MainWrapper from "./MainWrapper";
 
@@ -13,12 +15,15 @@ interface LayoutProps {
 }
 
 const Layout: FunctionComponent<LayoutProps> = (props) => {
+    const [renderContent, setRenderContent] = useState<boolean>(true);
+
     return (
         <>
             <Navigation />
-            <MainWrapper>{props.children}</MainWrapper>
+            <MainWrapper>{renderContent && props.children}</MainWrapper>
             <ScrollButton />
             <Footer />
+            <TransitionBetweenPages setRenderContent={setRenderContent} />
         </>
     );
 };
