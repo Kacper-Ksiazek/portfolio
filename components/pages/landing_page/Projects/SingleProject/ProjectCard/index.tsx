@@ -21,7 +21,10 @@ interface ProjectCardProps {
 
 const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
     return (
-        <SingleProjectBase className={order}>
+        <SingleProjectBase className={[order, "project-card"].join(" ")}>
+            <span className="intro-bar1" />
+            <span className="intro-bar2" />
+
             <Link href={`/projects/${data.id}`}>
                 <Redirection />
             </Link>

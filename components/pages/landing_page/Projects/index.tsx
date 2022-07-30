@@ -11,6 +11,7 @@ const ProjectsWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     marginBottom: "50px",
+    marginTop: "100vh",
 }));
 
 interface ProjectsProps {

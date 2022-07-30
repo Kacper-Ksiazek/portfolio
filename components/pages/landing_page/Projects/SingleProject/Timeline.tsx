@@ -50,8 +50,8 @@ const Connection = styled("span")(({ theme }) => ({
         background: theme.palette.primary.main,
     },
     "&::before": {
-        width: "32px",
-        height: "32px",
+        width: "24px",
+        height: "24px",
     },
     "&::after": {
         width: "24px",
@@ -90,12 +90,14 @@ const Timeline: FunctionComponent<TimelineProps> = (props) => {
             className={[
                 props.isFirst ? "first-project" : "", //
                 props.isLast ? "last-project" : "", //
+                "timeline-core",
             ].join(" ")}
         >
             <Connection
                 className={[
                     props.thisRowIsAYearIndicator ? "year-indicator" : "", //
                     props.order,
+                    "timeline-connection",
                 ].join(" ")}
             />
             <span></span>

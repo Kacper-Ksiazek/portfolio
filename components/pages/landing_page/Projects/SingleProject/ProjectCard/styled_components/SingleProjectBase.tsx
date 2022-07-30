@@ -12,10 +12,12 @@ export default styled("div")(({ theme }) => ({
     boxSizing: "border-box",
     justifyContent: "space-between",
     alignItems: "center",
-
     ".thumbnail-wrapper": {
         height: "200px",
         width: "240px",
+    },
+    ".intro-bar1, .intro-bar2": {
+        position: "absolute",
     },
     "&.odd": {
         ".single-project-text-content-wrapper": {

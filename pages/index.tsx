@@ -22,9 +22,9 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
                 <title>Kacper Książek</title>
             </Head>
             {/* <IntroductionScreen /> */}
-            <Projects projects={props.projects} />
             {/* <BreakTheIce /> */}
             {/* <ToDoList /> */}
+            <Projects projects={props.projects} />
             {/* <PicturesMatchingGame /> */}
             {/* <Contact /> */}
         </>
