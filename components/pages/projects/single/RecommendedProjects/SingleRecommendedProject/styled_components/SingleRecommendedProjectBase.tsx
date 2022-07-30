@@ -26,6 +26,7 @@ export default styled("div")(({ theme }) => ({
     ".thumbnail-wrapper": {
         height: "250px",
         width: "100%",
+        overflow: "hidden",
     },
     "&.active, &.initial-active": {
         "&::after": {
