@@ -3,7 +3,6 @@ import { styled, alpha } from "@mui/system";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 import { imageIntroFast, imageIntroSlow } from "../styled_components/_keyframes";
 import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
-import fadeFromBottom from "@/components/_keyframes/intro/fadeFromBottom";
 import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
 // Styled components
 export default styled("div")(({ theme }) => ({
@@ -24,11 +23,9 @@ export default styled("div")(({ theme }) => ({
             background: alpha("#000", 0.1),
         },
     },
-    ".duration": {
-        fontSize: "14px",
-        svg: {
-            fontSize: "18px",
-        },
+    ".thumbnail-wrapper": {
+        height: "250px",
+        width: "100%",
     },
     "&.active, &.initial-active": {
         "&::after": {
@@ -74,11 +71,11 @@ export default styled("div")(({ theme }) => ({
             },
             "&::after": {
                 background: theme.palette.primary.main,
-                animation: `${imageIntroFast} 1.1s .5s both linear`,
+                animation: `${imageIntroFast} 1.1s .3s both linear`,
             },
             "&::before": {
                 background: theme.palette.secondary.main,
-                animation: `${imageIntroSlow} 1.4s .4s both linear`,
+                animation: `${imageIntroSlow} 1.4s .2s both linear`,
             },
         },
     },

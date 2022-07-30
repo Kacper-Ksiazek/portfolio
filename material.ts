@@ -32,6 +32,14 @@ export default createTheme({
     components: {
         MuiTypography: {
             styleOverrides: {
+                h4: {
+                    fontWeight: 700,
+                    fontFamily: "Montserrat Alternates",
+                    fontSize: "32px",
+                    lineHeight: "34px",
+                    cursor: "default",
+                    margin: "10px 0 0px 0",
+                },
                 body2: {
                     cursor: "default",
                 },

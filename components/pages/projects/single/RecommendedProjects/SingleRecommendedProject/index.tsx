@@ -6,8 +6,8 @@ import type { RecommendedProject } from "@/@types/pages/projects/SingleProject";
 import Typography from "@mui/material/Typography";
 // Other components
 import Thumbnail from "./Thumbnail";
-import Technologies from "./Technologies";
-import Duration from "../../Content/Duration";
+import Technologies from "@/components/pages/_shared/single-project/Technologies";
+import Duration from "@/components/pages/_shared/single-project/Duration";
 // Styled components
 import Header from "./styled_components/Header";
 import ReadMore from "./styled_components/ReadMore";
@@ -20,7 +20,7 @@ interface SingleRecommendedProjectProps {
 const SingleRecommendedProject: FunctionComponent<SingleRecommendedProjectProps> = ({ data }) => {
     return (
         <SingleRecommendedProjectBase>
-            <Duration end={data.end} start={data.start} />
+            <Duration end={data.end} start={data.start} smaller />
             <Header>{data.title}</Header>
             <Technologies technologies={data.releventTechnologies.slice(0, 6)} />
             <Thumbnail folder={data.folder} id={data.id} />

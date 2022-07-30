@@ -7,6 +7,7 @@ const _ShapeBig = styled("span")(({ theme }) => ({
     background: theme.palette.secondary.main,
     width: "60%",
     height: "60%",
+    transition: "all .3s",
 }));
 const _ShapeSmall = styled("span")(({ theme }) => ({
     position: "absolute",
@@ -14,6 +15,7 @@ const _ShapeSmall = styled("span")(({ theme }) => ({
     background: theme.palette.primary.main,
     width: "40%",
     height: "40%",
+    transition: "all .3s",
 }));
 
 export const ShapeBottomBig = styled(_ShapeBig)(({ theme }) => ({

@@ -12,6 +12,7 @@ const SingleTechnology = styled("div")(({ theme }) => ({
     userSelect: "none",
     fontSize: "14px",
     borderRadius: "3px",
+    position: "relative",
     "&:not(&:nth-of-type(1))": {
         marginLeft: "5px",
     },
