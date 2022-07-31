@@ -71,8 +71,8 @@ export const outroForRightSideProjects = keyframes({
     "0%": {
         height: "100%",
         width: "100%",
-        right: 0,
-        left: "auto",
+        left: 0,
+        right: "auto",
     },
     "33%,66%": {
         height: "100%",
@@ -81,16 +81,16 @@ export const outroForRightSideProjects = keyframes({
     "100%": {
         height: "0",
         width: "80px",
-        right: 0,
-        left: "auto",
+        left: 0,
+        right: "auto",
     },
 });
 export const outroForLeftSideProjects = keyframes({
     "0%": {
         height: "100%",
         width: "100%",
-        left: 0,
-        right: "auto",
+        right: 0,
+        left: "auto",
     },
     "33%,66%": {
         height: "100%",
@@ -99,8 +99,8 @@ export const outroForLeftSideProjects = keyframes({
     "100%": {
         height: "0",
         width: "80px",
-        left: 0,
-        right: "auto",
+        right: 0,
+        left: "auto",
     },
 });
 
