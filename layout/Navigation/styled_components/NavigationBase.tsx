@@ -1,6 +1,16 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled, keyframes } from "@mui/system";
+import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
+//
+const outro = keyframes({
+    from: {
+        opacity: 1,
+    },
+    to: {
+        opacity: 0,
+    },
+});
 // Styled components
 export default styled("div")(({ theme }) => ({
     position: "fixed",
@@ -23,6 +33,7 @@ export default styled("div")(({ theme }) => ({
     },
     "&.contrast-colors": {
         color: "#fff",
+        // This animation is required by the initial loading of the landing page, because it is trigger then alongside with all other one time playing intro animations
         animation: `${fadeFromTop} .2s 2.6s both linear`,
         ".MuiButtonBase-root": {
             border: "1px solid #fff",
@@ -42,5 +53,11 @@ export default styled("div")(({ theme }) => ({
         "div#main-navigation-content": {
             maxWidth: "1400px",
         },
+    },
+    "&.display-outro-animation": {
+        animation: `${outro} .3s linear both`,
+    },
+    "&.display-intro-animation": {
+        animation: `${fadeSimple} .3s linear both !important`,
     },
 }));

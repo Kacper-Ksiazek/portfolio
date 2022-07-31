@@ -17,7 +17,7 @@ import SingleNavigationRoute from "./SingleNavigationRoute";
 
 const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const applyAfterScrollStyles = useStylesOnScoll();
-    const hideNavigaton = useHideWhileScrollingDown();
+    const { hideNavigaton, animationToDisplay } = useHideWhileScrollingDown();
     const [displayContrastStyles, setDisplayContrastStyles] = useState<boolean>(false);
 
     const router = useRouter();
@@ -32,6 +32,7 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     className={[
                         applyAfterScrollStyles ? "after-scroll-styles" : "", //
                         displayContrastStyles ? "contrast-colors" : "",
+                        animationToDisplay !== null ? `display-${animationToDisplay}-animation` : "",
                     ].join(" ")}
                 >
                     <div id="main-navigation-content">
