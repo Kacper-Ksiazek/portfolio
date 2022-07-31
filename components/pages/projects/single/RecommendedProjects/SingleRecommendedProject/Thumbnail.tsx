@@ -1,7 +1,7 @@
+// Tools
+import { useRouter } from "next/router";
 // Types
 import type { FunctionComponent } from "react";
-// Other components
-import Link from "next/Link";
 // Styled components
 import Thumbnail from "@/components/pages/_shared/single-project/Thumbnail";
 
@@ -11,10 +11,12 @@ interface ThumbnailProps {
 }
 
 const ThumbnailBase: FunctionComponent<ThumbnailProps> = (props) => {
+    const router = useRouter();
     return (
-        <Link href={`/projects/${props.id}`} passHref>
-            <Thumbnail folder={props.folder} />
-        </Link>
+        <Thumbnail
+            folder={props.folder} //
+            onClick={() => router.push(`/projects/${props.id}`)}
+        />
     );
 };
 

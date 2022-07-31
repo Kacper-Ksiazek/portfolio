@@ -12,11 +12,12 @@ import { ShapeBottomBig, ShapeBottomSmall, ShapeTopBig, ShapeTopSmall } from "./
 
 interface ThumbnailProps {
     folder: string;
+    onClick: () => void;
 }
 
-const Thumbnail: ForwardRefExoticComponent<ThumbnailProps> = forwardRef((props) => {
+const Thumbnail: ForwardRefExoticComponent<ThumbnailProps> = forwardRef((props, ref) => {
     return (
-        <ThumbnailMainWrapper className="thumbnail-wrapper">
+        <ThumbnailMainWrapper className="thumbnail-wrapper" ref={ref as any} onClick={props.onClick}>
             <ShapeBottomBig className="border-shape big left" />
             <ShapeBottomSmall className="border-shape small left" />
             <ShapeTopBig className="border-shape big right" />

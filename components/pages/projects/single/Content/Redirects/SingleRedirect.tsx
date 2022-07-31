@@ -12,6 +12,9 @@ const StyledAnchor = styled("a")(({ theme }) => ({
     button: {
         fontFamily: "Montserrat Alternates",
     },
+    "&:not(&:nth-of-type(1))": {
+        marginLeft: "10px",
+    },
 }));
 
 interface SingleRedirectProps {
