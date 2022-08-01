@@ -230,7 +230,7 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
                     background: theme.palette.primary.main,
                 },
                 ".direct-img-wrapper, .border-shape": {
-                    animation: `${fadeSimple} .001s 2.6s both`,
+                    animation: `${fadeSimple} .001s 2.7s both`,
                 },
             },
             ".single-project-text-content-wrapper": {

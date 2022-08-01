@@ -12,7 +12,7 @@ import { ShapeBottomBig, ShapeBottomSmall, ShapeTopBig, ShapeTopSmall } from "./
 
 interface ThumbnailProps {
     folder: string;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 const Thumbnail: ForwardRefExoticComponent<ThumbnailProps> = forwardRef((props, ref) => {
