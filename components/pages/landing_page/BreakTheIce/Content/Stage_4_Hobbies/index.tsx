@@ -33,7 +33,7 @@ const Hobbies: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     label="Coding" //
                     name="Web development"
                     icon={<Terminal />}
-                    description="From school homework, through sheer pasion into near future. I honestly cannot imagine my life without this substantial factor."
+                    description="From school homework, through sheer passion into near future. I honestly cannot imagine my life without this substantial factor."
                     thumbnailURL="/images/landing-page/hobbies/coding.jpg"
                 />
                 <SingleHobby
@@ -41,14 +41,14 @@ const Hobbies: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     name="German gangsta rap"
                     icon={<MusicNote />}
                     thumbnailReferenceURL="https://www.youtube.com/watch?v=0NL8H1IAHVc"
-                    description="I have fallen in love with german language and now I am trying to learn some fundamentals in order to progressively understand more lyrics that I enjoy listen to."
+                    description="I have fallen in love with German language and now I am trying to learn some fundamentals in order to progressively understand more lyrics which I enjoy listen to."
                     thumbnailURL="/images/landing-page/hobbies/187.jpg"
                 />
                 <SingleHobby
                     label="Games" //
                     name="Video games"
                     icon={<SportsEsportsIcon />}
-                    description="After a day of innovating IT world via my clever approach to software I like to hello some other world and relieve stress"
+                    description="After a day of innovating IT world via my clever approach to software I like to hello some other world and relieve stress."
                     thumbnailURL="/images/landing-page/hobbies/games.jpg"
                 />
             </Carousel>

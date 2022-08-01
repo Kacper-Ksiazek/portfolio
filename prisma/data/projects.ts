@@ -66,7 +66,7 @@ export default (
             title: "Electron words learning app",
             releventTechnologies: ["electron", "vue", "typescript", "sass"],
             technologies: ["Vue 3", "Composition API", "Typescript", "Electron", "SASS"],
-            shortDescription: `Simple at the first glance application developed in order to help my with my english vocabulary. *I have been using it for over a year on a regular basis* and I'm content with the result.`,
+            shortDescription: `Simple at the first glance application developed in order to help my with my English vocabulary. *I have been using it for over a year on a regular basis* and I'm content with the result.`,
             features: [],
         },
         {

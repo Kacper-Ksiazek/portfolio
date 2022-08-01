@@ -1,3 +1,5 @@
+// Tools
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/projects/SingleProject";
@@ -29,18 +31,18 @@ const SingleProjectContent: FunctionComponent<SingleProjectContentProps> = ({ pr
             round="left"
             unlimitedHeight
         >
-            <Paragraph>{project.shortDescription}</Paragraph>
+            <Paragraph>{formatTextViaBolding(project.shortDescription, true)}</Paragraph>
 
             <ImagesWrapper features={project.features} folder={project.folder} />
 
             <Header>Introduction and quick overview</Header>
-            <Paragraph>{project.description.introduction}</Paragraph>
+            <Paragraph>{formatTextViaBolding(project.description.introduction, true)}</Paragraph>
 
             <Header>The purpose of the application</Header>
-            <Paragraph>{project.description.purpose}</Paragraph>
+            <Paragraph>{formatTextViaBolding(project.description.purpose, true)}</Paragraph>
 
             <Header>Conclusion and finals thoughts</Header>
-            <Paragraph>{project.description.conclusion}</Paragraph>
+            <Paragraph>{formatTextViaBolding(project.description.conclusion, true)}</Paragraph>
 
             <Redirects githubURL={project.githubURL} liveDemoURL={project.liveDemoURL} />
         </LightSectionWrapper>

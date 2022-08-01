@@ -24,7 +24,9 @@ const Projects: FunctionComponent<ProjectsProps> = ({ projects }) => {
                 label: "Insight into my work",
                 main: "Projects",
                 additionalJSX: (
-                    <span>I have always found building larger scale projects the best way to learn thouroughly new technologies, thus in 3 years I managed to create a nice collection</span>
+                    <span>
+                        I have always found building more complex and bigger projects the best way to thoroughly learn new technologies, thus in 3 years I managed to amass a nice collection of them.
+                    </span>
                 ),
             }}
             round="right"

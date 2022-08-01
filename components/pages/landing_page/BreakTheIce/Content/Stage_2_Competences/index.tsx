@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
@@ -33,8 +34,8 @@ const Competences: FunctionComponent<MUIStyledCommonProps> = (props) => {
     return (
         <>
             <Paragraph animationDelay={0.7}>
-                I have been doing <strong>web development</strong> for <strong>over 3 years</strong> and during this period I tried a lot of different technologies and also encountered a great deal of
-                varying approaches to tackle different problems and eventually distinquished a few favorites.
+                {formatTextViaBolding(`I have been doing *web development* for *over 3 years* and during this period I tried a lot of different technologies and also encountered a great deal of varying approaches to tackle
+                different problems and eventually distinguished a few favorites.`)}
             </Paragraph>
             <Label animationDelay={0.8}>Programming languages</Label>
             <RatedInStars name="TS / JS" stars={5} description="Since the first day, my favorite " animationDelay={0.9} />
