@@ -1,4 +1,5 @@
 // Tools
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
@@ -36,7 +37,7 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
                 </Typography>
                 <Duration end={data.end} start={data.start} smaller />
                 <Typography variant="body2" sx={{ mt: "16px" }}>
-                    <span> {data.shortDescription}</span>
+                    <span> {formatTextViaBolding(data.shortDescription)}</span>
                 </Typography>
             </SingleProjectTextContent>
             <Thumbnail folder={data.folder} />
