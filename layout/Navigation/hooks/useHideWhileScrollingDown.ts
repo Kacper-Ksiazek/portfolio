@@ -6,6 +6,7 @@ const HIDING_AVOIDING_THRESHOLD = 400;
 interface UseHideWhileScrollingDownResult {
     hideNavigaton: boolean;
     scrollingAnimationToDisplay: null | "intro" | "outro";
+    forceShowingNavigaton: () => void;
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -14,9 +15,11 @@ export default (): UseHideWhileScrollingDownResult => {
 
     const previousScrollY = useRef<number>(0);
     const [hideNavigaton, setHideNavigaton] = useState<boolean>(false);
+    const [blockOnScrollTriggering, setBlockOnScrollTriggering] = useState<boolean>(false);
     const [scrollingAnimationToDisplay, setScrollingAnimationToDisplay] = useState<null | "intro" | "outro">(null);
 
     const handleOnScroll = useCallback(() => {
+        if (blockOnScrollTriggering) return;
         // Page has not been already loaded case
         if (previousScrollY.current === null) {
             previousScrollY.current = scrollY;
@@ -37,7 +40,7 @@ export default (): UseHideWhileScrollingDownResult => {
             }, 100);
         }
         previousScrollY.current = scrollY;
-    }, [hideNavigaton, scrollingAnimationToDisplay]);
+    }, [hideNavigaton, scrollingAnimationToDisplay, blockOnScrollTriggering]);
 
     useEffect(() => {
         window.addEventListener("scroll", handleOnScroll);
@@ -46,5 +49,19 @@ export default (): UseHideWhileScrollingDownResult => {
         };
     }, [handleOnScroll]);
 
-    return { hideNavigaton, scrollingAnimationToDisplay };
+    const forceShowingNavigaton = () => {
+        setBlockOnScrollTriggering(true);
+
+        if (hideNavigaton) {
+            setHideNavigaton(false);
+            setTimeout(() => {
+                setScrollingAnimationToDisplay("intro");
+            }, 100);
+        }
+        setTimeout(() => {
+            setBlockOnScrollTriggering(false);
+        }, 1000);
+    };
+
+    return { hideNavigaton, scrollingAnimationToDisplay, forceShowingNavigaton };
 };

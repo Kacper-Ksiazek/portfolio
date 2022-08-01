@@ -31,6 +31,7 @@ const Contact: FunctionComponent<MUIStyledCommonProps> = (props) => {
             }}
             backgroundLetter="R"
             round="left"
+            id="contact"
         >
             <ContentWrapper>
                 <TextWrapper>

@@ -2,15 +2,11 @@
 import Router from "next/router";
 import { useEffect, useState } from "react";
 // Types
-import type { FunctionComponent, Dispatch, SetStateAction } from "react";
+import type { FunctionComponent } from "react";
 // Styled Components
 import { RectangleOne, RectangleTwo } from "./Rectangles";
 
-interface TransitionBetweenPagesProps {
-    setRenderContent: Dispatch<SetStateAction<boolean>>;
-}
-
-const TransitionBetweenPages: FunctionComponent<TransitionBetweenPagesProps> = (props) => {
+const TransitionBetweenPages: FunctionComponent = (props) => {
     const INTRO_ANIMATION_DURATION: number = 350; // In ms
     const OUTRO_ANIMATION_DURATION: number = 400; // in ms also
 
@@ -22,7 +18,7 @@ const TransitionBetweenPages: FunctionComponent<TransitionBetweenPagesProps> = (
     useEffect(() => {
         if (introAnimationHasEnded && renderElements && newPageHasBeenLoaded) {
             setDisplayOutroAnimation(true);
-            props.setRenderContent(true);
+
             setTimeout(() => {
                 setRenderElements(false);
                 setDisplayOutroAnimation(false);
@@ -36,7 +32,6 @@ const TransitionBetweenPages: FunctionComponent<TransitionBetweenPagesProps> = (
         setRenderElements(true);
         setTimeout(() => {
             setIntroAnimationHasEnded(true);
-            props.setRenderContent(false);
         }, INTRO_ANIMATION_DURATION);
     });
     Router.events.on("routeChangeComplete", () => {

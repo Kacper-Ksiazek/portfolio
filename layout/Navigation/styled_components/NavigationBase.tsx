@@ -21,6 +21,8 @@ export default styled("div")(({ theme }) => ({
     height: "80px",
     zIndex: 2,
     transition: "all .3s",
+    background: theme.palette.background.default,
+
     "div#main-navigation-content": {
         display: "flex",
         alignItems: "center",
@@ -43,15 +45,7 @@ export default styled("div")(({ theme }) => ({
             },
         },
     },
-    "&.after-scroll-styles": {
-        color: "#000",
-        paddingTop: "0px",
-        boxSizing: "border-box",
-        background: theme.palette.background.default,
-        "div#main-navigation-content": {
-            maxWidth: "1400px",
-        },
-    },
+
     "&.display-outro-animation": {
         animation: `${outro} .3s linear both`,
     },
@@ -60,8 +54,20 @@ export default styled("div")(({ theme }) => ({
     },
     "&.landing-page-intro": {
         animation: `${fadeFromTop} .2s 2.6s both linear`,
+        background: "transparent",
     },
     "&.landing-page-intro-faster": {
         animation: `${fadeFromTop} .2s .8s both linear`,
+        background: "transparent",
+    },
+
+    "&.after-scroll-styles": {
+        color: "#000",
+        paddingTop: "0px",
+        boxSizing: "border-box",
+        background: theme.palette.background.default,
+        "div#main-navigation-content": {
+            maxWidth: "1400px",
+        },
     },
 }));

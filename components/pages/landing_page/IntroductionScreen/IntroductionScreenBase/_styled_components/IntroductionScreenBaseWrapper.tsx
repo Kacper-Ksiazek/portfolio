@@ -41,6 +41,9 @@ export default styled(Section)(({ theme }) => ({
         top: "-100px",
         maxHeight: "calc(100vh - 40px)",
         width: "calc(100vw - 40px)",
+        "&::before": {
+            animation: `${fadeSimple} .5s 1s both linear`,
+        },
     },
     //
     "&::before, &::after": {
