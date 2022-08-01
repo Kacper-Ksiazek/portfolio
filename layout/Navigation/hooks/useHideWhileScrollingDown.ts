@@ -5,7 +5,7 @@ const HIDING_AVOIDING_THRESHOLD = 400;
 
 interface UseHideWhileScrollingDownResult {
     hideNavigaton: boolean;
-    animationToDisplay: null | "intro" | "outro";
+    scrollingAnimationToDisplay: null | "intro" | "outro";
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -14,7 +14,7 @@ export default (): UseHideWhileScrollingDownResult => {
 
     const previousScrollY = useRef<number>(0);
     const [hideNavigaton, setHideNavigaton] = useState<boolean>(false);
-    const [animationToDisplay, setAnimationToDisplay] = useState<null | "intro" | "outro">(null);
+    const [scrollingAnimationToDisplay, setScrollingAnimationToDisplay] = useState<null | "intro" | "outro">(null);
 
     const handleOnScroll = useCallback(() => {
         // Page has not been already loaded case
@@ -23,21 +23,21 @@ export default (): UseHideWhileScrollingDownResult => {
             return;
         }
         // Hide currently displaying navigation bar
-        if (previousScrollY.current < scrollY && !hideNavigaton && scrollY > HIDING_AVOIDING_THRESHOLD && animationToDisplay !== "outro") {
-            setAnimationToDisplay("outro");
+        if (previousScrollY.current < scrollY && !hideNavigaton && scrollY > HIDING_AVOIDING_THRESHOLD && scrollingAnimationToDisplay !== "outro") {
+            setScrollingAnimationToDisplay("outro");
             setTimeout(() => {
                 setHideNavigaton(true);
             }, OUTRO_ANIMATION_DURATION);
         }
         // Display hidden navigation bar again
-        else if (previousScrollY.current > scrollY && hideNavigaton && animationToDisplay === "outro") {
+        else if (previousScrollY.current > scrollY && hideNavigaton && scrollingAnimationToDisplay === "outro") {
             setHideNavigaton(false);
             setTimeout(() => {
-                setAnimationToDisplay("intro");
+                setScrollingAnimationToDisplay("intro");
             }, 100);
         }
         previousScrollY.current = scrollY;
-    }, [hideNavigaton, animationToDisplay]);
+    }, [hideNavigaton, scrollingAnimationToDisplay]);
 
     useEffect(() => {
         window.addEventListener("scroll", handleOnScroll);
@@ -46,5 +46,5 @@ export default (): UseHideWhileScrollingDownResult => {
         };
     }, [handleOnScroll]);
 
-    return { hideNavigaton, animationToDisplay };
+    return { hideNavigaton, scrollingAnimationToDisplay };
 };

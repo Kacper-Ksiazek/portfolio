@@ -1,4 +1,5 @@
 // Tools
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -11,14 +12,34 @@ import IntroductionScreenBaseWrapper from "./_styled_components/IntroductionScre
 const IntroductionScreenBase: FunctionComponent<{ children: ReactNode }> = (props) => {
     const [renderContent, setRenderContent] = useState<boolean>(false);
 
+    const [displayAnimations, setDisplayAnimations] = useState<boolean>(true);
+    const router = useRouter();
+
     useEffect(() => {
-        setTimeout(() => {
+        if (router.query.hasOwnProperty("skipIntroductionAnimationEvenThoughItsCool")) {
             setRenderContent(true);
-        }, 2800);
-    }, []);
+            setDisplayAnimations(false);
+        } else {
+            setDisplayAnimations(true);
+            if (document.body) {
+                document.body.style.position = "fixed";
+                document.body.style.height = "100vh";
+                document.body.style.overflowY = "hidden";
+            }
+            setTimeout(() => {
+                setRenderContent(true);
+            }, 2800);
+
+            setTimeout(() => {
+                document.body.style.position = "static";
+                document.body.style.height = "auto";
+                document.body.style.overflowY = "visible";
+            }, 6000);
+        }
+    }, [router.query]);
 
     return (
-        <IntroductionScreenBaseWrapper>
+        <IntroductionScreenBaseWrapper className={displayAnimations ? "display-intro-animations" : "skip-intro-animation"}>
             {(() => {
                 if (renderContent) {
                     return (

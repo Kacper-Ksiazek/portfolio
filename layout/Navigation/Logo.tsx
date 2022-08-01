@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
+import { useRouter } from "next/router";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
@@ -16,8 +17,15 @@ const Header = styled("h3")(({ theme }) => ({
 }));
 
 const Logo: FunctionComponent<MUIStyledCommonProps> = (props) => {
+    const router = useRouter();
+
+    const redirectToMainPage = () => {
+        if (router.pathname === "/") return;
+        router.push("/?skipIntroductionAnimationEvenThoughItsCool=1");
+    };
+
     return (
-        <SingleFlexWrapper>
+        <SingleFlexWrapper onClick={redirectToMainPage} sx={{ cursor: "pointer" }}>
             <Image
                 src={"/logo.png"} //
                 width="67px"
