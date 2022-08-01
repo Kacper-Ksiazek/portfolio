@@ -1,15 +1,15 @@
 // Tools
 import { keyframes } from "@mui/system";
 
-export const scaleX = keyframes({
+export const timelineConnectionIntro = keyframes({
     from: {
-        transform: "translateY(-50%) scaleX(0)",
+        width: 0,
     },
     to: {
-        transform: "translateY(-50%) scaleX(1)",
+        width: "100%",
     },
 });
-export const scaleXButYearIndicator = keyframes({
+export const timelineConnectionIntroButYearIndicating = keyframes({
     from: {
         transform: "translateY(calc(-50% - 90px)) scaleX(0)",
     },

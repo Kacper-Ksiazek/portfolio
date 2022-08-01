@@ -9,7 +9,7 @@ import {
     outroForLeftSideProjects,
     outroForRightSideProjects,
 } from "./_keyframes/projectCardBackgroundRectangles";
-import { scaleX, scaleXButYearIndicator, timelineCoreEntireIntro, timelineCoreHalfIntro } from "./_keyframes/timeline";
+import { timelineConnectionIntro, timelineConnectionIntroButYearIndicating, timelineCoreEntireIntro, timelineCoreHalfIntro } from "./_keyframes/timeline";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
@@ -110,32 +110,6 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
                 },
             },
         },
-        "&.odd": {
-            ".timeline-core": {
-                ".timeline-connection": {
-                    transformOrigin: "left",
-                    "&::before": {
-                        animation: `${fadeSimple} .2s .9s both linear`,
-                    },
-                    "&::after": {
-                        animation: `${fadeSimple} .2s .7s both linear`,
-                    },
-                },
-            },
-        },
-        "&.even": {
-            ".timeline-core": {
-                ".timeline-connection": {
-                    transformOrigin: "right",
-                    "&::before": {
-                        animation: `${fadeSimple} .2s .9s both linear`,
-                    },
-                    "&::after": {
-                        animation: `${fadeSimple} .2s .7s both linear`,
-                    },
-                },
-            },
-        },
 
         ".project-card": {
             "&::before": {
@@ -143,6 +117,7 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
             },
             // Elements on left side
             "&.even": {
+                // Initial animation shapes
                 ".intro-bar1": {
                     background: theme.palette.secondary.main,
                     zIndex: 10,
@@ -183,8 +158,10 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
                     },
                 },
             },
+
             // Elements on right side
             "&.odd": {
+                // Initial animation shapes
                 ".intro-bar1": {
                     background: theme.palette.secondary.main,
                     zIndex: 10,
@@ -247,16 +224,16 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
                     },
                 },
                 ".technologies-wrapper>*": {
-                    animation: `${fadeSimple} .001s 3.2s both`,
-                },
-                "h4>*": {
                     animation: `${fadeSimple} .001s 3.25s both`,
                 },
-                ".duration>*": {
+                "h4>*": {
                     animation: `${fadeSimple} .001s 3.3s both`,
                 },
-                "p>*": {
+                ".duration>*": {
                     animation: `${fadeSimple} .001s 3.35s both`,
+                },
+                "p>*": {
+                    animation: `${fadeSimple} .001s 3.4s both`,
                 },
                 h4: {
                     "&::after": {
@@ -276,9 +253,24 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
                 },
             },
             ".timeline-connection": {
-                animation: `${scaleX} .2s .5s both linear`,
-                "&.year-indicator": {
-                    animation: `${scaleXButYearIndicator} .2s .5s both linear`,
+                "&::before": {
+                    animation: `${timelineConnectionIntro} .2s .5s both linear`,
+                },
+                "&.even": {
+                    ".dot.left": {
+                        animation: `${fadeSimple} .2s .9s both linear`,
+                    },
+                    ".dot.right": {
+                        animation: `${fadeSimple} .2s .7s both linear`,
+                    },
+                },
+                "&.odd": {
+                    ".dot.left": {
+                        animation: `${fadeSimple} .2s .7s both linear`,
+                    },
+                    ".dot.right": {
+                        animation: `${fadeSimple} .2s .9s both linear`,
+                    },
                 },
             },
         },
@@ -303,14 +295,30 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
                     },
                 },
                 ".timeline-connection": {
-                    transformOrigin: "left",
-                    animation: `${scaleX} .2s 1.4s both linear`,
                     "&::before": {
+                        right: "auto",
+                        left: "0",
+                        animation: `${timelineConnectionIntro} .2s 1.4s both linear`,
+                    },
+                    ".dot.left": {
                         animation: `${fadeSimple} .2s 1.6s both linear`,
                     },
-                    "&::after": {
+                    ".dot.right": {
                         animation: `${fadeSimple} .2s 1.8s both linear`,
                     },
+                },
+            },
+        },
+        "&.last-row": {
+            ".timeline-connection": {
+                "&::before": {
+                    animation: `${timelineConnectionIntro} .2s 1s both linear`,
+                },
+                ".dot.left": {
+                    animation: `${fadeSimple} .2s .7s both linear`,
+                },
+                ".dot.right": {
+                    animation: `${fadeSimple} .2s 1.3s both linear`,
                 },
             },
         },

@@ -36,43 +36,56 @@ const Connection = styled("span")(({ theme }) => ({
     width: "70px",
     height: "10px",
     transform: "translateY(-50%)",
-    background: theme.palette.secondary.main,
     "&.year-indicating-timeline": {
         top: "calc(50% + 160px)",
         transform: "translateY(calc(-50% - 90px))",
     },
-    "&::before, &::after": {
+    "&::before": {
         content: '""',
         position: "absolute",
-        top: "50%",
-        transform: "translateY(-50%)",
-        borderRadius: "5px",
-        background: theme.palette.primary.main,
-    },
-    "&::before": {
-        width: "24px",
-        height: "24px",
-    },
-    "&::after": {
-        width: "24px",
-        height: "24px",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        background: theme.palette.secondary.main,
     },
     "&.even": {
         left: "-70px",
         "&::before": {
-            left: "0",
-        },
-        "&::after": {
-            right: "-17px",
+            right: 0,
         },
     },
     "&.odd": {
         right: "-70px",
         "&::before": {
+            left: 0,
+        },
+    },
+}));
+
+const Dot = styled("span")(({ theme }) => ({
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    borderRadius: "5px",
+    background: theme.palette.primary.main,
+    width: "24px",
+    height: "24px",
+    // Left side
+    "&.odd": {
+        "&.dot.left": {
+            left: "-17px",
+        },
+        "&.dot.right": {
             right: "0",
         },
-        "&::after": {
-            left: "-17px",
+    },
+    // Right side
+    "&.even": {
+        "&.dot.left": {
+            left: "0",
+        },
+        "&.dot.right": {
+            right: "-17px",
         },
     },
 }));
@@ -99,8 +112,10 @@ const Timeline: FunctionComponent<TimelineProps> = (props) => {
                     props.order,
                     "timeline-connection",
                 ].join(" ")}
-            />
-            <span></span>
+            >
+                <Dot className={`dot left ${props.order}`} />
+                <Dot className={`dot right ${props.order}`} />
+            </Connection>
         </TimelineCore>
     );
 };
