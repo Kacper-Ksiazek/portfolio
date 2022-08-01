@@ -27,7 +27,24 @@ export default styled(Section)(({ theme }) => ({
     alignItems: "center",
     justifyContent: "center",
     height: "100vh",
-    animation: `${introAnimation} .2s 5.5s both linear`,
+    "&.display-intro-animations": {
+        animation: `${introAnimation} .2s 5.5s both linear`,
+        "&::before": {
+            animation: `${fadeSimple} .5s 1.6s both linear`,
+        },
+        "&::after": {
+            animation: `${fadeSimple} .01s 1.6s both linear`,
+        },
+    },
+    "&.skip-intro-animation": {
+        borderRadius: "20px 100px 20px 100px",
+        top: "-100px",
+        maxHeight: "calc(100vh - 40px)",
+        width: "calc(100vw - 40px)",
+        "&::before": {
+            animation: `${fadeSimple} .5s 1s both linear`,
+        },
+    },
     //
     "&::before, &::after": {
         position: "absolute",
@@ -43,10 +60,8 @@ export default styled(Section)(({ theme }) => ({
         backgroundPosition: "center top",
         filter: "blur(4px)",
         zIndex: 6,
-        animation: `${fadeSimple} .5s 1.6s both linear`,
     },
     "&::after": {
-        animation: `${fadeSimple} .01s 1.6s both linear`,
         background: alpha(theme.palette.background.paper, 0.95),
         zIndex: 7,
     },

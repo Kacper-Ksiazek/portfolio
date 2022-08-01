@@ -1,6 +1,16 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled, keyframes } from "@mui/system";
+import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
+//
+const outro = keyframes({
+    from: {
+        opacity: 1,
+    },
+    to: {
+        opacity: 0,
+    },
+});
 // Styled components
 export default styled("div")(({ theme }) => ({
     position: "fixed",
@@ -11,6 +21,8 @@ export default styled("div")(({ theme }) => ({
     height: "80px",
     zIndex: 2,
     transition: "all .3s",
+    background: theme.palette.background.default,
+
     "div#main-navigation-content": {
         display: "flex",
         alignItems: "center",
@@ -23,7 +35,6 @@ export default styled("div")(({ theme }) => ({
     },
     "&.contrast-colors": {
         color: "#fff",
-        animation: `${fadeFromTop} .2s 2.6s both linear`,
         ".MuiButtonBase-root": {
             border: "1px solid #fff",
         },
@@ -34,6 +45,22 @@ export default styled("div")(({ theme }) => ({
             },
         },
     },
+
+    "&.display-outro-animation": {
+        animation: `${outro} .3s linear both`,
+    },
+    "&.display-intro-animation": {
+        animation: `${fadeSimple} .3s linear both !important`,
+    },
+    "&.landing-page-intro": {
+        animation: `${fadeFromTop} .2s 2.6s both linear`,
+        background: "transparent",
+    },
+    "&.landing-page-intro-faster": {
+        animation: `${fadeFromTop} .2s .8s both linear`,
+        background: "transparent",
+    },
+
     "&.after-scroll-styles": {
         color: "#000",
         paddingTop: "0px",

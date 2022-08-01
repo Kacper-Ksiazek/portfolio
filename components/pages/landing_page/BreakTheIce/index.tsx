@@ -53,6 +53,7 @@ const BreakTheIce: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 additionalJSX: <NavigationBetweenStages stage={stated(stage, changeStage as any)} />,
             }}
             backgroundLetter={letter}
+            id="about-me"
         >
             <SimpleFlexbox>
                 <Content stage={stage} previousStage={previousStage} />

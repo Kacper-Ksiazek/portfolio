@@ -1,5 +1,7 @@
 // Tools
+import { useEffect } from "react";
 import { prisma } from "@/prisma/db";
+import { useRouter } from "next/router";
 import { formatProjectDate } from "@/utils/api/date-formatter";
 // Types
 import type { NextPage, GetServerSideProps } from "next";
@@ -16,17 +18,35 @@ import PicturesMatchingGame from "@/components/pages/landing_page/PicturesMatchi
 // Material UI Icons
 
 const Home: NextPage<LandingPageServerSideProps> = (props) => {
+    const router = useRouter();
+
+    useEffect(() => {
+        if (router.query.scrollToElement) {
+            const el = document.getElementById(router.query.scrollToElement as string);
+            if (el) {
+                window.scrollTo({
+                    top: el.getBoundingClientRect().top + window.pageYOffset - 80, //
+                });
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: window.scrollY - 1,
+                    });
+                }, 500);
+            }
+        }
+    }, [router.query]);
+
     return (
         <>
             <Head>
                 <title>Kacper Książek</title>
             </Head>
-            {/* <IntroductionScreen /> */}
+            <IntroductionScreen />
             <BreakTheIce />
-            {/* <ToDoList /> */}
+            <ToDoList />
             <Projects projects={props.projects} />
-            {/* <PicturesMatchingGame /> */}
-            {/* <Contact /> */}
+            <PicturesMatchingGame />
+            <Contact />
         </>
     );
 };

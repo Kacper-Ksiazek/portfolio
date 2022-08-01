@@ -18,6 +18,7 @@ interface LightSectionWrapperProps {
     backgroundLetter?: string;
     /** By default the maximum height of the section wrapper is fixed to **800px**, by setting this property to `true` this one style is never assigned */
     unlimitedHeight?: boolean;
+    id?: string;
 }
 
 const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props) => {
@@ -27,6 +28,7 @@ const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props)
                 props.round === "left" ? "round-left" : "round-right", //
                 props.unlimitedHeight ? "" : "limited-height",
             ].join(" ")}
+            id={props.id}
         >
             <ContentWrapper>
                 <Header {...props.header} />

@@ -17,13 +17,24 @@ import SingleNavigationRoute from "./SingleNavigationRoute";
 
 const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const applyAfterScrollStyles = useStylesOnScoll();
-    const hideNavigaton = useHideWhileScrollingDown();
+    const { hideNavigaton, scrollingAnimationToDisplay, forceShowingNavigaton } = useHideWhileScrollingDown();
+
     const [displayContrastStyles, setDisplayContrastStyles] = useState<boolean>(false);
+    const [landingPageIntroAnimation, setLandingPageIntroAnimation] = useState<null | "landing-page-intro" | "landing-page-intro-faster">(null);
 
     const router = useRouter();
+
     useEffect(() => {
-        setDisplayContrastStyles(router.pathname === "/");
-    }, [router.pathname]);
+        // Handle reversed contrast
+        const ROUTES_WITH_REVERSED_CONTRAST: string[] = ["/"];
+        setDisplayContrastStyles(ROUTES_WITH_REVERSED_CONTRAST.includes(router.pathname));
+        // Handle landing page intro animation
+        if (router.pathname === "/") {
+            setLandingPageIntroAnimation(router.query.hasOwnProperty("skipIntroductionAnimationEvenThoughItsCool") ? "landing-page-intro-faster" : "landing-page-intro");
+        } else {
+            setLandingPageIntroAnimation(null);
+        }
+    }, [router.pathname, router.query]);
 
     return (
         <Fade in={!hideNavigaton}>
@@ -32,14 +43,22 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     className={[
                         applyAfterScrollStyles ? "after-scroll-styles" : "", //
                         displayContrastStyles ? "contrast-colors" : "",
+                        scrollingAnimationToDisplay !== null ? `display-${scrollingAnimationToDisplay}-animation` : "",
+                        landingPageIntroAnimation,
                     ].join(" ")}
                 >
                     <div id="main-navigation-content">
                         <Logo />
                         <SingleFlexWrapper>
-                            <SingleNavigationRoute>About me</SingleNavigationRoute>
-                            <SingleNavigationRoute>Projects</SingleNavigationRoute>
-                            <SingleNavigationRoute>Contact</SingleNavigationRoute>
+                            <SingleNavigationRoute idOfElementToScroll="about-me" forceShowingNavigaton={forceShowingNavigaton}>
+                                About me
+                            </SingleNavigationRoute>
+                            <SingleNavigationRoute idOfElementToScroll="projects" forceShowingNavigaton={forceShowingNavigaton}>
+                                Projects
+                            </SingleNavigationRoute>
+                            <SingleNavigationRoute idOfElementToScroll="contact" forceShowingNavigaton={forceShowingNavigaton}>
+                                Contact
+                            </SingleNavigationRoute>
                         </SingleFlexWrapper>
                     </div>
                 </NavigationBase>

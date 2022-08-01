@@ -1,5 +1,6 @@
 // Tools
-import { styled } from "@mui/system";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -10,6 +11,13 @@ import IntroductionScreenBase from "./IntroductionScreenBase";
 import { ColoredHeader, Description, MainHeader } from "./Texts";
 
 const IntroductionScreen: FunctionComponent = (props) => {
+    const [displayAnimations, setDisplayAnimations] = useState<boolean>(true);
+    const router = useRouter();
+
+    useEffect(() => {
+        setDisplayAnimations(router.query.hasOwnProperty("skipIntroductionAnimation"));
+    }, [router.query]);
+
     return (
         <IntroductionScreenBase>
             <Technologies />

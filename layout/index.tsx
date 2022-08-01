@@ -1,5 +1,4 @@
 // Tools
-import { useState } from "react";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
@@ -15,15 +14,13 @@ interface LayoutProps {
 }
 
 const Layout: FunctionComponent<LayoutProps> = (props) => {
-    const [renderContent, setRenderContent] = useState<boolean>(true);
-
     return (
         <>
             <Navigation />
-            <MainWrapper>{renderContent && props.children}</MainWrapper>
+            <MainWrapper>{props.children}</MainWrapper>
             <ScrollButton />
             <Footer />
-            <TransitionBetweenPages setRenderContent={setRenderContent} />
+            <TransitionBetweenPages />
         </>
     );
 };

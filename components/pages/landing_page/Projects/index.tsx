@@ -29,6 +29,7 @@ const Projects: FunctionComponent<ProjectsProps> = ({ projects }) => {
             }}
             round="right"
             unlimitedHeight
+            id="projects"
         >
             <ProjectsWrapper>
                 {projects.map((item, index) => {
