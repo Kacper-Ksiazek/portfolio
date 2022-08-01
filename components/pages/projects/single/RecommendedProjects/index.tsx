@@ -11,7 +11,7 @@ import LightSectionWrapper from "@/components/_styled_components/content_placeme
 const ContentWrapper = styled("div")(({ theme }) => ({
     width: "100%",
     ".carosuel-wrapper": {
-        height: "520px",
+        height: "540px",
     },
 }));
 

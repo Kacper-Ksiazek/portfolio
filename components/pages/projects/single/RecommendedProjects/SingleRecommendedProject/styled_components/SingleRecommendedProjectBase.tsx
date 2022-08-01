@@ -24,7 +24,7 @@ export default styled("div")(({ theme }) => ({
         },
     },
     ".thumbnail-wrapper": {
-        height: "250px",
+        height: "270px",
         width: "100%",
         overflow: "hidden",
     },
