@@ -1,6 +1,6 @@
 // Tools
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ManagementContextProvider } from "./contexts/management";
 import { FormStageOneContextProvider } from "./contexts/formStageOne";
 import { FormStageTwoContextProvider } from "./contexts/formStageTwo";
@@ -16,9 +16,20 @@ import ProcessRequest from "./ProcessRequest";
 import SendMeAnEmailWrapper from "./_styled_components/SendMeAnEmailWrapper";
 
 const SendMeAnEmail: FunctionComponent = (props) => {
+    const INITIAL_INTRO_ANIMATION_DURATION: number = 1900;
+
     const { setRequestStatus, ...managementContext } = useManagementContext();
     const { author, subject, message } = useFormStageOne();
     const { country, email, github, website } = useFormStageTwo();
+
+    // Used for handling initial intro animation
+    const [renderContent, setRenderContent] = useState<boolean>(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setRenderContent(true);
+        }, INITIAL_INTRO_ANIMATION_DURATION);
+    }, []);
 
     const sendRequest = async () => {
         setRequestStatus("pending");
@@ -53,14 +64,17 @@ const SendMeAnEmail: FunctionComponent = (props) => {
     return (
         <SendMeAnEmailWrapper>
             {(() => {
-                if (managementContext.specialWayOfRenderingForm !== "hideIt") {
-                    return (
-                        <Form
-                            displayOutroAnimation={managementContext.specialWayOfRenderingForm === "displayOutroAnimation"} //
-                            sendRequest={sendRequest}
-                        />
-                    );
+                if (renderContent) {
+                    if (managementContext.specialWayOfRenderingForm !== "hideIt") {
+                        return (
+                            <Form
+                                displayOutroAnimation={managementContext.specialWayOfRenderingForm === "displayOutroAnimation"} //
+                                sendRequest={sendRequest}
+                            />
+                        );
+                    }
                 }
+                return <></>;
             })()}
 
             {managementContext.requestStatus !== "fillingForm" && <ProcessRequest sendRequest={sendRequest} />}

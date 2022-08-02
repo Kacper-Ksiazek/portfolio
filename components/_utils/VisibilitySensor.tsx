@@ -50,10 +50,10 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
                 }
             }
             //
-            // else {
-            //     (wrapperElement.current.firstChild as any).classList.remove("visible");
-            //     (wrapperElement.current.firstChild as any).classList.add("not-visable");
-            // }
+            else {
+                (wrapperElement.current.firstChild as any).classList.remove("visible");
+                (wrapperElement.current.firstChild as any).classList.add("not-visable");
+            }
         }
     }, [isVisible, props.removeVisibleCSSClassIn]);
 

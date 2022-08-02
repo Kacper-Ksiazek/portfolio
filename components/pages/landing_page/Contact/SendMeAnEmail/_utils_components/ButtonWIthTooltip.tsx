@@ -12,6 +12,7 @@ interface ButtonWithTooltipProps {
     icon: ReactNode;
     sx?: SxProps;
     onClick: () => void;
+    className?: string;
 }
 
 const ButtonWithTooltip: FunctionComponent<ButtonWithTooltipProps> = (props) => {
@@ -21,6 +22,7 @@ const ButtonWithTooltip: FunctionComponent<ButtonWithTooltipProps> = (props) => 
                 color={props.color} //
                 onClick={props.onClick}
                 sx={{ width: "43px", height: "43px", ...props.sx }}
+                className={props.className}
             >
                 {props.icon}
             </StyledButton>
