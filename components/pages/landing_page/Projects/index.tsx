@@ -6,11 +6,18 @@ import type { Project } from "@/@types/pages/LandingPage";
 // Other components
 import SingleProject from "./SingleProject";
 import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
+import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
 // Styled components
 const ProjectsWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     marginBottom: "50px",
+}));
+
+const ParagraphForHeader = styled("p")(({ theme }) => ({
+    margin: 0,
+    fontSize: "16px",
+    animation: `${fadeFromLeft} .3s .7s both linear`,
 }));
 
 interface ProjectsProps {
@@ -24,10 +31,11 @@ const Projects: FunctionComponent<ProjectsProps> = ({ projects }) => {
                 label: "Insight into my work",
                 main: "Projects",
                 additionalJSX: (
-                    <span>
+                    <ParagraphForHeader>
                         I have always found building more complex and bigger projects the best way to thoroughly learn new technologies, thus in 3 years I managed to amass a nice collection of them.
-                    </span>
+                    </ParagraphForHeader>
                 ),
+                estimatedHeight: "134px",
             }}
             round="right"
             unlimitedHeight
