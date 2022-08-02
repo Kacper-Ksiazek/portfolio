@@ -21,6 +21,7 @@ const MainHeader = styled("h2")(({ theme }) => ({
     fontSize: "24px",
     fontWeight: 700,
     margin: "0 0 5px 0",
+    fontFamily: "Montserrat Alternates",
 }));
 
 interface DarkSectionHeaderProps {
@@ -31,8 +32,8 @@ interface DarkSectionHeaderProps {
 const DarkSectionHeader: FunctionComponent<DarkSectionHeaderProps> = (props) => {
     return (
         <HeaderWrapper>
-            <MainHeader className="alternative-font-family">{props.main}</MainHeader>
-            <AdditionalText>{props.label}</AdditionalText>
+            <MainHeader className="dark-content-wrapper-main-header">{props.main}</MainHeader>
+            <AdditionalText className="dark-content-wrapper-additional-text">{props.label}</AdditionalText>
         </HeaderWrapper>
     );
 };

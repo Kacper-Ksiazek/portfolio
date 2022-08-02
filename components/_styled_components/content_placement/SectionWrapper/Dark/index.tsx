@@ -5,6 +5,7 @@ import type { SxProps } from "@mui/system";
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import Header from "./Header";
+import VisibilitySensor from "@/components/_utils/VisibilitySensor";
 // Styled components
 import DarkWrapperBase from "./DarkWrapperBase";
 import BackgroundShape from "./BackgroundShape";
@@ -40,17 +41,19 @@ interface DarkSectionWrapperProps {
 
 const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) => {
     return (
-        <DarkWrapperBase sx={props.sx}>
-            <StyledContentWrapper>
-                <Header {...props.header}></Header>
-                {props.children}
-            </StyledContentWrapper>
+        <VisibilitySensor>
+            <DarkWrapperBase sx={props.sx}>
+                <StyledContentWrapper>
+                    <Header {...props.header}></Header>
+                    {props.children}
+                </StyledContentWrapper>
 
-            <ShapesWrapper>
-                <BackgroundShape className={props.shapesDirection} />
-                <BackgroundShape className={props.shapesDirection} />
-            </ShapesWrapper>
-        </DarkWrapperBase>
+                <ShapesWrapper>
+                    <BackgroundShape className={`${props.shapesDirection} background-shape`} />
+                    <BackgroundShape className={`${props.shapesDirection} background-shape`} />
+                </ShapesWrapper>
+            </DarkWrapperBase>
+        </VisibilitySensor>
     );
 };
 
