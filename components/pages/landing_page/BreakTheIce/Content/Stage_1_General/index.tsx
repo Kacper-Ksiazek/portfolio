@@ -27,9 +27,10 @@ const General: FunctionComponent<MUIStyledCommonProps> = (props) => {
             </Paragraph>
 
             <Label animationDelay={1}>Languages</Label>
+
             <RatedInStars name="Polish" stars={5} description="Native speaker" animationDelay={1.1} />
             <RatedInStars name="English" stars={4} description="Between B2 and C1, learn every day" animationDelay={1.2} />
-            <RatedInStars name="German" stars={1} description="Eines tages eines tages, uber leider nicht jetzt" animationDelay={1.3} />
+            <RatedInStars name="German" stars={1} description="Eines tages eines tages, leider nicht jetzt" animationDelay={1.3} />
         </>
     );
 };

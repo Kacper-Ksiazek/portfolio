@@ -1,4 +1,5 @@
 // Types
+import type { SxProps } from "@mui/system";
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import Header from "./Header";
@@ -14,11 +15,14 @@ interface LightSectionWrapperProps {
         main: string;
         label: string;
         additionalJSX?: ReactNode;
+        /** In order for `VisibilitySensor` to work property */
+        estimatedHeight: string;
     };
     backgroundLetter?: string;
     /** By default the maximum height of the section wrapper is fixed to **800px**, by setting this property to `true` this one style is never assigned */
     unlimitedHeight?: boolean;
     id?: string;
+    contentWrapperSx?: SxProps;
 }
 
 const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props) => {
@@ -30,7 +34,7 @@ const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props)
             ].join(" ")}
             id={props.id}
         >
-            <ContentWrapper>
+            <ContentWrapper sx={props.contentWrapperSx}>
                 <Header {...props.header} />
                 {props.children}
             </ContentWrapper>
