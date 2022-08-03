@@ -318,7 +318,7 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
                     animation: `${fadeSimple} .2s .7s both linear`,
                 },
                 ".dot.right": {
-                    animation: `${fadeSimple} .2s 1.3s both linear`,
+                    animation: `${fadeSimple} .2s 2s both linear`,
                 },
             },
         },
@@ -329,6 +329,7 @@ interface SingleProjectProps {
     data: Project;
     isLast: boolean;
     isFirst: boolean;
+    index: number;
     order: "even" | "odd";
 }
 
@@ -338,7 +339,7 @@ const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
     const thisRowIsAYearIndicator: boolean = !isFirst && Boolean(props.data.yearToIndicate);
 
     return (
-        <VisibilitySensor>
+        <VisibilitySensor observerID={[0, 1, 2].includes(props.index) ? "SINGLE_PROJECT" : undefined}>
             <SingleProjectRow
                 className={[
                     thisRowIsAYearIndicator ? "year-indicating" : "", //

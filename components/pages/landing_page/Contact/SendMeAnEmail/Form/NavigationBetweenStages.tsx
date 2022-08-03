@@ -25,19 +25,19 @@ const NavigationBetweenStages: FunctionComponent = (props) => {
     const { formFillingStage, setFormFillingStage } = useManagementContext();
 
     return (
-        <StyledStepper nonLinear>
+        <StyledStepper nonLinear className="navigation-between-stages">
             <Step active={formFillingStage === "purpose"} completed={formStageOne.everythingIsValid}>
-                <StepButton color="inherit" onClick={() => setFormFillingStage("purpose")}>
+                <StepButton color="inherit" onClick={() => setFormFillingStage("purpose")} className="single-nagivation-step one">
                     General purpose
                 </StepButton>
             </Step>
             <Step active={formFillingStage === "contact_details"} completed={formStageTwo.everythingIsValid}>
-                <StepButton color="inherit" onClick={() => setFormFillingStage("contact_details")}>
+                <StepButton color="inherit" onClick={() => setFormFillingStage("contact_details")} className="single-nagivation-step two">
                     Contact details
                 </StepButton>
             </Step>
             <Step active={formFillingStage === "recaptcha"} completed={true}>
-                <StepButton color="inherit" onClick={() => setFormFillingStage("recaptcha")}>
+                <StepButton color="inherit" onClick={() => setFormFillingStage("recaptcha")} className="single-nagivation-step three">
                     ReCAPTCHA
                 </StepButton>
             </Step>

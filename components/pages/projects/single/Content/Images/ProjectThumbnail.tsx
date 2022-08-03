@@ -24,6 +24,7 @@ const ProjectThumbnail: FunctionComponent = (props) => {
         <>
             <Image
                 alt="project-thumbnail" //
+                className={`project-thumbnail`}
                 layout="fill"
                 src={projectThumbnailURL}
                 objectFit="cover"

@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
+import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
@@ -19,6 +20,8 @@ const SingleTechnology = styled("li")(({ theme }) => ({
 
 interface DisplayTechnologiesProps {
     technologies: string[];
+    /** Expressed in seconds */
+    firstAnimationDelay?: number;
 }
 
 const DisplayTechnologies: FunctionComponent<DisplayTechnologiesProps> = (props) => {
@@ -26,7 +29,11 @@ const DisplayTechnologies: FunctionComponent<DisplayTechnologiesProps> = (props)
         <DisplayTechnologiesWrapper>
             {props.technologies.map((item, index) => {
                 return (
-                    <SingleTechnology key={index} className="single-technology">
+                    <SingleTechnology
+                        key={index} //
+                        className="single-technology"
+                        sx={props.firstAnimationDelay ? { animation: `${fadeSimple} .2s ${props.firstAnimationDelay + index * 0.05}s both linear` } : null}
+                    >
                         {item}
                     </SingleTechnology>
                 );

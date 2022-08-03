@@ -1,40 +1,91 @@
 // Tools
+import { styled } from "@mui/system";
 import { useState, useEffect, useRef } from "react";
 // Types
+import type { SxProps } from "@mui/system";
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import VisibilitySensorBase from "react-visibility-sensor";
 // Styled components
+const ChildrenWrapper = styled("div")(({ theme }) => ({
+    //
+}));
 
-interface UnfadeOnScrollProps {
+interface VisibilitySensorProps {
     children: ReactNode;
     offsetTop?: number;
     offsetBottom?: number;
+    childWrapperSx?: SxProps;
+
+    dontRenderNotVisableChildren?: boolean;
+    /**Period of the time expressed in **milliseconds** */
+    removeVisibleCSSClassIn?: number;
+
+    /** In order to avoid displaying simultaneously two akin elements, add the same `observerID` to both of them */
+    observerID?: string;
 }
 
-const VisibilitySensor: FunctionComponent<UnfadeOnScrollProps> = (props) => {
+const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
+    // This is mainly for timeline purpose
+    const DELAY_BETWEEN_SHOWING_IDENTICAL_ELEMENTS: number = 2200;
+
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    const [scrollDuringLatestChange, setScrollDuringLatestChange] = useState<number>(0);
     const wrapperElement = useRef<HTMLElement | null>(null);
 
     const changeVisibility = (visibility: boolean) => {
-        const currentScroll = window.scrollY;
-        if (scrollDuringLatestChange === currentScroll) return;
-        setIsVisible(visibility);
-        setScrollDuringLatestChange(currentScroll);
+        if (isVisible) return;
+
+        if (visibility) {
+            if (props.observerID) {
+                const propName = `VISIBILITY_SENSOR_TIMEOUT_${props.observerID}`;
+                if (window.hasOwnProperty(propName)) {
+                    const now = Date.now();
+                    (window as any)[propName] = now;
+
+                    setTimeout(() => {
+                        setIsVisible(true);
+                        if ((window as any)[propName] === now) {
+                            delete (window as any)[propName];
+                        }
+                    }, DELAY_BETWEEN_SHOWING_IDENTICAL_ELEMENTS);
+                } else {
+                    setIsVisible(true);
+
+                    const now = Date.now();
+                    (window as any)[propName] = now;
+
+                    setTimeout(() => {
+                        if ((window as any)[propName] === now) {
+                            delete (window as any)[propName];
+                        }
+                    }, DELAY_BETWEEN_SHOWING_IDENTICAL_ELEMENTS);
+                }
+            } else {
+                setIsVisible(true);
+            }
+        }
     };
 
     useEffect(() => {
         if (wrapperElement.current?.firstChild) {
             if (isVisible) {
                 (wrapperElement.current.firstChild as any).classList.add("visible");
+                (wrapperElement.current.firstChild as any).classList.remove("not-visable");
+                if (props.removeVisibleCSSClassIn) {
+                    setTimeout(() => {
+                        if (wrapperElement.current) {
+                            (wrapperElement.current.firstChild as any).classList.remove("visible");
+                        }
+                    }, props.removeVisibleCSSClassIn);
+                }
             }
             //
-            // else {
-            //     (wrapperElement.current.firstChild as any).classList.remove("visible");
-            // }
+            else {
+                (wrapperElement.current.firstChild as any).classList.remove("visible");
+                (wrapperElement.current.firstChild as any).classList.add("not-visable");
+            }
         }
-    }, [isVisible]);
+    }, [isVisible, props.removeVisibleCSSClassIn]);
 
     return (
         <VisibilitySensorBase
@@ -46,7 +97,12 @@ const VisibilitySensor: FunctionComponent<UnfadeOnScrollProps> = (props) => {
             partialVisibility={true}
             intervalDelay={200}
         >
-            <div ref={wrapperElement as any}>{props.children}</div>
+            <ChildrenWrapper ref={wrapperElement as any} sx={props.childWrapperSx}>
+                {(() => {
+                    if (props.dontRenderNotVisableChildren && isVisible === false) return null;
+                    return props.children;
+                })()}
+            </ChildrenWrapper>
         </VisibilitySensorBase>
     );
 };

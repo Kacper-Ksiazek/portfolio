@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
 // Types
+import type { SxProps } from "@mui/system";
 import type { FunctionComponent } from "react";
 // Material UI Icons
 import AccessTime from "@mui/icons-material/AccessTime";
@@ -26,6 +27,7 @@ interface DurationProps {
     start: string;
     end: string;
     smaller?: boolean;
+    sx?: SxProps;
 }
 
 const Duration: FunctionComponent<DurationProps> = (props) => {
@@ -35,6 +37,7 @@ const Duration: FunctionComponent<DurationProps> = (props) => {
                 "duration", //
                 props.smaller ? "smaller" : "",
             ].join(" ")}
+            sx={props.sx}
         >
             <AccessTime />
             <span>{`${props.start} - ${props.end}`}</span>

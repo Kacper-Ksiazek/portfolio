@@ -46,7 +46,7 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
     }, [classAppliedToWrapper]);
 
     return (
-        <SingleTaskBase className={classAppliedToWrapper}>
+        <SingleTaskBase className={`${classAppliedToWrapper} single-task`}>
             <span className="index">{props.index + 1}</span>
             <span className="text">{props.task}</span>
             <StyledButton onClick={() => setDisplayEditMode(true)}>

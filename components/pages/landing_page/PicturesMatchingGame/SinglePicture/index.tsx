@@ -12,6 +12,7 @@ interface SinglePictureProps {
     displayImage: boolean;
     isInvalid: boolean;
     isMatched: boolean;
+    itsTheFirstGameInSession: boolean;
     onClick: () => void;
 }
 
@@ -22,6 +23,8 @@ const SinglePicture: FunctionComponent<SinglePictureProps> = (props) => {
             className={[
                 props.displayImage ? "display-image" : "", //
                 props.isInvalid ? "is-invalid" : "", //
+                "single-picture",
+                props.itsTheFirstGameInSession ? "first-game-in-the-session" : "",
             ].join(" ")}
             onClick={props.onClick}
         >

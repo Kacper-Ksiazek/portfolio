@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
+import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 // Types
 import type { FunctionComponent } from "react";
 import type { StatedDataField } from "@/@types/StatedDataField";
@@ -12,6 +13,15 @@ const Divider = styled("span")(({ theme }) => ({
     width: "2px",
     background: theme.palette.text.secondary,
     margin: "0 10px",
+    "&:nth-of-type(1)": {
+        animation: `${fadeSimple} .2s .8s both linear`,
+    },
+    "&:nth-of-type(2)": {
+        animation: `${fadeSimple} .2s .9s both linear`,
+    },
+    "&:nth-of-type(3)": {
+        animation: `${fadeSimple} .2s 1s both linear`,
+    },
 }));
 
 const NavigationStagesWrapper = styled("div")(({ theme }) => ({
@@ -32,6 +42,18 @@ const SingleNavigationStep = styled("div")(({ theme }) => ({
     padding: "0 10px",
     transition: "background .2s",
     borderRadius: "3px",
+    "&:nth-of-type(1)": {
+        animation: `${fadeSimple} .2s .6s both linear`,
+    },
+    "&:nth-of-type(2)": {
+        animation: `${fadeSimple} .2s .7s both linear`,
+    },
+    "&:nth-of-type(3)": {
+        animation: `${fadeSimple} .2s .8s both linear`,
+    },
+    "&:nth-of-type(4)": {
+        animation: `${fadeSimple} .2s .9s both linear`,
+    },
     "&:before": {
         content: "''",
         position: "absolute",

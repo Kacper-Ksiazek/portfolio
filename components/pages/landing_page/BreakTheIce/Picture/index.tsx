@@ -1,6 +1,6 @@
 // Tools
-import { useEffect, useRef, useMemo } from "react";
 import { styled } from "@mui/system";
+import { useEffect, useRef, useMemo } from "react";
 // Types
 import type { FunctionComponent, MutableRefObject } from "react";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
@@ -66,7 +66,7 @@ const Picture: FunctionComponent<PictureProps> = (props) => {
     }, [AllRefs, props.stage]);
 
     return (
-        <PictureSectionWrapper key={props.stage}>
+        <PictureSectionWrapper key={props.stage} className="picture-wrapper">
             <PictureWrapper>
                 <Rectangle className="left-horizontal" ref={LeftHorizontalRectangleElement} />
                 <Rectangle className="left-vertical" ref={LeftVerticalRectangleElement} />

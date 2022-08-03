@@ -1,11 +1,13 @@
 // Tools
 import { styled } from "@mui/system";
+import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
 // Types
 import type { FunctionComponent } from "react";
 import type { RecommendedProject } from "@/@types/pages/projects/SingleProject";
 // Other components
 import Carousel from "@/components/_utils/Carousel";
 import SingleRecommendedProject from "./SingleRecommendedProject";
+import VisibilitySensor from "@/components/_utils/VisibilitySensor";
 import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
 // Styled components
 const ContentWrapper = styled("div")(({ theme }) => ({
@@ -13,6 +15,10 @@ const ContentWrapper = styled("div")(({ theme }) => ({
     ".carosuel-wrapper": {
         height: "540px",
     },
+}));
+
+const InformationAboutNumberOfProjects = styled("span")(({ theme }) => ({
+    animation: `${fadeFromTop} .3s .5s both linear`,
 }));
 
 interface RecommendedProjectsProps {
@@ -26,25 +32,28 @@ const RecommendedProjects: FunctionComponent<RecommendedProjectsProps> = ({ reco
                 label: "See more",
                 main: "Rest of my work",
                 additionalJSX: (
-                    <span>
+                    <InformationAboutNumberOfProjects>
                         There are <strong>{recommendedProjects.length}</strong> more projects to see
-                    </span>
+                    </InformationAboutNumberOfProjects>
                 ),
+                estimatedHeight: "130px",
             }}
             round="right"
         >
-            <ContentWrapper>
-                <Carousel
-                    itemsInTotal={recommendedProjects.length} //
-                    itemsPerSlide={3}
-                    spacing={40}
-                    navigationSx={{ mt: "20px" }}
-                >
-                    {recommendedProjects.map((item, index) => {
-                        return <SingleRecommendedProject key={item.id} data={item} />;
-                    })}
-                </Carousel>
-            </ContentWrapper>
+            <VisibilitySensor dontRenderNotVisableChildren childWrapperSx={{ flexGrow: 1 }}>
+                <ContentWrapper>
+                    <Carousel
+                        itemsInTotal={recommendedProjects.length} //
+                        itemsPerSlide={3}
+                        spacing={40}
+                        navigationSx={{ mt: "20px" }}
+                    >
+                        {recommendedProjects.map((item, index) => {
+                            return <SingleRecommendedProject key={item.id} data={item} />;
+                        })}
+                    </Carousel>
+                </ContentWrapper>
+            </VisibilitySensor>
         </LightSectionWrapper>
     );
 };

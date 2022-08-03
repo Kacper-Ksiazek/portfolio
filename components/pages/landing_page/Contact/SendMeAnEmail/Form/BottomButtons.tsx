@@ -41,7 +41,7 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
 
     return (
         <ButtonsBottomWrapper>
-            <SendMailButton disabled={managementContext.blockContinueButton} onClick={props.onContinueButtonClick}>
+            <SendMailButton disabled={managementContext.blockContinueButton} onClick={props.onContinueButtonClick} className="continue">
                 <span className="text">Continue</span>
             </SendMailButton>
 
@@ -51,12 +51,14 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
                     tooltip="Feign an invalid request"
                     onClick={feignInvalidRequest}
                     icon={<CodeOff />}
+                    className="fake-invalid-request"
                 />
                 <ButtonWIthTooltip
                     color="success" //
                     tooltip="Feign a succeeded request"
                     onClick={feignSucceededRequest}
                     icon={<CodeOff />}
+                    className="fake-valid-request"
                 />
             </SimpleFlexBox>
         </ButtonsBottomWrapper>
