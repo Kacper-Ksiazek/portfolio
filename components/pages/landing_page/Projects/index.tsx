@@ -47,6 +47,7 @@ const Projects: FunctionComponent<ProjectsProps> = ({ projects }) => {
                         <SingleProject
                             key={item.id} //
                             data={item}
+                            index={index}
                             isFirst={index === 0}
                             isLast={index === projects.length - 1}
                             order={index % 2 === 0 ? "even" : "odd"}
