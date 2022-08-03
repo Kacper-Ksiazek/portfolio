@@ -11,6 +11,7 @@ export default styled("div")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
+    visibility: "hidden",
     "&:not(&:nth-of-type(1))": {
         "&::after": {
             content: "''",
@@ -29,6 +30,7 @@ export default styled("div")(({ theme }) => ({
         overflow: "hidden",
     },
     "&.active, &.initial-active": {
+        visibility: "visible",
         "&::after": {
             animation: `${fadeSimple} .5s 1.5s both`,
         },

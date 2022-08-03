@@ -55,7 +55,7 @@ export default styled("div")(({ theme }) => ({
     "#features-overflow-hidden-container": {
         height: "467px",
     },
-    ".project-thumbnail": {
+    ".project-thumbnail, .image-actions-wrapper": {
         animation: `${fadeSimple} .001s 1.7s both`,
     },
     "&::after, &::before": {

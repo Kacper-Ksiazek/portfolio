@@ -26,7 +26,7 @@ const BottomRightCornerActions: FunctionComponent = () => {
     };
 
     return (
-        <ImageActionsWrapper>
+        <ImageActionsWrapper className="image-actions-wrapper">
             <ImageAction
                 ref={featuresButtonElement}
                 onClick={handleFeaturesButtonClick} //
