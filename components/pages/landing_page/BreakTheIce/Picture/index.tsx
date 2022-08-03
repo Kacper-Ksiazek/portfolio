@@ -66,8 +66,8 @@ const Picture: FunctionComponent<PictureProps> = (props) => {
     }, [AllRefs, props.stage]);
 
     return (
-        <PictureSectionWrapper key={props.stage} className="picture-wrapper">
-            <PictureWrapper>
+        <PictureSectionWrapper key={props.stage} id="picture-main-wrapper">
+            <PictureWrapper id="picture-direct-wrapper">
                 <Rectangle className="left-horizontal" ref={LeftHorizontalRectangleElement} />
                 <Rectangle className="left-vertical" ref={LeftVerticalRectangleElement} />
                 <Rectangle className="right-horizontal" ref={RightHorizontalRectangleElement} />

@@ -27,6 +27,7 @@ const DisplayTechnologiesWrapper = styled("div")(({ theme }) => ({
         "&:nth-of-type(4),&:nth-of-type(20),&:nth-of-type(10),&:nth-of-type(11),&:nth-of-type(17)": {
             animation: `${fadeSimple} .2s 1.5s both`,
         },
+        animation: `${fadeSimple} .2s 1.6s both`,
     },
 }));
 

@@ -28,25 +28,30 @@ const outro = keyframes({
 });
 
 const BackgroundLetterBase = styled(ContentWrapper)(({ theme }) => ({
-    fontSize: "1000px",
-    fontWeight: 900,
-    position: "absolute",
-    bottom: "0",
-    color: alpha(theme.palette.secondary.main, 0.05),
-    userSelect: "none",
-    zIndex: 1,
-    left: "50%",
-    transform: "translateX(-50%)",
-    lineHeight: "800px",
-    fontFamily: "Montserrat Alternates",
-    "&.hide": {
+    ["@media (min-width:1001px)"]: {
+        fontSize: "1000px",
+        fontWeight: 900,
+        position: "absolute",
+        bottom: "0",
+        color: alpha(theme.palette.secondary.main, 0.05),
+        userSelect: "none",
+        zIndex: 1,
+        left: "50%",
+        transform: "translateX(-50%)",
+        lineHeight: "800px",
+        fontFamily: "Montserrat Alternates",
+        "&.hide": {
+            display: "none",
+        },
+        "&.intro": {
+            animation: `${intro} .3s linear both`,
+        },
+        "&.outro": {
+            animation: `${outro} .3s linear both`,
+        },
+    },
+    ["@media (max-width:1000px)"]: {
         display: "none",
-    },
-    "&.intro": {
-        animation: `${intro} .3s linear both`,
-    },
-    "&.outro": {
-        animation: `${outro} .3s linear both`,
     },
 }));
 

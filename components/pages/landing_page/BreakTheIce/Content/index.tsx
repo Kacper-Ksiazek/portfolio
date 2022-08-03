@@ -48,7 +48,7 @@ const BreakTheIceContent: FunctionComponent<BreakTheIceContentProps> = (props) =
     }, [props.stage]);
 
     return (
-        <ContentWrapper>
+        <ContentWrapper id="content-main-wrapper">
             <ContentOnCertainStage stage={props.previousStage ? props.previousStage : props.stage} />
 
             <Rectangle id="rect-one" ref={RectangleOneElement} />

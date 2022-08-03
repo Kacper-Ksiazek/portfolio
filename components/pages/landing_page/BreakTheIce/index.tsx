@@ -1,4 +1,5 @@
 // Tools
+import RWD from "./RWD";
 import { styled } from "@mui/system";
 import stated from "@/utils/client/stated";
 import { useState, useEffect } from "react";
@@ -21,10 +22,11 @@ const SimpleFlexbox = styled("div")(({ theme }) => ({
     justifyContent: "space-between",
     width: "100%",
     "&.visible": {
-        ".picture-wrapper": {
+        "#picture-main-wrapper": {
             animation: `${fadeSimple} .5s .5s both`,
         },
     },
+    ...(RWD as any),
 }));
 
 const BreakTheIce: FunctionComponent<MUIStyledCommonProps> = (props) => {

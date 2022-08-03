@@ -6,7 +6,8 @@ export default styled("div")(({ theme }) => ({
     left: "50%",
     top: "20px",
     height: "450px",
-    width: "550px",
+    maxWidth: "550px",
+    width: "calc(100% - 30px)",
     transform: "translateX(-50%)",
     "&:before": {
         content: "''",

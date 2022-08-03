@@ -23,7 +23,7 @@ const Label = styled("span")(({ theme }) => ({
 }));
 
 const Header = styled("h4")(({ theme }) => ({
-    margin: "5px 0 0 0 ",
+    margin: "4px 0 4px 0 ",
     fontFamily: "Montserrat Alternates",
     fontSize: "24px",
 }));

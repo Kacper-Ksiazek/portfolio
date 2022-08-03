@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import { useState, useEffect, useRef } from "react";
 // Types
 import type { SxProps } from "@mui/system";
@@ -28,6 +29,8 @@ interface VisibilitySensorProps {
 const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
     // This is mainly for timeline purpose
     const DELAY_BETWEEN_SHOWING_IDENTICAL_ELEMENTS: number = 2200;
+
+    const { width } = useWindowSizes();
 
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const wrapperElement = useRef<HTMLElement | null>(null);
@@ -86,6 +89,14 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
             }
         }
     }, [isVisible, props.removeVisibleCSSClassIn]);
+
+    if (width <= 1000) {
+        return (
+            <ChildrenWrapper ref={wrapperElement as any} sx={props.childWrapperSx}>
+                {props.children}
+            </ChildrenWrapper>
+        );
+    }
 
     return (
         <VisibilitySensorBase
