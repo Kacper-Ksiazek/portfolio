@@ -20,35 +20,41 @@ export default styled("div")(({ theme }) => ({
     "&:nth-of-type(1)": {
         marginBottom: "10px",
         marginLeft: "0",
-        animation: `${fadeSimple} .3s .1s linear both`,
-    },
-    "&:nth-of-type(2)": {
-        animation: `${fadeSimple} .3s .15s linear both`,
-    },
-    "&:nth-of-type(3)": {
-        animation: `${fadeSimple} .3s .2s linear both`,
-    },
-    "&:nth-of-type(4)": {
-        animation: `${fadeSimple} .3s .25s linear both`,
-    },
-    "&:nth-of-type(5)": {
-        animation: `${fadeSimple} .3s .3s linear both`,
     },
     "&:nth-of-type(6)": {
         marginLeft: "0",
-        animation: `${fadeSimple} .3s .3s linear both`,
     },
-    "&:nth-of-type(7)": {
-        animation: `${fadeSimple} .3s .25s linear both`,
-    },
-    "&:nth-of-type(8)": {
-        animation: `${fadeSimple} .3s .2s linear both`,
-    },
-    "&:nth-of-type(9)": {
-        animation: `${fadeSimple} .3s .15s linear both`,
-    },
-    "&:nth-of-type(10)": {
-        animation: `${fadeSimple} .3s .1s linear both`,
+    "&:not(&.first-game-in-the-session)": {
+        "&:nth-of-type(1)": {
+            animation: `${fadeSimple} .3s .1s linear both`,
+        },
+        "&:nth-of-type(2)": {
+            animation: `${fadeSimple} .3s .15s linear both`,
+        },
+        "&:nth-of-type(3)": {
+            animation: `${fadeSimple} .3s .2s linear both`,
+        },
+        "&:nth-of-type(4)": {
+            animation: `${fadeSimple} .3s .25s linear both`,
+        },
+        "&:nth-of-type(5)": {
+            animation: `${fadeSimple} .3s .3s linear both`,
+        },
+        "&:nth-of-type(6)": {
+            animation: `${fadeSimple} .3s .3s linear both`,
+        },
+        "&:nth-of-type(7)": {
+            animation: `${fadeSimple} .3s .25s linear both`,
+        },
+        "&:nth-of-type(8)": {
+            animation: `${fadeSimple} .3s .2s linear both`,
+        },
+        "&:nth-of-type(9)": {
+            animation: `${fadeSimple} .3s .15s linear both`,
+        },
+        "&:nth-of-type(10)": {
+            animation: `${fadeSimple} .3s .1s linear both`,
+        },
     },
     "span.question-mark": {
         fontWeight: 700,
@@ -73,7 +79,7 @@ export default styled("div")(({ theme }) => ({
         position: "absolute",
         top: "0",
         height: "100%",
-        width: "50%",
+        width: "52%",
         background: "#fff",
     },
     "&::after": {
