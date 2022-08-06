@@ -10,8 +10,9 @@ import Settings from "@mui/icons-material/Settings";
 const EditMode = dynamic(() => import("./EditMode"));
 const DeleteTaskConfirmation = dynamic(() => import("./DeleteTaskConfirmation"));
 // Styled components
+import TaskIndex from "./styled_components/TaskIndex";
 import StyledButton from "../_styled_components/StyledButton";
-import SingleTaskBase from "../_styled_components/SingleTaskBase";
+import SingleTaskBase from "./styled_components/SingleTaskBase";
 
 interface SingleTaskProps {
     task: string;
@@ -47,7 +48,7 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
 
     return (
         <SingleTaskBase className={`${classAppliedToWrapper} single-task`}>
-            <span className="index">{props.index + 1}</span>
+            <TaskIndex className="index">{props.index + 1}</TaskIndex>
             <span className="text">{props.task}</span>
             <StyledButton onClick={() => setDisplayEditMode(true)}>
                 <Settings />

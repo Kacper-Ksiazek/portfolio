@@ -28,19 +28,6 @@ export default styled("div")(({ theme }) => ({
             },
         },
     },
-    "span.index": {
-        background: theme.palette.primary.main,
-        borderRadius: "3px",
-        color: "#fff",
-        width: "30px",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontWeight: 700,
-        marginRight: "20px",
-        fontSize: "20px",
-    },
     "span.text": {
         width: "calc(100% - 100px)",
         fontWeight: 500,
@@ -54,5 +41,8 @@ export default styled("div")(({ theme }) => ({
         maxHeight: 0,
         marginTop: "0px !important",
         padding: 0,
+    },
+    ["@media (max-width:800px)"]: {
+        maxHeight: "none",
     },
 }));

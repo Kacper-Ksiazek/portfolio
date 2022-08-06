@@ -10,5 +10,23 @@ export default styled("span")(({ theme }) => ({
     },
     ["@media (max-width:1100px)"]: {
         borderRadius: "20px ",
+        width: "300px",
+        "&:nth-of-type(1)": {
+            marginRight: "100px",
+        },
+    },
+    ["@media (max-width:800px)"]: {
+        borderRadius: "20px ",
+        width: "280px",
+        "&:nth-of-type(1)": {
+            marginRight: "80px",
+        },
+    },
+    ["@media (max-width:700px)"]: {
+        borderRadius: "20px ",
+        width: "260px",
+        "&:nth-of-type(1)": {
+            marginRight: "60px",
+        },
     },
 }));

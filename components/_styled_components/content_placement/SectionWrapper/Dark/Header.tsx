@@ -15,6 +15,7 @@ const HeaderWrapper = styled("header")(({ theme }) => ({
 const AdditionalText = styled("span")(({ theme }) => ({
     fontWeight: 400,
     fontSize: "18px",
+    textAlign: "center",
 }));
 
 const MainHeader = styled("h2")(({ theme }) => ({

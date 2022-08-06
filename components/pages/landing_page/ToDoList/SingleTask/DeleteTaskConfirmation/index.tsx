@@ -6,8 +6,8 @@ import type { FunctionComponent } from "react";
 import Check from "@mui/icons-material/Check";
 import Close from "@mui/icons-material/Close";
 // Styled Components
-import StyledButton from "../_styled_components/StyledButton";
-import DeleteTaskConfirmationBase from "../_styled_components/DeleteTaskConfirmationBase";
+import StyledButton from "../../_styled_components/StyledButton";
+import DeleteTaskConfirmationBase from "./DeleteTaskConfirmationBase";
 
 interface DeleteTaskConfirmationProps {
     handleDelete: () => void;

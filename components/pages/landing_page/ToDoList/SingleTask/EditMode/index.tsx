@@ -6,9 +6,9 @@ import type { FunctionComponent } from "react";
 import Close from "@mui/icons-material/Close";
 import Check from "@mui/icons-material/Check";
 // Styled components
-import StyledInput from "../_styled_components/StyledInput";
-import StyledButton from "../_styled_components/StyledButton";
-import EditModeBase from "../_styled_components/EditModeBase";
+import EditModeBase from "./EditModeBase";
+import StyledInput from "../../_styled_components/StyledInput";
+import StyledButton from "../../_styled_components/StyledButton";
 
 interface SingleTaskEditModeProps {
     currentTask: string;

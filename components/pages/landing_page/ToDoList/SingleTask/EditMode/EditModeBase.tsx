@@ -38,7 +38,7 @@ export default styled("div")(({ theme }) => ({
     padding: "0 10px",
     boxSizing: "border-box",
     input: {
-        flexGrow: 1,
+        width: "calc(100% - 72px)",
     },
     alignItems: "center",
     "&.intro": {
@@ -68,5 +68,8 @@ export default styled("div")(({ theme }) => ({
                 animation: `${fadeSimpleOUT} .3s both`,
             },
         },
+    },
+    ["@media (max-width:800px)"]: {
+        width: "100%",
     },
 }));
