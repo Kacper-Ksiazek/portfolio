@@ -38,7 +38,6 @@ const rotateRight = keyframes({
 
 export default styled(SectionWrapper)(({ theme }) => ({
     background: theme.palette.background.paper,
-    padding: "24px 0",
     boxSizing: "border-box",
     borderRadius: "20px",
     overflow: "hidden",

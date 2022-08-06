@@ -8,4 +8,7 @@ export default styled("span")(({ theme }) => ({
     "&:nth-of-type(1)": {
         marginRight: "120px",
     },
+    ["@media (max-width:1100px)"]: {
+        borderRadius: "20px ",
+    },
 }));
