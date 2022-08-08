@@ -13,10 +13,10 @@ export default styled("section")(({ theme }) => ({
         },
     },
     ["@media (max-width:600px)"]: {
-        padding: "20px",
+        padding: "40px 20px",
     },
     ["@media (max-width:500px)"]: {
         width: "calc(100vw - 20px)",
-        padding: "20px 10px",
+        padding: "40px 10px",
     },
 }));

@@ -10,6 +10,7 @@ const HeaderWrapper = styled("header")(({ theme }) => ({
     marginBottom: "20px",
     userSelect: "none",
     color: "#fff",
+    textAlign: "center",
 }));
 
 const AdditionalText = styled("span")(({ theme }) => ({
