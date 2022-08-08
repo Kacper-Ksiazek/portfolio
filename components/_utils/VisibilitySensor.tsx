@@ -31,7 +31,6 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
     const DELAY_BETWEEN_SHOWING_IDENTICAL_ELEMENTS: number = 2200;
 
     const { width } = useWindowSizes();
-
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const wrapperElement = useRef<HTMLElement | null>(null);
 
@@ -70,6 +69,8 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
     };
 
     useEffect(() => {
+        if (width < 1000) return;
+
         if (wrapperElement.current?.firstChild) {
             if (isVisible) {
                 (wrapperElement.current.firstChild as any).classList.add("visible");
@@ -88,7 +89,7 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
             //     (wrapperElement.current.firstChild as any).classList.add("not-visable");
             // }
         }
-    }, [isVisible, props.removeVisibleCSSClassIn]);
+    }, [isVisible, props.removeVisibleCSSClassIn, width]);
 
     useEffect(() => {
         if (wrapperElement.current?.firstChild) {
@@ -96,8 +97,15 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
                 (wrapperElement.current.firstChild as any).classList.add("visible");
                 (wrapperElement.current.firstChild as any).classList.remove("not-visable");
             }
+            if (props.removeVisibleCSSClassIn) {
+                setTimeout(() => {
+                    if (wrapperElement.current) {
+                        (wrapperElement.current.firstChild as any).classList.remove("visible");
+                    }
+                }, props.removeVisibleCSSClassIn);
+            }
         }
-    }, [width]);
+    }, [width, props.removeVisibleCSSClassIn]);
 
     if (width <= 1000) {
         return (

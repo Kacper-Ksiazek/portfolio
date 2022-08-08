@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -36,12 +37,18 @@ interface LightSectionHeaderProps {
 }
 
 const LightSectionHeader: FunctionComponent<LightSectionHeaderProps> = (props) => {
+    const { width } = useWindowSizes();
+
     return (
         <VisibilitySensor
             dontRenderNotVisableChildren
-            childWrapperSx={{
-                height: props.estimatedHeight,
-            }}
+            childWrapperSx={
+                width < 1000
+                    ? {}
+                    : {
+                          height: props.estimatedHeight,
+                      }
+            }
         >
             <HeaderWrapper>
                 <AdditionalText className="label">{props.label}</AdditionalText>

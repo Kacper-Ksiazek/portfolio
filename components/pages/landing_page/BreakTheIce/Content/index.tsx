@@ -15,6 +15,7 @@ const ContentWrapper = styled("div")(({ theme }) => ({
     overflow: "hidden",
     cursor: "default",
     display: "flex",
+    minHeight: "400px",
     flexDirection: "column",
 }));
 

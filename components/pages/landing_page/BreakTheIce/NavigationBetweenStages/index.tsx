@@ -24,7 +24,7 @@ const NavigationStagesWrapper = styled("div")(({ theme }) => ({
             width: "100%",
             marginTop: "8px",
             ".single-navigation-button": {
-                border: `2px solid #E5E5E5`,
+                border: `1px solid ${theme.palette.secondary.main}`,
                 width: "100%",
                 "&.selected": {
                     border: `2px solid ${theme.palette.primary.main}`,
