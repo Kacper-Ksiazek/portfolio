@@ -83,12 +83,21 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
                 }
             }
             //
-            else {
-                (wrapperElement.current.firstChild as any).classList.remove("visible");
-                (wrapperElement.current.firstChild as any).classList.add("not-visable");
-            }
+            // else {
+            //     (wrapperElement.current.firstChild as any).classList.remove("visible");
+            //     (wrapperElement.current.firstChild as any).classList.add("not-visable");
+            // }
         }
     }, [isVisible, props.removeVisibleCSSClassIn]);
+
+    useEffect(() => {
+        if (wrapperElement.current?.firstChild) {
+            if (width < 1000) {
+                (wrapperElement.current.firstChild as any).classList.add("visible");
+                (wrapperElement.current.firstChild as any).classList.remove("not-visable");
+            }
+        }
+    }, [width]);
 
     if (width <= 1000) {
         return (
