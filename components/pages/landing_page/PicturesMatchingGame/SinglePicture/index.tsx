@@ -2,6 +2,7 @@
 import type { FunctionComponent } from "react";
 // Other components
 import Image from "next/Image";
+import QuestionMark from "./QuestionMark";
 // Styled components
 import SinglePictureBase from "./SinglePictureBase";
 import OpenFullsizeButton from "./OpenFullsizeButton";
@@ -43,7 +44,7 @@ const SinglePicture: FunctionComponent<SinglePictureProps> = (props) => {
                             {props.isMatched && <OpenFullsizeButton />}
                         </>
                     );
-                } else return <span className="question-mark">?</span>;
+                } else return <QuestionMark />;
             })()}
         </SinglePictureBase>
     );

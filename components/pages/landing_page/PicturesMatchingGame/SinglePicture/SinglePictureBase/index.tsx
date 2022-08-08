@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
-import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
+import { SinglePictureBaseRWD } from "./RWD";
+import { SinglePictureBaseIntroAnimations } from "./introAnimations";
 // Styled components
 export default styled("div")(({ theme }) => ({
     width: "130px",
@@ -16,58 +17,6 @@ export default styled("div")(({ theme }) => ({
     img: {
         borderRadius: "5px 10px 5px 10px",
         transition: "transform .3s",
-    },
-    "&:nth-of-type(1)": {
-        marginBottom: "10px",
-        marginLeft: "0",
-    },
-    "&:nth-of-type(6)": {
-        marginLeft: "0",
-    },
-    "&:not(&.first-game-in-the-session)": {
-        "&:nth-of-type(1)": {
-            animation: `${fadeSimple} .3s .1s linear both`,
-        },
-        "&:nth-of-type(2)": {
-            animation: `${fadeSimple} .3s .15s linear both`,
-        },
-        "&:nth-of-type(3)": {
-            animation: `${fadeSimple} .3s .2s linear both`,
-        },
-        "&:nth-of-type(4)": {
-            animation: `${fadeSimple} .3s .25s linear both`,
-        },
-        "&:nth-of-type(5)": {
-            animation: `${fadeSimple} .3s .3s linear both`,
-        },
-        "&:nth-of-type(6)": {
-            animation: `${fadeSimple} .3s .3s linear both`,
-        },
-        "&:nth-of-type(7)": {
-            animation: `${fadeSimple} .3s .25s linear both`,
-        },
-        "&:nth-of-type(8)": {
-            animation: `${fadeSimple} .3s .2s linear both`,
-        },
-        "&:nth-of-type(9)": {
-            animation: `${fadeSimple} .3s .15s linear both`,
-        },
-        "&:nth-of-type(10)": {
-            animation: `${fadeSimple} .3s .1s linear both`,
-        },
-    },
-    "span.question-mark": {
-        fontWeight: 700,
-        fontFamily: "Montserrat Alternates",
-        fontSize: "48px",
-        userSelect: "none",
-        position: "absolute",
-        zIndex: 4,
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%,-50%)",
-        color: theme.palette.primary.main,
-        animation: `${fadeSimple} .3s .1s linear both`,
     },
     transition: "all .3s",
     overflow: "hidden",
@@ -119,4 +68,6 @@ export default styled("div")(({ theme }) => ({
             transform: "translateX(0)",
         },
     },
+    ...(SinglePictureBaseRWD as any),
+    ...(SinglePictureBaseIntroAnimations as any),
 }));
