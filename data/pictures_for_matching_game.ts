@@ -5,63 +5,63 @@ export interface PictureToMatch {
 
 export default [
     {
-        title: "Bathroom furniture interior design",
+        title: "Bathroom FUrniture Interior Design",
         folder: "bathroom-furniture-interior-design",
     },
     {
-        title: "Beach beach resort antalya",
+        title: "Beach Beach Resort Antalya",
         folder: "beach-beach-resort-antalya",
     },
     {
-        title: "Building queen sofia palace of arts",
+        title: "Building Queen Sofia Palace of Arts",
         folder: "building-queen-sofia-palace-of-arts",
     },
     {
-        title: "Cheetah africa safari cat wildlife",
+        title: "Cheetah Africa Safari Cat Wildlife",
         folder: "cheetah-africa-safari-cat-wildlife",
     },
     {
-        title: "Chrysanthemum flowers plants nature",
+        title: "Chrysanthemum Flowers Plants Nature",
         folder: "chrysanthemum-flowers-plants-nature",
     },
     {
-        title: "Grain agriculture golden sunset",
+        title: "Grain Agriculture Golden Sunset",
         folder: "grain-agriculture-golden-sunset",
     },
     {
-        title: "Mount kilimanjaro mountain tanzania",
+        title: "Mount Kilimanjaro Mountain Tanzania",
         folder: "mount-kilimanjaro-mountain-tanzania",
     },
     {
-        title: "Opium poppy papaver orientale",
+        title: "Opium Poppy Papaver Orientale",
         folder: "opium-poppy-papaver-orientale",
     },
     {
-        title: "Sea lighthouse sunset water",
+        title: "Sea Lighthouse Sunset Water",
         folder: "sea-lighthouse-sunset-water",
     },
     {
-        title: "Woman nature portrait outdoors",
+        title: "Woman Nature Portrait Outdoors",
         folder: "woman-nature-portrait-outdoors",
     },
     {
-        title: "vietnam-city-sunset-vung-tau-urban",
+        title: "Vietnam City Sunset Vung Tau Urban",
         folder: "vietnam-city-sunset-vung-tau-urban",
     },
     {
-        title: "sea-ocean-port-coast-marine",
+        title: "Sea Ocean Port Coast Marine",
         folder: "sea-ocean-port-coast-marine",
     },
     {
-        title: "car-road-travel-city-america",
+        title: "Car Road Travel City America",
         folder: "car-road-travel-city-america",
     },
     {
-        title: "cat-animal-pet-lounging-feline",
+        title: "Cat Animal Pet Lounging Feline",
         folder: "cat-animal-pet-lounging-feline",
     },
     {
-        title: "oslo-subway-tunnel-metal-urban",
+        title: "Oslo Subway Tunnel Metal Urban",
         folder: "oslo-subway-tunnel-metal-urban",
     },
 ] as PictureToMatch[];

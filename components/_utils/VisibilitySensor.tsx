@@ -99,7 +99,7 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
             }
             if (props.removeVisibleCSSClassIn) {
                 setTimeout(() => {
-                    if (wrapperElement.current) {
+                    if (wrapperElement.current && wrapperElement.current.firstChild) {
                         (wrapperElement.current.firstChild as any).classList.remove("visible");
                     }
                 }, props.removeVisibleCSSClassIn);

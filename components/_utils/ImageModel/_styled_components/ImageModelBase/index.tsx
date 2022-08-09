@@ -9,12 +9,13 @@ import fadeFromBottom from "@/components/_keyframes/intro/fadeFromBottom";
 export default styled("div")(({ theme }) => ({
     position: "absolute",
     top: "50%",
-    left: "50vw",
+    left: "50%",
     transform: "translate(-50%, -50%)",
     maxWidth: "1920px",
     display: "flex",
     outline: "none !important",
     flexDirection: "column",
+    justifyContent: "center",
     "div.imageWrapper": {
         position: "relative",
         flexGrow: "1",

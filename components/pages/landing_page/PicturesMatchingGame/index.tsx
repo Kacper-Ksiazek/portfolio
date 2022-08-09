@@ -39,6 +39,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                     return (
                         <ImageModel
                             open={true} //
+                            title={context.pictureToDisplayInFullsize.title}
                             onClose={() => context.setPictureToDisplayInFullsize(null)}
                             imageURL={`/images/landing-page/images-matching-game/${context.pictureToDisplayInFullsize.folder}/fullsize.jpg`}
                         />
