@@ -10,7 +10,6 @@ import VisibilitySensor from "@/components/_utils/VisibilitySensor";
 const HeaderWrapper = styled("header")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
-    marginBottom: "30px",
     userSelect: "none",
 }));
 

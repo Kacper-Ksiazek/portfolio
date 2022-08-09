@@ -17,6 +17,7 @@ const NavigationStagesWrapper = styled("div")(({ theme }) => ({
     },
     ["@media (max-width:600px)"]: {
         flexDirection: "column",
+        marginBottom: "16px",
         ".divider": {
             display: "none",
         },

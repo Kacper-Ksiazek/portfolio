@@ -18,6 +18,7 @@ import LightSectionWrapper from "@/components/_styled_components/content_placeme
 
 const SimpleFlexbox = styled("div")(({ theme }) => ({
     display: "flex",
+    marginTop: "16px",
     flexGrow: "1",
     justifyContent: "space-between",
     width: "100%",

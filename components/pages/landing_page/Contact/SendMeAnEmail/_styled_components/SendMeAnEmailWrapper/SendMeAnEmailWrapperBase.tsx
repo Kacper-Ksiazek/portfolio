@@ -9,8 +9,9 @@ export default styled("div")(({ theme }) => ({
     position: "relative",
     padding: "10px",
     alignSelf: "flex-start",
-    height: "520px",
+    height: "540px",
     overflow: "hidden",
+    boxSizing: "border-box",
     "div.content": {
         height: "100%",
         width: "100%",

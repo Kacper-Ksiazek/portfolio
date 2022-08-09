@@ -15,7 +15,7 @@ import StyledInput from "@/components/pages/landing_page/Contact/SendMeAnEmail/_
 const InformationAboutOptionality = styled("span")(({ theme }) => ({
     fontSize: "14px",
     marginTop: "16px",
-    animation: `${fadeFromTop} .2s .6s linear both`,
+    animation: `${fadeFromTop} .2s .6s linear backwards`,
     fontWeight: 300,
     userSelect: "none",
 }));
@@ -35,7 +35,7 @@ const FormStage1: FunctionComponent = (props) => {
                 onChange={(val) => formStageTwoContext.setCountry(val)}
                 error={formStageTwoContext.countryIsInvalid}
                 sx={{
-                    animation: `${fadeFromLeft} .2s .2s linear both`,
+                    animation: `${fadeFromLeft} .2s .2s linear backwards`,
                 }}
             />
             <StyledInput
@@ -46,7 +46,7 @@ const FormStage1: FunctionComponent = (props) => {
                 onChange={(e) => formStageTwoContext.setEmail(e.target.value)}
                 error={formStageTwoContext.emailIsInvalid}
                 sx={{
-                    animation: `${fadeFromLeft} .2s .3s linear both`,
+                    animation: `${fadeFromLeft} .2s .3s linear backwards`,
                 }}
             />
             <StyledInput
@@ -56,7 +56,7 @@ const FormStage1: FunctionComponent = (props) => {
                 onChange={(e) => formStageTwoContext.setGithub(e.target.value)}
                 error={formStageTwoContext.githubIsInvalid}
                 sx={{
-                    animation: `${fadeFromLeft} .2s .4s linear both`,
+                    animation: `${fadeFromLeft} .2s .4s linear backwards`,
                 }}
             />
             <StyledInput
@@ -66,7 +66,7 @@ const FormStage1: FunctionComponent = (props) => {
                 onChange={(e) => formStageTwoContext.setWebsite(e.target.value)}
                 error={formStageTwoContext.websiteIsInvalid}
                 sx={{
-                    animation: `${fadeFromLeft} .2s .5s linear both`,
+                    animation: `${fadeFromLeft} .2s .5s linear backwards`,
                 }}
             />
             <InformationAboutOptionality>* Optional</InformationAboutOptionality>

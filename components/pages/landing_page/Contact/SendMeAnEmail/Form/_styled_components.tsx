@@ -9,7 +9,7 @@ export const Header = styled("h4")(({ theme }) => ({
     fontFamily: "Montserrat Alternates",
     fontWeight: 700,
     userSelect: "none",
-    animation: `${fadeFromLeft} .2s both linear .1s`,
+    animation: `${fadeFromLeft} .2s backwards linear .1s`,
 }));
 
 export const FormWrapper = styled("div")(({ theme }) => ({
