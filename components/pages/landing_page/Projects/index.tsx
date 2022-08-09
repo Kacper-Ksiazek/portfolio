@@ -12,6 +12,9 @@ const ProjectsWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     marginBottom: "50px",
+    ["@media (max-width:750px)"]: {
+        alignItems: "center",
+    },
 }));
 
 const ParagraphForHeader = styled("p")(({ theme }) => ({

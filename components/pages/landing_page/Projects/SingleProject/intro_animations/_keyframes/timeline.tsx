@@ -9,14 +9,7 @@ export const timelineConnectionIntro = keyframes({
         width: "100%",
     },
 });
-export const timelineConnectionIntroButYearIndicating = keyframes({
-    from: {
-        transform: "translateY(calc(-50% - 90px)) scaleX(0)",
-    },
-    to: {
-        transform: "translateY(calc(-50% - 90px)) scaleX(1)",
-    },
-});
+
 export const timelineCoreHalfIntro = keyframes({
     from: {
         height: 0,
