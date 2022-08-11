@@ -19,7 +19,7 @@ const ProjectsWrapper = styled("div")(({ theme }) => ({
 
 const ParagraphForHeader = styled("p")(({ theme }) => ({
     margin: 0,
-    fontSize: "16px",
+    fontSize: "18px",
     animation: `${fadeFromLeft} .3s .7s both linear`,
 }));
 

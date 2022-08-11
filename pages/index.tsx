@@ -41,10 +41,10 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
             <Head>
                 <title>Kacper Książek</title>
             </Head>
-            <IntroductionScreen />
-            <BreakTheIce />
+            {/* <IntroductionScreen /> */}
+            {/* <BreakTheIce /> */}
             {/* <ToDoList /> */}
-            <Projects projects={props.projects} />
+            {/* <Projects projects={props.projects} /> */}
             {/* <PicturesMatchingGame /> */}
             <Contact />
         </>

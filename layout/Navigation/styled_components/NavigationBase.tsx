@@ -21,6 +21,9 @@ export default styled("div")(({ theme }) => ({
     height: "80px",
     zIndex: 2,
     transition: "all .3s",
+    paddingLeft: "20px",
+    paddingRight: "20px",
+    boxSizing: "border-box",
     background: theme.palette.background.default,
 
     "div#main-navigation-content": {
@@ -66,8 +69,11 @@ export default styled("div")(({ theme }) => ({
         paddingTop: "0px",
         boxSizing: "border-box",
         background: theme.palette.background.default,
-        "div#main-navigation-content": {
+        "#main-navigation-content": {
             maxWidth: "1400px",
+        },
+        "#mobile-menu-opener": {
+            color: "#000",
         },
     },
 }));
