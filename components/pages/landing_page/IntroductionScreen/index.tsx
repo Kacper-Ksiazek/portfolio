@@ -23,7 +23,7 @@ const IntroductionScreen: FunctionComponent = (props) => {
             <Technologies />
             <ColoredHeader>full-stack</ColoredHeader>
             <MainHeader>Kacper Książek</MainHeader>
-            <Description>19 years old Engineering and Data Analysis student living in Poland, who takes sheer pleasure in coding 😎😎</Description>
+            <Description>20 years old Engineering and Data Analysis student living in Poland, who takes sheer pleasure in coding 😎😎</Description>
             <ColoredHeader>developer</ColoredHeader>
             <ScrollButton />
         </IntroductionScreenBase>
