@@ -17,7 +17,7 @@ export const HTTPStatusCodeContentWrapper = styled("section", {
         top: "42%",
         left: "50%",
         height: "450px",
-        opacity: 0.2,
+        opacity: 1,
         background: "#fff",
         width: "100vw",
         maxWidth: "800px",
@@ -40,6 +40,30 @@ export const HTTPStatusCodeContentWrapper = styled("section", {
         margin: "50px 0 20px 0",
         animation: `${fadeSimple} .3s .6s linear both`,
     },
+    ["@media (max-width:1000px)"]: {
+        "&::before": {
+            width: "80vw",
+        },
+    },
+    ["@media (max-width:700px)"]: {
+        "&::before": {
+            width: "calc(100vw - 40px)",
+            transform: `translate(-50%,-50%)`,
+        },
+        h4: {
+            margin: "20px 0 10px 0",
+        },
+        h3: {
+            margin: "4px 0 10px 0",
+        },
+    },
+    ["@media (max-width:500px)"]: {
+        "&::before": {
+            width: "100vw",
+            padding: "0 10px",
+            boxSizing: "border-box",
+        },
+    },
 }));
 
 export const StatusCode = styled("h1")(({ theme }) => ({
@@ -51,6 +75,12 @@ export const StatusCode = styled("h1")(({ theme }) => ({
     letterSpacing: "10px",
     lineHeight: "100px",
     animation: `${fadeSimple} .3s .3s linear both`,
+    ["@media (max-width:700px)"]: {
+        fontSize: "112px",
+    },
+    ["@media (max-width:500px)"]: {
+        fontSize: "96px",
+    },
 }));
 
 export const ButtonsWrapper = styled("div")(({ theme }) => ({
