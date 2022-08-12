@@ -1,4 +1,5 @@
 // Tools
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import useBlockUserScroll from "@/hooks/useBlockUserScroll";
@@ -17,10 +18,11 @@ interface UseMobileMenuHandlerResult {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (): UseMobileMenuHandlerResult => {
+    const router = useRouter();
     const { width } = useWindowSizes();
     const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
     const [mobileMenuIsOpened, setMobileMenuIsOpened] = useState<boolean>(false);
-    const [mobleMenuHasBeenOpenedAtLeastOnece, setMobleMenuHasBeenOpenedAtLeastOnece] = useState<boolean>(false);
+    const [mobileMenuHasBeenOpenedAtLeastOnece, setMobileeMenuHasBeenOpenedAtLeastOnece] = useState<boolean>(false);
     const [routesWrapperElementCSSClass, setRoutesWrapperElementCSSClass] = useState<RroutesWrapperElementCSSClass>(null);
 
     // Set `mobileMenuIsOpened` to `false` after menaul resizing exceeds the threshold
@@ -41,20 +43,25 @@ export default (): UseMobileMenuHandlerResult => {
     }, [mobileMenuIsOpened, disableUserScroll, enableUserScroll]);
     // routersWrapperElementCSSClass
     useEffect(() => {
-        if (width > 1000 && mobleMenuHasBeenOpenedAtLeastOnece) {
-            setMobleMenuHasBeenOpenedAtLeastOnece(false);
+        if (width > 1000 && mobileMenuHasBeenOpenedAtLeastOnece) {
+            setMobileeMenuHasBeenOpenedAtLeastOnece(false);
             setRoutesWrapperElementCSSClass(null);
             return;
         }
 
         if (mobileMenuIsOpened) {
-            setMobleMenuHasBeenOpenedAtLeastOnece(true);
+            setMobileeMenuHasBeenOpenedAtLeastOnece(true);
             setRoutesWrapperElementCSSClass("opened");
-        } else {
+        } else if (mobileMenuHasBeenOpenedAtLeastOnece) {
             setRoutesWrapperElementCSSClass("closed");
         }
-    }, [mobleMenuHasBeenOpenedAtLeastOnece, width, mobileMenuIsOpened]);
-
+    }, [mobileMenuHasBeenOpenedAtLeastOnece, width, mobileMenuIsOpened]);
+    //
+    useEffect(() => {
+        setMobileMenuIsOpened(false);
+        setMobileeMenuHasBeenOpenedAtLeastOnece(false);
+        setRoutesWrapperElementCSSClass(null);
+    }, [router.pathname]);
     return {
         mobileMenuIsOpened, //
         renderMobileMenuButton: width <= 1000,

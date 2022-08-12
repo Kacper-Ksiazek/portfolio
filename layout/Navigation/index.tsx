@@ -45,7 +45,7 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 <NavigationBase
                     className={[
                         !mobileMenuIsOpened && applyAfterScrollStyles ? "after-scroll-styles" : "", //
-                        displayContrastStyles ? "contrast-colors" : "",
+                        displayContrastStyles || routesWrapperElementCSSClass === "opened" ? "contrast-colors" : "",
                         scrollingAnimationToDisplay !== null ? `display-${scrollingAnimationToDisplay}-animation` : "",
                         landingPageIntroAnimation,
                     ].join(" ")}

@@ -47,6 +47,9 @@ export default styled("div")(({ theme }) => ({
                 border: "1px solid #000",
             },
         },
+        "#mobile-menu-opener": {
+            color: "#fff",
+        },
     },
 
     "&.display-outro-animation": {
