@@ -21,8 +21,8 @@ export default styled("div")(({ theme }) => ({
     height: "80px",
     zIndex: 2,
     transition: "all .3s",
-    paddingLeft: "20px",
-    paddingRight: "20px",
+    paddingLeft: "64px",
+    paddingRight: "64px",
     boxSizing: "border-box",
     background: theme.palette.background.default,
 
@@ -72,11 +72,22 @@ export default styled("div")(({ theme }) => ({
         paddingTop: "0px",
         boxSizing: "border-box",
         background: theme.palette.background.default,
+        paddingLeft: "32px",
+        paddingRight: "32px",
         "#main-navigation-content": {
             maxWidth: "1400px",
         },
         "#mobile-menu-opener": {
             color: "#000",
+        },
+    },
+    ["@media (max-width:500px)"]: {
+        paddingLeft: "32px",
+        paddingRight: "32px",
+        paddingTop: "24px",
+        "&.after-scroll-styles": {
+            paddingLeft: "24px",
+            paddingRight: "24px",
         },
     },
 }));

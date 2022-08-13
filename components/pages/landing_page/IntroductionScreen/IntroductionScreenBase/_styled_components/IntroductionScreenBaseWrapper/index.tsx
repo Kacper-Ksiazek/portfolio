@@ -1,22 +1,10 @@
 // Tools
-import { styled, alpha, keyframes } from "@mui/system";
+import RWD from "./RWD";
+import { styled, alpha } from "@mui/system";
+import { introAnimationWidthBodyWithBigRadius } from "./keyframes";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 // Styled components
 import Section from "@/components/_styled_components/content_placement/SectionWrapper/_SectionWrapper";
-
-const introAnimation = keyframes({
-    from: {
-        maxHeight: "calc(100vh)",
-        top: "-120px",
-        width: "100vw",
-    },
-    to: {
-        borderRadius: "20px 100px 20px 100px",
-        top: "-100px",
-        maxHeight: "calc(100vh - 40px)",
-        width: "calc(100vw - 40px)",
-    },
-});
 
 export default styled(Section)(({ theme }) => ({
     position: "relative",
@@ -26,9 +14,10 @@ export default styled(Section)(({ theme }) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    boxSizing: "border-box",
     height: "100vh",
     "&.display-intro-animations": {
-        animation: `${introAnimation} .2s 5.5s both linear`,
+        animation: `${introAnimationWidthBodyWithBigRadius} .2s 5.5s both linear`,
         "&::before": {
             animation: `${fadeSimple} .5s 1.6s both linear`,
         },
@@ -65,4 +54,5 @@ export default styled(Section)(({ theme }) => ({
         background: alpha(theme.palette.background.paper, 0.95),
         zIndex: 7,
     },
+    ...(RWD as any),
 }));
