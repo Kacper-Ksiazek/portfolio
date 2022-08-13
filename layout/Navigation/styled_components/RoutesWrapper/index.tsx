@@ -1,6 +1,8 @@
 // Tools
 import { styled } from "@mui/system";
 import fadeToTop from "@/components/_keyframes/outro/fadeToTop";
+import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
+import fadeSimpleOUT from "@/components/_keyframes/outro/fadeSimpleOUT";
 import fadeFromBottom from "@/components/_keyframes/intro/fadeFromBottom";
 import { wrapperIntroAnimation, wrapperOutroAnimation } from "./wrapperKeyframes";
 // Styled components
@@ -31,6 +33,12 @@ export default styled("div")(({ theme }) => ({
                     animation: `${fadeFromBottom} .2s .6s both linear`,
                 },
             },
+            "#mobile-menu-bottom-card-name": {
+                animation: `${fadeSimple} .2s .7s both linear`,
+            },
+            "#mobile-menu-bottom-card-year": {
+                animation: `${fadeSimple} .2s .8s both linear`,
+            },
         },
         "&.closed": {
             animation: `${wrapperOutroAnimation} .4s .4s both linear`,
@@ -44,6 +52,12 @@ export default styled("div")(({ theme }) => ({
                 "&:nth-of-type(3)": {
                     animation: `${fadeToTop} .2s both linear`,
                 },
+            },
+            "#mobile-menu-bottom-card-name": {
+                animation: `${fadeSimpleOUT} .2s both linear`,
+            },
+            "#mobile-menu-bottom-card-year": {
+                animation: `${fadeSimpleOUT} .2s both linear`,
             },
         },
     },

@@ -13,6 +13,7 @@ import Fade from "@mui/material/Fade";
 import Logo from "./Logo";
 import MobileMenuButton from "./MobileMenuButton";
 // Styled Components
+import MobileAuthor from "./styled_components/MobileAuthor";
 import SingleNavigationRoute from "./SingleNavigationRoute";
 import RoutesWrapper from "./styled_components/RoutesWrapper";
 import NavigationBase from "./styled_components/NavigationBase";
@@ -74,6 +75,10 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
                             <SingleNavigationRoute idOfElementToScroll="contact " forceShowingNavigaton={forceShowingNavigaton}>
                                 Contact
                             </SingleNavigationRoute>
+                            <MobileAuthor>
+                                <span id="mobile-menu-bottom-card-name">Kacper Książek</span>
+                                <span id="mobile-menu-bottom-card-year">{new Date(Date.now()).getUTCFullYear()}</span>
+                            </MobileAuthor>
                         </RoutesWrapper>
                     </div>
                 </NavigationBase>
