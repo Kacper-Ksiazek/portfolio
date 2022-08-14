@@ -6,7 +6,7 @@ import useImagesWrapperContext from "@/components/pages/projects/single/Content/
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
-import SingleFeature from "./SingleFeature";
+import SingleFeature from "../../atoms/SingleFeature";
 import ImageModal from "@/components/_utils/ImageModel";
 import OverflowScrollDiv from "@/components/_styled_components/content_placement/OverflowScrollDiv";
 // Styled Components

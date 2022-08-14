@@ -26,9 +26,6 @@ const MainHeader = styled("h2")(({ theme }) => ({
     margin: "0 0 5px 0",
     lineHeight: "50px",
     animation: `${fadeFromLeft} .2s .4s linear both`,
-    ["@media (max-width:600px)"]: {
-        margin: "0 0 12px 0",
-    },
 }));
 
 interface LightSectionHeaderProps {

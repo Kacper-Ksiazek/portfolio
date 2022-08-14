@@ -1,21 +1,17 @@
 // Tools
+import dynamic from "next/dynamic";
 import { useState, useEffect, useRef } from "react";
 import useImagesWrapperContext from "@/components/pages/projects/single/Content/Images/hooks/useImagesWrapperContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { Feature } from "@/@types/prisma/Project";
 // Other components
-import Features from "./Features";
 import ProjectThumbnail from "./ProjectThumbnail";
+const Features = dynamic(() => import("./Features"));
 import { ImagesWrapperContextProvider } from "./context";
 import BottomRightCornerActions from "./BottomRightCornerActions";
 // Styled components
-import PictureWrapper from "./MainWrapper";
-
-interface ContextWrapperProps {
-    folder: string;
-    features: Feature[];
-}
+import PictureWrapper from "./styled_components/MainWrapper";
 
 const ImagesWrapper: FunctionComponent = () => {
     const context = useImagesWrapperContext();
@@ -37,10 +33,16 @@ const ImagesWrapper: FunctionComponent = () => {
             <BottomRightCornerActions />
 
             <ProjectThumbnail />
-            {renderFeatures && <Features />}
+            {!context.renderMobileFeaturesList && renderFeatures && <Features />}
         </PictureWrapper>
     );
 };
+
+interface ContextWrapperProps {
+    folder: string;
+    features: Feature[];
+    renderMobileFeaturesList: boolean;
+}
 
 const ContextWrapper: FunctionComponent<ContextWrapperProps> = (props) => {
     return (

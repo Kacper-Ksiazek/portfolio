@@ -7,6 +7,7 @@ import type { Dispatch, SetStateAction, FunctionComponent, ReactNode } from "rea
 interface ImagesWrapperContextInterface {
     features: Feature[];
     folder: string;
+    renderMobileFeaturesList: boolean;
 
     openThumbnailModal: boolean;
     openBrowseFeatures: boolean;
@@ -21,6 +22,7 @@ interface ImagesWrapperContextProviderProps {
     children: ReactNode;
     features: Feature[];
     folder: string;
+    renderMobileFeaturesList: boolean;
 }
 
 export const ImagesWrapperContext = createContext<ImagesWrapperContextInterface>({} as any);
@@ -35,6 +37,7 @@ export const ImagesWrapperContextProvider: FunctionComponent<ImagesWrapperContex
             value={{
                 features: props.features,
                 folder: props.folder,
+                renderMobileFeaturesList: props.renderMobileFeaturesList,
                 //
                 openThumbnailModal,
                 openBrowseFeatures,

@@ -10,11 +10,17 @@ import StyledButton from "@/components/_styled_components/forms/StyledButton";
 const StyledAnchor = styled("a")(({ theme }) => ({
     textDecoration: "none",
     button: {
-        padding: "4px 24px",
+        padding: "8px 24px",
         fontFamily: "Montserrat Alternates",
+        fontSize: "18px",
     },
     "&:not(&:nth-of-type(1))": {
         marginLeft: "10px",
+    },
+    ["@media (max-width:1000px)"]: {
+        button: {
+            padding: "8px 24px",
+        },
     },
 }));
 

@@ -1,48 +1,8 @@
 // Tools
-import { styled, keyframes } from "@mui/system";
+import { styled } from "@mui/system";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 // Styled components
-const intro = keyframes({
-    "0%": {
-        width: "0px",
-        height: "50px",
-    },
-    "20%, 40%": {
-        width: "120px",
-        height: "50px",
-    },
-    "60%, 80%": {
-        width: "120px",
-        height: "100%",
-    },
-    "100%": {
-        width: "100%",
-        height: "100%",
-    },
-});
-
-const outro = keyframes({
-    "0%": {
-        transform: "translateX(-50%)",
-        left: "50%",
-        width: "100%",
-        height: "100%",
-        top: "auto",
-        bottom: 0,
-    },
-    "33%,66%": {
-        height: "100%",
-        width: "120px",
-    },
-    "100%": {
-        transform: "translateX(-50%)",
-        left: "50%",
-        width: "120px",
-        height: "0",
-        top: "auto",
-        bottom: 0,
-    },
-});
+import { intro, outro } from "./keyframes";
 
 export default styled("div")(({ theme }) => ({
     width: "100%",
@@ -50,10 +10,9 @@ export default styled("div")(({ theme }) => ({
     overflow: "hidden",
     margin: "20px 0",
     borderRadius: "10px",
-    //
     height: "650px",
     "#features-overflow-hidden-container": {
-        height: "467px",
+        height: "calc(100% - 50px)",
     },
     ".project-thumbnail, .image-actions-wrapper": {
         animation: `${fadeSimple} .001s 1.7s both`,
@@ -76,5 +35,29 @@ export default styled("div")(({ theme }) => ({
         zIndex: 10,
         background: theme.palette.secondary.main,
         animation: `${intro} 1s .5s both linear, ${outro} .7s 2.1s forwards linear`,
+    },
+    ["@media (max-width:1600px)"]: {
+        height: "600px",
+    },
+    ["@media (max-width:1500px)"]: {
+        height: "550px",
+    },
+    ["@media (max-width:900px)"]: {
+        height: "500px",
+    },
+    ["@media (max-width:800px)"]: {
+        height: "450px",
+    },
+    ["@media (max-width:700px)"]: {
+        height: "400px",
+    },
+    ["@media (max-width:600px)"]: {
+        height: "350px",
+    },
+    ["@media (max-width:500px)"]: {
+        height: "300px",
+    },
+    ["@media (max-width:400px)"]: {
+        height: "260px",
     },
 }));

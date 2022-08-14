@@ -5,7 +5,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import Image from "next/Image";
 // Styled components
-import SingleFeatureBase from "./styled_components/SingleFeatureBase";
+import SingleFeatureBase from "./SingleFeatureBase";
 
 interface SingleFeatureProps {
     index: number;

@@ -50,6 +50,7 @@ const ContentWrapper = styled("div")(({ theme }) => ({
         },
     },
     ["@media (max-width:600px)"]: {
+        marginTop: "12px",
         "#send-me-en-email-wrapper": {
             height: "570px",
             padding: "5px",

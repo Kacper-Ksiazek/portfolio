@@ -21,7 +21,7 @@ export default styled("h3")(({ theme }) => ({
         left: 0,
         fontSize: "18px",
         padding: "4px 16px",
-        width: "70px",
+        width: "80px",
         textAlign: "center",
         borderRadius: "3px",
         userSelect: "none",
