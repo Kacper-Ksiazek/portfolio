@@ -20,8 +20,8 @@ const SingleProject: NextPage<SingleProjectProps> = ({ project, recommendedProje
             <Head>
                 <title>{project.title}</title>
             </Head>
-            <Content project={project} />
-            {/* <ReleventTechnologies techStack={project.releventTechnologies} /> */}
+            {/* <Content project={project} /> */}
+            <ReleventTechnologies techStack={project.releventTechnologies} />
             {/* <RecommendedProjects recommendedProjects={recommendedProjects} /> */}
         </>
     );

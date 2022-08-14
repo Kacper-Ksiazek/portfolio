@@ -1,21 +1,7 @@
 // Tools
 import { styled, keyframes } from "@mui/system";
-// Types
-import type { FunctionComponent } from "react";
-import type { ReleventTechnology } from "@/@types/prisma/Project";
 // Other components
-import Image from "next/Image";
-import VisibilitySensor from "@/components/_utils/VisibilitySensor";
 import DarkWrapperBase from "@/components/_styled_components/content_placement/SectionWrapper/Dark/DarkWrapperBase";
-// Styled components
-const SingleTechnology = styled("div")(({ theme }) => ({
-    position: "relative",
-    width: "80px",
-    height: "80px",
-    "&:not(&:nth-of-type(1))": {
-        marginLeft: "50px",
-    },
-}));
 
 const fadeSimpleButWithSmallerOpacity = keyframes({
     from: {
@@ -26,7 +12,7 @@ const fadeSimpleButWithSmallerOpacity = keyframes({
     },
 });
 
-const ReleventTechnologiesBase = styled(DarkWrapperBase)(({ theme }) => ({
+export default styled(DarkWrapperBase)(({ theme }) => ({
     display: "flex",
     justifyContent: "center",
     "&.visible": {
@@ -57,34 +43,10 @@ const ReleventTechnologiesBase = styled(DarkWrapperBase)(({ theme }) => ({
             },
         },
     },
+    ["@media (max-width:900px)"]: {
+        flexWrap: "wrap",
+    },
+    ["@media (max-width:400px)"]: {
+        padding: "16px",
+    },
 }));
-
-interface ReleventTechnologiesProps {
-    techStack: ReleventTechnology[];
-}
-
-const ReleventTechnologies: FunctionComponent<ReleventTechnologiesProps> = (props) => {
-    return (
-        <VisibilitySensor>
-            <ReleventTechnologiesBase>
-                {props.techStack.map((item, index) => {
-                    return (
-                        <SingleTechnology
-                            key={item} //
-                            className="single-relevent-technology"
-                        >
-                            <Image
-                                alt={item}
-                                layout="fill" //
-                                objectFit="contain"
-                                src={`/images/technologies/white/${item}.png`}
-                            />
-                        </SingleTechnology>
-                    );
-                })}
-            </ReleventTechnologiesBase>
-        </VisibilitySensor>
-    );
-};
-
-export default ReleventTechnologies;
