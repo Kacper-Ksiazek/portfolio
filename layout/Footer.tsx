@@ -30,6 +30,9 @@ const AuthorHeader = styled("h4")(({ theme }) => ({
     fontSize: "20px",
     fontWeight: 700,
     fontFamily: "Montserrat Alternates",
+    ["@media (max-width:800px)"]: {
+        margin: 0,
+    },
     ["@media (max-width:500px)"]: {
         fontSize: "18px",
     },
