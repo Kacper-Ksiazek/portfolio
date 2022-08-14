@@ -114,7 +114,7 @@ export default {
         "&.outro": {
             animation: `${outroLeftVertical15px} .5s linear both`,
         },
-        ["@media (max-width:1400px)"]: {
+        ["@media (max-width:1600px)"]: {
             "&.intro": {
                 animation: `${introLeftVertical10px} .5s .6s linear both`,
             },

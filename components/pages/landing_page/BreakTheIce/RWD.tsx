@@ -2,12 +2,8 @@
 import type { SxProps } from "@mui/system";
 
 export default {
-    ["@media (max-width:1400px)"]: {
-        "#content-main-wrapper": {
-            width: "calc(55% - 32px)",
-        },
+    ["@media (max-width:1600px)"]: {
         "#picture-main-wrapper": {
-            width: "calc(45% - 32px)",
             "#picture-direct-wrapper": {
                 height: "380px",
                 width: "calc(100% - 20px)",
@@ -26,6 +22,14 @@ export default {
                     width: "10px",
                 },
             },
+        },
+    },
+    ["@media (max-width:1400px)"]: {
+        "#content-main-wrapper": {
+            width: "calc(55% - 32px)",
+        },
+        "#picture-main-wrapper": {
+            width: "calc(45% - 32px)",
         },
     },
     ["@media (max-width:1220px)"]: {
