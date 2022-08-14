@@ -27,6 +27,9 @@ const MobileBottomNavigationBase = styled("div")(({ theme }) => ({
     svg: {
         fontSize: "24px",
     },
+    ["@media (min-width:1001px)"]: {
+        display: "none",
+    },
 }));
 
 const MobileBottomNavigation: FunctionComponent<MobileBottomNavigationProps> = (props) => {
