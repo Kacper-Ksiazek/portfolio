@@ -30,3 +30,21 @@ export const wrapperOutroAnimation = keyframes({
         height: "92px",
     },
 });
+
+export const backgroundImageIntro = keyframes({
+    from: {
+        opacity: 0,
+    },
+    to: {
+        opacity: 0.15,
+    },
+});
+
+export const backgroundImageOutro = keyframes({
+    from: {
+        opacity: 0.15,
+    },
+    to: {
+        opacity: 0,
+    },
+});
