@@ -6,6 +6,7 @@ import type { FunctionComponent } from "react";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components
 import ContentOnCertainStage from "./ContentOnCertainStage";
+import MobileBottomNavigation from "./MobileBottomNavigation";
 // Styled components
 import Rectangle from "./_Rectangle";
 
@@ -22,6 +23,7 @@ const ContentWrapper = styled("div")(({ theme }) => ({
 interface BreakTheIceContentProps {
     stage: IceBreakingStage;
     previousStage: IceBreakingStage | null;
+    changeStage: (val: IceBreakingStage) => any;
 }
 
 const BreakTheIceContent: FunctionComponent<BreakTheIceContentProps> = (props) => {
@@ -54,6 +56,11 @@ const BreakTheIceContent: FunctionComponent<BreakTheIceContentProps> = (props) =
 
             <Rectangle id="rect-one" ref={RectangleOneElement} />
             <Rectangle id="rect-two" ref={RectangleTwoElement} />
+
+            <MobileBottomNavigation
+                stage={props.previousStage ? props.previousStage : props.stage} //
+                changeStage={props.changeStage}
+            />
         </ContentWrapper>
     );
 };

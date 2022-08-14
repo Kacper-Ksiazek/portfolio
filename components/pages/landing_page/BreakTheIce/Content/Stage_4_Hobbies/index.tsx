@@ -45,7 +45,7 @@ const Hobbies: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     name="German gangsta rap"
                     icon={<MusicNote />}
                     thumbnailReferenceURL="https://www.youtube.com/watch?v=0NL8H1IAHVc"
-                    description="I have fallen in love with German language and now I am trying to learn some fundamentals in order to progressively understand more lyrics which I enjoy listen to."
+                    description="I have fallen in love with German language and now I am trying to learn some basics in order to understand ever more lyrics."
                     thumbnailURL="/images/landing-page/hobbies/187.jpg"
                 />
                 <SingleHobby

@@ -78,7 +78,7 @@ const BreakTheIce: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 }}
             >
                 <SimpleFlexbox>
-                    <Content stage={stage} previousStage={previousStage} />
+                    <Content stage={stage} previousStage={previousStage} changeStage={changeStage} />
                     <Picture stage={stage} previousStage={previousStage} />
                 </SimpleFlexbox>
             </VisibilitySensor>

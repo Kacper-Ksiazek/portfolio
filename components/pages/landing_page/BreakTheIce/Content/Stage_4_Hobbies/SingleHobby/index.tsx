@@ -30,6 +30,7 @@ const Header = styled("h4")(({ theme }) => ({
 
 const Description = styled("p")(({ theme }) => ({
     margin: "0",
+    fontSize: "18px",
 }));
 
 const Reference = styled("a")(({ theme }) => ({

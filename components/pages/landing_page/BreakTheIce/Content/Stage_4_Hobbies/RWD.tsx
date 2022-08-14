@@ -8,15 +8,21 @@ export default {
         },
     },
     ["@media (max-width:1000px)"]: {
-        height: "400px",
+        height: "420px",
         marginTop: "40px",
         ".image-wrapper": {
-            height: "210px",
+            height: "250px",
+        },
+    },
+    ["@media (max-width:900px)"]: {
+        height: "410px",
+        ".image-wrapper": {
+            height: "230px",
         },
     },
     ["@media (max-width:800px)"]: {
         ".image-wrapper": {
-            height: "190px",
+            height: "210px",
         },
     },
     ["@media (max-width:700px)"]: {
@@ -31,7 +37,8 @@ export default {
     ["@media (max-width:550px)"]: {
         height: "400px",
         ".image-wrapper": {
-            height: "210px",
+            height: "220px",
+            margin: "8px 0",
         },
     },
 } as SxProps;

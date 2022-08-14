@@ -5,6 +5,7 @@ import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Icons
 import Star from "@mui/icons-material/Star";
+import StarHalf from "@mui/icons-material/StarHalf";
 import StarBorder from "@mui/icons-material/StarBorder";
 // Styled components
 const SingleLanguageBase = styled("div", {
@@ -34,7 +35,7 @@ const SingleLanguageBase = styled("div", {
 }));
 const Description = styled("span")(({ theme }) => ({
     fontWeight: 300,
-    width: "calc(100% - 75px - 120px - 20px)",
+    width: "calc(100% - 90px - 120px - 20px)",
     ["@media (max-width:600px)"]: {
         width: "100%",
         marginTop: "5px",
@@ -42,7 +43,7 @@ const Description = styled("span")(({ theme }) => ({
 }));
 const Name = styled("span")(({ theme }) => ({
     fontSize: "18px",
-    width: "75px",
+    width: "90px",
 }));
 
 const StarsWrapper = styled("div")(({ theme }) => ({
@@ -66,8 +67,14 @@ interface SingleLanguageProps {
 
 const SingleLanguage: FunctionComponent<SingleLanguageProps> = (props) => {
     const stars: ReactNode[] = [];
-    for (let i = 0; i < props.stars; i++) stars.push(<Star key={stars.length} />);
-    for (let i = 0; i < 5 - props.stars; i++) stars.push(<StarBorder key={stars.length} />);
+    for (let i = 0; i < Math.floor(props.stars); i++) stars.push(<Star key={stars.length} />);
+
+    if (String(props.stars).split(".").length === 2) {
+        stars.push(<StarHalf key={stars.length} />);
+        for (let i = 0; i < 4 - props.stars; i++) stars.push(<StarBorder key={stars.length} />);
+    } else {
+        for (let i = 0; i < 5 - props.stars; i++) stars.push(<StarBorder key={stars.length} />);
+    }
 
     return (
         <SingleLanguageBase animationDelay={props.animationDelay}>
