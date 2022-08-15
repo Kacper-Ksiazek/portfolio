@@ -9,7 +9,12 @@ import { LineTwo, LineOne, LineThree } from "./_styled_components/Lines";
 import IntroductionScreenBaseContent from "./_styled_components/IntroductionScreenBaseContent";
 import IntroductionScreenBaseWrapper from "./_styled_components/IntroductionScreenBaseWrapper";
 
-const IntroductionScreenBase: FunctionComponent<{ children: ReactNode }> = (props) => {
+interface IntroductionScreenBaseProps {
+    children: ReactNode;
+    renderBigCircle: boolean;
+}
+
+const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (props) => {
     const [renderContent, setRenderContent] = useState<boolean>(false);
 
     const [displayAnimations, setDisplayAnimations] = useState<boolean>(true);
@@ -45,7 +50,7 @@ const IntroductionScreenBase: FunctionComponent<{ children: ReactNode }> = (prop
                     return (
                         <>
                             <CircleOne />
-                            <CircleTwo />
+                            {props.renderBigCircle && <CircleTwo />}
                             <IntroductionScreenBaseContent>{props.children}</IntroductionScreenBaseContent>
                         </>
                     );

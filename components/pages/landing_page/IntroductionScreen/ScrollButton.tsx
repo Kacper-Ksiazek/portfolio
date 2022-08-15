@@ -44,6 +44,9 @@ const ScrollButtonBase = styled(ButtonBase)(({ theme }) => ({
             transform: "translateY(-5px)",
         },
     },
+    ["@media (max-width:800px)"]: {
+        bottom: "20px",
+    },
 }));
 
 const ScrollButton: FunctionComponent<MUIStyledCommonProps> = (props) => {

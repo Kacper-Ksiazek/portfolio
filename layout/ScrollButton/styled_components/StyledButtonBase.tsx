@@ -16,9 +16,12 @@ export default styled(ButtonBase)(({ theme }) => ({
     "&:hover": {
         backgroundColor: theme.palette.secondary.main,
     },
-    fontSize: "2rem",
     borderRadius: "5px 20px 5px 20px",
     svg: {
+        fontSize: "2rem",
         color: "#fff",
+    },
+    ["@media (max-width:1100px)"]: {
+        borderRadius: "5px",
     },
 }));

@@ -12,11 +12,14 @@ const ProjectsWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     marginBottom: "50px",
+    ["@media (max-width:750px)"]: {
+        alignItems: "center",
+    },
 }));
 
 const ParagraphForHeader = styled("p")(({ theme }) => ({
     margin: 0,
-    fontSize: "16px",
+    fontSize: "18px",
     animation: `${fadeFromLeft} .3s .7s both linear`,
 }));
 

@@ -1,8 +1,7 @@
 // Tools
-import { styled } from "@mui/system";
+import dynamic from "next/dynamic";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
-import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
-import fadeFromBottom from "@/components/_keyframes/intro/fadeFromBottom";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
@@ -10,53 +9,24 @@ import type { Project } from "@/@types/pages/projects/SingleProject";
 // Other components
 import Redirects from "./Redirects";
 import ImagesWrapper from "./Images";
-import { Paragraph, Header } from "./TextStyledComponents";
 import Duration from "../../../_shared/single-project/Duration";
 import VisibilitySensor from "@/components/_utils/VisibilitySensor";
+const MobileFeaturesList = dynamic(() => import("./MobileFeaturesList"));
 import DisplayTechnologies from "@/components/_utils/DisplayTechnologies";
+import { Paragraph, Header, ShortDescription } from "./styled_components/Text";
+import ProjectDescriptionWrapper from "./styled_components/ProjectDescriptionWrapper";
 import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
 // Styled components
-const DescriptionWrapper = styled("div")(({ theme }) => ({
-    "p, h3, a": {
-        visibility: "hidden",
-    },
-    "&.visible": {
-        "p, h3, a": {
-            visibility: "visible",
-        },
-        h3: {
-            "&:nth-of-type(1)": {
-                animation: `${fadeFromLeft} .3s .2s both linear`,
-            },
-            "&:nth-of-type(2)": {
-                animation: `${fadeFromLeft} .3s .3s both linear`,
-            },
-            "&:nth-of-type(3)": {
-                animation: `${fadeFromLeft} .3s .4s both linear`,
-            },
-        },
-        p: {
-            "&:nth-of-type(1)": {
-                animation: `${fadeFromLeft} .3s .25s both linear`,
-            },
-            "&:nth-of-type(2)": {
-                animation: `${fadeFromLeft} .3s .35s both linear`,
-            },
-            "&:nth-of-type(3)": {
-                animation: `${fadeFromLeft} .3s .45s both linear`,
-            },
-        },
-        a: {
-            animation: `${fadeFromBottom} .3s 1s both linear`,
-        },
-    },
-}));
 
 interface SingleProjectContentProps {
     project: Project;
 }
 
 const SingleProjectContent: FunctionComponent<SingleProjectContentProps> = ({ project }) => {
+    const { width } = useWindowSizes();
+
+    const renderMobileFeaturesList = width <= 1000;
+
     return (
         <LightSectionWrapper
             header={{
@@ -67,9 +37,17 @@ const SingleProjectContent: FunctionComponent<SingleProjectContentProps> = ({ pr
                         <Duration
                             start={project.start} //
                             end={project.end}
-                            sx={{ animation: `${fadeSimple} .2s .6s both linear` }}
+                            sx={{
+                                animation: `${fadeSimple} .2s .6s both linear`,
+                                ["@media (max-width:1000px)"]: {
+                                    marginBottom: "8px",
+                                },
+                            }}
                         />
-                        <DisplayTechnologies technologies={project.technologies} firstAnimationDelay={0.8} />
+                        <DisplayTechnologies
+                            technologies={project.technologies} //
+                            firstAnimationDelay={0.8}
+                        />
                     </>
                 ),
                 estimatedHeight: "180px",
@@ -77,12 +55,16 @@ const SingleProjectContent: FunctionComponent<SingleProjectContentProps> = ({ pr
             round="left"
             unlimitedHeight
         >
-            <Paragraph sx={{ animation: `${fadeFromLeft} .3s 1s both linear` }}>{formatTextViaBolding(project.shortDescription, true)}</Paragraph>
+            <ShortDescription>{formatTextViaBolding(project.shortDescription, true)}</ShortDescription>
 
-            <ImagesWrapper features={project.features} folder={project.folder} />
+            <ImagesWrapper
+                features={project.features} //
+                folder={project.folder}
+                renderMobileFeaturesList={renderMobileFeaturesList}
+            />
 
             <VisibilitySensor>
-                <DescriptionWrapper>
+                <ProjectDescriptionWrapper>
                     <Header>Introduction and quick overview</Header>
                     <Paragraph>{formatTextViaBolding(project.description.introduction, true)}</Paragraph>
 
@@ -92,8 +74,15 @@ const SingleProjectContent: FunctionComponent<SingleProjectContentProps> = ({ pr
                     <Header>Conclusion and finals thoughts</Header>
                     <Paragraph>{formatTextViaBolding(project.description.conclusion, true)}</Paragraph>
 
+                    {renderMobileFeaturesList && (
+                        <MobileFeaturesList
+                            features={project.features} //
+                            folder={project.folder}
+                        />
+                    )}
+
                     <Redirects githubURL={project.githubURL} liveDemoURL={project.liveDemoURL} />
-                </DescriptionWrapper>
+                </ProjectDescriptionWrapper>
             </VisibilitySensor>
         </LightSectionWrapper>
     );

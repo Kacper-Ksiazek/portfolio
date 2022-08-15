@@ -8,8 +8,17 @@ import SingleRedirect from "./SingleRedirect";
 const RedirectsWrapper = styled("section")(({ theme }) => ({
     display: "flex",
     marginTop: "50px",
-    "&:not(&:nth-of-type(1))": {
-        marginLeft: "10px",
+    ["@media (max-width:600px)"]: {
+        flexDirection: "column",
+        a: {
+            marginLeft: "0 !important",
+            "&:not(&:nth-of-type(1))": {
+                marginTop: "10px",
+            },
+        },
+        button: {
+            width: "100%",
+        },
     },
 }));
 

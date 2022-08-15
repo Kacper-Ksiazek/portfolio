@@ -1,4 +1,5 @@
 // Tools
+import RWD from "./RWD";
 import { styled } from "@mui/system";
 import stated from "@/utils/client/stated";
 import { useState, useEffect } from "react";
@@ -17,14 +18,16 @@ import LightSectionWrapper from "@/components/_styled_components/content_placeme
 
 const SimpleFlexbox = styled("div")(({ theme }) => ({
     display: "flex",
+    marginTop: "16px",
     flexGrow: "1",
     justifyContent: "space-between",
     width: "100%",
     "&.visible": {
-        ".picture-wrapper": {
+        "#picture-main-wrapper": {
             animation: `${fadeSimple} .5s .5s both`,
         },
     },
+    ...(RWD as any),
 }));
 
 const BreakTheIce: FunctionComponent<MUIStyledCommonProps> = (props) => {
@@ -75,7 +78,7 @@ const BreakTheIce: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 }}
             >
                 <SimpleFlexbox>
-                    <Content stage={stage} previousStage={previousStage} />
+                    <Content stage={stage} previousStage={previousStage} changeStage={changeStage} />
                     <Picture stage={stage} previousStage={previousStage} />
                 </SimpleFlexbox>
             </VisibilitySensor>

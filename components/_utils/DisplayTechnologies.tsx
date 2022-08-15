@@ -16,6 +16,9 @@ const SingleTechnology = styled("li")(({ theme }) => ({
     border: `1px solid ${theme.palette.primary.main}`,
     padding: "2px 15px",
     margin: "10px 10px 0 0 ",
+    ["@media (max-width:600px)"]: {
+        margin: "6px 6px 0 0 ",
+    },
 }));
 
 interface DisplayTechnologiesProps {

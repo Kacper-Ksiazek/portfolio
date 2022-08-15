@@ -1,4 +1,5 @@
 // Tools
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
 import type { RecommendedProject } from "@/@types/pages/projects/SingleProject";
@@ -15,17 +16,21 @@ import SingleRecommendedProjectBase from "./styled_components/SingleRecommendedP
 
 interface SingleRecommendedProjectProps {
     data: RecommendedProject;
+    numberOfTechnologiesToDisplay: number;
 }
 
-const SingleRecommendedProject: FunctionComponent<SingleRecommendedProjectProps> = ({ data }) => {
+const SingleRecommendedProject: FunctionComponent<SingleRecommendedProjectProps> = ({ data, numberOfTechnologiesToDisplay }) => {
     return (
         <SingleRecommendedProjectBase>
             <Duration end={data.end} start={data.start} smaller />
-            <Header>{data.title}</Header>
-            <Technologies technologies={data.releventTechnologies.slice(0, 6)} />
+            <Header className={data.title.length > 20 ? "long-header" : ""}>{data.title}</Header>
+            <Technologies
+                technologies={data.releventTechnologies.slice(0, numberOfTechnologiesToDisplay)} //
+                thereAreMoreTechnologies={data.releventTechnologies.length > numberOfTechnologiesToDisplay}
+            />
             <Thumbnail folder={data.folder} id={data.id} />
             <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                {data.shortDescription}
+                {formatTextViaBolding(data.shortDescription)}
             </Typography>
             <ReadMore id={data.id} />
         </SingleRecommendedProjectBase>

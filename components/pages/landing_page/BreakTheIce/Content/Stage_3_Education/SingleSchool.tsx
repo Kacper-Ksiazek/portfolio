@@ -42,6 +42,16 @@ const SingleSchoolWrapper = styled("div")(({ theme }) => ({
     "&:nth-of-type(2)": {
         animation: `${fadeFromLeft} .5s 1.1s both`,
     },
+    ["@media (max-width:1000px)"]: {
+        width: "100%",
+    },
+    ["@media (max-width:500px)"]: {
+        flexDirection: "column-reverse",
+        ".single-school-content-wrapper": {
+            marginTop: "10px",
+            width: "100%",
+        },
+    },
 }));
 
 const ImageWrapper = styled("div")(({ theme }) => ({
@@ -61,6 +71,12 @@ const ContentWrapper = styled("div")(({ theme }) => ({
     width: "calc(100% - 120px - 20px)",
     display: "flex",
     flexDirection: "column",
+    ["@media (max-width:1000px)"]: {
+        width: "calc(100% - 120px - 50px)",
+    },
+    ["@media (max-width:800px)"]: {
+        width: "calc(100% - 120px - 32px)",
+    },
 }));
 
 const Header = styled("h4")(({ theme }) => ({
@@ -72,6 +88,7 @@ const Header = styled("h4")(({ theme }) => ({
 const Type = styled("span")(({ theme }) => ({
     fontSize: "18px",
     color: theme.palette.primary.main,
+    marginBottom: "6px",
 }));
 
 const Date = styled("span")(({ theme }) => ({
@@ -104,7 +121,7 @@ interface SingleSchoolProps {
 const SingleSchool: FunctionComponent<SingleSchoolProps> = (props) => {
     return (
         <SingleSchoolWrapper>
-            <ContentWrapper>
+            <ContentWrapper className="single-school-content-wrapper">
                 <Date>
                     <AccessTime />
                     {props.start}

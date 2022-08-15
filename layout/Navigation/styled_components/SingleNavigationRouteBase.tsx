@@ -54,4 +54,14 @@ export default styled(ButtonBase)(({ theme }) => ({
             color: "#fff",
         },
     },
+    ["@media (max-width:1000px)"]: {
+        marginLeft: "0px",
+        fontSize: "20px",
+        width: "calc(100% - 20px)",
+        padding: "24px 0",
+        maxWidth: "300px",
+        "&:not(&:nth-of-type(1))": {
+            marginTop: "20px",
+        },
+    },
 }));

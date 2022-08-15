@@ -24,6 +24,52 @@ const ContentWrapper = styled("div")(({ theme }) => ({
     "&.visible": {
         // background: "yellow",
     },
+    ["@media (max-width:1400px)"]: {
+        "#contact-details-wrapper, #send-me-en-email-wrapper": {
+            width: "calc(50% - 20px)",
+        },
+    },
+    ["@media (max-width:1150px)"]: {
+        "#send-me-en-email-wrapper": {
+            width: "calc(60% - 20px)",
+        },
+        "#contact-details-wrapper": {
+            width: "calc(40% - 20px)",
+        },
+    },
+    ["@media (max-width:1000px)"]: {
+        flexDirection: "column",
+        "#contact-details-wrapper": {
+            marginBottom: "64px",
+        },
+        "#send-me-en-email-wrapper": {
+            height: "560px",
+        },
+        "#contact-details-wrapper, #send-me-en-email-wrapper": {
+            width: "100%",
+        },
+    },
+    ["@media (max-width:600px)"]: {
+        marginTop: "12px",
+        "#send-me-en-email-wrapper": {
+            height: "570px",
+            padding: "5px",
+        },
+    },
+    ["@media (max-width:400px)"]: {
+        "#send-me-en-email-wrapper": {
+            h4: {
+                fontSize: "28px",
+            },
+        },
+    },
+    ["@media (max-width:340px)"]: {
+        "#send-me-en-email-wrapper": {
+            h4: {
+                fontSize: "24px",
+            },
+        },
+    },
 }));
 
 const Contact: FunctionComponent<MUIStyledCommonProps> = (props) => {
@@ -48,7 +94,7 @@ const Contact: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 }}
             >
                 <ContentWrapper>
-                    <TextWrapper>
+                    <TextWrapper id="contact-details-wrapper">
                         <Paragraph animationDelay={0.4}>
                             I currently live and study in the <strong>Kraków</strong> (Cracow, Poland) thus I am ready start either office or hybrid job here.
                         </Paragraph>

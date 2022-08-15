@@ -51,4 +51,5 @@ export const ProcessRequestStageWrapper = styled("div")(({ theme }) => ({
 
 export const BottomInformation = styled("span")(({ theme }) => ({
     marginTop: "10px",
+    textAlign: "center",
 }));

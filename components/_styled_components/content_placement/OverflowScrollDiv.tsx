@@ -25,12 +25,6 @@ const Wrapper = styled("div", {
             borderRadius: "2px",
         },
     },
-    ["@media (max-width:800px)"]: {
-        padding: "0 20px",
-    },
-    ["@media (max-width:600px)"]: {
-        padding: "0 10px 0 10px",
-    },
 }));
 interface OverflowScrollDivProps {
     children: ReactNode;

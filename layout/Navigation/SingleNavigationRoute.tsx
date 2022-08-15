@@ -38,7 +38,7 @@ const SingleNavigationRoute: FunctionComponent<SingleNavigationRouteProps> = (pr
     };
 
     return (
-        <SingleNavigationRouteBase onClick={onRedirectionClick}>
+        <SingleNavigationRouteBase onClick={onRedirectionClick} className="single-main-navigation-route">
             <span className="text">{props.children}</span>
             <span className="line left"></span>
             <span className="line right"></span>

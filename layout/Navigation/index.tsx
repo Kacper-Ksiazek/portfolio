@@ -2,6 +2,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useStylesOnScoll from "./hooks/useStylesOnScoll";
+import useMobileMenuHandlers from "./hooks/useMobileMenuHandlers";
 import useHideWhileScrollingDown from "./hooks/useHideWhileScrollingDown";
 // Types
 import type { FunctionComponent } from "react";
@@ -10,13 +11,16 @@ import type { MUIStyledCommonProps } from "@mui/system";
 import Fade from "@mui/material/Fade";
 // Other components
 import Logo from "./Logo";
+import MobileMenuButton from "./MobileMenuButton";
 // Styled Components
-import NavigationBase from "./styled_components/NavigationBase";
-import SingleFlexWrapper from "./styled_components/SimpleFlexWrapper";
+import MobileAuthor from "./styled_components/MobileAuthor";
 import SingleNavigationRoute from "./SingleNavigationRoute";
+import RoutesWrapper from "./styled_components/RoutesWrapper";
+import NavigationBase from "./styled_components/NavigationBase";
 
 const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const applyAfterScrollStyles = useStylesOnScoll();
+    const { mobileMenuIsOpened, toggleMobileMenuIsOpened, renderMobileMenuButton, routesWrapperElementCSSClass } = useMobileMenuHandlers();
     const { hideNavigaton, scrollingAnimationToDisplay, forceShowingNavigaton } = useHideWhileScrollingDown();
 
     const [displayContrastStyles, setDisplayContrastStyles] = useState<boolean>(false);
@@ -41,25 +45,41 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
             <div>
                 <NavigationBase
                     className={[
-                        applyAfterScrollStyles ? "after-scroll-styles" : "", //
-                        displayContrastStyles ? "contrast-colors" : "",
+                        !mobileMenuIsOpened && applyAfterScrollStyles ? "after-scroll-styles" : "", //
+                        displayContrastStyles || routesWrapperElementCSSClass === "opened" ? "contrast-colors" : "",
                         scrollingAnimationToDisplay !== null ? `display-${scrollingAnimationToDisplay}-animation` : "",
                         landingPageIntroAnimation,
                     ].join(" ")}
                 >
                     <div id="main-navigation-content">
                         <Logo />
-                        <SingleFlexWrapper>
+
+                        {(() => {
+                            if (renderMobileMenuButton) {
+                                return (
+                                    <MobileMenuButton
+                                        onClick={toggleMobileMenuIsOpened} //
+                                        isOpened={mobileMenuIsOpened}
+                                    />
+                                );
+                            }
+                        })()}
+
+                        <RoutesWrapper className={routesWrapperElementCSSClass ?? ""}>
                             <SingleNavigationRoute idOfElementToScroll="about-me" forceShowingNavigaton={forceShowingNavigaton}>
                                 About me
                             </SingleNavigationRoute>
                             <SingleNavigationRoute idOfElementToScroll="projects" forceShowingNavigaton={forceShowingNavigaton}>
                                 Projects
                             </SingleNavigationRoute>
-                            <SingleNavigationRoute idOfElementToScroll="contact" forceShowingNavigaton={forceShowingNavigaton}>
+                            <SingleNavigationRoute idOfElementToScroll="contact " forceShowingNavigaton={forceShowingNavigaton}>
                                 Contact
                             </SingleNavigationRoute>
-                        </SingleFlexWrapper>
+                            <MobileAuthor>
+                                <span id="mobile-menu-bottom-card-name">Kacper Książek</span>
+                                <span id="mobile-menu-bottom-card-year">{new Date(Date.now()).getUTCFullYear()}</span>
+                            </MobileAuthor>
+                        </RoutesWrapper>
                     </div>
                 </NavigationBase>
             </div>

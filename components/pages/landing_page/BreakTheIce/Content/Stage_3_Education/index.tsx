@@ -37,6 +37,7 @@ const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
             >
                 <ScrollbarHidder />
                 <SingleSchool
+                    end="Present"
                     start="2022"
                     description="I study at the faculty called *Engineering and Data Analysis*"
                     thumbnailURL="/images/landing-page/schools/agh.jpg"

@@ -5,7 +5,7 @@ import SectionWrapper from "../_SectionWrapper";
 
 export default styled(SectionWrapper)(({ theme }) => ({
     background: "white",
-    padding: "40px 0",
+    overflow: "hidden",
     boxSizing: "border-box",
     "&.round-left": {
         borderRadius: "100px 20px 100px 20px",
@@ -15,5 +15,15 @@ export default styled(SectionWrapper)(({ theme }) => ({
     },
     "&.limited-height": {
         height: "800px",
+    },
+    ["@media (max-width:1100px)"]: {
+        "&.round-left, &.round-right": {
+            borderRadius: "20px ",
+        },
+    },
+    ["@media (max-width:1000px)"]: {
+        "&.limited-height": {
+            height: "auto",
+        },
     },
 }));

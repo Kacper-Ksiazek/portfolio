@@ -11,7 +11,7 @@ const drawBackgroundShape = keyframes({
     },
     "40%,60%": {
         width: "80px",
-        height: "150%",
+        height: "110%",
     },
     "100%": {
         width: "350px",
@@ -19,7 +19,7 @@ const drawBackgroundShape = keyframes({
     },
 });
 
-const rotateLeft = keyframes({
+const rotateLeftBiggerDegree = keyframes({
     from: {
         transform: "rotate(0deg)",
     },
@@ -27,7 +27,17 @@ const rotateLeft = keyframes({
         transform: "rotate(22deg)",
     },
 });
-const rotateRight = keyframes({
+
+const rotateLeftSmallerDegree = keyframes({
+    from: {
+        transform: "rotate(0deg)",
+    },
+    to: {
+        transform: "rotate(11deg)",
+    },
+});
+
+const rotateRightBiggerDegree = keyframes({
     from: {
         transform: "rotate(0deg)",
     },
@@ -36,22 +46,45 @@ const rotateRight = keyframes({
     },
 });
 
+const rotateRightSmallerDegree = keyframes({
+    from: {
+        transform: "rotate(0deg)",
+    },
+    to: {
+        transform: "rotate(-11deg)",
+    },
+});
+
 export default styled(SectionWrapper)(({ theme }) => ({
     background: theme.palette.background.paper,
-    padding: "24px 0",
     boxSizing: "border-box",
     borderRadius: "20px",
     overflow: "hidden",
+    "&>*": {
+        visibility: "hidden",
+    },
     "&.visible": {
         "&>*": {
             visibility: "visible",
         },
         ".background-shape": {
             "&.left": {
-                animation: `${drawBackgroundShape} 1s .2s linear both, ${rotateLeft} 1s 1.5s both linear`,
+                animation: `${drawBackgroundShape} 1s .2s linear both, ${rotateLeftBiggerDegree} 1s 1.5s both linear`,
+                ["@media (max-width:900px)"]: {
+                    animation: `${drawBackgroundShape} 1s .2s linear both, ${rotateLeftSmallerDegree} 1s 1.5s both linear`,
+                },
+                ["@media (max-width:400px)"]: {
+                    animation: `${drawBackgroundShape} 1s .2s linear both`,
+                },
             },
             "&.right": {
-                animation: `${drawBackgroundShape} 1s .2s linear both, ${rotateRight} 1s 1.5s both linear`,
+                animation: `${drawBackgroundShape} 1s .2s linear both, ${rotateRightBiggerDegree} 1s 1.5s both linear`,
+                ["@media (max-width:900px)"]: {
+                    animation: `${drawBackgroundShape} 1s .2s linear both, ${rotateRightSmallerDegree} 1s 1.5s both linear`,
+                },
+                ["@media (max-width:400px)"]: {
+                    animation: `${drawBackgroundShape} 1s .2s linear both`,
+                },
             },
         },
         ".dark-content-wrapper-main-header": {

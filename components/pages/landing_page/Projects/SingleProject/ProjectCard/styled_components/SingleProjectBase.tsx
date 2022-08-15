@@ -65,4 +65,60 @@ export default styled("div")(({ theme }) => ({
             ...(shapesOnHoverAnimations as any),
         },
     },
+    ["@media (max-width:1300px)"]: {
+        width: "calc(50% + 40px)",
+        marginBottom: "32px",
+    },
+    ["@media (max-width:1100px)"]: {
+        width: "calc(50% + 90px)",
+    },
+    ["@media (max-width:1000px)"]: {
+        width: "100%",
+        marginBottom: "48px",
+        ".thumbnail-wrapper": {
+            height: "240px",
+            width: "320px",
+        },
+    },
+    ["@media (max-width:800px)"]: {
+        ".thumbnail-wrapper": {
+            height: "200px",
+            width: "240px",
+        },
+    },
+    ["@media (max-width:750px)"]: {
+        maxWidth: "500px",
+        "&.even": {
+            flexDirection: "column-reverse",
+        },
+        "&.odd": {
+            flexDirection: "column-reverse",
+        },
+        ".thumbnail-wrapper": {
+            height: "280px",
+            width: "500px",
+            marginBottom: "16px",
+        },
+        ".single-project-text-content-wrapper": {
+            width: "100%",
+            margin: "0 !important",
+            ".MuiTypography-body2, .duration": {
+                fontSize: "16px",
+                svg: {
+                    fontSize: "24px",
+                },
+            },
+        },
+    },
+    ["@media (max-width:580px)"]: {
+        ".thumbnail-wrapper": {
+            height: "280px",
+            width: "100%",
+        },
+    },
+    ["@media (max-width:420px)"]: {
+        ".thumbnail-wrapper": {
+            height: "240px",
+        },
+    },
 }));

@@ -14,7 +14,7 @@ const LengthNotification = styled("span")(({ theme }) => ({
     fontSize: "14px",
     marginTop: "4px",
     marginBottom: "32px",
-    animation: `${fadeFromTop} .2s .4s linear both`,
+    animation: `${fadeFromTop} .2s .4s linear backwards`,
 }));
 
 const FormStage1: FunctionComponent = (props) => {
@@ -34,7 +34,7 @@ const FormStage1: FunctionComponent = (props) => {
                 onChange={(e) => formStageOneContext.setAuthor(e.target.value)}
                 error={formStageOneContext.authorIsInvalid}
                 sx={{
-                    animation: `${fadeFromLeft} .2s .2s linear both`,
+                    animation: `${fadeFromLeft} .2s .2s linear backwards`,
                 }}
             />
             <StyledInput
@@ -44,7 +44,7 @@ const FormStage1: FunctionComponent = (props) => {
                 onChange={(e) => formStageOneContext.setSubject(e.target.value)}
                 error={formStageOneContext.subjectIsInvalid}
                 sx={{
-                    animation: `${fadeFromLeft} .2s .3s linear both`,
+                    animation: `${fadeFromLeft} .2s .3s linear backwards`,
                 }}
             />
             <StyledInput
@@ -56,7 +56,7 @@ const FormStage1: FunctionComponent = (props) => {
                 onChange={(e) => formStageOneContext.setMessage(e.target.value)}
                 error={formStageOneContext.messageIsInvalid}
                 sx={{
-                    animation: `${fadeFromLeft} .2s .4s linear both`,
+                    animation: `${fadeFromLeft} .2s .4s linear backwards`,
                 }}
             />
             <LengthNotification>{formStageOneContext.message.length} / 500</LengthNotification>

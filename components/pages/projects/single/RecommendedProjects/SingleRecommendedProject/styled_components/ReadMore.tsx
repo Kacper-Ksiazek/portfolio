@@ -19,6 +19,13 @@ const ReadMoreButton = styled(StyledButton)(({ theme }) => ({
         fontSize: "18px",
         margin: "1px 0 0 10px",
     },
+    ["@media (max-width:1300px)"]: {
+        marginTop: "12px",
+    },
+    ["@media (max-width:680px)"]: {
+        width: "100%",
+        marginTop: "24px",
+    },
 }));
 
 interface ReadMoreProps {

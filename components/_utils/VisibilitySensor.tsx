@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import { useState, useEffect, useRef } from "react";
 // Types
 import type { SxProps } from "@mui/system";
@@ -29,6 +30,7 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
     // This is mainly for timeline purpose
     const DELAY_BETWEEN_SHOWING_IDENTICAL_ELEMENTS: number = 2200;
 
+    const { width } = useWindowSizes();
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const wrapperElement = useRef<HTMLElement | null>(null);
 
@@ -67,6 +69,8 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
     };
 
     useEffect(() => {
+        if (width < 1000) return;
+
         if (wrapperElement.current?.firstChild) {
             if (isVisible) {
                 (wrapperElement.current.firstChild as any).classList.add("visible");
@@ -80,12 +84,36 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
                 }
             }
             //
-            else {
-                (wrapperElement.current.firstChild as any).classList.remove("visible");
-                (wrapperElement.current.firstChild as any).classList.add("not-visable");
+            // else {
+            //     (wrapperElement.current.firstChild as any).classList.remove("visible");
+            //     (wrapperElement.current.firstChild as any).classList.add("not-visable");
+            // }
+        }
+    }, [isVisible, props.removeVisibleCSSClassIn, width]);
+
+    useEffect(() => {
+        if (wrapperElement.current?.firstChild) {
+            if (width < 1000) {
+                (wrapperElement.current.firstChild as any).classList.add("visible");
+                (wrapperElement.current.firstChild as any).classList.remove("not-visable");
+            }
+            if (props.removeVisibleCSSClassIn) {
+                setTimeout(() => {
+                    if (wrapperElement.current && wrapperElement.current.firstChild) {
+                        (wrapperElement.current.firstChild as any).classList.remove("visible");
+                    }
+                }, props.removeVisibleCSSClassIn);
             }
         }
-    }, [isVisible, props.removeVisibleCSSClassIn]);
+    }, [width, props.removeVisibleCSSClassIn]);
+
+    if (width <= 1000) {
+        return (
+            <ChildrenWrapper ref={wrapperElement as any} sx={props.childWrapperSx}>
+                {props.children}
+            </ChildrenWrapper>
+        );
+    }
 
     return (
         <VisibilitySensorBase

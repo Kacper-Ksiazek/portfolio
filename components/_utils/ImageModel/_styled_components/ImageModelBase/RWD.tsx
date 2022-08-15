@@ -42,10 +42,6 @@ export default {
             },
         },
         "div.imageWrapper": {
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
             zIndex: "10",
             width: "calc(100vw - 10px)",
             height: "calc(100vh - 40px)",

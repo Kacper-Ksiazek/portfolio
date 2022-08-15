@@ -13,10 +13,11 @@ import StepButton from "@mui/material/StepButton";
 // Styled components
 const StyledStepper = styled(Stepper)(({ theme }) => ({
     marginBottom: "30px", //
-    animation: `${fadeFromLeft} .2s .2s linear both`,
+    animation: `${fadeFromLeft} .2s .2s linear backwards`,
     ".MuiStepLabel-label": {
         fontWeight: 500,
     },
+    maxWidth: "360px",
 }));
 
 const NavigationBetweenStages: FunctionComponent = (props) => {
@@ -34,11 +35,6 @@ const NavigationBetweenStages: FunctionComponent = (props) => {
             <Step active={formFillingStage === "contact_details"} completed={formStageTwo.everythingIsValid}>
                 <StepButton color="inherit" onClick={() => setFormFillingStage("contact_details")} className="single-nagivation-step two">
                     Contact details
-                </StepButton>
-            </Step>
-            <Step active={formFillingStage === "recaptcha"} completed={true}>
-                <StepButton color="inherit" onClick={() => setFormFillingStage("recaptcha")} className="single-nagivation-step three">
-                    ReCAPTCHA
                 </StepButton>
             </Step>
         </StyledStepper>

@@ -20,16 +20,27 @@ const FooterBase = styled("footer")(({ theme }) => ({
         fontWeight: 300,
     },
     userSelect: "none",
+    ["@media (max-width:500px)"]: {
+        width: "calc(100vw - 20px)",
+        margin: "0 auto 10px auto",
+    },
 }));
 const AuthorHeader = styled("h4")(({ theme }) => ({
     margin: "10px 0 0 0",
     fontSize: "20px",
     fontWeight: 700,
+    fontFamily: "Montserrat Alternates",
+    ["@media (max-width:800px)"]: {
+        margin: 0,
+    },
+    ["@media (max-width:500px)"]: {
+        fontSize: "18px",
+    },
 }));
 const Footer: FunctionComponent<MUIStyledCommonProps> = (props) => {
     return (
         <FooterBase>
-            <AuthorHeader className="alternative-font-family">Created by: Kacper Książek</AuthorHeader>
+            <AuthorHeader>Created by: Kacper Książek</AuthorHeader>
             <span>2022</span>
         </FooterBase>
     );

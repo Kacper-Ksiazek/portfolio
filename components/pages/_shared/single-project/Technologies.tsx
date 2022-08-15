@@ -17,20 +17,33 @@ const SingleTechnology = styled("div")(({ theme }) => ({
         marginLeft: "5px",
     },
 }));
+
+const ThereAreMoreTechnologies = styled("span")(({ theme }) => ({
+    fontSize: "20px",
+    lineHeight: "20px",
+    marginLeft: "8px",
+}));
+
 interface TechnologiesProps {
     technologies: string[];
+    thereAreMoreTechnologies?: boolean;
 }
 
-const Technologies: FunctionComponent<TechnologiesProps> = ({ technologies }) => {
+const Technologies: FunctionComponent<TechnologiesProps> = (props) => {
     return (
         <TechnologiesWrapper className="technologies-wrapper">
-            {technologies.map((item, index) => {
+            {props.technologies.map((item, index) => {
                 return (
                     <SingleTechnology key={item} className="single-technology">
                         {item}
                     </SingleTechnology>
                 );
             })}
+            {(() => {
+                if (props.thereAreMoreTechnologies) {
+                    return <ThereAreMoreTechnologies className="there-are-more-technologies">...</ThereAreMoreTechnologies>;
+                }
+            })()}
         </TechnologiesWrapper>
     );
 };

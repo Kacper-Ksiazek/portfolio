@@ -1,4 +1,6 @@
 // Tools
+import RWD from "./RWD";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
 // Types
 import type { FunctionComponent } from "react";
@@ -14,6 +16,7 @@ import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import Paragraph from "../_styled_components/Paragraph";
 
 const Hobbies: FunctionComponent<MUIStyledCommonProps> = (props) => {
+    const { width } = useWindowSizes();
     return (
         <>
             <Paragraph animationDelay={0.7}>
@@ -22,12 +25,13 @@ const Hobbies: FunctionComponent<MUIStyledCommonProps> = (props) => {
             </Paragraph>
             <Carousel
                 itemsInTotal={3} //
-                itemsPerSlide={2}
+                itemsPerSlide={width <= 550 ? 1 : 2}
                 spacing={40}
-                wrapperSx={{ mt: "20px" }}
+                wrapperSx={{ mt: "20px", ...(RWD as any) }}
                 navigationSx={{
                     animation: `${fadeFromTop} .3s 2s linear both`,
                 }}
+                key={width}
             >
                 <SingleHobby
                     label="Coding" //
@@ -41,7 +45,7 @@ const Hobbies: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     name="German gangsta rap"
                     icon={<MusicNote />}
                     thumbnailReferenceURL="https://www.youtube.com/watch?v=0NL8H1IAHVc"
-                    description="I have fallen in love with German language and now I am trying to learn some fundamentals in order to progressively understand more lyrics which I enjoy listen to."
+                    description="I have fallen in love with German language and now I am trying to learn some basics in order to understand ever more lyrics."
                     thumbnailURL="/images/landing-page/hobbies/187.jpg"
                 />
                 <SingleHobby

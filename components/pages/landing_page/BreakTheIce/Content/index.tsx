@@ -1,11 +1,14 @@
 // Tools
-import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import { styled } from "@mui/system";
+import { useEffect, useRef } from "react";
+import useWindowSizes from "@/hooks/useWindowSizes";
 // Types
 import type { FunctionComponent } from "react";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components
 import ContentOnCertainStage from "./ContentOnCertainStage";
+const MobileBottomNavigation = dynamic(() => import("./MobileBottomNavigation"));
 // Styled components
 import Rectangle from "./_Rectangle";
 
@@ -15,15 +18,19 @@ const ContentWrapper = styled("div")(({ theme }) => ({
     overflow: "hidden",
     cursor: "default",
     display: "flex",
+    minHeight: "400px",
     flexDirection: "column",
 }));
 
 interface BreakTheIceContentProps {
     stage: IceBreakingStage;
     previousStage: IceBreakingStage | null;
+    changeStage: (val: IceBreakingStage) => any;
 }
 
 const BreakTheIceContent: FunctionComponent<BreakTheIceContentProps> = (props) => {
+    const { width } = useWindowSizes();
+
     const RectangleOneElement = useRef<HTMLSpanElement | null>(null);
     const RectangleTwoElement = useRef<HTMLSpanElement | null>(null);
 
@@ -48,11 +55,18 @@ const BreakTheIceContent: FunctionComponent<BreakTheIceContentProps> = (props) =
     }, [props.stage]);
 
     return (
-        <ContentWrapper>
+        <ContentWrapper id="content-main-wrapper">
             <ContentOnCertainStage stage={props.previousStage ? props.previousStage : props.stage} />
 
             <Rectangle id="rect-one" ref={RectangleOneElement} />
             <Rectangle id="rect-two" ref={RectangleTwoElement} />
+
+            {width < 1000 && (
+                <MobileBottomNavigation
+                    stage={props.previousStage ? props.previousStage : props.stage} //
+                    changeStage={props.changeStage}
+                />
+            )}
         </ContentWrapper>
     );
 };

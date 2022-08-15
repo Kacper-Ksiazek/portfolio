@@ -27,13 +27,15 @@ const BottomRightCornerActions: FunctionComponent = () => {
 
     return (
         <ImageActionsWrapper className="image-actions-wrapper">
-            <ImageAction
-                ref={featuresButtonElement}
-                onClick={handleFeaturesButtonClick} //
-                sx={{ width: "190px" }}
-            >
-                {context.openBrowseFeatures ? `Close features ` : `Browse features`}
-            </ImageAction>
+            {!context.renderMobileFeaturesList && (
+                <ImageAction
+                    ref={featuresButtonElement}
+                    onClick={handleFeaturesButtonClick} //
+                    sx={{ width: "210px" }}
+                >
+                    {context.openBrowseFeatures ? `Close features ` : `Browse features`}
+                </ImageAction>
+            )}
 
             <ImagePreviewButton onClick={() => context.setOpenThumbnailModal(true)} />
         </ImageActionsWrapper>

@@ -21,6 +21,9 @@ export default styled("div")(({ theme }) => ({
     height: "80px",
     zIndex: 2,
     transition: "all .3s",
+    paddingLeft: "64px",
+    paddingRight: "64px",
+    boxSizing: "border-box",
     background: theme.palette.background.default,
 
     "div#main-navigation-content": {
@@ -44,6 +47,9 @@ export default styled("div")(({ theme }) => ({
                 border: "1px solid #000",
             },
         },
+        "#mobile-menu-opener": {
+            color: "#fff",
+        },
     },
 
     "&.display-outro-animation": {
@@ -66,8 +72,22 @@ export default styled("div")(({ theme }) => ({
         paddingTop: "0px",
         boxSizing: "border-box",
         background: theme.palette.background.default,
-        "div#main-navigation-content": {
+        paddingLeft: "32px",
+        paddingRight: "32px",
+        "#main-navigation-content": {
             maxWidth: "1400px",
+        },
+        "#mobile-menu-opener": {
+            color: "#000",
+        },
+    },
+    ["@media (max-width:500px)"]: {
+        paddingLeft: "32px",
+        paddingRight: "32px",
+        paddingTop: "24px",
+        "&.after-scroll-styles": {
+            paddingLeft: "24px",
+            paddingRight: "24px",
         },
     },
 }));

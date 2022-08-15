@@ -73,7 +73,7 @@ const Carosuel: FunctionComponent<CarosuelProps> = (props) => {
     // Set width of wrapper and of each children
     useEffect(() => {
         if (childrenElemenetsWrapperElement.current) {
-            const singleItemWidth: string = `(${generalCarosuelElement.current?.offsetWidth}px - ${props.spacing * Math.max(props.itemsPerSlide - 1, 1)}px) / ${props.itemsPerSlide}`;
+            const singleItemWidth: string = `(${generalCarosuelElement.current?.offsetWidth}px - ${props.spacing * (props.itemsPerSlide - 1)}px) / ${props.itemsPerSlide}`;
 
             totalAdditionalPadding.current = (props.itemsInTotal - 1) * props.spacing;
             childrenElemenetsWrapperElement.current.style.width = `calc(${singleItemWidth} * ${props.itemsInTotal} + ${totalAdditionalPadding.current}px)`;
