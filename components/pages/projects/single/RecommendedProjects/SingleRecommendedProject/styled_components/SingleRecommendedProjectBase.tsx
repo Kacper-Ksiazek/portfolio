@@ -61,6 +61,9 @@ export default styled("div")(({ theme }) => ({
                     animation: `${fadeSimple} .2s 1.8s both`,
                 },
             },
+            ".there-are-more-technologies": {
+                animation: `${fadeSimple} .2s 1.8s both`,
+            },
         },
         p: {
             animation: `${fadeFromTop} .3s 1.3s both`,
