@@ -21,3 +21,12 @@ model Project {
   start                DateTime
   end                  DateTime
 }
+
+model Hobby {
+  id                    String  @id @default(cuid())
+  label                 String
+  title                 String
+  description           String
+  thumbnailReferenceURL String?
+  folder                String
+}

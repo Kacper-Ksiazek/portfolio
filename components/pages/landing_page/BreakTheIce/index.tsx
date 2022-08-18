@@ -1,36 +1,25 @@
 // Tools
-import RWD from "./RWD";
-import { styled } from "@mui/system";
 import stated from "@/utils/client/stated";
 import { useState, useEffect } from "react";
-import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 // Types
+import type { Hobby } from "@prisma/client";
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components
 import Content from "./Content";
 import Picture from "./Picture";
 import NavigationBetweenStages from "./NavigationBetweenStages";
 import VisibilitySensor from "@/components/_utils/VisibilitySensor";
+import { BreakTheIceContextProvider } from "./contexts/BreakTheIceContentContext";
 // Styled Components
+import BreakTheIceBase from "./styled_components/BreakTheIceBase";
 import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
 
-const SimpleFlexbox = styled("div")(({ theme }) => ({
-    display: "flex",
-    marginTop: "16px",
-    flexGrow: "1",
-    justifyContent: "space-between",
-    width: "100%",
-    "&.visible": {
-        "#picture-main-wrapper": {
-            animation: `${fadeSimple} .5s .5s both`,
-        },
-    },
-    ...(RWD as any),
-}));
+interface BreakTheIceProps {
+    hobbies: Hobby[];
+}
 
-const BreakTheIce: FunctionComponent<MUIStyledCommonProps> = (props) => {
+const BreakTheIce: FunctionComponent<BreakTheIceProps> = (props) => {
     const [stage, setStage] = useState<IceBreakingStage>("General");
     const [letter, setLetter] = useState<string>("K");
     const [previousStage, setPreviousStage] = useState<IceBreakingStage | null>(null);
@@ -77,10 +66,13 @@ const BreakTheIce: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     display: "flex",
                 }}
             >
-                <SimpleFlexbox>
-                    <Content stage={stage} previousStage={previousStage} changeStage={changeStage} />
+                <BreakTheIceBase>
+                    <BreakTheIceContextProvider hobbies={props.hobbies}>
+                        <Content stage={stage} previousStage={previousStage} changeStage={changeStage} />
+                    </BreakTheIceContextProvider>
+
                     <Picture stage={stage} previousStage={previousStage} />
-                </SimpleFlexbox>
+                </BreakTheIceBase>
             </VisibilitySensor>
         </LightSectionWrapper>
     );

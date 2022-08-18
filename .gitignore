@@ -5,6 +5,7 @@ format-images.ts
 
 # uploaded content
 */upload/projects/*
+*/upload/hobbies/*
 
 # dependencies
 /node_modules
