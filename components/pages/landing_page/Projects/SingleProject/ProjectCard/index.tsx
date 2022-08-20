@@ -1,4 +1,5 @@
 // Tools
+import { useRouter } from "next/router";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
@@ -6,13 +7,12 @@ import type { Project } from "@/@types/pages/LandingPage";
 // Material UI Components
 import Typography from "@mui/material/Typography";
 // Other components
-import Link from "next/Link";
 import Duration from "@/components/pages/_shared/single-project/Duration";
 import Thumbnail from "@/components/pages/_shared/single-project/Thumbnail";
 import Technologies from "@/components/pages/_shared/single-project/Technologies";
 // Styled components
-import Redirection from "./styled_components/Redirection";
 import SingleProjectBase from "./styled_components/SingleProjectBase";
+import StyledButton from "@/components/_styled_components/forms/StyledButton";
 import SingleProjectTextContent from "./styled_components/SingleProjectTextContent";
 
 interface ProjectCardProps {
@@ -21,16 +21,20 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
+    const router = useRouter();
+
+    const redirect = () => {
+        router.push({
+            href: `/projects/${data.id}`,
+        });
+    };
+
     return (
         <SingleProjectBase className={[order, "project-card"].join(" ")}>
             <span className="intro-bar1" />
             <span className="intro-bar2" />
 
-            <Link href={`/projects/${data.id}`}>
-                <Redirection />
-            </Link>
-
-            <SingleProjectTextContent className="single-project-text-content-wrapper">
+            <SingleProjectTextContent className="single-project-text-content-wrapper" onClick={redirect}>
                 <Technologies technologies={data.releventTechnologies.slice(0, 5)} />
                 <Typography variant="h4">
                     <span>{data.title}</span>
@@ -39,6 +43,10 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
                 <Typography variant="body2" sx={{ mt: "16px" }}>
                     <span> {formatTextViaBolding(data.shortDescription)}</span>
                 </Typography>
+
+                <div className="read-more">
+                    <StyledButton color="primary">Read more</StyledButton>
+                </div>
             </SingleProjectTextContent>
             <Thumbnail folder={data.folder} />
         </SingleProjectBase>

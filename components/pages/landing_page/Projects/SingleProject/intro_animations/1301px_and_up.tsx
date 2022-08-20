@@ -77,6 +77,11 @@ export default {
                         animation: `${introScaleXFromRight} .2s 3.15s linear both, ${outroForLeftSideProjects} .4s 3.45s forwards linear`,
                     },
                 },
+                ".read-more": {
+                    "&::after": {
+                        animation: `${introScaleXFromRight} .2s 3.3s linear both, ${outroForLeftSideProjects} .4s 3.5s forwards linear`,
+                    },
+                },
             },
         },
 
@@ -121,6 +126,11 @@ export default {
                         animation: `${introScaleXFromLeft} .2s 3.15s linear both, ${outroForRightSideProjects} .4s 3.45s forwards linear`,
                     },
                 },
+                ".read-more": {
+                    "&::after": {
+                        animation: `${introScaleXFromLeft} .2s 3.3s linear both, ${outroForRightSideProjects} .4s 3.5s forwards linear`,
+                    },
+                },
             },
         },
         ".thumbnail-wrapper": {
@@ -132,7 +142,7 @@ export default {
             },
         },
         ".single-project-text-content-wrapper": {
-            ".technologies-wrapper, h4, .duration, p ": {
+            ".technologies-wrapper, h4, .duration, p, .read-more ": {
                 position: "relative",
                 "&::after": {
                     content: "''",
@@ -155,6 +165,9 @@ export default {
             },
             "p>*": {
                 animation: `${fadeSimple} .001s 3.4s both`,
+            },
+            ".read-more button": {
+                animation: `${fadeSimple} .001s 3.45s both`,
             },
             h4: {
                 "&::after": {
