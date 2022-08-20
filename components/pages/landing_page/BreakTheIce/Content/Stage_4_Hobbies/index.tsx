@@ -2,7 +2,6 @@
 import RWD from "./RWD";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
-import uploadedHobbyImageURLBuilder from "@/utils/client/uploaded_image_url_builder/hobby";
 import useBreakTheIceContentContext from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -10,10 +9,6 @@ import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import SingleHobby from "./SingleHobby";
 import Carousel from "@/components/_utils/Carousel";
-// Material UI Icons
-import Terminal from "@mui/icons-material/Terminal";
-import MusicNote from "@mui/icons-material/MusicNote";
-import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 // Styled Components
 import Paragraph from "../_styled_components/Paragraph";
 
@@ -21,12 +16,6 @@ const Hobbies: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const { width } = useWindowSizes();
 
     const { hobbies } = useBreakTheIceContentContext();
-
-    const icons = {
-        CODING: <Terminal />,
-        GERMAN_RAP: <MusicNote />,
-        VIDEO_GAMES: <SportsEsportsIcon />,
-    };
 
     return (
         <>
@@ -45,17 +34,7 @@ const Hobbies: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 key={width}
             >
                 {hobbies.map((item, index) => {
-                    return (
-                        <SingleHobby
-                            key={item.id}
-                            label={item.label} //
-                            name={item.title}
-                            icon={(icons as any)[item.id]}
-                            description={item.description}
-                            thumbnailURL={uploadedHobbyImageURLBuilder(item.id)}
-                            thumbnailReferenceURL={item.thumbnailReferenceURL ?? undefined}
-                        />
-                    );
+                    return <SingleHobby key={item.id} data={item} />;
                 })}
             </Carousel>
         </>
