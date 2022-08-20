@@ -48,6 +48,8 @@ const LightSectionHeader: FunctionComponent<LightSectionHeaderProps> = (props) =
                           height: props.estimatedHeight,
                       }
             }
+            offsetTop={100}
+            offsetBottom={100}
         >
             <HeaderWrapper>
                 <AdditionalText className="label">{props.label}</AdditionalText>

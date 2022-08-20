@@ -1,6 +1,4 @@
 // Tools
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 import useWindowSizes from "@/hooks/useWindowSizes";
 // Types
 import type { FunctionComponent } from "react";
@@ -12,14 +10,7 @@ import IntroductionScreenBase from "./IntroductionScreenBase";
 import { ColoredHeader, Description, MainHeader } from "./Texts";
 
 const IntroductionScreen: FunctionComponent = (props) => {
-    const [displayAnimations, setDisplayAnimations] = useState<boolean>(true);
-    const router = useRouter();
-
     const { width } = useWindowSizes();
-
-    useEffect(() => {
-        setDisplayAnimations(router.query.hasOwnProperty("skipIntroductionAnimation"));
-    }, [router.query]);
 
     return (
         <IntroductionScreenBase renderBigCircle={width > 1350 || width <= 1150}>

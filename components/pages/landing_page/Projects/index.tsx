@@ -11,14 +11,14 @@ import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
 const ProjectsWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
-    marginBottom: "50px",
+    margin: "24px 0 50px 0",
     ["@media (max-width:750px)"]: {
         alignItems: "center",
     },
 }));
 
 const ParagraphForHeader = styled("p")(({ theme }) => ({
-    margin: 0,
+    margin: "4px 0 0 0",
     fontSize: "18px",
     animation: `${fadeFromLeft} .3s .7s both linear`,
 }));
