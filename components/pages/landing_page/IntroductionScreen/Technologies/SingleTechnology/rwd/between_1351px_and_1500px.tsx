@@ -2,33 +2,33 @@
 import { generateIconsStyles } from "./utils/generate-styles";
 
 export default generateIconsStyles({
-    size: 80,
+    size: 70,
     Vue_and_Prisma: {
-        x: 70,
-        y: 40,
+        x: 80,
+        y: 50,
     },
     Git_and_Next: {
-        x: 170,
+        x: 160,
         y: 110,
     },
     React_and_Python: {
-        x: 240,
-        y: 270,
+        x: 220,
+        y: 250,
     },
     Sass_and_Jest: {
-        x: 120,
+        x: 110,
         y: 210,
     },
     Material_and_Node: {
         x: 200,
-        y: 460,
+        y: 420,
     },
     JS_and_TS: {
-        x: 130,
-        y: 340,
+        x: 110,
+        y: 330,
     },
     HTML_and_CSS: {
-        x: 70,
-        y: 500,
+        x: 60,
+        y: 470,
     },
 });
