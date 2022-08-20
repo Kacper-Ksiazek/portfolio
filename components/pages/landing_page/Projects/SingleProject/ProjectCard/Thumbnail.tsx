@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import uploadedProjectImageURLBuilder from "@/utils/client/uploaded_image_url_builder/project";
+import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/project";
 // Types
 import type { FunctionComponent } from "react";
 // Other components

@@ -1,6 +1,6 @@
 // Tools
 import getHobbyIcon from "@/utils/client/getHobbyIcon";
-import uploadedHobbyImageURLBuilder from "@/utils/client/uploaded_image_url_builder/hobby";
+import { uploadedHobbyImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/hobby";
 // Types
 import type { Hobby } from "@prisma/client";
 import type { FunctionComponent } from "react";
