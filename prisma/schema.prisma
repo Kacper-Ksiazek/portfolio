@@ -21,3 +21,37 @@ model Project {
   start                DateTime
   end                  DateTime
 }
+
+model Hobby {
+  id                    String    @id @default(cuid())
+  label                 String
+  title                 String
+  description           String
+  thumbnailReferenceURL String?
+  folder                String
+  icon                  HobbyIcon
+}
+
+model School {
+  id          String     @id @default(cuid())
+  title       String
+  type        SchoolType
+  url         String
+  folder      String
+  description String
+  start       String
+  end         String
+}
+
+enum HobbyIcon {
+  TERMINAL
+  MUSIC_NOTE
+  SPORTS_ESPORTS
+}
+
+enum SchoolType {
+  HIGH_SCHOOL
+  EXTRA_CLASSES
+  UNIVERSITY
+  COURSE
+}

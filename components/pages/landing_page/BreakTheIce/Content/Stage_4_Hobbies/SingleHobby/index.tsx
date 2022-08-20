@@ -1,80 +1,43 @@
 // Tools
-import { styled } from "@mui/system";
+import getHobbyIcon from "@/utils/client/getHobbyIcon";
+import { uploadedHobbyImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/hobby";
 // Types
-import type { FunctionComponent, ReactNode } from "react";
+import type { Hobby } from "@prisma/client";
+import type { FunctionComponent } from "react";
 // Material UI Icons
 import Loyalty from "@mui/icons-material/Loyalty";
 // Other components
 import Image from "next/Image";
 // Styled components
-import SingleHobbyWrapper from "./styled_components/SingleHobbyWrapper";
 import ImageWrapper from "./styled_components/ImageWrapper";
-
-const Label = styled("span")(({ theme }) => ({
-    margin: "0 0 5px 0",
-    color: theme.palette.primary.main,
-    display: "flex",
-    alignItems: "center",
-    fontSize: "18px",
-    fontWeight: 500,
-    svg: {
-        marginRight: "3px",
-    },
-}));
-
-const Header = styled("h4")(({ theme }) => ({
-    margin: "4px 0 4px 0 ",
-    fontFamily: "Montserrat Alternates",
-    fontSize: "24px",
-}));
-
-const Description = styled("p")(({ theme }) => ({
-    margin: "0",
-    fontSize: "18px",
-}));
-
-const Reference = styled("a")(({ theme }) => ({
-    position: "absolute",
-    bottom: "5px",
-    right: "5px",
-    zIndex: 2,
-    cursor: "pointer",
-    svg: {
-        color: theme.palette.primary.main,
-    },
-}));
+import SingleHobbyWrapper from "./styled_components/SingleHobbyWrapper";
+import { Description, Header, Label, Reference } from "./styled_components/atoms";
 
 interface SingleHobbyProps {
-    label: string;
-    icon: ReactNode;
-    name: string;
-    description: string;
-    thumbnailURL: string;
-    //
-    thumbnailReferenceURL?: string;
+    data: Hobby;
 }
 
-const SingleHobby: FunctionComponent<SingleHobbyProps> = (props) => {
+const SingleHobby: FunctionComponent<SingleHobbyProps> = ({ data }) => {
     return (
         <SingleHobbyWrapper>
             <Label className="label">
-                {props.icon} {props.label}
+                {getHobbyIcon(data.icon)} {data.label}
             </Label>
             <ImageWrapper className="image-wrapper">
-                {props.thumbnailReferenceURL && (
-                    <Reference href={props.thumbnailReferenceURL} target="_blank" rel="noreferrer" tabIndex={-1}>
+                {data.thumbnailReferenceURL && (
+                    <Reference href={data.thumbnailReferenceURL} target="_blank" rel="noreferrer" tabIndex={-1}>
                         <Loyalty />
                     </Reference>
                 )}
                 <Image
-                    alt={`${props.name}-thumbnail`} //
+                    alt={`${data.title}-thumbnail`} //
                     layout="fill"
-                    src={props.thumbnailURL}
+                    src={uploadedHobbyImageURLBuilder(data.id)}
                     priority
                 />
             </ImageWrapper>
-            <Header>{props.name}</Header>
-            <Description>{props.description}</Description>
+            <Header>{data.title}</Header>
+            <Description>{data.description}</Description>
         </SingleHobbyWrapper>
     );
 };

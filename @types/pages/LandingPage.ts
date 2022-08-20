@@ -1,3 +1,4 @@
+import type { Hobby, School } from "@prisma/client";
 import type { Project as _Project } from "@/@types/prisma/Project";
 
 export interface Project {
@@ -12,5 +13,7 @@ export interface Project {
 }
 
 export interface LandingPageServerSideProps {
+    hobbies: Hobby[];
     projects: Project[];
+    schools: School[];
 }

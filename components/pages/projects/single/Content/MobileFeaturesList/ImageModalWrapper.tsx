@@ -1,5 +1,5 @@
 // Tools
-import uploadedProjectImageURLBuilder from "@/utils/client/uploaded_image_url_builder/project";
+import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/project";
 // Types
 import type { Feature } from "@/@types/prisma/Project";
 import type { Dispatch, SetStateAction, FunctionComponent } from "react";

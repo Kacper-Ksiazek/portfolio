@@ -41,11 +41,11 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
             <Head>
                 <title>Kacper Książek</title>
             </Head>
-            {/* <IntroductionScreen /> */}
-            <BreakTheIce />
-            {/* <ToDoList /> */}
+            <IntroductionScreen />
+            <BreakTheIce hobbies={props.hobbies} schools={props.schools} />
+            <ToDoList />
             <Projects projects={props.projects} />
-            {/* <PicturesMatchingGame /> */}
+            <PicturesMatchingGame />
             <Contact />
         </>
     );
@@ -69,6 +69,9 @@ export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> 
         },
     });
 
+    const hobbies = await prisma.hobby.findMany();
+    const schools = await prisma.school.findMany();
+
     const yearsToIndicate: Record<string, number> = {
         ABU_DHABI: 2022,
         ELECTRON_WORDS_LEARNING_APP: 2021,
@@ -86,6 +89,8 @@ export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> 
                 (el as any).start = formatProjectDate(el.start);
                 return el;
             }) as any,
+            hobbies,
+            schools,
         },
     };
 };

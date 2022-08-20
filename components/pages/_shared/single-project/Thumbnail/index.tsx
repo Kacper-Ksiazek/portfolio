@@ -1,6 +1,6 @@
 // Tools
 import { forwardRef } from "react";
-import uploadedProjectImageURLBuilder from "@/utils/client/uploaded_image_url_builder/project";
+import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/project";
 // Types
 import type { ForwardRefExoticComponent } from "react";
 // Other components
