@@ -7,7 +7,7 @@ import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import ContactBase from "./ContactBase";
 import SendMeAnEmail from "./SendMeAnEmail";
-import CommunicatorsIcons from "./CommunicatorsIcons";
+import WaysToReachMe from "./WaysToReachMe";
 import VisibilitySensor from "@/components/_utils/VisibilitySensor";
 // Styled Components
 import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
@@ -46,12 +46,12 @@ const Contact: FunctionComponent<MUIStyledCommonProps> = (props) => {
                                 `I'm first year student of the *AGH University of Science and Technology* at the Faculty of *Engineering and Data Analysis* in Cracow, thus I'm looking forward to start either office job here or to work remotely.`
                             )}
                         </Paragraph>
-                        <Paragraph animationDelay={0.5}>
+                        <Paragraph animationDelay={0.5} sx={{ mb: "20px" }}>
                             {formatTextViaBolding(
                                 `Undoubtedly the fastest and the most reliable way to reach me is via *messenger*, because it is my primary communicator and can expect almost *immediately response*. Nevertheless, You can be certain, that I will appreciate every effort put into sending me a message and therefore each message will be read, analyzed and eventually *responded* as soon as I will be able to do so.`
                             )}
                         </Paragraph>
-                        <CommunicatorsIcons />
+                        <WaysToReachMe />
                     </TextWrapper>
 
                     <SendMeAnEmail />
