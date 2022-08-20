@@ -4,7 +4,6 @@ import { styled } from "@mui/system";
 import { useEffect, useRef } from "react";
 import useWindowSizes from "@/hooks/useWindowSizes";
 // Types
-import type { Hobby } from "@prisma/client";
 import type { FunctionComponent } from "react";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components
