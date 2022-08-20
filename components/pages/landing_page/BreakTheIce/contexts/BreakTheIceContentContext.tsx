@@ -1,11 +1,12 @@
 // Tools
 import { createContext } from "react";
 // Types
-import type { Hobby } from "@prisma/client";
+import type { Hobby, School } from "@prisma/client";
 import type { ReactNode, FunctionComponent } from "react";
 
 interface BreakTheIceContextInterface {
     hobbies: Hobby[];
+    schools: School[];
 }
 
 interface BreakTheIceContextProviderProps extends BreakTheIceContextInterface {
@@ -19,6 +20,7 @@ export const BreakTheIceContextProvider: FunctionComponent<BreakTheIceContextPro
         <BreakTheIceContext.Provider
             value={{
                 hobbies: props.hobbies,
+                schools: props.schools,
             }}
         >
             {props.children}

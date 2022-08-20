@@ -2,7 +2,7 @@
 import stated from "@/utils/client/stated";
 import { useState, useEffect } from "react";
 // Types
-import type { Hobby } from "@prisma/client";
+import type { Hobby, School } from "@prisma/client";
 import type { FunctionComponent } from "react";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components
@@ -17,6 +17,7 @@ import LightSectionWrapper from "@/components/_styled_components/content_placeme
 
 interface BreakTheIceProps {
     hobbies: Hobby[];
+    schools: School[];
 }
 
 const BreakTheIce: FunctionComponent<BreakTheIceProps> = (props) => {
@@ -67,7 +68,10 @@ const BreakTheIce: FunctionComponent<BreakTheIceProps> = (props) => {
                 }}
             >
                 <BreakTheIceBase>
-                    <BreakTheIceContextProvider hobbies={props.hobbies}>
+                    <BreakTheIceContextProvider
+                        hobbies={props.hobbies} //
+                        schools={props.schools}
+                    >
                         <Content stage={stage} previousStage={previousStage} changeStage={changeStage} />
                     </BreakTheIceContextProvider>
 

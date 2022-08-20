@@ -2,6 +2,7 @@
 import { styled } from "@mui/system";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
+import useBreakTheIceContentContext from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
@@ -21,6 +22,8 @@ const ScrollbarHidder = styled("span")(({ theme }) => ({
 }));
 
 const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
+    const { schools } = useBreakTheIceContentContext();
+
     return (
         <>
             <Paragraph animationDelay={0.7}>
@@ -36,34 +39,9 @@ const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 }}
             >
                 <ScrollbarHidder />
-                <SingleSchool
-                    end="Present"
-                    start="2022"
-                    description="I study at the faculty called *Engineering and Data Analysis*"
-                    thumbnailURL="/images/landing-page/schools/agh.jpg"
-                    title="Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie"
-                    type="University"
-                    schoolURL="https://www.agh.edu.pl/en/"
-                />
-                <SingleSchool
-                    start="2021"
-                    end="2022"
-                    description="During my last year of high school I enrolled myself in *English language* extra classes so as to improve my language skills. I got assigned to *B2/C1* group and was
-                    attending 90 minutes long sessions two times a week for 7 months. "
-                    thumbnailURL="/images/landing-page/schools/magic.jpg"
-                    title="Szkoła językowa Magic"
-                    type="Extra classes"
-                    schoolURL="http://www.magic.edu.pl/"
-                />
-                <SingleSchool
-                    start="2018"
-                    end="2022"
-                    description="I was attending there to the IT related class (*technikum informatyczne*) and eventually obtained all possible certification."
-                    thumbnailURL="/images/landing-page/schools/gorzen.jpg"
-                    title="Centrum Kształcenia Zawodowego i Ustawicznego nr 2 im. ks. Stanisława Staszica w Wadowicach"
-                    type="High school"
-                    schoolURL="https://ckziuwadowice.pl/"
-                />
+                {schools.map((item) => {
+                    return <SingleSchool key={item.id} data={item} />;
+                })}
             </OverflowScrollDiv>
         </>
     );

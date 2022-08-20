@@ -42,7 +42,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
                 <title>Kacper Książek</title>
             </Head>
             {/* <IntroductionScreen /> */}
-            <BreakTheIce hobbies={props.hobbies} />
+            <BreakTheIce hobbies={props.hobbies} schools={props.schools} />
             {/* <ToDoList /> */}
             {/* <Projects projects={props.projects} /> */}
             {/* <PicturesMatchingGame /> */}
@@ -70,6 +70,7 @@ export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> 
     });
 
     const hobbies = await prisma.hobby.findMany();
+    const schools = await prisma.school.findMany();
 
     const yearsToIndicate: Record<string, number> = {
         ABU_DHABI: 2022,
@@ -89,6 +90,7 @@ export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> 
                 return el;
             }) as any,
             hobbies,
+            schools,
         },
     };
 };

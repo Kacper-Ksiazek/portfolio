@@ -3,10 +3,10 @@
 //
 
 import type { Project } from "@/@types/prisma/Project";
-import type { Hobby } from "@prisma/client";
+import type { Hobby, School } from "@prisma/client";
 
-export { Project, Hobby };
-export type ModelName = "project" | "hobby";
+export { Project, Hobby, School };
+export type ModelName = "project" | "hobby" | "school";
 
 export type SeederDataItem<T> = {
     _imagesDir: string;
