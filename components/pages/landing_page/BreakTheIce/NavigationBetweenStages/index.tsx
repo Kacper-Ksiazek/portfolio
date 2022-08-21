@@ -41,11 +41,18 @@ interface NavigationBetweenStagesProps {
 }
 
 const NavigationBetweenStages: FunctionComponent<NavigationBetweenStagesProps> = (props) => {
-    const stages: IceBreakingStage[] = ["General", "Competences", "Education", "Hobbies"];
+    const stages: IceBreakingStage[] = ["General", "Competences", "Education", "Hobbies", "Previous_Jobs"];
 
     return (
         <NavigationStagesWrapper>
             {stages.map((item, index) => {
+                const stageLabel = item.replaceAll
+                    ? item.replaceAll("_", " ")
+                    : item
+                          .split("")
+                          .map((char) => (char === "_" ? " " : char))
+                          .join("");
+
                 return (
                     <div key={item} className="step-wrapper">
                         {index ? <Divider className="divider" /> : <span />}
@@ -54,7 +61,7 @@ const NavigationBetweenStages: FunctionComponent<NavigationBetweenStagesProps> =
                             onClick={() => props.stage.setValue(item)}
                         >
                             <span className="text" onClick={() => props.stage.setValue(item)}>
-                                {item}
+                                {stageLabel}
                             </span>
                         </SingleNavigationStep>
                     </div>

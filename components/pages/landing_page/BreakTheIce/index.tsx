@@ -2,8 +2,9 @@
 import stated from "@/utils/client/stated";
 import { useState, useEffect } from "react";
 // Types
-import type { Hobby, School } from "@prisma/client";
 import type { FunctionComponent } from "react";
+import type { Hobby, School } from "@prisma/client";
+import type { PreviousJob } from "@/@types/pages/LandingPage";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components
 import Content from "./Content";
@@ -18,6 +19,7 @@ import LightSectionWrapper from "@/components/_styled_components/content_placeme
 interface BreakTheIceProps {
     hobbies: Hobby[];
     schools: School[];
+    previousJobs: PreviousJob[];
 }
 
 const BreakTheIce: FunctionComponent<BreakTheIceProps> = (props) => {
@@ -32,6 +34,7 @@ const BreakTheIce: FunctionComponent<BreakTheIceProps> = (props) => {
             Competences: "A",
             Education: "C",
             Hobbies: "P",
+            Previous_Jobs: "E",
         };
         setLetter(letters[stage]);
     }, [stage]);
@@ -71,6 +74,7 @@ const BreakTheIce: FunctionComponent<BreakTheIceProps> = (props) => {
                     <BreakTheIceContextProvider
                         hobbies={props.hobbies} //
                         schools={props.schools}
+                        previousJobs={props.previousJobs}
                     >
                         <Content stage={stage} previousStage={previousStage} changeStage={changeStage} />
                     </BreakTheIceContextProvider>
