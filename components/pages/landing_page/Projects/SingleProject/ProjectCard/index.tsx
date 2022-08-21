@@ -24,9 +24,7 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
     const router = useRouter();
 
     const redirect = () => {
-        router.push({
-            href: `/projects/${data.id}`,
-        });
+        router.push(`/projects/${data.id}`);
     };
 
     return (

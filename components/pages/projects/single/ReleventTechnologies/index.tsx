@@ -14,7 +14,7 @@ interface ReleventTechnologiesProps {
 
 const ReleventTechnologies: FunctionComponent<ReleventTechnologiesProps> = (props) => {
     return (
-        <VisibilitySensor>
+        <VisibilitySensor offsetBottom={50}>
             <ReleventTechnologiesBase>
                 {props.techStack.map((item, index) => {
                     return (
