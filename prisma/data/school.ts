@@ -37,6 +37,6 @@ export default (
 ).map((el: Partial<SeederDataItem<School>>) => {
     el.folder = el.folder;
     el._imagesDir = `/schools/${el.folder}`;
-    el.id = el.folder?.toUpperCase();
+    el.id = el.folder?.toUpperCase().split(".")[0];
     return el;
 }) as SeederDataItem<School>[];

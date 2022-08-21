@@ -43,6 +43,20 @@ model School {
   end         String
 }
 
+model PreviousJob {
+  id          String   @id @default(cuid())
+  country     String?
+  city        String   @default("Remote")
+  title       String
+  start       DateTime
+  end         DateTime
+  description String
+  folder      String
+
+  projectGithubURL    String?
+  projectPortfolioURL String?
+}
+
 enum HobbyIcon {
   TERMINAL
   MUSIC_NOTE

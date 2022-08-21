@@ -7,6 +7,7 @@ format-images.ts
 */upload/projects/*
 */upload/hobbies/*
 */upload/schools/*
+*/upload/previous_jobs/*
 
 # dependencies
 /node_modules
