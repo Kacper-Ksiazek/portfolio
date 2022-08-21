@@ -6,7 +6,7 @@ export default (
             label: "Coding",
             title: "Web development",
             description: "From school homework, through sheer passion into near future. I honestly cannot imagine my life without this substantial factor.",
-            folder: "coding",
+            folder: "coding.jpg",
             icon: "TERMINAL",
         },
         {
@@ -14,14 +14,14 @@ export default (
             title: "German gangsta rap",
             description: "I fell in love with German language and now I am trying to learn some basics in order to understand ever more lyrics.",
             thumbnailReferenceURL: "https://www.youtube.com/watch?v=0NL8H1IAHVc",
-            folder: "german_rap",
+            folder: "german_rap.jpg",
             icon: "MUSIC_NOTE",
         },
         {
             label: "Games",
             title: "Video games",
             description: "After a day of innovating IT world via my clever approach to software I like to hello some other world and relieve stress.",
-            folder: "video_games",
+            folder: "video_games.jpg",
             icon: "SPORTS_ESPORTS",
         },
     ] as SeederDataItem<Hobby>[]
