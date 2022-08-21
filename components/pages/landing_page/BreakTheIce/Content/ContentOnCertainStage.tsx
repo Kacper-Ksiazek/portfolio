@@ -1,5 +1,6 @@
 // Tools
 import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
 // Types
 import type { FunctionComponent } from "react";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
@@ -14,9 +15,21 @@ interface ContentOnCertainStageProps {
 }
 
 const ContentOnCertainStage: FunctionComponent<ContentOnCertainStageProps> = (props) => {
+    const [renderGeneralStage, setRenderGeneralStage] = useState<boolean>(false);
+
+    useEffect(() => {
+        let isMounted = false;
+        setTimeout(() => {
+            if (isMounted) setRenderGeneralStage(true);
+        }, 1100);
+        return () => {
+            isMounted = true;
+        };
+    }, []);
+
     switch (props.stage) {
         case "General":
-            return <Stage_1_General />;
+            return <Stage_1_General renderContent={renderGeneralStage} />;
         case "Competences":
             return <Stage_2_Competences />;
         case "Education":

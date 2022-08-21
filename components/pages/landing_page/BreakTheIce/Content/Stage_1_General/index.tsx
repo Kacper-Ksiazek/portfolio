@@ -1,28 +1,18 @@
 // Tools
-import { useState, useEffect } from "react";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 // Styled Components
 import Label from "../_styled_components/Label";
 import Paragraph from "../_styled_components/Paragraph";
 import RatedInStars from "../_styled_components/RatedInStars";
 
-const General: FunctionComponent<MUIStyledCommonProps> = (props) => {
-    const [renderStageContent, setRenderStageContent] = useState<boolean>(false);
+interface GeneralProps {
+    renderContent: boolean;
+}
 
-    useEffect(() => {
-        let isMounted = true;
-        setTimeout(() => {
-            if (isMounted) setRenderStageContent(true);
-        }, 1000);
-        return () => {
-            isMounted = false;
-            setRenderStageContent(false);
-        };
-    }, []);
-    if (renderStageContent) {
+const General: FunctionComponent<GeneralProps> = (props) => {
+    if (props.renderContent) {
         return (
             <>
                 <Paragraph animationDelay={0.7}>
