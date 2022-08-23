@@ -37,7 +37,8 @@ const MobileBottomNavigation: FunctionComponent<MobileBottomNavigationProps> = (
         General: "Competences",
         Competences: "Education",
         Education: "Hobbies",
-        Hobbies: "General",
+        Hobbies: "Previous_Jobs",
+        Previous_Jobs: "General",
     };
 
     const nextStage: IceBreakingStage = stages[props.stage];
@@ -58,7 +59,14 @@ const MobileBottomNavigation: FunctionComponent<MobileBottomNavigationProps> = (
     return (
         <MobileBottomNavigationBase onClick={changeStage}>
             <span>See also</span>
-            <strong>{nextStage}</strong>
+            <strong>
+                {nextStage.replaceAll
+                    ? nextStage.replaceAll("_", " ")
+                    : nextStage
+                          .split("")
+                          .map((char) => (char === "_" ? " " : char))
+                          .join("")}
+            </strong>
             <East />
         </MobileBottomNavigationBase>
     );
