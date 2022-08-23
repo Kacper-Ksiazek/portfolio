@@ -45,8 +45,8 @@ model School {
 
 model PreviousJob {
   id          String   @id @default(cuid())
-  country     String?
-  city        String   @default("Remote")
+  country     String   @default("Remote")
+  city        String? 
   title       String
   start       DateTime
   end         DateTime

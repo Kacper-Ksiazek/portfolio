@@ -29,14 +29,14 @@ const Localization: FunctionComponent<LocalizationProps> = (props) => {
     return (
         <LocalizationBase>
             <LocationOn />
-            {props.country ? (
+            {props.city ? (
                 <span>
-                    <strong>{props.country}</strong>,
+                    <strong>{props.city}</strong>,
                 </span>
             ) : (
                 <></>
             )}
-            {props.city}
+            {props.country}
         </LocalizationBase>
     );
 };
