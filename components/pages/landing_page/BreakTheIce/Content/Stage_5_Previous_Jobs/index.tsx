@@ -1,6 +1,5 @@
 // Tools
-import useWindowSizes from "@/hooks/useWindowSizes";
-import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
+import { useEffect, useState } from "react";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import useBreakTheIceContentContext from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
@@ -13,6 +12,20 @@ import OverflowScrollDiv from "@/components/_styled_components/content_placement
 
 const PreviousJobs: FunctionComponent = () => {
     const { previousJobs } = useBreakTheIceContentContext();
+    const [makeCardsHoverable, setMakeCardsHoverable] = useState<boolean>(false);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        setTimeout(() => {
+            if (isMounted) setMakeCardsHoverable(true);
+        }, 4000);
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
     return (
         <>
             <Paragraph animationDelay={0.7}>
@@ -28,7 +41,13 @@ const PreviousJobs: FunctionComponent = () => {
                 }}
             >
                 {previousJobs.map((item, index) => {
-                    return <SinglePreviousJob data={item} key={item.id} />;
+                    return (
+                        <SinglePreviousJob
+                            data={item} //
+                            key={item.id}
+                            hoverable={makeCardsHoverable}
+                        />
+                    );
                 })}
             </OverflowScrollDiv>
         </>

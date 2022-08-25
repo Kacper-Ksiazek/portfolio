@@ -16,11 +16,12 @@ import SinglePreviousJobBase from "./styled_components/SinglePreviousJobBase";
 
 interface SinglePreviousJobProps {
     data: PreviousJob;
+    hoverable: boolean;
 }
 
-const SinglePreviousJob: FunctionComponent<SinglePreviousJobProps> = ({ data }) => {
+const SinglePreviousJob: FunctionComponent<SinglePreviousJobProps> = ({ data, ...props }) => {
     return (
-        <SinglePreviousJobBase>
+        <SinglePreviousJobBase className={props.hoverable ? "hoverable" : ""}>
             <ThumbnailWrapper className="single-previous-job-thumbnail-wrapper">
                 <Image
                     alt={`${data.title}-thumbnail`} //
@@ -29,7 +30,7 @@ const SinglePreviousJob: FunctionComponent<SinglePreviousJobProps> = ({ data }) 
                 />
             </ThumbnailWrapper>
             <TextWrapper>
-                <Localization city={data.city} country={data.country ?? undefined} />
+                <Localization city={data.city ?? undefined} country={data.country} />
                 <Header>{data.title}</Header>
                 <Duration smaller start={data.start} end={data.end} />
                 <Description>{data.description}</Description>

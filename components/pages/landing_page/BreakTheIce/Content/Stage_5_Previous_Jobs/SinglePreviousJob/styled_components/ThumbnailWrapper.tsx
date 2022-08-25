@@ -5,4 +5,5 @@ export default styled("div")(({ theme }) => ({
     width: "200px",
     height: "160px",
     position: "relative",
+    overflow: "hidden",
 }));

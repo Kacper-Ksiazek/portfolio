@@ -21,13 +21,13 @@ const LocalizationBase = styled("span")(({ theme }) => ({
 }));
 
 interface LocalizationProps {
-    city: string;
-    country?: string;
+    city?: string;
+    country: string;
 }
 
 const Localization: FunctionComponent<LocalizationProps> = (props) => {
     return (
-        <LocalizationBase>
+        <LocalizationBase className="localization">
             <LocationOn />
             {props.city ? (
                 <span>
