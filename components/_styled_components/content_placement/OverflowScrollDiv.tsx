@@ -1,6 +1,7 @@
 // Tools
 import { forwardRef } from "react";
 import { styled, alpha } from "@mui/system";
+import fadeSimpleOUT from "@/components/_keyframes/outro/fadeSimpleOUT";
 // Types
 import type { ReactNode } from "react";
 import type { SxProps } from "@mui/system";
@@ -26,11 +27,26 @@ const Wrapper = styled("div", {
         },
     },
 }));
+
+const ScrollBarHidder = styled("span")(({ theme }) => ({
+    background: "red",
+    position: "absolute",
+    top: "0",
+    right: 0,
+    width: "8px",
+    height: "100%",
+    zIndex: 10,
+}));
+
 interface OverflowScrollDivProps {
     children: ReactNode;
     maxHeight?: string;
     sx?: SxProps;
     id?: string;
+    /** Keep scrollbar hidden for a fixed period of time, expressed in **ms** */
+    displayScrollBarAfterTimeout?: number;
+    /** Change the default `#FFFFFF` color of the scrollbar's hidder bar */
+    scrollbarHidderColor?: string;
 }
 
 const OverflowScrollDiv = forwardRef<HTMLDivElement, OverflowScrollDivProps>((props, ref) => {
@@ -47,6 +63,15 @@ const OverflowScrollDiv = forwardRef<HTMLDivElement, OverflowScrollDivProps>((pr
             maxHeightWhileScrollable={props.maxHeight ?? "auto"}
         >
             <div className="overflow-scroll-container-content">{props.children}</div>
+
+            {props.displayScrollBarAfterTimeout && (
+                <ScrollBarHidder
+                    sx={{
+                        animation: `${fadeSimpleOUT} .3s ${props.displayScrollBarAfterTimeout}ms linear both`,
+                        background: props.scrollbarHidderColor ?? "#fff",
+                    }}
+                />
+            )}
         </Wrapper>
     );
 });

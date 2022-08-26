@@ -8,16 +8,18 @@ export default styled("div")(({ theme }) => ({
     justifyContent: "space-between",
     position: "relative",
     marginTop: "16px",
+    width: "calc(100% - 20px)",
     "&:not(&:nth-of-type(1))": {
         marginTop: "64px",
         "&::after": {
             content: "''",
             position: "absolute",
             top: "-32px",
-            width: "100%",
+            left: 0,
+            width: "75%",
             height: "2px",
             background: "#000",
-            opacity: 0.1,
+            opacity: 0.05,
         },
     },
     "&:nth-of-type(odd)": {

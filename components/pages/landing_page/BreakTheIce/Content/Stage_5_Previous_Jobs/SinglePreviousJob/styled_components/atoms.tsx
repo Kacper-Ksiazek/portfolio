@@ -8,6 +8,6 @@ export const Header = styled("h4")(({ theme }) => ({
 }));
 
 export const Description = styled("p")(({ theme }) => ({
-    margin: "16px 0 0 0",
+    margin: "8px 0 0 0",
     fontSize: "16px",
 }));

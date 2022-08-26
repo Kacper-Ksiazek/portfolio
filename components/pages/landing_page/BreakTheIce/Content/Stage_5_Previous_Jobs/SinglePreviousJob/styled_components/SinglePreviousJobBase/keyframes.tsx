@@ -1,7 +1,16 @@
 // Tools
 import { keyframes } from "@mui/system";
 
-export const lineAnimation = keyframes({
+export const separatorAnimation = keyframes({
+    from: {
+        width: 0,
+    },
+    to: {
+        width: "75%",
+    },
+});
+
+export const backgroundLineAnimation = keyframes({
     from: {
         transform: "scaleY(0) translateY(-50%)",
     },

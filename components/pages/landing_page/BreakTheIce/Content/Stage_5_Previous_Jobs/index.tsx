@@ -39,6 +39,7 @@ const PreviousJobs: FunctionComponent = () => {
                 sx={{
                     mt: "20px", //
                 }}
+                displayScrollBarAfterTimeout={2000}
             >
                 {previousJobs.map((item, index) => {
                     return (

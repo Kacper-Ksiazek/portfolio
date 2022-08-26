@@ -1,14 +1,14 @@
 // Tools
 import theme from "@/material";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
-import { thumbnailIntroAnimation, thumbnailOutroAnimation, lineAnimation } from "./keyframes";
+import { thumbnailIntroAnimation, thumbnailOutroAnimation, backgroundLineAnimation, separatorAnimation } from "./keyframes";
 // Types
 import type { SxProps } from "@mui/system";
 
 export default {
     "&:nth-of-type(1)": {
         "&::before": {
-            animation: `${lineAnimation} .77s 3s backwards`,
+            animation: `${backgroundLineAnimation} .77s 3s backwards`,
         },
         ".single-previous-job-thumbnail-wrapper": {
             "&::after, &::before": {
@@ -45,7 +45,10 @@ export default {
     },
     "&:nth-of-type(2)": {
         "&::before": {
-            animation: `${lineAnimation} .77s 3.2s backwards`,
+            animation: `${backgroundLineAnimation} .77s 3.2s backwards`,
+        },
+        "&::after": {
+            animation: `${separatorAnimation} 1s 1.6s linear backwards`,
         },
         ".single-previous-job-thumbnail-wrapper": {
             "&::after, &::before": {
