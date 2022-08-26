@@ -1,5 +1,4 @@
 // Tools
-import { styled } from "@mui/system";
 import { uploadedPreviousJobImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/previous_job";
 // Types
 import type { FunctionComponent } from "react";
@@ -9,10 +8,11 @@ import Image from "next/Image";
 import Localization from "./Localization";
 import Duration from "@/components/pages/_shared/single-project/Duration";
 // Styled components
+import Redirection from "@/components/_styled_components/Redirection";
 import TextWrapper from "./styled_components/TextWrapper";
-import { Description, Header } from "./styled_components/atoms";
 import ThumbnailWrapper from "./styled_components/ThumbnailWrapper";
 import SinglePreviousJobBase from "./styled_components/SinglePreviousJobBase";
+import { Description, Header, RedirectionsWrapper } from "./styled_components/atoms";
 
 interface SinglePreviousJobProps {
     data: PreviousJob;
@@ -34,6 +34,21 @@ const SinglePreviousJob: FunctionComponent<SinglePreviousJobProps> = ({ data, ..
                 <Header>{data.title}</Header>
                 <Duration smaller start={data.start} end={data.end} />
                 <Description>{data.description}</Description>
+
+                {(() => {
+                    if (data.projectPortfolioURL) {
+                        return (
+                            <RedirectionsWrapper>
+                                <Redirection
+                                    url={data.projectPortfolioURL} //
+                                    tooltip="Go to this project's site"
+                                >
+                                    Read more
+                                </Redirection>
+                            </RedirectionsWrapper>
+                        );
+                    }
+                })()}
             </TextWrapper>
         </SinglePreviousJobBase>
     );
