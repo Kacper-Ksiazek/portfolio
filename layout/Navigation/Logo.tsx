@@ -34,8 +34,8 @@ const SingleFlexWrapper = styled("div")(({ theme }) => ({
 
 const ImageWrapper = styled("div")(({ theme }) => ({
     position: "relative",
-    width: "67px",
-    height: "47px",
+    width: "60px",
+    height: "40px",
     ["@media (max-width:500px)"]: {
         width: "52px",
         height: "36px",
