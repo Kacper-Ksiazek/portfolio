@@ -13,4 +13,5 @@ export default styled("span")(({ theme }) => ({
     fontWeight: 700,
     marginRight: "20px",
     fontSize: "20px",
+    userSelect: "none",
 }));

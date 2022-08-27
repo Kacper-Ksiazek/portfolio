@@ -15,7 +15,7 @@ import OverflowScrollDiv from "@/components/_styled_components/content_placement
 const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const [tasks, setTasks] = useState<string[]>(["Go and help mum with laundry", "Mow the lawn for my grandparents", "Show everyone around how to make exquisite software"]);
     const [freshlyCreatedTaskIndex, setFreshlyCreatedTaskIndex] = useState<number>(-1);
-
+    const [showIntroAnimation, setShowIntroAnimation] = useState<boolean>(true);
     const taskWrapperElement = useRef<HTMLDivElement | null>(null);
     const inputElement = useRef<HTMLInputElement | null>(null);
 
@@ -46,6 +46,12 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
         }, 1000);
     };
 
+    const onVisible = () => {
+        setTimeout(() => {
+            setShowIntroAnimation(false);
+        }, 3000);
+    };
+
     return (
         <DarkSectionWrapper
             shapesDirection="left"
@@ -56,37 +62,41 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
             sx={{
                 "&.visible": toDoListIntroAnimations as any,
             }}
+            onVisible={onVisible}
         >
             {(() => {
                 if (tasks.length) {
                     return (
-                        <OverflowScrollDiv
-                            maxHeight="150px" //
-                            ref={taskWrapperElement as any}
-                            sx={{ maxWidth: "800px", margin: "0 auto" }}
-                        >
-                            {tasks.map((item, index) => {
-                                return (
-                                    <SingleTask
-                                        key={`${index}-${item}`} //
-                                        index={index}
-                                        task={item}
-                                        deleteThisTask={() => deleteSingleTask(index)}
-                                        modifyThisTask={(value: string) => modifySingleTask(index, value)}
-                                        freshlyCreated={index === freshlyCreatedTaskIndex}
-                                    />
-                                );
-                            })}
-                            <AddNewTask
-                                ref={inputElement} //
-                                saveNewTask={addNewTask}
-                            />
-                        </OverflowScrollDiv>
+                        <>
+                            <OverflowScrollDiv
+                                maxHeight="150px" //
+                                ref={taskWrapperElement as any}
+                                sx={{ maxWidth: "800px", margin: "0 auto" }}
+                            >
+                                {tasks.map((item, index) => {
+                                    return (
+                                        <SingleTask
+                                            key={`${index}-${item}`} //
+                                            index={index}
+                                            task={item}
+                                            showIntroAnimation={showIntroAnimation}
+                                            deleteThisTask={() => deleteSingleTask(index)}
+                                            modifyThisTask={(value: string) => modifySingleTask(index, value)}
+                                            freshlyCreated={index === freshlyCreatedTaskIndex}
+                                        />
+                                    );
+                                })}
+                            </OverflowScrollDiv>
+                        </>
                     );
                 } else {
                     return <NoResults />;
                 }
             })()}
+            <AddNewTask
+                ref={inputElement} //
+                saveNewTask={addNewTask}
+            />
         </DarkSectionWrapper>
     );
 };

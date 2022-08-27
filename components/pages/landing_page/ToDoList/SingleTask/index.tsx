@@ -8,10 +8,10 @@ import Delete from "@mui/icons-material/Delete";
 import Settings from "@mui/icons-material/Settings";
 // Other components
 const EditMode = dynamic(() => import("./EditMode"));
+import TaskManagementButton from "./TaskManagementButton";
 const DeleteTaskConfirmation = dynamic(() => import("./DeleteTaskConfirmation"));
 // Styled components
 import TaskIndex from "./styled_components/TaskIndex";
-import StyledButton from "../_styled_components/StyledButton";
 import SingleTaskBase from "./styled_components/SingleTaskBase";
 
 interface SingleTaskProps {
@@ -19,6 +19,7 @@ interface SingleTaskProps {
     index: number;
     freshlyCreated: boolean;
     deleteThisTask: () => void;
+    showIntroAnimation: boolean;
     modifyThisTask: (value: string) => void;
 }
 
@@ -47,15 +48,27 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
     }, [classAppliedToWrapper]);
 
     return (
-        <SingleTaskBase className={`${classAppliedToWrapper} single-task`}>
+        <SingleTaskBase
+            className={[
+                props.showIntroAnimation ? "show-intro-animation" : "", //
+                classAppliedToWrapper,
+                "single-task",
+            ].join(" ")} //
+        >
             <TaskIndex className="index">{props.index + 1}</TaskIndex>
             <span className="text">{props.task}</span>
-            <StyledButton onClick={() => setDisplayEditMode(true)}>
-                <Settings />
-            </StyledButton>
-            <StyledButton onClick={() => setDisplayDeletionConfirmation(true)}>
-                <Delete />
-            </StyledButton>
+
+            <TaskManagementButton
+                tooltip="Modify" //
+                icon={<Settings />}
+                onClick={() => setDisplayEditMode(true)}
+            />
+
+            <TaskManagementButton
+                tooltip="Delete" //
+                icon={<Delete />}
+                onClick={() => setDisplayDeletionConfirmation(true)}
+            />
 
             {displayEditMode && (
                 <EditMode

@@ -18,13 +18,13 @@ export default styled("div")(({ theme }) => ({
     overflow: "hidden",
     maxHeight: "55px",
     "&.freshlyCreated": {
-        animation: `${fadeFromLeft} .5s both`,
+        animation: `${fadeFromLeft} .5s backwards`,
         button: {
             "&:nth-of-type(1)": {
-                animation: `${fadeSimple} .3s .4s both`,
+                animation: `${fadeSimple} .3s .4s backwards`,
             },
             "&:nth-of-type(2)": {
-                animation: `${fadeSimple} .3s .5s both`,
+                animation: `${fadeSimple} .3s .5s backwards`,
             },
         },
     },
@@ -41,8 +41,5 @@ export default styled("div")(({ theme }) => ({
         maxHeight: 0,
         marginTop: "0px !important",
         padding: 0,
-    },
-    ["@media (max-width:800px)"]: {
-        maxHeight: "none",
     },
 }));

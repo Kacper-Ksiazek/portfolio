@@ -7,7 +7,7 @@ import type { FunctionComponent } from "react";
 import ExploreOff from "@mui/icons-material/ExploreOff";
 // Styled components
 const NoResultsWrapper = styled("div")(({ theme }) => ({
-    height: "142px",
+    height: "150px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -15,7 +15,8 @@ const NoResultsWrapper = styled("div")(({ theme }) => ({
     svg: {
         animation: `${fadeFromBottom} .3s .2s both`,
         fontSize: "7rem",
-        color: alpha(theme.palette.primary.main, 0.3),
+        color: alpha("#fff", 0.6),
+        // color: alpha(theme.palette.primary.main, 0.3),
     },
     "span.info": {
         animation: `${fadeFromBottom} .3s both`,

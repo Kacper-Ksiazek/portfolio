@@ -37,11 +37,13 @@ interface DarkSectionWrapperProps {
         label: string;
     };
     sx?: SxProps;
+    /** Callback which is to be fired once when the element appears on the screen*/
+    onVisible?: () => void;
 }
 
 const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) => {
     return (
-        <VisibilitySensor>
+        <VisibilitySensor onVisible={props.onVisible}>
             <DarkWrapperBase sx={props.sx}>
                 <StyledContentWrapper>
                     <Header {...props.header}></Header>

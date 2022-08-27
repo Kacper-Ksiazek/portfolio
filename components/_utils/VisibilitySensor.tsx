@@ -24,6 +24,8 @@ interface VisibilitySensorProps {
 
     /** In order to avoid displaying simultaneously two akin elements, add the same `observerID` to both of them */
     observerID?: string;
+    /** Callback which is to be fired once when the element appears on the screen*/
+    onVisible?: () => void;
 }
 
 const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
@@ -68,6 +70,11 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
         }
     };
 
+    // Trigger callback
+    useEffect(() => {
+        if (isVisible && props.onVisible) props.onVisible();
+    }, [isVisible, props, props.onVisible]);
+    // Add `.visible` class to the first children
     useEffect(() => {
         if (width < 1000) return;
 
@@ -91,6 +98,7 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
         }
     }, [isVisible, props.removeVisibleCSSClassIn, width]);
 
+    // Remove `visible` class after fixed period of the time
     useEffect(() => {
         if (wrapperElement.current?.firstChild) {
             if (width < 1000) {

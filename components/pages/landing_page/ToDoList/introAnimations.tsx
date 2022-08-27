@@ -6,47 +6,47 @@ import fadeFromBottom from "@/components/_keyframes/intro/fadeFromBottom";
 import type { SxProps } from "@mui/system";
 
 export const toDoListIntroAnimations: SxProps = {
-    ".single-task": {
+    ".single-task.show-intro-animation": {
         "&:nth-of-type(1)": {
-            animation: `${fadeFromLeft} .5s 1.3s both`,
-            button: {
+            animation: `${fadeFromLeft} .5s 1.3s backwards`,
+            "button.task-management": {
                 "&:nth-of-type(1)": {
-                    animation: `${fadeSimple} .3s 1.7s both`,
+                    animation: `${fadeSimple} .3s 1.7s backwards`,
                 },
                 "&:nth-of-type(2)": {
-                    animation: `${fadeSimple} .3s 1.8s both`,
+                    animation: `${fadeSimple} .3s 1.8s backwards`,
                 },
             },
         },
         "&:nth-of-type(2)": {
-            animation: `${fadeFromLeft} .5s 1.5s both`,
-            button: {
+            animation: `${fadeFromLeft} .5s 1.5s backwards`,
+            "button.task-management": {
                 "&:nth-of-type(1)": {
-                    animation: `${fadeSimple} .3s 1.9s both`,
+                    animation: `${fadeSimple} .3s 1.9s backwards`,
                 },
                 "&:nth-of-type(2)": {
-                    animation: `${fadeSimple} .3s 2s both`,
+                    animation: `${fadeSimple} .3s 2s backwards`,
                 },
             },
         },
         "&:nth-of-type(3)": {
-            animation: `${fadeFromLeft} .5s 1.7s both`,
-            button: {
+            animation: `${fadeFromLeft} .5s 1.7s backwards`,
+            "button.task-management": {
                 "&:nth-of-type(1)": {
-                    animation: `${fadeSimple} .3s 2.1s both`,
+                    animation: `${fadeSimple} .3s 2.1s backwards`,
                 },
                 "&:nth-of-type(2)": {
-                    animation: `${fadeSimple} .3s 2.2s both`,
+                    animation: `${fadeSimple} .3s 2.2s backwards`,
                 },
             },
         },
     },
     footer: {
         input: {
-            animation: `${fadeFromBottom} .3s 1.9s both`,
+            animation: `${fadeFromBottom} .3s 1.9s backwards`,
         },
         button: {
-            animation: `${fadeFromLeft} .3s 2.1s both`,
+            animation: `${fadeFromLeft} .3s 2.1s backwards`,
         },
     },
 };

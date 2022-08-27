@@ -82,6 +82,6 @@ export default styled("div")(({ theme }) => ({
     },
     ["@media (max-width:800px)"]: {
         width: "100%",
-        justifyContent: "center",
+        justifyContent: "space-between",
     },
 }));

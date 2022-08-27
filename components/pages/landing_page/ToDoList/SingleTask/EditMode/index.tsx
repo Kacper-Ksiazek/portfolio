@@ -5,10 +5,11 @@ import type { FunctionComponent } from "react";
 // Material UI Icons
 import Close from "@mui/icons-material/Close";
 import Check from "@mui/icons-material/Check";
+// Other components
+import TaskManagementButton from "../TaskManagementButton";
 // Styled components
 import EditModeBase from "./EditModeBase";
 import StyledInput from "../../_styled_components/StyledInput";
-import StyledButton from "../../_styled_components/StyledButton";
 
 interface SingleTaskEditModeProps {
     currentTask: string;
@@ -34,6 +35,8 @@ const SingleTaskEditMode: FunctionComponent<SingleTaskEditModeProps> = (props) =
         }, 900);
     };
 
+    const disableApplyChangesButton = props.currentTask === modifiedTask || modifiedTask.length < 5 || modifiedTask.length > 100;
+
     return (
         <EditModeBase className={animation}>
             <StyledInput
@@ -42,12 +45,20 @@ const SingleTaskEditMode: FunctionComponent<SingleTaskEditModeProps> = (props) =
                 value={modifiedTask}
                 onChange={(e) => setModifiedTask(e.target.value)}
             />
-            <StyledButton tabIndex={-1} disabled={props.currentTask === modifiedTask || modifiedTask.length < 5 || modifiedTask.length > 100} onClick={handleModification}>
-                <Check />
-            </StyledButton>
-            <StyledButton tabIndex={-1} onClick={close}>
-                <Close />
-            </StyledButton>
+
+            <TaskManagementButton
+                tooltip="Apply changes" //
+                icon={<Check />}
+                onClick={handleModification}
+                color="success"
+                disabled={disableApplyChangesButton}
+            />
+
+            <TaskManagementButton
+                tooltip="Discard changes" //
+                icon={<Close />}
+                onClick={close}
+            />
         </EditModeBase>
     );
 };

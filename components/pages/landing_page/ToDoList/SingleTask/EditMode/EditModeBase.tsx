@@ -42,30 +42,30 @@ export default styled("div")(({ theme }) => ({
     },
     alignItems: "center",
     "&.intro": {
-        animation: `${introAnimation} .5s both`,
+        animation: `${introAnimation} .5s backwards`,
         input: {
-            animation: `${fadeFromLeft} .3s .7s both`,
+            animation: `${fadeFromLeft} .3s .7s backwards`,
         },
         button: {
             "&:nth-of-type(1)": {
-                animation: `${fadeFromLeft} .3s .8s both`,
+                animation: `${fadeFromLeft} .3s .8s backwards`,
             },
             "&:nth-of-type(2)": {
-                animation: `${fadeFromLeft} .3s .9s both`,
+                animation: `${fadeFromLeft} .3s .9s backwards`,
             },
         },
     },
     "&.outro": {
-        animation: `${outroAnimation} .5s .4s both`,
+        animation: `${outroAnimation} .5s .4s backwards`,
         input: {
-            animation: `${fadeSimpleOUT} .3s .3s both`,
+            animation: `${fadeSimpleOUT} .3s .3s backwards`,
         },
         button: {
             "&:nth-of-type(1)": {
-                animation: `${fadeSimpleOUT} .3s .1s both`,
+                animation: `${fadeSimpleOUT} .3s .1s backwards`,
             },
             "&:nth-of-type(2)": {
-                animation: `${fadeSimpleOUT} .3s both`,
+                animation: `${fadeSimpleOUT} .3s backwards`,
             },
         },
     },
