@@ -42,13 +42,13 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
                 <title>Kacper Książek</title>
             </Head>
             {/* <IntroductionScreen /> */}
-            <BreakTheIce
+            {/* <BreakTheIce
                 hobbies={props.hobbies} //
                 schools={props.schools}
                 previousJobs={props.previousJobs}
-            />
-            <ToDoList />
-            {/* <Projects projects={props.projects} /> */}
+            /> */}
+            {/* <ToDoList /> */}
+            <Projects projects={props.projects} />
             {/* <PicturesMatchingGame /> */}
             {/* <Contact /> */}
         </>
@@ -78,7 +78,7 @@ export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> 
     const previousJobs = await prisma.previousJob.findMany();
 
     const yearsToIndicate: Record<string, number> = {
-        ABU_DHABI: 2022,
+        PORTFOLIO: 2022,
         ELECTRON_WORDS_LEARNING_APP: 2021,
         GAMES_APP: 2020,
     };

@@ -2,11 +2,28 @@ import type { Project, SeederDataItem } from "./@types";
 export default (
     [
         {
+            id: "PORTFOLIO",
+            title: "Portfolio",
+            folder: "portfolio",
+            start: new Date(2022, 6),
+            end: new Date(2022, 7),
+            githubURL: "https://github.com/Kacper-Ksiazek/portfolio",
+            shortDescription: `After over 2 years of coding everyday I decided to summarize *the most relevent things* that I've managed to create in this period. I had *immersed myself in coding*, became knowledgeable about it and via this project I want to prove my acquired competences.`,
+            description: {
+                introduction: `I had a *few attempts* to create this project. The first idea of making something like this emerged in first half of 2021. Regrettably, at that time I was not able to invent something which would be visual attractive due to my lack of knowledge in the field of UX and UI. Then I had a flurry of different responsibilities to be done thus coding became a sideline for a while. Eventually during my voyage for money for the university to Norway after graduating from high school in 2022  I mustered enough energy to prepare *entire visual layout of the project in figma* and then I transformed it swiftly and efficiently into next.js app . `,
+                purpose: `The obvious purpose of this app was to present my coding capabilities, introduce myself, tell about my experience and motivations, *plans for the future*, mention a few of my forms of spending leisure time, which I personally prefer and by describing generally my journey through the *world of fullstack development.*`,
+                conclusion: ``,
+            },
+            releventTechnologies: ["typescript", "material", "next", "prisma", "figma", "postgresql"],
+            technologies: ["Figma", "Typescript", "React", "NextJS", "Material UI", "PostgreSQL", "Prisma", "SASS"],
+            features: [],
+        },
+        {
             id: "ABU_DHABI",
             title: "Abu Dhabi- Travel Agency",
             folder: "abu_dhabi",
-            start: new Date(2021, 9),
-            end: new Date(2022, 7),
+            start: new Date(2021, 10),
+            end: new Date(2022, 5),
             githubURL: "https://github.com/Kacper-Ksiazek/nextjs-travel-agency-2022",
             shortDescription: `The *best project* so far. Application with features such as user accounts system, rich CRUD’s, and making reviews. On the top of that, *a lot of relational data* split into 8 tables and 6 custom enums. `,
             description: {
@@ -55,7 +72,7 @@ export default (
         {
             id: "ELECTRON_WORDS_LEARNING_APP",
             start: new Date(2021, 5),
-            end: new Date(2021, 9),
+            end: new Date(2021, 8),
             githubURL: "https://github.com/Kacper-Ksiazek/electron-words-learning-app-2021",
             description: {
                 introduction: `The first version of this application had been built from scratch in *pure python* (literally in terminal) and its MVP was ready to be use after just a few days. Then, I quickly realized that in the long run this app will not do well, so *I decided to revamp it entirely* using some more user friendly technologies.`,
@@ -71,8 +88,8 @@ export default (
         },
         {
             id: "OLX_2",
-            start: new Date(2021, 3),
-            end: new Date(2021, 4),
+            start: new Date(2021, 2),
+            end: new Date(2021, 3),
             title: "Olx clone",
             shortDescription: `My *typescript learning sandbox*. The app is all about adding sell offers of various items. Other relevant feature are rich user profile, which summarizes all previous user activity.`,
             folder: "olx_clone",
@@ -101,8 +118,8 @@ export default (
         },
         {
             id: "TRENUJ_PROSTO",
-            start: new Date(2021, 1),
-            end: new Date(2021, 2),
+            start: new Date(2021, 0),
+            end: new Date(2021, 1),
             title: "Trenuj Prosto",
             shortDescription: `My second commercial project. I built it for my high school PE teacher *during remote education*  caused by covid at the turn of January and February 2021.`,
             folder: "trenuj_prosto",
@@ -141,8 +158,8 @@ export default (
         {
             id: "GAMES_APP",
             title: "Games app",
-            start: new Date(2020, 11),
-            end: new Date(2020, 12),
+            start: new Date(2020, 10),
+            end: new Date(2020, 11),
             folder: "games_app",
             githubURL: "https://github.com/Kacper-Ksiazek/game-app-FRONT",
             shortDescription: `It was pretty haphazard and spontaneous project, I had not prepared any plan towards it. The purpose of it though was to *learn basics of nodejs as well as some databases concepts.*`,
