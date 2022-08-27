@@ -1,4 +1,5 @@
 // Tools
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { uploadedPreviousJobImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/previous_job";
 // Types
 import type { FunctionComponent } from "react";
@@ -35,7 +36,7 @@ const SinglePreviousJob: FunctionComponent<SinglePreviousJobProps> = ({ data, ..
                 <Localization city={data.city ?? undefined} country={data.country} />
                 <Header>{data.title}</Header>
                 <Duration smaller start={data.start} end={data.end} />
-                <Description>{data.description}</Description>
+                <Description>{formatTextViaBolding(data.description)}</Description>
 
                 {(() => {
                     if (data.projectPortfolioURL) {
