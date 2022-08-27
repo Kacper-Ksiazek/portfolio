@@ -11,7 +11,7 @@ interface UseHideWhileScrollingDownResult {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (): UseHideWhileScrollingDownResult => {
-    const OUTRO_ANIMATION_DURATION: number = 300; // in ms
+    const OUTRO_ANIMATION_DURATION: number = 500; // in ms
 
     const previousScrollY = useRef<number>(0);
     const [hideNavigaton, setHideNavigaton] = useState<boolean>(false);

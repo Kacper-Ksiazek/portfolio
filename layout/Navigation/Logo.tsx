@@ -13,6 +13,7 @@ const Header = styled("h3")(({ theme }) => ({
     marginLeft: "20px",
     fontSize: "32px",
     fontWeight: 700,
+    fontFamily: "Montserrat Alternates",
     ["@media (max-width:500px)"]: {
         fontSize: "28px",
         marginLeft: "16px",
@@ -51,7 +52,7 @@ const Logo: FunctionComponent<MUIStyledCommonProps> = (props) => {
 
     return (
         <SingleFlexWrapper onClick={redirectToMainPage}>
-            <ImageWrapper>
+            <ImageWrapper id="portfolio-logo-image">
                 <Image
                     src={"/logo.png"} //
                     alt="page-logo"
@@ -59,7 +60,7 @@ const Logo: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 />
             </ImageWrapper>
 
-            <Header className="alternative-font-family">K_Książek</Header>
+            <Header id="portfolio-logo-header">K_Książek</Header>
         </SingleFlexWrapper>
     );
 };

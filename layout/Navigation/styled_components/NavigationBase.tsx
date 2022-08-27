@@ -1,16 +1,9 @@
 // Tools
-import { styled, keyframes } from "@mui/system";
+import { styled } from "@mui/system";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
-//
-const outro = keyframes({
-    from: {
-        opacity: 1,
-    },
-    to: {
-        opacity: 0,
-    },
-});
+import fadeSimpleOUT from "@/components/_keyframes/outro/fadeSimpleOUT";
+
 // Styled components
 export default styled("div")(({ theme }) => ({
     position: "fixed",
@@ -37,14 +30,25 @@ export default styled("div")(({ theme }) => ({
         transition: "all .3s, color .15s",
     },
     "&.contrast-colors": {
-        color: "#fff",
+        "#portfolio-logo-header": {
+            color: "#fff",
+        },
+
         ".MuiButtonBase-root": {
             border: "1px solid #fff",
+            "span.text": {
+                color: "#fff",
+            },
         },
         "&.after-scroll-styles": {
-            color: "#000",
+            "#portfolio-logo-header": {
+                color: "#000",
+            },
             ".MuiButtonBase-root": {
                 border: "1px solid #000",
+                "span.text": {
+                    color: "#000",
+                },
             },
         },
         "#mobile-menu-opener": {
@@ -53,10 +57,36 @@ export default styled("div")(({ theme }) => ({
     },
 
     "&.display-outro-animation": {
-        animation: `${outro} .3s linear both`,
+        animation: `${fadeSimpleOUT} .3s .2s linear both !important`,
+        "#portfolio-logo-image": {
+            animation: `${fadeSimpleOUT} .3s linear both`,
+        },
+        "#portfolio-logo-header": {
+            animation: `${fadeSimpleOUT} .3s linear both`,
+        },
+        ".single-main-navigation-route": {
+            animation: `${fadeSimpleOUT} .3s linear both`,
+        },
     },
     "&.display-intro-animation": {
         animation: `${fadeSimple} .3s linear both !important`,
+        "#portfolio-logo-image": {
+            animation: `${fadeSimple} .3s .1s linear backwards`,
+        },
+        "#portfolio-logo-header": {
+            animation: `${fadeSimple} .3s .1s linear backwards`,
+        },
+        ".single-main-navigation-route": {
+            "&:nth-of-type(1)": {
+                animation: `${fadeSimple} .3s .2s linear backwards`,
+            },
+            "&:nth-of-type(2)": {
+                animation: `${fadeSimple} .3s .25s linear backwards`,
+            },
+            "&:nth-of-type(3)": {
+                animation: `${fadeSimple} .3s .3s linear backwards`,
+            },
+        },
     },
     "&.landing-page-intro": {
         animation: `${fadeFromTop} .2s 2.6s both linear`,
