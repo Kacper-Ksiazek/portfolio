@@ -1,6 +1,4 @@
 // Tools
-import { styled } from "@mui/system";
-import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import useBreakTheIceContentContext from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
@@ -11,15 +9,6 @@ import SingleSchool from "./SingleSchool";
 // Styled Components
 import Paragraph from "../_styled_components/Paragraph";
 import OverflowScrollDiv from "@/components/_styled_components/content_placement/OverflowScrollDiv";
-
-const ScrollbarHidder = styled("span")(({ theme }) => ({
-    position: "absolute",
-    right: "0",
-    background: "#fff",
-    height: "100%",
-    width: "10px",
-    animation: `${fadeSimple} reverse .3s 1.1s both`,
-}));
 
 const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const { schools } = useBreakTheIceContentContext();
@@ -37,8 +26,8 @@ const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 sx={{
                     mt: "20px", //
                 }}
+                displayScrollBarAfterTimeout={1100}
             >
-                <ScrollbarHidder />
                 {schools.map((item) => {
                     return <SingleSchool key={item.id} data={item} />;
                 })}

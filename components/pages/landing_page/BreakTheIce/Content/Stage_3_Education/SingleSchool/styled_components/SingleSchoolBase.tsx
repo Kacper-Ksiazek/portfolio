@@ -30,10 +30,10 @@ export default styled("div")(({ theme }) => ({
         },
     },
     "&:nth-of-type(1)": {
-        animation: `${fadeFromLeft} .5s 1s both`,
+        animation: `${fadeFromLeft} .5s 1s backwards`,
     },
     "&:nth-of-type(2)": {
-        animation: `${fadeFromLeft} .5s 1.1s both`,
+        animation: `${fadeFromLeft} .5s 1.1s backwards`,
     },
     ["@media (max-width:1000px)"]: {
         width: "100%",

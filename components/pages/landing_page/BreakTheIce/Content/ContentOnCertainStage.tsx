@@ -9,6 +9,7 @@ const Stage_1_General = dynamic(() => import("./Stage_1_General"));
 const Stage_2_Competences = dynamic(() => import("./Stage_2_Competences"));
 const Stage_3_Education = dynamic(() => import("./Stage_3_Education"));
 const Stage_4_Hobbies = dynamic(() => import("./Stage_4_Hobbies"));
+const Stage_5_Previous_Jobs = dynamic(() => import("./Stage_5_Previous_Jobs"));
 
 interface ContentOnCertainStageProps {
     stage: IceBreakingStage;
@@ -36,6 +37,8 @@ const ContentOnCertainStage: FunctionComponent<ContentOnCertainStageProps> = (pr
             return <Stage_3_Education />;
         case "Hobbies":
             return <Stage_4_Hobbies />;
+        case "Previous_Jobs":
+            return <Stage_5_Previous_Jobs />;
     }
 };
 

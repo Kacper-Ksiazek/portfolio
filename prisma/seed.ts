@@ -5,9 +5,10 @@ import { uploadDir } from "../utils/paths";
 import { PrismaClient } from "@prisma/client";
 import ConsolePrettier from "../utils/api/ConsolePrettier";
 // Data
+import schoolData from "./data/school";
 import hobbiesData from "./data/hobbies";
 import projectsData from "./data/projects";
-import schoolData from "./data/school";
+import previousJobsData from "./data/previous_jobs";
 // Types
 import { SeederDataList, ModelName } from "./data/@types";
 
@@ -105,8 +106,12 @@ const main = async () => {
                 model: "school",
                 data: schoolData,
             },
+            {
+                model: "previousJob",
+                data: previousJobsData,
+            },
         ],
-        uploadFoldersToRefresh: ["projects", "hobbies", "schools"],
+        uploadFoldersToRefresh: ["projects", "hobbies", "schools", "previous_jobs"],
     }).main();
 };
 

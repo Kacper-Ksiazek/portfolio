@@ -28,6 +28,6 @@ export default (
 ).map((el: Partial<SeederDataItem<Hobby>>) => {
     el.folder = el.folder;
     el._imagesDir = `/hobbies/${el.folder}`;
-    el.id = el.folder?.toUpperCase();
+    el.id = el.folder?.toUpperCase().split(".")[0];
     return el;
 }) as SeederDataItem<Hobby>[];

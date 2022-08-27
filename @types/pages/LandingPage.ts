@@ -1,4 +1,4 @@
-import type { Hobby, School } from "@prisma/client";
+import type { Hobby, School, PreviousJob as _PreviousJob } from "@prisma/client";
 import type { Project as _Project } from "@/@types/prisma/Project";
 
 export interface Project {
@@ -12,8 +12,14 @@ export interface Project {
     yearToIndicate?: number;
 }
 
+export interface PreviousJob extends Omit<_PreviousJob, "start" | "end"> {
+    start: string;
+    end: string;
+}
+
 export interface LandingPageServerSideProps {
     hobbies: Hobby[];
     projects: Project[];
     schools: School[];
+    previousJobs: PreviousJob[];
 }

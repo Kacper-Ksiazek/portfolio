@@ -41,8 +41,12 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
             <Head>
                 <title>Kacper Książek</title>
             </Head>
-            <IntroductionScreen />
-            <BreakTheIce hobbies={props.hobbies} schools={props.schools} />
+            {/* <IntroductionScreen /> */}
+            <BreakTheIce
+                hobbies={props.hobbies} //
+                schools={props.schools}
+                previousJobs={props.previousJobs}
+            />
             {/* <ToDoList /> */}
             {/* <Projects projects={props.projects} /> */}
             {/* <PicturesMatchingGame /> */}
@@ -71,6 +75,7 @@ export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> 
 
     const hobbies = await prisma.hobby.findMany();
     const schools = await prisma.school.findMany();
+    const previousJobs = await prisma.previousJob.findMany();
 
     const yearsToIndicate: Record<string, number> = {
         ABU_DHABI: 2022,
@@ -85,6 +90,11 @@ export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> 
                     (el as any).yearToIndicate = yearsToIndicate[el.id];
                 }
 
+                (el as any).end = formatProjectDate(el.end);
+                (el as any).start = formatProjectDate(el.start);
+                return el;
+            }) as any,
+            previousJobs: previousJobs.map((el) => {
                 (el as any).end = formatProjectDate(el.end);
                 (el as any).start = formatProjectDate(el.start);
                 return el;

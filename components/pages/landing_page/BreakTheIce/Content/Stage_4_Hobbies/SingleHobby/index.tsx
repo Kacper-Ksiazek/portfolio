@@ -32,7 +32,7 @@ const SingleHobby: FunctionComponent<SingleHobbyProps> = ({ data }) => {
                 <Image
                     alt={`${data.title}-thumbnail`} //
                     layout="fill"
-                    src={uploadedHobbyImageURLBuilder(data.id)}
+                    src={uploadedHobbyImageURLBuilder(data.folder)}
                     priority
                 />
             </ImageWrapper>
