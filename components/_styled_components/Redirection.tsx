@@ -23,6 +23,18 @@ const RedirectBase = styled(StyledButton)(({ theme }) => ({
         margin: 0,
         width: "100%",
     },
+
+    "&.small": {
+        fontSize: "14px",
+        padding: "4px 16px",
+        "svg.right-arrow": {
+            fontSize: "16px",
+        },
+        ["@media (max-width:500px)"]: {
+            fontSize: "16px",
+            padding: "2px 24px",
+        },
+    },
 }));
 
 const TooltipChildrenWrapper = styled("span")(({ theme }) => ({
@@ -48,15 +60,19 @@ const RedirectionWrapper: FunctionComponent<RedirectionWrapperProps> = (props) =
 
 interface RedirectionProps {
     url: string;
-    children: ReactNode;
+    small?: boolean;
     tooltip?: string;
+    children: ReactNode;
 }
 
 const Redirection: FunctionComponent<RedirectionProps> = (props) => {
     return (
         <RedirectionWrapper tooltip={props.tooltip}>
             <Link href={props.url} passHref>
-                <RedirectBase color="primary" className="redirect">
+                <RedirectBase
+                    color="primary" //
+                    className={[props.small ? "small" : "", "redirect"].join(" ")}
+                >
                     {props.children}
                     <KeyboardArrowRight className="right-arrow" />
                 </RedirectBase>

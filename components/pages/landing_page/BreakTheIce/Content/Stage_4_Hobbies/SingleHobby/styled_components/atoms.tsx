@@ -14,14 +14,14 @@ export const Label = styled("span")(({ theme }) => ({
 }));
 
 export const Header = styled("h4")(({ theme }) => ({
-    margin: "4px 0 4px 0 ",
+    margin: "8px 0 4px 0 ",
     fontFamily: "Montserrat Alternates",
-    fontSize: "24px",
+    fontSize: "22px",
 }));
 
 export const Description = styled("p")(({ theme }) => ({
     margin: "0",
-    fontSize: "18px",
+    fontSize: "16px",
 }));
 
 export const Reference = styled("a")(({ theme }) => ({

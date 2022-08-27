@@ -10,7 +10,7 @@ export default (
             url: "https://www.agh.edu.pl/en/",
             folder: "agh.jpg",
             end: "Present",
-            description: "I study at the faculty called *Engineering and Data Analysis*",
+            description: "I study at the Faculty of *Engineering and Data Analysis*. Alongside with university I want to *continue my fullstack development* path.",
         },
         {
             id: "MAGIC",
@@ -20,8 +20,7 @@ export default (
             url: "http://www.magic.edu.pl/",
             folder: "magic.jpg",
             end: "2022",
-            description: `During my last year of high school I enrolled myself in *English language* extra classes so as to improve my language skills. I got assigned to *B2/C1* group and was
-            attending 90 minutes long sessions two times a week for 7 months.`,
+            description: `During my last year of high school I enrolled myself in *English language* extra classes so as to improve my language skills. I got assigned to *B2/C1* group and was attending 90 minutes long sessions two times a week for 7 months.`,
         },
         {
             id: "GORZEN_HA_TFU",
@@ -31,7 +30,7 @@ export default (
             url: "https://ckziuwadowice.pl/",
             folder: "gorzen.jpg",
             end: "2022",
-            description: `I was attending to the IT related class (*technikum informatyczne*) and eventually obtained all possible certification.`,
+            description: `I was attending to the IT related class (*technikum informatyczne*) and eventually obtained all possible certifications.`,
         },
     ] as SeederDataItem<School>[]
 ).map((el: Partial<SeederDataItem<School>>) => {

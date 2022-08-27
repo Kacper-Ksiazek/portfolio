@@ -35,7 +35,6 @@ const ScrollBarHidder = styled("span")(({ theme }) => ({
     right: 0,
     width: "8px",
     height: "100%",
-    zIndex: 10,
 }));
 
 interface OverflowScrollDivProps {

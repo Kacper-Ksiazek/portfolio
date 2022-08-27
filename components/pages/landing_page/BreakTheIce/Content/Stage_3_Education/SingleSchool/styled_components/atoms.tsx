@@ -3,7 +3,7 @@ import { styled } from "@mui/system";
 
 export const Header = styled("h4")(({ theme }) => ({
     margin: 0,
-    fontSize: "24px",
+    fontSize: "22px",
     fontFamily: "Montserrat Alternates",
 }));
 
@@ -26,5 +26,5 @@ export const Date = styled("span")(({ theme }) => ({
 }));
 export const Description = styled("p")(({ theme }) => ({
     margin: 0,
-    fontSize: "18px",
+    fontSize: "16px",
 }));

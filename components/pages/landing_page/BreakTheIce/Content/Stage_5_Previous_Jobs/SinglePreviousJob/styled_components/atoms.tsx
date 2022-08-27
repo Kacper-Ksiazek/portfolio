@@ -3,7 +3,7 @@ import { styled } from "@mui/system";
 
 export const Header = styled("h4")(({ theme }) => ({
     margin: 0,
-    fontSize: "24px",
+    fontSize: "22px",
     fontFamily: "Montserrat Alternates",
 }));
 
@@ -14,7 +14,7 @@ export const Description = styled("p")(({ theme }) => ({
 
 export const RedirectionsWrapper = styled("div")(({ theme }) => ({
     display: "flex",
-    marginTop: "16px",
+    marginTop: "12px",
     ["@media (max-width:500px)"]: {
         marginTop: "32px",
     },
