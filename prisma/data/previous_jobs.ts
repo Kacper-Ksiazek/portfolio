@@ -6,7 +6,7 @@ export default (
             title: "Demolish and Construction",
             city: "Oslo",
             country: "Norway",
-            description: `Moving partition walls, replacing ceilings with newer ones, puttying, painting and placing new floors.`,
+            description: `The financial preparation towards the collage and the biggest life leason to date. The job included tasks such as moving partition walls, replacing ceilings with newer ones, puttying, painting and placing new floors.`,
             start: new Date(2022, 5),
             end: new Date(2022, 8),
             folder: "norway_excursion.jpg",

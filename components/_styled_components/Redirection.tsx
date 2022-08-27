@@ -25,6 +25,12 @@ const RedirectBase = styled(StyledButton)(({ theme }) => ({
     },
 }));
 
+const TooltipChildrenWrapper = styled("span")(({ theme }) => ({
+    ["@media (max-width:500px)"]: {
+        width: "100%",
+    },
+}));
+
 interface RedirectionWrapperProps {
     tooltip?: string;
     children: ReactNode;
@@ -33,7 +39,7 @@ const RedirectionWrapper: FunctionComponent<RedirectionWrapperProps> = (props) =
     if (props.tooltip) {
         return (
             <Tooltip title={props.tooltip} placement="top">
-                <span style={{ width: "100%" }}>{props.children}</span>
+                <TooltipChildrenWrapper>{props.children}</TooltipChildrenWrapper>
             </Tooltip>
         );
     }

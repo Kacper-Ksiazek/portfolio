@@ -6,4 +6,6 @@ export default styled("div")(({ theme }) => ({
     height: "160px",
     position: "relative",
     overflow: "hidden",
+    transition: "transform .3s",
+    transformOrigin: "top",
 }));

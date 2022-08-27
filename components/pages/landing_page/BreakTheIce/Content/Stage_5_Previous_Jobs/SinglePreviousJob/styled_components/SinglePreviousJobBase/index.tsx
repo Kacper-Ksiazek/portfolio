@@ -56,6 +56,9 @@ export default styled("div")(({ theme }) => ({
             "&::before": {
                 transform: "translate(20px,-50%) scaleX(1.4)",
             },
+            ".single-previous-job-thumbnail-wrapper": {
+                transform: "translate(8px,0)",
+            },
         },
     },
     ...(RWD as any),
