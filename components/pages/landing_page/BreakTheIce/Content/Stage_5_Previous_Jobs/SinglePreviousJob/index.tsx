@@ -6,6 +6,7 @@ import type { PreviousJob } from "@/@types/pages/LandingPage";
 // Other components
 import Image from "next/Image";
 import Localization from "./Localization";
+import ITRelatedJobIconBase from "./ITRelatedJobIcon";
 import Duration from "@/components/pages/_shared/single-project/Duration";
 // Styled components
 import Redirection from "@/components/_styled_components/Redirection";
@@ -28,6 +29,7 @@ const SinglePreviousJob: FunctionComponent<SinglePreviousJobProps> = ({ data, ..
                     src={uploadedPreviousJobImageURLBuilder(data.folder)}
                     layout="fill"
                 />
+                {data.projectGithubURL && <ITRelatedJobIconBase />}
             </ThumbnailWrapper>
             <TextWrapper>
                 <Localization city={data.city ?? undefined} country={data.country} />
@@ -41,7 +43,7 @@ const SinglePreviousJob: FunctionComponent<SinglePreviousJobProps> = ({ data, ..
                             <RedirectionsWrapper>
                                 <Redirection
                                     url={data.projectPortfolioURL} //
-                                    tooltip="Go to this project's site"
+                                    tooltip="See more details about this project"
                                 >
                                     Read more
                                 </Redirection>
