@@ -1,4 +1,5 @@
 // Tools
+import { useSnackbar } from "@/hooks/useSnackbar";
 import { useEffect, useState, useRef } from "react";
 // Types
 import type { FunctionComponent } from "react";
@@ -17,6 +18,8 @@ interface CopyEmailButtonProps {
 }
 
 const CopyEmailButton: FunctionComponent<CopyEmailButtonProps> = (props) => {
+    const { displaySnackbar } = useSnackbar();
+
     const [showButton, setShowButton] = useState<boolean>(false);
     const [emailHasBeenCopied, setEmailHasBeenCopied] = useState<boolean>(false);
     const buttonElement = useRef<HTMLButtonElement | null>(null);
@@ -26,7 +29,7 @@ const CopyEmailButton: FunctionComponent<CopyEmailButtonProps> = (props) => {
 
         setTimeout(() => {
             if (isMounted) setShowButton(true);
-        }, 500);
+        }, 200);
 
         return () => {
             isMounted = false;
@@ -37,6 +40,12 @@ const CopyEmailButton: FunctionComponent<CopyEmailButtonProps> = (props) => {
     const copyToClipboard = () => {
         navigator.clipboard.writeText(props.emailToCopy);
         setEmailHasBeenCopied(true);
+
+        displaySnackbar({
+            msg: "Email address has been copied to clipboard! Make a good use of it 😎",
+            severity: "success",
+            hideAfter: 5000,
+        });
 
         setTimeout(() => {
             if (buttonElement.current) buttonElement.current.blur();

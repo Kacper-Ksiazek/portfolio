@@ -5,7 +5,7 @@ import { styled } from "@mui/system";
 import type { FunctionComponent } from "react";
 import type { SingleWayToReachMeProps, ViaEmailAddress } from "./@types";
 // Material UI Icons
-import FlightTakeoff from "@mui/icons-material/FlightTakeoff";
+import ArrowForward from "@mui/icons-material/ArrowForward";
 // Other components
 import ShowEmailButton from "./email_managing_buttons/ShowEmailButton";
 import CopyEmailButton from "./email_managing_buttons/CopyEmailButton";
@@ -52,7 +52,7 @@ const SingleWayToReachMe: FunctionComponent<SingleWayToReachMeProps> = (props) =
             </Text>
             {!isEmail && (
                 <RightPointingArrow className="right-pointing-arrow">
-                    <FlightTakeoff />
+                    <ArrowForward />
                 </RightPointingArrow>
             )}
             {isEmail && <ShowEmailButton showEmail={showEmail} setShowEmail={setShowEmail} />}
