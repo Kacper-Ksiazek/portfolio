@@ -9,6 +9,7 @@ export type Color = "text" | "primary" | "secondary" | "error" | "success";
 
 interface StyledButtonProps extends ButtonBaseProps {
     color?: Color;
+    iconButton?: boolean;
 }
 
 export default styled(ButtonBase, {
@@ -62,5 +63,13 @@ export default styled(ButtonBase, {
             background: alpha(theme.palette.text.primary, 0.4),
             color: theme.palette.text.primary,
         },
+        ...(props.iconButton && {
+            padding: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "32px",
+            height: "32px",
+        }),
     };
 });
