@@ -22,7 +22,20 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const inputElement = useRef<HTMLInputElement | null>(null);
 
     const deleteSingleTask = (indexToDelete: number) => {
-        setTasks((val) => val.filter((_el, index) => index !== indexToDelete));
+        try {
+            setTasks((val) => val.filter((_el, index) => index !== indexToDelete));
+            displaySnackbar({
+                msg: "A task has been deleted successfully",
+                severity: "success",
+                hideAfter: 4000,
+            });
+        } catch (e) {
+            displaySnackbar({
+                msg: "Something went wrong while deleting the task",
+                severity: "error",
+                hideAfter: 4000,
+            });
+        }
     };
 
     const modifySingleTask = (indexToModify: number, value: string) => {
