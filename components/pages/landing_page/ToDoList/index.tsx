@@ -1,5 +1,6 @@
 // Tools
 import { useState, useRef } from "react";
+import { useSnackbar } from "@/hooks/useSnackbar";
 import { toDoListIntroAnimations } from "./introAnimations";
 // Types
 import type { FunctionComponent } from "react";
@@ -13,6 +14,7 @@ import DarkSectionWrapper from "@/components/_styled_components/content_placemen
 import OverflowScrollDiv from "@/components/_styled_components/content_placement/OverflowScrollDiv";
 
 const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
+    const { displaySnackbar } = useSnackbar();
     const [tasks, setTasks] = useState<string[]>(["Go and help mum with laundry", "Mow the lawn for my grandparents", "Show everyone around how to make exquisite software"]);
     const [freshlyCreatedTaskIndex, setFreshlyCreatedTaskIndex] = useState<number>(-1);
     const [showIntroAnimation, setShowIntroAnimation] = useState<boolean>(true);
@@ -24,7 +26,20 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
     };
 
     const modifySingleTask = (indexToModify: number, value: string) => {
-        setTasks((val) => val.map((el, index) => (index === indexToModify ? value : el)));
+        try {
+            setTasks((val) => val.map((el, index) => (index === indexToModify ? value : el)));
+            displaySnackbar({
+                msg: "A task has been updated successfully",
+                severity: "success",
+                hideAfter: 4000,
+            });
+        } catch (e) {
+            displaySnackbar({
+                msg: "Something went wrong while updating the task",
+                severity: "error",
+                hideAfter: 4000,
+            });
+        }
     };
 
     const addNewTask = (newTask: string) => {
