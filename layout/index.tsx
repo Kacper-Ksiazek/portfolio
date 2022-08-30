@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import Snackbar from "./Snackbar";
 import Navigation from "./Navigation";
 import ScrollButton from "./ScrollButton";
-import { GlobalContextProvider } from "./GlobalContext";
+import { SnackbarContextProvider } from "./SnackbarContext";
 import TransitionBetweenPages from "./TransitionBetweenPages";
 // Styled components
 import MainWrapper from "./MainWrapper";
@@ -16,14 +16,14 @@ interface LayoutProps {
 
 const Layout: FunctionComponent<LayoutProps> = (props) => {
     return (
-        <GlobalContextProvider>
+        <SnackbarContextProvider>
             <Navigation />
             <MainWrapper>{props.children}</MainWrapper>
             <ScrollButton />
             <Footer />
             <TransitionBetweenPages />
             <Snackbar />
-        </GlobalContextProvider>
+        </SnackbarContextProvider>
     );
 };
 
