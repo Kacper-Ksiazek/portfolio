@@ -27,13 +27,13 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
             displaySnackbar({
                 msg: "A task has been deleted successfully",
                 severity: "success",
-                hideAfter: 4000,
+                hideAfter: 5000,
             });
         } catch (e) {
             displaySnackbar({
                 msg: "Something went wrong while deleting the task",
                 severity: "error",
-                hideAfter: 4000,
+                hideAfter: 5000,
             });
         }
     };

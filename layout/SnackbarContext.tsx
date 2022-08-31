@@ -17,29 +17,6 @@ export const SnackbarContextProvider: FunctionComponent<SnackbarContextProviderP
 
     const [snackbars, setSnackbars] = useState<Snackbar[]>([]);
 
-    const addSnackbar: SnackbarContextInterface["addSnackbar"] = useCallback((addSnackbarParams) => {
-        const id = Date.now();
-        const hideAfter = addSnackbarParams.hideAfter ?? DEFAULT_HIDE_AFTER;
-
-        const timeout = setTimeout(() => {
-            // closeSnackbar(id)
-        }, hideAfter);
-
-        setSnackbars((currentSnackbars) => {
-            return [
-                ...currentSnackbars,
-                {
-                    msg: addSnackbarParams.msg,
-                    severity: addSnackbarParams.severity,
-                    hideAfter,
-                    _id: id,
-                    _displayHidingAnimation: false,
-                    _hidingTimeout: timeout,
-                } as Snackbar,
-            ];
-        });
-    }, []);
-
     const closeSnackbar: SnackbarContextInterface["closeSnackbar"] = useCallback((idOfSnackbarToEdit) => {
         const updateSnackbar = (prop: keyof Snackbar, val: Snackbar[typeof prop]) => {
             setSnackbars((snackbars) => {
@@ -62,6 +39,32 @@ export const SnackbarContextProvider: FunctionComponent<SnackbarContextProviderP
         updateSnackbar("_displayHidingAnimation", true);
         setTimeout(removeSnackbar, HIDING_ANIMATION_DURATION);
     }, []);
+
+    const addSnackbar: SnackbarContextInterface["addSnackbar"] = useCallback(
+        (addSnackbarParams) => {
+            const id = Date.now();
+            const hideAfter = addSnackbarParams.hideAfter ?? DEFAULT_HIDE_AFTER;
+
+            const timeout = setTimeout(() => {
+                closeSnackbar(id);
+            }, hideAfter);
+
+            setSnackbars((currentSnackbars) => {
+                return [
+                    ...currentSnackbars,
+                    {
+                        msg: addSnackbarParams.msg,
+                        severity: addSnackbarParams.severity,
+                        hideAfter,
+                        _id: id,
+                        _displayHidingAnimation: false,
+                        _hidingTimeout: timeout,
+                    } as Snackbar,
+                ];
+            });
+        },
+        [closeSnackbar]
+    );
 
     return (
         <SnackbarContext.Provider

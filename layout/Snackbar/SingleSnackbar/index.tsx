@@ -1,5 +1,4 @@
 // Tools
-
 // Types
 import type { FunctionComponent } from "react";
 import type { Snackbar } from "@/@types/SnackbarContext";
@@ -20,10 +19,7 @@ interface SingleSnackbarProps {
 
 const SingleSnackbar: FunctionComponent<SingleSnackbarProps> = (props) => {
     return (
-        <StyledSnackbar
-            open={props.displayHidingAnimation} //
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        >
+        <StyledSnackbar className={props.displayHidingAnimation ? "outro" : ""}>
             <StyledAlert
                 severity={props.severity} //
                 variant="filled"

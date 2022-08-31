@@ -1,9 +1,9 @@
 // Tools
-import { styled } from "@mui/system";
-import fadeToLeft from "@/components/_keyframes/outro/fadeToLeft";
+import { styled, keyframes } from "@mui/system";
+import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
+import fadeSimpleOUT from "@/components/_keyframes/outro/fadeSimpleOUT";
 // Material UI Components
 import Alert from "@mui/material/Alert";
-import MUISnackbar from "@mui/material/Snackbar";
 
 export const StyledAlert = styled(Alert)(({ theme }) => ({
     width: "100%",
@@ -42,9 +42,26 @@ export const CounterWrapper = styled("div")(({ theme }) => ({
     },
 }));
 
-export const StyledSnackbar = styled(MUISnackbar)(({ theme }) => ({
-    zIndex: 2000,
-    ".outro": {
-        animation: `${fadeToLeft} .3s both`,
+const snackbarOutroAnimation = keyframes({
+    "0%": {
+        maxHeight: "58px",
+        opacity: 1,
+    },
+    "50%": {
+        maxHeight: "58px",
+        opacity: 0,
+    },
+    "100%": {
+        maxHeight: "0px",
+        opacity: 0,
+    },
+});
+
+export const StyledSnackbar = styled("div")(({ theme }) => ({
+    marginTop: "8px",
+    animation: `${fadeSimple} .15s linear`,
+    overflow: "hidden",
+    "&.outro": {
+        animation: `${snackbarOutroAnimation} .3s linear both`,
     },
 }));

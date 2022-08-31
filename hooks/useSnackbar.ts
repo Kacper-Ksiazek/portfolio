@@ -1,14 +1,17 @@
 // Tools
+import { useContext } from "react";
 import { SnackbarContext } from "@/layout/SnackbarContext";
-import { useCallback, useState, useEffect, useContext } from "react";
 // Types
-import type { Snackbar } from "@/@types/SnackbarContext";
+import type { AddSnackbarParams } from "@/@types/SnackbarContext";
 
-interface DisplaySnackbarParams extends Omit<Snackbar, "display" | "hideAfter"> {
-    hideAfter?: number;
+interface UseSnackbarResult {
+    displaySnackbar: (params: AddSnackbarParams) => void;
 }
-interface UseSnackbarResult {}
 
 export const useSnackbar = (): UseSnackbarResult => {
-    //
+    const context = useContext(SnackbarContext);
+
+    return {
+        displaySnackbar: context.addSnackbar,
+    };
 };
