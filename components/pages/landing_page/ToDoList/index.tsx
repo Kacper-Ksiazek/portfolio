@@ -56,22 +56,36 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
     };
 
     const addNewTask = (newTask: string) => {
-        setFreshlyCreatedTaskIndex(tasks.length);
-        tasks.push(newTask);
+        try {
+            setFreshlyCreatedTaskIndex(tasks.length);
+            tasks.push(newTask);
 
-        inputElement.current?.focus();
-        setTimeout(() => {
-            if (taskWrapperElement.current) {
-                taskWrapperElement.current.scrollTo({
-                    top: (taskWrapperElement.current.firstChild as any).offsetHeight ?? 100,
-                    behavior: "smooth",
-                });
-            }
-        }, 20);
+            inputElement.current?.focus();
+            setTimeout(() => {
+                if (taskWrapperElement.current) {
+                    taskWrapperElement.current.scrollTo({
+                        top: (taskWrapperElement.current.firstChild as any).offsetHeight ?? 100,
+                        behavior: "smooth",
+                    });
+                }
+            }, 20);
 
-        setTimeout(() => {
-            setFreshlyCreatedTaskIndex(-1);
-        }, 1000);
+            setTimeout(() => {
+                setFreshlyCreatedTaskIndex(-1);
+            }, 1000);
+
+            displaySnackbar({
+                msg: "New task has been added successfully",
+                severity: "success",
+                hideAfter: 4000,
+            });
+        } catch (e) {
+            displaySnackbar({
+                msg: "Something went wrong while adding the new task",
+                severity: "error",
+                hideAfter: 4000,
+            });
+        }
     };
 
     const onVisible = () => {
