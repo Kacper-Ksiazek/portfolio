@@ -50,7 +50,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
             <ToDoList />
             {/* <Projects projects={props.projects} /> */}
             {/* <PicturesMatchingGame /> */}
-            {/* <Contact /> */}
+            <Contact />
         </>
     );
 };

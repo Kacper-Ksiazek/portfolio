@@ -13,7 +13,8 @@ interface SnackbarContextProviderProps {
 
 export const SnackbarContextProvider: FunctionComponent<SnackbarContextProviderProps> = (props) => {
     const DEFAULT_HIDE_AFTER: number = 6000;
-    const HIDING_ANIMATION_DURATION: number = 300;
+    const OUTRO_ANIMATION_DURATION: number = 1000;
+    const INTRO_ANIMATION_DURATION: number = 800;
 
     const [snackbars, setSnackbars] = useState<Snackbar[]>([]);
 
@@ -37,13 +38,13 @@ export const SnackbarContextProvider: FunctionComponent<SnackbarContextProviderP
         };
 
         updateSnackbar("_displayHidingAnimation", true);
-        setTimeout(removeSnackbar, HIDING_ANIMATION_DURATION);
+        setTimeout(removeSnackbar, OUTRO_ANIMATION_DURATION);
     }, []);
 
     const addSnackbar: SnackbarContextInterface["addSnackbar"] = useCallback(
         (addSnackbarParams) => {
             const id = Date.now();
-            const hideAfter = addSnackbarParams.hideAfter ?? DEFAULT_HIDE_AFTER;
+            const hideAfter = (addSnackbarParams.hideAfter ?? DEFAULT_HIDE_AFTER) + INTRO_ANIMATION_DURATION;
 
             const timeout = setTimeout(() => {
                 closeSnackbar(id);
