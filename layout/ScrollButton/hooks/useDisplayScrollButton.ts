@@ -1,11 +1,13 @@
 // Tools
-import { useEffect, useState, useCallback } from "react";
+import { SnackbarContext } from "@/layout/SnackbarContext";
+import { useEffect, useState, useCallback, useContext } from "react";
 
 const DISPLAY_SCROLLBUTTON_THRESHOLD = 200;
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (): boolean => {
     const [displayButton, setDisplayButton] = useState<boolean>(false);
+    const context = useContext(SnackbarContext);
 
     const handleOnScroll = useCallback(() => {
         if (scrollY >= DISPLAY_SCROLLBUTTON_THRESHOLD && !displayButton) setDisplayButton(true);
@@ -19,5 +21,5 @@ export default (): boolean => {
         };
     }, [handleOnScroll]);
 
-    return displayButton;
+    return context.snackbars.length === 0 ? displayButton : false;
 };
