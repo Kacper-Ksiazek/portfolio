@@ -1,5 +1,6 @@
 // Tools
 import { useState, useRef } from "react";
+import { useSnackbar } from "@/hooks/useSnackbar";
 import { toDoListIntroAnimations } from "./introAnimations";
 // Types
 import type { FunctionComponent } from "react";
@@ -13,6 +14,7 @@ import DarkSectionWrapper from "@/components/_styled_components/content_placemen
 import OverflowScrollDiv from "@/components/_styled_components/content_placement/OverflowScrollDiv";
 
 const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
+    const { displaySnackbar } = useSnackbar();
     const [tasks, setTasks] = useState<string[]>(["Go and help mum with laundry", "Mow the lawn for my grandparents", "Show everyone around how to make exquisite software"]);
     const [freshlyCreatedTaskIndex, setFreshlyCreatedTaskIndex] = useState<number>(-1);
     const [showIntroAnimation, setShowIntroAnimation] = useState<boolean>(true);
@@ -20,30 +22,70 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const inputElement = useRef<HTMLInputElement | null>(null);
 
     const deleteSingleTask = (indexToDelete: number) => {
-        setTasks((val) => val.filter((_el, index) => index !== indexToDelete));
+        try {
+            setTasks((val) => val.filter((_el, index) => index !== indexToDelete));
+            displaySnackbar({
+                msg: "A task has been deleted successfully",
+                severity: "success",
+                hideAfter: 5000,
+            });
+        } catch (e) {
+            displaySnackbar({
+                msg: "Something went wrong while deleting the task",
+                severity: "error",
+                hideAfter: 5000,
+            });
+        }
     };
 
     const modifySingleTask = (indexToModify: number, value: string) => {
-        setTasks((val) => val.map((el, index) => (index === indexToModify ? value : el)));
+        try {
+            setTasks((val) => val.map((el, index) => (index === indexToModify ? value : el)));
+            displaySnackbar({
+                msg: "A task has been updated successfully",
+                severity: "success",
+                hideAfter: 5000,
+            });
+        } catch (e) {
+            displaySnackbar({
+                msg: "Something went wrong while updating the task",
+                severity: "error",
+                hideAfter: 5000,
+            });
+        }
     };
 
     const addNewTask = (newTask: string) => {
-        setFreshlyCreatedTaskIndex(tasks.length);
-        tasks.push(newTask);
+        try {
+            setFreshlyCreatedTaskIndex(tasks.length);
+            tasks.push(newTask);
 
-        inputElement.current?.focus();
-        setTimeout(() => {
-            if (taskWrapperElement.current) {
-                taskWrapperElement.current.scrollTo({
-                    top: (taskWrapperElement.current.firstChild as any).offsetHeight ?? 100,
-                    behavior: "smooth",
-                });
-            }
-        }, 20);
+            inputElement.current?.focus();
+            setTimeout(() => {
+                if (taskWrapperElement.current) {
+                    taskWrapperElement.current.scrollTo({
+                        top: (taskWrapperElement.current.firstChild as any).offsetHeight ?? 100,
+                        behavior: "smooth",
+                    });
+                }
+            }, 20);
 
-        setTimeout(() => {
-            setFreshlyCreatedTaskIndex(-1);
-        }, 1000);
+            setTimeout(() => {
+                setFreshlyCreatedTaskIndex(-1);
+            }, 1000);
+
+            displaySnackbar({
+                msg: "New task has been added successfully",
+                severity: "success",
+                hideAfter: 5000,
+            });
+        } catch (e) {
+            displaySnackbar({
+                msg: "Something went wrong while adding the new task",
+                severity: "error",
+                hideAfter: 5000,
+            });
+        }
     };
 
     const onVisible = () => {

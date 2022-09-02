@@ -87,5 +87,12 @@ export default createTheme({
                 },
             },
         },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    boxSizing: "border-box",
+                },
+            },
+        },
     },
 });
