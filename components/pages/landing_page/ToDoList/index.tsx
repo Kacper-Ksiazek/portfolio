@@ -1,5 +1,6 @@
 // Tools
 import { useState, useRef } from "react";
+import { useArray } from "@/hooks/useArray";
 import { useSnackbar } from "@/hooks/useSnackbar";
 import { toDoListIntroAnimations } from "./introAnimations";
 // Types
@@ -15,7 +16,8 @@ import OverflowScrollDiv from "@/components/_styled_components/content_placement
 
 const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const { displaySnackbar } = useSnackbar();
-    const [tasks, setTasks] = useState<string[]>(["Go and help mum with laundry", "Mow the lawn for my grandparents", "Show everyone around how to make exquisite software"]);
+
+    const tasksArray = useArray<string>(["Go and help mum with laundry", "Mow the lawn for my grandparents", "Show everyone around how to make exquisite software"]);
     const [freshlyCreatedTaskIndex, setFreshlyCreatedTaskIndex] = useState<number>(-1);
     const [showIntroAnimation, setShowIntroAnimation] = useState<boolean>(true);
     const taskWrapperElement = useRef<HTMLDivElement | null>(null);
@@ -23,7 +25,8 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
 
     const deleteSingleTask = (indexToDelete: number) => {
         try {
-            setTasks((val) => val.filter((_el, index) => index !== indexToDelete));
+            tasksArray.remove({ index: indexToDelete });
+
             displaySnackbar({
                 msg: "A task has been deleted successfully",
                 severity: "success",
@@ -40,7 +43,8 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
 
     const modifySingleTask = (indexToModify: number, value: string) => {
         try {
-            setTasks((val) => val.map((el, index) => (index === indexToModify ? value : el)));
+            tasksArray.update({ index: indexToModify, data: value });
+
             displaySnackbar({
                 msg: "A task has been updated successfully",
                 severity: "success",
@@ -57,8 +61,8 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
 
     const addNewTask = (newTask: string) => {
         try {
-            setFreshlyCreatedTaskIndex(tasks.length);
-            tasks.push(newTask);
+            setFreshlyCreatedTaskIndex(tasksArray.entries.length);
+            tasksArray.push(newTask);
 
             inputElement.current?.focus();
             setTimeout(() => {
@@ -107,7 +111,7 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
             onVisible={onVisible}
         >
             {(() => {
-                if (tasks.length) {
+                if (tasksArray.entries.length) {
                     return (
                         <>
                             <OverflowScrollDiv
@@ -115,7 +119,7 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
                                 ref={taskWrapperElement as any}
                                 sx={{ maxWidth: "800px", margin: "0 auto" }}
                             >
-                                {tasks.map((item, index) => {
+                                {tasksArray.entries.map((item, index) => {
                                     return (
                                         <SingleTask
                                             key={`${index}-${item}`} //
