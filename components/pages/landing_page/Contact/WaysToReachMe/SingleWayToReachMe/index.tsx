@@ -17,6 +17,7 @@ interface SingleWayToReachMeProps {
     /** Instead of url the dots would be displayed */
     hideURL?: boolean;
 
+    messagePrefix?: ReactNode;
     children?: ReactNode;
 }
 
@@ -41,9 +42,11 @@ const SingleWayToReachMe = forwardRef<HTMLDivElement, SingleWayToReachMeProps>((
             ].join(" ")} //
         >
             {icon}
-            <SingleWayToReachMeText className="single-way-to-reach-me-text">{hiddenURL({ text: url, hide: hideURL ?? false })}</SingleWayToReachMeText>
+            <SingleWayToReachMeText className="single-way-to-reach-me-text">
+                {props.messagePrefix ?? <></>}
+                {hiddenURL({ text: url, hide: hideURL ?? false })}
+            </SingleWayToReachMeText>
             {redirectAfterClick && <ClickabilityIndicatingArrow />}
-
             <div className="children-wrapper">{children}</div>
         </SingleWayToReachMeBase>
     );

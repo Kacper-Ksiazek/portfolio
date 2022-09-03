@@ -6,6 +6,7 @@ import type { FunctionComponent } from "react";
 import Tooltip from "@mui/material/Tooltip";
 // Other components
 import Email from "./Email";
+import Phone from "./Phone";
 import SingleWayToReachMe from "./SingleWayToReachMe";
 // Material UI Icons
 import GitHub from "@mui/icons-material/GitHub";
@@ -16,8 +17,9 @@ const WaysToReachMe: FunctionComponent = (props) => {
     return (
         <>
             <Email emailToCopy="kacper.b.ksiazek@gmail.com" />
+            <Phone phone="690 001 548" />
 
-            <Tooltip title="See me on github" placement="top-start">
+            <Tooltip title="See me on Github" placement="top-start">
                 <SingleWayToReachMe
                     icon={<GitHub />} //
                     redirectAfterClick
@@ -25,7 +27,7 @@ const WaysToReachMe: FunctionComponent = (props) => {
                 />
             </Tooltip>
 
-            <Tooltip title="See me on linkedin" placement="top-start">
+            <Tooltip title="See me on Linkedin" placement="top-start">
                 <SingleWayToReachMe
                     icon={<LinkedIn />} //
                     redirectAfterClick

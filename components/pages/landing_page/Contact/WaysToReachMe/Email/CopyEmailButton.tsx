@@ -10,7 +10,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Check from "@mui/icons-material/Check";
 import ContentCopy from "@mui/icons-material/ContentCopy";
 // Styled components
-import EmailManagingButtonBase from "./styled_components/EmailManagingButtonBase";
+import WayToReachMeButton from "../WayToReachMeButton";
 import EmailHasBeenCopiedCommunique from "./styled_components/EmailHasBeenCopiedCommunique";
 
 interface CopyEmailButtonProps {
@@ -60,13 +60,13 @@ const CopyEmailButton: FunctionComponent<CopyEmailButtonProps> = (props) => {
         <>
             <Fade in={showButton}>
                 <Tooltip title="Copy email address to clipboard" placement="top">
-                    <EmailManagingButtonBase
+                    <WayToReachMeButton
                         onClick={copyToClipboard} //
                         color="text"
                         ref={buttonElement}
                     >
                         <ContentCopy />
-                    </EmailManagingButtonBase>
+                    </WayToReachMeButton>
                 </Tooltip>
             </Fade>
             <Fade in={emailHasBeenCopied}>

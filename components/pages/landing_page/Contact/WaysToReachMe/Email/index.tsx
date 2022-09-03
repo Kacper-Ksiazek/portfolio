@@ -3,9 +3,9 @@ import { useState } from "react";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import ShowEmailButton from "./ShowEmailButton";
 import CopyEmailButton from "./CopyEmailButton";
 import SingleWayToReachMe from "../SingleWayToReachMe";
+import ContentWithRestrictedVisibility from "../ContentWithRestrictedVisibility";
 // Material UI Components
 import Mail from "@mui/icons-material/Mail";
 
@@ -19,15 +19,15 @@ const Email: FunctionComponent<EmailProps> = (props) => {
     return (
         <SingleWayToReachMe
             icon={<Mail />} //
-            url="kacper.b.ksiazek@gmail.com"
+            url={props.emailToCopy}
             hideURL={!showEmail}
         >
-            <ShowEmailButton
-                setShowEmail={setShowEmail} //
-                showEmail={showEmail}
-            />
-
-            {showEmail && <CopyEmailButton emailToCopy={props.emailToCopy} />}
+            <ContentWithRestrictedVisibility
+                tooltip="Show my contact email address" //
+                onVisible={() => setShowEmail(true)}
+            >
+                <CopyEmailButton emailToCopy={props.emailToCopy} />
+            </ContentWithRestrictedVisibility>
         </SingleWayToReachMe>
     );
 };

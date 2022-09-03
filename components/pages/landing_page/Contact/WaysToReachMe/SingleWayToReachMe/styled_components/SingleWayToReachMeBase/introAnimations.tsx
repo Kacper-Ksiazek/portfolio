@@ -1,4 +1,5 @@
 // Tools
+import theme from "@/material";
 import { keyframes } from "@mui/system";
 // Types
 import type { SxProps } from "@mui/system";
@@ -114,7 +115,7 @@ export default {
     "&::after": {
         content: '""',
         position: "absolute",
-        background: "red",
+        background: theme.palette.primary.main,
     },
     "&:nth-of-type(1)": {
         animation: `${borderAppearingAnimation} .001s .9s both`,
@@ -150,6 +151,15 @@ export default {
         },
         "&::after": {
             animation: `${EVEN_introAnimationStageOne} .6s .5s linear both, ${EVEN_introAnimationStageTwo} .6s 1.3s forwards linear`,
+        },
+    },
+    "&:nth-of-type(5)": {
+        animation: `${borderAppearingAnimation} .001s 1.3s both`,
+        "&>svg, .right-pointing-arrow, .single-way-to-reach-me-text, .children-wrapper": {
+            animation: `${fadeSimple} .001s 1.3s both`,
+        },
+        "&::after": {
+            animation: `${ODD_introAnimationStageOne} .6s .6s linear both, ${ODD_introAnimationStageTwo} .6s 1.4s forwards linear`,
         },
     },
 } as SxProps;
