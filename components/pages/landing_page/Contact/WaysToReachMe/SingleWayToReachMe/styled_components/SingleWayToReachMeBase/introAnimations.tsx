@@ -17,7 +17,7 @@ const borderAppearingAnimation = keyframes({
         border: `1px solid #fff`,
     },
     to: {
-        border: `1px solid #ccc`,
+        border: `1px solid #ddd`,
     },
 });
 
@@ -115,51 +115,51 @@ export default {
     "&::after": {
         content: '""',
         position: "absolute",
-        background: theme.palette.primary.main,
+        background: "#F2E8EF",
     },
     "&:nth-of-type(1)": {
-        animation: `${borderAppearingAnimation} .001s .9s both`,
-        "&>svg, .right-pointing-arrow, .single-way-to-reach-me-text, .children-wrapper": {
-            animation: `${fadeSimple} .001s .9s both`,
-        },
-        "&::after": {
-            animation: `${ODD_introAnimationStageOne} .6s .2s linear both, ${ODD_introAnimationStageTwo} .6s 1s forwards linear`,
-        },
-    },
-    "&:nth-of-type(2)": {
-        animation: `${borderAppearingAnimation} .001s 1s both`,
-        "&>svg, .right-pointing-arrow, .single-way-to-reach-me-text, .children-wrapper": {
-            animation: `${fadeSimple} .001s 1s both`,
-        },
-        "&::after": {
-            animation: `${EVEN_introAnimationStageOne} .6s .3s linear both, ${EVEN_introAnimationStageTwo} .6s 1.1s forwards linear`,
-        },
-    },
-    "&:nth-of-type(3)": {
         animation: `${borderAppearingAnimation} .001s 1.1s both`,
         "&>svg, .right-pointing-arrow, .single-way-to-reach-me-text, .children-wrapper": {
             animation: `${fadeSimple} .001s 1.1s both`,
         },
         "&::after": {
-            animation: `${ODD_introAnimationStageOne} .6s .4s linear both, ${ODD_introAnimationStageTwo} .6s 1.2s forwards linear`,
+            animation: `${ODD_introAnimationStageOne} .8s .2s linear both, ${ODD_introAnimationStageTwo} .8s 1.3s forwards linear`,
         },
     },
-    "&:nth-of-type(4)": {
+    "&:nth-of-type(2)": {
         animation: `${borderAppearingAnimation} .001s 1.2s both`,
         "&>svg, .right-pointing-arrow, .single-way-to-reach-me-text, .children-wrapper": {
             animation: `${fadeSimple} .001s 1.2s both`,
         },
         "&::after": {
-            animation: `${EVEN_introAnimationStageOne} .6s .5s linear both, ${EVEN_introAnimationStageTwo} .6s 1.3s forwards linear`,
+            animation: `${EVEN_introAnimationStageOne} .8s .3s linear both, ${EVEN_introAnimationStageTwo} .8s 1.4s forwards linear`,
         },
     },
-    "&:nth-of-type(5)": {
+    "&:nth-of-type(3)": {
         animation: `${borderAppearingAnimation} .001s 1.3s both`,
         "&>svg, .right-pointing-arrow, .single-way-to-reach-me-text, .children-wrapper": {
             animation: `${fadeSimple} .001s 1.3s both`,
         },
         "&::after": {
-            animation: `${ODD_introAnimationStageOne} .6s .6s linear both, ${ODD_introAnimationStageTwo} .6s 1.4s forwards linear`,
+            animation: `${ODD_introAnimationStageOne} .8s.4s linear both, ${ODD_introAnimationStageTwo} .8s 1.5s forwards linear`,
+        },
+    },
+    "&:nth-of-type(4)": {
+        animation: `${borderAppearingAnimation} .001s 1.4s both`,
+        "&>svg, .right-pointing-arrow, .single-way-to-reach-me-text, .children-wrapper": {
+            animation: `${fadeSimple} .001s 1.4s both`,
+        },
+        "&::after": {
+            animation: `${EVEN_introAnimationStageOne} .8s .5s linear both, ${EVEN_introAnimationStageTwo} .8s 1.6s forwards linear`,
+        },
+    },
+    "&:nth-of-type(5)": {
+        animation: `${borderAppearingAnimation} .001s 1.5s both`,
+        "&>svg, .right-pointing-arrow, .single-way-to-reach-me-text, .children-wrapper": {
+            animation: `${fadeSimple} .001s 1.5s both`,
+        },
+        "&::after": {
+            animation: `${ODD_introAnimationStageOne} .8s .6s linear both, ${ODD_introAnimationStageTwo} .8s 1.7s forwards linear`,
         },
     },
 } as SxProps;

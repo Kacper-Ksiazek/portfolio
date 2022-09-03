@@ -48,7 +48,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
                 previousJobs={props.previousJobs}
             />
             {/* <ToDoList /> */}
-            {/* <Projects projects={props.projects} /> */}
+            <Projects projects={props.projects} />
             <PicturesMatchingGame />
             <Contact />
         </>
