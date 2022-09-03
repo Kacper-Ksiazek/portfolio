@@ -6,23 +6,23 @@ import Tooltip from "@mui/material/Tooltip";
 // Material UI Icons
 import Visibility from "@mui/icons-material/Visibility";
 // Styled components
-import EmailManagingButtonBase from "./styled_components/EmailManagingButtonBase";
+import WayToReachMeButton from "../WayToReachMeButton";
 
 interface ShowEmailButtonProps {
-    showEmail: boolean;
-    setShowEmail: Dispatch<SetStateAction<boolean>>;
+    showPhone: boolean;
+    setShowPhone: Dispatch<SetStateAction<boolean>>;
 }
 
 const ShowEmailButton: FunctionComponent<ShowEmailButtonProps> = (props) => {
     return (
-        <Fade in={!props.showEmail}>
+        <Fade in={!props.showPhone}>
             <Tooltip title="Show email address" placement="top">
-                <EmailManagingButtonBase
-                    onClick={() => props.setShowEmail(true)} //
+                <WayToReachMeButton
+                    onClick={() => props.setShowPhone(true)} //
                     color="text"
                 >
                     <Visibility />
-                </EmailManagingButtonBase>
+                </WayToReachMeButton>
             </Tooltip>
         </Fade>
     );

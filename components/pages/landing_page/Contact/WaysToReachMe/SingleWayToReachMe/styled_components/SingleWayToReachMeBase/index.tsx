@@ -1,7 +1,8 @@
 // Tools
 import { styled } from "@mui/system";
+import introAnimation from "./introAnimations";
 // Styled components
-export default styled("a")(({ theme }) => ({
+export default styled("div")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
     fontSize: "18px",
@@ -11,6 +12,7 @@ export default styled("a")(({ theme }) => ({
     position: "relative",
     overflow: "hidden",
     textDecoration: "none",
+    boxSizing: "border-box",
     color: "#000",
     "&>svg": {
         fontSize: "32px",
@@ -38,4 +40,5 @@ export default styled("a")(({ theme }) => ({
             },
         },
     },
+    ...(introAnimation as any),
 }));

@@ -16,7 +16,7 @@ import ProcessRequest from "./ProcessRequest";
 import SendMeAnEmailWrapper from "./_styled_components/SendMeAnEmailWrapper";
 
 const SendMeAnEmail: FunctionComponent = (props) => {
-    const INITIAL_INTRO_ANIMATION_DURATION: number = 1900;
+    const INITIAL_INTRO_ANIMATION_DURATION: number = 1200;
 
     const { setRequestStatus, ...managementContext } = useManagementContext();
     const { author, subject, message } = useFormStageOne();
@@ -33,7 +33,7 @@ const SendMeAnEmail: FunctionComponent = (props) => {
 
     const sendRequest = async () => {
         setRequestStatus("pending");
-        axios
+        await axios
             .post("./api/send_email", {
                 author,
                 subject,

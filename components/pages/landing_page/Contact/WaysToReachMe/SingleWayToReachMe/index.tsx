@@ -1,64 +1,56 @@
 // Tools
-import { useState } from "react";
-import { styled } from "@mui/system";
+import { hiddenURL } from "./utils/hiddenURL";
+import { forwardRef } from "react";
 // Types
-import type { FunctionComponent } from "react";
-import type { SingleWayToReachMeProps, ViaEmailAddress } from "./@types";
-// Material UI Icons
-import ArrowForward from "@mui/icons-material/ArrowForward";
+import type { ReactNode } from "react";
 // Other components
-import ShowEmailButton from "./email_managing_buttons/ShowEmailButton";
-import CopyEmailButton from "./email_managing_buttons/CopyEmailButton";
+import ClickabilityIndicatingArrow from "./ClickabilityIndicatingArrow";
 // Styled components
+import SingleWayToReachMeText from "./styled_components/SingleWayToReachMeText";
 import SingleWayToReachMeBase from "./styled_components/SingleWayToReachMeBase";
 
-const Text = styled("span")(({ theme }) => ({
-    flexGrow: 1,
-}));
+interface SingleWayToReachMeProps {
+    url: string;
+    icon: ReactNode;
+    /** The received `url` would be opened in new tab after click at any place on the card. */
+    redirectAfterClick?: boolean;
+    /** Instead of url the dots would be displayed */
+    hideURL?: boolean;
 
-const RightPointingArrow = styled("span")(({ theme }) => ({
-    position: "absolute",
-    right: "10%",
-    display: "flex",
-    alignItems: "center",
-    opacity: 0.1,
-    svg: {
-        fontSize: "2.4rem",
-    },
-}));
+    messagePrefix?: ReactNode;
+    children?: ReactNode;
+}
 
-const SingleWayToReachMe: FunctionComponent<SingleWayToReachMeProps> = (props) => {
-    const [showEmail, setShowEmail] = useState<boolean>(false);
+const SingleWayToReachMe = forwardRef<HTMLDivElement, SingleWayToReachMeProps>((props, ref) => {
+    const { icon, url, children, hideURL, redirectAfterClick, ...forwardRefProps } = props;
 
-    const isEmail: boolean = props.via === "EMAIL";
+    const onClick = () => {
+        if (redirectAfterClick && window) {
+            (window.open(url, "_blank") as any).focus();
+        }
+    };
 
     return (
         <SingleWayToReachMeBase
-            className={isEmail ? "" : "clickable"} //
-            href={props.via === "PARTICULAR_SERVICE" ? props.url : undefined}
-            target="_blank"
+            role={redirectAfterClick ? "button" : "cell"}
+            onClick={onClick}
+            ref={ref}
+            {...forwardRefProps}
+            className={[
+                (forwardRefProps as any).className ? (forwardRefProps as any).className : "", //
+                redirectAfterClick ? "clickable" : "",
+            ].join(" ")} //
         >
-            {props.icon}
-            <Text>
-                {(() => {
-                    if (props.via === "PARTICULAR_SERVICE") {
-                        return props.url;
-                    } else {
-                        let hiddenEmail = "";
-                        props.email.split("").forEach(() => (hiddenEmail += "*"));
-                        return showEmail ? props.email : hiddenEmail;
-                    }
-                })()}
-            </Text>
-            {!isEmail && (
-                <RightPointingArrow className="right-pointing-arrow">
-                    <ArrowForward />
-                </RightPointingArrow>
-            )}
-            {isEmail && <ShowEmailButton showEmail={showEmail} setShowEmail={setShowEmail} />}
-            {isEmail && showEmail && <CopyEmailButton emailToCopy={(props as ViaEmailAddress).email} />}
+            {icon}
+            <SingleWayToReachMeText className="single-way-to-reach-me-text">
+                {props.messagePrefix ?? <></>}
+                {hiddenURL({ text: url, hide: hideURL ?? false })}
+            </SingleWayToReachMeText>
+            {redirectAfterClick && <ClickabilityIndicatingArrow />}
+            <div className="children-wrapper">{children}</div>
         </SingleWayToReachMeBase>
     );
-};
+});
 
+SingleWayToReachMe.displayName = "SingleWayToReachMe";
 export default SingleWayToReachMe;
