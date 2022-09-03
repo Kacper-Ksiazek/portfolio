@@ -2,7 +2,7 @@
 import { hiddenURL } from "./utils/hiddenURL";
 import { forwardRef } from "react";
 // Types
-import type { FunctionComponent, ReactNode } from "react";
+import type { ReactNode } from "react";
 // Other components
 import ClickabilityIndicatingArrow from "./ClickabilityIndicatingArrow";
 // Styled components
@@ -41,10 +41,10 @@ const SingleWayToReachMe = forwardRef<HTMLDivElement, SingleWayToReachMeProps>((
             ].join(" ")} //
         >
             {icon}
-            <SingleWayToReachMeText>{hiddenURL({ text: url, hide: hideURL ?? false })}</SingleWayToReachMeText>
+            <SingleWayToReachMeText className="single-way-to-reach-me-text">{hiddenURL({ text: url, hide: hideURL ?? false })}</SingleWayToReachMeText>
             {redirectAfterClick && <ClickabilityIndicatingArrow />}
 
-            {children}
+            <div className="children-wrapper">{children}</div>
         </SingleWayToReachMeBase>
     );
 });
