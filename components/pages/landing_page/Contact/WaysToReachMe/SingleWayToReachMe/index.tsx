@@ -22,7 +22,7 @@ interface SingleWayToReachMeProps {
 }
 
 const SingleWayToReachMe = forwardRef<HTMLDivElement, SingleWayToReachMeProps>((props, ref) => {
-    const { icon, url, children, hideURL, redirectAfterClick, ...forwardRefProps } = props;
+    const { icon, url, children, hideURL, redirectAfterClick, messagePrefix, ...forwardRefProps } = props;
 
     const onClick = () => {
         if (redirectAfterClick && window) {
@@ -43,7 +43,7 @@ const SingleWayToReachMe = forwardRef<HTMLDivElement, SingleWayToReachMeProps>((
         >
             {icon}
             <SingleWayToReachMeText className="single-way-to-reach-me-text">
-                {props.messagePrefix ?? <></>}
+                {messagePrefix ?? <></>}
                 {hiddenURL({ text: url, hide: hideURL ?? false })}
             </SingleWayToReachMeText>
             {redirectAfterClick && <ClickabilityIndicatingArrow />}

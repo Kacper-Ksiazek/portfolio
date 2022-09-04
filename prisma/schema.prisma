@@ -23,13 +23,14 @@ model Project {
 }
 
 model Hobby {
-  id                    String    @id @default(cuid())
-  label                 String
-  title                 String
-  description           String
-  thumbnailReferenceURL String?
-  folder                String
-  icon                  HobbyIcon
+  id                     String    @id @default(cuid())
+  label                  String
+  title                  String
+  description            String
+  artistReferenceURL     String?
+  artistReferenceTooltip String?
+  folder                 String
+  icon                   HobbyIcon
 }
 
 model School {
@@ -46,7 +47,7 @@ model School {
 model PreviousJob {
   id          String   @id @default(cuid())
   country     String   @default("Remote")
-  city        String? 
+  city        String?
   title       String
   start       DateTime
   end         DateTime

@@ -1,17 +1,17 @@
 // Tools
+import dynamic from "next/dynamic";
 import getHobbyIcon from "@/utils/client/getHobbyIcon";
 import { uploadedHobbyImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/hobby";
 // Types
 import type { Hobby } from "@prisma/client";
 import type { FunctionComponent } from "react";
-// Material UI Icons
-import Loyalty from "@mui/icons-material/Loyalty";
 // Other components
 import Image from "next/Image";
+const ArtistReference = dynamic(() => import("./ArtistReference"));
 // Styled components
 import ImageWrapper from "./styled_components/ImageWrapper";
+import { Description, Header, Label } from "./styled_components/atoms";
 import SingleHobbyWrapper from "./styled_components/SingleHobbyWrapper";
-import { Description, Header, Label, Reference } from "./styled_components/atoms";
 
 interface SingleHobbyProps {
     data: Hobby;
@@ -24,11 +24,13 @@ const SingleHobby: FunctionComponent<SingleHobbyProps> = ({ data }) => {
                 {getHobbyIcon(data.icon)} {data.label}
             </Label>
             <ImageWrapper className="image-wrapper">
-                {data.thumbnailReferenceURL && (
-                    <Reference href={data.thumbnailReferenceURL} target="_blank" rel="noreferrer" tabIndex={-1}>
-                        <Loyalty />
-                    </Reference>
+                {data.artistReferenceURL && (
+                    <ArtistReference
+                        url={data.artistReferenceURL} //
+                        tooltip={data.artistReferenceTooltip ?? undefined}
+                    />
                 )}
+
                 <Image
                     alt={`${data.title}-thumbnail`} //
                     layout="fill"

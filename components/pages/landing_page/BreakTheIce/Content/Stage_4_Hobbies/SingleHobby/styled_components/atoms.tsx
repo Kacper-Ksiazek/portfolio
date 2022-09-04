@@ -26,11 +26,25 @@ export const Description = styled("p")(({ theme }) => ({
 
 export const Reference = styled("a")(({ theme }) => ({
     position: "absolute",
-    bottom: "5px",
-    right: "5px",
+    bottom: 0,
+    right: 0,
     zIndex: 2,
     cursor: "pointer",
+    width: "36px",
+    height: "36px",
     svg: {
         color: theme.palette.primary.main,
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%,-50%)",
+    },
+    ".hover-controller": {
+        position: "absolute",
+        width: "100%",
+        zIndex: 1,
+        height: "100%",
+        top: 0,
+        left: 0,
     },
 }));
