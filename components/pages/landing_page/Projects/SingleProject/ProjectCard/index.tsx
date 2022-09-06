@@ -7,6 +7,7 @@ import type { Project } from "@/@types/pages/LandingPage";
 // Material UI Components
 import Typography from "@mui/material/Typography";
 // Other components
+import Redirection from "@/components/_styled_components/Redirection";
 import Duration from "@/components/pages/_shared/single-project/Duration";
 import Thumbnail from "@/components/pages/_shared/single-project/Thumbnail";
 import Technologies from "@/components/pages/_shared/single-project/Technologies";
@@ -43,7 +44,9 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
                 </Typography>
 
                 <div className="read-more">
-                    <StyledButton color="primary">Read more</StyledButton>
+                    <Redirection url={`/projects/${data.id}`} small>
+                        Read more
+                    </Redirection>
                 </div>
             </SingleProjectTextContent>
             <Thumbnail folder={data.folder} />

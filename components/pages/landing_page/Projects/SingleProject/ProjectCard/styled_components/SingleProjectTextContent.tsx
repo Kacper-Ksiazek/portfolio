@@ -13,23 +13,9 @@ export default styled("div")(({ theme }) => ({
     ".read-more": {
         marginTop: "16px",
         alignSelf: "flex-start",
-        position: "relative",
-        button: {
-            width: "130px",
-            fontFamily: "Montserrat Alternates",
-            fontSize: "14px",
-        },
-        ["@media (max-width:750px)"]: {
-            button: {
-                width: "160px",
-            },
-        },
         ["@media (max-width:500px)"]: {
             width: "100%",
             marginTop: "32px",
-            button: {
-                width: "100%",
-            },
         },
     },
 }));

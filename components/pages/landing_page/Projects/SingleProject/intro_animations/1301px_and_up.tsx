@@ -166,7 +166,7 @@ export default {
             "p>*": {
                 animation: `${fadeSimple} .001s 3.4s both`,
             },
-            ".read-more button": {
+            ".read-more a": {
                 animation: `${fadeSimple} .001s 3.45s both`,
             },
             h4: {
@@ -252,7 +252,7 @@ export default {
                 animation: `${fadeSimple} .2s .7s both linear`,
             },
             ".dot.right": {
-                animation: `${fadeSimple} .2s 2s both linear`,
+                animation: `${fadeSimple} .2s 2.5s both linear`,
             },
         },
     },

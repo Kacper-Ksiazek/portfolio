@@ -63,6 +63,7 @@ interface RedirectionProps {
     small?: boolean;
     tooltip?: string;
     children: ReactNode;
+    className?: string;
 }
 
 const Redirection: FunctionComponent<RedirectionProps> = (props) => {
@@ -71,7 +72,7 @@ const Redirection: FunctionComponent<RedirectionProps> = (props) => {
             <Link href={props.url} passHref>
                 <RedirectBase
                     color="primary" //
-                    className={[props.small ? "small" : "", "redirect"].join(" ")}
+                    className={[props.small ? "small" : "", "redirect", props.className].join(" ")}
                 >
                     {props.children}
                     <KeyboardArrowRight className="right-arrow" />

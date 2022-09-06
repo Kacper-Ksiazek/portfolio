@@ -51,7 +51,7 @@ export default styled(ButtonBase)(({ theme }) => ({
             },
         },
         "span.text": {
-            color: "#fff",
+            color: "#fff !important",
         },
     },
     ["@media (max-width:1000px)"]: {
