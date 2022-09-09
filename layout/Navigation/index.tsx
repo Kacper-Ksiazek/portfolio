@@ -30,7 +30,7 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
 
     useEffect(() => {
         // Handle reversed contrast
-        const ROUTES_WITH_REVERSED_CONTRAST: string[] = ["/"];
+        const ROUTES_WITH_REVERSED_CONTRAST: string[] = ["/", "/projects/[id]"];
         setDisplayContrastStyles(ROUTES_WITH_REVERSED_CONTRAST.includes(router.pathname));
         // Handle landing page intro animation
         if (router.pathname === "/") {

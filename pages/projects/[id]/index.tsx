@@ -6,6 +6,7 @@ import type { Project, RecommendedProject } from "@/@types/pages/projects/Single
 // Other components
 import Head from "next/head";
 import Content from "@/components/pages/projects/single/Content";
+import LandingSection from "@/components/pages/projects/single/LandingSection";
 import RecommendedProjects from "@/components/pages/projects/single/RecommendedProjects";
 import ReleventTechnologies from "@/components/pages/projects/single/ReleventTechnologies";
 
@@ -20,9 +21,10 @@ const SingleProject: NextPage<SingleProjectProps> = ({ project, recommendedProje
             <Head>
                 <title>{project.title}</title>
             </Head>
-            <Content project={project} />
-            <ReleventTechnologies techStack={project.releventTechnologies} />
-            <RecommendedProjects recommendedProjects={recommendedProjects} />
+            <LandingSection project={project} />
+            {/* <Content project={project} /> */}
+            {/* <ReleventTechnologies techStack={project.releventTechnologies} /> */}
+            {/* <RecommendedProjects recommendedProjects={recommendedProjects} /> */}
         </>
     );
 };
