@@ -7,7 +7,7 @@ import Section from "@/components/_styled_components/content_placement/SectionWr
 export default styled(Section)(({ theme }) => ({
     borderRadius: "",
     top: "-100px",
-    background: "red",
+    background: theme.palette.background.paper,
     zIndex: 1000,
     height: "calc(100vh - 40px)",
     //

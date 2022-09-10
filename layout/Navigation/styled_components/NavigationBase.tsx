@@ -98,6 +98,10 @@ export default styled("div")(({ theme }) => ({
         animation: `${fadeFromTop} .2s .8s both linear`,
         background: "transparent",
     },
+    "&.single-project-intro": {
+        animation: `${fadeSimple} .2s 2.6s both linear`,
+        background: "transparent",
+    },
 
     "&.after-scroll-styles": {
         color: "#000",

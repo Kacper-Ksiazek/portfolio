@@ -26,9 +26,13 @@ const ProjectLandingPage: FunctionComponent<ProjectLandingPageProps> = ({ projec
         <LandingPageBase folder={project.folder} isHovered={isHovered}>
             <TextWrapper id="project-landing-screen-text-wrapper">
                 <Duration start={project.start} end={project.end} />
-                <MainHeader>{project.title}</MainHeader>
+                <MainHeader id="project-title">
+                    <span>{project.title}</span>
+                </MainHeader>
                 <Technologies technologies={project.technologies} />
-                <Description>{formatTextViaBolding(project.shortDescription, true)}</Description>
+                <Description id="project-description">
+                    <span>{formatTextViaBolding(project.shortDescription, true)}</span>
+                </Description>
             </TextWrapper>
             {/*  */}
             <BottomControlsWrapper>

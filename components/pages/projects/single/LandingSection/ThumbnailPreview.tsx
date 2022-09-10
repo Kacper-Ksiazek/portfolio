@@ -38,7 +38,7 @@ interface ThumbnailPreviewProps {
 
 const ThumbnailPreview: FunctionComponent<ThumbnailPreviewProps> = (props) => {
     return (
-        <ThumbnailPreviewBase>
+        <ThumbnailPreviewBase id="project-thumbnail-preview-wrapper">
             <IconWrapper className="active" role="button">
                 <Textsms />
             </IconWrapper>

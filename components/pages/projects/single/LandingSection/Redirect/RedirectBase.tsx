@@ -9,7 +9,6 @@ export default styled(ButtonBase)(({ theme }) => ({
     fontSize: "16px",
     borderRadius: "3px",
     textTransform: "capitalize",
-    background: theme.palette.primary.main,
     fontFamily: "Montserrat Alternates",
     overflow: "hidden",
     "&:not(&:nth-of-type(1))": {

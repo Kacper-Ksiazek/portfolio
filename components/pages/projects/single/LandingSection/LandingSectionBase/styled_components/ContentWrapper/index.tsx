@@ -1,6 +1,7 @@
 // Tools
 import RWD from "./RWD";
 import { styled, alpha } from "@mui/system";
+import introAnimations from "./keyframes/intro";
 // Styled components
 import ContentWrapperBase from "@/components/_styled_components/content_placement/SectionWrapper/_ContentWrapper";
 
@@ -26,6 +27,20 @@ export default styled(ContentWrapperBase)(({ theme }) => ({
     },
     "&.hide-content": {},
     "&.display-content": {},
-    "&.intro-animation": {},
+    "&.intro-animation": introAnimations,
+    //
+    ".duration, #project-title, .technologies, #project-description, .redirect": {
+        position: "relative",
+        "&::after": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: theme.palette.secondary.main,
+            zIndex: 11,
+        },
+    },
     ...(RWD as any),
 }));

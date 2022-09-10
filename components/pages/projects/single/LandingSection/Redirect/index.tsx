@@ -2,8 +2,6 @@
 import { useState } from "react";
 // Types
 import type { FunctionComponent, Dispatch, SetStateAction } from "react";
-// Material UI Components
-import Tooltip from "@mui/material/Tooltip";
 // Material UI Icons
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 // Styled components
@@ -35,7 +33,7 @@ const Redirect: FunctionComponent<RedirectProps> = (props) => {
 
     return (
         <RedirectBase
-            className={hoverAnimation ?? undefined} //
+            className={[hoverAnimation ?? undefined, "redirect"].join(" ")} //
             onClick={onClick}
         >
             <span

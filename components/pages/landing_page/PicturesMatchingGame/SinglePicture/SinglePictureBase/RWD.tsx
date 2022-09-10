@@ -49,7 +49,6 @@ export const SinglePictureBaseRWD: SxProps = {
             marginLeft: "0",
         },
         "&:nth-of-type(1), &:nth-of-type(4), &:nth-of-type(7)": {
-            background: "red",
             marginBottom: "10px",
         },
     },
