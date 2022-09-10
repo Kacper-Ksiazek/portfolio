@@ -5,12 +5,13 @@ import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/projects/SingleProject";
 // Other components
-import OutlinedRedirect from "./OutlinedRedirect";
+import Redirect from "./Redirect";
 import ThumbnailPreview from "./ThumbnailPreview";
 import LandingPageBase from "./LandingSectionBase";
 import Technologies from "@/components/_utils/DisplayTechnologies";
 import Duration from "@/components/pages/_shared/single-project/Duration";
 // Styled components
+import TextWrapper from "./styled_components/TextWrapper";
 import BottomControlsWrapper from "./styled_components/BottomControlsWrapper";
 import { MainHeader, Description } from "./styled_components/textStyledComponents";
 
@@ -18,18 +19,30 @@ interface ProjectLandingPageProps {
     project: Project;
 }
 
-const ProjectLandingPage: FunctionComponent<ProjectLandingPageProps> = (props) => {
+const ProjectLandingPage: FunctionComponent<ProjectLandingPageProps> = ({ project }) => {
+    const [isHovered, setIsHovered] = useState<boolean>(false);
+
     return (
-        <LandingPageBase folder={props.project.folder}>
-            <Duration start={props.project.start} end={props.project.end} />
-            <MainHeader>{props.project.title}</MainHeader>
-            <Technologies technologies={props.project.technologies} />
-            <Description>{formatTextViaBolding(props.project.shortDescription, true)}</Description>
+        <LandingPageBase folder={project.folder} isHovered={isHovered}>
+            <TextWrapper id="project-landing-screen-text-wrapper">
+                <Duration start={project.start} end={project.end} />
+                <MainHeader>{project.title}</MainHeader>
+                <Technologies technologies={project.technologies} />
+                <Description>{formatTextViaBolding(project.shortDescription, true)}</Description>
+            </TextWrapper>
             {/*  */}
             <BottomControlsWrapper>
                 <div className="simple-flex">
-                    <OutlinedRedirect url={props.project.githubURL} title="Github repo" />
-                    <OutlinedRedirect url={props.project.githubURL} title="Live demo" />
+                    <Redirect
+                        url={project.githubURL} //
+                        title="Github repo"
+                        setIsHovered={setIsHovered}
+                    />
+                    {(() => {
+                        if (project.liveDemoURL) {
+                            return <Redirect url={project.liveDemoURL} title="Live demo" setIsHovered={setIsHovered} />;
+                        }
+                    })()}
                 </div>
                 <ThumbnailPreview />
             </BottomControlsWrapper>

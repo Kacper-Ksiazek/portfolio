@@ -48,7 +48,7 @@ const Contact: FunctionComponent<MUIStyledCommonProps> = (props) => {
                         </Paragraph>
                         <Paragraph animationDelay={0.5} sx={{ mb: "20px" }}>
                             {formatTextViaBolding(
-                                `Undoubtedly the fastest and the most reliable way to reach me is via *messenger*, because it is my primary communicator and can expect almost *immediately response*. Nevertheless, You can be certain, that I will appreciate every effort put into sending me a message and therefore each message will be read, analyzed and eventually *responded* as soon as I will be able to do so.`
+                                `Undoubtedly the fastest and the most reliable way to reach me is via *messenger*, because it is my primary communicator and you can expect almost *immediately response*. Nevertheless, You can be certain, that I will appreciate every effort put into sending me a message and therefore each message will be read and *responded* as soon as I will be able to do so.`
                             )}
                         </Paragraph>
                         <WaysToReachMe />

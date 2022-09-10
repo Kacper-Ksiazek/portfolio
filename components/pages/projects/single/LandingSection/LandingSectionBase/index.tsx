@@ -14,6 +14,7 @@ import ContentWrapper from "./styled_components/ContentWrapper";
 type AnimationsSet = "hide-content" | "display-content" | "intro-animation";
 interface LandingSectionBaseProps {
     folder: string;
+    isHovered: boolean;
     children: ReactNode;
 }
 
@@ -21,8 +22,13 @@ const LandingSectionBase: FunctionComponent<LandingSectionBaseProps> = (props) =
     const [animationsToDisplay, setAnimationsToDisplay] = useState<AnimationsSet>("intro-animation");
 
     return (
-        <SectionBase className={["round-right", animationsToDisplay].join(" ")}>
-            <ImageWrapper>
+        <SectionBase
+            className={[
+                "round-right", //
+                props.isHovered ? "is-hovered" : "",
+            ].join(" ")}
+        >
+            <ImageWrapper id="project-landing-screen-image-wrapper">
                 <Image
                     alt="Project thumbnail"
                     src={uploadedProjectImageURLBuilder({
@@ -35,7 +41,12 @@ const LandingSectionBase: FunctionComponent<LandingSectionBaseProps> = (props) =
                 />
             </ImageWrapper>
             <ImageMask />
-            <ContentWrapper>{props.children}</ContentWrapper>
+            <ContentWrapper
+                id="project-landing-screen-content-wrapper" //
+                className={[animationsToDisplay].join(" ")}
+            >
+                {props.children}
+            </ContentWrapper>
         </SectionBase>
     );
 };

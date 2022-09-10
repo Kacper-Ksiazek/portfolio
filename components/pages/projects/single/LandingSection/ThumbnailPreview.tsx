@@ -15,8 +15,8 @@ const ThumbnailPreviewBase = styled("div")(({ theme }) => ({
 }));
 
 const IconWrapper = styled("div")(({ theme }) => ({
-    width: "42px",
-    height: "42px",
+    width: "36px",
+    height: "36px",
     display: "flex",
     borderRadius: "3px",
     cursor: "pointer",

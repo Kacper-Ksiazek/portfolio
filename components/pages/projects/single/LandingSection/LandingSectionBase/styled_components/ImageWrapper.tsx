@@ -8,4 +8,9 @@ export default styled("div")(({ theme }) => ({
     width: "100%",
     height: "100%",
     zIndex: 1,
+    img: {
+        transition: "transform 1s",
+        maxHeight: "110% !important",
+        height: "110% !important",
+    },
 }));
