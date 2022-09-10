@@ -1,6 +1,6 @@
 // Tools
-import { useState } from "react";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
+import { useLandingScreenContext } from "@/components/pages/projects/single/LandingSection/hooks/useLandingScreenContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/projects/SingleProject";
@@ -10,6 +10,7 @@ import ThumbnailPreview from "./ThumbnailPreview";
 import LandingPageBase from "./LandingSectionBase";
 import Technologies from "@/components/_utils/DisplayTechnologies";
 import Duration from "@/components/pages/_shared/single-project/Duration";
+import { LandingScreenContextProvider } from "./contexts/LandingScreenContext";
 // Styled components
 import TextWrapper from "./styled_components/TextWrapper";
 import BottomControlsWrapper from "./styled_components/BottomControlsWrapper";
@@ -20,10 +21,10 @@ interface ProjectLandingPageProps {
 }
 
 const ProjectLandingPage: FunctionComponent<ProjectLandingPageProps> = ({ project }) => {
-    const [isHovered, setIsHovered] = useState<boolean>(false);
+    const context = useLandingScreenContext();
 
     return (
-        <LandingPageBase folder={project.folder} isHovered={isHovered}>
+        <LandingPageBase folder={project.folder} isHovered={context.isHovered}>
             <TextWrapper id="project-landing-screen-text-wrapper">
                 <Duration start={project.start} end={project.end} />
                 <MainHeader id="project-title">
@@ -40,18 +41,30 @@ const ProjectLandingPage: FunctionComponent<ProjectLandingPageProps> = ({ projec
                     <Redirect
                         url={project.githubURL} //
                         title="Github repo"
-                        setIsHovered={setIsHovered}
                     />
                     {(() => {
                         if (project.liveDemoURL) {
-                            return <Redirect url={project.liveDemoURL} title="Live demo" setIsHovered={setIsHovered} />;
+                            return <Redirect url={project.liveDemoURL} title="Live demo" />;
                         }
                     })()}
                 </div>
+
                 <ThumbnailPreview />
             </BottomControlsWrapper>
         </LandingPageBase>
     );
 };
 
-export default ProjectLandingPage;
+interface ProjectLandingPageWithContextProps {
+    project: Project;
+}
+
+const ProjectLandingPageWithContext: FunctionComponent<ProjectLandingPageWithContextProps> = (props) => {
+    return (
+        <LandingScreenContextProvider>
+            <ProjectLandingPage project={props.project} />
+        </LandingScreenContextProvider>
+    );
+};
+
+export default ProjectLandingPageWithContext;

@@ -1,7 +1,8 @@
 // Tools
 import { useState } from "react";
+import { useLandingScreenContext } from "@/components/pages/projects/single/LandingSection/hooks/useLandingScreenContext";
 // Types
-import type { FunctionComponent, Dispatch, SetStateAction } from "react";
+import type { FunctionComponent } from "react";
 // Material UI Icons
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 // Styled components
@@ -10,18 +11,18 @@ import RedirectBase from "./RedirectBase";
 interface RedirectProps {
     url: string;
     title: string;
-    setIsHovered: Dispatch<SetStateAction<boolean>>;
 }
 
 const Redirect: FunctionComponent<RedirectProps> = (props) => {
+    const constext = useLandingScreenContext();
     const [hoverAnimation, setHoverAnimation] = useState<null | "display-hover-animation" | "hide-hover-animation">(null);
 
     const onHover = () => {
-        props.setIsHovered(true);
+        constext.setIsHovered(true);
         setHoverAnimation("display-hover-animation");
     };
     const onBlur = () => {
-        props.setIsHovered(false);
+        constext.setIsHovered(false);
         setHoverAnimation("hide-hover-animation");
     };
 
