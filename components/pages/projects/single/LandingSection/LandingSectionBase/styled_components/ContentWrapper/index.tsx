@@ -1,7 +1,9 @@
 // Tools
 import RWD from "./RWD";
 import { styled, alpha } from "@mui/system";
-import introAnimations from "./keyframes/intro";
+import introAnimations from "./animations/intro";
+import contentAppearing from "./animations/content_appearing";
+import contentDisappearing from "./animations/content_disappearing";
 // Styled components
 import ContentWrapperBase from "@/components/_styled_components/content_placement/SectionWrapper/_ContentWrapper";
 
@@ -25,8 +27,8 @@ export default styled(ContentWrapperBase)(({ theme }) => ({
         transition: "width .3s",
         borderRadius: "3px",
     },
-    "&.hide-content": {},
-    "&.display-content": {},
+    "&.hide-content": contentDisappearing,
+    "&.display-content": contentAppearing,
     "&.intro-animation": introAnimations,
     //
     ".duration, #project-title, .technologies, #project-description, .redirect": {

@@ -20,7 +20,7 @@ const ThumbnailPreview: FunctionComponent = (props) => {
                 <IconWrapper
                     className={!context.previewThumbnail ? "active" : ""} //
                     role="button"
-                    onClick={() => context.setPreviewThumbnail(false)}
+                    onClick={context.closeThumbnailPreview}
                 >
                     <Description />
                 </IconWrapper>
@@ -30,7 +30,7 @@ const ThumbnailPreview: FunctionComponent = (props) => {
                 <IconWrapper
                     className={context.previewThumbnail ? "active" : ""} //
                     role="button"
-                    onClick={() => context.setPreviewThumbnail(true)}
+                    onClick={context.openThumbnailPreview}
                 >
                     <Panorama />
                 </IconWrapper>

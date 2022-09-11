@@ -9,4 +9,5 @@ export default styled("span")(({ theme }) => ({
     height: "100%",
     background: alpha(theme.palette.background.paper, 0.75),
     zIndex: 7,
+    transition: "opacity 1s",
 }));

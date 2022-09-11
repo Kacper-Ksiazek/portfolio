@@ -1,6 +1,5 @@
 // Tools
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
-import { useLandingScreenContext } from "@/components/pages/projects/single/LandingSection/hooks/useLandingScreenContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/projects/SingleProject";
@@ -21,10 +20,8 @@ interface ProjectLandingPageProps {
 }
 
 const ProjectLandingPage: FunctionComponent<ProjectLandingPageProps> = ({ project }) => {
-    const context = useLandingScreenContext();
-
     return (
-        <LandingPageBase folder={project.folder} isHovered={context.isHovered}>
+        <LandingPageBase folder={project.folder}>
             <TextWrapper id="project-landing-screen-text-wrapper">
                 <Duration start={project.start} end={project.end} />
                 <MainHeader id="project-title">
@@ -42,6 +39,7 @@ const ProjectLandingPage: FunctionComponent<ProjectLandingPageProps> = ({ projec
                         url={project.githubURL} //
                         title="Github repo"
                     />
+
                     {(() => {
                         if (project.liveDemoURL) {
                             return <Redirect url={project.liveDemoURL} title="Live demo" />;

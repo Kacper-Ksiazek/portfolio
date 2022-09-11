@@ -12,4 +12,14 @@ export default styled(Section)(({ theme }) => ({
     height: "calc(100vh - 40px)",
     //
     "&.is-hovered": onHoverStyles,
+    // Styled
+    "&.preview-mode": {
+        img: {
+            transform: "scale(1)",
+        },
+        "#project-landing-screen-image-mask": {
+            opacity: 0,
+            transition: "opacity 1s .5s",
+        },
+    },
 }));

@@ -1,11 +1,12 @@
 // Tools
 import { keyframes } from "@mui/system";
-import * as Redirect from "./RedirectAnimations";
-import * as Duration from "./DurationAnimations";
-import * as MainHeader from "./MainHeaderAnimations";
-import * as Description from "./DescriptionAnimations";
-import * as Technologies from "./TechnologiesAnimations";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
+//
+import * as Redirect from "./keyframes/RedirectAnimations";
+import * as Duration from "./keyframes/DurationAnimations";
+import * as MainHeader from "./keyframes/MainHeaderAnimations";
+import * as Description from "./keyframes/DescriptionAnimations";
+import * as Technologies from "./keyframes/TechnologiesAnimations";
 // Types
 import type { SxProps } from "@mui/system";
 

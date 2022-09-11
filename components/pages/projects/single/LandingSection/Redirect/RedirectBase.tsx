@@ -11,6 +11,7 @@ export default styled(ButtonBase)(({ theme }) => ({
     textTransform: "capitalize",
     fontFamily: "Montserrat Alternates",
     overflow: "hidden",
+    background: theme.palette.primary.main,
     "&:not(&:nth-of-type(1))": {
         marginLeft: "12px",
     },

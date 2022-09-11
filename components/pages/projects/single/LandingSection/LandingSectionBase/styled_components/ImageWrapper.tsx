@@ -14,5 +14,6 @@ export default styled("div")(({ theme }) => ({
         maxHeight: "110% !important",
         height: "110% !important",
         animation: `${fadeSimple} 4s 3s both linear`,
+        transform: "scale(1.1)",
     },
 }));

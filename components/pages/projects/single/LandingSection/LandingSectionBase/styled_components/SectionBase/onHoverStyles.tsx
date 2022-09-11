@@ -4,7 +4,7 @@ import type { SxProps } from "@mui/system";
 export default {
     "#project-landing-screen-image-wrapper": {
         img: {
-            transform: "scale(1.1)",
+            transform: "scale(1.2)",
         },
     },
     "#project-landing-screen-content-wrapper": {
