@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import * as ParagraphWrapperAnimations from "../ParagraphWrapper/keyframes";
+import * as ParagraphWrapperAnimations from "./ParagraphWrapper/keyframes";
 // Types
 import type { SxProps } from "@mui/system";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
@@ -32,7 +32,7 @@ export default styled("div")(({ theme }) => ({
             zIndex: 3,
         },
         ...((): SxProps => {
-            const AMOUNT_OF_PARAGRAPHS: number = 3;
+            const AMOUNT_OF_PARAGRAPHS: number = 4;
             // all following properties are expressed in **ms** !
             const DELAY_BETWEEN_PARAGRAPHS: number = 0.1;
             const FIRST_ELEMENT_INTRO_DELAY: number = 0.2;
@@ -44,7 +44,7 @@ export default styled("div")(({ theme }) => ({
                 const _delay: number = index * DELAY_BETWEEN_PARAGRAPHS;
 
                 const introDelay: number = FIRST_ELEMENT_INTRO_DELAY + _delay;
-                const outroDelay: number = FIRST_ELEMENT_OUTRO_DELAY + index * _delay;
+                const outroDelay: number = FIRST_ELEMENT_OUTRO_DELAY + _delay;
 
                 (result as any)[`&:nth-of-type(${index + 1})`] = {
                     "h3, p": {

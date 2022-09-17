@@ -4,7 +4,6 @@ import { styled } from "@mui/system";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 // Styled components
 export default styled("div")(({ theme }) => ({
-    animation: `${fadeSimple} .3s both linear`,
     marginTop: "20px",
     position: "relative",
     borderRadius: "3px",

@@ -4,7 +4,6 @@ import type { Project } from "@/@types/pages/projects/SingleProject";
 // Other components
 import ProjectDescription from "./ProjectDescription";
 import FeaturesList from "./FeaturesList";
-import { Paragraph, Header, PrimaryStrong } from "./styled_components/Text";
 import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
 // Styled components
 
@@ -23,12 +22,8 @@ const SingleProjectContent: FunctionComponent<SingleProjectContentProps> = ({ pr
             round="left"
             unlimitedHeight
         >
-            <ProjectDescription description={project.description} />
+            <ProjectDescription description={project.description} amountOfFeatures={project.features.length} />
 
-            <Header>Features gallery</Header>
-            <Paragraph sx={{ mb: "16px" }}>
-                This particular project includes <PrimaryStrong>{project.features.length}</PrimaryStrong> features in total.
-            </Paragraph>
             <FeaturesList
                 features={project.features} //
                 folder={project.folder}
