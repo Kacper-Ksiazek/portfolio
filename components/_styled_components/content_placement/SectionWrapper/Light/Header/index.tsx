@@ -1,31 +1,19 @@
 // Tools
 import { styled } from "@mui/system";
 import useWindowSizes from "@/hooks/useWindowSizes";
-import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import VisibilitySensor from "@/components/_utils/VisibilitySensor";
 // Styled components
+import MainHeader from "./MainHeader";
+import AdditionalText from "./AdditionalText";
+
 const HeaderWrapper = styled("header")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     userSelect: "none",
-}));
-
-const AdditionalText = styled("span")(({ theme }) => ({
-    color: theme.palette.primary.main,
-    fontWeight: 500,
-    fontSize: "18px",
-    animation: `${fadeFromLeft} .2s .3s linear both`,
-}));
-
-const MainHeader = styled("h2")(({ theme }) => ({
-    fontSize: "3rem",
-    fontWeight: 700,
-    margin: "0 0 5px 0",
-    lineHeight: "50px",
-    animation: `${fadeFromLeft} .2s .4s linear both`,
+    alignItems: "flex-start",
 }));
 
 interface LightSectionHeaderProps {
@@ -52,8 +40,12 @@ const LightSectionHeader: FunctionComponent<LightSectionHeaderProps> = (props) =
             offsetBottom={100}
         >
             <HeaderWrapper>
-                <AdditionalText className="label">{props.label}</AdditionalText>
-                <MainHeader className="alternative-font-family">{props.main}</MainHeader>
+                <AdditionalText className="label">
+                    <span>{props.label}</span>
+                </AdditionalText>
+                <MainHeader>
+                    <span>{props.main}</span>
+                </MainHeader>
                 {props.additionalJSX}
             </HeaderWrapper>
         </VisibilitySensor>
