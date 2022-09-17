@@ -1,7 +1,6 @@
 // Tools
 import RWD from "./RWD";
 import { styled } from "@mui/system";
-import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 // Styled components
 export default styled("div")(({ theme }) => ({
     marginTop: "20px",
@@ -10,6 +9,7 @@ export default styled("div")(({ theme }) => ({
     border: `2px solid ${theme.palette.background.paper}`,
     boxSizing: "border-box",
     cursor: "pointer",
+    overflow: "hidden",
     img: {
         transition: "transform .3s, filter .3s",
         filter: "grayscale(1)",

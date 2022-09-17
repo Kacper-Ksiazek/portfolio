@@ -7,9 +7,11 @@ import type { Feature } from "@/@types/prisma/Project";
 // Other components
 import ShowMore from "./ShowMore";
 import SingleFeature from "./SingleFeature";
-const ImageModalWrapper = dynamic(() => import("./ImageModalWrapper"));
+import VisibilitySensor from "@/components/_utils/VisibilitySensor";
+const FeatureThumbnailModal = dynamic(() => import("./FeatureThumbnailModal"));
 // Styled components
-import FeaturesListBase from "./FeaturesListBase";
+import FeaturesWrapper from "./styled_components/FeaturesWrapper";
+import FeaturesListBase from "./styled_components/FeaturesListBase";
 
 interface FeaturesListProps {
     features: Feature[];
@@ -36,30 +38,34 @@ const FeaturesList: FunctionComponent<FeaturesListProps> = (props) => {
 
     return (
         <>
-            <FeaturesListBase className={featuresAnimation}>
-                {featuresToDisplay.map((feature, index) => {
-                    return (
-                        <SingleFeature
-                            key={feature.imageURL} //
-                            folder={props.folder}
-                            imageURL={feature.imageURL}
-                            index={index}
-                            previewThisFeature={() => setIndexOfFeatureToPreview(index)}
-                        />
-                    );
-                })}
-            </FeaturesListBase>
+            <VisibilitySensor>
+                <FeaturesListBase>
+                    <FeaturesWrapper className={featuresAnimation}>
+                        {featuresToDisplay.map((feature, index) => {
+                            return (
+                                <SingleFeature
+                                    key={feature.imageURL} //
+                                    folder={props.folder}
+                                    imageURL={feature.imageURL}
+                                    index={index}
+                                    previewThisFeature={() => setIndexOfFeatureToPreview(index)}
+                                />
+                            );
+                        })}
+                    </FeaturesWrapper>
 
-            <ShowMore
-                allFeaturesAreDisplayed={displayAllFeatures} //
-                showMore={showMore}
-                showLess={showLess}
-            />
+                    <ShowMore
+                        allFeaturesAreDisplayed={displayAllFeatures} //
+                        showMore={showMore}
+                        showLess={showLess}
+                    />
+                </FeaturesListBase>
+            </VisibilitySensor>
 
             {(() => {
                 if (indexOfFeatureToPreview !== null) {
                     return (
-                        <ImageModalWrapper
+                        <FeatureThumbnailModal
                             changeIndexOfFeatureToPreview={setIndexOfFeatureToPreview} //
                             indexOfFeatureToPreview={indexOfFeatureToPreview}
                             features={props.features}
