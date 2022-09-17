@@ -146,7 +146,7 @@ export default {
                 "&::after": {
                     content: "''",
                     position: "absolute",
-                    background: "#F2E8EF",
+                    background: theme.palette.background.lightAnimationBar,
                     width: "100%",
                     height: "100%",
                     top: 0,
