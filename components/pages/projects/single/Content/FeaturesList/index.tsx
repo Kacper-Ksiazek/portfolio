@@ -1,6 +1,6 @@
 // Tools
 import dynamic from "next/dynamic";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 // Types
 import type { FunctionComponent } from "react";
 import type { Feature } from "@/@types/prisma/Project";
@@ -19,19 +19,29 @@ interface FeaturesListProps {
 }
 
 const FeaturesList: FunctionComponent<FeaturesListProps> = (props) => {
-    const [indexOfFeatureToPreview, setIndexOfFeatureToPreview] = useState<number | null>(null);
+    const wrapperElement = useRef<HTMLDivElement | null>(null);
+    //
     const [displayAllFeatures, setDisplayAllFeatures] = useState<boolean>(false);
+    const [indexOfFeatureToPreview, setIndexOfFeatureToPreview] = useState<number | null>(null);
     const [featuresAnimation, setFeaturesAnimation] = useState<"features-intro" | "features-outro">("features-outro");
-
+    //
     const featuresToDisplay = useMemo<Feature[]>(() => {
         return displayAllFeatures ? props.features : props.features.slice(0, 5);
     }, [displayAllFeatures, props.features]);
-
+    //
     const showMore = () => {
         setFeaturesAnimation("features-intro");
         setDisplayAllFeatures(true);
     };
     const showLess = () => {
+        if (wrapperElement.current) {
+            const offsetBottom: number = 180;
+            window.scrollTo({
+                top: window.innerHeight + offsetBottom,
+                behavior: "smooth",
+                left: 0,
+            });
+        }
         setFeaturesAnimation("features-outro");
         setTimeout(() => setDisplayAllFeatures(false), 501);
     };
@@ -40,7 +50,7 @@ const FeaturesList: FunctionComponent<FeaturesListProps> = (props) => {
         <>
             <VisibilitySensor>
                 <FeaturesListBase>
-                    <FeaturesWrapper className={featuresAnimation}>
+                    <FeaturesWrapper className={featuresAnimation} ref={wrapperElement}>
                         {featuresToDisplay.map((feature, index) => {
                             return (
                                 <SingleFeature

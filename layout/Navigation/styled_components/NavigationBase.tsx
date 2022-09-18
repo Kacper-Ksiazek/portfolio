@@ -99,7 +99,7 @@ export default styled("div")(({ theme }) => ({
         background: "transparent",
     },
     "&.single-project-intro": {
-        animation: `${fadeSimple} .2s 2.6s both linear`,
+        animation: `${fadeSimple} .2s 3.3s both linear`,
         background: "transparent",
     },
 
