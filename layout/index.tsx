@@ -1,3 +1,5 @@
+// Tools
+import { useRouter } from "next/router";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
@@ -15,10 +17,12 @@ interface LayoutProps {
 }
 
 const Layout: FunctionComponent<LayoutProps> = (props) => {
+    const router = useRouter();
+
     return (
         <SnackbarContextProvider>
             <Navigation />
-            <MainWrapper>{props.children}</MainWrapper>
+            <MainWrapper key={router.asPath}>{props.children}</MainWrapper>
             <ScrollButton />
             <Footer />
             <TransitionBetweenPages />

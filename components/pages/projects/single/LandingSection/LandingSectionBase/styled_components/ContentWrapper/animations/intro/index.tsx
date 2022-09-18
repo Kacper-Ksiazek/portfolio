@@ -21,88 +21,95 @@ const BackgroundBarIntro = keyframes({
     },
 });
 
-export default {
-    "&::before": {
-        animation: `${BackgroundBarIntro} 1s both`,
-    },
-    "#project-thumbnail-preview-wrapper": {
-        animation: `${fadeSimple} .3s 3s both linear`,
-    },
-    ".duration": {
-        "&>*": {
-            animation: `${fadeSimple} .001s 1.7s both`,
-        },
-        "&::after": {
-            animation: ((): string => {
-                return [
-                    `${Duration.DurationIntro_StageOne} .2s .9s both linear`, //
-                    `${Duration.DurationIntro_StageTwo} .3s 1.3s forwards linear`, //
-                    `${Duration.DurationIntro_StageThree} .3s 1.7s forwards linear`, //
-                ].join(", ");
-            })(),
-        },
-    },
-    "#project-title": {
-        "&>*": {
-            animation: `${fadeSimple} .001s .4s both`,
-        },
-        "&::after": {
-            animation: ((): string => {
-                return [
-                    `${MainHeader.MainHeaderIntro_StageOne} .3s forwards linear`, //
-                    `${MainHeader.MainHeaderIntro_StageTwo} .3s .5s forwards linear`, //
-                    `${MainHeader.MainHeaderIntro_StageThree} .3s 1s forwards linear`, //
-                ].join(", ");
-            })(),
-        },
-    },
-    ".technologies": {
-        "&>*": {
-            animation: `${fadeSimple} .001s 2s both`,
-        },
-        "&::after": {
-            animation: ((): string => {
-                return [
-                    `${Technologies.TechnologiesIntro_StageOne} .2s 1s both linear`, //
-                    `${Technologies.TechnologiesIntro_StageTwo} .3s 1.6s forwards linear`, //
-                    `${Technologies.TechnologiesIntro_StageThree} .3s 2.3s forwards linear`, //
-                ].join(", ");
-            })(),
-        },
-    },
-    "#project-description": {
-        "&>*": {
-            animation: `${fadeSimple} .001s 2.4s both`,
-        },
-        "&::after": {
-            animation: ((): string => {
-                return [
-                    `${Description.DescriptionIntro_StageOne} .3s 2s both linear`, //
-                    `${Description.DescriptionIntro_StageTwo} .2s 2.4s forwards linear`, //
-                    `${Description.DescriptionIntro_StageThree} .3s 2.7s forwards linear`, //
-                ].join(", ");
-            })(),
-        },
-    },
-    ".redirect": [1, 2].map((child, index): SxProps => {
-        const DELAY: number = 0.2 * index;
+export default ((): SxProps => {
+    /** General delay applied to ALL following animations. The period of time is expressed in **s** */
+    const GENERAL_DELAY = 0.7;
+    /** Converts received delay in number (expressed in **s**) into CSS's appropriate syntax which include **s** at the end */
+    const makeDelay = (delay: number): string => `${delay + GENERAL_DELAY}s`;
 
-        return {
-            [`&:nth-of-type(${child})`]: {
-                animation: `${Redirect.RedirectIntro_BackgroundColor} .001s ${2.8 + DELAY}s both`,
-                "&>*": {
-                    animation: `${fadeSimple} .001s ${2.8 + DELAY}s both`,
-                },
-                "&::after": {
-                    animation: ((): string => {
-                        return [
-                            `${Redirect.RedirectIntro_StageOne} .3s ${2 + DELAY}s both linear`, //
-                            `${Redirect.RedirectIntro_StageTwo} .3s ${2.4 + DELAY}s forwards linear`, //
-                            `${Redirect.RedirectIntro_StageThree} .3s ${2.8 + DELAY}s forwards linear`, //
-                        ].join(", ");
-                    })(),
-                },
+    return {
+        "&::before": {
+            animation: `${BackgroundBarIntro} 1s ${makeDelay(0)} both`,
+        },
+        "#project-thumbnail-preview-wrapper": {
+            animation: `${fadeSimple} .3s ${makeDelay(3)} both linear`,
+        },
+        ".duration": {
+            "&>*": {
+                animation: `${fadeSimple} .001s ${makeDelay(1.75)} both`,
             },
-        } as SxProps;
-    }),
-} as SxProps;
+            "&::after": {
+                animation: ((): string => {
+                    return [
+                        `${Duration.DurationIntro_StageOne} .2s ${makeDelay(0.9)} both linear`, //
+                        `${Duration.DurationIntro_StageTwo} .3s ${makeDelay(1.3)} forwards linear`, //
+                        `${Duration.DurationIntro_StageThree} .3s ${makeDelay(1.7)} forwards linear`, //
+                    ].join(", ");
+                })(),
+            },
+        },
+        "#project-title": {
+            "&>*": {
+                animation: `${fadeSimple} .001s  ${makeDelay(0.45)} both`,
+            },
+            "&::after": {
+                animation: ((): string => {
+                    return [
+                        `${MainHeader.MainHeaderIntro_StageOne} .3s ${makeDelay(0)} both linear`, //
+                        `${MainHeader.MainHeaderIntro_StageTwo} .3s ${makeDelay(0.5)} forwards linear`, //
+                        `${MainHeader.MainHeaderIntro_StageThree} .3s ${makeDelay(1)} forwards linear`, //
+                    ].join(", ");
+                })(),
+            },
+        },
+        ".technologies": {
+            "&>*": {
+                animation: `${fadeSimple} .001s  ${makeDelay(2.05)} both`,
+            },
+            "&::after": {
+                animation: ((): string => {
+                    return [
+                        `${Technologies.TechnologiesIntro_StageOne} .2s ${makeDelay(1)} both linear`, //
+                        `${Technologies.TechnologiesIntro_StageTwo} .3s ${makeDelay(1.6)} forwards linear`, //
+                        `${Technologies.TechnologiesIntro_StageThree} .3s ${makeDelay(2.3)} forwards linear`, //
+                    ].join(", ");
+                })(),
+            },
+        },
+        "#project-description": {
+            "&>*": {
+                animation: `${fadeSimple} .001s ${makeDelay(2.45)} both`,
+            },
+            "&::after": {
+                animation: ((): string => {
+                    return [
+                        `${Description.DescriptionIntro_StageOne} .3s ${makeDelay(2)} both linear`, //
+                        `${Description.DescriptionIntro_StageTwo} .2s ${makeDelay(2.4)} forwards linear`, //
+                        `${Description.DescriptionIntro_StageThree} .3s ${makeDelay(2.7)} forwards linear`, //
+                    ].join(", ");
+                })(),
+            },
+        },
+        ".redirect": [1, 2].map((child, index): SxProps => {
+            const DELAY: number = 0.2 * index;
+
+            return {
+                [`&:nth-of-type(${child})`]: {
+                    animation: `${Redirect.RedirectIntro_BackgroundColor} .001s ${makeDelay(2.8 + DELAY)} both`,
+                    "&>*": {
+                        animation: `${fadeSimple} .001s ${makeDelay(2.85 + DELAY)} both`,
+                    },
+                    "&::after": {
+                        animation: ((): string => {
+                            return [
+                                `${Redirect.RedirectIntro_StageOne} .3s ${makeDelay(2 + DELAY)} both linear`, //
+                                `${Redirect.RedirectIntro_StageTwo} .3s ${makeDelay(2.4 + DELAY)} forwards linear`, //
+                                `${Redirect.RedirectIntro_StageThree} .3s ${makeDelay(2.8 + DELAY)} forwards linear`, //
+                            ].join(", ");
+                        })(),
+                    },
+                },
+            } as SxProps;
+        }),
+    } as SxProps;
+})();
