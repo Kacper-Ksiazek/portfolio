@@ -1,4 +1,5 @@
 // Tools
+import RWD from "./RWD";
 import { styled } from "@mui/system";
 import { barIntroAnimation, barOutroAnimation } from "./keyframes";
 // Material UI Components
@@ -58,4 +59,5 @@ export default styled(ButtonBase)(({ theme }) => ({
             },
         },
     },
+    ...(RWD as any),
 }));

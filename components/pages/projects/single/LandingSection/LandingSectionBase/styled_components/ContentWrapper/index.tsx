@@ -11,7 +11,8 @@ export default styled(ContentWrapperBase)(({ theme }) => ({
     color: "white",
     zIndex: 10,
     cursor: "default",
-    marginTop: "220px",
+    marginBottom: "25vh",
+
     ".duration": {
         fontSize: "20px",
     },

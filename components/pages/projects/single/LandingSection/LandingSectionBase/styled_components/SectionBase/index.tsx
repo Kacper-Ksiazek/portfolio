@@ -9,7 +9,11 @@ export default styled(Section)(({ theme }) => ({
     top: "-100px",
     background: theme.palette.background.paper,
     zIndex: 1000,
-    height: "calc(100vh - 40px)",
+    minHeight: "calc(100vh - 40px)",
+    alignItems: "flex-end",
+    display: "flex",
+    paddingTop: "0 !important",
+    paddingBottom: "0px !important",
     //
     "&.is-hovered": onHoverStyles,
     // Styled
@@ -21,5 +25,9 @@ export default styled(Section)(({ theme }) => ({
             opacity: 0,
             transition: "opacity 1s .5s",
         },
+    },
+    ["@media (max-width:500px)"]: {
+        top: "-110px",
+        minHeight: "calc(100vh - 20px)",
     },
 }));
