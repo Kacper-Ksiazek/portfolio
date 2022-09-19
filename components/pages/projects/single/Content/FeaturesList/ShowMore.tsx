@@ -24,10 +24,13 @@ const ShowMoreButton = styled(StyledButton)(({ theme }) => ({
             transform: "rotate(180deg)",
         },
     },
+    ["@media (max-width:500px)"]: {
+        width: "100%",
+    },
 }));
 
 interface ShowMoreProps {
-    allFeaturesAreDisplayed: boolean;
+    allFeaturesAreShown: boolean;
     showMore: () => void;
     showLess: () => void;
 }
@@ -38,7 +41,7 @@ const ShowMore: FunctionComponent<ShowMoreProps> = (props) => {
     const onClick = () => {
         if (buttonRef.current) buttonRef.current.blur();
 
-        if (props.allFeaturesAreDisplayed) props.showLess();
+        if (props.allFeaturesAreShown) props.showLess();
         else props.showMore();
     };
 
@@ -47,10 +50,10 @@ const ShowMore: FunctionComponent<ShowMoreProps> = (props) => {
             color="primary" //
             onClick={onClick}
             ref={buttonRef}
-            className={props.allFeaturesAreDisplayed ? "all-features-are-displayed" : ""}
+            className={props.allFeaturesAreShown ? "all-features-are-displayed" : ""}
             id="features-display-toggler"
         >
-            <span className="text">{props.allFeaturesAreDisplayed ? "Show less" : "Show more"}</span>
+            <span className="text">{props.allFeaturesAreShown ? "Show less" : "Show more"}</span>
             <KeyboardArrowDown />
         </ShowMoreButton>
     );

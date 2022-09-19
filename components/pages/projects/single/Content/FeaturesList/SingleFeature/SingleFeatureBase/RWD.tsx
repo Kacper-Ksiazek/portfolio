@@ -70,8 +70,8 @@ export default {
         width: "100%",
         marginRight: 0,
         height: "240px",
-        "&:not(&:nth-of-type(1))": {
-            marginTop: "10px",
+        "&:nth-of-type(1)": {
+            marginTop: 0,
         },
     },
 } as SxProps;

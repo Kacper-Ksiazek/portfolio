@@ -1,6 +1,7 @@
 // Tools
 import dynamic from "next/dynamic";
 import { useState, useMemo, useRef } from "react";
+import { useFeatureListManagement } from "./hooks/useFeatureListManagement";
 // Types
 import type { FunctionComponent } from "react";
 import type { Feature } from "@/@types/prisma/Project";
@@ -19,38 +20,14 @@ interface FeaturesListProps {
 }
 
 const FeaturesList: FunctionComponent<FeaturesListProps> = (props) => {
-    const wrapperElement = useRef<HTMLDivElement | null>(null);
-    //
-    const [displayAllFeatures, setDisplayAllFeatures] = useState<boolean>(false);
     const [indexOfFeatureToPreview, setIndexOfFeatureToPreview] = useState<number | null>(null);
-    const [featuresAnimation, setFeaturesAnimation] = useState<"features-intro" | "features-outro">("features-outro");
-    //
-    const featuresToDisplay = useMemo<Feature[]>(() => {
-        return displayAllFeatures ? props.features : props.features.slice(0, 5);
-    }, [displayAllFeatures, props.features]);
-    //
-    const showMore = () => {
-        setFeaturesAnimation("features-intro");
-        setDisplayAllFeatures(true);
-    };
-    const showLess = () => {
-        if (wrapperElement.current) {
-            const offsetBottom: number = 180;
-            window.scrollTo({
-                top: window.innerHeight + offsetBottom,
-                behavior: "smooth",
-                left: 0,
-            });
-        }
-        setFeaturesAnimation("features-outro");
-        setTimeout(() => setDisplayAllFeatures(false), 501);
-    };
+    const { wrapperExtraCSS, allFeaturesAreShown, featuresAnimation, featuresToDisplay, showLess, showMore } = useFeatureListManagement(props.features, "features-wrapper");
 
     return (
         <>
             <VisibilitySensor>
                 <FeaturesListBase>
-                    <FeaturesWrapper className={featuresAnimation} ref={wrapperElement}>
+                    <FeaturesWrapper className={featuresAnimation} sx={wrapperExtraCSS} id="features-wrapper">
                         {featuresToDisplay.map((feature, index) => {
                             return (
                                 <SingleFeature
@@ -65,7 +42,7 @@ const FeaturesList: FunctionComponent<FeaturesListProps> = (props) => {
                     </FeaturesWrapper>
 
                     <ShowMore
-                        allFeaturesAreDisplayed={displayAllFeatures} //
+                        allFeaturesAreShown={allFeaturesAreShown} //
                         showMore={showMore}
                         showLess={showLess}
                     />
