@@ -36,7 +36,7 @@ export const backgroundImageIntro = keyframes({
         opacity: 0,
     },
     to: {
-        opacity: 0.15,
+        opacity: 0.25,
     },
 });
 

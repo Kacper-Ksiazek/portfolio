@@ -10,6 +10,7 @@ export default styled("span")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    color: "#fff",
     ["@media (min-width:1001px)"]: {
         display: "none",
     },
