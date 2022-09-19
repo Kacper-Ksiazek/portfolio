@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
 // Types
+import type { SxProps } from "@mui/system";
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";
@@ -41,6 +42,12 @@ const TooltipChildrenWrapper = styled("span")(({ theme }) => ({
     ["@media (max-width:500px)"]: {
         width: "100%",
     },
+    a: {
+        textDecoration: "none !important",
+    },
+    "&:not(&:nth-of-type(1))": {
+        marginLeft: "8px",
+    },
 }));
 
 interface RedirectionWrapperProps {
@@ -55,7 +62,7 @@ const RedirectionWrapper: FunctionComponent<RedirectionWrapperProps> = (props) =
             </Tooltip>
         );
     }
-    return <>{props.children}</>;
+    return <TooltipChildrenWrapper>{props.children}</TooltipChildrenWrapper>;
 };
 
 interface RedirectionProps {
@@ -64,15 +71,17 @@ interface RedirectionProps {
     tooltip?: string;
     children: ReactNode;
     className?: string;
+    sx?: SxProps;
 }
 
-const Redirection: FunctionComponent<RedirectionProps> = (props) => {
+export const InternalRedirection: FunctionComponent<RedirectionProps> = (props) => {
     return (
         <RedirectionWrapper tooltip={props.tooltip}>
             <Link href={props.url} passHref>
                 <RedirectBase
                     color="primary" //
                     className={[props.small ? "small" : "", "redirect", props.className].join(" ")}
+                    sx={props.sx}
                 >
                     {props.children}
                     <KeyboardArrowRight className="right-arrow" />
@@ -82,4 +91,19 @@ const Redirection: FunctionComponent<RedirectionProps> = (props) => {
     );
 };
 
-export default Redirection;
+export const ExternalRedirection: FunctionComponent<RedirectionProps> = (props) => {
+    return (
+        <RedirectionWrapper tooltip={props.tooltip}>
+            <a href={props.url} target="_blank" rel="noreferrer">
+                <RedirectBase
+                    color="primary" //
+                    className={[props.small ? "small" : "", "redirect", props.className].join(" ")}
+                    sx={props.sx}
+                >
+                    {props.children}
+                    <KeyboardArrowRight className="right-arrow" />
+                </RedirectBase>
+            </a>
+        </RedirectionWrapper>
+    );
+};

@@ -10,6 +10,7 @@ export interface Project {
     shortDescription: _Project["shortDescription"];
     releventTechnologies: _Project["releventTechnologies"];
     yearToIndicate?: number;
+    liveDemoURL: _Project["liveDemoURL"];
 }
 
 export interface PreviousJob extends Omit<_PreviousJob, "start" | "end"> {

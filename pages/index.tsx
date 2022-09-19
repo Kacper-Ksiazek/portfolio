@@ -67,6 +67,7 @@ export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> 
             start: true,
             shortDescription: true,
             releventTechnologies: true,
+            liveDemoURL: true,
         },
         orderBy: {
             end: "desc",

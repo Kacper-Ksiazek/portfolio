@@ -10,11 +10,11 @@ import Localization from "./Localization";
 import ITRelatedJobIconBase from "./ITRelatedJobIcon";
 import Duration from "@/components/pages/_shared/single-project/Duration";
 // Styled components
-import Redirection from "@/components/_styled_components/Redirection";
 import TextWrapper from "./styled_components/TextWrapper";
 import ThumbnailWrapper from "./styled_components/ThumbnailWrapper";
 import SinglePreviousJobBase from "./styled_components/SinglePreviousJobBase";
 import { Description, Header, RedirectionsWrapper } from "./styled_components/atoms";
+import { InternalRedirection } from "@/components/_styled_components/Redirection";
 
 interface SinglePreviousJobProps {
     data: PreviousJob;
@@ -42,13 +42,13 @@ const SinglePreviousJob: FunctionComponent<SinglePreviousJobProps> = ({ data, ..
                     if (data.projectPortfolioURL) {
                         return (
                             <RedirectionsWrapper>
-                                <Redirection
+                                <InternalRedirection
                                     url={data.projectPortfolioURL} //
                                     tooltip="See more details about this project"
                                     small
                                 >
                                     Read more
-                                </Redirection>
+                                </InternalRedirection>
                             </RedirectionsWrapper>
                         );
                     }

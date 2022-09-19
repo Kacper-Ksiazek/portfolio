@@ -7,13 +7,12 @@ import type { Project } from "@/@types/pages/LandingPage";
 // Material UI Components
 import Typography from "@mui/material/Typography";
 // Other components
-import Redirection from "@/components/_styled_components/Redirection";
 import Duration from "@/components/pages/_shared/single-project/Duration";
 import Thumbnail from "@/components/pages/_shared/single-project/Thumbnail";
 import Technologies from "@/components/pages/_shared/single-project/Technologies";
+import { InternalRedirection, ExternalRedirection } from "@/components/_styled_components/Redirection";
 // Styled components
 import SingleProjectBase from "./styled_components/SingleProjectBase";
-import StyledButton from "@/components/_styled_components/forms/StyledButton";
 import SingleProjectTextContent from "./styled_components/SingleProjectTextContent";
 
 interface ProjectCardProps {
@@ -24,6 +23,8 @@ interface ProjectCardProps {
 const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
     const router = useRouter();
 
+    console.log(data);
+
     const redirect = () => {
         router.push(`/projects/${data.id}`);
     };
@@ -33,7 +34,7 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
             <span className="intro-bar1" />
             <span className="intro-bar2" />
 
-            <SingleProjectTextContent className="single-project-text-content-wrapper" onClick={redirect}>
+            <SingleProjectTextContent className="single-project-text-content-wrapper">
                 <Technologies technologies={data.releventTechnologies.slice(0, 5)} />
                 <Typography variant="h4">
                     <span>{data.title}</span>
@@ -45,12 +46,22 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
                 </Typography>
 
                 <div className="read-more">
-                    <Redirection url={`/projects/${data.id}`} small>
+                    <InternalRedirection url={`/projects/${data.id}`} small>
                         Read more
-                    </Redirection>
+                    </InternalRedirection>
+
+                    {(() => {
+                        if (data.liveDemoURL) {
+                            return (
+                                <ExternalRedirection url={data.liveDemoURL} small>
+                                    Live demo
+                                </ExternalRedirection>
+                            );
+                        }
+                    })()}
                 </div>
             </SingleProjectTextContent>
-            <Thumbnail folder={data.folder} />
+            <Thumbnail folder={data.folder} onClick={redirect} />
         </SingleProjectBase>
     );
 };
