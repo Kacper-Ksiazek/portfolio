@@ -1,6 +1,12 @@
 import { alpha } from "@mui/system";
 import { createTheme } from "@mui/material/styles";
 
+declare module "@mui/material/styles/createPalette" {
+    interface TypeBackground {
+        lightAnimationBar: string;
+    }
+}
+
 export default createTheme({
     palette: {
         primary: {
@@ -21,6 +27,7 @@ export default createTheme({
         background: {
             default: "#F0EFF4",
             paper: "#3D2645",
+            lightAnimationBar: "#F2E8EF",
         },
         text: {
             primary: "#000000",

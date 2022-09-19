@@ -1,0 +1,72 @@
+// Tools
+import theme from "@/material";
+import { styled, keyframes } from "@mui/system";
+import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
+import fadeSimpleOUT from "@/components/_keyframes/outro/fadeSimpleOUT";
+// Types
+import type { SxProps } from "@mui/system";
+// Styled components
+
+const SingleFeatureBorderAnimation = keyframes({
+    from: {
+        border: `2px solid ${theme.palette.background.default}`,
+    },
+    to: {
+        border: `2px solid ${theme.palette.background.paper}`,
+    },
+});
+
+export default styled("section")(({ theme }) => ({
+    display: "flex",
+    flexDirection: "column",
+    ".single-feature, #features-display-toggler": {
+        visibility: "hidden",
+    },
+    "&.visible": {
+        ".single-feature, #features-display-toggler": {
+            visibility: "visible",
+        },
+        ".single-feature": {
+            ...addAnimationsToNFirstElements(5),
+        },
+        "#features-display-toggler": {
+            animation: `${fadeSimple} .3s 1.4s both`,
+        },
+    },
+}));
+
+/**
+ * Generates **CSS** clauses matching `nth-of-type` convention, based on received amount of children to tackle.
+ * Returns CSS-in-JS Object, adequate to MaterialUI's styles managing approach.
+ */
+const addAnimationsToNFirstElements = (amountOfElements: number): SxProps => {
+    const DELAY_BETWEEN_ELEMENTS: number = 0.1;
+    const result: SxProps = {};
+
+    (result as any)[`&:nth-of-type(-n+${amountOfElements})`] = {
+        "&::after": {
+            content: "''",
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: theme.palette.background.lightAnimationBar,
+            zIndex: 3,
+        },
+    };
+
+    for (let index: number = 0; index < amountOfElements; index++) {
+        (result as any)[`&:nth-of-type(${index + 1})`] = {
+            "&::after": {
+                animation: `${fadeSimpleOUT} .5s ${0.8 + index * DELAY_BETWEEN_ELEMENTS}s both linear`,
+            },
+            animation: [
+                `${fadeSimple} .3s ${0.2 + index * DELAY_BETWEEN_ELEMENTS}s both linear`, //
+                `${SingleFeatureBorderAnimation} .3s ${0.8 + index * DELAY_BETWEEN_ELEMENTS}s both linear`,
+            ].join(", "),
+        };
+    }
+
+    return result;
+};

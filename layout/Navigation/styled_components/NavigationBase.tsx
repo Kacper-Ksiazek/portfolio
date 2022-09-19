@@ -30,6 +30,8 @@ export default styled("div")(({ theme }) => ({
         transition: "all .3s, color .15s",
     },
     "&.contrast-colors": {
+        background: "transparent",
+
         "#portfolio-logo-header": {
             color: "#fff",
         },
@@ -94,6 +96,10 @@ export default styled("div")(({ theme }) => ({
     },
     "&.landing-page-intro-faster": {
         animation: `${fadeFromTop} .2s .8s both linear`,
+        background: "transparent",
+    },
+    "&.single-project-intro": {
+        animation: `${fadeSimple} .2s 3.3s both linear`,
         background: "transparent",
     },
 

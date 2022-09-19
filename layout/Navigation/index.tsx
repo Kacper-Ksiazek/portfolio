@@ -24,17 +24,19 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const { hideNavigaton, scrollingAnimationToDisplay, forceShowingNavigaton } = useHideWhileScrollingDown();
 
     const [displayContrastStyles, setDisplayContrastStyles] = useState<boolean>(false);
-    const [landingPageIntroAnimation, setLandingPageIntroAnimation] = useState<null | "landing-page-intro" | "landing-page-intro-faster">(null);
+    const [landingPageIntroAnimation, setLandingPageIntroAnimation] = useState<null | "landing-page-intro" | "landing-page-intro-faster" | "single-project-intro">(null);
 
     const router = useRouter();
 
     useEffect(() => {
         // Handle reversed contrast
-        const ROUTES_WITH_REVERSED_CONTRAST: string[] = ["/"];
+        const ROUTES_WITH_REVERSED_CONTRAST: string[] = ["/", "/projects/[id]"];
         setDisplayContrastStyles(ROUTES_WITH_REVERSED_CONTRAST.includes(router.pathname));
         // Handle landing page intro animation
         if (router.pathname === "/") {
             setLandingPageIntroAnimation(router.query.hasOwnProperty("skipIntroductionAnimationEvenThoughItsCool") ? "landing-page-intro-faster" : "landing-page-intro");
+        } else if (router.pathname === "/projects/[id]") {
+            setLandingPageIntroAnimation("single-project-intro");
         } else {
             setLandingPageIntroAnimation(null);
         }

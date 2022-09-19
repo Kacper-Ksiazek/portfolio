@@ -29,7 +29,6 @@ const Wrapper = styled("div", {
 }));
 
 const ScrollBarHidder = styled("span")(({ theme }) => ({
-    background: "red",
     position: "absolute",
     top: "0",
     right: 0,

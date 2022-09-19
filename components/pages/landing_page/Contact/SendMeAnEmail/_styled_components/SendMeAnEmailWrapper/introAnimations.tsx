@@ -65,7 +65,7 @@ export default {
         height: "100%",
         bottom: 0,
         left: 0,
-        background: "#F2E8EF",
+        background: theme.palette.background.lightAnimationBar,
         animation: `${intro} .5s .3s linear both, ${outro} .5s 1.1s linear forwards`,
     },
     //

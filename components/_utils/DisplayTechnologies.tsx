@@ -29,7 +29,7 @@ interface DisplayTechnologiesProps {
 
 const DisplayTechnologies: FunctionComponent<DisplayTechnologiesProps> = (props) => {
     return (
-        <DisplayTechnologiesWrapper>
+        <DisplayTechnologiesWrapper className="technologies">
             {props.technologies.map((item, index) => {
                 return (
                     <SingleTechnology
