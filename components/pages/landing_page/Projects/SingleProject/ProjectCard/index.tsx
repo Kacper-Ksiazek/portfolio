@@ -39,8 +39,9 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
                     <span>{data.title}</span>
                 </Typography>
                 <Duration end={data.end} start={data.start} smaller />
-                <Typography variant="body2" sx={{ mt: "16px" }}>
-                    <span> {formatTextViaBolding(data.shortDescription)}</span>
+                <Typography variant="body1" sx={{ mt: "16px" }}>
+                    <span> {formatTextViaBolding(data.shortDescription.slice(0, 150))}</span>
+                    <span>{data.shortDescription.length > 150 ? " ..." : ""}</span>
                 </Typography>
 
                 <div className="read-more">

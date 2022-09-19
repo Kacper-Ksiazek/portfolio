@@ -25,11 +25,11 @@ export default (
             start: new Date(2021, 10),
             end: new Date(2022, 5),
             githubURL: "https://github.com/Kacper-Ksiazek/nextjs-travel-agency-2022",
-            shortDescription: `The *best project* so far. Application with features such as user accounts system, rich CRUD’s, and making reviews. On the top of that, *a lot of relational data* split into 8 tables and 6 custom enums. `,
+            shortDescription: `Objectively the best project and the most complex project so far. Application with features such as user accounts system, JWT authentication, rich CRUD’s, reviews making, user profiles with reviews summarizations to mention only a few of many. On the top of that, *a lot of relational data* handled by postgresql and prisma as ORM. `,
             description: {
                 introduction: `I started this project virtually at the beginning of the *last high school class* with the initial idea of learning react, next js and serverless approach. Due to the abundance of responsibilities related with looming *finals exams*, this project took decisively too much time. Although, at the end of the day I’m rather proud of the its eventual state, but at the same time I do still notice a *room for further improvements*. The project’s visual site has been completely altered and invented from scratch with new everything- starting with color palette and fonts through content placement and eventually even the tech stack was change. Ah, and I have done it even twice. I’m always trying to do things the best I can so I always put great deal of effort into ensuring the quality is satisfying.`,
-                purpose: `The main idea of this application is to allow users to add *different travel destinations* and subsequently to mark *places worth to visit* (landmarks) such as restaurant / museums / art galleries and many more. Furthermore, there is also exquisitely working *system of making reviews* both of destinations and landmarks so users of the application can share each other experiences related with the content of the site. Each reviews contains score *0-10*, description and relevant aspects of the reviewing subject. Other users can than rate your review by either giving you a thumb up or down.`,
-                conclusion: `I am very proud that I did manage to sustain my willingness to continue working of that project for over 6 months. I am also sure that this *journey had taught me a lot* and in the future I will be more aware of some evitable and now obvious mistakes. `,
+                purpose: `The main idea of this application is to allow users to add *different travel destinations* and subsequently to mark *places worth to visit* (landmarks) such as restaurant / museums / art galleries and many more. Furthermore, there is also exquisitely working *system of making reviews* both of destinations and landmarks, so users of the application can share each other experiences related with the content of the site. Each review contains score *0-10*, description and relevant aspects of the reviewing subject. Other users can than rate your review by either giving you a thumb up or down.`,
+                conclusion: `I am very proud that I did manage to sustain my willingness to continue working of that project for over 6 months. I am also sure (and it's simply noticeable) that this *journey had taught me a lot*. After long struggeling with many varying aspects of next.js (and react likewise), I'm now more aware of some of its peculiarities and efficient in solving problems in this field than ever before. `,
             },
             releventTechnologies: ["react", "next", "prisma", "typescript", "jest", "sass", "redux", "material"],
             technologies: ["React", "Redux", "Material UI", "Typescript", "NextJS", "Cypress", "PostgreSQL", "Prisma", "SASS"],
@@ -83,7 +83,7 @@ export default (
             title: "Electron words learning app",
             releventTechnologies: ["electron", "vue", "typescript", "sass"],
             technologies: ["Vue 3", "Composition API", "Typescript", "Electron", "SASS"],
-            shortDescription: `Simple at the first glance application developed in order to help my with my English vocabulary. *I have been using it for over a year on a regular basis* and I'm content with the result.`,
+            shortDescription: `Simple at the first glance application developed in order to help my with my English vocabulary. *I have been using it for over a year on a regular basis* and I'm satisfied with the result.`,
             features: [],
         },
         {
