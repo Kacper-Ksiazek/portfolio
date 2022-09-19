@@ -23,8 +23,6 @@ interface ProjectCardProps {
 const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
     const router = useRouter();
 
-    console.log(data);
-
     const redirect = () => {
         router.push(`/projects/${data.id}`);
     };

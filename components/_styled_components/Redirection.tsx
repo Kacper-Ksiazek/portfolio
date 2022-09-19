@@ -27,13 +27,12 @@ const RedirectBase = styled(StyledButton)(({ theme }) => ({
 
     "&.small": {
         fontSize: "14px",
-        padding: "4px 16px",
+        padding: "6px 16px",
         "svg.right-arrow": {
             fontSize: "16px",
         },
         ["@media (max-width:500px)"]: {
             fontSize: "16px",
-            padding: "2px 24px",
         },
     },
 }));
@@ -47,6 +46,11 @@ const TooltipChildrenWrapper = styled("span")(({ theme }) => ({
     },
     "&:not(&:nth-of-type(1))": {
         marginLeft: "8px",
+        ["@media (max-width:500px)"]: {
+            display: "block",
+            marginTop: "8px",
+            marginLeft: "0px",
+        },
     },
 }));
 
