@@ -11,7 +11,7 @@ import type { Project } from "@/@types/pages/LandingPage";
 import ProjectCard from "./ProjectCard";
 import YearToIndicate from "./YearToIndicate";
 const Timeline = dynamic(() => import("./Timeline"));
-import VisibilitySensor from "@/components/_utils/VisibilitySensor";
+import VisibilitySensor from "@/components/utils/VisibilitySensor";
 // Styled components
 
 const SingleProjectRow = styled("div")(({ theme }) => ({

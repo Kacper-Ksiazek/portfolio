@@ -7,7 +7,7 @@ import type { Snackbar } from "@/@types/SnackbarContext";
 import StyledAlert from "./styled_components/StyledAlert";
 import CounterWrapper, { CounterWrapperPlaceholder } from "./styled_components/CounterWrapper";
 import SingleSnackbarBase from "./styled_components/SingleSnackbarBase";
-import CircularCounterDown from "@/components/_utils/CircularCounterDown";
+import CircularCounterDown from "@/components/utils/CircularCounterDown";
 // Material UI Icons
 import Close from "@mui/icons-material/Close";
 

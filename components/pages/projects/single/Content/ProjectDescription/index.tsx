@@ -3,7 +3,7 @@ import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/projects/SingleProject";
 // Other components
 import ParagraphWrapper from "./ParagraphWrapper";
-import VisibilitySensor from "@/components/_utils/VisibilitySensor";
+import VisibilitySensor from "@/components/utils/VisibilitySensor";
 // Styled components
 import ProjectDescriptionBase from "./Base";
 

@@ -8,7 +8,7 @@ import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import SingleHobby from "./SingleHobby";
-import Carousel from "@/components/_utils/Carousel";
+import Carousel from "@/components/utils/Carousel";
 // Styled Components
 import Paragraph from "../_styled_components/Paragraph";
 

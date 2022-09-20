@@ -5,7 +5,7 @@ import type { SxProps } from "@mui/system";
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import Header from "./Header";
-import VisibilitySensor from "@/components/_utils/VisibilitySensor";
+import VisibilitySensor from "@/components/utils/VisibilitySensor";
 // Styled components
 import DarkWrapperBase from "./DarkWrapperBase";
 import BackgroundShape from "./BackgroundShape";

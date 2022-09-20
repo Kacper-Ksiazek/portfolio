@@ -4,7 +4,7 @@ import useWindowSizes from "@/hooks/useWindowSizes";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
-import VisibilitySensor from "@/components/_utils/VisibilitySensor";
+import VisibilitySensor from "@/components/utils/VisibilitySensor";
 // Styled components
 import MainHeader from "./MainHeader";
 import AdditionalText from "./AdditionalText";

@@ -7,9 +7,9 @@ import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 import type { FunctionComponent } from "react";
 import type { RecommendedProject } from "@/@types/pages/projects/SingleProject";
 // Other components
-import Carousel from "@/components/_utils/Carousel";
+import Carousel from "@/components/utils/Carousel";
 import SingleRecommendedProject from "./SingleRecommendedProject";
-import VisibilitySensor from "@/components/_utils/VisibilitySensor";
+import VisibilitySensor from "@/components/utils/VisibilitySensor";
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 // Styled components
 const ContentWrapper = styled("div")(({ theme }) => ({

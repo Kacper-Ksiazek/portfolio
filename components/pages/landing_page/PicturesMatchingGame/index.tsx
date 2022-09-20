@@ -7,7 +7,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import SinglePicture from "./SinglePicture";
 import YouWonCommunique from "./YouWonCommunique";
-import ImageModel from "@/components/_utils/ImageModel";
+import ImageModel from "@/components/utils/ImageModel";
 import { PicturesMatchingGameContextProvider } from "./context";
 // Styled Components
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";

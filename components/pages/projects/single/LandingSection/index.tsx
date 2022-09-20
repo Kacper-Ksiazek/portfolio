@@ -7,7 +7,7 @@ import type { Project } from "@/@types/pages/projects/SingleProject";
 import Redirect from "./Redirect";
 import ThumbnailPreview from "./ThumbnailPreview";
 import LandingPageBase from "./LandingSectionBase";
-import Technologies from "@/components/_utils/DisplayTechnologies";
+import Technologies from "@/components/utils/DisplayTechnologies";
 import Duration from "@/components/atoms/single_project/Duration";
 import { LandingScreenContextProvider } from "./contexts/LandingScreenContext";
 // Styled components

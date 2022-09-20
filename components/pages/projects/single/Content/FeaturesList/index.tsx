@@ -8,7 +8,7 @@ import type { Feature } from "@/@types/prisma/Project";
 // Other components
 import ShowMore from "./ShowMore";
 import SingleFeature from "./SingleFeature";
-import VisibilitySensor from "@/components/_utils/VisibilitySensor";
+import VisibilitySensor from "@/components/utils/VisibilitySensor";
 const FeatureThumbnailModal = dynamic(() => import("./FeatureThumbnailModal"));
 // Styled components
 import FeaturesWrapper from "./styled_components/FeaturesWrapper";

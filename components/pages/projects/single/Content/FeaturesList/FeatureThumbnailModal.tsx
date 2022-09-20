@@ -4,7 +4,7 @@ import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_ur
 import type { Feature } from "@/@types/prisma/Project";
 import type { Dispatch, SetStateAction, FunctionComponent } from "react";
 // Other components
-import ImageModal from "@/components/_utils/ImageModel";
+import ImageModal from "@/components/utils/ImageModel";
 
 interface ImageModelWrapperProps {
     features: Feature[];

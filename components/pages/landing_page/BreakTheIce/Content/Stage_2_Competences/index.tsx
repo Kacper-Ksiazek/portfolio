@@ -6,7 +6,7 @@ import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
-import DisplayTechnologies from "@/components/_utils/DisplayTechnologies";
+import DisplayTechnologies from "@/components/utils/DisplayTechnologies";
 // Styled Components
 import Label from "../_styled_components/Label";
 import Paragraph from "../_styled_components/Paragraph";
