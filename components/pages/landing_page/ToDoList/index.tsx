@@ -11,8 +11,8 @@ import AddNewTask from "./AddNewTask";
 import SingleTask from "./SingleTask";
 // Styled Components
 import NoResults from "./NoResults";
-import DarkSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Dark";
-import OverflowScrollDiv from "@/components/_styled_components/content_placement/OverflowScrollDiv";
+import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
+import OverflowScrollDiv from "@/components/atoms/content_placement/OverflowScrollDiv";
 
 const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const { displaySnackbar } = useSnackbar();

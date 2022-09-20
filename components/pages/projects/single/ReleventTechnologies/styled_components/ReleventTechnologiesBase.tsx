@@ -1,7 +1,7 @@
 // Tools
 import { styled, keyframes } from "@mui/system";
 // Other components
-import DarkWrapperBase from "@/components/_styled_components/content_placement/SectionWrapper/Dark/DarkWrapperBase";
+import DarkWrapperBase from "@/components/atoms/content_placement/SectionWrapper/Dark/DarkWrapperBase";
 
 const fadeSimpleButWithSmallerOpacity = keyframes({
     from: {

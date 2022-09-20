@@ -2,7 +2,7 @@
 import { styled } from "@mui/system";
 import onHoverStyles from "./onHoverStyles";
 // Styled components
-import Section from "@/components/_styled_components/content_placement/SectionWrapper/Light/LightWrapperBase";
+import Section from "@/components/atoms/content_placement/SectionWrapper/Light/LightWrapperBase";
 
 export default styled(Section)(({ theme }) => ({
     borderRadius: "",

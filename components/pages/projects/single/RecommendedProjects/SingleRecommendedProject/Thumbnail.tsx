@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
-import Thumbnail from "@/components/pages/_shared/single-project/Thumbnail";
+import Thumbnail from "@/components/atoms/single_project/Thumbnail";
 
 interface ThumbnailProps {
     id: string;

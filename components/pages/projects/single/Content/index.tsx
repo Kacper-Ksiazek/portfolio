@@ -4,7 +4,7 @@ import type { Project } from "@/@types/pages/projects/SingleProject";
 // Other components
 import ProjectDescription from "./ProjectDescription";
 import FeaturesList from "./FeaturesList";
-import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
+import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 // Styled components
 
 interface SingleProjectContentProps {

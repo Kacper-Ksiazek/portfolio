@@ -10,7 +10,7 @@ import SendMeAnEmail from "./SendMeAnEmail";
 import WaysToReachMe from "./WaysToReachMe";
 import VisibilitySensor from "@/components/_utils/VisibilitySensor";
 // Styled Components
-import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
+import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 import Paragraph from "@/components/pages/landing_page/BreakTheIce/Content/_styled_components/Paragraph";
 
 const TextWrapper = styled("div")(({ theme }) => ({

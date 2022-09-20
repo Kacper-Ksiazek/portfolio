@@ -7,10 +7,10 @@ import type { Project } from "@/@types/pages/LandingPage";
 // Material UI Components
 import Typography from "@mui/material/Typography";
 // Other components
-import Duration from "@/components/pages/_shared/single-project/Duration";
-import Thumbnail from "@/components/pages/_shared/single-project/Thumbnail";
-import Technologies from "@/components/pages/_shared/single-project/Technologies";
-import { InternalRedirection, ExternalRedirection } from "@/components/_styled_components/Redirection";
+import Duration from "@/components/atoms/single_project/Duration";
+import Thumbnail from "@/components/atoms/single_project/Thumbnail";
+import Technologies from "@/components/atoms/single_project/Technologies";
+import { InternalRedirection, ExternalRedirection } from "@/components/atoms/redirections";
 // Styled components
 import SingleProjectBase from "./styled_components/SingleProjectBase";
 import SingleProjectTextContent from "./styled_components/SingleProjectTextContent";

@@ -7,7 +7,7 @@ import ChevronRight from "@mui/icons-material/ChevronRight";
 // Other components
 import Link from "next/Link";
 // Styled components
-import StyledButton from "@/components/_styled_components/forms/StyledButton";
+import StyledButton from "@/components/atoms/forms/StyledButton";
 
 const ReadMoreButton = styled(StyledButton)(({ theme }) => ({
     display: "flex",

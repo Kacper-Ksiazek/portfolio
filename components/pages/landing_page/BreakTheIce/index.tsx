@@ -14,7 +14,7 @@ import VisibilitySensor from "@/components/_utils/VisibilitySensor";
 import { BreakTheIceContextProvider } from "./contexts/BreakTheIceContentContext";
 // Styled Components
 import BreakTheIceBase from "./styled_components/BreakTheIceBase";
-import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
+import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 
 interface BreakTheIceProps {
     hobbies: Hobby[];

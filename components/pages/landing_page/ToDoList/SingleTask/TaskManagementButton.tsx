@@ -2,11 +2,11 @@
 import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { Color } from "@/components/_styled_components/forms/StyledButton";
+import type { Color } from "@/components/atoms/forms/StyledButton";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";
 // Styled components
-import StyledButton from "@/components/_styled_components/forms/StyledButton";
+import StyledButton from "@/components/atoms/forms/StyledButton";
 
 const TaskManagementButtonBase = styled(StyledButton)(({ theme }) => ({
     marginLeft: "10px",

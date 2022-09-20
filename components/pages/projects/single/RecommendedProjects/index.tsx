@@ -10,7 +10,7 @@ import type { RecommendedProject } from "@/@types/pages/projects/SingleProject";
 import Carousel from "@/components/_utils/Carousel";
 import SingleRecommendedProject from "./SingleRecommendedProject";
 import VisibilitySensor from "@/components/_utils/VisibilitySensor";
-import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
+import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 // Styled components
 const ContentWrapper = styled("div")(({ theme }) => ({
     width: "100%",

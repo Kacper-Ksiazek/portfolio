@@ -1,6 +1,6 @@
 // Tools
 import { styled, alpha } from "@mui/system";
-import { shapesOnHoverAnimations } from "@/components/pages/_shared/single-project/Thumbnail/onHover";
+import { shapesOnHoverAnimations } from "@/components/atoms/single_project/Thumbnail/onHover";
 
 // Styled components
 export default styled("div")(({ theme }) => ({

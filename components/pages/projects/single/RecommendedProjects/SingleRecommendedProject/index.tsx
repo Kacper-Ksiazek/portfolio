@@ -7,8 +7,8 @@ import type { RecommendedProject } from "@/@types/pages/projects/SingleProject";
 import Typography from "@mui/material/Typography";
 // Other components
 import Thumbnail from "./Thumbnail";
-import Technologies from "@/components/pages/_shared/single-project/Technologies";
-import Duration from "@/components/pages/_shared/single-project/Duration";
+import Technologies from "@/components/atoms/single_project/Technologies";
+import Duration from "@/components/atoms/single_project/Duration";
 // Styled components
 import Header from "./styled_components/Header";
 import ReadMore from "./styled_components/ReadMore";

@@ -4,7 +4,7 @@ import { styled, alpha } from "@mui/system";
 import { introAnimationWidthBodyWithBigRadius } from "./keyframes";
 import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
 // Styled components
-import Section from "@/components/_styled_components/content_placement/SectionWrapper/_SectionWrapper";
+import Section from "@/components/atoms/content_placement/SectionWrapper/_SectionWrapper";
 
 export default styled(Section)(({ theme }) => ({
     position: "relative",

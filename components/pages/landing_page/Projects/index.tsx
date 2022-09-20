@@ -5,7 +5,7 @@ import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
 // Other components
 import SingleProject from "./SingleProject";
-import LightSectionWrapper from "@/components/_styled_components/content_placement/SectionWrapper/Light";
+import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
 // Styled components
 const ProjectsWrapper = styled("div")(({ theme }) => ({

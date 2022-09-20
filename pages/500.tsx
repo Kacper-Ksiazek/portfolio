@@ -5,7 +5,7 @@ import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
 import Head from "next/head";
 import Link from "next/Link";
 // Styled components
-import StyledButton from "@/components/_styled_components/forms/StyledButton";
+import StyledButton from "@/components/atoms/forms/StyledButton";
 import { HTTPStatusCodeContentWrapper, StatusCode, ButtonsWrapper } from "@/components/pages/http_status_code";
 
 const Home: NextPage<LandingPageServerSideProps> = (props) => {

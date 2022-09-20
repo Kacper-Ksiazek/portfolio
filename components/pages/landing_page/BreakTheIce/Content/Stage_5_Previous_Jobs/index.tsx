@@ -8,7 +8,7 @@ import type { FunctionComponent } from "react";
 import SinglePreviousJob from "./SinglePreviousJob";
 // Styled Components
 import Paragraph from "../_styled_components/Paragraph";
-import OverflowScrollDiv from "@/components/_styled_components/content_placement/OverflowScrollDiv";
+import OverflowScrollDiv from "@/components/atoms/content_placement/OverflowScrollDiv";
 
 const PreviousJobs: FunctionComponent = () => {
     const { previousJobs } = useBreakTheIceContentContext();

@@ -6,7 +6,7 @@ import type { FunctionComponent } from "react";
 // Material UI Icons
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 // Styled components
-import StyledButton from "@/components/_styled_components/forms/StyledButton";
+import StyledButton from "@/components/atoms/forms/StyledButton";
 
 const ShowMoreButton = styled(StyledButton)(({ theme }) => ({
     alignSelf: "center",

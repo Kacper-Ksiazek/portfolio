@@ -8,7 +8,7 @@ import Redirect from "./Redirect";
 import ThumbnailPreview from "./ThumbnailPreview";
 import LandingPageBase from "./LandingSectionBase";
 import Technologies from "@/components/_utils/DisplayTechnologies";
-import Duration from "@/components/pages/_shared/single-project/Duration";
+import Duration from "@/components/atoms/single_project/Duration";
 import { LandingScreenContextProvider } from "./contexts/LandingScreenContext";
 // Styled components
 import TextWrapper from "./styled_components/TextWrapper";

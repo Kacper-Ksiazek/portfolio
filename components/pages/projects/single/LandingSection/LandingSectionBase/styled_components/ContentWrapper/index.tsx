@@ -5,7 +5,7 @@ import introAnimations from "./animations/intro";
 import contentAppearing from "./animations/content_appearing";
 import contentDisappearing from "./animations/content_disappearing";
 // Styled components
-import ContentWrapperBase from "@/components/_styled_components/content_placement/SectionWrapper/_ContentWrapper";
+import ContentWrapperBase from "@/components/atoms/content_placement/SectionWrapper/_ContentWrapper";
 
 export default styled(ContentWrapperBase)(({ theme }) => ({
     color: "white",

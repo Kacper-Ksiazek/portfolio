@@ -8,13 +8,13 @@ import type { PreviousJob } from "@/@types/pages/LandingPage";
 import Image from "next/Image";
 import Localization from "./Localization";
 import ITRelatedJobIconBase from "./ITRelatedJobIcon";
-import Duration from "@/components/pages/_shared/single-project/Duration";
+import Duration from "@/components/atoms/single_project/Duration";
 // Styled components
 import TextWrapper from "./styled_components/TextWrapper";
 import ThumbnailWrapper from "./styled_components/ThumbnailWrapper";
 import SinglePreviousJobBase from "./styled_components/SinglePreviousJobBase";
 import { Description, Header, RedirectionsWrapper } from "./styled_components/atoms";
-import { InternalRedirection } from "@/components/_styled_components/Redirection";
+import InternalRedirection from "@/components/atoms/redirections/InternalRedirection";
 
 interface SinglePreviousJobProps {
     data: PreviousJob;

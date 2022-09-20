@@ -1,56 +1,10 @@
 // Tools
-import { styled } from "@mui/system";
 import { useEffect, useRef, useState } from "react";
 // Types
 import type { SxProps } from "@mui/system";
 import type { FunctionComponent, ReactNode } from "react";
 // Styled components
-const CarosuelWrapper = styled("div")(({ theme }) => ({
-    position: "relative",
-    width: "100%",
-    flexGrow: "1",
-    overflow: "hidden",
-}));
-const ChildrenElementsWrapper = styled("div")(({ theme }) => ({
-    position: "absolute",
-    top: "0",
-    height: "100%",
-    left: "0",
-    display: "flex",
-    justifyContent: "space-between",
-    transition: "transform .3s",
-}));
-
-const NavigationWrapper = styled("div")(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-}));
-
-const SingleNagivationStep = styled("span")(({ theme }) => ({
-    width: "40px",
-    height: "30px",
-    cursor: "pointer",
-    borderRadius: "1px",
-    position: "relative",
-    "&:not(&:nth-of-type(1))": {
-        marginLeft: "10px",
-    },
-    "&:after": {
-        bottom: 0,
-        position: "absolute",
-        content: "''",
-        width: "100%",
-        height: "5px",
-        background: "#000",
-        transition: "all .3s",
-    },
-    "&.active": {
-        "&:after": {
-            transform: "scaleY(2)",
-            background: theme.palette.primary.main,
-        },
-    },
-}));
+import { CarosuelWrapper, ChildrenElementsWrapper, NavigationWrapper, SingleNagivationStep } from "./_styled_components";
 
 interface CarosuelProps {
     spacing: number;
