@@ -1,6 +1,6 @@
 // Tools
 import { keyframes } from "@mui/system";
-import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
+import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 //
 import * as Redirect from "./keyframes/RedirectAnimations";
 import * as Duration from "./keyframes/DurationAnimations";

@@ -1,7 +1,7 @@
 // Tools
 import { forwardRef } from "react";
 import { styled, alpha } from "@mui/system";
-import fadeSimpleOUT from "@/components/_keyframes/outro/fadeSimpleOUT";
+import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Types
 import type { ReactNode } from "react";
 import type { SxProps } from "@mui/system";

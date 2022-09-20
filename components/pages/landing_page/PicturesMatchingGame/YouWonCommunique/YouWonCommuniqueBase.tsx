@@ -1,7 +1,7 @@
 // Tools
 import { styled, alpha, keyframes } from "@mui/system";
-import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
-import fadeToBottom from "@/components/_keyframes/outro/fadeToBottom";
+import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
+import fadeToBottom from "@/components/keyframes/outro/fadeToBottom";
 // Styled components
 const introAnimation = keyframes({
     from: {

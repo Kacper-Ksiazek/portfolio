@@ -1,6 +1,6 @@
 // Tools
 import { styled, keyframes } from "@mui/system";
-import fadeSimpleOUT from "@/components/_keyframes/outro/fadeSimpleOUT";
+import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Styled components
 import LineBase from "./_LineBase";
 

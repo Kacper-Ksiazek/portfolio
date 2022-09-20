@@ -1,8 +1,8 @@
 // Tools
 import theme from "@/material";
 import { styled, keyframes } from "@mui/system";
-import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
-import fadeSimpleOUT from "@/components/_keyframes/outro/fadeSimpleOUT";
+import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Types
 import type { SxProps } from "@mui/system";
 // Styled components

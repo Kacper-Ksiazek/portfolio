@@ -6,7 +6,7 @@ import type { Project } from "@/@types/pages/LandingPage";
 // Other components
 import SingleProject from "./SingleProject";
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
-import fadeFromLeft from "@/components/_keyframes/intro/fadeFromLeft";
+import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
 // Styled components
 const ProjectsWrapper = styled("div")(({ theme }) => ({
     display: "flex",

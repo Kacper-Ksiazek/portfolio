@@ -1,7 +1,7 @@
 // Tools
 import { styled, keyframes } from "@mui/system";
-import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
-import fadeSimpleOUT from "@/components/_keyframes/outro/fadeSimpleOUT";
+import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Styled components
 
 const snackbarHeightReductionAfterOutro = keyframes({

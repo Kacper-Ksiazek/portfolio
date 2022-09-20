@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
+import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";

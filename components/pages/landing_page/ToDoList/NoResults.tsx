@@ -1,6 +1,6 @@
 // Tools
 import { styled, alpha } from "@mui/system";
-import fadeFromBottom from "@/components/_keyframes/intro/fadeFromBottom";
+import fadeFromBottom from "@/components/keyframes/intro/fadeFromBottom";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons

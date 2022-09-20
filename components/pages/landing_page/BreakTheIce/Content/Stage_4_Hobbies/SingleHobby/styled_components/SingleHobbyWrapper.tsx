@@ -1,8 +1,8 @@
 // Tools
 import { styled, alpha } from "@mui/system";
-import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
-import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
-import fadeFromBottom from "@/components/_keyframes/intro/fadeFromBottom";
+import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
+import fadeFromBottom from "@/components/keyframes/intro/fadeFromBottom";
 import { imageIntroFast, imageIntroFastReversed, imageIntroSlow, imageIntroSlowReversed } from "./_keyframes";
 // Styled components
 export default styled("div")(({ theme }) => ({

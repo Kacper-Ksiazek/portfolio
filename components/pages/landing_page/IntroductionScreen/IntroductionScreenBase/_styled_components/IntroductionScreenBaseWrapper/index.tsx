@@ -2,7 +2,7 @@
 import RWD from "./RWD";
 import { styled, alpha } from "@mui/system";
 import { introAnimationWidthBodyWithBigRadius } from "./keyframes";
-import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
+import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Styled components
 import Section from "@/components/atoms/content_placement/SectionWrapper/_SectionWrapper";
 

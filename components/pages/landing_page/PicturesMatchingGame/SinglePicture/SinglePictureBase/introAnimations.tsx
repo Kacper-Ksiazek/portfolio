@@ -1,5 +1,5 @@
 // Tools
-import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
+import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Types
 import type { SxProps } from "@mui/system";
 

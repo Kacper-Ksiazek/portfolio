@@ -1,6 +1,6 @@
 // Tools
 import { keyframes } from "@mui/system";
-import fadeFromBottom from "@/components/_keyframes/intro/fadeFromBottom";
+import fadeFromBottom from "@/components/keyframes/intro/fadeFromBottom";
 // Types
 import type { SxProps } from "@mui/system";
 // IT HAS TO BE UNIQUE ANIMATION

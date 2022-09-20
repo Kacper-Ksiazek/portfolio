@@ -1,9 +1,9 @@
 // Tools
 import { styled } from "@mui/system";
-import fadeToTop from "@/components/_keyframes/outro/fadeToTop";
-import fadeSimple from "@/components/_keyframes/intro/fadeSimple";
-import fadeSimpleOUT from "@/components/_keyframes/outro/fadeSimpleOUT";
-import fadeFromBottom from "@/components/_keyframes/intro/fadeFromBottom";
+import fadeToTop from "@/components/keyframes/outro/fadeToTop";
+import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import fadeFromBottom from "@/components/keyframes/intro/fadeFromBottom";
 import { wrapperIntroAnimation, wrapperOutroAnimation, backgroundImageIntro, backgroundImageOutro } from "./wrapperKeyframes";
 // Styled components
 export default styled("div")(({ theme }) => ({

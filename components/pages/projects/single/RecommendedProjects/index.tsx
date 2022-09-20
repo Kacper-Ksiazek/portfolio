@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { styled } from "@mui/system";
 import useWindowSizes from "@/hooks/useWindowSizes";
-import fadeFromTop from "@/components/_keyframes/intro/fadeFromTop";
+import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 // Types
 import type { FunctionComponent } from "react";
 import type { RecommendedProject } from "@/@types/pages/projects/SingleProject";
