@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { styled } from "@mui/system";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
 import type { RecommendedProject } from "@/@types/pages/projects/SingleProject";
@@ -52,7 +53,8 @@ const RecommendedProjects: FunctionComponent<RecommendedProjectsProps> = ({ reco
                 main: "Rest of my work",
                 additionalJSX: (
                     <InformationAboutNumberOfProjects>
-                        There are <strong>{recommendedProjects.length}</strong> more projects to see
+                        {formatTextViaBolding(`There are *${recommendedProjects.length}* more projects to see`, true)}
+                        {/*  */}
                     </InformationAboutNumberOfProjects>
                 ),
                 estimatedHeight: "130px",

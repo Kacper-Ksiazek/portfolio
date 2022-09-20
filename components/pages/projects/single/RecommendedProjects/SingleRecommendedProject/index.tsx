@@ -7,8 +7,8 @@ import type { RecommendedProject } from "@/@types/pages/projects/SingleProject";
 import Typography from "@mui/material/Typography";
 // Other components
 import Thumbnail from "./Thumbnail";
-import Technologies from "@/components/atoms/single_project/Technologies";
 import Duration from "@/components/atoms/single_project/Duration";
+import TechnologiesList from "@/components/atoms/TechnologiesList";
 // Styled components
 import Header from "./styled_components/Header";
 import ReadMore from "./styled_components/ReadMore";
@@ -24,13 +24,16 @@ const SingleRecommendedProject: FunctionComponent<SingleRecommendedProjectProps>
         <SingleRecommendedProjectBase>
             <Duration end={data.end} start={data.start} smaller />
             <Header className={data.title.length > 20 ? "long-header" : ""}>{data.title}</Header>
-            <Technologies
+            <TechnologiesList
                 technologies={data.releventTechnologies.slice(0, numberOfTechnologiesToDisplay)} //
+                small
+                doNotWrap
                 thereAreMoreTechnologies={data.releventTechnologies.length > numberOfTechnologiesToDisplay}
             />
             <Thumbnail folder={data.folder} id={data.id} />
             <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                {formatTextViaBolding(data.shortDescription)}
+                {formatTextViaBolding(data.shortDescription.slice(0, 150))}
+                <span>{` ...`}</span>
             </Typography>
             <ReadMore id={data.id} />
         </SingleRecommendedProjectBase>

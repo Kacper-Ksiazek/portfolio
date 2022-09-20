@@ -8,8 +8,8 @@ import type { Project } from "@/@types/pages/LandingPage";
 import Typography from "@mui/material/Typography";
 // Other components
 import Duration from "@/components/atoms/single_project/Duration";
+import TechnologiesList from "@/components/atoms/TechnologiesList";
 import Thumbnail from "@/components/atoms/single_project/Thumbnail";
-import Technologies from "@/components/atoms/single_project/Technologies";
 import { InternalRedirection, ExternalRedirection } from "@/components/atoms/redirections";
 // Styled components
 import SingleProjectBase from "./styled_components/SingleProjectBase";
@@ -33,7 +33,12 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
             <span className="intro-bar2" />
 
             <SingleProjectTextContent className="single-project-text-content-wrapper">
-                <Technologies technologies={data.releventTechnologies.slice(0, 5)} />
+                <TechnologiesList
+                    technologies={data.releventTechnologies.slice(0, 5)} //
+                    doNotWrap
+                    small
+                    thereAreMoreTechnologies={data.releventTechnologies.length > 5}
+                />
                 <Typography variant="h4">
                     <span>{data.title}</span>
                 </Typography>

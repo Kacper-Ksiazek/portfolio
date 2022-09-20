@@ -7,7 +7,7 @@ import type { Project } from "@/@types/pages/projects/SingleProject";
 import Redirect from "./Redirect";
 import ThumbnailPreview from "./ThumbnailPreview";
 import LandingPageBase from "./LandingSectionBase";
-import Technologies from "@/components/utils/DisplayTechnologies";
+import TechnologiesList from "@/components/atoms/TechnologiesList";
 import Duration from "@/components/atoms/single_project/Duration";
 import { LandingScreenContextProvider } from "./contexts/LandingScreenContext";
 // Styled components
@@ -27,7 +27,7 @@ const ProjectLandingPage: FunctionComponent<ProjectLandingPageProps> = ({ projec
                 <MainHeader id="project-title">
                     <span>{project.title}</span>
                 </MainHeader>
-                <Technologies technologies={project.technologies} />
+                <TechnologiesList technologies={project.technologies} />
                 <Description id="project-description">
                     <span>{formatTextViaBolding(project.shortDescription, true)}</span>
                 </Description>

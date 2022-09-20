@@ -6,7 +6,7 @@ import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
-import DisplayTechnologies from "@/components/utils/DisplayTechnologies";
+import TechnologiesList from "@/components/atoms/TechnologiesList";
 // Styled Components
 import Label from "../_styled_components/Label";
 import Paragraph from "../_styled_components/Paragraph";
@@ -49,7 +49,7 @@ const Competences: FunctionComponent<MUIStyledCommonProps> = (props) => {
             </Paragraph>
 
             <DisplayTechnologiesWrapper>
-                <DisplayTechnologies
+                <TechnologiesList
                     technologies={[
                         "Vue 2",
                         "Sass",
@@ -68,7 +68,7 @@ const Competences: FunctionComponent<MUIStyledCommonProps> = (props) => {
                         "Express",
                         "Electron",
                         "Cypress",
-                        "Mongo",
+                        "MongoDB",
                         "REST",
                         "Node",
                         "ReactQuery",

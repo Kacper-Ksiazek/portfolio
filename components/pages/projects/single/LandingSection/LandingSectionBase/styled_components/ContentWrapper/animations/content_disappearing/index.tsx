@@ -8,7 +8,7 @@ export default {
     "&::before": {
         animation: `${Keyframes.BackgroundBarDisappearing} .3s both`,
     },
-    ".duration, #project-title, .technologies, #project-description, .redirect": {
+    ".duration, #project-title, .technologies-wrapper, #project-description, .redirect": {
         position: "relative",
         "&>*": {
             animation: `${fadeSimpleOUT} .001s .35s both`,

@@ -62,7 +62,7 @@ export default ((): SxProps => {
                 })(),
             },
         },
-        ".technologies": {
+        ".technologies-wrapper": {
             "&>*": {
                 animation: `${fadeSimple} .001s  ${makeDelay(2.05)} both`,
             },

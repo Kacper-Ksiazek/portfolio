@@ -32,7 +32,7 @@ export default styled(ContentWrapperBase)(({ theme }) => ({
     "&.display-content": contentAppearing,
     "&.intro-animation": introAnimations,
     //
-    ".duration, #project-title, .technologies, #project-description, .redirect": {
+    ".duration, #project-title, .technologies-wrapper, #project-description, .redirect": {
         position: "relative",
         "&::after": {
             content: '""',

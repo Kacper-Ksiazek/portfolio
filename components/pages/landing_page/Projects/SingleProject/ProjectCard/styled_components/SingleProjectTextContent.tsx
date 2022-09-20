@@ -8,7 +8,6 @@ export default styled("div")(({ theme }) => ({
     width: "calc(100% - 250px)",
     boxSizing: "border-box",
     position: "relative",
-    cursor: "pointer",
     zIndex: 2,
     ".read-more": {
         marginTop: "16px",
