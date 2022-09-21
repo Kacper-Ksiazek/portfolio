@@ -5,7 +5,7 @@ import type { FunctionComponent } from "react";
 // Styled components
 import { ThereAreMoreTechnologies, TechnologiesListBase, SingleTechnology } from "./_styled_components";
 
-interface TechnologiesListProps {
+export interface TechnologiesListProps {
     technologies: string[];
     small?: boolean;
     /** Set CSS's `flex-wrap` to its default value- `"nowrap"`*/

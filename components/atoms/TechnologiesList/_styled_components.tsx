@@ -26,9 +26,7 @@ export const SingleTechnology = styled("li")(({ theme }) => ({
     "&.small": {
         padding: "0 6px",
         fontSize: "14px",
-        "&:not(&:nth-of-type(1))": {
-            marginLeft: "5px",
-        },
+        marginRight: "4px",
     },
 }));
 
