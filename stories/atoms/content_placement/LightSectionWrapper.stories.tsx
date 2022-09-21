@@ -1,12 +1,12 @@
 // Tools
 import { paragraphs } from "@/stories/assets/lorem_ipsum";
-import LightSectinWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
+import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 // Types
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
 
 export default {
     title: "Atoms/Content Placement/LightSectionWrapper",
-    component: LightSectinWrapper,
+    component: LightSectionWrapper,
     argTypes: {
         header: {
             control: "object",
@@ -35,16 +35,16 @@ export default {
             description: "By default the maximum height of the section wrapper is fixed to **800px**, by setting this property to `true` this one style is never assigned",
         },
     },
-} as ComponentMeta<typeof LightSectinWrapper>;
+} as ComponentMeta<typeof LightSectionWrapper>;
 
-const Template: ComponentStoryFn<typeof LightSectinWrapper> = (args) => {
+const Template: ComponentStoryFn<typeof LightSectionWrapper> = (args) => {
     return (
-        <LightSectinWrapper {...args}>
+        <LightSectionWrapper {...args}>
             <h1>Your content is going to appear here</h1>
             {paragraphs.slice(0, 3).map((item, index) => {
                 return <p key={index}>{item}</p>;
             })}
-        </LightSectinWrapper>
+        </LightSectionWrapper>
     );
 };
 
