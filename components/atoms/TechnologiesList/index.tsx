@@ -10,7 +10,9 @@ export interface TechnologiesListProps {
     small?: boolean;
     /** Set CSS's `flex-wrap` to its default value- `"nowrap"`*/
     doNotWrap?: boolean;
-    /** Expressed in seconds */
+    /**
+     * Expressed in seconds
+     * */
     firstAnimationDelay?: number | false;
     /** If true renders three dots ("...") after all technologies */
     thereAreMoreTechnologies?: boolean;
