@@ -4,7 +4,7 @@ import type { RedirectionProps } from "./@types";
 // Material UI Icons
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 // Other components
-import Link from "next/Link";
+import Link from "next/link";
 import RedirectionWrapper from "./_RedirectionWrapper";
 // Styled components
 import RedirectBase from "./_styled_components/RedirectBase";
