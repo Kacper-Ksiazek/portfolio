@@ -1,5 +1,5 @@
 // Tools
-import { paragraphs } from "@/stories/assets/lorem_ipsum";
+import { paragraphs, headerObject } from "@/stories/_stories_assets/lorem_ipsum";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 // Types
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
@@ -27,7 +27,22 @@ export default {
 const Template: ComponentStoryFn<typeof DarkSectionWrapper> = (args) => {
     return (
         <DarkSectionWrapper {...args}>
-            <h1>The content will appear here</h1>
+            <h1 style={{ margin: "0" }}>The content will appear here</h1>
+        </DarkSectionWrapper>
+    );
+};
+
+const TemplateWithLargerContent: ComponentStoryFn<typeof DarkSectionWrapper> = (args) => {
+    return (
+        <DarkSectionWrapper {...args}>
+            <h1 style={{ margin: "0" }}>The content will appear here</h1>
+            {paragraphs.slice(0, 3).map((item, index) => {
+                return (
+                    <p key={index} style={{ margin: "16px 0 0 0" }}>
+                        {item}
+                    </p>
+                );
+            })}
         </DarkSectionWrapper>
     );
 };
@@ -35,33 +50,16 @@ const Template: ComponentStoryFn<typeof DarkSectionWrapper> = (args) => {
 export const ShapesRotatedToLeft = Template.bind({});
 ShapesRotatedToLeft.args = {
     shapesDirection: "left",
-    header: {
-        main: "The main header",
-        label: "Additional label",
-    },
+    header: headerObject,
 };
 
 export const ShapesRotatedToRight = Template.bind({});
 ShapesRotatedToRight.args = {
     shapesDirection: "right",
-    header: {
-        main: "The main header",
-        label: "Additional label",
-    },
+    header: headerObject,
 };
 
-export const WithALotOfContent = () => {
-    return (
-        <DarkSectionWrapper
-            header={{
-                main: "The main header",
-                label: "Additional label",
-            }}
-        >
-            <h1>The content will appear here</h1>
-            {paragraphs.slice(0, 3).map((item, index) => {
-                return <p key={index}>{item}</p>;
-            })}
-        </DarkSectionWrapper>
-    );
+export const WithLargerContent = TemplateWithLargerContent.bind({});
+WithLargerContent.args = {
+    header: headerObject,
 };

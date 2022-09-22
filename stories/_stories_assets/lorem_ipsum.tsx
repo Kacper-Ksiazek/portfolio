@@ -9,3 +9,11 @@ export const paragraphs: string[] = [
 
     `Morbi consequat hendrerit leo, sed euismod erat iaculis sit amet. Donec consectetur gravida erat, vitae convallis neque. Aliquam erat volutpat. Donec dapibus velit ut dapibus hendrerit. Vivamus velit justo, viverra non purus ut, pulvinar malesuada urna. Maecenas justo diam, molestie sed neque non, fermentum sagittis libero. Suspendisse eget consectetur diam. Vivamus mollis auctor massa ac facilisis. Morbi vestibulum erat vitae tortor varius consequat. Nulla sed ligula sed dolor cursus eleifend ac sed lectus.`,
 ];
+
+export const headerObject = {
+    main: "The main header",
+    label: "Additional label",
+} as {
+    main: string;
+    label: string;
+};

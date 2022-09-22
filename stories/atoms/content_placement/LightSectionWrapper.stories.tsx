@@ -1,5 +1,5 @@
 // Tools
-import { paragraphs } from "@/stories/assets/lorem_ipsum";
+import { paragraphs, headerObject } from "@/stories/_stories_assets/lorem_ipsum";
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 // Types
 import { ComponentMeta, ComponentStoryFn } from "@storybook/react";
@@ -40,9 +40,28 @@ export default {
 const Template: ComponentStoryFn<typeof LightSectionWrapper> = (args) => {
     return (
         <LightSectionWrapper {...args}>
-            <h1>Your content is going to appear here</h1>
+            <h1 style={{ margin: "0" }}>Your content is going to appear here</h1>
             {paragraphs.slice(0, 3).map((item, index) => {
-                return <p key={index}>{item}</p>;
+                return (
+                    <p key={index} style={{ margin: "16px 0 0 0" }}>
+                        {item}
+                    </p>
+                );
+            })}
+        </LightSectionWrapper>
+    );
+};
+
+const TemplateWithLargerContent: ComponentStoryFn<typeof LightSectionWrapper> = (args) => {
+    return (
+        <LightSectionWrapper {...args}>
+            <h1 style={{ margin: "0" }}>Your content is going to appear here</h1>
+            {paragraphs.map((item, index) => {
+                return (
+                    <p key={index} style={{ margin: "16px 0 0 0" }}>
+                        {item}
+                    </p>
+                );
             })}
         </LightSectionWrapper>
     );
@@ -51,28 +70,25 @@ const Template: ComponentStoryFn<typeof LightSectionWrapper> = (args) => {
 export const RoundedLeft = Template.bind({});
 RoundedLeft.args = {
     round: "left",
-    header: {
-        main: "The main header",
-        label: "Additional label",
-    },
+    header: headerObject,
 };
 
 export const RoundedRight = Template.bind({});
 RoundedRight.args = {
     round: "right",
-    header: {
-        main: "The main header",
-        label: "Additional label",
-    },
+    header: headerObject,
 };
 
 export const WithCustomStyles = Template.bind({});
 WithCustomStyles.args = {
-    header: {
-        main: "The main header",
-        label: "Additional label",
-    },
+    header: headerObject,
     contentWrapperSx: {
         backgroundColor: "red",
     },
+};
+
+export const WithLargerContent = TemplateWithLargerContent.bind({});
+WithLargerContent.args = {
+    header: headerObject,
+    unlimitedHeight: false,
 };
