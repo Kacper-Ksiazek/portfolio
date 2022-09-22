@@ -2,7 +2,7 @@
 import { styled } from "@mui/system";
 // Styled components
 export default styled("div")(({ theme }) => ({
-    fontSize: "20px",
+    fontSize: "18px",
     display: "flex",
     marginTop: "64px",
     alignItems: "center",
