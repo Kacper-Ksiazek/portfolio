@@ -14,7 +14,7 @@ const IntroductionScreen: FunctionComponent = (props) => {
 
     return (
         <IntroductionScreenBase
-            renderBigCircle={width > 1350 || width <= 1150} //
+            renderBigCircle={width > 1450 || width <= 1150} //
             elementsOutsideContent={width > 1150 && <Technologies />}
         >
             <ColoredHeader>full-stack</ColoredHeader>

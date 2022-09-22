@@ -12,5 +12,5 @@ export default styled("div")(({ theme }) => ({
     justifyContent: "center",
     flexDirection: "column",
     userSelect: "none",
-    height: "100%",
+    height: "calc(100% - 200px)",
 }));
