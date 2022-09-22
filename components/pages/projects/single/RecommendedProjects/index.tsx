@@ -68,6 +68,7 @@ const RecommendedProjects: FunctionComponent<RecommendedProjectsProps> = ({ reco
                         itemsPerSlide={getNumberOfProjectsToDisplay()}
                         spacing={40}
                         navigationSx={{ mt: "20px" }}
+                        disableAutomaticHeight
                     >
                         {recommendedProjects.map((item, index) => {
                             return (

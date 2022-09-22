@@ -31,19 +31,30 @@ const StyledContentWrapper = styled(ContentWrapper)(({ theme }) => ({
 
 interface DarkSectionWrapperProps {
     children: ReactNode;
-    shapesDirection: "left" | "right";
+    /**
+     * Specifies the rotation of two background rectangles.
+     */
+    shapesDirection?: "left" | "right";
+    /**
+     * Handles section's premade header along with its smaller label
+     */
     header: {
         main: string;
         label: string;
     };
+    /**
+     *  Custom `MaterialUI` styles to be applied to the `sx` attribute of the **section main element**
+     */
     sx?: SxProps;
-    /** Callback which is to be fired once when the element appears on the screen*/
+    /**
+     * allback which is fired once when the element appears on the screen
+     * */
     onVisible?: () => void;
 }
 
 const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) => {
     return (
-        <VisibilitySensor onVisible={props.onVisible}>
+        <VisibilitySensor onVisible={props.onVisible} offsetTop={0}>
             <DarkWrapperBase sx={props.sx}>
                 <StyledContentWrapper>
                     <Header {...props.header}></Header>
@@ -59,4 +70,7 @@ const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) =
     );
 };
 
+DarkSectionWrapper.defaultProps = {
+    shapesDirection: "left",
+};
 export default DarkSectionWrapper;

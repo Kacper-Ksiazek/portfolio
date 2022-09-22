@@ -15,7 +15,7 @@ const drawBackgroundShape = keyframes({
     },
     "100%": {
         width: "350px",
-        height: "150%",
+        height: "170%",
     },
 });
 

@@ -4,6 +4,7 @@ import { styled } from "@mui/system";
 export const TechnologiesListBase = styled("ul")(({ theme }) => ({
     display: "flex",
     flexWrap: "wrap",
+    alignItems: "flex-end",
     listStyleType: "none",
     margin: "0",
     padding: "0",
@@ -25,14 +26,12 @@ export const SingleTechnology = styled("li")(({ theme }) => ({
     "&.small": {
         padding: "0 6px",
         fontSize: "14px",
-        "&:not(&:nth-of-type(1))": {
-            marginLeft: "5px",
-        },
+        marginRight: "4px",
     },
 }));
 
 export const ThereAreMoreTechnologies = styled("span")(({ theme }) => ({
     fontSize: "20px",
     lineHeight: "20px",
-    marginLeft: "8px",
+    paddingBottom: "4px",
 }));

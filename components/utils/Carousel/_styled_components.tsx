@@ -19,7 +19,17 @@ export const ChildrenElementsWrapper = styled("div")(({ theme }) => ({
 
 export const NavigationWrapper = styled("div")(({ theme }) => ({
     display: "flex",
+    width: "100%",
     alignItems: "center",
+    "&.position-left": {
+        justifyContent: "flex-start",
+    },
+    "&.position-center": {
+        justifyContent: "center",
+    },
+    "&.position-right": {
+        justifyContent: "flex-end",
+    },
 }));
 
 export const SingleNagivationStep = styled("span")(({ theme }) => ({

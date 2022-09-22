@@ -14,8 +14,8 @@ export default (
                 purpose: `The obvious purpose of this app was to present my coding skills, introduce myself by telling a few words about my previous experience and current sources of motivations as well as outlining my *plans for the near future*. I have also dedicated distinct sections to both enumerate a few of my most favourite forms of spending leisure time and and also to point out some schools which I used to attend to.`,
                 conclusion: `The Portfolio decisively exceeded my the most ambitious and optimistic expectations towards it and now I'm more than proud of its final outcome. This project is a very elaborate description of my software craftsmanship evolution, it presents the decisions I had made, the problems I had solved, the renunciations I had made amid this period. Now, after all this time it is personally insanely heartwarming to look at this journey in retrospect and it also gives me a lot of hope towards my lighter future on this field- which had became my biggest area of expertise and interest ever.`,
             },
-            releventTechnologies: ["typescript", "material", "next", "prisma", "figma", "postgresql"],
-            technologies: ["Figma", "Typescript", "React", "NextJS", "Material UI", "PostgreSQL", "Prisma", "SASS"],
+            releventTechnologies: ["typescript", "material", "next", "prisma", "figma", "postgresql", "storybook"],
+            technologies: ["Figma", "Typescript", "React", "NextJS", "Material UI", "PostgreSQL", "Prisma", "SASS", "Storybook"],
             features: [],
         },
         {

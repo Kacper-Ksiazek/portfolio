@@ -32,6 +32,7 @@ const Hobbies: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     animation: `${fadeFromTop} .3s 2s linear both`,
                 }}
                 key={width}
+                disableAutomaticHeight
             >
                 {hobbies.map((item, index) => {
                     return <SingleHobby key={item.id} data={item} />;

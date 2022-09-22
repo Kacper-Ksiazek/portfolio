@@ -40,7 +40,9 @@ export type Technology =
     | "PHP"
     | "Laravel"
     | "Sequelize"
-    | "Composition API";
+    | "Composition API"
+    | "Storybook"
+    | "Figma";
 
 export type ReleventTechnology =
     | "react"
@@ -61,7 +63,9 @@ export type ReleventTechnology =
     | "laravel"
     | "vue-bootstrap"
     | "mysql"
-    | "postgresql";
+    | "postgresql"
+    | "storybook"
+    | "figma";
 
 // Change prisma's json types into something more accurate
 export interface Project extends Omit<_Project, "features" | "description" | "technologies" | "releventTechnologies"> {

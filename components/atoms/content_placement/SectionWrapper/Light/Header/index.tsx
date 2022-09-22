@@ -20,7 +20,7 @@ interface LightSectionHeaderProps {
     main: string;
     label: string;
     additionalJSX?: ReactNode;
-    estimatedHeight: string;
+    estimatedHeight?: string;
 }
 
 const LightSectionHeader: FunctionComponent<LightSectionHeaderProps> = (props) => {
@@ -33,7 +33,7 @@ const LightSectionHeader: FunctionComponent<LightSectionHeaderProps> = (props) =
                 width < 1000
                     ? {}
                     : {
-                          height: props.estimatedHeight,
+                          height: props.estimatedHeight ?? "95px",
                       }
             }
             offsetTop={100}
