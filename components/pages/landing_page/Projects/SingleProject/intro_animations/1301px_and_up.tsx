@@ -235,10 +235,10 @@ export default {
                     animation: `${timelineConnectionIntro} .2s 1.4s both linear`,
                 },
                 ".dot.left": {
-                    animation: `${fadeSimple} .2s 1.6s both linear`,
+                    animation: `${fadeSimple} .2s 1.6s both linear !important`,
                 },
                 ".dot.right": {
-                    animation: `${fadeSimple} .2s 1.8s both linear`,
+                    animation: `${fadeSimple} .2s 1.8s both linear !important`,
                 },
             },
         },
@@ -249,10 +249,10 @@ export default {
                 animation: `${timelineConnectionIntro} .2s 1s both linear`,
             },
             ".dot.left": {
-                animation: `${fadeSimple} .2s .7s both linear`,
+                animation: `${fadeSimple} .2s 1.2s both linear !important`,
             },
             ".dot.right": {
-                animation: `${fadeSimple} .2s 2.5s both linear`,
+                animation: `${fadeSimple} .2s .7s both linear !important`,
             },
         },
     },
