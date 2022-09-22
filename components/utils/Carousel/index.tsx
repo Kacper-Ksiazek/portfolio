@@ -1,5 +1,6 @@
 // Tools
 import { useEffect, useRef, useState } from "react";
+import useWindowSizes from "@/hooks/useWindowSizes";
 // Types
 import type { SxProps } from "@mui/system";
 import type { FunctionComponent, ReactNode } from "react";
@@ -7,19 +8,42 @@ import type { FunctionComponent, ReactNode } from "react";
 import { CarosuelWrapper, ChildrenElementsWrapper, NavigationWrapper, SingleNagivationStep } from "./_styled_components";
 
 interface CarosuelProps {
+    /**
+     * Spacing between elements, expresed in **px**
+     */
     spacing: number;
+    /**
+     * The amount of elements in total
+     */
     itemsInTotal: number;
+    /**
+     * The amount of elements to display on each slide
+     */
     itemsPerSlide: number;
-
     children: ReactNode;
+    /**
+     * Additional styles added to the **navigation wrapper element**, following the `MUI`'s convention of css-in-js
+     */
     wrapperSx?: SxProps;
+    /**
+     * Additional styles added to the **main wrapper element**, following the `MUI`'s convention of css-in-js
+     */
     navigationSx?: SxProps;
+    /**
+     * The position of the bottom navigation which controls the sliding
+     */
+    navigationPosition?: "left" | "right" | "center";
+    /**
+     * Disable automatic height establishing
+     */
+    disableAutomaticHeight?: boolean;
 }
 
 const Carosuel: FunctionComponent<CarosuelProps> = (props) => {
+    const { width } = useWindowSizes();
     const [currentPage, setCurrentPage] = useState<number>(0);
     const [componentHasBeenFullMounted, setComponentHasBeenFullMounted] = useState<boolean>(false);
-    const generalCarosuelElement = useRef<HTMLDivElement | null>(null);
+    const generalCarosuelWrapperElement = useRef<HTMLDivElement | null>(null);
     const childrenElemenetsWrapperElement = useRef<HTMLDivElement | null>(null);
 
     const totalAdditionalPadding = useRef<number>(0);
@@ -27,7 +51,7 @@ const Carosuel: FunctionComponent<CarosuelProps> = (props) => {
     // Set width of wrapper and of each children
     useEffect(() => {
         if (childrenElemenetsWrapperElement.current) {
-            const singleItemWidth: string = `(${generalCarosuelElement.current?.offsetWidth}px - ${props.spacing * (props.itemsPerSlide - 1)}px) / ${props.itemsPerSlide}`;
+            const singleItemWidth: string = `(${generalCarosuelWrapperElement.current?.offsetWidth}px - ${props.spacing * (props.itemsPerSlide - 1)}px) / ${props.itemsPerSlide}`;
 
             totalAdditionalPadding.current = (props.itemsInTotal - 1) * props.spacing;
             childrenElemenetsWrapperElement.current.style.width = `calc(${singleItemWidth} * ${props.itemsInTotal} + ${totalAdditionalPadding.current}px)`;
@@ -79,13 +103,29 @@ const Carosuel: FunctionComponent<CarosuelProps> = (props) => {
         }, 1);
     }, [props.itemsPerSlide]);
 
+    // Set automatic height
+    useEffect(() => {
+        setTimeout(() => {
+            if (props.disableAutomaticHeight === false) {
+                if (generalCarosuelWrapperElement.current && childrenElemenetsWrapperElement.current) {
+                    const childrenHeights: number[] = [...(childrenElemenetsWrapperElement.current.childNodes as any)].map((el) => el.offsetHeight);
+                    const maxChildrenHeight = Math.max(...childrenHeights);
+
+                    generalCarosuelWrapperElement.current.style.height = `${maxChildrenHeight}px`;
+                }
+            }
+        }, 5);
+    }, [props.disableAutomaticHeight, width]);
     return (
         <>
-            <CarosuelWrapper sx={props.wrapperSx} ref={generalCarosuelElement} className="carosuel-wrapper">
+            <CarosuelWrapper sx={props.wrapperSx} ref={generalCarosuelWrapperElement} className="carosuel-wrapper">
                 <ChildrenElementsWrapper ref={childrenElemenetsWrapperElement}>{props.children}</ChildrenElementsWrapper>
             </CarosuelWrapper>
 
-            <NavigationWrapper sx={props.navigationSx} className="carosuel-navigation">
+            <NavigationWrapper
+                sx={props.navigationSx} //
+                className={["carosuel-navigation", `position-${props.navigationPosition}`].join(" ")}
+            >
                 {(() => {
                     const navigationStepsInTotal = props.itemsInTotal - props.itemsPerSlide + 1;
                     const result: any[] = [];
@@ -107,3 +147,8 @@ const Carosuel: FunctionComponent<CarosuelProps> = (props) => {
 };
 
 export default Carosuel;
+
+Carosuel.defaultProps = {
+    navigationPosition: "left",
+    disableAutomaticHeight: false,
+};
