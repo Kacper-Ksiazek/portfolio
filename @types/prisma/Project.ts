@@ -45,6 +45,7 @@ export type Technology =
     | "Figma";
 
 export type ReleventTechnology =
+    | "css"
     | "react"
     | "vue"
     | "next"
@@ -60,11 +61,14 @@ export type ReleventTechnology =
     | "redux"
     | "material"
     | "php"
+    | "html"
+    | "git"
     | "laravel"
     | "vue-bootstrap"
     | "mysql"
     | "postgresql"
     | "storybook"
+    | "python"
     | "figma";
 
 // Change prisma's json types into something more accurate

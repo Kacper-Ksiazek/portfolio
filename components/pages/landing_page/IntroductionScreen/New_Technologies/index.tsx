@@ -3,6 +3,8 @@ import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps, SxProps } from "@mui/system";
+// Other components
+import SingleTechnology from "./SingleTechnology";
 // Styled Components
 const TechnologiesWrapper = styled("div")(({ theme }) => ({
     position: "absolute",
@@ -161,70 +163,51 @@ const Column = styled("div")(({ theme }) => ({
     flexDirection: "column",
 }));
 
-const Technology = styled("div")(({ theme }) => ({
-    position: "relative",
-    backgroundImage: 'url("./images/technologies/pink/react.png")',
-    // backgroundImage: 'url("./images/technologies/white/react.png")',
-    backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    transition: "background-image .3s, opacity .3s",
-    opacity: 0.3,
-    cursor: "pointer",
-    filter: "grayscale(1)",
-    "&:not(&:nth-of-type(1))": {
-        marginTop: "72px",
-    },
-    "&:hover": {
-        opacity: 1,
-        filter: "grayscale(0)",
-    },
-}));
 const Technologies: FunctionComponent<MUIStyledCommonProps> = (props) => {
     return (
         <TechnologiesWrapper>
             <Wing className="left">
                 <Column className="column ">
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
+                    <SingleTechnology icon="react" />
+                    <SingleTechnology icon="electron" />
+                    <SingleTechnology icon="express" />
                 </Column>
 
                 <Column className="column ">
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
+                    <SingleTechnology icon="figma" />
+                    <SingleTechnology icon="material" />
+                    <SingleTechnology icon="jest" />
+                    <SingleTechnology icon="laravel" />
                 </Column>
 
                 <Column className="column ">
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
+                    <SingleTechnology icon="vue" />
+                    <SingleTechnology icon="mysql" />
+                    <SingleTechnology icon="python" />
+                    <SingleTechnology icon="node" />
+                    <SingleTechnology icon="typescript" />
                 </Column>
             </Wing>
             <Wing className="right">
                 <Column className="column ">
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
+                    <SingleTechnology icon="javascript" />
+                    <SingleTechnology icon="prisma" />
+                    <SingleTechnology icon="html" />
+                    <SingleTechnology icon="redux" />
+                    <SingleTechnology icon="postgresql" />
                 </Column>
 
                 <Column className="column ">
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
+                    <SingleTechnology icon="sequelize" />
+                    <SingleTechnology icon="storybook" />
+                    <SingleTechnology icon="sass" />
+                    <SingleTechnology icon="php" />
                 </Column>
 
                 <Column className="column ">
-                    <Technology className="technology" />
-                    <Technology className="technology" />
-                    <Technology className="technology" />
+                    <SingleTechnology icon="vue-bootstrap" />
+                    <SingleTechnology icon="git" />
+                    <SingleTechnology icon="next" />
                 </Column>
             </Wing>
         </TechnologiesWrapper>
