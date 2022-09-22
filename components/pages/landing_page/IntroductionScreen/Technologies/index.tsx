@@ -4,7 +4,7 @@ import type { FunctionComponent } from "react";
 import SingleTechnology from "./SingleTechnology";
 
 const Technologies: FunctionComponent = () => {
-    const technologies: string[] = ["vue", "git", "react", "sass", "material", "javascript", "html", "prisma", "next", "python", "jest", "node", "typescript", "css"];
+    const technologies: string[] = ["vue", "git", "react", "sass", "material", "javascript", "storybook", "prisma", "next", "python", "jest", "node", "typescript", "figma"];
 
     return (
         <>
