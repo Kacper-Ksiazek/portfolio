@@ -1,7 +1,7 @@
 // Tools
 import { useEffect, useState } from "react";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
-import useBreakTheIceContentContext from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
+import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components

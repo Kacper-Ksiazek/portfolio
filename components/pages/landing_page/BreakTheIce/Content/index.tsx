@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { styled } from "@mui/system";
 import { useEffect, useRef } from "react";
 import useWindowSizes from "@/hooks/useWindowSizes";
+import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
@@ -22,20 +23,15 @@ const ContentWrapper = styled("div")(({ theme }) => ({
     flexDirection: "column",
 }));
 
-interface BreakTheIceContentProps {
-    stage: IceBreakingStage;
-    previousStage: IceBreakingStage | null;
-    changeStage: (val: IceBreakingStage) => any;
-}
-
-const BreakTheIceContent: FunctionComponent<BreakTheIceContentProps> = (props) => {
+const BreakTheIceContent: FunctionComponent = () => {
     const { width } = useWindowSizes();
+    const { currentIceBreakingStage, previousIceBreakingStage } = useBreakTheIceContentContext();
 
     const RectangleOneElement = useRef<HTMLSpanElement | null>(null);
     const RectangleTwoElement = useRef<HTMLSpanElement | null>(null);
 
     useEffect(() => {
-        const index: 1 | 2 = (["General", "Education"] as IceBreakingStage[]).includes(props.stage) ? 1 : 2;
+        const index: 1 | 2 = (["General", "Education"] as IceBreakingStage[]).includes(currentIceBreakingStage) ? 1 : 2;
 
         RectangleOneElement.current?.classList.add(`intro-${index}`);
         RectangleOneElement.current?.classList.remove("outro-1");
@@ -52,21 +48,16 @@ const BreakTheIceContent: FunctionComponent<BreakTheIceContentProps> = (props) =
             RectangleTwoElement.current?.classList.remove(`intro-${index}`);
             RectangleTwoElement.current?.classList.add(`outro-${index}`);
         }, 1000);
-    }, [props.stage]);
+    }, [currentIceBreakingStage]);
 
     return (
         <ContentWrapper id="content-main-wrapper">
-            <ContentOnCertainStage stage={props.previousStage ? props.previousStage : props.stage} />
+            <ContentOnCertainStage stage={previousIceBreakingStage ?? currentIceBreakingStage} />
 
             <Rectangle id="rect-one" ref={RectangleOneElement} />
             <Rectangle id="rect-two" ref={RectangleTwoElement} />
 
-            {width < 1000 && (
-                <MobileBottomNavigation
-                    stage={props.previousStage ? props.previousStage : props.stage} //
-                    changeStage={props.changeStage}
-                />
-            )}
+            {width < 1000 && <MobileBottomNavigation />}
         </ContentWrapper>
     );
 };

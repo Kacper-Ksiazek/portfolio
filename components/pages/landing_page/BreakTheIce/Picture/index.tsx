@@ -1,9 +1,9 @@
 // Tools
 import { styled } from "@mui/system";
 import { useEffect, useRef, useMemo } from "react";
+import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent, MutableRefObject } from "react";
-import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components
 import Image from "next/Image";
 // Styled components
@@ -25,12 +25,9 @@ const PictureBase = styled("div")(({ theme }) => ({
     background: theme.palette.primary.main,
 }));
 
-interface PictureProps {
-    stage: IceBreakingStage;
-    previousStage: IceBreakingStage | null;
-}
+const Picture: FunctionComponent = () => {
+    const { currentIceBreakingStage, previousIceBreakingStage } = useBreakTheIceContentContext();
 
-const Picture: FunctionComponent<PictureProps> = (props) => {
     const LeftHorizontalRectangleElement = useRef<HTMLSpanElement | null>(null);
     const LeftVerticalRectangleElement = useRef<HTMLSpanElement | null>(null);
     const RightHorizontalRectangleElement = useRef<HTMLSpanElement | null>(null);
@@ -63,10 +60,10 @@ const Picture: FunctionComponent<PictureProps> = (props) => {
                 });
             }, 1200);
         }, 1200);
-    }, [AllRefs, props.stage]);
+    }, [AllRefs, currentIceBreakingStage]);
 
     return (
-        <PictureSectionWrapper key={props.stage} id="picture-main-wrapper">
+        <PictureSectionWrapper key={currentIceBreakingStage} id="picture-main-wrapper">
             <PictureWrapper id="picture-direct-wrapper">
                 <Rectangle className="left-horizontal" ref={LeftHorizontalRectangleElement} />
                 <Rectangle className="left-vertical" ref={LeftVerticalRectangleElement} />
@@ -75,7 +72,7 @@ const Picture: FunctionComponent<PictureProps> = (props) => {
                 <PictureBase>
                     <Image
                         alt="stage-picture" //
-                        src={`/images/landing-page/${props.previousStage ? props.previousStage : props.stage}.jpg`}
+                        src={`/images/landing-page/${previousIceBreakingStage ?? currentIceBreakingStage}.jpg`}
                         layout="fill"
                         priority
                     />

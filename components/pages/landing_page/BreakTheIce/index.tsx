@@ -1,6 +1,6 @@
 // Tools
-import stated from "@/utils/client/stated";
 import { useState, useEffect } from "react";
+import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { Hobby, School } from "@prisma/client";
@@ -16,16 +16,10 @@ import { BreakTheIceContextProvider } from "./contexts/BreakTheIceContentContext
 import BreakTheIceBase from "./styled_components/BreakTheIceBase";
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 
-interface BreakTheIceProps {
-    hobbies: Hobby[];
-    schools: School[];
-    previousJobs: PreviousJob[];
-}
+const BreakTheIce: FunctionComponent = () => {
+    const { currentIceBreakingStage } = useBreakTheIceContentContext();
 
-const BreakTheIce: FunctionComponent<BreakTheIceProps> = (props) => {
-    const [stage, setStage] = useState<IceBreakingStage>("General");
     const [letter, setLetter] = useState<string>("K");
-    const [previousStage, setPreviousStage] = useState<IceBreakingStage | null>(null);
 
     // Update letter after stage being change
     useEffect(() => {
@@ -36,16 +30,8 @@ const BreakTheIce: FunctionComponent<BreakTheIceProps> = (props) => {
             Hobbies: "P",
             Previous_Jobs: "E",
         };
-        setLetter(letters[stage]);
-    }, [stage]);
-
-    const changeStage = (val: IceBreakingStage) => {
-        setStage(val);
-        setPreviousStage(stage);
-        setTimeout(() => {
-            setPreviousStage(null);
-        }, 1000);
-    };
+        setLetter(letters[currentIceBreakingStage]);
+    }, [currentIceBreakingStage]);
 
     return (
         <LightSectionWrapper
@@ -53,7 +39,7 @@ const BreakTheIce: FunctionComponent<BreakTheIceProps> = (props) => {
             header={{
                 label: `Let's break the ice`,
                 main: "About me",
-                additionalJSX: <NavigationBetweenStages stage={stated(stage, changeStage as any)} />,
+                additionalJSX: <NavigationBetweenStages />,
                 estimatedHeight: "134px",
             }}
             backgroundLetter={letter}
@@ -71,19 +57,30 @@ const BreakTheIce: FunctionComponent<BreakTheIceProps> = (props) => {
                 }}
             >
                 <BreakTheIceBase>
-                    <BreakTheIceContextProvider
-                        hobbies={props.hobbies} //
-                        schools={props.schools}
-                        previousJobs={props.previousJobs}
-                    >
-                        <Content stage={stage} previousStage={previousStage} changeStage={changeStage} />
-                    </BreakTheIceContextProvider>
-
-                    <Picture stage={stage} previousStage={previousStage} />
+                    <Content />
+                    <Picture />
                 </BreakTheIceBase>
             </VisibilitySensor>
         </LightSectionWrapper>
     );
 };
 
-export default BreakTheIce;
+interface BreakTheIceWithContextProps {
+    hobbies: Hobby[];
+    schools: School[];
+    previousJobs: PreviousJob[];
+}
+
+const BreakTheIceWithContext: FunctionComponent<BreakTheIceWithContextProps> = (props) => {
+    return (
+        <BreakTheIceContextProvider
+            hobbies={props.hobbies} //
+            schools={props.schools}
+            previousJobs={props.previousJobs}
+        >
+            <BreakTheIce />
+        </BreakTheIceContextProvider>
+    );
+};
+
+export default BreakTheIceWithContext;

@@ -1,38 +1,16 @@
 // Tools
-import { styled } from "@mui/system";
+import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Material UI Icons
 import East from "@mui/icons-material/East";
 // Styled Components
-interface MobileBottomNavigationProps {
-    stage: IceBreakingStage;
-    changeStage: (val: IceBreakingStage) => any;
-}
+import MobileBottomNavigationBase from "./MobileBottomNavigationBase";
 
-const MobileBottomNavigationBase = styled("div")(({ theme }) => ({
-    fontSize: "20px",
-    display: "flex",
-    marginTop: "64px",
-    alignItems: "center",
-    border: `1px solid ${theme.palette.secondary.main}`,
-    width: "100%",
-    padding: "8px 12px",
-    boxSizing: "border-box",
-    borderRadius: "3px",
-    "svg, strong": {
-        marginLeft: "8px",
-    },
-    svg: {
-        fontSize: "24px",
-    },
-    ["@media (min-width:1001px)"]: {
-        display: "none",
-    },
-}));
+const MobileBottomNavigation: FunctionComponent = () => {
+    const context = useBreakTheIceContentContext();
 
-const MobileBottomNavigation: FunctionComponent<MobileBottomNavigationProps> = (props) => {
     const stages: Record<IceBreakingStage, IceBreakingStage> = {
         General: "Competences",
         Competences: "Education",
@@ -41,7 +19,7 @@ const MobileBottomNavigation: FunctionComponent<MobileBottomNavigationProps> = (
         Previous_Jobs: "General",
     };
 
-    const nextStage: IceBreakingStage = stages[props.stage];
+    const nextStage: IceBreakingStage = stages[context.currentIceBreakingStage];
 
     const changeStage = () => {
         const el = document.getElementById("about-me");
@@ -51,7 +29,7 @@ const MobileBottomNavigation: FunctionComponent<MobileBottomNavigationProps> = (
                 behavior: "smooth",
             });
             setTimeout(() => {
-                props.changeStage(nextStage);
+                context.changeStage(nextStage);
             }, 300);
         }
     };
