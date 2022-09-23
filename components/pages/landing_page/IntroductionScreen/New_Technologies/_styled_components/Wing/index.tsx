@@ -1,6 +1,7 @@
 // Tools
 import RWD from "./RWD";
 import { styled } from "@mui/system";
+import introAnimations from "./introAnimations";
 import { placeItemsInsideWing } from "./_cssInJsGenerator";
 
 export default styled("div")(({ theme }) => ({
@@ -9,7 +10,7 @@ export default styled("div")(({ theme }) => ({
     boxSizing: "border-box",
     ...(placeItemsInsideWing({
         contentSidePadding: 340,
-        spacingBetweenColumns: 72,
+        spacingBetweenColumns: 84,
         nearest: 96,
         middle: 80,
         farest: 64,
@@ -19,4 +20,5 @@ export default styled("div")(({ theme }) => ({
     //
     //
     ...(RWD as any),
+    ...(introAnimations as any),
 }));

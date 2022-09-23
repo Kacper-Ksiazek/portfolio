@@ -8,9 +8,11 @@ import Image from "next/Image";
 // Styled components
 const SingleTechnologyBase = styled("div")(({ theme }) => ({
     position: "relative",
-    opacity: 0.35,
     cursor: "pointer",
     filter: "grayscale(1)",
+    img: {
+        opacity: 0.35,
+    },
     "&:not(&:nth-of-type(1))": {
         marginTop: "72px",
     },
