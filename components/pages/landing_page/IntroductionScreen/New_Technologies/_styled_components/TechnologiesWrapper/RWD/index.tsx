@@ -4,6 +4,14 @@ import { placeItemsInsideWing } from "./_cssInJsGenerator";
 import type { SxProps } from "@mui/system";
 
 export default {
+    ...(placeItemsInsideWing({
+        contentSidePadding: 340,
+        spacingBetweenColumns: 84,
+        nearest: 96,
+        middle: 80,
+        farest: 64,
+        technologySize: 100,
+    }) as any),
     ["@media (max-height:900px)"]: {
         ".technology": {
             "&:not(&:nth-of-type(1))": {

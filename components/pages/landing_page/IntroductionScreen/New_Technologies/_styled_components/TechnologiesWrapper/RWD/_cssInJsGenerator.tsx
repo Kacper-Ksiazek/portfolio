@@ -36,7 +36,7 @@ export const placeItemsInsideWing = (params: PlaceTechnologiesInsideWingParams):
         const handleTranslateX = (distance: number): string => `translateX(${wingType === "left" ? "-" : ""}${distance}px)`;
 
         return {
-            [`&.${wingType}`]: {
+            [`.wing.${wingType}`]: {
                 [wingType === "left" ? "paddingRight" : "paddingLeft"]: `${params.contentSidePadding}px`,
                 justifyContent: wingType === "left" ? "flex-end" : "flex-start",
                 ".column": {

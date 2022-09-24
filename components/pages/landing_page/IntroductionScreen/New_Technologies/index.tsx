@@ -2,7 +2,6 @@
 import { LandingScreenTechnologiesContextProvider } from "./context/LandingScreenTechnologiesContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import ProgressBar from "./ProgressBar";
 import SingleTechnology from "./SingleTechnology";
@@ -11,11 +10,16 @@ import Wing from "./_styled_components/Wing";
 import Column from "./_styled_components/Column";
 import TechnologiesWrapper from "./_styled_components/TechnologiesWrapper";
 
-const Technologies: FunctionComponent<MUIStyledCommonProps> = (props) => {
+interface TechnologiesProps {
+    isProcessing: boolean;
+    startProcessing: () => void;
+}
+
+const Technologies: FunctionComponent<TechnologiesProps> = (props) => {
     return (
         <LandingScreenTechnologiesContextProvider>
             <TechnologiesWrapper>
-                <Wing className="left">
+                <Wing className="wing left">
                     <Column className="column">
                         <SingleTechnology icon="react" />
                         <SingleTechnology icon="electron" />
@@ -37,7 +41,7 @@ const Technologies: FunctionComponent<MUIStyledCommonProps> = (props) => {
                         <SingleTechnology icon="typescript" />
                     </Column>
                 </Wing>
-                <Wing className="right">
+                <Wing className="wing right">
                     <Column className="column">
                         <SingleTechnology icon="javascript" />
                         <SingleTechnology icon="prisma" />
@@ -60,7 +64,7 @@ const Technologies: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     </Column>
                 </Wing>
             </TechnologiesWrapper>
-            <ProgressBar />
+            <ProgressBar isProcessing={props.isProcessing} startProcessing={props.startProcessing} />
         </LandingScreenTechnologiesContextProvider>
     );
 };

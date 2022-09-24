@@ -1,27 +1,7 @@
 // Tools
-import { keyframes } from "@mui/system";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple, singleTechnologyPulse, singleTechnologyPulse2 } from "./keyframes";
 // Types
 import type { SxProps } from "@mui/system";
-
-const singleTechnologyPulse = keyframes({
-    "0%,100%": {
-        opacity: 0.2,
-    },
-    "33%,66%": {
-        opacity: 0.3,
-    },
-});
-
-// It has to be done like that...
-const singleTechnologyPulse2 = keyframes({
-    "0%,100%": {
-        opacity: 0.2,
-    },
-    "33%,66%": {
-        opacity: 0.3,
-    },
-});
 
 type CSSAnimationTimeExpression = `${number}.${number}s` | `${number}s`;
 
@@ -54,7 +34,7 @@ export default (() => {
         //
         // FadeSimple animations
         //
-        "&.left .column:nth-of-type(3), &.right .column:nth-of-type(1)": {
+        ".wing.left .column:nth-of-type(3), .wing.right .column:nth-of-type(1)": {
             ".technology:nth-of-type(3)": {
                 animation: fadeSimpleOnParticularStage(0),
             },
@@ -65,7 +45,7 @@ export default (() => {
                 animation: fadeSimpleOnParticularStage(4),
             },
         },
-        "&.left .column:nth-of-type(2), &.right .column:nth-of-type(2)": {
+        ".wing.left .column:nth-of-type(2), .wing.right .column:nth-of-type(2)": {
             ".technology:nth-of-type(2), .technology:nth-of-type(3)": {
                 animation: fadeSimpleOnParticularStage(2),
             },
@@ -73,7 +53,7 @@ export default (() => {
                 animation: fadeSimpleOnParticularStage(5),
             },
         },
-        "&.left .column:nth-of-type(1), &.right .column:nth-of-type(3)": {
+        ".wing.left .column:nth-of-type(1), .wing.right .column:nth-of-type(3)": {
             ".technology:nth-of-type(2)": {
                 animation: fadeSimpleOnParticularStage(3),
             },
@@ -85,21 +65,21 @@ export default (() => {
         // Wave animation
         //
         // Stage 1
-        "&.left .column .technology:nth-of-type(1)": {
+        ".wing.left .column .technology:nth-of-type(1)": {
             ".icon-wrapper": {
                 animation: pulseOnParticularStage(0),
             },
         },
         // Stage 2
-        "&.left .column .technology:nth-of-type(2)": {
+        ".wing.left .column .technology:nth-of-type(2)": {
             ".icon-wrapper": {
                 animation: pulseOnParticularStage(1),
             },
         },
         // Stage 3
         [[
-            "&.left .column .technology:nth-of-type(3)", //
-            "&.right .column:nth-of-type(1) .technology:nth-of-type(1)",
+            ".wing.left .column .technology:nth-of-type(3)", //
+            ".wing.right .column:nth-of-type(1) .technology:nth-of-type(1)",
         ].join(", ")]: {
             ".icon-wrapper": {
                 animation: pulseOnParticularStage(2),
@@ -107,9 +87,9 @@ export default (() => {
         },
         // Stage 4
         [[
-            "&.left .column:not(&:nth-of-type(1)) .technology:nth-of-type(4)", //
-            "&.right .column:nth-of-type(1) .technology:nth-of-type(2)",
-            "&.right .column:nth-of-type(2) .technology:nth-of-type(1)",
+            ".wing.left .column:not(&:nth-of-type(1)) .technology:nth-of-type(4)", //
+            ".wing.right .column:nth-of-type(1) .technology:nth-of-type(2)",
+            ".wing.right .column:nth-of-type(2) .technology:nth-of-type(1)",
         ].join(", ")]: {
             ".icon-wrapper": {
                 animation: pulseOnParticularStage(3),
@@ -117,10 +97,10 @@ export default (() => {
         },
         // Stage 5
         [[
-            "&.left .column:nth-of-type(3) .technology:nth-of-type(5)", //
-            "&.right .column:nth-of-type(1) .technology:nth-of-type(3)",
-            "&.right .column:nth-of-type(2) .technology:nth-of-type(2)",
-            "&.right .column:nth-of-type(3) .technology:nth-of-type(1)",
+            ".wing.left .column:nth-of-type(3) .technology:nth-of-type(5)", //
+            ".wing.right .column:nth-of-type(1) .technology:nth-of-type(3)",
+            ".wing.right .column:nth-of-type(2) .technology:nth-of-type(2)",
+            ".wing.right .column:nth-of-type(3) .technology:nth-of-type(1)",
         ].join(", ")]: {
             ".icon-wrapper": {
                 animation: pulseOnParticularStage(4),
@@ -128,9 +108,9 @@ export default (() => {
         },
         // Stage 6
         [[
-            "&.right .column:nth-of-type(1) .technology:nth-of-type(4)", //
-            "&.right .column:nth-of-type(2) .technology:nth-of-type(3)",
-            "&.right .column:nth-of-type(3) .technology:nth-of-type(2)",
+            ".wing.right .column:nth-of-type(1) .technology:nth-of-type(4)", //
+            ".wing.right .column:nth-of-type(2) .technology:nth-of-type(3)",
+            ".wing.right .column:nth-of-type(3) .technology:nth-of-type(2)",
         ].join(", ")]: {
             ".icon-wrapper": {
                 animation: pulseOnParticularStage(5),
@@ -138,9 +118,9 @@ export default (() => {
         },
         // Stage 7
         [[
-            "&.right .column:nth-of-type(1) .technology:nth-of-type(5)", //
-            "&.right .column:nth-of-type(2) .technology:nth-of-type(4)",
-            "&.right .column:nth-of-type(3) .technology:nth-of-type(3)",
+            ".wing.right .column:nth-of-type(1) .technology:nth-of-type(5)", //
+            ".wing.right .column:nth-of-type(2) .technology:nth-of-type(4)",
+            ".wing.right .column:nth-of-type(3) .technology:nth-of-type(3)",
         ].join(", ")]: {
             ".icon-wrapper": {
                 animation: pulseOnParticularStage(6),

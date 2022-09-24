@@ -1,5 +1,7 @@
 // Tools
+import RWD from "./RWD";
 import { styled } from "@mui/system";
+import introAnimations from "./introAnimations";
 // Styled components
 export default styled("div")(({ theme }) => ({
     position: "absolute",
@@ -10,4 +12,7 @@ export default styled("div")(({ theme }) => ({
     zIndex: 10,
     display: "flex",
     justifyContent: "space-between",
+    //
+    ...(RWD as any),
+    ...(introAnimations as any),
 }));
