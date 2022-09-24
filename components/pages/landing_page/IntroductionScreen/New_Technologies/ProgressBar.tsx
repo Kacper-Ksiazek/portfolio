@@ -1,5 +1,5 @@
 // Tools
-import { styled, alpha } from "@mui/system";
+import { styled, alpha, keyframes } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import { useLandingScreenTechnologiesContext } from "./hooks/useLandingScreenTechnologiesContext";
 // Types
@@ -7,6 +7,7 @@ import type { FunctionComponent } from "react";
 // Material UI Icons
 import ChevronRight from "@mui/icons-material/ChevronRight";
 // Styled components
+
 const ProgresBarWrapper = styled("div")(({ theme }) => ({
     position: "absolute",
     bottom: "16px",
@@ -15,7 +16,6 @@ const ProgresBarWrapper = styled("div")(({ theme }) => ({
     zIndex: 100,
     width: "300px",
     borderRadius: "4px",
-    overflow: "hidden",
     background: alpha(theme.palette.secondary.main, 0.5),
     height: "32px",
     maxHeight: "8px",
@@ -27,25 +27,75 @@ const ProgresBarWrapper = styled("div")(({ theme }) => ({
             animation: `${fadeSimple} .2s .3s both linear`,
         },
     },
+    "&::before": {
+        content: '""',
+        position: "absolute",
+        top: "50%",
+        left: "-32px",
+        background: alpha("#fff", 0.074),
+        width: "100%",
+        height: "calc(100% + 12px)",
+        transition: "opacity .4s .45s",
+        transformOrigin: "left",
+        borderRadius: "4px",
+        opacity: 0,
+    },
     "&.completed": {
         maxHeight: "32px",
         cursor: "pointer",
-        background: theme.palette.background.lightAnimationBar,
+        background: theme.palette.secondary.main,
         ".continue": {
             visibility: "visible",
             animation: `${fadeSimple} .2s .5s both linear`,
+            transition: "color .1s .1s linear",
         },
         ".indicator": {
             maxHeight: "32px",
-            transition: "max-height .2s linear, width .3s linear",
+            transition: "max-height .2s .4s linear, width .3s linear",
+        },
+        "&::before": {
+            opacity: 1,
+            animation: `${keyframes({
+                from: {
+                    transform: "scaleX(1.02) translateY(-50%) skewX(-10deg)",
+                },
+                to: {
+                    transform: "scaleX(1.24) translateY(-50%) skewX(-10deg)",
+                },
+            })} 1s infinite alternate`,
+        },
+        "&::after": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: "10px",
+            height: "100%",
+            width: "6px",
+            background: theme.palette.background.lightAnimationBar,
+            transition: "transform .2s .5s, left .2s .1s, width .3s",
+            transformOrigin: "top",
+            transform: "scaleY(0)",
+            borderRadius: "4px",
         },
         "&:hover": {
             width: "320px",
-            ".indicator": {
-                maxHeight: "0",
-            },
             ".continue": {
                 color: theme.palette.primary.main,
+                transition: "color .1s .4s linear",
+            },
+            "&::before": {
+                opacity: 0,
+                transition: "opacity .2s",
+            },
+            "&::after": {
+                left: 0,
+                width: "100%",
+                transition: "transform .6s, left .2s .3s, width .3s .4s",
+                transform: "scaleY(1)",
+            },
+            ".indicator": {
+                maxHeight: "0",
+                transition: "max-height .2s linear, width .3s linear",
             },
         },
     },
@@ -59,6 +109,7 @@ const ProgressIndicator = styled("span")(({ theme }) => ({
     top: 0,
     left: 0,
     visibility: "hidden",
+    borderRadius: "4px",
 }));
 
 const ContinueBase = styled("span")(({ theme }) => ({
@@ -74,7 +125,7 @@ const ContinueBase = styled("span")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    transition: "color .2s",
+    zIndex: 1,
     svg: {
         marginLeft: "4px",
     },
@@ -96,7 +147,7 @@ const ProgressBar: FunctionComponent<ProgressBarProps> = (props) => {
         >
             <ProgressIndicator style={{ width: `${progress}%` }} className="indicator" />
             <ContinueBase className="continue">
-                <span>Continue</span>
+                <span>Collect your reward</span>
                 <ChevronRight />
             </ContinueBase>
         </ProgresBarWrapper>
