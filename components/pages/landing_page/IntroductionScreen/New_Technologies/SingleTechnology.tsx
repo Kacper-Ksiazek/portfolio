@@ -32,7 +32,7 @@ const IconWrapper = styled("div", {
             opacity: 0.6,
         },
         "&.alreadyClicked": {
-            opacity: ".8",
+            opacity: ".6",
             cursor: "default",
             backgroundImage: `url("/images/technologies/pink/${props.icon}.png")`,
         },

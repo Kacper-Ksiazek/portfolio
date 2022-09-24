@@ -2,6 +2,7 @@
 import RWD from "./RWD";
 import { styled } from "@mui/system";
 import introAnimations from "./introAnimations";
+import minigameProcessing from "./minigame_animations/processing";
 // Styled components
 export default styled("div")(({ theme }) => ({
     position: "absolute",
@@ -14,5 +15,11 @@ export default styled("div")(({ theme }) => ({
     justifyContent: "space-between",
     //
     ...(RWD as any),
-    ...(introAnimations as any),
+    "&.intro-animations": {
+        ...(introAnimations as any),
+    },
+    //
+    "&.minigame-processing-animations": {
+        ...(minigameProcessing as any),
+    },
 }));

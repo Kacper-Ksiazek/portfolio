@@ -1,5 +1,6 @@
 // Tools
 import { LandingScreenTechnologiesContextProvider } from "./context/LandingScreenTechnologiesContext";
+import { useMinigameContext } from "@/components/pages/landing_page/IntroductionScreen/hooks/useMinigameContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -10,15 +11,18 @@ import Wing from "./_styled_components/Wing";
 import Column from "./_styled_components/Column";
 import TechnologiesWrapper from "./_styled_components/TechnologiesWrapper";
 
-interface TechnologiesProps {
-    isProcessing: boolean;
-    startProcessing: () => void;
-}
+const Technologies: FunctionComponent = (props) => {
+    const { minigameStage } = useMinigameContext();
 
-const Technologies: FunctionComponent<TechnologiesProps> = (props) => {
     return (
         <LandingScreenTechnologiesContextProvider>
-            <TechnologiesWrapper>
+            <TechnologiesWrapper
+                className={[
+                    minigameStage === "INITIAL" ? "intro-animations" : "",
+                    minigameStage === "PROCESSING" ? "minigame-processing-animations" : "", //
+                    minigameStage === "THROPHY_COLLECTING" ? "minigame-throphy-is-being-collected-animations" : "", //
+                ].join(" ")}
+            >
                 <Wing className="wing left">
                     <Column className="column">
                         <SingleTechnology icon="react" />
@@ -64,7 +68,8 @@ const Technologies: FunctionComponent<TechnologiesProps> = (props) => {
                     </Column>
                 </Wing>
             </TechnologiesWrapper>
-            <ProgressBar isProcessing={props.isProcessing} startProcessing={props.startProcessing} />
+
+            <ProgressBar />
         </LandingScreenTechnologiesContextProvider>
     );
 };
