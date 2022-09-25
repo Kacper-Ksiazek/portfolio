@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 // Types
 import type { Dispatch, SetStateAction, FunctionComponent, ReactNode } from "react";
 
-type Gender = "MALE" | "FEMALE" | "OTHER";
+export type Gender = "MALE" | "FEMALE" | "OTHER";
 type MinigameStage = "INITIAL" | "PROCESSING" | "GENGER_PICKING" | "THROPHY_COLLECTING";
 
 interface MinigameContextInterface {
