@@ -27,12 +27,16 @@ const ProgressBar: FunctionComponent = () => {
         }
     }, [progressBarIsBeingClosed]);
 
-    if (progress === 0 || progressBarHasBeenClosed) return <></>;
+    useEffect(() => {
+        if (minigameStage === "INITIAL") setProgressBarHasBeenClosed(false);
+    }, [minigameStage]);
+
+    if ((progress === 0 && minigameStage === "INITIAL") || progressBarHasBeenClosed) return <></>;
     return (
         <ProgressBarBase
             className={[
                 progress === 100 ? "completed" : "", //
-                minigameStage === "PROCESSING" ? "is-processing" : "",
+                minigameStage === "PROCESSING" || minigameStage === "GENGER_PICKING" ? "is-processing" : "",
                 progressBarIsBeingClosed ? "exit" : "",
             ].join(" ")}
         >

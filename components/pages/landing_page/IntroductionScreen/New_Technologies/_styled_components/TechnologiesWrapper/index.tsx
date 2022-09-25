@@ -3,6 +3,7 @@ import RWD from "./RWD";
 import { styled } from "@mui/system";
 import introAnimations from "./introAnimations";
 import minigameProcessing from "./minigame_animations/processing";
+import throphyCollecting from "./minigame_animations/throphy_collecting";
 // Styled components
 export default styled("div")(({ theme }) => ({
     position: "absolute",
@@ -21,5 +22,9 @@ export default styled("div")(({ theme }) => ({
     //
     "&.minigame-processing-animations": {
         ...(minigameProcessing as any),
+    },
+    //
+    "&.minigame-throphy-is-being-collected-animations": {
+        ...(throphyCollecting as any),
     },
 }));

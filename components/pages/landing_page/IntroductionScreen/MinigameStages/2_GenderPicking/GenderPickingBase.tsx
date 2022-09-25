@@ -1,25 +1,10 @@
 // Tools
 import { styled } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+// Other components
+import MinigameStage from "@/components/pages/landing_page/IntroductionScreen/MinigameStages/_MinigameStage";
 // Styled components
-export default styled("div")(({ theme }) => ({
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    paddingTop: "112px",
-    h3: {
-        margin: 0,
-        animation: `${fadeSimple} .3s both linear`,
-        fontSize: "32px",
-    },
-    p: {
-        margin: "12px 0 0 0",
-        fontSize: "20px",
-        textAlign: "center",
-        animation: `${fadeSimple} .3s .1s both linear`,
-    },
+export default styled(MinigameStage)(({ theme }) => ({
     i: {
         fontSize: "14px",
         marginTop: "64px",
@@ -43,8 +28,5 @@ export default styled("div")(({ theme }) => ({
         padding: "6px 64px",
         fontSize: "20px",
         animation: `${fadeSimple} .3s .4s both linear`,
-    },
-    "&.outro": {
-        animation: `${fadeSimpleOUT} .4s both`,
     },
 }));

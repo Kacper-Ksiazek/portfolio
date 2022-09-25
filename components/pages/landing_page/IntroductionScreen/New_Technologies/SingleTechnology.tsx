@@ -8,7 +8,6 @@ import type { ReleventTechnology } from "@/@types/prisma/Project";
 
 const SingleTechnologyBase = styled("div")(({ theme }) => ({
     position: "relative",
-    cursor: "pointer",
     color: theme.palette.primary.main,
     "&:not(&:nth-of-type(1))": {
         marginTop: "72px",
@@ -28,6 +27,7 @@ const IconWrapper = styled("div", {
     transition: "background-image .2s linear, opacity .3s linear",
     opacity: 0.2,
     "&:not(&.block-interactions)": {
+        cursor: "pointer",
         "&:hover": {
             opacity: 0.6,
         },

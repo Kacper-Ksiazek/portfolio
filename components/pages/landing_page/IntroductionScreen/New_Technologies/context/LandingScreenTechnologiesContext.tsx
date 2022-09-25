@@ -3,6 +3,7 @@ import { useState, createContext, useEffect } from "react";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 import type { ReleventTechnology } from "@/@types/prisma/Project";
+import type { MinigameStage } from "@/components/pages/landing_page/IntroductionScreen/context/MinigameContext";
 
 interface LandingScreenTechnologiesContextInterface {
     progress: number;
@@ -16,8 +17,9 @@ export const LandingScreenTechnologiesContext = createContext<LandingScreenTechn
 
 interface LandingScreenTechnologiesContextProviderProps {
     children: ReactNode;
+    minigameStage: MinigameStage;
 }
-export const LandingScreenTechnologiesContextProvider: FunctionComponent<LandingScreenTechnologiesContextProviderProps> = (props) => {
+export const LandingScreenTechnologiesContextProvider: FunctionComponent<LandingScreenTechnologiesContextProviderProps> = (params) => {
     const TECHNOLOGIES_IN_TOTAL: number = 24;
     const INTRO_ANIMATIONS_DURATION: number = 6000;
 
@@ -33,26 +35,31 @@ export const LandingScreenTechnologiesContextProvider: FunctionComponent<Landing
     };
 
     useEffect(() => {
-        let timeout: ReturnType<typeof setTimeout> = setTimeout(() => {
-            setBlockInteractions(false);
-            markIconAsMarked("prisma");
-        }, INTRO_ANIMATIONS_DURATION);
+        if (params.minigameStage === "GENGER_PICKING") {
+            setClickedIcons(new Set([]));
+        }
+    }, [params.minigameStage]);
 
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, []);
+    useEffect(() => {
+        if (params.minigameStage === "INITIAL") {
+            setBlockInteractions(true);
+            setTimeout(() => {
+                setBlockInteractions(false);
+                markIconAsMarked("prisma");
+            }, INTRO_ANIMATIONS_DURATION);
+        }
+    }, [params.minigameStage]);
 
     return (
         <LandingScreenTechnologiesContext.Provider
             value={{
                 progress: clickedIcons.size === 1 ? 0 : (clickedIcons.size * 100) / TECHNOLOGIES_IN_TOTAL,
-                blockInteractions,
+                blockInteractions: params.minigameStage === "INITIAL" || params.minigameStage === "PROCESSING" ? blockInteractions : true,
                 markIconAsMarked,
                 isAlreadyClicked,
             }}
         >
-            {props.children}
+            {params.children}
         </LandingScreenTechnologiesContext.Provider>
     );
 };

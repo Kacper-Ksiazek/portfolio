@@ -17,7 +17,7 @@ interface ControlButtonProps {
 const ControlButton: FunctionComponent<ControlButtonProps> = (props) => {
     const { minigameStage, changeMinigameStage } = useMinigameContext();
 
-    const PROCESSING_ANIMATIONS_DURATION: number = 4400;
+    const PROCESSING_ANIMATIONS_DURATION: number = 3600;
     const [processingIsOver, setProcessingIsOver] = useState<boolean>(false);
 
     const startProcessing = () => {

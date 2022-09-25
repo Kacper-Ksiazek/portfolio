@@ -106,7 +106,7 @@ export default styled("div")(({ theme }) => ({
         },
     },
     "&.exit": {
-        transform: "translateX(-50%)",
+        transform: "translateX(-50%) scaleX(1)",
         animation: `${fadeSimpleOUT} .3s .1s both linear`,
         "&::before, &::after": {
             display: "none",

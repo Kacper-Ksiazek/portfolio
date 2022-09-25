@@ -15,7 +15,7 @@ const Technologies: FunctionComponent = (props) => {
     const { minigameStage } = useMinigameContext();
 
     return (
-        <LandingScreenTechnologiesContextProvider>
+        <LandingScreenTechnologiesContextProvider minigameStage={minigameStage}>
             <TechnologiesWrapper
                 className={[
                     minigameStage === "INITIAL" ? "intro-animations" : "",
