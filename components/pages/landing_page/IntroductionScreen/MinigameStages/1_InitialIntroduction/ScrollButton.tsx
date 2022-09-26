@@ -1,9 +1,8 @@
 // Tools
 import { styled } from "@mui/system";
-import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
+import { useState, useEffect } from "react";
 // Types
 import type { FunctionComponent } from "react";
-import type { ButtonBaseProps } from "@mui/material/ButtonBase";
 // Material UI Components
 import ButtonBase from "@mui/material/ButtonBase";
 // Styled Components
@@ -11,7 +10,6 @@ const ScrollButtonBase = styled(ButtonBase)(({ theme }) => ({
     border: `2px solid ${theme.palette.primary.main}`,
     padding: "6px 40px",
     color: theme.palette.primary.main,
-    animation: `${fadeFromTop} .2s 3s linear both`,
     fontWeight: 500,
     fontSize: "16px",
     borderRadius: "5px",
@@ -48,7 +46,15 @@ const ScrollButtonBase = styled(ButtonBase)(({ theme }) => ({
     },
 }));
 
-const ScrollButton: FunctionComponent<ButtonBaseProps> = (props) => {
+interface ScrollButtonProps {
+    onMouseEnter: () => void;
+    onMouseLeave: () => void;
+}
+
+const ScrollButton: FunctionComponent<ScrollButtonProps> = (props) => {
+    const SCROLL_BUTTON_INTRO_ANIMATION_DURATION: number = 3500; // in ms
+    const [introAnimationHadEnded, setIntroAnimationHadEnded] = useState<boolean>(false);
+
     const onClick = () => {
         if (window) {
             window.scrollTo({
@@ -59,8 +65,27 @@ const ScrollButton: FunctionComponent<ButtonBaseProps> = (props) => {
         }
     };
 
+    useEffect(() => {
+        setIntroAnimationHadEnded(false);
+        const timeout: ReturnType<typeof setTimeout> = setTimeout(() => {
+            setIntroAnimationHadEnded(true);
+        }, SCROLL_BUTTON_INTRO_ANIMATION_DURATION);
+
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [SCROLL_BUTTON_INTRO_ANIMATION_DURATION]);
+
+    const onlyWhenVisible = (fn: () => void) => {
+        if (introAnimationHadEnded) fn();
+    };
+
     return (
-        <ScrollButtonBase {...(props as any)} onClick={onClick}>
+        <ScrollButtonBase
+            onClick={onClick} //
+            onMouseEnter={() => onlyWhenVisible(props.onMouseEnter)}
+            onMouseLeave={() => onlyWhenVisible(props.onMouseLeave)}
+        >
             <span className="text">Scroll down</span>
         </ScrollButtonBase>
     );
