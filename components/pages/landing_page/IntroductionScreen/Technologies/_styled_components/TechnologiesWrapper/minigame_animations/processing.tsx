@@ -6,7 +6,7 @@ import type { SxProps } from "@mui/system";
 const createPulseAnimation = () => {
     return keyframes({
         "0%, 100%": {
-            opacity: 0.6,
+            opacity: 0.7,
         },
         "33%, 66%": {
             opacity: 1,

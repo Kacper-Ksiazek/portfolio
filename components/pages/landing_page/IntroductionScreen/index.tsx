@@ -1,4 +1,5 @@
 // Tools
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import { useMinigameContext } from "./hooks/useMinigameContext";
@@ -19,11 +20,13 @@ const IntroductionScreen: FunctionComponent = () => {
     const { width } = useWindowSizes();
     const { minigameStage } = useMinigameContext();
 
+    const [scrollButtonIsHovered, setScrollButtonIsHovered] = useState<boolean>(false);
     const { initialIntroductionRendering, genderPickingRendering, throphyCollectingRendering } = useRenderingManager({ minigameStage });
 
     return (
         <IntroductionScreenBase
-            renderBigCircle={width > 1450 || width <= 1150} //
+            scrollButtonIsHovered={scrollButtonIsHovered} //
+            renderBigCircle={width > 1450 || width <= 1150}
             elementsOutsideContent={width > 1150 && <Technologies />}
         >
             {(() => {
@@ -31,7 +34,11 @@ const IntroductionScreen: FunctionComponent = () => {
                 if (width > 1150) {
                     return (
                         <>
-                            <InitialIntroduction rendering={initialIntroductionRendering} />
+                            <InitialIntroduction
+                                rendering={initialIntroductionRendering}
+                                onScrollButtonHover={() => setScrollButtonIsHovered(true)} //
+                                onScrollButtonBlur={() => setScrollButtonIsHovered(false)}
+                            />
                             <GenderPicking rendering={genderPickingRendering} />
                             <TrophyCollecting rendering={throphyCollectingRendering} />
                         </>
@@ -39,7 +46,13 @@ const IntroductionScreen: FunctionComponent = () => {
                 }
                 //
                 else {
-                    return <InitialIntroduction rendering={"RENDER"} />;
+                    return (
+                        <InitialIntroduction
+                            rendering={"RENDER"}
+                            onScrollButtonHover={() => setScrollButtonIsHovered(true)} //
+                            onScrollButtonBlur={() => setScrollButtonIsHovered(false)}
+                        />
+                    );
                 }
             })()}
         </IntroductionScreenBase>

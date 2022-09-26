@@ -1,11 +1,11 @@
 // Tools
-import RWD from "./RWD";
-import { styled, alpha } from "@mui/system";
-import { introAnimationWidthBodyWithBigRadius } from "./keyframes";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import introAnimatins from "./introAnimations";
+import { styled, alpha, keyframes } from "@mui/system";
 // Styled components
 import Section from "@/components/atoms/content_placement/SectionWrapper/_SectionWrapper";
 
+// after- maska
+// before- zdjecie
 export default styled(Section)(({ theme }) => ({
     position: "relative",
     margin: "0 auto",
@@ -16,28 +16,10 @@ export default styled(Section)(({ theme }) => ({
     justifyContent: "center",
     boxSizing: "border-box",
     height: "100vh",
-    "&.display-intro-animations": {
-        animation: `${introAnimationWidthBodyWithBigRadius} .2s 5.5s both linear`,
-        "&::before": {
-            animation: `${fadeSimple} .5s 1.6s both linear`,
-        },
-        "&::after": {
-            animation: `${fadeSimple} .01s 1.6s both linear`,
-        },
-    },
-    "&.skip-intro-animation": {
-        borderRadius: "20px 100px 20px 100px",
-        top: "-100px",
-        maxHeight: "calc(100vh - 40px)",
-        width: "calc(100vw - 40px)",
-        "&::before": {
-            animation: `${fadeSimple} .5s 1s both linear`,
-        },
-    },
+
     //
     "&::before, &::after": {
         position: "absolute",
-        content: "''",
         top: 0,
         left: 0,
         width: "100%",
@@ -49,10 +31,29 @@ export default styled(Section)(({ theme }) => ({
         backgroundPosition: "center top",
         filter: "blur(4px)",
         zIndex: 6,
+        transition: "transform 1s",
     },
     "&::after": {
-        background: alpha(theme.palette.background.paper, 0.95),
+        background: alpha(theme.palette.background.paper, 0.75),
+        transition: "background 1s",
         zIndex: 7,
     },
-    ...(RWD as any),
+    "&.scroll-button-is-hovered": {
+        "&::after": {
+            background: alpha(theme.palette.background.paper, 0.65),
+        },
+        "&::before": {
+            transform: "scale(1.1)",
+            animation: `${keyframes({
+                "0%": {
+                    backgroundPosition: "top center",
+                },
+                "100%": {
+                    backgroundPosition: "bottom center",
+                },
+            })} 60s linear infinite alternate`,
+        },
+    },
+    //
+    ...(introAnimatins as any),
 }));

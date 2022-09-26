@@ -1,5 +1,5 @@
 // Tools
-import { useState } from "react";
+import { useState, useCallback } from "react";
 // Types
 interface UseBlockUserScrollResult {
     disableUserScroll: () => any;
@@ -10,24 +10,32 @@ interface UseBlockUserScrollResult {
 export default (): UseBlockUserScrollResult => {
     const [formerScollY, setFormerScollY] = useState<number | null>(null);
 
-    const disableUserScroll = onlyOnLoadedDOM(() => {
-        if (formerScollY !== null) return;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const disableUserScroll = useCallback(
+        onlyOnLoadedDOM(() => {
+            if (formerScollY !== null) return;
 
-        setFormerScollY(window.scrollY);
+            setFormerScollY(window.scrollY);
 
-        document.body.style.top = `-${window.scrollY}px`; // ⚠️ This style has to be wrtitten first!
-        document.body.style.position = "fixed";
-    });
+            document.body.style.top = `-${window.scrollY}px`; // ⚠️ This style has to be wrtitten first!
+            document.body.style.position = "fixed";
+        }),
+        []
+    );
 
-    const enableUserScroll = onlyOnLoadedDOM(() => {
-        if (formerScollY === null) return;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const enableUserScroll = useCallback(
+        onlyOnLoadedDOM(() => {
+            if (formerScollY === null) return;
 
-        document.body.style.top = "0";
-        document.body.style.position = "static";
+            document.body.style.top = "0";
+            document.body.style.position = "static";
 
-        window.scrollTo({ top: formerScollY });
-        setFormerScollY(null);
-    });
+            window.scrollTo({ top: formerScollY });
+            setFormerScollY(null);
+        }),
+        []
+    );
 
     return { disableUserScroll, enableUserScroll };
 };

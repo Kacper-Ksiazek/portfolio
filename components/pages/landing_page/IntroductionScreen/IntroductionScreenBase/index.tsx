@@ -3,8 +3,10 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
+// Other components
+import BackgroundPicture from "./BackgroundPicture";
 // Styled Components
-import { CircleOne, CircleTwo } from "./Circles";
+import { CircleOne, CircleTwo } from "./_styled_components/Circles";
 import { LineTwo, LineOne, LineThree } from "./_styled_components/Lines";
 import IntroductionScreenBaseContent from "./_styled_components/IntroductionScreenBaseContent";
 import IntroductionScreenBaseWrapper from "./_styled_components/IntroductionScreenBaseWrapper";
@@ -12,6 +14,7 @@ import IntroductionScreenBaseWrapper from "./_styled_components/IntroductionScre
 interface IntroductionScreenBaseProps {
     children: ReactNode;
     renderBigCircle: boolean;
+    scrollButtonIsHovered: boolean;
     /** Place passed ReactNode **besides the content element** instead of inside */
     elementsOutsideContent?: ReactNode;
 }
@@ -46,7 +49,13 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
     }, [router.query]);
 
     return (
-        <IntroductionScreenBaseWrapper className={displayAnimations ? "display-intro-animations" : "skip-intro-animation"}>
+        <IntroductionScreenBaseWrapper
+            className={[
+                displayAnimations ? "display-intro-animations" : "skip-intro-animation", //
+                props.scrollButtonIsHovered ? "scroll-button-is-hovered" : "",
+            ].join(" ")}
+        >
+            <BackgroundPicture scrollButtonIsHovered={props.scrollButtonIsHovered} />;
             {(() => {
                 if (renderContent) {
                     return (

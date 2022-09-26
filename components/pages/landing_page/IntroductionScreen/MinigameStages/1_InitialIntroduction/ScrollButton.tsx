@@ -3,7 +3,7 @@ import { styled } from "@mui/system";
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
+import type { ButtonBaseProps } from "@mui/material/ButtonBase";
 // Material UI Components
 import ButtonBase from "@mui/material/ButtonBase";
 // Styled Components
@@ -12,14 +12,13 @@ const ScrollButtonBase = styled(ButtonBase)(({ theme }) => ({
     padding: "6px 40px",
     color: theme.palette.primary.main,
     animation: `${fadeFromTop} .2s 3s linear both`,
-    position: "absolute",
-    bottom: "60px",
     fontWeight: 500,
     fontSize: "16px",
     borderRadius: "5px",
     fontFamily: "Montserrat Alternates",
     boxSizing: "border-box",
     overflow: "hidden",
+    marginTop: "64px",
     "span.text": {
         position: "relative",
         zIndex: 2,
@@ -49,9 +48,19 @@ const ScrollButtonBase = styled(ButtonBase)(({ theme }) => ({
     },
 }));
 
-const ScrollButton: FunctionComponent<MUIStyledCommonProps> = (props) => {
+const ScrollButton: FunctionComponent<ButtonBaseProps> = (props) => {
+    const onClick = () => {
+        if (window) {
+            window.scrollTo({
+                left: 0,
+                top: window.innerHeight + 60,
+                behavior: "smooth",
+            });
+        }
+    };
+
     return (
-        <ScrollButtonBase>
+        <ScrollButtonBase {...(props as any)} onClick={onClick}>
             <span className="text">Scroll down</span>
         </ScrollButtonBase>
     );

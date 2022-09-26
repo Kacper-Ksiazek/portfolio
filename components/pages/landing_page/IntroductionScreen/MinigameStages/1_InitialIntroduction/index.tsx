@@ -21,14 +21,23 @@ const IntroductionScreenBase = styled(MinigameStage)(({ theme }) => ({
     },
 }));
 
-const IntroductionScreen: FunctionComponent<{ rendering: WayOfRendering }> = (props) => {
+interface IntroductionScreenProps {
+    rendering: WayOfRendering;
+    onScrollButtonHover: () => void;
+    onScrollButtonBlur: () => void;
+}
+
+const IntroductionScreen: FunctionComponent<IntroductionScreenProps> = (props) => {
     return (
-        <IntroductionScreenBase rendering={props.rendering} disableTextElementsStyles>
+        <IntroductionScreenBase rendering={props.rendering} disableTextElementsStyles addPaddingTop>
             <ColoredHeader>full-stack</ColoredHeader>
             <MainHeader>Kacper Książek</MainHeader>
             <Description>20 years old Engineering and Data Analysis student living in Poland, who takes sheer pleasure in coding 😎😎</Description>
             <ColoredHeader>developer</ColoredHeader>
-            <ScrollButton />
+            <ScrollButton
+                onMouseEnter={props.onScrollButtonHover} //
+                onMouseLeave={props.onScrollButtonBlur}
+            />
         </IntroductionScreenBase>
     );
 };

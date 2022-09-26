@@ -29,10 +29,10 @@ const IconWrapper = styled("div", {
     "&:not(&.block-interactions)": {
         cursor: "pointer",
         "&:hover": {
-            opacity: 0.6,
+            opacity: 0.7,
         },
         "&.alreadyClicked": {
-            opacity: ".6",
+            opacity: 0.7,
             cursor: "default",
             backgroundImage: `url("/images/technologies/pink/${props.icon}.png")`,
         },
