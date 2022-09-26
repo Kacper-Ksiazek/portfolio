@@ -55,7 +55,7 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
                 props.scrollButtonIsHovered ? "scroll-button-is-hovered" : "",
             ].join(" ")}
         >
-            <BackgroundPicture scrollButtonIsHovered={props.scrollButtonIsHovered} />;
+            <BackgroundPicture scrollButtonIsHovered={props.scrollButtonIsHovered} />
             {(() => {
                 if (renderContent) {
                     return (
