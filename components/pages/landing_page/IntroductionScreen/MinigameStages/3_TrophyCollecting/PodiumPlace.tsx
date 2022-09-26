@@ -8,7 +8,7 @@ const PodiumPlaceWrapper = styled("div")(({ theme }) => ({
     alignItems: "center",
     flexDirection: "column",
     justifyContent: "flex-end",
-    height: "408px",
+    height: "390px",
     width: "200px",
     "&:not(&:nth-of-type(1))": {
         marginLeft: "16px",

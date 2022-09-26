@@ -16,6 +16,12 @@ const MinigameStageBase = styled("div")(({ theme }) => ({
     },
     "&.add-padding-top": {
         paddingTop: "112px",
+        ["@media (max-height:840px)"]: {
+            paddingTop: "64px",
+        },
+        ["@media (max-height:680px)"]: {
+            paddingTop: "32px",
+        },
     },
     "&:not(&.disable-text-elements-styles)": {
         p: {

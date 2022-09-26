@@ -19,6 +19,7 @@ const SingleGenderCardBase = styled("div")(({ theme }) => ({
     cursor: "pointer",
     transition: "background .3s",
     border: "none",
+
     "&:not(&:nth-of-type(1))": {
         marginLeft: "32px",
     },
@@ -50,7 +51,7 @@ interface SingleGenderCardProps {
 
 const SingleGenderCard: FunctionComponent<SingleGenderCardProps> = ({ gender, onClick }) => {
     return (
-        <SingleGenderCardBase className={gender} onClick={onClick}>
+        <SingleGenderCardBase className={[gender, "single-gender-card"].join(" ")} onClick={onClick}>
             {gender === "male" ? <MaleIcon /> : <FemaleIcon />}
             <span className="label">{gender}</span>
         </SingleGenderCardBase>

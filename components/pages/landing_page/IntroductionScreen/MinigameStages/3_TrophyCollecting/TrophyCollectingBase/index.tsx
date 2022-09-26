@@ -1,4 +1,5 @@
 // Tools
+import RWD from "./RWD";
 import { styled } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Other components
@@ -14,11 +15,12 @@ export default styled(MinigameStage)(({ theme }) => ({
         },
         animation: `${fadeSimple} .3s 1.4s both linear`,
     },
-    h4: {
-        fontSize: "22px",
+    "p.message-to-winner": {
+        fontSize: "20px",
         margin: "32px 0 0 0",
         display: "flex",
         alignItems: "center",
+        fontWeight: "400",
         animation: `${fadeSimple} .3s 1.2s both linear`,
         strong: {
             margin: "0 6px",
@@ -56,4 +58,6 @@ export default styled(MinigameStage)(({ theme }) => ({
             },
         },
     },
+    //
+    ...(RWD as any),
 }));

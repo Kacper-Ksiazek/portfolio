@@ -34,7 +34,7 @@ const ChampionTrophyBase = styled("div")(({ theme }) => ({
         transform: "translate(-50%,-50%)",
         animation: `${lightBounce} 1s infinite alternate`,
     },
-    ".trophy-icon": {
+    ".technology-icon": {
         position: "absolute",
         top: "35%",
         left: "50%",
@@ -74,7 +74,7 @@ const ChampionTrophy: FunctionComponent = () => {
         <ChampionTrophyBase>
             <EmojiEvents id="trophy" />
             <div
-                className="trophy-icon" //
+                className="technology-icon" //
                 style={{ backgroundImage: `url("/images/technologies/white/${trophyTechnologies[currentTrophyIconIndex]}.png")` }}
             ></div>
         </ChampionTrophyBase>

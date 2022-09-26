@@ -49,7 +49,7 @@ const Trophy: FunctionComponent<{ rendering: WayOfRendering }> = (props) => {
                 </PodiumPlace>
             </div>
 
-            <h4>{formatTextViaBolding(`Here is your deserved trophy ${winnerTitle}!`, true)}</h4>
+            <p className="message-to-winner">{formatTextViaBolding(`Here is your deserved trophy ${winnerTitle}!`, true)}</p>
             <StyledButton
                 className="go-back" //
                 color="primary"

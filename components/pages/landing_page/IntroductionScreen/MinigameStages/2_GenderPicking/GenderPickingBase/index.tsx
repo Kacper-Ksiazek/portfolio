@@ -1,4 +1,5 @@
 // Tools
+import RWD from "./RWD";
 import { styled } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Other components
@@ -29,4 +30,6 @@ export default styled(MinigameStage)(({ theme }) => ({
         fontSize: "20px",
         animation: `${fadeSimple} .3s .4s both linear`,
     },
+
+    ...(RWD as any),
 }));
