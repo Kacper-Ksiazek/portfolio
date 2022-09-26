@@ -12,6 +12,8 @@ import IntroductionScreenBaseWrapper from "./_styled_components/IntroductionScre
 interface IntroductionScreenBaseProps {
     children: ReactNode;
     renderBigCircle: boolean;
+    /** Place passed ReactNode **besides the content element** instead of inside */
+    elementsOutsideContent?: ReactNode;
 }
 
 const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (props) => {
@@ -51,6 +53,7 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
                         <>
                             <CircleOne />
                             {props.renderBigCircle && <CircleTwo />}
+                            {props.elementsOutsideContent}
                             <IntroductionScreenBaseContent>{props.children}</IntroductionScreenBaseContent>
                         </>
                     );

@@ -1,27 +1,57 @@
 // Tools
+import dynamic from "next/dynamic";
 import useWindowSizes from "@/hooks/useWindowSizes";
+import { useMinigameContext } from "./hooks/useMinigameContext";
+import { useRenderingManager } from "./hooks/useRenderingManager";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import ScrollButton from "./ScrollButton";
 import Technologies from "./Technologies";
+import { MinigameContextProvider } from "./context/MinigameContext";
+// Minigame's stages
+const GenderPicking = dynamic(() => import("./MinigameStages/2_GenderPicking"));
+const TrophyCollecting = dynamic(() => import("./MinigameStages/3_TrophyCollecting"));
+import InitialIntroduction from "./MinigameStages/1_InitialIntroduction";
 // Styled components
 import IntroductionScreenBase from "./IntroductionScreenBase";
-import { ColoredHeader, Description, MainHeader } from "./Texts";
 
-const IntroductionScreen: FunctionComponent = (props) => {
+const IntroductionScreen: FunctionComponent = () => {
     const { width } = useWindowSizes();
+    const { minigameStage } = useMinigameContext();
+
+    const { initialIntroductionRendering, genderPickingRendering, throphyCollectingRendering } = useRenderingManager({ minigameStage });
 
     return (
-        <IntroductionScreenBase renderBigCircle={width > 1350 || width <= 1150}>
-            {width > 1150 && <Technologies />}
-            <ColoredHeader>full-stack</ColoredHeader>
-            <MainHeader>Kacper Książek</MainHeader>
-            <Description>20 years old Engineering and Data Analysis student living in Poland, who takes sheer pleasure in coding 😎😎</Description>
-            <ColoredHeader>developer</ColoredHeader>
-            <ScrollButton />
+        <IntroductionScreenBase
+            renderBigCircle={width > 1450 || width <= 1150} //
+            elementsOutsideContent={width > 1150 && <Technologies />}
+        >
+            {(() => {
+                /* Render minigame only when viewport width is larger than 1150px */
+                if (width > 1150) {
+                    return (
+                        <>
+                            <InitialIntroduction rendering={initialIntroductionRendering} />
+                            <GenderPicking rendering={genderPickingRendering} />
+                            <TrophyCollecting rendering={throphyCollectingRendering} />
+                        </>
+                    );
+                }
+                //
+                else {
+                    return <InitialIntroduction rendering={"RENDER"} />;
+                }
+            })()}
         </IntroductionScreenBase>
     );
 };
 
-export default IntroductionScreen;
+const IntroductionScreenWithMinigameContext: FunctionComponent = () => {
+    return (
+        <MinigameContextProvider>
+            <IntroductionScreen />
+        </MinigameContextProvider>
+    );
+};
+
+export default IntroductionScreenWithMinigameContext;

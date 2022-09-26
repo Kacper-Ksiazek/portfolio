@@ -28,6 +28,7 @@ const CircleBase = styled("span")(({ theme }) => ({
     zIndex: 15,
     backgroundPosition: "center",
     backgroundSize: "cover",
+    borderRadius: "50%",
 }));
 
 export const CircleOne = styled(CircleBase)(({ theme }) => ({
