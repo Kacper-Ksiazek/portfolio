@@ -1,7 +1,10 @@
 // Tools
-import { getStaticPaths, getStaticProps } from "./nextjs_routing_methods";
+import { prisma } from "@/prisma/db";
+import { NotFound } from "@/utils/api/errors";
+import SingleProjectAPIHandler from "@/utils/api/SingleProjectAPIHandler";
 // Types
 import type { NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 import type { Project, RecommendedProject } from "@/@types/pages/projects/SingleProject";
 // Other components
 import Head from "next/head";
@@ -31,4 +34,39 @@ const SingleProject: NextPage<SingleProjectProps> = ({ project, recommendedProje
 
 export default SingleProject;
 
-export { getStaticPaths, getStaticProps };
+export const getStaticPaths: GetStaticPaths = async (context) => {
+    const paths = (await prisma.project.findMany({ select: { id: true } })).map((el) => {
+        return {
+            params: { id: el.id },
+        };
+    });
+
+    return {
+        paths,
+        fallback: "blocking",
+    };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    try {
+        const API = new SingleProjectAPIHandler(context.params?.id as string);
+        return {
+            props: await API.getData(),
+        };
+    } catch (e: unknown) {
+        if (e instanceof NotFound) {
+            return {
+                redirect: {
+                    destination: "/404",
+                    permanent: false,
+                },
+            };
+        }
+        return {
+            redirect: {
+                destination: "/500",
+                permanent: false,
+            },
+        };
+    }
+};

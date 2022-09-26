@@ -5,7 +5,7 @@ import { uploadedSchoolImageURLBuilder } from "@/utils/client/uploaded_image_url
 import type { School } from "@prisma/client";
 import type { FunctionComponent } from "react";
 // Other components
-import Image from "next/Image";
+import Image from "next/image";
 // Material UI Icons
 import AccessTime from "@mui/icons-material/AccessTime";
 // Styled components

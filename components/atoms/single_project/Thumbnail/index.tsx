@@ -4,7 +4,7 @@ import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_ur
 // Types
 import type { ForwardRefExoticComponent } from "react";
 // Other components
-import Image from "next/Image";
+import Image from "next/image";
 // Styled components
 import ThumbnailMainWrapper from "./ThumbnailMainWrapper";
 import ThumbnailSecondWrapper from "./ThumbnailSecondWrapper";

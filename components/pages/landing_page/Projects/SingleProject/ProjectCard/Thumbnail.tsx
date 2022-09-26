@@ -4,7 +4,7 @@ import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_ur
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import Image from "next/Image";
+import Image from "next/image";
 const ThumbnailWrapper = styled("div")(({ theme }) => ({
     position: "relative",
     height: "180px",

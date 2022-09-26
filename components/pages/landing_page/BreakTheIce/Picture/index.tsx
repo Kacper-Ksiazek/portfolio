@@ -5,7 +5,7 @@ import { useBreakTheIceContentContext } from "@/components/pages/landing_page/Br
 // Types
 import type { FunctionComponent, MutableRefObject } from "react";
 // Other components
-import Image from "next/Image";
+import Image from "next/image";
 // Styled components
 import Rectangle from "./styled_components/Rectangle";
 import PictureWrapper from "./styled_components/PictureWrapper";

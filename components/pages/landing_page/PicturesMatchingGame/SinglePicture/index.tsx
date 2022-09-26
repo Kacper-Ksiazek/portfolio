@@ -1,7 +1,7 @@
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import Image from "next/Image";
+import Image from "next/image";
 import QuestionMark from "./QuestionMark";
 // Styled components
 import SinglePictureBase from "./SinglePictureBase";

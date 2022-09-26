@@ -5,7 +5,7 @@ import { uploadedPreviousJobImageURLBuilder } from "@/utils/client/uploaded_imag
 import type { FunctionComponent } from "react";
 import type { PreviousJob } from "@/@types/pages/LandingPage";
 // Other components
-import Image from "next/Image";
+import Image from "next/image";
 import Localization from "./Localization";
 import ITRelatedJobIconBase from "./ITRelatedJobIcon";
 import Duration from "@/components/atoms/single_project/Duration";

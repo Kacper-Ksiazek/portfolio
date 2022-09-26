@@ -5,7 +5,7 @@ import type { FunctionComponent } from "react";
 // Material UI Icons
 import ChevronRight from "@mui/icons-material/ChevronRight";
 // Other components
-import Link from "next/Link";
+import Link from "next/link";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 

@@ -2,7 +2,7 @@
 import type { FunctionComponent } from "react";
 import type { ReleventTechnology } from "@/@types/prisma/Project";
 // Other components
-import Image from "next/Image";
+import Image from "next/image";
 import VisibilitySensor from "@/components/utils/VisibilitySensor";
 // Styled components
 import SingleTechnology from "./styled_components/SingleTechnology";

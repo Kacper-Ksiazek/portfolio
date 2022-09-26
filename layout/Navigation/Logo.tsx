@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
-import Image from "next/Image";
+import Image from "next/image";
 // Styled Components
 const Header = styled("h3")(({ theme }) => ({
     margin: "0",

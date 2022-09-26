@@ -9,7 +9,7 @@ import type { FunctionComponent } from "react";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 // Other Components
-import Image from "next/Image";
+import Image from "next/image";
 import TopSideButtons from "./TopSideButtons";
 const GalleryManagement = dynamic(() => import("./GalleryManagement"));
 // Styled components

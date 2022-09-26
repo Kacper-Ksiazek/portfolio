@@ -6,7 +6,7 @@ import { uploadedHobbyImageURLBuilder } from "@/utils/client/uploaded_image_url_
 import type { Hobby } from "@prisma/client";
 import type { FunctionComponent } from "react";
 // Other components
-import Image from "next/Image";
+import Image from "next/image";
 const ArtistReference = dynamic(() => import("./ArtistReference"));
 // Styled components
 import ImageWrapper from "./styled_components/ImageWrapper";

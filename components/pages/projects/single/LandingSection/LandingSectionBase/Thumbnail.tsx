@@ -3,7 +3,7 @@ import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_ur
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import Image from "next/Image";
+import Image from "next/image";
 // Styled components
 import ImageMask from "./styled_components/ImageMask";
 import ImageWrapper from "./styled_components/ImageWrapper";

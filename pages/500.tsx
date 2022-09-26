@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
 // Other components
 import Head from "next/head";
-import Link from "next/Link";
+import Link from "next/link";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 import { HTTPStatusCodeContentWrapper, StatusCode, ButtonsWrapper } from "@/components/pages/http_status_code";
