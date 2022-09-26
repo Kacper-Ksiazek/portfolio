@@ -6,7 +6,7 @@ import { useRenderingManager } from "./hooks/useRenderingManager";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import Technologies from "./New_Technologies";
+import Technologies from "./Technologies";
 import { MinigameContextProvider } from "./context/MinigameContext";
 // Minigame's stages
 const GenderPicking = dynamic(() => import("./MinigameStages/2_GenderPicking"));
