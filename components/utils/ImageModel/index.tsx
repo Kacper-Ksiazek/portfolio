@@ -63,6 +63,7 @@ const ImageModal: FunctionComponent<ImageModalProps> = (props) => {
                     backdropFilter: "blur(3px)",
                 },
             }}
+            id="image-modal-wrapper"
         >
             <Fade in={open}>
                 <ImageModelBase>
