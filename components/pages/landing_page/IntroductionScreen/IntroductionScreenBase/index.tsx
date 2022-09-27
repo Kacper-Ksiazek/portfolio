@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import BackgroundPicture from "./BackgroundPicture";
+import PreviewBackgroundPicture from "./PreviewBackgroundPicture";
 // Styled Components
 import { CircleOne, CircleTwo } from "./_styled_components/Circles";
 import { LineTwo, LineOne, LineThree } from "./_styled_components/Lines";
@@ -55,7 +56,9 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
                 props.scrollButtonIsHovered ? "scroll-button-is-hovered" : "",
             ].join(" ")}
         >
+            <PreviewBackgroundPicture />
             <BackgroundPicture scrollButtonIsHovered={props.scrollButtonIsHovered} />
+
             {(() => {
                 if (renderContent) {
                     return (
