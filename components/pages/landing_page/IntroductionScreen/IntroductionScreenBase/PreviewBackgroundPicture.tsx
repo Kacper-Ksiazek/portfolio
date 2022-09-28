@@ -50,7 +50,7 @@ const PreviewBackgroundPicture: FunctionComponent = (props) => {
                         <ImageModal
                             open={openModal} //
                             onClose={() => setOpenModal(false)}
-                            imageURL="/images/landing-page/introduction-screen.jpg"
+                            imageURL="/images/landing-page/introduction-screen/fullsize.jpg"
                             title="Germany / Hamburg / Fiction Park"
                         />
                     );

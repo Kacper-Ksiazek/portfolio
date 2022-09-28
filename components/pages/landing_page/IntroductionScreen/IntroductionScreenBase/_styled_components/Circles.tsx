@@ -6,7 +6,7 @@ const fadeSimple = keyframes({
         opacity: 0,
     },
     to: {
-        opacity: 0.05,
+        opacity: 0.054,
     },
 });
 

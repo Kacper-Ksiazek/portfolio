@@ -74,7 +74,16 @@ const BackgroundPictureImage = styled("div")(({ theme }) => ({
     filter: "blur(10px)",
     transition: "transform 1s, background-position 60s linear",
     backgroundPosition: "center top",
-    backgroundImage: "url('./images/landing-page/introduction-screen.jpg')",
+    backgroundImage: "url('./images/landing-page/introduction-screen/fullsize.jpg')",
+    ["@media (max-width:1450px)"]: {
+        backgroundImage: "url('./images/landing-page/introduction-screen/width1450px.jpg')",
+    },
+    ["@media (max-width:1000px)"]: {
+        backgroundImage: "url('./images/landing-page/introduction-screen/width1000px.jpg')",
+    },
+    ["@media (max-width:750px)"]: {
+        backgroundImage: "url('./images/landing-page/introduction-screen/width750px.jpg')",
+    },
 }));
 
 const BackgroundPicture: FunctionComponent<{ scrollButtonIsHovered: boolean }> = (props) => {
