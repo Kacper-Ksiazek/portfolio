@@ -1,7 +1,7 @@
 // Tools
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import useStylesOnScoll from "./hooks/useStylesOnScoll";
+import dynamic from "next/dynamic";
+import useStylesOnScoll from "./hooks/useOnScollStyles";
+import { useStylesBasedOnURL } from "./hooks/useStylesBasedOnURL";
 import useMobileMenuHandlers from "./hooks/useMobileMenuHandlers";
 import { useMainNavigationBarContext } from "../global/MainNavigationBarContext/useMainNavigationBarContext";
 // Types
@@ -9,45 +9,27 @@ import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import Logo from "./Logo";
-import MobileMenuButton from "./MobileMenuButton";
+const MobileMenuButton = dynamic(() => import("./MobileMenuButton"));
 // Styled Components
 import MobileAuthor from "./styled_components/MobileAuthor";
 import SingleNavigationRoute from "./SingleNavigationRoute";
 import RoutesWrapper from "./styled_components/RoutesWrapper";
 import NavigationBase from "./styled_components/NavigationBase";
 
-const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
-    const applyAfterScrollStyles = useStylesOnScoll();
+const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
+    const applyOnScrollStyles = useStylesOnScoll();
     const { appearingAnimation } = useMainNavigationBarContext();
+    const { improveContrast, introAnimation } = useStylesBasedOnURL();
     const { mobileMenuIsOpened, toggleMobileMenuIsOpened, renderMobileMenuButton, routesWrapperElementCSSClass } = useMobileMenuHandlers();
-
-    const [displayContrastStyles, setDisplayContrastStyles] = useState<boolean>(false);
-    const [landingPageIntroAnimation, setLandingPageIntroAnimation] = useState<null | "landing-page-intro" | "landing-page-intro-faster" | "single-project-intro">(null);
-
-    const router = useRouter();
-
-    useEffect(() => {
-        // Handle reversed contrast
-        const ROUTES_WITH_REVERSED_CONTRAST: string[] = ["/", "/projects/[id]"];
-        setDisplayContrastStyles(ROUTES_WITH_REVERSED_CONTRAST.includes(router.pathname));
-        // Handle landing page intro animation
-        if (router.pathname === "/") {
-            setLandingPageIntroAnimation(router.query.hasOwnProperty("skipIntroductionAnimationEvenThoughItsCool") ? "landing-page-intro-faster" : "landing-page-intro");
-        } else if (router.pathname === "/projects/[id]") {
-            setLandingPageIntroAnimation("single-project-intro");
-        } else {
-            setLandingPageIntroAnimation(null);
-        }
-    }, [router.pathname, router.query]);
 
     return (
         <NavigationBase
             className={[
-                !mobileMenuIsOpened && applyAfterScrollStyles ? "after-scroll-styles" : "", //
-                displayContrastStyles || routesWrapperElementCSSClass === "opened" ? "contrast-colors" : "",
+                !mobileMenuIsOpened && applyOnScrollStyles ? "on-scroll-styles" : "", //
+                improveContrast || routesWrapperElementCSSClass === "opened" ? "contrast-colors" : "",
                 appearingAnimation !== null ? `display-${appearingAnimation}-animation` : "",
-                landingPageIntroAnimation,
             ].join(" ")}
+            sx={introAnimation}
         >
             <div id="main-navigation-content">
                 <Logo />

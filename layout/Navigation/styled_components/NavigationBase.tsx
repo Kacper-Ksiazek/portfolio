@@ -1,7 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 
 // Styled components
@@ -82,20 +81,7 @@ export default styled("div")(({ theme }) => ({
             animation: `${fadeSimple} .2s .2s linear both`,
         },
     },
-    "&.landing-page-intro": {
-        animation: `${fadeFromTop} .2s 2.6s both linear`,
-        background: "transparent",
-    },
-    "&.landing-page-intro-faster": {
-        animation: `${fadeFromTop} .2s .8s both linear`,
-        background: "transparent",
-    },
-    "&.single-project-intro": {
-        animation: `${fadeSimple} .2s 3.3s both linear`,
-        background: "transparent",
-    },
-
-    "&.after-scroll-styles": {
+    "&.on-scroll-styles": {
         color: "#000",
         paddingTop: "0px",
         boxSizing: "border-box",

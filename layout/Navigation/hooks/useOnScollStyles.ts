@@ -3,12 +3,12 @@ import { useEffect, useCallback, useState } from "react";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (): boolean => {
-    const [applyAfterScrollStyles, setApplyAfterScrollStyles] = useState<boolean>(false);
+    const [applyOnScrollStyles, setApplyOnScrollStyles] = useState<boolean>(false);
 
     const handleOnScroll = useCallback(() => {
-        if (scrollY >= 70 && !applyAfterScrollStyles) setApplyAfterScrollStyles(true);
-        else if (scrollY < 70 && applyAfterScrollStyles) setApplyAfterScrollStyles(false);
-    }, [applyAfterScrollStyles]);
+        if (scrollY >= 70 && !applyOnScrollStyles) setApplyOnScrollStyles(true);
+        else if (scrollY < 70 && applyOnScrollStyles) setApplyOnScrollStyles(false);
+    }, [applyOnScrollStyles]);
 
     useEffect(() => {
         window.addEventListener("scroll", handleOnScroll);
@@ -17,5 +17,5 @@ export default (): boolean => {
         };
     }, [handleOnScroll]);
 
-    return applyAfterScrollStyles;
+    return applyOnScrollStyles;
 };
