@@ -41,9 +41,6 @@ const ScrollButtonBase = styled(ButtonBase)(({ theme }) => ({
             transform: "translateY(-5px)",
         },
     },
-    ["@media (max-width:800px)"]: {
-        bottom: "20px",
-    },
 }));
 
 interface ScrollButtonProps {
@@ -83,6 +80,7 @@ const ScrollButton: FunctionComponent<ScrollButtonProps> = (props) => {
     return (
         <ScrollButtonBase
             onClick={onClick} //
+            id="scroll-down-button"
             onMouseEnter={() => onlyWhenVisible(props.onMouseEnter)}
             onMouseLeave={() => onlyWhenVisible(props.onMouseLeave)}
         >

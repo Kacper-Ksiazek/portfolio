@@ -15,7 +15,7 @@ import Panorama from "@mui/icons-material/Panorama";
 
 const PreviewBackgroundPictureBase = styled(Button)(({ theme }) => ({
     position: "absolute",
-    zIndex: 15,
+    zIndex: 20,
     bottom: "64px",
     right: "128px",
     minWidth: "auto",
@@ -26,6 +26,14 @@ const PreviewBackgroundPictureBase = styled(Button)(({ theme }) => ({
         fontSize: "24px",
     },
     animation: `${fadeSimple} .3s 6s both linear`,
+    ["@media (max-width:1600px)"]: {
+        bottom: "32px",
+        right: "32px",
+    },
+    ["@media (max-width:500px)"]: {
+        bottom: "16px",
+        right: "16px",
+    },
 }));
 
 const PreviewBackgroundPicture: FunctionComponent = (props) => {

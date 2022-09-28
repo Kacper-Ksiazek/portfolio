@@ -43,7 +43,7 @@ export default {
         },
         "div.imageWrapper": {
             zIndex: "10",
-            width: "calc(100vw - 10px)",
+            width: "calc(100vw - 20px)",
             height: "calc(100vh - 40px)",
         },
         "div.navigation": {

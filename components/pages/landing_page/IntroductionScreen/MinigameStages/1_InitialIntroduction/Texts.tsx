@@ -1,9 +1,8 @@
 // Tools
 import { styled } from "@mui/system";
-import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 // Styled components
 export const ColoredHeader = styled("h3")(({ theme }) => ({
-    fontSize: "32px",
+    fontSize: "30px",
     color: theme.palette.primary.main,
     letterSpacing: "3px",
     fontWeight: 600,

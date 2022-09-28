@@ -2,6 +2,7 @@
 import type { SxProps } from "@mui/system";
 
 export default {
+    paddingTop: "112px !important",
     ".colored-header": {
         ["@media (max-width:1500px)"]: {
             fontSize: "28px",
@@ -16,6 +17,7 @@ export default {
     ".main-header": {
         ["@media (max-width:1500px)"]: {
             fontSize: "64px",
+            lineHeight: "76px",
         },
         ["@media (max-width:1000px)"]: {
             fontSize: "56px",
@@ -48,6 +50,14 @@ export default {
         },
         ["@media (max-width:370px)"]: {
             fontSize: "16px",
+        },
+    },
+    "#scroll-down-button": {
+        ["@media (max-height:600px)"]: {
+            marginTop: "32px",
+        },
+        ["@media (max-width:800px)"]: {
+            bottom: "20px",
         },
     },
 } as SxProps;
