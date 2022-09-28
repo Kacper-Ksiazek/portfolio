@@ -1,3 +1,5 @@
+// Tools
+import { useRef } from "react";
 // Types
 import type { FunctionComponent } from "react";
 import type { RedirectionProps } from "./@types";
@@ -9,6 +11,13 @@ import RedirectionWrapper from "./_RedirectionWrapper";
 import RedirectBase from "./_styled_components/RedirectBase";
 
 const ExternalRedirection: FunctionComponent<RedirectionProps> = (props) => {
+    const ExternalRedirectionRef = useRef<HTMLButtonElement | null>(null);
+
+    const onClick = () => {
+        console.log(ExternalRedirectionRef.current);
+        ExternalRedirectionRef.current?.blur();
+    };
+
     return (
         <RedirectionWrapper tooltip={props.tooltip}>
             <a href={props.url} target="_blank" rel="noreferrer">
@@ -16,6 +25,8 @@ const ExternalRedirection: FunctionComponent<RedirectionProps> = (props) => {
                     color="primary" //
                     className={[props.small ? "small" : "", "redirect", props.className].join(" ")}
                     sx={props.sx}
+                    onClick={onClick}
+                    ref={ExternalRedirectionRef}
                 >
                     {props.children}
                     <KeyboardArrowRight className="right-arrow" />

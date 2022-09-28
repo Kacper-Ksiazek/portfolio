@@ -14,7 +14,7 @@ import TextWrapper from "./styled_components/TextWrapper";
 import ThumbnailWrapper from "./styled_components/ThumbnailWrapper";
 import SinglePreviousJobBase from "./styled_components/SinglePreviousJobBase";
 import { Description, Header, RedirectionsWrapper } from "./styled_components/atoms";
-import InternalRedirection from "@/components/atoms/redirections/InternalRedirection";
+import ExternalRedirection from "@/components/atoms/redirections/ExternalRedirection";
 
 interface SinglePreviousJobProps {
     data: PreviousJob;
@@ -42,13 +42,13 @@ const SinglePreviousJob: FunctionComponent<SinglePreviousJobProps> = ({ data, ..
                     if (data.projectPortfolioURL) {
                         return (
                             <RedirectionsWrapper>
-                                <InternalRedirection
+                                <ExternalRedirection
                                     url={data.projectPortfolioURL} //
                                     tooltip="See more details about this project"
                                     small
                                 >
                                     Read more
-                                </InternalRedirection>
+                                </ExternalRedirection>
                             </RedirectionsWrapper>
                         );
                     }
