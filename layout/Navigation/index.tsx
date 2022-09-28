@@ -3,12 +3,10 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useStylesOnScoll from "./hooks/useStylesOnScoll";
 import useMobileMenuHandlers from "./hooks/useMobileMenuHandlers";
-import useHideWhileScrollingDown from "./hooks/useHideWhileScrollingDown";
+import { useMainNavigationBarContext } from "../global/MainNavigationBarContext/useMainNavigationBarContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
-// Material UI Components
-import Fade from "@mui/material/Fade";
 // Other components
 import Logo from "./Logo";
 import MobileMenuButton from "./MobileMenuButton";
@@ -20,8 +18,8 @@ import NavigationBase from "./styled_components/NavigationBase";
 
 const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const applyAfterScrollStyles = useStylesOnScoll();
+    const { appearingAnimation } = useMainNavigationBarContext();
     const { mobileMenuIsOpened, toggleMobileMenuIsOpened, renderMobileMenuButton, routesWrapperElementCSSClass } = useMobileMenuHandlers();
-    const { hideNavigaton, scrollingAnimationToDisplay, forceShowingNavigaton } = useHideWhileScrollingDown();
 
     const [displayContrastStyles, setDisplayContrastStyles] = useState<boolean>(false);
     const [landingPageIntroAnimation, setLandingPageIntroAnimation] = useState<null | "landing-page-intro" | "landing-page-intro-faster" | "single-project-intro">(null);
@@ -43,49 +41,39 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = (props) => {
     }, [router.pathname, router.query]);
 
     return (
-        <Fade in={!hideNavigaton}>
-            <div>
-                <NavigationBase
-                    className={[
-                        !mobileMenuIsOpened && applyAfterScrollStyles ? "after-scroll-styles" : "", //
-                        displayContrastStyles || routesWrapperElementCSSClass === "opened" ? "contrast-colors" : "",
-                        scrollingAnimationToDisplay !== null ? `display-${scrollingAnimationToDisplay}-animation` : "",
-                        landingPageIntroAnimation,
-                    ].join(" ")}
-                >
-                    <div id="main-navigation-content">
-                        <Logo />
+        <NavigationBase
+            className={[
+                !mobileMenuIsOpened && applyAfterScrollStyles ? "after-scroll-styles" : "", //
+                displayContrastStyles || routesWrapperElementCSSClass === "opened" ? "contrast-colors" : "",
+                appearingAnimation !== null ? `display-${appearingAnimation}-animation` : "",
+                landingPageIntroAnimation,
+            ].join(" ")}
+        >
+            <div id="main-navigation-content">
+                <Logo />
 
-                        {(() => {
-                            if (renderMobileMenuButton) {
-                                return (
-                                    <MobileMenuButton
-                                        onClick={toggleMobileMenuIsOpened} //
-                                        isOpened={mobileMenuIsOpened}
-                                    />
-                                );
-                            }
-                        })()}
+                {(() => {
+                    if (renderMobileMenuButton) {
+                        return (
+                            <MobileMenuButton
+                                onClick={toggleMobileMenuIsOpened} //
+                                isOpened={mobileMenuIsOpened}
+                            />
+                        );
+                    }
+                })()}
 
-                        <RoutesWrapper className={routesWrapperElementCSSClass ?? ""}>
-                            <SingleNavigationRoute idOfElementToScroll="about-me" forceShowingNavigaton={forceShowingNavigaton}>
-                                About me
-                            </SingleNavigationRoute>
-                            <SingleNavigationRoute idOfElementToScroll="projects" forceShowingNavigaton={forceShowingNavigaton}>
-                                Projects
-                            </SingleNavigationRoute>
-                            <SingleNavigationRoute idOfElementToScroll="contact " forceShowingNavigaton={forceShowingNavigaton}>
-                                Contact
-                            </SingleNavigationRoute>
-                            <MobileAuthor>
-                                <span id="mobile-menu-bottom-card-name">Kacper Książek</span>
-                                <span id="mobile-menu-bottom-card-year">{new Date(Date.now()).getUTCFullYear()}</span>
-                            </MobileAuthor>
-                        </RoutesWrapper>
-                    </div>
-                </NavigationBase>
+                <RoutesWrapper className={routesWrapperElementCSSClass ?? ""}>
+                    <SingleNavigationRoute idOfElementToScroll="about-me">About me</SingleNavigationRoute>
+                    <SingleNavigationRoute idOfElementToScroll="projects">Projects</SingleNavigationRoute>
+                    <SingleNavigationRoute idOfElementToScroll="contact">Contact</SingleNavigationRoute>
+                    <MobileAuthor>
+                        <span id="mobile-menu-bottom-card-name">Kacper Książek</span>
+                        <span id="mobile-menu-bottom-card-year">{new Date(Date.now()).getUTCFullYear()}</span>
+                    </MobileAuthor>
+                </RoutesWrapper>
             </div>
-        </Fade>
+        </NavigationBase>
     );
 };
 

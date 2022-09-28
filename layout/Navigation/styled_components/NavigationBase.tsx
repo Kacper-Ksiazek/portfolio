@@ -59,7 +59,7 @@ export default styled("div")(({ theme }) => ({
     },
 
     "&.display-outro-animation": {
-        animation: `${fadeSimpleOUT} .3s .2s linear both !important`,
+        animation: `${fadeSimpleOUT} .2s .1s linear both !important`,
         "#portfolio-logo-image": {
             animation: `${fadeSimpleOUT} .3s linear both`,
         },
@@ -71,23 +71,15 @@ export default styled("div")(({ theme }) => ({
         },
     },
     "&.display-intro-animation": {
-        animation: `${fadeSimple} .3s linear both !important`,
+        animation: `${fadeSimple} .2s linear both !important`,
         "#portfolio-logo-image": {
-            animation: `${fadeSimple} .3s .1s linear backwards`,
+            animation: `${fadeSimple} .2s .1s linear backwards`,
         },
         "#portfolio-logo-header": {
-            animation: `${fadeSimple} .3s .1s linear backwards`,
+            animation: `${fadeSimple} .2s .15s linear backwards`,
         },
         ".single-main-navigation-route": {
-            "&:nth-of-type(1)": {
-                animation: `${fadeSimple} .3s .2s linear backwards`,
-            },
-            "&:nth-of-type(2)": {
-                animation: `${fadeSimple} .3s .25s linear backwards`,
-            },
-            "&:nth-of-type(3)": {
-                animation: `${fadeSimple} .3s .3s linear backwards`,
-            },
+            animation: `${fadeSimple} .2s .2s linear both`,
         },
     },
     "&.landing-page-intro": {

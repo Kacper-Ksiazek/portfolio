@@ -14,13 +14,12 @@ export default (): UseBlockUserScrollResult => {
     const disableUserScroll = useCallback(
         onlyOnLoadedDOM(() => {
             if (formerScollY !== null) return;
-
             setFormerScollY(window.scrollY);
 
             document.body.style.top = `-${window.scrollY}px`; // ⚠️ This style has to be wrtitten first!
             document.body.style.position = "fixed";
         }),
-        []
+        [formerScollY]
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,7 +33,7 @@ export default (): UseBlockUserScrollResult => {
             window.scrollTo({ top: formerScollY });
             setFormerScollY(null);
         }),
-        []
+        [formerScollY]
     );
 
     return { disableUserScroll, enableUserScroll };

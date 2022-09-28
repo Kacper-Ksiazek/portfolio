@@ -1,5 +1,6 @@
 // Tools
 import { useRouter } from "next/router";
+import { useMainNavigation } from "@/hooks/useMainNavigation";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Styled components
@@ -8,27 +9,27 @@ import SingleNavigationRouteBase from "./styled_components/SingleNavigationRoute
 interface SingleNavigationRouteProps {
     children: ReactNode;
     idOfElementToScroll: string;
-    forceShowingNavigaton: () => void;
 }
 
 const SingleNavigationRoute: FunctionComponent<SingleNavigationRouteProps> = (props) => {
     const router = useRouter();
+    const { showNavigationBar } = useMainNavigation();
 
     const onRedirectionClick = () => {
         if (router.pathname === "/") {
-            props.forceShowingNavigaton();
-            setTimeout(() => {
-                const el = document.getElementById(props.idOfElementToScroll);
-                if (el) {
-                    window.scrollTo({
-                        top: el.getBoundingClientRect().top + window.pageYOffset - 80, //
-                        behavior: "smooth",
-                    });
-                }
-            }, 30);
+            const el = document.getElementById(props.idOfElementToScroll);
+            if (el) {
+                showNavigationBar({ keepNavigationVisibleFor: 500 });
+
+                window.scrollTo({
+                    top: el.getBoundingClientRect().top + window.pageYOffset - 80, //
+                    behavior: "smooth",
+                });
+            }
         } else {
             router.push({
                 pathname: "/",
+
                 query: {
                     skipIntroductionAnimationEvenThoughItsCool: "1",
                     scrollToElement: props.idOfElementToScroll,

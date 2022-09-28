@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import useBlockUserScroll from "@/hooks/useBlockUserScroll";
+import { useMainNavigation } from "@/hooks/useMainNavigation";
 // Types
 // import type { Dispatch, SetStateAction } from "react";
 
@@ -20,6 +21,7 @@ interface UseMobileMenuHandlerResult {
 export default (): UseMobileMenuHandlerResult => {
     const router = useRouter();
     const { width } = useWindowSizes();
+    const { showNavigationBar } = useMainNavigation();
     const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
     const [mobileMenuIsOpened, setMobileMenuIsOpened] = useState<boolean>(false);
     const [mobileMenuHasBeenOpenedAtLeastOnece, setMobileeMenuHasBeenOpenedAtLeastOnece] = useState<boolean>(false);
@@ -36,11 +38,10 @@ export default (): UseMobileMenuHandlerResult => {
         if (mobileMenuIsOpened) {
             disableUserScroll();
         } else {
-            setTimeout(() => {
-                enableUserScroll();
-            }, 600);
+            showNavigationBar({ keepNavigationVisibleFor: 500 });
+            enableUserScroll();
         }
-    }, [mobileMenuIsOpened, disableUserScroll, enableUserScroll]);
+    }, [mobileMenuIsOpened, disableUserScroll, enableUserScroll, showNavigationBar]);
     // routersWrapperElementCSSClass
     useEffect(() => {
         if (width > 1000 && mobileMenuHasBeenOpenedAtLeastOnece) {

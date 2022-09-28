@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { prisma } from "@/prisma/db";
 import { useRouter } from "next/router";
+import { useMainNavigation } from "@/hooks/useMainNavigation";
 import { formatProjectDate } from "@/utils/api/date-formatter";
 // Types
 import type { NextPage, GetServerSideProps } from "next";
@@ -19,22 +20,26 @@ import PicturesMatchingGame from "@/components/pages/landing_page/PicturesMatchi
 
 const Home: NextPage<LandingPageServerSideProps> = (props) => {
     const router = useRouter();
+    const { showNavigationBar } = useMainNavigation();
 
     useEffect(() => {
+        let timeout: ReturnType<typeof setTimeout> | null = null;
+
         if (router.query.scrollToElement) {
             const el = document.getElementById(router.query.scrollToElement as string);
-            if (el) {
-                window.scrollTo({
-                    top: el.getBoundingClientRect().top + window.pageYOffset - 80, //
-                });
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: window.scrollY - 1,
-                    });
-                }, 500);
-            }
+
+            timeout = setTimeout(() => {
+                if (el) {
+                    // showNavigationBar({ keepNavigationVisibleFor: 500 });
+                    window.scrollTo(0, el.getBoundingClientRect().top + window.pageYOffset - 80);
+                }
+            }, 50);
         }
-    }, [router.query]);
+
+        return () => {
+            if (timeout !== null) clearTimeout(timeout);
+        };
+    }, [router.query, showNavigationBar]);
 
     return (
         <>

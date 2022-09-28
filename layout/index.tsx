@@ -9,6 +9,7 @@ import Navigation from "./Navigation";
 import ScrollButton from "./ScrollButton";
 import { SnackbarContextProvider } from "./SnackbarContext";
 import TransitionBetweenPages from "./TransitionBetweenPages";
+import { MainNavigationBarContextProvider } from "./global/MainNavigationBarContext";
 // Styled components
 import MainWrapper from "./MainWrapper";
 
@@ -20,14 +21,16 @@ const Layout: FunctionComponent<LayoutProps> = (props) => {
     const router = useRouter();
 
     return (
-        <SnackbarContextProvider>
-            <Navigation />
-            <MainWrapper key={router.asPath}>{props.children}</MainWrapper>
-            <ScrollButton />
-            <Footer />
-            <TransitionBetweenPages />
-            <Snackbar />
-        </SnackbarContextProvider>
+        <MainNavigationBarContextProvider pathname={router.asPath}>
+            <SnackbarContextProvider>
+                <Navigation />
+                <MainWrapper key={router.asPath}>{props.children}</MainWrapper>
+                <ScrollButton />
+                <Footer />
+                <TransitionBetweenPages />
+                <Snackbar />
+            </SnackbarContextProvider>
+        </MainNavigationBarContextProvider>
     );
 };
 
