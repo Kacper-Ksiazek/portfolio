@@ -7,8 +7,8 @@ import Footer from "./Footer";
 import Snackbar from "./Snackbar";
 import Navigation from "./Navigation";
 import ScrollButton from "./ScrollButton";
-import { SnackbarContextProvider } from "./SnackbarContext";
 import TransitionBetweenPages from "./TransitionBetweenPages";
+import { SnackbarContextProvider } from "./global/SnackbarContext";
 import { MainNavigationBarContextProvider } from "./global/MainNavigationBarContext";
 // Styled components
 import MainWrapper from "./MainWrapper";

@@ -1,7 +1,7 @@
 // Tools
 import { useContext } from "react";
 import { styled } from "@mui/system";
-import { SnackbarContext } from "@/layout/SnackbarContext";
+import { SnackbarContext } from "@/layout/global/SnackbarContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components

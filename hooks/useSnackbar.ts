@@ -1,6 +1,6 @@
 // Tools
 import { useContext } from "react";
-import { SnackbarContext } from "@/layout/SnackbarContext";
+import { SnackbarContext } from "@/layout/global/SnackbarContext";
 // Types
 import type { AddSnackbarParams } from "@/@types/SnackbarContext";
 

@@ -1,25 +1,57 @@
 // Tools
-import useDisplayScrollButton from "./hooks/useDisplayScrollButton";
+import { useEffect, useState, useContext } from "react";
+import { SnackbarContext } from "@/layout/global/SnackbarContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
-// Material UI Components
-import Fade from "@mui/material/Fade";
 // Material UI Icons
 import ArrowUpward from "@mui/icons-material/ArrowUpward";
 // Styled Components
 import StyledButtonBase from "./styled_components/StyledButtonBase";
 
-const ScrollButton: FunctionComponent<MUIStyledCommonProps> = (props) => {
-    const displayButton = useDisplayScrollButton();
-    const handleScroll = () => scrollTo({ left: 0, top: 0, behavior: "smooth" });
+type AppearingAnimation = "intro" | "outro" | "spinning" | null;
+
+const ScrollButton: FunctionComponent = () => {
+    const SPACE_WITHOUT_SCROLLBUTTON = 200;
+
+    const snackbarContext = useContext(SnackbarContext);
+    const [appearingAnimation, setAppearingAnimation] = useState<AppearingAnimation>(null);
+
+    useEffect(() => {
+        const handleOnScroll = () => {
+            if (scrollY >= SPACE_WITHOUT_SCROLLBUTTON) {
+                setAppearingAnimation((val) => {
+                    if (val !== "intro" && val !== "spinning") return "intro";
+                    return val;
+                });
+            } else if (scrollY < SPACE_WITHOUT_SCROLLBUTTON) {
+                setAppearingAnimation((val) => {
+                    if (val === "intro") return "outro";
+                    return val;
+                });
+            }
+        };
+
+        window.addEventListener("scroll", handleOnScroll);
+        return () => {
+            window.removeEventListener("scroll", handleOnScroll);
+        };
+    }, []);
+
+    const onClick = () => {
+        scrollTo({ left: 0, top: 0, behavior: "smooth" });
+        setAppearingAnimation("spinning");
+        setTimeout(() => {
+            setAppearingAnimation("outro");
+        }, 600);
+    };
 
     return (
-        <Fade in={displayButton}>
-            <StyledButtonBase onClick={handleScroll}>
-                <ArrowUpward />
-            </StyledButtonBase>
-        </Fade>
+        <StyledButtonBase
+            onClick={onClick} //
+            className={snackbarContext.snackbars.length >= 1 ? "outro" : appearingAnimation ?? ""}
+        >
+            <ArrowUpward />
+        </StyledButtonBase>
     );
 };
 
