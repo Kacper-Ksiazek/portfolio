@@ -28,9 +28,9 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
         if (router.query.scrollToElement) {
             const el = document.getElementById(router.query.scrollToElement as string);
 
+            showNavigationBar({ keepNavigationVisibleFor: 800 });
             timeout = setTimeout(() => {
                 if (el) {
-                    // showNavigationBar({ keepNavigationVisibleFor: 500 });
                     window.scrollTo(0, el.getBoundingClientRect().top + window.pageYOffset - 80);
                 }
             }, 50);

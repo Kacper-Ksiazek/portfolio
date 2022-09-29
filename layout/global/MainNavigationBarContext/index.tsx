@@ -14,6 +14,10 @@ export interface MainNavigationBarContext extends NavigationBarReducerState {
         /** Expressed in **ms** */
         keepNavigationHiddenFor: number;
     }) => any;
+    blockOnScroll: (params: {
+        /** Expressed in **ms** */
+        time: number;
+    }) => void;
 }
 
 export const MainNavigationBarContext = createContext<MainNavigationBarContext>({} as any);
@@ -35,50 +39,54 @@ export const MainNavigationBarContextProvider: FunctionComponent<MainNavigationB
     } as NavigationBarReducerState);
 
     const showNavigationBar = useCallback<MainNavigationBarContext["showNavigationBar"]>((params) => {
-        if (scrollY > START_HIDING_THRESHOLD) {
-            dispatch({ type: "MOUNT" });
-            setTimeout(() => {
-                dispatch({ type: "ENABLE_ON_SCROLL" });
-            }, INTRO_ANIMATION_DURATION + (params ? params.keepNavigationVisibleFor : 0));
-        }
+        dispatch({ type: "MOUNT" });
+        setTimeout(() => {
+            dispatch({ type: "ENABLE_ON_SCROLL" });
+        }, INTRO_ANIMATION_DURATION + (params ? params.keepNavigationVisibleFor : 0));
     }, []);
 
     const hideNavigationBar = useCallback<MainNavigationBarContext["hideNavigationBar"]>((params) => {
-        if (scrollY > START_HIDING_THRESHOLD) {
-            dispatch({ type: "PLAY_OUTRO_ANIMATION" });
-            setTimeout(() => {
-                dispatch({
-                    type: "UNMOUNT",
-                    payload: {
-                        enableOnScroll: params === undefined,
-                    },
-                });
-                if (params !== undefined) {
-                    setTimeout(() => dispatch({ type: "ENABLE_ON_SCROLL" }), params.keepNavigationHiddenFor);
-                }
-            }, OUTRO_ANIMATION_DURATION);
-        }
+        dispatch({ type: "PLAY_OUTRO_ANIMATION" });
+        setTimeout(() => {
+            dispatch({
+                type: "UNMOUNT",
+                payload: {
+                    enableOnScroll: params === undefined,
+                },
+            });
+            if (params !== undefined) {
+                setTimeout(() => dispatch({ type: "ENABLE_ON_SCROLL" }), params.keepNavigationHiddenFor);
+            }
+        }, OUTRO_ANIMATION_DURATION);
     }, []);
 
     const handleOnScroll = useCallback(() => {
         if (blockOnScrollTriggering) return;
         // Page has not been already loaded case
-        if (previousScrollY.current === null || scrollY <= START_HIDING_THRESHOLD) {
+        if (previousScrollY.current === null) {
             previousScrollY.current = scrollY;
             return;
         }
 
+        if (scrollY <= START_HIDING_THRESHOLD && appearingAnimation === "outro") {
+            showNavigationBar();
+        }
         // Hide currently displaying navigation bar
-        if (previousScrollY.current < scrollY && appearingAnimation !== "outro") {
+        else if (previousScrollY.current < scrollY && appearingAnimation !== "outro" && scrollY > START_HIDING_THRESHOLD) {
             hideNavigationBar();
         }
         // Display hidden navigation bar again
-        else if (previousScrollY.current > scrollY && appearingAnimation !== "intro") {
+        else if (previousScrollY.current > scrollY && appearingAnimation !== "intro" && scrollY > START_HIDING_THRESHOLD) {
             showNavigationBar();
         }
 
         previousScrollY.current = scrollY;
     }, [appearingAnimation, blockOnScrollTriggering, hideNavigationBar, showNavigationBar]);
+
+    const blockOnScroll: MainNavigationBarContext["blockOnScroll"] = (params) => {
+        dispatch({ type: "DISABLE_ON_SCROLL" });
+        setTimeout(() => dispatch({ type: "ENABLE_ON_SCROLL" }), params.time);
+    };
 
     useEffect(() => {
         window.addEventListener("scroll", handleOnScroll);
@@ -94,6 +102,7 @@ export const MainNavigationBarContextProvider: FunctionComponent<MainNavigationB
             value={{
                 appearingAnimation, //
                 blockOnScrollTriggering,
+                blockOnScroll,
                 showNavigationBar,
                 hideNavigationBar,
             }}

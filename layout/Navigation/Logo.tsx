@@ -3,7 +3,6 @@ import { styled } from "@mui/system";
 import { useRouter } from "next/router";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import Image from "next/image";
 // Styled Components
@@ -42,12 +41,27 @@ const ImageWrapper = styled("div")(({ theme }) => ({
     },
 }));
 
-const Logo: FunctionComponent<MUIStyledCommonProps> = (props) => {
+interface LogoProps {
+    mobileMenuIsOpened: boolean;
+    closeMobileMenu: () => void;
+}
+
+const Logo: FunctionComponent<LogoProps> = (props) => {
     const router = useRouter();
 
     const redirectToMainPage = () => {
-        if (router.pathname === "/") return;
-        router.push("/?skipIntroductionAnimationEvenThoughItsCool=1");
+        if (router.pathname === "/") {
+            if (props.mobileMenuIsOpened) {
+                props.closeMobileMenu();
+                setTimeout(() => {
+                    scrollTo({ top: 0, behavior: "smooth" });
+                }, 600);
+            } else {
+                scrollTo({ top: 0, behavior: "smooth" });
+            }
+        } else {
+            router.push("/?skipIntroductionAnimationEvenThoughItsCool=1");
+        }
     };
 
     return (

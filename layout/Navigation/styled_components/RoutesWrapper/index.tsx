@@ -17,7 +17,7 @@ export default styled("div")(({ theme }) => ({
         width: "calc(100% + 2px)",
         flexDirection: "column",
         justifyContent: "center",
-        zIndex: 10,
+        zIndex: 20,
         transform: "translateX(-100%)",
 
         "&::before": {

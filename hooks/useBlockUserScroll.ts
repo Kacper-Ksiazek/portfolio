@@ -1,5 +1,7 @@
 // Tools
-import { useState, useCallback } from "react";
+import { useRouter } from "next/router";
+import { useState, useCallback, useEffect } from "react";
+import { useMainNavigation } from "@/hooks/useMainNavigation";
 // Types
 interface UseBlockUserScrollResult {
     disableUserScroll: () => any;
@@ -8,6 +10,9 @@ interface UseBlockUserScrollResult {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (): UseBlockUserScrollResult => {
+    const router = useRouter();
+    const { blockOnScroll } = useMainNavigation();
+
     const [formerScollY, setFormerScollY] = useState<number | null>(null);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -27,14 +32,21 @@ export default (): UseBlockUserScrollResult => {
         onlyOnLoadedDOM(() => {
             if (formerScollY === null) return;
 
+            blockOnScroll({ time: 100 });
             document.body.style.top = "0";
             document.body.style.position = "static";
 
             window.scrollTo({ top: formerScollY });
+
             setFormerScollY(null);
         }),
         [formerScollY]
     );
+
+    useEffect(() => {
+        document.body.style.top = "0";
+        document.body.style.position = "static";
+    }, [router.asPath]);
 
     return { disableUserScroll, enableUserScroll };
 };

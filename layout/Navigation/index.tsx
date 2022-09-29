@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import useStylesOnScoll from "./hooks/useOnScollStyles";
 import { useStylesBasedOnURL } from "./hooks/useStylesBasedOnURL";
-import useMobileMenuHandlers from "./hooks/useMobileMenuHandlers";
+import { useMobileMenuHandlers } from "./hooks/useMobileMenuHandlers";
 import { useMainNavigationBarContext } from "../global/MainNavigationBarContext/useMainNavigationBarContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -20,35 +20,57 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
     const applyOnScrollStyles = useStylesOnScoll();
     const { appearingAnimation } = useMainNavigationBarContext();
     const { improveContrast, introAnimation } = useStylesBasedOnURL();
-    const { mobileMenuIsOpened, toggleMobileMenuIsOpened, renderMobileMenuButton, routesWrapperElementCSSClass } = useMobileMenuHandlers();
+    const { status: mobileMenuStatus, renderMobileMenuButton, toogleVisibility } = useMobileMenuHandlers();
 
     return (
         <NavigationBase
+            key={introAnimation}
             className={[
-                !mobileMenuIsOpened && applyOnScrollStyles ? "on-scroll-styles" : "", //
-                improveContrast || routesWrapperElementCSSClass === "opened" ? "contrast-colors" : "",
+                mobileMenuStatus !== "opened" && applyOnScrollStyles ? "on-scroll-styles" : "", //
+                improveContrast || mobileMenuStatus === "opened" ? "contrast-colors" : "",
                 appearingAnimation !== null ? `display-${appearingAnimation}-animation` : "",
+                introAnimation,
             ].join(" ")}
-            sx={introAnimation}
         >
             <div id="main-navigation-content">
-                <Logo />
+                <Logo
+                    mobileMenuIsOpened={mobileMenuStatus === "opened"} //
+                    closeMobileMenu={toogleVisibility}
+                />
 
                 {(() => {
                     if (renderMobileMenuButton) {
                         return (
                             <MobileMenuButton
-                                onClick={toggleMobileMenuIsOpened} //
-                                isOpened={mobileMenuIsOpened}
+                                onClick={toogleVisibility} //
+                                isOpened={mobileMenuStatus === "opened"}
                             />
                         );
                     }
                 })()}
 
-                <RoutesWrapper className={routesWrapperElementCSSClass ?? ""}>
-                    <SingleNavigationRoute idOfElementToScroll="about-me">About me</SingleNavigationRoute>
-                    <SingleNavigationRoute idOfElementToScroll="projects">Projects</SingleNavigationRoute>
-                    <SingleNavigationRoute idOfElementToScroll="contact">Contact</SingleNavigationRoute>
+                <RoutesWrapper className={mobileMenuStatus ?? ""}>
+                    <SingleNavigationRoute
+                        idOfElementToScroll="about-me" //
+                        mobileMenuIsOpened={mobileMenuStatus === "opened"}
+                        closeMobileMenu={toogleVisibility}
+                    >
+                        About me
+                    </SingleNavigationRoute>
+                    <SingleNavigationRoute
+                        idOfElementToScroll="projects" //
+                        mobileMenuIsOpened={mobileMenuStatus === "opened"}
+                        closeMobileMenu={toogleVisibility}
+                    >
+                        Projects
+                    </SingleNavigationRoute>
+                    <SingleNavigationRoute
+                        idOfElementToScroll="contact" //
+                        mobileMenuIsOpened={mobileMenuStatus === "opened"}
+                        closeMobileMenu={toogleVisibility}
+                    >
+                        Contact
+                    </SingleNavigationRoute>
                     <MobileAuthor>
                         <span id="mobile-menu-bottom-card-name">Kacper Książek</span>
                         <span id="mobile-menu-bottom-card-year">{new Date(Date.now()).getUTCFullYear()}</span>

@@ -1,8 +1,8 @@
 // Tools
 import { styled } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
-
 // Styled components
 export default styled("div")(({ theme }) => ({
     position: "fixed",
@@ -11,12 +11,12 @@ export default styled("div")(({ theme }) => ({
     paddingTop: "40px",
     width: "100vw",
     height: "80px",
-    zIndex: 2,
+    zIndex: 12,
     transition: "all .3s",
     paddingLeft: "64px",
     paddingRight: "64px",
     boxSizing: "border-box",
-    background: theme.palette.background.default,
+    background: "transparent",
 
     "div#main-navigation-content": {
         display: "flex",
@@ -29,8 +29,6 @@ export default styled("div")(({ theme }) => ({
         transition: "all .3s, color .15s",
     },
     "&.contrast-colors": {
-        background: "transparent",
-
         "#portfolio-logo-header": {
             color: "#fff",
         },
@@ -41,7 +39,7 @@ export default styled("div")(({ theme }) => ({
                 color: "#fff",
             },
         },
-        "&.after-scroll-styles": {
+        "&.on-scroll-styles": {
             "#portfolio-logo-header": {
                 color: "#000",
             },
@@ -81,6 +79,7 @@ export default styled("div")(({ theme }) => ({
             animation: `${fadeSimple} .2s .2s linear both`,
         },
     },
+
     "&.on-scroll-styles": {
         color: "#000",
         paddingTop: "0px",
@@ -95,6 +94,17 @@ export default styled("div")(({ theme }) => ({
             color: "#000",
         },
     },
+    //
+    "&.intro-landing-page-but-faster": {
+        animation: `${fadeFromTop} .2s .8s both linear`,
+    },
+    "&.intro-landing-page": {
+        animation: `${fadeFromTop} .2s 2.6s both linear`,
+    },
+    "&.intro-single-project": {
+        animation: `${fadeSimple} .2s 3.3s both linear`,
+    },
+    //
     ["@media (max-width:500px)"]: {
         paddingLeft: "32px",
         paddingRight: "32px",

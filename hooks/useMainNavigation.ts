@@ -6,10 +6,11 @@ import type { MainNavigationBarContext } from "@/layout/global/MainNavigationBar
 interface UseMainNavigationResult {
     showNavigationBar: MainNavigationBarContext["showNavigationBar"];
     hideNavigationBar: MainNavigationBarContext["hideNavigationBar"];
+    blockOnScroll: MainNavigationBarContext["blockOnScroll"];
 }
 
 export const useMainNavigation = (): UseMainNavigationResult => {
-    const { hideNavigationBar, showNavigationBar } = useMainNavigationBarContext();
+    const { hideNavigationBar, showNavigationBar, blockOnScroll } = useMainNavigationBarContext();
 
-    return { hideNavigationBar, showNavigationBar };
+    return { hideNavigationBar, showNavigationBar, blockOnScroll };
 };

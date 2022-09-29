@@ -9,22 +9,43 @@ import SingleNavigationRouteBase from "./styled_components/SingleNavigationRoute
 interface SingleNavigationRouteProps {
     children: ReactNode;
     idOfElementToScroll: string;
+    mobileMenuIsOpened: boolean;
+    closeMobileMenu: () => void;
 }
 
 const SingleNavigationRoute: FunctionComponent<SingleNavigationRouteProps> = (props) => {
     const router = useRouter();
-    const { showNavigationBar } = useMainNavigation();
+    const { blockOnScroll } = useMainNavigation();
 
     const onRedirectionClick = () => {
         if (router.pathname === "/") {
-            const el = document.getElementById(props.idOfElementToScroll);
-            if (el) {
-                showNavigationBar({ keepNavigationVisibleFor: 500 });
+            if (props.mobileMenuIsOpened) {
+                props.closeMobileMenu();
+                setTimeout(() => {
+                    const el = document.getElementById(props.idOfElementToScroll);
+                    if (el) {
+                        blockOnScroll({ time: 1000 });
 
-                window.scrollTo({
-                    top: el.getBoundingClientRect().top + window.pageYOffset - 80, //
-                    behavior: "smooth",
-                });
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: el.getBoundingClientRect().top + window.pageYOffset - 80, //
+                                behavior: "smooth",
+                            });
+                        }, 10);
+                    }
+                }, 600);
+            } else {
+                const el = document.getElementById(props.idOfElementToScroll);
+                if (el) {
+                    blockOnScroll({ time: 800 });
+
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: el.getBoundingClientRect().top + window.pageYOffset - 80, //
+                            behavior: "smooth",
+                        });
+                    }, 10);
+                }
             }
         } else {
             router.push({
