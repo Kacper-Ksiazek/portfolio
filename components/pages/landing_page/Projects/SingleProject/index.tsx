@@ -20,6 +20,21 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
     position: "relative",
     justifyContent: "flex-end",
     visibility: "hidden",
+    ["@media (min-width:1001px)"]: {
+        "&::after": {
+            content: "''",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "50%",
+            height: "100%",
+            zIndex: 10,
+        },
+        "&.odd::after": {
+            left: "auto",
+            right: 0,
+        },
+    },
     "&.even": {
         flexDirection: "row-reverse",
     },

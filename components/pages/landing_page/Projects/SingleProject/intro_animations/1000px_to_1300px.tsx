@@ -1,5 +1,6 @@
 // Tools
 import theme from "@/material";
+import { stopRendering } from "./_keyframes/stopRendering";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import {
     introForFirstProject,
@@ -14,6 +15,9 @@ import { introScaleXFromLeft, introScaleXFromRight, introScaleYFromTop, outroSca
 import type { SxProps } from "@mui/system";
 
 export default {
+    "&::after": {
+        animation: `${stopRendering} .001s 4.4s both linear`,
+    },
     ".year-indicator": {
         ".digit": {
             "&:nth-of-type(1)": {
