@@ -22,13 +22,13 @@ export default {
     },
     ["@media (max-width:1200px)"]: {
         ".duration": {
-            fontSize: "18px",
+            fontSize: "20px",
         },
         "#project-title": {
             fontSize: "48px",
         },
         "#project-description": {
-            fontSize: "18px",
+            fontSize: "20px",
         },
     },
     ["@media (max-width:1100px)"]: {},
@@ -45,10 +45,10 @@ export default {
     },
     ["@media (max-width:500px)"]: {
         ".duration": {
-            fontSize: "16px",
+            fontSize: "18px",
         },
         "#project-description": {
-            fontSize: "16px",
+            fontSize: "18px",
         },
     },
 } as SxProps;

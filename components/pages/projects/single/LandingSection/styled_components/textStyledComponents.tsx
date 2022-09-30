@@ -8,7 +8,7 @@ export const MainHeader = styled("h1")(({ theme }) => ({
 }));
 
 export const Description = styled("p")(({ theme }) => ({
-    fontSize: "20px",
+    fontSize: "22px",
     maxWidth: "1000px",
     margin: "32px 0 0 0",
 }));
