@@ -8,11 +8,7 @@ import Divider from "./Divider";
 import SingleNavigationStep from "./SingleNavigationStep";
 import NavigationBetweenStagesBase from "./NavigationBetweenStagesBase";
 
-interface NavigationBetweenStagesProps {
-    //
-}
-
-const NavigationBetweenStages: FunctionComponent<NavigationBetweenStagesProps> = (props) => {
+const NavigationBetweenStages: FunctionComponent = () => {
     const stages: IceBreakingStage[] = ["General", "Competences", "Education", "Hobbies", "Previous_Jobs"];
     const context = useBreakTheIceContentContext();
 

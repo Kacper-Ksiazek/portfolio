@@ -1,5 +1,5 @@
 // Tools
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 // Types
 import type { Hobby, School } from "@prisma/client";
 import type { ReactNode, FunctionComponent } from "react";
@@ -20,6 +20,7 @@ interface BreakTheIceContextInterface extends ContextPropertiesFromAPI {
     previousIceBreakingStage: IceBreakingStage | null;
     //
     changeStage: (stage: IceBreakingStage) => void;
+    blockStageChanging: (params: { time: number }) => void;
 }
 
 interface BreakTheIceContextProviderProps extends ContextPropertiesFromAPI {
@@ -31,13 +32,14 @@ export const BreakTheIceContext = createContext<BreakTheIceContextInterface>({} 
 export const BreakTheIceContextProvider: FunctionComponent<BreakTheIceContextProviderProps> = (props) => {
     const ALL_ANIMATIONS_DURATION: number = 2300;
 
-    const [preventFromChangingStage, setPreventFromChangingStage] = useState<boolean>(false);
-    const [previousIceBreakingStage, setPreviousIceBreakingStage] = useState<IceBreakingStage | null>(null);
+    const _preventFromChangingStage = useRef<boolean>(false);
+
     const [currentIceBreakingStage, setCurrentIceBreakingStage] = useState<IceBreakingStage>("General");
+    const [previousIceBreakingStage, setPreviousIceBreakingStage] = useState<IceBreakingStage | null>(null);
 
     const changeStage = (val: IceBreakingStage) => {
-        if (!preventFromChangingStage) {
-            setPreventFromChangingStage(true);
+        if (!_preventFromChangingStage.current) {
+            _preventFromChangingStage.current = true;
 
             setCurrentIceBreakingStage(val);
             setPreviousIceBreakingStage(currentIceBreakingStage);
@@ -45,8 +47,15 @@ export const BreakTheIceContextProvider: FunctionComponent<BreakTheIceContextPro
                 setPreviousIceBreakingStage(null);
             }, 1000);
 
-            setTimeout(() => setPreventFromChangingStage(false), ALL_ANIMATIONS_DURATION);
+            setTimeout(() => _preventFromChangingStage.current, ALL_ANIMATIONS_DURATION);
         }
+    };
+
+    const blockStageChanging: BreakTheIceContextInterface["blockStageChanging"] = (params) => {
+        _preventFromChangingStage.current = true;
+        setTimeout(() => {
+            _preventFromChangingStage.current = false;
+        }, params.time);
     };
 
     return (
@@ -58,7 +67,9 @@ export const BreakTheIceContextProvider: FunctionComponent<BreakTheIceContextPro
                 //
                 currentIceBreakingStage,
                 previousIceBreakingStage,
+                //
                 changeStage,
+                blockStageChanging,
             }}
         >
             {props.children}
