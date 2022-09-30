@@ -7,7 +7,7 @@ import type { NextPage } from "next";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import type { Project, RecommendedProject } from "@/@types/pages/projects/SingleProject";
 // Other components
-import Head from "next/head";
+import SEO from "@/components/pages/_SEO";
 import Content from "@/components/pages/projects/single/Content";
 import LandingSection from "@/components/pages/projects/single/LandingSection";
 import RecommendedProjects from "@/components/pages/projects/single/RecommendedProjects";
@@ -21,13 +21,16 @@ interface SingleProjectProps {
 const SingleProject: NextPage<SingleProjectProps> = ({ project, recommendedProjects }) => {
     return (
         <>
-            <Head>
-                <title>{project.title}</title>
-            </Head>
-            <LandingSection project={project} />
-            <Content project={project} />
-            <ReleventTechnologies techStack={project.releventTechnologies} />
-            <RecommendedProjects recommendedProjects={recommendedProjects} />
+            <SEO
+                title={project.title} //
+                description={project.shortDescription}
+            />
+            <>
+                <LandingSection project={project} />
+                <Content project={project} />
+                <ReleventTechnologies techStack={project.releventTechnologies} />
+                <RecommendedProjects recommendedProjects={recommendedProjects} />
+            </>
         </>
     );
 };
