@@ -2,6 +2,7 @@
 import RWD from "./RWD";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -20,8 +21,9 @@ const Hobbies: FunctionComponent<MUIStyledCommonProps> = (props) => {
     return (
         <>
             <Paragraph animationDelay={0.7}>
-                Because of working usually intensively and for long time I always try to spend my leisure time <strong>wisely</strong> and get as much pleasure as possible as well as combining my
-                hobbies with something that <strong>teaches</strong> for instance a <strong>foreign language</strong>.
+                {formatTextViaBolding(
+                    `I have always strived to choose wisely, how will I spend my leisure time in order not to remorse afterwards. *The scope for combining amusement with productivity* has always been something, which I was looking for.`
+                )}
             </Paragraph>
             <Carousel
                 itemsInTotal={3} //

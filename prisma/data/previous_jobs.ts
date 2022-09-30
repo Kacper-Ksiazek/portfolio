@@ -3,7 +3,7 @@ import type { PreviousJob, SeederDataItem } from "./@types";
 export default (
     [
         {
-            title: "Demolish and Construction",
+            title: "Interior finishing works",
             city: "Oslo",
             country: "Norway",
             description: `The financial preparation towards the *collage* and the biggest life leason to date. The purpose of this voyage was to earn as much money as possible in order to be able to *proceed fullstack developer career* during my *university* first months.`,

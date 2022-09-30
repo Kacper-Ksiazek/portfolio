@@ -18,7 +18,7 @@ import ScrollToParticularSection from "@/components/pages/landing_page/ScrollToP
 const Home: NextPage<LandingPageServerSideProps> = (props) => {
     return (
         <>
-            <SEO description="Since the age of 15 software engineering enjoyer, then freelancer, now Data Science at AGH in Cracow freshman. This portfolio is an extensive introduction of my person including information regarding my previous education and working experience, my current hobbies and foremost my motives and goals. " />
+            <SEO description="Since the age of 16 software engineering enjoyer, then freelancer, now Data Science at AGH in Cracow freshman. This portfolio is an extensive introduction of my person including information regarding my previous education and working experience, my current hobbies and foremost my motives and goals. " />
             <>
                 <ScrollToParticularSection />
                 <IntroductionScreen />

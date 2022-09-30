@@ -42,7 +42,7 @@ const Competences: FunctionComponent<MUIStyledCommonProps> = (props) => {
             <RatedInStars name="Javascript" stars={4.5} description="Almost 3 years of regular use" animationDelay={0.9} />
             <RatedInStars name="Typescript" stars={4} description="Undoubtedly my favourite one" animationDelay={1} />
             <RatedInStars name="Python" stars={2} description="Have some understanding, but nothing spectacular" animationDelay={1.1} />
-            <RatedInStars name="PHP" stars={1} description="I used to know it" animationDelay={1.2} />
+            <RatedInStars name="PHP" stars={0.5} description="I used to know it" animationDelay={1.2} />
             <Label animationDelay={1.2}>Technologies</Label>
             <Paragraph animationDelay={1.3} sx={{ mt: "0" }}>
                 Only those in which I feel confident

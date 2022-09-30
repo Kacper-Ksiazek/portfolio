@@ -1,6 +1,7 @@
 // Tools
 import dynamic from "next/dynamic";
 import getHobbyIcon from "@/utils/client/getHobbyIcon";
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { uploadedHobbyImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/hobby";
 // Types
 import type { Hobby } from "@prisma/client";
@@ -39,7 +40,7 @@ const SingleHobby: FunctionComponent<SingleHobbyProps> = ({ data }) => {
                 />
             </ImageWrapper>
             <Header>{data.title}</Header>
-            <Description>{data.description}</Description>
+            <Description>{formatTextViaBolding(data.description, true)}</Description>
         </SingleHobbyWrapper>
     );
 };

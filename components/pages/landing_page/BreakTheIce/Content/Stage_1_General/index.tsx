@@ -17,11 +17,11 @@ const General: FunctionComponent<GeneralProps> = (props) => {
             <>
                 <Paragraph animationDelay={0.7}>
                     {formatTextViaBolding(`I was born in 2002 and I have lived in Poland for my entire life. *Since the age of 16* an ardent and ambitious self-advancing *software engineer*. I am trustworthy, ingenious and
-                resourceful person, role model for peers. Humility is undoubtedly my biggest quality.`)}
+                resourceful person, who has been always ready and eager to do what is favourable.`)}
                 </Paragraph>
 
                 <Paragraph animationDelay={0.8}>
-                    {formatTextViaBolding(`In the year of *2019* I began my *first commercial project*, which was a company side with a custom made CRUD for their blog and offers. I coded everything from scratch all by myself
+                    {formatTextViaBolding(`In the year of *2019* I began my *first commercial project*, which was a company side with a custom made CRUD for their blog posts and offers. I coded everything from scratch all by myself
                 using *vue 2* and *laravel* and after 3 months the work was finally done with satisfying for both me and the customer result.`)}
                 </Paragraph>
 

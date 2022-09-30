@@ -16,10 +16,10 @@ const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
     return (
         <>
             <Paragraph animationDelay={0.7}>
-                {formatTextViaBolding(`I have always been *eager to learn*, because I thing this is a great way to develop such qualities as *meticulousness*, *gratitude* and
-                *respectfulness* and furthermore I deem they considerably improve personality in general and also make farther life easier. Back in my school, I was always the student
+                {formatTextViaBolding(`I have always been *eager to learn*, because I think it is a great way to develop such qualities as *meticulousness*, *gratitude* and
+                *respectfulness* and furthermore I deem it significantly improves personality in general and also make farther life easier. Back in my school, I was always the student
                 with the best results, mainly because I was *always striving to innovate* and find more efficient solutions, but most importantly because I was
-                *never making excuses*.`)}
+                *never making excuses* and the term of hard working was never something strange for me.`)}
             </Paragraph>
             <OverflowScrollDiv
                 maxHeight="380px" //

@@ -5,14 +5,15 @@ export default (
         {
             label: "Coding",
             title: "Web development",
-            description: "From school homework, through sheer passion into near future. I honestly cannot imagine my life without this substantial factor.",
+            description:
+                "Obviously, I really like coding and it's my main form of spending free time. I used to do this simultaneously with a high school, but now I do it simultaneously with a collage.",
             folder: "coding.jpg",
             icon: "TERMINAL",
         },
         {
             label: "Music",
             title: "German gangsta rap",
-            description: "I fell in love with German language and now I am trying to learn some basics in order to understand ever more lyrics.",
+            description: `I really like the sound of the German language and I find listening to german music tranquilizing and very encouraging to learn *second foreign language*.`,
             artistReferenceURL: "https://www.youtube.com/watch?v=0NL8H1IAHVc",
             artistReferenceTooltip: "Shot from official music video Blaues Licht by Bonez MC and Raf Camora.",
             folder: "german_rap.jpg",
@@ -21,7 +22,8 @@ export default (
         {
             label: "Games",
             title: "Video games",
-            description: "After a day of innovating IT world via my clever approach to software I like to hello some other world and relieve stress.",
+            description:
+                "Due to the moving out I play video games *ever less*, because they give an oppourtunity to interact with the world of software engineering from the other perspective (consumer instead of creator) and *improve my UI UX skills*.",
             folder: "video_games.jpg",
             icon: "SPORTS_ESPORTS",
         },
