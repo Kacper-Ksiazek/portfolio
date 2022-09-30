@@ -1,6 +1,6 @@
 // Tools
 import { useRouter } from "next/router";
-import { useMainNavigation } from "@/hooks/useMainNavigation";
+import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Styled components
@@ -15,7 +15,7 @@ interface SingleNavigationRouteProps {
 
 const SingleNavigationRoute: FunctionComponent<SingleNavigationRouteProps> = (props) => {
     const router = useRouter();
-    const { blockOnScroll } = useMainNavigation();
+    const { blockOnScroll } = useMainNavigationBarContext();
 
     const onRedirectionClick = () => {
         if (router.pathname === "/") {

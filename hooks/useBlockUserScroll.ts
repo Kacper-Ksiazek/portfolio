@@ -1,7 +1,7 @@
 // Tools
 import { useRouter } from "next/router";
 import { useState, useCallback, useEffect } from "react";
-import { useMainNavigation } from "@/hooks/useMainNavigation";
+import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
 // Types
 interface UseBlockUserScrollResult {
     disableUserScroll: () => any;
@@ -11,7 +11,7 @@ interface UseBlockUserScrollResult {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (): UseBlockUserScrollResult => {
     const router = useRouter();
-    const { blockOnScroll } = useMainNavigation();
+    const { blockOnScroll } = useMainNavigationBarContext();
 
     const [formerScollY, setFormerScollY] = useState<number | null>(null);
 

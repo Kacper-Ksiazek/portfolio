@@ -1,11 +1,10 @@
 // Tools
-import { reducer } from "./reducer";
-import { createContext, useReducer, useCallback, useRef, useEffect } from "react";
+import { createContext, useState, useCallback, useRef, useEffect } from "react";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { NavigationBarReducerState } from "./reducer/@types";
 
-export interface MainNavigationBarContext extends NavigationBarReducerState {
+export interface MainNavigationBarContext {
+    appearingAnimation: null | "intro" | "outro";
     showNavigationBar: (params?: {
         /** Expressed in **ms** */
         keepNavigationVisibleFor: number;
@@ -29,64 +28,65 @@ interface MainNavigationBarContextProviderProps {
 
 export const MainNavigationBarContextProvider: FunctionComponent<MainNavigationBarContextProviderProps> = (props) => {
     const START_HIDING_THRESHOLD: number = 400; // scrollY expressed in **px**
-    const INTRO_ANIMATION_DURATION: number = 500; // in ms
-    const OUTRO_ANIMATION_DURATION: number = 500; // in ms
+    const INTRO_ANIMATION_DURATION: number = 600;
+    const OUTRO_ANIMATION_DURATION: number = 600;
 
-    const previousScrollY = useRef<number>(0);
-    const [{ appearingAnimation, blockOnScrollTriggering }, dispatch] = useReducer(reducer, {
-        appearingAnimation: null,
-        blockOnScrollTriggering: false,
-    } as NavigationBarReducerState);
+    const _previousScrollY = useRef<number>(0);
+    const _blockOnScroll = useRef<boolean>(false);
+    const _latestAppliedAnimation = useRef<MainNavigationBarContext["appearingAnimation"]>(null);
+
+    const [appearingAnimation, setAppearingAnimation] = useState<MainNavigationBarContext["appearingAnimation"]>(null);
 
     const showNavigationBar = useCallback<MainNavigationBarContext["showNavigationBar"]>((params) => {
-        dispatch({ type: "MOUNT" });
+        setAppearingAnimation("intro");
+        _latestAppliedAnimation.current = "intro";
+        _blockOnScroll.current = true;
+
         setTimeout(() => {
-            dispatch({ type: "ENABLE_ON_SCROLL" });
+            _blockOnScroll.current = false;
         }, INTRO_ANIMATION_DURATION + (params ? params.keepNavigationVisibleFor : 0));
     }, []);
 
     const hideNavigationBar = useCallback<MainNavigationBarContext["hideNavigationBar"]>((params) => {
-        dispatch({ type: "PLAY_OUTRO_ANIMATION" });
+        setAppearingAnimation("outro");
+        _latestAppliedAnimation.current = "outro";
+        _blockOnScroll.current = true;
+
         setTimeout(() => {
-            dispatch({
-                type: "UNMOUNT",
-                payload: {
-                    enableOnScroll: params === undefined,
-                },
-            });
-            if (params !== undefined) {
-                setTimeout(() => dispatch({ type: "ENABLE_ON_SCROLL" }), params.keepNavigationHiddenFor);
-            }
-        }, OUTRO_ANIMATION_DURATION);
+            _blockOnScroll.current = false;
+        }, OUTRO_ANIMATION_DURATION + (params ? params.keepNavigationHiddenFor : 0));
     }, []);
 
     const handleOnScroll = useCallback(() => {
-        if (blockOnScrollTriggering) return;
+        if (_blockOnScroll.current) return;
         // Page has not been already loaded case
-        if (previousScrollY.current === null) {
-            previousScrollY.current = scrollY;
+        if (_previousScrollY.current === null) {
+            _previousScrollY.current = scrollY;
             return;
         }
 
-        if (scrollY <= START_HIDING_THRESHOLD && appearingAnimation === "outro") {
+        if (scrollY <= START_HIDING_THRESHOLD && _latestAppliedAnimation.current === "outro") {
             showNavigationBar();
-        }
-        // Hide currently displaying navigation bar
-        else if (previousScrollY.current < scrollY && appearingAnimation !== "outro" && scrollY > START_HIDING_THRESHOLD) {
-            hideNavigationBar();
-        }
-        // Display hidden navigation bar again
-        else if (previousScrollY.current > scrollY && appearingAnimation !== "intro" && scrollY > START_HIDING_THRESHOLD) {
-            showNavigationBar();
+        } else if (scrollY > START_HIDING_THRESHOLD) {
+            // Hide currently displaying navigation bar
+            if (_previousScrollY.current < scrollY && _latestAppliedAnimation.current !== "outro") {
+                hideNavigationBar();
+            }
+            // Display hidden navigation bar again
+            if (_previousScrollY.current > scrollY && _latestAppliedAnimation.current !== "intro") {
+                showNavigationBar();
+            }
         }
 
-        previousScrollY.current = scrollY;
-    }, [appearingAnimation, blockOnScrollTriggering, hideNavigationBar, showNavigationBar]);
+        _previousScrollY.current = scrollY;
+    }, [hideNavigationBar, showNavigationBar]);
 
-    const blockOnScroll: MainNavigationBarContext["blockOnScroll"] = (params) => {
-        dispatch({ type: "DISABLE_ON_SCROLL" });
-        setTimeout(() => dispatch({ type: "ENABLE_ON_SCROLL" }), params.time);
-    };
+    const preventOnScroll = useCallback<MainNavigationBarContext["blockOnScroll"]>((params) => {
+        _blockOnScroll.current = true;
+        setTimeout(() => {
+            _blockOnScroll.current = false;
+        }, params.time);
+    }, []);
 
     useEffect(() => {
         window.addEventListener("scroll", handleOnScroll);
@@ -95,16 +95,13 @@ export const MainNavigationBarContextProvider: FunctionComponent<MainNavigationB
         };
     }, [handleOnScroll]);
 
-    useEffect(() => dispatch({ type: "RESET" }), [props.pathname]);
-
     return (
         <MainNavigationBarContext.Provider
             value={{
-                appearingAnimation, //
-                blockOnScrollTriggering,
-                blockOnScroll,
-                showNavigationBar,
+                appearingAnimation,
                 hideNavigationBar,
+                showNavigationBar,
+                blockOnScroll: preventOnScroll,
             }}
         >
             {props.children}

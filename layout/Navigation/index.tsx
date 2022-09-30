@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import useStylesOnScoll from "./hooks/useOnScollStyles";
 import { useStylesBasedOnURL } from "./hooks/useStylesBasedOnURL";
 import { useMobileMenuHandlers } from "./hooks/useMobileMenuHandlers";
-import { useMainNavigationBarContext } from "../global/MainNavigationBarContext/useMainNavigationBarContext";
+import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";

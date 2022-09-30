@@ -14,7 +14,6 @@ const ExternalRedirection: FunctionComponent<RedirectionProps> = (props) => {
     const ExternalRedirectionRef = useRef<HTMLButtonElement | null>(null);
 
     const onClick = () => {
-        console.log(ExternalRedirectionRef.current);
         ExternalRedirectionRef.current?.blur();
     };
 

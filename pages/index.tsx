@@ -1,8 +1,5 @@
 // Tools
-import { useEffect } from "react";
 import { prisma } from "@/prisma/db";
-import { useRouter } from "next/router";
-import { useMainNavigation } from "@/hooks/useMainNavigation";
 import { formatProjectDate } from "@/utils/api/date-formatter";
 // Types
 import type { NextPage, GetServerSideProps } from "next";
@@ -16,36 +13,16 @@ import ToDoList from "@/components/pages/landing_page/ToDoList";
 import BreakTheIce from "@/components/pages/landing_page/BreakTheIce";
 import IntroductionScreen from "@/components/pages/landing_page/IntroductionScreen";
 import PicturesMatchingGame from "@/components/pages/landing_page/PicturesMatchingGame";
+import ScrollToParticularSection from "@/components/pages/landing_page/ScrollToParticularSection";
 // Material UI Icons
 
 const Home: NextPage<LandingPageServerSideProps> = (props) => {
-    const router = useRouter();
-    const { showNavigationBar } = useMainNavigation();
-
-    useEffect(() => {
-        let timeout: ReturnType<typeof setTimeout> | null = null;
-
-        if (router.query.scrollToElement) {
-            const el = document.getElementById(router.query.scrollToElement as string);
-
-            showNavigationBar({ keepNavigationVisibleFor: 800 });
-            timeout = setTimeout(() => {
-                if (el) {
-                    window.scrollTo(0, el.getBoundingClientRect().top + window.pageYOffset - 80);
-                }
-            }, 50);
-        }
-
-        return () => {
-            if (timeout !== null) clearTimeout(timeout);
-        };
-    }, [router.query, showNavigationBar]);
-
     return (
         <>
             <Head>
                 <title>Kacper Książek</title>
             </Head>
+            <ScrollToParticularSection />
             <IntroductionScreen />
             <BreakTheIce
                 hobbies={props.hobbies} //
