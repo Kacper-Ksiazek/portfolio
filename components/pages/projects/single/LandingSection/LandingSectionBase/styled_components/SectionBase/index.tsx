@@ -6,7 +6,6 @@ import Section from "@/components/atoms/content_placement/SectionWrapper/Light/L
 
 export default styled(Section)(({ theme }) => ({
     borderRadius: "",
-    top: "-100px",
     background: theme.palette.background.paper,
     zIndex: 1000,
     minHeight: "calc(100vh - 40px)",
@@ -14,8 +13,11 @@ export default styled(Section)(({ theme }) => ({
     display: "flex",
     paddingTop: "0 !important",
     paddingBottom: "0px !important",
+    marginBottom: "60px",
     //
-    "&.is-hovered": onHoverStyles,
+    "&.is-hovered": {
+        ...(onHoverStyles as any),
+    },
     // Styled
     "&.preview-mode": {
         img: {
@@ -27,7 +29,6 @@ export default styled(Section)(({ theme }) => ({
         },
     },
     ["@media (max-width:500px)"]: {
-        top: "-110px",
         minHeight: "calc(100vh - 20px)",
     },
 }));

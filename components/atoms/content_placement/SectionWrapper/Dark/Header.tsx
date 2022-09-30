@@ -7,7 +7,7 @@ const HeaderWrapper = styled("header")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: "20px",
+    marginBottom: "32px",
     userSelect: "none",
     color: "#fff",
     textAlign: "center",

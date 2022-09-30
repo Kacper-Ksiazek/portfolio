@@ -76,7 +76,10 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
     }, [isVisible, props, props.onVisible]);
     // Add `.visible` class to the first children
     useEffect(() => {
-        if (width < 1000) return;
+        if (width < 1000) {
+            if (props.onVisible) props.onVisible();
+            return;
+        }
 
         if (wrapperElement.current?.firstChild) {
             if (isVisible) {
@@ -96,7 +99,7 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
             //     (wrapperElement.current.firstChild as any).classList.add("not-visable");
             // }
         }
-    }, [isVisible, props.removeVisibleCSSClassIn, width]);
+    }, [isVisible, props.removeVisibleCSSClassIn, width, props.onVisible, props]);
 
     // Remove `visible` class after fixed period of the time
     useEffect(() => {

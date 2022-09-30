@@ -62,12 +62,14 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
                 tooltip="Modify" //
                 icon={<Settings />}
                 onClick={() => setDisplayEditMode(true)}
+                className="task-management"
             />
 
             <TaskManagementButton
                 tooltip="Delete" //
                 icon={<Delete />}
                 onClick={() => setDisplayDeletionConfirmation(true)}
+                className="task-management"
             />
 
             {displayEditMode && (

@@ -10,7 +10,7 @@ export const CounterWrapperPlaceholder = styled("div")(({ theme }) => ({
 }));
 
 export default styled(CounterWrapperPlaceholder)(({ theme }) => ({
-    width: "40px",
+    width: "50px",
     height: "40px",
     position: "relative",
     marginLeft: "8px",

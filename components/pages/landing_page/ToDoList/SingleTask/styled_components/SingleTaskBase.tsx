@@ -42,4 +42,7 @@ export default styled("div")(({ theme }) => ({
         marginTop: "0px !important",
         padding: 0,
     },
+    ["@media (max-width:800px)"]: {
+        maxHeight: "100px",
+    },
 }));

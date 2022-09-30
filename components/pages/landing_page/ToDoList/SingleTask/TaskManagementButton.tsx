@@ -20,6 +20,8 @@ interface TaskManagementButtonProps {
     color?: Color;
     disabled?: boolean;
     tabIndex?: number;
+    className?: string;
+
     onClick: () => void;
 }
 
@@ -32,7 +34,7 @@ const TaskManagementButton: FunctionComponent<TaskManagementButtonProps> = (prop
             <span>
                 <TaskManagementButtonBase
                     onClick={props.onClick} //
-                    className="task-management"
+                    className={props.className}
                     color={props.color}
                     tabIndex={props.tabIndex}
                     disabled={props.disabled}

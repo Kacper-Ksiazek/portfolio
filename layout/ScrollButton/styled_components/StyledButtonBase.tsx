@@ -54,6 +54,7 @@ export default styled(ButtonBase)(({ theme }) => ({
     "&.spinning": {
         width: "50px",
         height: "50px",
+        borderRadius: "5px 20px 5px 20px",
         animation: `${keyframes.spinning} .5s both linear`,
         svg: {
             opacity: 1,

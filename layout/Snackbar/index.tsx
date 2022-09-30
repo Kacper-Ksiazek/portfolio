@@ -15,6 +15,12 @@ const SnackbarsWrapper = styled("section")(({ theme }) => ({
     display: "flex",
     alignItems: "flex-end",
     flexDirection: "column-reverse",
+    ["@media (max-width:500px)"]: {
+        right: "0",
+        width: "100%",
+        padding: "0 10px",
+        boxSizing: "border-box",
+    },
 }));
 const Snackbar: FunctionComponent = () => {
     const context = useContext(SnackbarContext);

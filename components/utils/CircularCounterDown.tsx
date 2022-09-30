@@ -1,6 +1,5 @@
 // Tools
 import { useEffect, useState } from "react";
-// Types
 // Material UI Components
 import CircularProgress from "@mui/material/CircularProgress";
 
