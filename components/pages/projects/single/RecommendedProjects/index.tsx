@@ -24,6 +24,7 @@ const ContentWrapper = styled("div")(({ theme }) => ({
 
 const InformationAboutNumberOfProjects = styled("span")(({ theme }) => ({
     animation: `${fadeFromTop} .3s .5s both linear`,
+    fontSize: "18px",
 }));
 
 interface RecommendedProjectsProps {
