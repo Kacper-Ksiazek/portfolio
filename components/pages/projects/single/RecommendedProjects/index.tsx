@@ -1,7 +1,10 @@
 // Tools
+import RWD from "./RWD";
 import { useMemo } from "react";
 import { styled } from "@mui/system";
+import introAnimations from "./introAnimations";
 import useWindowSizes from "@/hooks/useWindowSizes";
+import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
@@ -20,10 +23,12 @@ const ContentWrapper = styled("div")(({ theme }) => ({
     flexGrow: 1,
     flexDirection: "column",
     minHeight: "540px",
+    ...(mergeSXObjects(RWD, introAnimations) as any),
 }));
 
 const InformationAboutNumberOfProjects = styled("span")(({ theme }) => ({
     animation: `${fadeFromTop} .3s .5s both linear`,
+    fontSize: "18px",
 }));
 
 interface RecommendedProjectsProps {

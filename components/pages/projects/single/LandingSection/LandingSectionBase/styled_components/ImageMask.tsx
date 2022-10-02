@@ -7,7 +7,7 @@ export default styled("span")(({ theme }) => ({
     left: 0,
     width: "100%",
     height: "100%",
-    background: alpha(theme.palette.background.paper, 0.75),
+    background: alpha(theme.palette.background.paper, 0.65),
     zIndex: 7,
     transition: "opacity 1s",
 }));

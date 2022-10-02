@@ -2,7 +2,7 @@
 import type { SxProps } from "@mui/system";
 
 export default {
-    ".carosuel-wrapper": {
+    ".single-recommended-project": {
         ["@media (max-width:1450px)"]: {
             ".thumbnail-wrapper": {
                 height: "260px",

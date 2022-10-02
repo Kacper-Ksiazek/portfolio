@@ -28,10 +28,16 @@ const ProjectDescription: FunctionComponent<ProjectDescriptionWrapperProps> = ({
                     header="Conclusion and finals thoughts" //
                     body={description.conclusion}
                 />
-                <ParagraphWrapper
-                    header="Features gallery" //
-                    body={`This particular project includes *${amountOfFeatures}* features in total.`}
-                />
+                {(() => {
+                    if (amountOfFeatures > 0) {
+                        return (
+                            <ParagraphWrapper
+                                header="Features gallery" //
+                                body={`This particular project includes *${amountOfFeatures}* features in total.`}
+                            />
+                        );
+                    }
+                })()}
             </ProjectDescriptionBase>
         </VisibilitySensor>
     );
