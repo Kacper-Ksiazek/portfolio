@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import { mergeObjects } from "@/utils/client/mergeSXObjects";
+import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
 //
 import RWD from "./RWD";
 import introAnimatins from "./introAnimations";
@@ -19,5 +19,5 @@ export default styled(Section)(({ theme }) => ({
     height: "100vh",
     marginBottom: "60px",
     //
-    ...mergeObjects(introAnimatins, RWD),
+    ...mergeSXObjects(introAnimatins, RWD),
 }));

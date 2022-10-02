@@ -16,6 +16,7 @@ export interface RecommendedProject {
     folder: Project["folder"];
     end: string;
     start: string;
+    numberOfFeautres: number;
     shortDescription: Project["shortDescription"];
     releventTechnologies: Project["releventTechnologies"];
 }

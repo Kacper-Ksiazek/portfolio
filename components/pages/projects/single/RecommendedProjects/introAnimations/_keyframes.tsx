@@ -1,7 +1,40 @@
 // Tools
+import theme from "@/material";
 import { keyframes } from "@mui/system";
 
-export const imageIntroFast = keyframes({
+export const numberOfFeaturesBarIntro = keyframes({
+    "0%": {
+        width: "0%",
+        right: "auto",
+        left: 0,
+    },
+    "33%,65%": {
+        width: "100%",
+        right: "auto",
+        left: 0,
+    },
+    "66%": {
+        width: "100%",
+        left: "auto",
+        right: 0,
+    },
+    "100%": {
+        width: "0",
+        left: "auto",
+        right: 0,
+        display: "none",
+    },
+});
+export const numberOfFeaturesBackgroundTransform = keyframes({
+    from: {
+        background: "transparent",
+    },
+    to: {
+        background: theme.palette.primary.main,
+    },
+});
+
+export const thumbnailIntroFast = keyframes({
     "0%": {
         opacity: 0,
         transform: "scale(1,.05) translate(calc(-100% - 100px),0)",
@@ -22,7 +55,7 @@ export const imageIntroFast = keyframes({
         transform: "scale(.05,1) translate(0%, calc(100% + 20px))",
     },
 });
-export const imageIntroSlow = keyframes({
+export const thumbnailIntroSlow = keyframes({
     "0%": {
         opacity: 0,
         transform: "scale(1,.05) translate(calc(-100% - 100px),0)",

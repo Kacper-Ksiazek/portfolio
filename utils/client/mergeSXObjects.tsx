@@ -1,7 +1,7 @@
 // Types
 import type { SxProps } from "@mui/system";
 
-export const mergeObjects = (...objectToMerge: SxProps[]): Record<any, any> => {
+export const mergeSXObjects = (...objectToMerge: SxProps[]): Record<any, any> => {
     const result: Record<any, any> = {};
 
     objectToMerge.forEach((singleObject) => {

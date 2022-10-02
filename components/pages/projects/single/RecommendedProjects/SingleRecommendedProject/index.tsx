@@ -1,4 +1,5 @@
 // Tools
+import dynamic from "next/dynamic";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
@@ -9,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Thumbnail from "./Thumbnail";
 import Duration from "@/components/atoms/single_project/Duration";
 import TechnologiesList from "@/components/atoms/TechnologiesList";
+const NumberOfFeatures = dynamic(() => import("./NumberOfFeatures"));
 // Styled components
 import Header from "./styled_components/Header";
 import ReadMore from "./styled_components/ReadMore";
@@ -21,7 +23,7 @@ interface SingleRecommendedProjectProps {
 
 const SingleRecommendedProject: FunctionComponent<SingleRecommendedProjectProps> = ({ data, numberOfTechnologiesToDisplay }) => {
     return (
-        <SingleRecommendedProjectBase>
+        <SingleRecommendedProjectBase className="single-recommended-project">
             <Duration end={data.end} start={data.start} smaller />
             <Header className={data.title.length > 20 ? "long-header" : ""}>{data.title}</Header>
             <TechnologiesList
@@ -30,7 +32,11 @@ const SingleRecommendedProject: FunctionComponent<SingleRecommendedProjectProps>
                 doNotWrap
                 thereAreMoreTechnologies={data.releventTechnologies.length > numberOfTechnologiesToDisplay}
             />
-            <Thumbnail folder={data.folder} id={data.id} />
+
+            <Thumbnail folder={data.folder} id={data.id}>
+                {data.numberOfFeautres ? <NumberOfFeatures numberOfFeatures={data.numberOfFeautres} /> : <></>}
+            </Thumbnail>
+
             <Typography variant="body1" sx={{ flexGrow: 1 }}>
                 {formatTextViaBolding(data.shortDescription.slice(0, 150))}
                 <span>{` ...`}</span>

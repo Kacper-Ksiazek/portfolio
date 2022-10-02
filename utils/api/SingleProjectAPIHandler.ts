@@ -3,7 +3,20 @@ import { prisma } from "@/prisma/db";
 import { NotFound } from "@/utils/api/errors";
 import { formatProjectDate } from "@/utils/api/date-formatter";
 // Types
+import { Prisma } from "@prisma/client";
 import type { Project, RecommendedProject, SingleProjectAPIHandlerResponse } from "@/@types/pages/projects/SingleProject";
+
+interface RawRecommendedProject {
+    id: Project["liveDemoURL"];
+    end: Date;
+    title: Project["title"];
+    folder: Project["folder"];
+    start: Date;
+    shortDescription: Project["shortDescription"];
+    releventTechnologies: string[];
+    features: Prisma.JsonValue;
+}
+
 /**
  * This class handles fetching certain project corresponding passed in constructor id and furthermore fetches
  * all remaining projects but in truncated version
@@ -32,7 +45,7 @@ export default class SingleProjectAPIHandler {
     }
 
     private async fetchRecommendedProjects(): Promise<RecommendedProject[]> {
-        const recommendedProjects = await prisma.project.findMany({
+        const recommendedProjects: RawRecommendedProject[] = await prisma.project.findMany({
             where: { id: { not: this.projectID } },
             select: {
                 id: true,
@@ -42,13 +55,21 @@ export default class SingleProjectAPIHandler {
                 start: true,
                 shortDescription: true,
                 releventTechnologies: true,
+                features: true,
             },
         });
 
-        return recommendedProjects.map((project) => {
-            (project as any).start = formatProjectDate(project.start);
-            (project as any).end = formatProjectDate(project.end);
-            return project;
+        return recommendedProjects.map((rawProject: RawRecommendedProject) => {
+            return {
+                id: rawProject.id,
+                title: rawProject.title,
+                start: formatProjectDate(rawProject.start),
+                end: formatProjectDate(rawProject.end),
+                folder: rawProject.folder,
+                shortDescription: rawProject.shortDescription,
+                releventTechnologies: rawProject.releventTechnologies,
+                numberOfFeautres: (rawProject.features as any[]).length,
+            } as RecommendedProject;
         }) as any;
     }
 }
