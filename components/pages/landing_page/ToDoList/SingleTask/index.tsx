@@ -35,8 +35,8 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
         }, 650);
     };
 
-    const handleModification = (vaLue: string) => {
-        props.modifyThisTask(vaLue);
+    const handleModification = (val: string) => {
+        props.modifyThisTask(val);
     };
 
     useEffect(() => {

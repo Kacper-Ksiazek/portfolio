@@ -40,6 +40,7 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
         if (isVisible) return;
 
         if (visibility) {
+            if (props.onVisible) props.onVisible();
             if (props.observerID) {
                 const propName = `VISIBILITY_SENSOR_TIMEOUT_${props.observerID}`;
                 if (window.hasOwnProperty(propName)) {
@@ -70,14 +71,11 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
         }
     };
 
-    // Trigger callback
-    useEffect(() => {
-        if (isVisible && props.onVisible) props.onVisible();
-    }, [isVisible, props, props.onVisible]);
     // Add `.visible` class to the first children
     useEffect(() => {
-        if (width < 1000) {
+        if (width && width < 1000) {
             if (props.onVisible) props.onVisible();
+
             return;
         }
 
