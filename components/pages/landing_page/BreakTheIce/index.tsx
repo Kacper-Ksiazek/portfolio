@@ -17,7 +17,7 @@ import BreakTheIceBase from "./styled_components/BreakTheIceBase";
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 
 const BreakTheIce: FunctionComponent = () => {
-    const { currentIceBreakingStage, blockStageChanging } = useBreakTheIceContentContext();
+    const { currentIceBreakingStage, blockStageChanging, ...context } = useBreakTheIceContentContext();
 
     const [letter, setLetter] = useState<string>("K");
 

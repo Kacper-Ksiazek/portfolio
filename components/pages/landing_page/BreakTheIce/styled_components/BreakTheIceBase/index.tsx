@@ -11,7 +11,9 @@ export default styled("div")(({ theme }) => ({
     width: "100%",
     "&.visible": {
         "#picture-main-wrapper": {
-            animation: `${fadeSimple} .5s .5s both`,
+            "&.play-intro-animation": {
+                animation: `${fadeSimple} .5s .5s both`,
+            },
         },
     },
     ...(RWD as any),

@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent, MutableRefObject } from "react";
@@ -26,7 +26,10 @@ const PictureBase = styled("div")(({ theme }) => ({
 }));
 
 const Picture: FunctionComponent = () => {
+    const INTRO_ANIMATION_DURATION: number = 2000;
     const { currentIceBreakingStage, previousIceBreakingStage } = useBreakTheIceContentContext();
+
+    const [playIntroAnimation, setPlayIntroAnimation] = useState<boolean>(true);
 
     const LeftHorizontalRectangleElement = useRef<HTMLSpanElement | null>(null);
     const LeftVerticalRectangleElement = useRef<HTMLSpanElement | null>(null);
@@ -62,8 +65,22 @@ const Picture: FunctionComponent = () => {
         }, 1200);
     }, [AllRefs, currentIceBreakingStage]);
 
+    useEffect(() => {
+        const currentTimeout: ReturnType<typeof setTimeout> = setTimeout(() => {
+            setPlayIntroAnimation(false);
+        }, INTRO_ANIMATION_DURATION);
+
+        return () => {
+            clearTimeout(currentTimeout);
+        };
+    }, []);
+
     return (
-        <PictureSectionWrapper key={currentIceBreakingStage} id="picture-main-wrapper">
+        <PictureSectionWrapper
+            key={currentIceBreakingStage} //
+            id="picture-main-wrapper"
+            className={playIntroAnimation ? "play-intro-animation" : ""}
+        >
             <PictureWrapper id="picture-direct-wrapper">
                 <Rectangle className="left-horizontal" ref={LeftHorizontalRectangleElement} />
                 <Rectangle className="left-vertical" ref={LeftVerticalRectangleElement} />

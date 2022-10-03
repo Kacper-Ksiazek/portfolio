@@ -1,5 +1,5 @@
 // Tools
-import { createContext, useState, useEffect, useRef } from "react";
+import { createContext, useState, useRef } from "react";
 // Types
 import type { Hobby, School } from "@prisma/client";
 import type { ReactNode, FunctionComponent } from "react";
