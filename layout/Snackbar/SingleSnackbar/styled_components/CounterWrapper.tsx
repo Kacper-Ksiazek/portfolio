@@ -10,13 +10,12 @@ export const CounterWrapperPlaceholder = styled("div")(({ theme }) => ({
 }));
 
 export default styled(CounterWrapperPlaceholder)(({ theme }) => ({
-    width: "50px",
-    height: "40px",
-    position: "relative",
-    marginLeft: "8px",
     overflow: "hidden",
     cursor: "pointer",
     animation: `${fadeSimple} .3s linear`,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     ".MuiCircularProgress-svg": {
         color: "#fff",
     },
