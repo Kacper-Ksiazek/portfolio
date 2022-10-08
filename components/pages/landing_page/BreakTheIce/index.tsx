@@ -17,7 +17,7 @@ import BreakTheIceBase from "./styled_components/BreakTheIceBase";
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 
 const BreakTheIce: FunctionComponent = () => {
-    const { currentIceBreakingStage, blockStageChanging, ...context } = useBreakTheIceContentContext();
+    const { currentIceBreakingStage } = useBreakTheIceContentContext();
 
     const [letter, setLetter] = useState<string>("K");
 
@@ -47,16 +47,13 @@ const BreakTheIce: FunctionComponent = () => {
             contentWrapperSx={{ display: "flex" }}
         >
             <VisibilitySensor
-                offsetBottom={400} //
+                offsetBottom={250} //
                 dontRenderNotVisableChildren
                 removeVisibleCSSClassIn={2300}
                 childWrapperSx={{
                     height: "100%",
                     flexGrow: 1,
                     display: "flex",
-                }}
-                onVisible={() => {
-                    blockStageChanging({ time: 2300 });
                 }}
             >
                 <BreakTheIceBase>

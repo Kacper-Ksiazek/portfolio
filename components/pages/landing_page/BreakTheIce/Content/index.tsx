@@ -52,7 +52,10 @@ const BreakTheIceContent: FunctionComponent = () => {
 
     return (
         <ContentWrapper id="content-main-wrapper">
-            <ContentOnCertainStage stage={previousIceBreakingStage ?? currentIceBreakingStage} />
+            <ContentOnCertainStage
+                stage={previousIceBreakingStage ?? currentIceBreakingStage} //
+                suspenceGeneralInfoStageRendering={previousIceBreakingStage === null}
+            />
 
             <Rectangle id="rect-one" ref={RectangleOneElement} />
             <Rectangle id="rect-two" ref={RectangleTwoElement} />

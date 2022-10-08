@@ -1,5 +1,5 @@
 // Tools
-import { createContext, useState, useRef } from "react";
+import { createContext, useState, useRef, useCallback } from "react";
 // Types
 import type { Hobby, School } from "@prisma/client";
 import type { ReactNode, FunctionComponent } from "react";
@@ -37,26 +37,30 @@ export const BreakTheIceContextProvider: FunctionComponent<BreakTheIceContextPro
     const [currentIceBreakingStage, setCurrentIceBreakingStage] = useState<IceBreakingStage>("General");
     const [previousIceBreakingStage, setPreviousIceBreakingStage] = useState<IceBreakingStage | null>(null);
 
-    const changeStage = (val: IceBreakingStage) => {
-        if (!_preventFromChangingStage.current) {
+    const changeStage = useCallback((newIceBreakingStage: IceBreakingStage) => {
+        if (_preventFromChangingStage.current === false) {
             _preventFromChangingStage.current = true;
 
-            setCurrentIceBreakingStage(val);
-            setPreviousIceBreakingStage(currentIceBreakingStage);
+            setCurrentIceBreakingStage((currentIceBreakingStage) => {
+                setPreviousIceBreakingStage(currentIceBreakingStage);
+                return newIceBreakingStage;
+            });
             setTimeout(() => {
                 setPreviousIceBreakingStage(null);
             }, 1000);
 
-            setTimeout(() => _preventFromChangingStage.current, ALL_ANIMATIONS_DURATION);
+            setTimeout(() => {
+                _preventFromChangingStage.current = false;
+            }, ALL_ANIMATIONS_DURATION);
         }
-    };
+    }, []);
 
-    const blockStageChanging: BreakTheIceContextInterface["blockStageChanging"] = (params) => {
+    const blockStageChanging: BreakTheIceContextInterface["blockStageChanging"] = useCallback((params) => {
         _preventFromChangingStage.current = true;
         setTimeout(() => {
             _preventFromChangingStage.current = false;
         }, params.time);
-    };
+    }, []);
 
     return (
         <BreakTheIceContext.Provider

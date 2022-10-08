@@ -13,20 +13,26 @@ const Stage_5_Previous_Jobs = dynamic(() => import("./Stage_5_Previous_Jobs"));
 
 interface ContentOnCertainStageProps {
     stage: IceBreakingStage;
+    suspenceGeneralInfoStageRendering: boolean;
 }
 
 const ContentOnCertainStage: FunctionComponent<ContentOnCertainStageProps> = (props) => {
     const [renderGeneralStage, setRenderGeneralStage] = useState<boolean>(false);
 
+    // Following timeout is required due to the fact, that the intro animation (this animation triggered onScroll) is slighty longer rather than the animation fired between changing sections
     useEffect(() => {
-        let isMounted = false;
-        setTimeout(() => {
-            if (isMounted) setRenderGeneralStage(true);
-        }, 1100);
-        return () => {
-            isMounted = true;
-        };
-    }, []);
+        const INITIAL_INTRO_ANIMATION_DURATION: number = 900;
+
+        if (props.suspenceGeneralInfoStageRendering) {
+            const timeout: ReturnType<typeof setTimeout> = setTimeout(() => {
+                setRenderGeneralStage(true);
+            }, INITIAL_INTRO_ANIMATION_DURATION);
+
+            return () => {
+                clearTimeout(timeout);
+            };
+        }
+    }, [props.suspenceGeneralInfoStageRendering]);
 
     switch (props.stage) {
         case "General":
