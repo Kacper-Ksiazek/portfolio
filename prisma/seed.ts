@@ -92,6 +92,8 @@ class PrismaSeeder extends ConsolePrettier {
 }
 
 const main = async () => {
+    await fse.ensureDir(uploadDir);
+
     await new PrismaSeeder({
         seeders: [
             {
