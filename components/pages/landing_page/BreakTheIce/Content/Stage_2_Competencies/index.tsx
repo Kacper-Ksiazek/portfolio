@@ -31,7 +31,7 @@ const DisplayTechnologiesWrapper = styled("div")(({ theme }) => ({
     },
 }));
 
-const Competences: FunctionComponent<MUIStyledCommonProps> = (props) => {
+const Competencies: FunctionComponent<MUIStyledCommonProps> = (props) => {
     return (
         <>
             <Paragraph animationDelay={0.7}>
@@ -79,4 +79,4 @@ const Competences: FunctionComponent<MUIStyledCommonProps> = (props) => {
     );
 };
 
-export default Competences;
+export default Competencies;

@@ -6,7 +6,7 @@ import type { FunctionComponent } from "react";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components
 const Stage_1_General = dynamic(() => import("./Stage_1_General"));
-const Stage_2_Competences = dynamic(() => import("./Stage_2_Competences"));
+const Stage_2_Competencies = dynamic(() => import("./Stage_2_Competencies"));
 const Stage_3_Education = dynamic(() => import("./Stage_3_Education"));
 const Stage_4_Hobbies = dynamic(() => import("./Stage_4_Hobbies"));
 const Stage_5_Previous_Jobs = dynamic(() => import("./Stage_5_Previous_Jobs"));
@@ -37,8 +37,8 @@ const ContentOnCertainStage: FunctionComponent<ContentOnCertainStageProps> = (pr
     switch (props.stage) {
         case "General":
             return <Stage_1_General renderContent={renderGeneralStage} />;
-        case "Competences":
-            return <Stage_2_Competences />;
+        case "Competencies":
+            return <Stage_2_Competencies />;
         case "Education":
             return <Stage_3_Education />;
         case "Hobbies":

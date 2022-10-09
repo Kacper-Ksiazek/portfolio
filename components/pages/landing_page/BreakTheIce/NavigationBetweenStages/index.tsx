@@ -9,7 +9,7 @@ import SingleNavigationStep from "./SingleNavigationStep";
 import NavigationBetweenStagesBase from "./NavigationBetweenStagesBase";
 
 const NavigationBetweenStages: FunctionComponent = () => {
-    const stages: IceBreakingStage[] = ["General", "Competences", "Education", "Hobbies", "Previous_Jobs"];
+    const stages: IceBreakingStage[] = ["General", "Competencies", "Education", "Hobbies", "Previous_Jobs"];
     const context = useBreakTheIceContentContext();
 
     return (

@@ -25,7 +25,7 @@ const BreakTheIce: FunctionComponent = () => {
     useEffect(() => {
         const letters: Record<IceBreakingStage, string> = {
             General: "K",
-            Competences: "A",
+            Competencies: "A",
             Education: "C",
             Hobbies: "P",
             Previous_Jobs: "E",

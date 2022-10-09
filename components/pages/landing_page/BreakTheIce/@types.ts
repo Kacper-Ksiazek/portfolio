@@ -1,1 +1,1 @@
-export type IceBreakingStage = "General" | "Competences" | "Education" | "Hobbies" | "Previous_Jobs";
+export type IceBreakingStage = "General" | "Competencies" | "Education" | "Hobbies" | "Previous_Jobs";

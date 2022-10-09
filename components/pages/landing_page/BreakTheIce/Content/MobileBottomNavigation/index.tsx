@@ -12,8 +12,8 @@ const MobileBottomNavigation: FunctionComponent = () => {
     const context = useBreakTheIceContentContext();
 
     const stages: Record<IceBreakingStage, IceBreakingStage> = {
-        General: "Competences",
-        Competences: "Education",
+        General: "Competencies",
+        Competencies: "Education",
         Education: "Hobbies",
         Hobbies: "Previous_Jobs",
         Previous_Jobs: "General",
