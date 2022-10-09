@@ -25,7 +25,7 @@ const MobileBottomNavigation: FunctionComponent = () => {
         const el = document.getElementById("about-me");
         if (el) {
             scrollTo({
-                top: el.getBoundingClientRect().y,
+                top: el.getBoundingClientRect().top + window.pageYOffset - 80,
                 behavior: "smooth",
             });
             setTimeout(() => {

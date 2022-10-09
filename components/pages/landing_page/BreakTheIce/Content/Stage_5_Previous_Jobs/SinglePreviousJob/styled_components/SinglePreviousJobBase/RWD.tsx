@@ -4,9 +4,15 @@ import type { SxProps } from "@mui/system";
 export default {
     ["@media (max-width:600px)"]: {
         flexDirection: "column !important",
-        "&::before": {
-            left: "auto !important",
-            right: "20px !important",
+        "&:nth-of-type(odd)": {
+            "&::before": {
+                left: "20px",
+            },
+        },
+        "&:nth-of-type(even)": {
+            "&::before": {
+                right: "20px",
+            },
         },
         "&>*": {
             width: "100% !important",

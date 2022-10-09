@@ -1,6 +1,7 @@
 // Tools
 import { useState } from "react";
 import { styled } from "@mui/system";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Types
 import type { FunctionComponent } from "react";
@@ -37,7 +38,10 @@ const PreviewBackgroundPictureBase = styled(Button)(({ theme }) => ({
 }));
 
 const PreviewBackgroundPicture: FunctionComponent = (props) => {
+    const { width } = useWindowSizes();
     const [openModal, setOpenModal] = useState<boolean>(false);
+
+    if (width < 500) return <></>;
 
     return (
         <>
