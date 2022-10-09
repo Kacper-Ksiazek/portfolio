@@ -35,7 +35,7 @@ export default {
         height: "450px",
     },
     ["@media (max-width:550px)"]: {
-        height: "400px",
+        height: "420px",
         ".image-wrapper": {
             height: "220px",
             margin: "8px 0",
