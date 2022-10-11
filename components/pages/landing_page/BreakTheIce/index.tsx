@@ -1,5 +1,6 @@
 // Tools
 import { useState, useEffect } from "react";
+import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
 import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -18,6 +19,18 @@ import LightSectionWrapper from "@/components/atoms/content_placement/SectionWra
 
 const BreakTheIce: FunctionComponent = () => {
     const { currentIceBreakingStage } = useBreakTheIceContentContext();
+
+    useLazyLoadedImages({
+        srcsToLazyLoad: (
+            [
+                "Competencies", //
+                "Education",
+                "General",
+                "Hobbies",
+                "Previous_Jobs",
+            ] as IceBreakingStage[]
+        ).map((stage) => `/images/landing-page/${stage}.jpg`),
+    });
 
     const [letter, setLetter] = useState<string>("K");
 

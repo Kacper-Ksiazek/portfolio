@@ -1,3 +1,5 @@
+// Tools
+import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
 // Types
 import type { FunctionComponent } from "react";
 import type { ReleventTechnology } from "@/@types/prisma/Project";
@@ -13,6 +15,10 @@ interface ReleventTechnologiesProps {
 }
 
 const ReleventTechnologies: FunctionComponent<ReleventTechnologiesProps> = (props) => {
+    useLazyLoadedImages({
+        srcsToLazyLoad: props.techStack.map((technology) => `/images/technologies/white/${technology}.png`),
+    });
+
     return (
         <VisibilitySensor offsetBottom={50}>
             <ReleventTechnologiesBase>
@@ -27,6 +33,7 @@ const ReleventTechnologies: FunctionComponent<ReleventTechnologiesProps> = (prop
                                 layout="fill" //
                                 objectFit="contain"
                                 src={`/images/technologies/white/${item}.png`}
+                                unoptimized
                             />
                         </SingleTechnology>
                     );

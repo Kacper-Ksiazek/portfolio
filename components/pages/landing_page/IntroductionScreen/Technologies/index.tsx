@@ -1,4 +1,5 @@
 // Tools
+import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
 import { LandingScreenTechnologiesContextProvider } from "./context/LandingScreenTechnologiesContext";
 import { useMinigameContext } from "@/components/pages/landing_page/IntroductionScreen/hooks/useMinigameContext";
 // Types
@@ -13,6 +14,35 @@ import TechnologiesWrapper from "./_styled_components/TechnologiesWrapper";
 
 const Technologies: FunctionComponent = (props) => {
     const { minigameStage } = useMinigameContext();
+
+    useLazyLoadedImages({
+        srcsToLazyLoad: [
+            "react", //
+            "electron", //
+            "node",
+            "figma",
+            "material",
+            "mysql",
+            "laravel",
+            "vue",
+            "jest",
+            "python",
+            "express",
+            "typescript",
+            "javascript",
+            "prisma",
+            "html",
+            "redux",
+            "postgresql",
+            "sequelize",
+            "storybook",
+            "sass",
+            "php",
+            "vue-bootstrap",
+            "git",
+            "next",
+        ].map((technology) => `/images/technologies/pink/${technology}.png`),
+    });
 
     return (
         <LandingScreenTechnologiesContextProvider minigameStage={minigameStage}>

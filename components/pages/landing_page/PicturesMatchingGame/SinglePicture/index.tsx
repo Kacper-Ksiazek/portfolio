@@ -39,7 +39,7 @@ const SinglePicture: FunctionComponent<SinglePictureProps> = (props) => {
                                 src={`/images/landing-page/images-matching-game/${props.image}/thumbnail.jpg`}
                                 objectFit="cover"
                                 objectPosition="center"
-                                priority
+                                unoptimized
                             />
                             {props.isMatched && <OpenFullsizeButton />}
                         </>

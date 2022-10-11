@@ -1,5 +1,6 @@
 // Tools
 import { createContext, useState, useMemo } from "react";
+import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
 import ALL_AVAILABLE_IMAGES from "@/data/pictures_for_matching_game";
 // Types
 import type { FunctionComponent, ReactNode, SetStateAction, Dispatch } from "react";
@@ -48,6 +49,10 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameNumber]);
+
+    useLazyLoadedImages({
+        srcsToLazyLoad: allPictures.map((image) => `/images/landing-page/images-matching-game/${image.folder}/thumbnail.jpg`),
+    });
 
     const handlePictureOnClick = (id: number) => {
         if (idsOfPicturesToDisplay.length === 2 || idsOfPicturesToDisplay.includes(id)) return;
