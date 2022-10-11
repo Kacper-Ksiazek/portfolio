@@ -16,6 +16,7 @@ const Technologies: FunctionComponent = (props) => {
     const { minigameStage } = useMinigameContext();
 
     useLazyLoadedImages({
+        id: "MINIGAME_TECHNOLOGY",
         srcsToLazyLoad: [
             "react", //
             "electron", //

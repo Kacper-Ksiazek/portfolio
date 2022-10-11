@@ -4,6 +4,7 @@ declare global {
     namespace NodeJS {
         interface ProcessEnv {
             DATABASE_URL: string;
+            DATABASE_URL_ORIGINAL: string;
             //
             EMAIL_ACCOUNT_ADDRESS: string;
             EMAIL_ACCOUNT_PASSWORD: string;

@@ -21,6 +21,7 @@ const BreakTheIce: FunctionComponent = () => {
     const { currentIceBreakingStage } = useBreakTheIceContentContext();
 
     useLazyLoadedImages({
+        id: "ICE_BREAKING_STAGE",
         srcsToLazyLoad: (
             [
                 "Competencies", //

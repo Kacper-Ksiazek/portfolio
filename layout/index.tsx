@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import Snackbar from "./Snackbar";
 import Navigation from "./Navigation";
 import ScrollButton from "./ScrollButton";
+import LazyLoadedImages from "./LazyLoadedImagesWrapper";
 import TransitionBetweenPages from "./TransitionBetweenPages";
 import { SnackbarContextProvider } from "./global/SnackbarContext";
 import { MainNavigationBarContextProvider } from "./global/MainNavigationBarContext";
@@ -29,6 +30,8 @@ const Layout: FunctionComponent<LayoutProps> = (props) => {
                 <Footer />
                 <TransitionBetweenPages />
                 <Snackbar />
+
+                <LazyLoadedImages key={router.asPath} />
             </SnackbarContextProvider>
         </MainNavigationBarContextProvider>
     );

@@ -51,6 +51,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
     }, [gameNumber]);
 
     useLazyLoadedImages({
+        id: "PICTURES_MATCHING_MINIGAME_SINGLE_IMAGE",
         srcsToLazyLoad: allPictures.map((image) => `/images/landing-page/images-matching-game/${image.folder}/thumbnail.jpg`),
     });
 

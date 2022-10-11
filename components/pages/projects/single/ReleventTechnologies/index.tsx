@@ -16,6 +16,7 @@ interface ReleventTechnologiesProps {
 
 const ReleventTechnologies: FunctionComponent<ReleventTechnologiesProps> = (props) => {
     useLazyLoadedImages({
+        id: "RELEVENT_TECHNOLOGY",
         srcsToLazyLoad: props.techStack.map((technology) => `/images/technologies/white/${technology}.png`),
     });
 
