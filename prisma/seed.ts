@@ -12,8 +12,6 @@ import previousJobsData from "./data/previous_jobs";
 // Types
 import { SeederDataList, ModelName } from "./data/@types";
 
-const prisma = new PrismaClient();
-
 interface ModelToSeed {
     model: ModelName;
     data: SeederDataList<any>;
@@ -28,6 +26,8 @@ class PrismaSeeder extends ConsolePrettier {
     protected imagesToUpload: Set<string> = new Set();
     protected seeders: ModelToSeed[];
     protected uploadFoldersToRefresh: string[];
+
+    protected prisma = new PrismaClient();
 
     public constructor(params: PrismaSeederParams) {
         super();
@@ -49,7 +49,7 @@ class PrismaSeeder extends ConsolePrettier {
     }
 
     protected async seedModel(name: ModelName, dataset: SeederDataList<any>) {
-        await (prisma[name] as any).deleteMany();
+        await (this.prisma[name] as any).deleteMany();
         this.consoleMsg(`Store ${name} data`);
 
         const data = dataset.map((el) => {
@@ -58,7 +58,7 @@ class PrismaSeeder extends ConsolePrettier {
             return rest;
         });
 
-        await (prisma[name] as any).createMany({
+        await (this.prisma[name] as any).createMany({
             data: data as any,
         });
         this.consoleMsg(`${data.length} records have been added`, "SUCCESS");
@@ -78,6 +78,7 @@ class PrismaSeeder extends ConsolePrettier {
     }
 
     async main() {
+        await this.prisma.$connect();
         if (process.env.NODE_ENV === "production") return;
         console.clear();
 
@@ -88,6 +89,7 @@ class PrismaSeeder extends ConsolePrettier {
         }
 
         await this.uploadAllImages();
+        await this.prisma.$disconnect();
     }
 }
 
