@@ -27,7 +27,13 @@ class PrismaSeeder extends ConsolePrettier {
     protected seeders: ModelToSeed[];
     protected uploadFoldersToRefresh: string[];
 
-    protected prisma = new PrismaClient();
+    protected prisma = new PrismaClient({
+        datasources: {
+            db: {
+                url: process.env.DATABASE_URL_ORIGINAL,
+            },
+        },
+    });
 
     public constructor(params: PrismaSeederParams) {
         super();
