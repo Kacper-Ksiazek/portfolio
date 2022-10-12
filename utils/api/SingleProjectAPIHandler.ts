@@ -45,6 +45,8 @@ export default class SingleProjectAPIHandler {
     }
 
     private async fetchRecommendedProjects(): Promise<RecommendedProject[]> {
+        await prisma.$connect();
+
         const recommendedProjects: RawRecommendedProject[] = await prisma.project.findMany({
             where: { id: { not: this.projectID } },
             select: {
@@ -58,6 +60,8 @@ export default class SingleProjectAPIHandler {
                 features: true,
             },
         });
+
+        await prisma.$disconnect();
 
         return recommendedProjects.map((rawProject: RawRecommendedProject) => {
             return {

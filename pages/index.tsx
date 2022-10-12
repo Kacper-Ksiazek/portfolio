@@ -39,6 +39,8 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> = async () => {
+    await prisma.$connect();
+
     const projects = await prisma.project.findMany({
         select: {
             id: true,
@@ -64,6 +66,8 @@ export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> 
         ELECTRON_WORDS_LEARNING_APP: 2021,
         GAMES_APP: 2020,
     };
+
+    await prisma.$disconnect();
 
     return {
         props: {
