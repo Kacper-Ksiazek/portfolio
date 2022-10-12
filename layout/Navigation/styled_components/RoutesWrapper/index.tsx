@@ -15,6 +15,7 @@ export default styled("div")(({ theme }) => ({
         top: 0,
         right: "-1px",
         width: "calc(100% + 2px)",
+        maxHeight: "100vh",
         flexDirection: "column",
         justifyContent: "center",
         zIndex: 20,

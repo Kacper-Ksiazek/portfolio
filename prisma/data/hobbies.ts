@@ -22,8 +22,7 @@ export default (
         {
             label: "Games",
             title: "Video games",
-            description:
-                "Due to the moving out I play video games *ever less* (now not at all), because they give me an oppourtunity to interact with the world of software engineering from the other perspective (consumer instead of creator) and *improve my UI UX skills*.",
+            description: "Due to the moving out, I play video games no more, though I still take abreast of trends, because they present the most vital factors of *UI/UX* strikingly well.",
             folder: "video_games.jpg",
             icon: "SPORTS_ESPORTS",
         },

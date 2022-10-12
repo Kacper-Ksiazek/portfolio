@@ -30,7 +30,6 @@ export default styled("div")(({ theme }) => ({
     },
     "span.text": {
         width: "calc(100% - 100px)",
-        fontWeight: 500,
         transition: "opacity .3s .2s",
     },
     "&:not(&:nth-of-type(1))": {

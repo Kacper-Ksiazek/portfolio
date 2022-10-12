@@ -2,6 +2,9 @@
 import type { SxProps } from "@mui/system";
 
 export default {
+    ["@media (max-width:1000px)"]: {
+        width: "100%",
+    },
     ["@media (max-width:600px)"]: {
         flexDirection: "column !important",
         "&:nth-of-type(odd)": {

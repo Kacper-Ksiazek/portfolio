@@ -25,13 +25,13 @@ const Layout: FunctionComponent<LayoutProps> = (props) => {
         <MainNavigationBarContextProvider pathname={router.asPath}>
             <SnackbarContextProvider>
                 <Navigation />
-                <MainWrapper key={router.asPath}>{props.children}</MainWrapper>
+                <MainWrapper key={`${router.asPath}-content-wrapper`}>{props.children}</MainWrapper>
                 <ScrollButton />
                 <Footer />
                 <TransitionBetweenPages />
                 <Snackbar />
 
-                <LazyLoadedImages key={router.asPath} />
+                <LazyLoadedImages key={`${router.asPath}-lazy-loaded-images`} />
             </SnackbarContextProvider>
         </MainNavigationBarContextProvider>
     );

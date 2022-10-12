@@ -10,6 +10,9 @@ export const Header = styled("h4")(({ theme }) => ({
 export const Description = styled("p")(({ theme }) => ({
     margin: "8px 0 0 0",
     fontSize: "16px",
+    ["@media (max-width:1000px)"]: {
+        fontSize: "18px",
+    },
 }));
 
 export const RedirectionsWrapper = styled("div")(({ theme }) => ({

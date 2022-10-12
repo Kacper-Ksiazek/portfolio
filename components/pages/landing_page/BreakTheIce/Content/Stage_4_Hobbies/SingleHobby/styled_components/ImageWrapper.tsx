@@ -6,6 +6,7 @@ export default styled("div")(({ theme }) => ({
     height: "200px",
     position: "relative",
     overflow: "hidden",
+    borderRadius: "3px",
     "&::after,&::before": {
         content: "''",
         position: "absolute",

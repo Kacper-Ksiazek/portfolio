@@ -19,6 +19,7 @@ const YearToIndicateBase = styled("span")(({ theme }) => ({
     },
     ["@media (max-width:1300px)"]: {
         fontSize: "128px",
+        lineHeight: "144px",
         "&.even": {
             marginLeft: "80px",
         },

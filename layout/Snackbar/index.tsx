@@ -30,7 +30,7 @@ const Snackbar: FunctionComponent = () => {
             {context.snackbars.map((item, index) => {
                 return (
                     <SingleSnackbar
-                        key={item._id} //
+                        key={`${index}-${item._id}`}
                         msg={item.msg}
                         severity={item.severity}
                         hideAfter={item.hideAfter}

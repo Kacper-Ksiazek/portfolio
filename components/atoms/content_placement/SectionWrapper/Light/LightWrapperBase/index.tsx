@@ -1,7 +1,10 @@
 // Tools
+import RWD from "./RWD";
 import { styled } from "@mui/system";
+import introAnimations from "./introAnimations";
+import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
 // Styled components
-import SectionWrapper from "../_SectionWrapper";
+import SectionWrapper from "../../_SectionWrapper";
 
 export default styled(SectionWrapper)(({ theme }) => ({
     background: "white",
@@ -16,14 +19,6 @@ export default styled(SectionWrapper)(({ theme }) => ({
     "&.limited-height": {
         height: "800px",
     },
-    ["@media (max-width:1100px)"]: {
-        "&.round-left, &.round-right": {
-            borderRadius: "20px ",
-        },
-    },
-    ["@media (max-width:1000px)"]: {
-        "&.limited-height": {
-            height: "auto",
-        },
-    },
+    //
+    ...mergeSXObjects(RWD, introAnimations),
 }));
