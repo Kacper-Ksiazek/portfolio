@@ -15,6 +15,9 @@ const HeaderWrapper = styled("header")(({ theme }) => ({
     color: "#fff",
     textAlign: "center",
     position: "relative",
+    ["@media (max-width:500px)"]: {
+        paddingTop: "32px",
+    },
 }));
 
 const SecondaryHeader = styled("span")(({ theme }) => ({
@@ -34,7 +37,8 @@ const Description = styled("p")(({ theme }) => ({
     position: "relative",
     fontSize: "18px",
     margin: "32px 0 8px 0",
-    width: "840px",
+    maxWidth: "840px",
+    width: "100%",
     strong: {
         color: "#fff",
     },
@@ -57,6 +61,9 @@ const IconWrapper = styled("span")(({ theme }) => ({
     color: "#503C57",
     svg: {
         fontSize: "256px",
+    },
+    ["@media (max-width:500px)"]: {
+        top: "-12%",
     },
 }));
 

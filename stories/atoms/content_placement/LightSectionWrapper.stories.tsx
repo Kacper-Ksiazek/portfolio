@@ -70,18 +70,27 @@ const TemplateWithLargerContent: ComponentStoryFn<typeof LightSectionWrapper> = 
 export const RoundedLeft = Template.bind({});
 RoundedLeft.args = {
     round: "left",
-    header: headerObject,
+    header: {
+        main: "Main Header",
+        label: "label",
+    },
 };
 
 export const RoundedRight = Template.bind({});
 RoundedRight.args = {
     round: "right",
-    header: headerObject,
+    header: {
+        main: "Main Header",
+        label: "label",
+    },
 };
 
 export const WithCustomStyles = Template.bind({});
 WithCustomStyles.args = {
-    header: headerObject,
+    header: {
+        main: "Main Header",
+        label: "label",
+    },
     contentWrapperSx: {
         backgroundColor: "red",
     },
@@ -89,6 +98,9 @@ WithCustomStyles.args = {
 
 export const WithLargerContent = TemplateWithLargerContent.bind({});
 WithLargerContent.args = {
-    header: headerObject,
+    header: {
+        main: "Main Header",
+        label: "label",
+    },
     unlimitedHeight: false,
 };
