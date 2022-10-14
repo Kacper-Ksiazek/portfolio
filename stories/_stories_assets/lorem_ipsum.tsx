@@ -1,3 +1,8 @@
+// Types
+import type { HeaderProps } from "@/components/atoms/content_placement/SectionWrapper/Dark/@types";
+// Material UI Icons
+import Code from "@mui/icons-material/Code";
+
 export const paragraphs: string[] = [
     `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla diam sapien, mollis eget lobortis in, rhoncus at massa. Cras pulvinar porttitor turpis, vitae posuere risus imperdiet a. Morbi placerat risus nisl, et rhoncus ligula posuere vitae. Maecenas lobortis, ipsum quis aliquam volutpat, metus tortor viverra lorem, id ultricies felis arcu sed mi. Mauris quis ullamcorper nisi. Duis vitae lorem non nisl vulputate sodales non dapibus tortor. Morbi vel dictum ante, ut eleifend odio. Sed viverra mi sit amet arcu tincidunt pulvinar.
 `,
@@ -12,8 +17,7 @@ export const paragraphs: string[] = [
 
 export const headerObject = {
     main: "The main header",
-    label: "Additional label",
-} as {
-    main: string;
-    label: string;
-};
+    index: 1,
+    icon: <Code />,
+    description: `To do list project is undoubtedly a *part and parcel* of everyone's frontend developer portfolio, because this at the first glance unassuming piece of software is actually a *very accurate and reliable gauge of somebody's competencies*.`,
+} as HeaderProps;

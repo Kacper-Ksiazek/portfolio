@@ -9,6 +9,8 @@ import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import AddNewTask from "./AddNewTask";
 import SingleTask from "./SingleTask";
+// Material UI Icons
+import Code from "@mui/icons-material/Code";
 // Styled Components
 import NoResults from "./NoResults";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
@@ -103,11 +105,14 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
             shapesDirection="left"
             header={{
                 main: "React to do list",
-                label: "Simply because there cannot be a junior developer portfolio without one",
+                index: 1,
+                icon: <Code />,
+                description: `To do list project is undoubtedly a *part and parcel* of everyone's frontend developer portfolio, because this at the first glance unassuming piece of software is actually a *very accurate and reliable gauge of somebody's competencies*.`,
             }}
             sx={{
                 "&.visible": toDoListIntroAnimations as any,
             }}
+            githubURL={"https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page"}
             onVisible={onVisible}
         >
             {(() => {
@@ -115,7 +120,7 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     return (
                         <>
                             <OverflowScrollDiv
-                                maxHeight="150px" //
+                                maxHeight="192px" //
                                 ref={taskWrapperElement as any}
                                 sx={{ maxWidth: "800px", margin: "0 auto" }}
                             >

@@ -51,15 +51,18 @@ export const ShapesRotatedToLeft = Template.bind({});
 ShapesRotatedToLeft.args = {
     shapesDirection: "left",
     header: headerObject,
+    githubURL: "",
 };
 
 export const ShapesRotatedToRight = Template.bind({});
 ShapesRotatedToRight.args = {
     shapesDirection: "right",
     header: headerObject,
+    githubURL: "",
 };
 
 export const WithLargerContent = TemplateWithLargerContent.bind({});
 WithLargerContent.args = {
     header: headerObject,
+    githubURL: "",
 };

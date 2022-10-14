@@ -1,41 +1,75 @@
 // Tools
 import { styled } from "@mui/system";
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
+import type { HeaderProps } from "./@types";
 import type { FunctionComponent } from "react";
 // Styled components
+
 const HeaderWrapper = styled("header")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: "32px",
+    marginBottom: "48px",
     userSelect: "none",
     color: "#fff",
     textAlign: "center",
+    position: "relative",
 }));
 
-const AdditionalText = styled("span")(({ theme }) => ({
-    fontWeight: 400,
-    fontSize: "18px",
+const SecondaryHeader = styled("span")(({ theme }) => ({
+    fontWeight: 500,
+    fontSize: "20px",
     textAlign: "center",
-}));
-
-const MainHeader = styled("h2")(({ theme }) => ({
-    fontSize: "24px",
-    fontWeight: 700,
-    margin: "0 0 5px 0",
     fontFamily: "Montserrat Alternates",
 }));
 
-interface DarkSectionHeaderProps {
-    main: string;
-    label: string;
-}
+const MainHeader = styled("h2")(({ theme }) => ({
+    fontSize: "40px",
+    fontWeight: 700,
+    margin: "0 0 5px 0",
+}));
 
-const DarkSectionHeader: FunctionComponent<DarkSectionHeaderProps> = (props) => {
+const Description = styled("p")(({ theme }) => ({
+    position: "relative",
+    fontSize: "18px",
+    margin: "32px 0 8px 0",
+    width: "840px",
+    strong: {
+        color: "#fff",
+    },
+    "&::after": {
+        content: "''",
+        position: "absolute",
+        left: "50%",
+        bottom: "-22px",
+        width: "160px",
+        height: "2px",
+        borderRadius: "1px",
+        background: "#503C57",
+        transform: "translateX(-50%)",
+    },
+}));
+
+const IconWrapper = styled("span")(({ theme }) => ({
+    position: "absolute",
+    top: "-32%",
+    color: "#503C57",
+    svg: {
+        fontSize: "256px",
+    },
+}));
+
+const DarkSectionHeader: FunctionComponent<HeaderProps> = (props) => {
     return (
         <HeaderWrapper>
-            <MainHeader className="dark-content-wrapper-main-header">{props.main}</MainHeader>
-            <AdditionalText className="dark-content-wrapper-additional-text">{props.label}</AdditionalText>
+            <IconWrapper className="dark-content-wrapper-header-icon">{props.icon}</IconWrapper>
+
+            <SecondaryHeader className="dark-content-wrapper-header-index">#{props.index}</SecondaryHeader>
+            <MainHeader className="dark-content-wrapper-header-main">{props.main}</MainHeader>
+            <SecondaryHeader className="dark-content-wrapper-header-secondary">Junior frontend developer projects</SecondaryHeader>
+
+            <Description className="dark-content-wrapper-header-description">{formatTextViaBolding(props.description)}</Description>
         </HeaderWrapper>
     );
 };

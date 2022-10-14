@@ -1,6 +1,5 @@
 // Tools
 import { keyframes } from "@mui/system";
-import fadeFromBottom from "@/components/keyframes/intro/fadeFromBottom";
 // Types
 import type { SxProps } from "@mui/system";
 // IT HAS TO BE UNIQUE ANIMATION
@@ -15,38 +14,27 @@ const fadeSimple = keyframes({
 
 export const introAnimations = {
     ".first-game-in-the-session": {
-        "&:nth-of-type(1)": {
-            animation: `${fadeSimple} .3s 2s both`,
-        },
-        "&:nth-of-type(2)": {
-            animation: `${fadeSimple} .3s 2.05s both`,
-        },
-        "&:nth-of-type(3)": {
-            animation: `${fadeSimple} .3s 2.1s both`,
-        },
-        "&:nth-of-type(4)": {
-            animation: `${fadeSimple} .3s 2.15s both`,
-        },
-        "&:nth-of-type(5)": {
-            animation: `${fadeSimple} .3s 2.2s both`,
-        },
-        "&:nth-of-type(6)": {
-            animation: `${fadeSimple} .3s 2.25s both`,
-        },
-        "&:nth-of-type(7)": {
-            animation: `${fadeSimple} .3s 2.3s both`,
-        },
-        "&:nth-of-type(8)": {
-            animation: `${fadeSimple} .3s 2.35s both`,
-        },
-        "&:nth-of-type(9)": {
-            animation: `${fadeSimple} .3s 2.4s both`,
-        },
-        "&:nth-of-type(10)": {
-            animation: `${fadeSimple} .3s 2.45s both`,
-        },
+        //
+        // Render &:nth-of-type(1) - &:nth-of-type(10)
+        //
+        ...((): SxProps => {
+            const INITIAL_DELAY: number = 1; // in s
+            const DELAY_BETWEEN_ELEMENTS: number = 0.05; // in s
+
+            let result: SxProps = {};
+
+            for (let i = 1; i <= 10; i++) {
+                const delay: number = INITIAL_DELAY + DELAY_BETWEEN_ELEMENTS * (i - 1);
+
+                (result as any)[`&:nth-of-type(${i})`] = {
+                    animation: `${fadeSimple} .3s ${delay}s both`,
+                };
+            }
+
+            return result;
+        })(),
     },
     ".already-taken-turns-communique": {
-        animation: `${fadeFromBottom} .3s 2s both linear`,
+        animation: `${fadeSimple} .3s 1.6s both linear`,
     },
 } as SxProps;
