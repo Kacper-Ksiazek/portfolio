@@ -38,11 +38,15 @@ const SingleProject: NextPage<SingleProjectProps> = ({ project, recommendedProje
 export default SingleProject;
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
+    await prisma.$connect();
+
     const paths = (await prisma.project.findMany({ select: { id: true } })).map((el) => {
         return {
             params: { id: el.id },
         };
     });
+
+    await prisma.$disconnect();
 
     return {
         paths,

@@ -7,8 +7,7 @@ import type { ReleventTechnology } from "@/@types/prisma/Project";
 import Image from "next/image";
 import VisibilitySensor from "@/components/utils/VisibilitySensor";
 // Styled components
-import SingleTechnology from "./styled_components/SingleTechnology";
-import ReleventTechnologiesBase from "./styled_components/ReleventTechnologiesBase";
+import { Background, SingleTechnology, ReleventTechnologiesBase } from "./styled_components";
 
 interface ReleventTechnologiesProps {
     techStack: ReleventTechnology[];
@@ -23,6 +22,7 @@ const ReleventTechnologies: FunctionComponent<ReleventTechnologiesProps> = (prop
     return (
         <VisibilitySensor offsetBottom={50}>
             <ReleventTechnologiesBase>
+                <Background id="relevent-technologies-background" />
                 {props.techStack.map((item, index) => {
                     return (
                         <SingleTechnology

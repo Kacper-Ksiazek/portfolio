@@ -18,7 +18,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
             <HTTPStatusCodeContentWrapper reversedSkew>
                 <StatusCode>500</StatusCode>
                 <h3>Ops!</h3>
-                <p>Some unexpected has error occurred, I will do my best to fix it as soon as possible. Excuse me for all the inconveniences and please try again later</p>
+                <p>Unexpected has error occurred, I will do my best to fix it as soon as possible. Excuse me for all the inconveniences and please try again later</p>
                 <h4>Check available resources</h4>
 
                 <ButtonsWrapper>
