@@ -30,6 +30,8 @@ export default styled("div")(({ theme }) => ({
             height: "100%",
             backgroundImage: "url(/images/mobile_menu_background_picture.jpg)",
             backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
             opacity: 0,
             filter: "blur(3px)",
         },
