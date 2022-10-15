@@ -65,7 +65,7 @@ export default styled("div")(({ theme }) => ({
             ...(shapesOnHoverAnimations as any),
         },
     },
-    ["@media (max-width:1300px)"]: {
+    ["@media (max-width:1350px)"]: {
         width: "calc(50% + 40px)",
         marginBottom: "32px",
     },

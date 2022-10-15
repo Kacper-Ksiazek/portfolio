@@ -2,7 +2,7 @@
 import type { SxProps } from "@mui/system";
 
 export default {
-    ["@media (max-width:1300px)"]: {
+    ["@media (max-width:1350px)"]: {
         ".image-wrapper": {
             height: "180px",
         },

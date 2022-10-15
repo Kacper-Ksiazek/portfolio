@@ -18,9 +18,12 @@ import SingleProjectTextContent from "./styled_components/SingleProjectTextConte
 interface ProjectCardProps {
     data: Project;
     order: "even" | "odd";
+    numberOfTechnologiesToDisplay: number;
 }
 
-const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
+const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
+    const { data, order, numberOfTechnologiesToDisplay } = props;
+
     const router = useRouter();
 
     const redirect = () => {
@@ -34,10 +37,10 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = ({ data, order }) => {
 
             <SingleProjectTextContent className="single-project-text-content-wrapper">
                 <TechnologiesList
-                    technologies={data.releventTechnologies.slice(0, 5)} //
+                    technologies={data.releventTechnologies.slice(0, numberOfTechnologiesToDisplay)} //
                     doNotWrap
                     small
-                    thereAreMoreTechnologies={data.releventTechnologies.length > 5}
+                    thereAreMoreTechnologies={data.releventTechnologies.length > numberOfTechnologiesToDisplay}
                 />
                 <Typography variant="h4">
                     <span>{data.title}</span>
