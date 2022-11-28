@@ -4,11 +4,11 @@ import { keyframes } from "@mui/system";
 export const wrapperIntroAnimation = keyframes({
     "0%": {
         transform: "translateX(100%)",
-        height: "92px",
+        height: "80px",
     },
     "33%,66%": {
         transform: "translateX(0%)",
-        height: "92px",
+        height: "80px",
     },
     "100%": {
         transform: "translateX(0%)",
@@ -23,11 +23,11 @@ export const wrapperOutroAnimation = keyframes({
     },
     "33%,66%": {
         transform: "translateX(0%)",
-        height: "92px",
+        height: "64px",
     },
     "100%": {
         transform: "translateX(100%)",
-        height: "92px",
+        height: "64px",
     },
 });
 
