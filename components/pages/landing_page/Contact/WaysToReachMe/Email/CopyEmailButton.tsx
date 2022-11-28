@@ -42,7 +42,7 @@ const CopyEmailButton: FunctionComponent<CopyEmailButtonProps> = (props) => {
         setEmailHasBeenCopied(true);
 
         displaySnackbar({
-            msg: "Email address has been copied to clipboard! Make a good use of it 😎",
+            msg: "Email address has been copied to the clipboard! Make a good use of it 😎",
             severity: "info",
             hideAfter: 5000,
         });
