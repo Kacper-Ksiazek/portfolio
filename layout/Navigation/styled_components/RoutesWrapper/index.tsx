@@ -20,7 +20,6 @@ export default styled("div")(({ theme }) => ({
         justifyContent: "center",
         zIndex: 20,
         transform: "translateX(-100%)",
-
         "&::before": {
             content: "''",
             position: "absolute",

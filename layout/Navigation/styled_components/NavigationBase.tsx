@@ -32,6 +32,9 @@ export default styled("div")(({ theme }) => ({
         "#portfolio-logo-header": {
             color: "#fff",
         },
+        "#mobile-menu-opener": {
+            color: "#fff",
+        },
 
         ".MuiButtonBase-root": {
             border: "1px solid #fff",
@@ -49,9 +52,6 @@ export default styled("div")(({ theme }) => ({
                     color: "#000",
                 },
             },
-        },
-        "#mobile-menu-opener": {
-            color: "#fff",
         },
     },
 
@@ -104,14 +104,23 @@ export default styled("div")(({ theme }) => ({
     "&.intro-single-project": {
         animation: `${fadeSimple} .2s 3.3s both linear`,
     },
+    "&.keep-contrast-font-color": {
+        "#portfolio-logo-header": {
+            color: "#fff !important",
+        },
+        "#mobile-menu-opener": {
+            color: "#fff !important",
+        },
+    },
     //
     ["@media (max-width:500px)"]: {
         paddingLeft: "32px",
         paddingRight: "32px",
         paddingTop: "24px",
-        "&.after-scroll-styles": {
-            paddingLeft: "24px",
-            paddingRight: "24px",
+        height: "64px",
+        "&.on-scroll-styles": {
+            paddingLeft: "20px",
+            paddingRight: "20px",
         },
     },
 }));

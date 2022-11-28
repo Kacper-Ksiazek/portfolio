@@ -17,7 +17,7 @@ export default styled("section")(({ theme }) => ({
     },
     ["@media (max-width:500px)"]: {
         width: "calc(100vw - 0px)",
-        padding: "32px 12px",
+        padding: "48px 12px 32px 12px",
         borderRadius: "0px !important",
     },
 }));

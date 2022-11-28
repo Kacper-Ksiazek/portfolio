@@ -36,8 +36,8 @@ const ImageWrapper = styled("div")(({ theme }) => ({
     width: "60px",
     height: "40px",
     ["@media (max-width:500px)"]: {
-        width: "52px",
-        height: "36px",
+        width: "48px",
+        height: "32px",
     },
 }));
 

@@ -1,4 +1,5 @@
 // Tools
+import { useMemo, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import useStylesOnScoll from "./hooks/useOnScollStyles";
 import { useStylesBasedOnURL } from "./hooks/useStylesBasedOnURL";
@@ -17,10 +18,29 @@ import RoutesWrapper from "./styled_components/RoutesWrapper";
 import NavigationBase from "./styled_components/NavigationBase";
 
 const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
+    const OUTRO_ANIMATION_DURATION = 700;
+
     const applyOnScrollStyles = useStylesOnScoll();
     const { appearingAnimation } = useMainNavigationBarContext();
     const { improveContrast, introAnimation } = useStylesBasedOnURL();
     const { status: mobileMenuStatus, renderMobileMenuButton, toogleVisibility } = useMobileMenuHandlers();
+
+    const [keepContrastFontColor, setKeepContrastFontColor] = useState<boolean>(false);
+
+    useEffect(() => {
+        let timeout: ReturnType<typeof setTimeout> | null = null;
+
+        if (mobileMenuStatus === "closed") {
+            setKeepContrastFontColor(true);
+            timeout = setTimeout(() => {
+                setKeepContrastFontColor(false);
+            }, OUTRO_ANIMATION_DURATION);
+        }
+
+        return () => {
+            if (timeout !== null) clearTimeout(timeout);
+        };
+    }, [mobileMenuStatus]);
 
     return (
         <NavigationBase
@@ -30,6 +50,7 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
                 improveContrast || mobileMenuStatus === "opened" ? "contrast-colors" : "",
                 appearingAnimation !== null ? `display-${appearingAnimation}-animation` : "",
                 introAnimation,
+                keepContrastFontColor ? "keep-contrast-font-color" : "",
             ].join(" ")}
         >
             <div id="main-navigation-content">
