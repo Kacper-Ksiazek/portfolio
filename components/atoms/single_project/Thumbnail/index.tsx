@@ -3,11 +3,10 @@ import { forwardRef } from "react";
 import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/project";
 // Types
 import type { ForwardRefExoticComponent, ReactNode } from "react";
-// Other components
-import Image from "next/image";
 // Styled components
 import ThumbnailMainWrapper from "./ThumbnailMainWrapper";
 import ThumbnailSecondWrapper from "./ThumbnailSecondWrapper";
+import NextImageWithSkeleton from "@/components/atoms/NextImageWithSkeleton";
 import { ShapeBottomBig, ShapeBottomSmall, ShapeTopBig, ShapeTopSmall } from "./BorderShapes";
 
 interface ThumbnailProps {
@@ -25,7 +24,7 @@ const Thumbnail: ForwardRefExoticComponent<ThumbnailProps> = forwardRef((props, 
             <ShapeTopBig className="border-shape big right" />
             <ShapeTopSmall className="border-shape small right" />
             <ThumbnailSecondWrapper className="direct-img-wrapper">
-                <Image
+                <NextImageWithSkeleton
                     alt={props.folder}
                     layout="fill"
                     src={uploadedProjectImageURLBuilder({

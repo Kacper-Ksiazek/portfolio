@@ -91,7 +91,7 @@ const Picture: FunctionComponent = () => {
                         alt="stage-picture" //
                         src={`/images/landing-page/${previousIceBreakingStage ?? currentIceBreakingStage}.jpg`}
                         layout="fill"
-                        priority
+                        unoptimized
                     />
                 </PictureBase>
             </PictureWrapper>
