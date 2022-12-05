@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { prisma } from "@/prisma/db";
 import { formatProjectDate } from "@/utils/api/date-formatter";
 // Types
-import type { NextPage, GetServerSideProps } from "next";
+import type { NextPage, GetStaticProps } from "next";
 import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
 // Other components
 import SEO from "@/components/pages/_SEO";
@@ -24,7 +24,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps<LandingPageServerSideProps> = async () => {
+export const getStaticProps: GetStaticProps<LandingPageServerSideProps> = async () => {
     await prisma.$connect();
 
     const projects = await prisma.project.findMany({
