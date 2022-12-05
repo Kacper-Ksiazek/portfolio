@@ -20,9 +20,13 @@ const FooterBase = styled("footer")(({ theme }) => ({
         fontWeight: 300,
     },
     userSelect: "none",
-    ["@media (max-width:500px)"]: {
+    "@media (max-width:1000px)": {
         width: "calc(100vw - 20px)",
-        margin: "0 auto 10px auto",
+    },
+    ["@media (max-width:500px)"]: {
+        width: "calc(100vw - 0px)",
+        margin: "0 auto 0px auto",
+        borderRadius: "0px",
     },
 }));
 const AuthorHeader = styled("h4")(({ theme }) => ({
