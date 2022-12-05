@@ -1,4 +1,5 @@
 // Tools
+import theme from "@/material";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 // Types
@@ -8,7 +9,7 @@ import BackgroundPicture from "./BackgroundPicture";
 import PreviewBackgroundPicture from "./PreviewBackgroundPicture";
 // Styled Components
 import { CircleOne, CircleTwo } from "./_styled_components/Circles";
-import { LineTwo, LineOne, LineThree } from "./_styled_components/Lines";
+import { BackgroundShape, SimpleBackgroundShape } from "./_styled_components/BackgroundShapes";
 import IntroductionScreenBaseContent from "./_styled_components/IntroductionScreenBaseContent";
 import IntroductionScreenBaseWrapper from "./_styled_components/IntroductionScreenBaseWrapper";
 
@@ -72,9 +73,25 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
                 } else {
                     return (
                         <>
-                            <LineOne />
-                            <LineTwo />
-                            <LineThree />
+                            <BackgroundShape
+                                backgroundColor="#000000" //
+                                initialHeight="100px"
+                                zIndex={11}
+                                delays={{
+                                    intro: 0.6,
+                                    outro: 1.8,
+                                }}
+                            />
+                            <BackgroundShape
+                                backgroundColor={theme.palette.secondary.main} //
+                                initialHeight="200px"
+                                zIndex={9}
+                                delays={{
+                                    intro: 0.3,
+                                    outro: 2.1,
+                                }}
+                            />
+                            <SimpleBackgroundShape />
                         </>
                     );
                 }
