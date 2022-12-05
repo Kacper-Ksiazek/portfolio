@@ -7,8 +7,8 @@ import type { NextPage, GetStaticProps } from "next";
 import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
 // Other components
 import SEO from "@/components/pages/_SEO";
+import LandingPageContent from "@/components/pages/landing_page/Wrapper";
 import IntroductionScreen from "@/components/pages/landing_page/IntroductionScreen";
-const LandingPageContent = dynamic(() => import("@/components/pages/landing_page/Wrapper"));
 
 const Home: NextPage<LandingPageServerSideProps> = (props) => {
     return (

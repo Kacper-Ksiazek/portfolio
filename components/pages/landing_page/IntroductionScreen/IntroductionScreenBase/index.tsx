@@ -28,7 +28,7 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
     const router = useRouter();
 
     useEffect(() => {
-        if (router.query.hasOwnProperty("skipIntroductionAnimationEvenThoughItsCool")) {
+        if (router.asPath.split("skipIntroductionAnimationEvenThoughItsCool=")[1]) {
             setRenderContent(true);
             setDisplayAnimations(false);
         } else {
