@@ -48,7 +48,7 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
                 document.body.style.overflowY = "visible";
             }, 6000);
         }
-    }, [router.query]);
+    }, [router.query, router.asPath]);
 
     return (
         <IntroductionScreenBaseWrapper
