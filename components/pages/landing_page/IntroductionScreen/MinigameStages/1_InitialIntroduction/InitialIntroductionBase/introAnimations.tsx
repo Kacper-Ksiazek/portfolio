@@ -19,6 +19,6 @@ export default {
         animation: `${fadeFromTop} .2s .2s linear both`,
     },
     button: {
-        animation: `${fadeFromTop} .2s 3s linear both`,
+        animation: `${fadeFromTop} .2s .5s linear both`,
     },
 } as SxProps;
