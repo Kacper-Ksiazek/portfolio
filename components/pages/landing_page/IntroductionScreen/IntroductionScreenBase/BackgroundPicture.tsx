@@ -48,7 +48,7 @@ const BackgroundPictureWrapper = styled("div")(({ theme }) => ({
     },
     "&.add-blur-transition-keyframe": {
         "#landing-page-picture": {
-            animation: `${filterBlurOnHoverEnd} 1s both`,
+            filter: "blur(10px)",
         },
     },
     "&.scroll-button-is-hovered": {
@@ -57,7 +57,6 @@ const BackgroundPictureWrapper = styled("div")(({ theme }) => ({
         },
         "#landing-page-picture": {
             filter: "blur(0px)",
-            animation: `${filterBlurOnHoverStart} 1s both`,
             transform: "scale(1.1)",
             backgroundPosition: "center bottom",
         },
@@ -72,7 +71,7 @@ const BackgroundPictureImage = styled("div")(({ theme }) => ({
     height: "calc(100% + 32px)",
     backgroundSize: "cover",
     filter: "blur(10px)",
-    transition: "transform 1s, background-position 60s linear",
+    transition: "transform 1s, background-position 60s linear, filter 2s",
     backgroundPosition: "center top",
     backgroundImage: "url('./images/landing-page/introduction-screen/fullsize.jpg')",
     ["@media (max-width:1450px)"]: {

@@ -26,14 +26,14 @@ const General: FunctionComponent<GeneralProps> = (props) => {
                 </Paragraph>
 
                 <Paragraph animationDelay={0.9}>
-                    {formatTextViaBolding(`My *second* major commercial *project* was virtually identical to the first. Having over year and half more of experience, *everything went considerably better* in all aspects and
+                    {formatTextViaBolding(`My *second* major commercial *project* was virtually identical to the first. Having over year and a half more of experience, *everything went considerably better* in all aspects and
                 eventually the project successfully  ended in February  2021 after spending only 3 weeks of hard work.`)}
                 </Paragraph>
 
                 <Label animationDelay={1}>Languages</Label>
 
                 <RatedInStars name="Polish" stars={5} description="Native speaker" animationDelay={1.1} />
-                <RatedInStars name="English" stars={4} description="Between B2 and C1, learn every day" animationDelay={1.2} />
+                <RatedInStars name="English" stars={4} description="Between B2 and C1, learning every day" animationDelay={1.2} />
                 <RatedInStars name="German" stars={1} description="Eines tages eines tages, leider nicht jetzt" animationDelay={1.3} />
             </>
         );

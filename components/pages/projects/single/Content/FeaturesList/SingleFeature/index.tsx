@@ -3,7 +3,7 @@ import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_ur
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import Image from "next/image";
+import NextImageWithSkeleton from "@/components/atoms/NextImageWithSkeleton";
 // Styled components
 import SingleFeatureBase from "./SingleFeatureBase";
 
@@ -20,7 +20,7 @@ const SingleFeature: FunctionComponent<SingleFeatureProps> = (props) => {
             className="single-feature" //
             onClick={props.previewThisFeature}
         >
-            <Image
+            <NextImageWithSkeleton
                 alt={props.imageURL} //
                 layout="fill"
                 src={uploadedProjectImageURLBuilder({

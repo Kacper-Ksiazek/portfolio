@@ -14,6 +14,7 @@ export default styled(Section)(({ theme }) => ({
     paddingTop: "0 !important",
     paddingBottom: "0px !important",
     marginBottom: "60px",
+    position: "relative",
     //
     "&.is-hovered": {
         ...(onHoverStyles as any),
@@ -28,7 +29,12 @@ export default styled(Section)(({ theme }) => ({
             transition: "opacity 1s .5s",
         },
     },
-    ["@media (max-width:500px)"]: {
+    "@media (max-width:1540px)": {
         minHeight: "calc(100vh - 20px)",
+        top: "-10px",
+    },
+    ["@media (max-width:500px)"]: {
+        top: "-10px",
+        minHeight: "100vh",
     },
 }));

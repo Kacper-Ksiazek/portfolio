@@ -3,16 +3,16 @@ import type { SxProps } from "@mui/system";
 
 export default {
     ["@media (max-height:940px)"]: {
-        marginBottom: "20vh",
+        marginBottom: "18vh",
     },
     ["@media (max-height:840px)"]: {
-        marginBottom: "10vh",
-    },
-    ["@media (max-height:740px)"]: {
         marginBottom: "6vh",
     },
+    ["@media (max-height:740px)"]: {
+        marginBottom: "4vh",
+    },
     ["@media (max-height:640px)"]: {
-        marginBottom: "0",
+        marginBottom: "2vh",
     },
 
     ["@media (max-width:1450px)"]: {
@@ -31,17 +31,18 @@ export default {
             fontSize: "20px",
         },
     },
-    ["@media (max-width:1100px)"]: {},
-
     ["@media (max-width:1000px)"]: {
         marginTop: "120px",
-        marginBottom: "20px !important",
+        marginBottom: "60px !important",
     },
 
     ["@media (max-width:900px)"]: {
         "#project-title": {
             marginBottom: "16px",
         },
+    },
+    "@media (max-width:640px)": {
+        marginBottom: "48px !important",
     },
     ["@media (max-width:500px)"]: {
         ".duration": {

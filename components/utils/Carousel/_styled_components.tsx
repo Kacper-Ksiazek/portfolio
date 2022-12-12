@@ -30,6 +30,9 @@ export const NavigationWrapper = styled("div")(({ theme }) => ({
     "&.position-right": {
         justifyContent: "flex-end",
     },
+    "@media (max-width:500px)": {
+        justifyContent: "center !important",
+    },
 }));
 
 export const SingleNagivationStep = styled("span")(({ theme }) => ({

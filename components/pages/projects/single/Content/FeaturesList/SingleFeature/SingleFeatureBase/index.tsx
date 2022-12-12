@@ -12,7 +12,7 @@ export default styled("div")(({ theme }) => ({
     overflow: "hidden",
     img: {
         transition: "transform .3s, filter .3s",
-        filter: "grayscale(1)",
+        filter: "grayscale(0)",
     },
     "&:hover": {
         img: {

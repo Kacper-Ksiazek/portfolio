@@ -2,6 +2,14 @@
 import type { SxProps } from "@mui/system";
 
 export default {
+    "@media (max-width:1550px)": {
+        "&.round-left": {
+            borderRadius: "64px 20px 64px 20px",
+        },
+        "&.round-right": {
+            borderRadius: "20px 64px 20px 64px",
+        },
+    },
     ["@media (max-width:1100px)"]: {
         "&.round-left, &.round-right": {
             borderRadius: "20px ",
