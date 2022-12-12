@@ -5,7 +5,7 @@ import { uploadedSchoolImageURLBuilder } from "@/utils/client/uploaded_image_url
 import type { School } from "@prisma/client";
 import type { FunctionComponent } from "react";
 // Other components
-import Image from "next/image";
+import NextImageWithSkeleton from "@/components/atoms/NextImageWithSkeleton";
 // Material UI Icons
 import AccessTime from "@mui/icons-material/AccessTime";
 // Styled components
@@ -37,7 +37,7 @@ const SingleSchool: FunctionComponent<SingleSchoolProps> = ({ data }) => {
             </ContentWrapper>
             <a href={data.url} target="_blank" rel="noreferrer">
                 <ImageWrapper>
-                    <Image
+                    <NextImageWithSkeleton
                         alt={`${data.title}-thumbnail`} //
                         src={uploadedSchoolImageURLBuilder(data.folder)}
                         layout="fill"

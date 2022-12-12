@@ -5,10 +5,10 @@ import { uploadedPreviousJobImageURLBuilder } from "@/utils/client/uploaded_imag
 import type { FunctionComponent } from "react";
 import type { PreviousJob } from "@/@types/pages/LandingPage";
 // Other components
-import Image from "next/image";
 import Localization from "./Localization";
 import ITRelatedJobIconBase from "./ITRelatedJobIcon";
 import Duration from "@/components/atoms/single_project/Duration";
+import NextImageWithSkeleton from "@/components/atoms/NextImageWithSkeleton";
 // Styled components
 import TextWrapper from "./styled_components/TextWrapper";
 import ThumbnailWrapper from "./styled_components/ThumbnailWrapper";
@@ -25,7 +25,7 @@ const SinglePreviousJob: FunctionComponent<SinglePreviousJobProps> = ({ data, ..
     return (
         <SinglePreviousJobBase className={props.hoverable ? "hoverable" : ""}>
             <ThumbnailWrapper className="single-previous-job-thumbnail-wrapper">
-                <Image
+                <NextImageWithSkeleton
                     alt={`${data.title}-thumbnail`} //
                     src={uploadedPreviousJobImageURLBuilder(data.folder)}
                     layout="fill"
