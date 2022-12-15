@@ -64,4 +64,11 @@ export default [
         title: "Oslo Subway Tunnel Metal Urban",
         folder: "oslo-subway-tunnel-metal-urban",
     },
+    { title: "Dalmatin", folder: "dalmatian-g1cb093856_1920" },
+    { title: "Duiker island", folder: "duiker-island-g219f778bb_1920" },
+    { title: "Ferris wheel", folder: "ferris-wheel-gfdab84223_1920" },
+    { title: "Mountains", folder: "mountains-g4aa9aa558_1920" },
+    { title: "Paris", folder: "paris-gb8178f2c8_1920" },
+    { title: "Rose", folder: "rose-gdc35bc5ae_1920" },
+    { title: "Town", folder: "town-g97f3f6cc3_1280" },
 ] as PictureToMatch[];
