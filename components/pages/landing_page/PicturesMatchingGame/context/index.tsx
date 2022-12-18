@@ -1,7 +1,9 @@
 // Tools
 import { gameplayReducer } from "./GameplayReducer";
+import useBlockUserScroll from "@/hooks/useBlockUserScroll";
 import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
 import ALL_AVAILABLE_IMAGES from "@/data/pictures_for_matching_game";
+import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
 import { createContext, useState, useMemo, useCallback, useReducer, useEffect } from "react";
 // Types
 import type { FunctionComponent, ReactNode, SetStateAction, Dispatch } from "react";
@@ -28,6 +30,9 @@ interface PicturesMatchingGameContextInterface {
 export const PicturesMatchingGameContext = createContext<PicturesMatchingGameContextInterface>({} as any);
 
 export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
+    const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
+    const { hideNavigationBar } = useMainNavigationBarContext();
+
     const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PicturesMatchingGameContextInterface["pictureToDisplayInFullsize"]>(null);
     const [difficulty, setDifficulty] = useState<Difficulty>("MEDIUM");
     const [stage, setStage] = useState<CurrentStage>("SELECT_DIFFICULTY");
@@ -62,6 +67,16 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
     }, []);
 
     const startNewGame = useCallback(() => {
+        const mainWrapper = document.getElementById("picture-matching-game-main-wrapper") as HTMLElement;
+        mainWrapper.classList.add("gameplay-on");
+
+        setTimeout(() => {
+            const picturesWrapper = document.getElementById("picture-matching-game-pictures-wrapper") as HTMLElement;
+            picturesWrapper.scrollIntoView();
+        }, 20);
+
+        hideNavigationBar();
+        disableUserScroll();
         setStage("GAMEPLAY");
         dispatch({
             type: "START_NEW_GAME",
@@ -69,7 +84,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
                 amountOfPictures: amountOfPicturesBasedOnDifficulty,
             },
         });
-    }, [amountOfPicturesBasedOnDifficulty]);
+    }, [amountOfPicturesBasedOnDifficulty, disableUserScroll, hideNavigationBar]);
 
     useEffect(() => {
         const animation = gameplay.animation;

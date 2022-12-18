@@ -35,7 +35,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
 
     return (
         <DarkSectionWrapper
-            id="picture-matching-game-wrapper"
+            id="picture-matching-game-main-wrapper"
             shapesDirection="right"
             header={{
                 main: "React image matching game",
@@ -47,9 +47,43 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                 "&.visible": {
                     ...(introAnimations as any),
                 },
+                "&.gameplay-on": {
+                    position: "fixed",
+                    top: "-20px",
+                    left: 0,
+                    width: "100vw",
+                    height: "100vh",
+                    borderRadius: "0",
+                    overflowY: "scroll",
+                    "&::before, #user-choice-animaiton-base": {
+                        position: "fixed",
+                        width: "calc(100vw - 8px)",
+                    },
+                    ".dark-content-wrapper-github-redirection": {
+                        display: "none",
+                    },
+                    "&::-webkit-scrollbar": {
+                        width: "8px",
+                        background: "#f0eff4",
+                    },
+
+                    "&::-webkit-scrollbar-track": {
+                        boxShadow: "inset 0 0 2px #888",
+                        opacity: 0.1,
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                        backgroundColor: "#da4167",
+                        borderRadius: "2px",
+                    },
+                },
             }}
             githubURL="https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page/PicturesMatchingGame"
-            childrenOutsideContent={<Background className={context.gameplay.animation ?? ""} />}
+            childrenOutsideContent={
+                <Background
+                    id="user-choice-animaiton-base" //
+                    className={context.gameplay.animation ?? ""}
+                />
+            }
         >
             {(() => {
                 if (context.pictureToDisplayInFullsize) {

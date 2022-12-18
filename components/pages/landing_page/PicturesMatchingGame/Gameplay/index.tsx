@@ -31,6 +31,7 @@ const GameplayWrapper = styled("section")(({ theme }) => ({
     flexWrap: "wrap",
     justifyContent: "center",
     maxWidth: "900px",
+    paddingBottom: "32px",
     "&.EASY": {
         maxWidth: "600px",
         ".single-picture": {
@@ -69,7 +70,7 @@ const Gameplay: FunctionComponent<GameplayProps> = (props) => {
     const context = usePicturesMatchingGameContext();
 
     return (
-        <GameplayWrapper className={context.difficulty}>
+        <GameplayWrapper className={context.difficulty} id="picture-matching-game-pictures-wrapper">
             {context.gameplay.pictures.map((picture, index) => {
                 return (
                     <SinglePicture
