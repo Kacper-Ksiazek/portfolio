@@ -71,4 +71,4 @@ export default [
     { title: "Paris", url: "paris-gb8178f2c8_1920" },
     { title: "Rose", url: "rose-gdc35bc5ae_1920" },
     { title: "Town", url: "town-g97f3f6cc3_1280" },
-] as PictureToMatch[];
+] as PictureToMatchRaw[];
