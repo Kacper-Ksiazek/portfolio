@@ -1,30 +1,41 @@
 // Tools
-import { useState, useEffect } from "react";
+import { styled } from "@mui/system";
 import { introAnimations } from "./introAnimations";
-import usePicturesMatchingGameContext from "./hooks/usePicturesMatchingGameContext";
+import { usePicturesMatchingGameContext } from "./hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import SinglePicture from "./SinglePicture";
-import YouWonCommunique from "./YouWonCommunique";
+import PickADifficulty from "./PickADifficulty";
 import ImageModel from "@/components/utils/ImageModel";
 import { PicturesMatchingGameContextProvider } from "./context";
 // Material UI Icons
 import SportsEsports from "@mui/icons-material/SportsEsports";
 // Styled Components
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
-import { BottomInformation, PicturesWrapper } from "./_styled_components";
+import Gameplay from "./Gameplay";
+const Background = styled("span")(({ theme }) => ({
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: 1,
+    opacity: 0.2,
+    "&.INVALID_CHOICE": {
+        background: "#aa1b38",
+    },
+    "&.CORRECT_CHOICE": {
+        background: "#56bc5b",
+    },
+    transition: "background .3s linear",
+}));
 
 const PicturesMatchingGame: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
-    const [itsTheFirstGameInSession, setItsTheFirstGameInSession] = useState<boolean>(true);
-
-    useEffect(() => {
-        if (context.gameIsOver) setItsTheFirstGameInSession(false);
-    }, [context.gameIsOver]);
 
     return (
         <DarkSectionWrapper
+            id="picture-matching-game-wrapper"
             shapesDirection="right"
             header={{
                 main: "React image matching game",
@@ -38,6 +49,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                 },
             }}
             githubURL="https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page/PicturesMatchingGame"
+            childrenOutsideContent={<Background className={context.gameplay.animation ?? ""} />}
         >
             {(() => {
                 if (context.pictureToDisplayInFullsize) {
@@ -46,38 +58,29 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                             open={true} //
                             title={context.pictureToDisplayInFullsize.title}
                             onClose={() => context.setPictureToDisplayInFullsize(null)}
-                            imageURL={`/images/landing-page/images-matching-game/${context.pictureToDisplayInFullsize.folder}/fullsize.jpg`}
+                            imageURL={`/images/landing-page/images-matching-game/${context.pictureToDisplayInFullsize.url}/fullsize.jpg`}
                         />
                     );
                 }
             })()}
 
-            <PicturesWrapper key={context.gameNumber}>
-                {context.allPictures.map((item) => {
-                    const displayImage = context.checkWehetherAImageShouldBeShown(item.id);
-                    const isMatched = context.checkWhetherAImageHasBeenAlreadyMatched(item.folder);
-                    return (
-                        <SinglePicture
-                            key={item.id} //
-                            id={item.id}
-                            image={item.folder}
-                            isInvalid={displayImage && context.animationToDisplay === "invalid_choose"}
-                            onClick={() => {
-                                if (!isMatched) context.handlePictureOnClick(item.id);
-                                else context.setPictureToDisplayInFullsize(item);
-                            }}
-                            displayImage={displayImage || isMatched}
-                            isMatched={isMatched}
-                            itsTheFirstGameInSession={itsTheFirstGameInSession}
-                        />
-                    );
-                })}
-            </PicturesWrapper>
+            {(() => {
+                switch (context.stage) {
+                    case "SELECT_DIFFICULTY":
+                        return <PickADifficulty />;
+                    case "GAMEPLAY":
+                        return <Gameplay />;
+                }
+
+                return <></>;
+            })()}
+
+            {/* 
             {context.gameIsOver && <YouWonCommunique />}
 
             <BottomInformation className="already-taken-turns-communique">
                 Already taken turns: <strong>{context.numberOfTurns}</strong>
-            </BottomInformation>
+            </BottomInformation> */}
         </DarkSectionWrapper>
     );
 };

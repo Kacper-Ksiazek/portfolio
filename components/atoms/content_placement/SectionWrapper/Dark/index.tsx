@@ -21,7 +21,12 @@ const StyledContentWrapper = styled(ContentWrapper)(({ theme }) => ({
 const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) => {
     return (
         <VisibilitySensor onVisible={props.onVisible} offsetTop={0}>
-            <DarkWrapperBase sx={props.sx} className={props.shapesDirection}>
+            <DarkWrapperBase
+                id={props.id}
+                sx={props.sx} ///
+                className={[props.shapesDirection, props.className].join(" ")}
+            >
+                {props.childrenOutsideContent}
                 <StyledContentWrapper>
                     <Header {...props.header}></Header>
                     {props.children}

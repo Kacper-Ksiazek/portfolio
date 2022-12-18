@@ -1,108 +1,109 @@
 // Tools
-import { createContext, useState, useMemo } from "react";
+import { gameplayReducer } from "./GameplayReducer";
 import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
 import ALL_AVAILABLE_IMAGES from "@/data/pictures_for_matching_game";
+import { createContext, useState, useMemo, useCallback, useReducer, useEffect } from "react";
 // Types
 import type { FunctionComponent, ReactNode, SetStateAction, Dispatch } from "react";
-import type { PictureToMatch } from "@/data/pictures_for_matching_game";
+import type { Difficulty, CurrentStage, PictureToMatch, UserChoiceAnimation } from "@/@types/pages/PicturesMatchingGame";
+import type { GameplayReducer, GameplayReducerPropsToBeUsed } from "@/@types/pages/PicturesMatchingGame/reducer";
 
-interface PictureToMatchWithID extends PictureToMatch {
-    id: number;
-}
-type AnimationToDisplay = "invalid_choose" | null;
+const ANIMATION_DURATIONS: Record<UserChoiceAnimation, number> = Object.seal({
+    INVALID_CHOICE: 350,
+    CORRECT_CHOICE: 350,
+});
 
 interface PicturesMatchingGameContextInterface {
-    numberOfTurns: number;
-    animationToDisplay: AnimationToDisplay;
-    pictureToDisplayInFullsize: PictureToMatchWithID | null;
-    allPictures: PictureToMatchWithID[];
-    gameIsOver: boolean;
-    gameNumber: number;
+    stage: CurrentStage;
+    difficulty: Difficulty;
+    pictureToDisplayInFullsize: PictureToMatch | null;
+    gameplay: GameplayReducerPropsToBeUsed;
     //
     startNewGame: () => void;
-    /**
-     * This function is triggered each time the picture is clicked, expects one parameter- a unique id of clicked element
-     */
-    handlePictureOnClick: (id: number) => void;
-    checkWehetherAImageShouldBeShown: (id: number) => boolean;
-    checkWhetherAImageHasBeenAlreadyMatched: (folder: string) => boolean;
-    setPictureToDisplayInFullsize: Dispatch<SetStateAction<PictureToMatchWithID | null>>;
+    handlePictureOnClick: (clickedPicture: PictureToMatch) => void;
+    setDifficulty: Dispatch<SetStateAction<Difficulty>>;
+    setPictureToDisplayInFullsize: Dispatch<SetStateAction<PictureToMatch | null>>;
 }
 
 export const PicturesMatchingGameContext = createContext<PicturesMatchingGameContextInterface>({} as any);
 
 export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
-    // This one property is used to refresh useMemo hook and allow staring further games without refreshing the page
-    const [gameNumber, setGameNumber] = useState<number>(1);
+    const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PicturesMatchingGameContextInterface["pictureToDisplayInFullsize"]>(null);
+    const [difficulty, setDifficulty] = useState<Difficulty>("MEDIUM");
+    const [stage, setStage] = useState<CurrentStage>("SELECT_DIFFICULTY");
 
-    const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PictureToMatchWithID | null>(null);
-    const [numberOfTurns, setNumberOfTurns] = useState<number>(0);
-    const [alreadyMatchedPictures, setAlreadyMatchedPictures] = useState<string[]>([]);
-    const [idsOfPicturesToDisplay, setIdsOfPicturesToDisplay] = useState<number[]>([]);
-    const [animationToDisplay, setAnimationToDisplay] = useState<AnimationToDisplay>(null);
+    const [gameplay, dispatch] = useReducer(gameplayReducer, {
+        _previouslyClickedPicture: null,
+        _amountOfRemainingPictures: 0,
+        animation: null,
+        isOver: true,
+        pictures: [],
+        turn: 0,
+    } as GameplayReducer);
 
-    const allPictures = useMemo<PictureToMatchWithID[]>(() => {
-        const _shuffle = (arr: any[]): any[] => arr.sort(() => 0.5 - Math.random());
-        const fiveRandomImages: PictureToMatch[] = _shuffle(ALL_AVAILABLE_IMAGES).slice(0, 5);
-        return _shuffle([...fiveRandomImages, ...fiveRandomImages]).map((el: PictureToMatch, index): PictureToMatchWithID => {
-            return { ...el, id: index };
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [gameNumber]);
+    const amountOfPicturesBasedOnDifficulty = useMemo<number>(() => {
+        return (
+            {
+                EASY: 4,
+                MEDIUM: 6,
+                HARD: 12,
+                INSANE: 20,
+            } as Record<Difficulty, number>
+        )[difficulty];
+    }, [difficulty]);
 
     useLazyLoadedImages({
         id: "PICTURES_MATCHING_MINIGAME_SINGLE_IMAGE",
-        srcsToLazyLoad: allPictures.map((image) => `/images/landing-page/images-matching-game/${image.folder}/thumbnail.jpg`),
+        srcsToLazyLoad: ALL_AVAILABLE_IMAGES.map((image) => `/images/landing-page/images-matching-game/${image.url}/thumbnail.jpg`),
     });
 
-    const handlePictureOnClick = (id: number) => {
-        if (idsOfPicturesToDisplay.length === 2 || idsOfPicturesToDisplay.includes(id)) return;
-        if (idsOfPicturesToDisplay.length === 0) return setIdsOfPicturesToDisplay([id]);
-        setNumberOfTurns((val) => val + 1);
-        //
-        // Helper function to facilitate comparing of pictures reflecting by different ids
-        const _getFolderName = (id: number): string => (allPictures.find((el) => el.id === id) as PictureToMatchWithID).folder;
-        // Add currently clicked picture's id to the array in order to enable animations
-        setIdsOfPicturesToDisplay((val) => [...val, id]);
-        // Dedicate whether the pictures are equal
-        if (_getFolderName(id) === _getFolderName(idsOfPicturesToDisplay[0])) {
-            setAlreadyMatchedPictures((val) => [...val, _getFolderName(id)]);
-            setAnimationToDisplay(null);
-            setIdsOfPicturesToDisplay([]);
-        } else {
-            setTimeout(() => {
-                setAnimationToDisplay("invalid_choose");
-                setTimeout(() => {
-                    setAnimationToDisplay(null);
-                    setIdsOfPicturesToDisplay([]);
-                }, 150);
-            }, 450);
-        }
-    };
+    const handlePictureOnClick = useCallback((clickedPicture: PictureToMatch) => {
+        dispatch({ type: "HANDLE_ON_CLICK", payload: clickedPicture });
+    }, []);
 
-    const startNewGame = () => {
-        setGameNumber((val) => val + 1);
-        setNumberOfTurns(1);
-        setAlreadyMatchedPictures([]);
-        setIdsOfPicturesToDisplay([]);
-        setAnimationToDisplay(null);
-        setPictureToDisplayInFullsize(null);
-    };
+    const startNewGame = useCallback(() => {
+        setStage("GAMEPLAY");
+        dispatch({
+            type: "START_NEW_GAME",
+            payload: {
+                amountOfPictures: amountOfPicturesBasedOnDifficulty,
+            },
+        });
+    }, [amountOfPicturesBasedOnDifficulty]);
+
+    useEffect(() => {
+        const animation = gameplay.animation;
+        if (animation === "INVALID_CHOICE" || animation === "CORRECT_CHOICE") {
+            setTimeout(() => {
+                dispatch({ type: "END_ANIMATION" });
+            }, ANIMATION_DURATIONS[animation]);
+        } else if (animation === "INTRO") {
+            const delays: Record<Difficulty, number> = {
+                EASY: 2400,
+                MEDIUM: 2500,
+                HARD: 2800,
+                INSANE: 3200,
+            };
+
+            setTimeout(() => {
+                console.log("INTRO ANIMATION HAS BEEN DONE");
+                dispatch({ type: "END_ANIMATION" });
+            }, delays[difficulty]);
+        }
+    }, [gameplay.animation, difficulty]);
 
     return (
         <PicturesMatchingGameContext.Provider
             value={{
-                gameNumber,
-                animationToDisplay,
-                allPictures,
-                numberOfTurns,
+                stage,
                 pictureToDisplayInFullsize,
-                gameIsOver: alreadyMatchedPictures.length === 5,
+                difficulty,
+                gameplay,
+
+                setDifficulty,
                 startNewGame,
                 setPictureToDisplayInFullsize,
                 handlePictureOnClick,
-                checkWehetherAImageShouldBeShown: (id: number) => idsOfPicturesToDisplay.includes(id),
-                checkWhetherAImageHasBeenAlreadyMatched: (folder: string) => alreadyMatchedPictures.includes(folder),
             }}
         >
             {props.children}

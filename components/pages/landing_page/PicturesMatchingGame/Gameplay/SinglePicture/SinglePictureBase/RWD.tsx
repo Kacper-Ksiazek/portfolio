@@ -28,39 +28,9 @@ export const SinglePictureBaseRWD: SxProps = {
         height: "140px",
     },
     //
-    ["@media (min-width:781px)"]: {
-        "&:nth-of-type(5n + 1)": {
-            marginLeft: "0",
-        },
-        "&:nth-of-type(1)": {
-            marginBottom: "10px",
-        },
-    },
-    ["@media (min-width:661px) and (max-width: 780px)"]: {
-        "&:nth-of-type(4n + 1)": {
-            marginLeft: "0",
-        },
-        "&:nth-of-type(1), &:nth-of-type(5)": {
-            marginBottom: "10px",
-        },
-    },
-    ["@media (min-width:521px) and (max-width:660px)"]: {
-        "&:nth-of-type(3n + 1)": {
-            marginLeft: "0",
-        },
-        "&:nth-of-type(1), &:nth-of-type(4), &:nth-of-type(7)": {
-            marginBottom: "10px",
-        },
-    },
     ["@media (max-width:520px)"]: {
         width: "200px",
         height: "200px",
-        "&:nth-of-type(2n + 1)": {
-            marginLeft: "0",
-        },
-        "&:nth-of-type(1), &:nth-of-type(3), &:nth-of-type(5), &:nth-of-type(7), &:nth-of-type(9)": {
-            marginBottom: "10px",
-        },
     },
     ["@media (max-width:450px)"]: {
         width: "190px",
