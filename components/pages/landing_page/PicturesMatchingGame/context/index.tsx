@@ -1,9 +1,6 @@
 // Tools
 import { gameplayReducer } from "./GameplayReducer";
-import useBlockUserScroll from "@/hooks/useBlockUserScroll";
-import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
-import ALL_AVAILABLE_IMAGES from "@/data/pictures_for_matching_game";
-import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
+import { usePositionFixedWindow } from "./_usePositionFixedWindow";
 import { createContext, useState, useMemo, useCallback, useReducer, useEffect } from "react";
 // Types
 import type { FunctionComponent, ReactNode, SetStateAction, Dispatch } from "react";
@@ -30,12 +27,10 @@ interface PicturesMatchingGameContextInterface {
 export const PicturesMatchingGameContext = createContext<PicturesMatchingGameContextInterface>({} as any);
 
 export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
-    const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
-    const { hideNavigationBar } = useMainNavigationBarContext();
-
     const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PicturesMatchingGameContextInterface["pictureToDisplayInFullsize"]>(null);
     const [difficulty, setDifficulty] = useState<Difficulty>("MEDIUM");
     const [stage, setStage] = useState<CurrentStage>("SELECT_DIFFICULTY");
+    const positionFixedWindow = usePositionFixedWindow();
 
     const [gameplay, dispatch] = useReducer(gameplayReducer, {
         _previouslyClickedPicture: null,
@@ -57,26 +52,12 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
         )[difficulty];
     }, [difficulty]);
 
-    useLazyLoadedImages({
-        id: "PICTURES_MATCHING_MINIGAME_SINGLE_IMAGE",
-        srcsToLazyLoad: ALL_AVAILABLE_IMAGES.map((image) => `/images/landing-page/images-matching-game/${image.url}/thumbnail.jpg`),
-    });
-
     const handlePictureOnClick = useCallback((clickedPicture: PictureToMatch) => {
         dispatch({ type: "HANDLE_ON_CLICK", payload: clickedPicture });
     }, []);
 
     const startNewGame = useCallback(() => {
-        const mainWrapper = document.getElementById("picture-matching-game-main-wrapper") as HTMLElement;
-        mainWrapper.classList.add("gameplay-on");
-
-        setTimeout(() => {
-            const picturesWrapper = document.getElementById("picture-matching-game-pictures-wrapper") as HTMLElement;
-            picturesWrapper.scrollIntoView();
-        }, 20);
-
-        hideNavigationBar();
-        disableUserScroll();
+        positionFixedWindow.open();
         setStage("GAMEPLAY");
         dispatch({
             type: "START_NEW_GAME",
@@ -84,7 +65,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
                 amountOfPictures: amountOfPicturesBasedOnDifficulty,
             },
         });
-    }, [amountOfPicturesBasedOnDifficulty, disableUserScroll, hideNavigationBar]);
+    }, [amountOfPicturesBasedOnDifficulty, positionFixedWindow]);
 
     useEffect(() => {
         const animation = gameplay.animation;

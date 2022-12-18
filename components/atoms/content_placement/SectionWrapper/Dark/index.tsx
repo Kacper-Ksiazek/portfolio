@@ -18,14 +18,37 @@ const StyledContentWrapper = styled(ContentWrapper)(({ theme }) => ({
     color: "#fff",
 }));
 
+const DarkSectionWrapperBackgroundSVG = styled("span")(({ theme }) => ({
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundRepeat: "no-repeat !important",
+    backgroundPosition: "center ",
+    backgroundSize: "cover !important",
+    "&.left": {
+        background: "url(/images/components/dark-section-wrapper/left.svg)",
+    },
+    "&.right": {
+        background: "url(/images/components/dark-section-wrapper/right.svg)",
+    },
+}));
+
 const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) => {
     return (
         <VisibilitySensor onVisible={props.onVisible} offsetTop={0}>
             <DarkWrapperBase
                 id={props.id}
                 sx={props.sx} ///
-                className={[props.shapesDirection, props.className].join(" ")}
+                className={props.className}
             >
+                <DarkSectionWrapperBackgroundSVG
+                    className={[
+                        "dark-section-wrapper-background-svg", //
+                        props.shapesDirection,
+                    ].join(" ")}
+                />
                 {props.childrenOutsideContent}
                 <StyledContentWrapper>
                     <Header {...props.header}></Header>

@@ -1,6 +1,8 @@
 // Tools
 import { styled } from "@mui/system";
 import { introAnimations } from "./introAnimations";
+import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
+import ALL_AVAILABLE_IMAGES from "@/data/pictures_for_matching_game";
 import { usePicturesMatchingGameContext } from "./hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -33,6 +35,16 @@ const Background = styled("span")(({ theme }) => ({
 const PicturesMatchingGame: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
 
+    useLazyLoadedImages({
+        id: "PICTURES_MATCHING_MINIGAME_THUMBNAILS",
+        srcsToLazyLoad: ALL_AVAILABLE_IMAGES.map((image) => `/images/landing-page/images-matching-game/${image.url}/thumbnail.jpg`),
+    });
+
+    useLazyLoadedImages({
+        id: "PICTURES_MATCHING_MINIGAME_CURRENT_PICTURES_IN_FULLSIZE",
+        srcsToLazyLoad: context.gameplay.pictures.map((image) => `/images/landing-page/images-matching-game/${image.url}/fullsize.jpg`),
+    });
+
     return (
         <DarkSectionWrapper
             id="picture-matching-game-main-wrapper"
@@ -55,9 +67,13 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                     height: "100vh",
                     borderRadius: "0",
                     overflowY: "scroll",
-                    "&::before, #user-choice-animaiton-base": {
+                    zIndex: 10000,
+                    ".dark-section-wrapper-background-svg, #user-choice-animaiton-base": {
                         position: "fixed",
                         width: "calc(100vw - 8px)",
+                        height: "100vh",
+                        top: 0,
+                        left: 0,
                     },
                     ".dark-content-wrapper-github-redirection": {
                         display: "none",
@@ -108,13 +124,6 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
 
                 return <></>;
             })()}
-
-            {/* 
-            {context.gameIsOver && <YouWonCommunique />}
-
-            <BottomInformation className="already-taken-turns-communique">
-                Already taken turns: <strong>{context.numberOfTurns}</strong>
-            </BottomInformation> */}
         </DarkSectionWrapper>
     );
 };
