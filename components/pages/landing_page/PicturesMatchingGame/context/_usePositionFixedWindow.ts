@@ -44,8 +44,17 @@ export const usePositionFixedWindow = (): UsePositionFixedWindowResult => {
     }, [disableUserScroll, hideNavigationBar]);
 
     const close = useCallback(() => {
-        //
-    }, []);
+        const mainWrapper = getNode("MAIN_WRAPPER");
+        mainWrapper.classList.remove("gameplay-on");
+
+        setTimeout(() => {
+            [mainWrapper, getNode("SVG_BACKGROUND"), getNode("USER_CHOICE_ANIMATION_BASE")].forEach((node) => {
+                node.style.top = `0`;
+            });
+        }, 2);
+
+        enableUserScroll();
+    }, [enableUserScroll]);
 
     return { open, close };
 };

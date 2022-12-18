@@ -97,6 +97,17 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
                 }),
             };
         }
+
+        case "CLOSE_CURRENT_GAME": {
+            return {
+                _amountOfRemainingPictures: 0,
+                _previouslyClickedPicture: null,
+                animation: null,
+                isOver: false,
+                pictures: [],
+                turn: 0,
+            };
+        }
     }
     return state;
 };

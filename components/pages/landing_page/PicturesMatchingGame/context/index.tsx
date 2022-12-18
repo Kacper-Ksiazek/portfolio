@@ -19,6 +19,7 @@ interface PicturesMatchingGameContextInterface {
     gameplay: GameplayReducerPropsToBeUsed;
     //
     startNewGame: () => void;
+    closeCurrentGame: () => void;
     handlePictureOnClick: (clickedPicture: PictureToMatch) => void;
     setDifficulty: Dispatch<SetStateAction<Difficulty>>;
     setPictureToDisplayInFullsize: Dispatch<SetStateAction<PictureToMatch | null>>;
@@ -67,6 +68,14 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
         });
     }, [amountOfPicturesBasedOnDifficulty, positionFixedWindow]);
 
+    const closeCurrentGame = useCallback(() => {
+        positionFixedWindow.close();
+        dispatch({
+            type: "CLOSE_CURRENT_GAME",
+        });
+        setStage("SELECT_DIFFICULTY");
+    }, [positionFixedWindow]);
+
     useEffect(() => {
         const animation = gameplay.animation;
         if (animation === "INVALID_CHOICE" || animation === "CORRECT_CHOICE") {
@@ -74,17 +83,18 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
                 dispatch({ type: "END_ANIMATION" });
             }, ANIMATION_DURATIONS[animation]);
         } else if (animation === "INTRO") {
-            const delays: Record<Difficulty, number> = {
+            const delay: number = {
                 EASY: 2400,
                 MEDIUM: 2500,
                 HARD: 2800,
                 INSANE: 3200,
-            };
+            }[difficulty];
+
+            (document.getElementById("surrender-button") as any).style.animationDelay = `${delay + 500}ms`;
 
             setTimeout(() => {
-                console.log("INTRO ANIMATION HAS BEEN DONE");
                 dispatch({ type: "END_ANIMATION" });
-            }, delays[difficulty]);
+            }, delay);
         }
     }, [gameplay.animation, difficulty]);
 
@@ -98,6 +108,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
 
                 setDifficulty,
                 startNewGame,
+                closeCurrentGame,
                 setPictureToDisplayInFullsize,
                 handlePictureOnClick,
             }}

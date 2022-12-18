@@ -13,7 +13,7 @@ export interface GameplayReducer extends GameplayReducerPropsToBeUsed {
     _previouslyClickedPicture: PictureToMatch | null;
 }
 
-export type GameplayAction = OnClickAction | GoToNextTurnAction | StartNewGameAction | EndAnimationAction;
+export type GameplayAction = OnClickAction | GoToNextTurnAction | StartNewGameAction | EndAnimationAction | CloseCurrentGameAction;
 
 type OnClickAction = {
     type: "HANDLE_ON_CLICK";
@@ -34,4 +34,8 @@ type StartNewGameAction = {
 
 type EndAnimationAction = {
     type: "END_ANIMATION";
+};
+
+type CloseCurrentGameAction = {
+    type: "CLOSE_CURRENT_GAME";
 };
