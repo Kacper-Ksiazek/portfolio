@@ -39,10 +39,16 @@ const SurrenderButton: FunctionComponent<SurrenderButtonProps> = (props) => {
 
     const closeDialog = () => setOpenDialog(false);
     const exit = () => {
+        const mainWrapper = document.getElementById("picture-matching-game-main-wrapper") as HTMLElement;
+        mainWrapper.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+        });
+
         setOpenDialog(false);
-        setTimeout(() => {
-            props.exitCurrentGameplay();
-        }, 100);
+        mainWrapper.classList.remove("gameplay-on");
+        props.exitCurrentGameplay();
     };
 
     return (

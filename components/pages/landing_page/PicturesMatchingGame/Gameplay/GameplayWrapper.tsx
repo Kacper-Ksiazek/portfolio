@@ -1,9 +1,10 @@
 // Tools
 import { styled } from "@mui/system";
+import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Types
 import type { SxProps } from "@mui/system";
 // Styled components
-const DEFAULT_DELAY = 100;
+const DEFAULT_DELAY = 300;
 const DELAY_BETWEEN_ELEMENTS = 50;
 
 const applyAnimationDelay = (elementsInTotal: number): SxProps => {
@@ -28,6 +29,9 @@ export default styled("section")(({ theme }) => ({
     justifyContent: "center",
     maxWidth: "900px",
     paddingBottom: "32px",
+    "&.exiting": {
+        animation: `${fadeSimpleOUT} .3s linear both`,
+    },
     "&.EASY": {
         maxWidth: "600px",
         ".single-picture": {

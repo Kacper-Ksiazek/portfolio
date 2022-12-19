@@ -12,7 +12,13 @@ const Gameplay: FunctionComponent = (props) => {
 
     return (
         <>
-            <GameplayWrapper className={context.difficulty} id="picture-matching-game-pictures-wrapper">
+            <GameplayWrapper
+                id="picture-matching-game-pictures-wrapper" //
+                className={[
+                    context.difficulty, //
+                    context.gameplay.isExiting ? "exiting" : "",
+                ].join(" ")}
+            >
                 {context.gameplay.pictures.map((picture, index) => {
                     return (
                         <SinglePicture

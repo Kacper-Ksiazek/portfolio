@@ -76,6 +76,7 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
                 isOver: false,
                 animation: "INTRO",
                 pictures,
+                isExiting: false,
                 //
                 _previouslyClickedPicture: null,
                 _amountOfRemainingPictures: pictures.length / 2,
@@ -98,14 +99,22 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
             };
         }
 
-        case "CLOSE_CURRENT_GAME": {
+        case "CLEAR_CURRENT_GAME": {
             return {
+                isExiting: false,
                 _amountOfRemainingPictures: 0,
                 _previouslyClickedPicture: null,
                 animation: null,
                 isOver: false,
                 pictures: [],
                 turn: 0,
+            };
+        }
+
+        case "START_EXITING": {
+            return {
+                ...state,
+                isExiting: true,
             };
         }
     }

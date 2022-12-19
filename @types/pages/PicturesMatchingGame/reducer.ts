@@ -5,6 +5,7 @@ export interface GameplayReducerPropsToBeUsed {
     turn: number;
     pictures: PictureToMatch[];
     isOver: boolean;
+    isExiting: boolean;
     animation: AnimationToDisplay;
 }
 
@@ -13,7 +14,7 @@ export interface GameplayReducer extends GameplayReducerPropsToBeUsed {
     _previouslyClickedPicture: PictureToMatch | null;
 }
 
-export type GameplayAction = OnClickAction | GoToNextTurnAction | StartNewGameAction | EndAnimationAction | CloseCurrentGameAction;
+export type GameplayAction = OnClickAction | GoToNextTurnAction | StartNewGameAction | EndAnimationAction | ClearCurrentGameAction | StartExiting;
 
 type OnClickAction = {
     type: "HANDLE_ON_CLICK";
@@ -36,6 +37,10 @@ type EndAnimationAction = {
     type: "END_ANIMATION";
 };
 
-type CloseCurrentGameAction = {
-    type: "CLOSE_CURRENT_GAME";
+type ClearCurrentGameAction = {
+    type: "CLEAR_CURRENT_GAME";
+};
+
+type StartExiting = {
+    type: "START_EXITING";
 };

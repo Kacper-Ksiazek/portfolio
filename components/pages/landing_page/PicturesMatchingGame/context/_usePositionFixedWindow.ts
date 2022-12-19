@@ -36,7 +36,7 @@ export const usePositionFixedWindow = (): UsePositionFixedWindowResult => {
             });
             setTimeout(() => {
                 getNode("PICTURES_WRAPPER").scrollIntoView();
-            }, 2);
+            }, 200);
         }, 2);
 
         hideNavigationBar();

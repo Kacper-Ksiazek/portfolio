@@ -59,12 +59,15 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                 "&.visible": {
                     ...(introAnimations as any),
                 },
+                maxHeight: "540px",
+                transition: "max-height .2s linear",
                 "&.gameplay-on": {
                     position: "fixed",
                     top: "-20px",
                     left: 0,
                     width: "100vw",
                     height: "100vh",
+                    maxHeight: "100vh",
                     borderRadius: "0",
                     overflowY: "scroll",
                     zIndex: 10000,

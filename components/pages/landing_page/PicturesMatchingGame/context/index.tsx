@@ -7,9 +7,10 @@ import type { FunctionComponent, ReactNode, SetStateAction, Dispatch } from "rea
 import type { Difficulty, CurrentStage, PictureToMatch, UserChoiceAnimation } from "@/@types/pages/PicturesMatchingGame";
 import type { GameplayReducer, GameplayReducerPropsToBeUsed } from "@/@types/pages/PicturesMatchingGame/reducer";
 
-const ANIMATION_DURATIONS: Record<UserChoiceAnimation, number> = Object.seal({
+const ANIMATION_DURATIONS: Record<UserChoiceAnimation | "GAMEPLAY_PREPARATION", number> = Object.seal({
     INVALID_CHOICE: 350,
     CORRECT_CHOICE: 350,
+    GAMEPLAY_PREPARATION: 500,
 });
 
 interface PicturesMatchingGameContextInterface {
@@ -40,6 +41,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
         isOver: true,
         pictures: [],
         turn: 0,
+        isExiting: false,
     } as GameplayReducer);
 
     const amountOfPicturesBasedOnDifficulty = useMemo<number>(() => {
@@ -71,9 +73,14 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
     const closeCurrentGame = useCallback(() => {
         positionFixedWindow.close();
         dispatch({
-            type: "CLOSE_CURRENT_GAME",
+            type: "START_EXITING",
         });
-        setStage("SELECT_DIFFICULTY");
+        setTimeout(() => {
+            dispatch({
+                type: "CLEAR_CURRENT_GAME",
+            });
+            setStage("SELECT_DIFFICULTY");
+        }, 500);
     }, [positionFixedWindow]);
 
     useEffect(() => {
@@ -84,10 +91,10 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
             }, ANIMATION_DURATIONS[animation]);
         } else if (animation === "INTRO") {
             const delay: number = {
-                EASY: 2400,
-                MEDIUM: 2500,
-                HARD: 2800,
-                INSANE: 3200,
+                EASY: 2600,
+                MEDIUM: 2700,
+                HARD: 3000,
+                INSANE: 3400,
             }[difficulty];
 
             (document.getElementById("surrender-button") as any).style.animationDelay = `${delay + 500}ms`;
