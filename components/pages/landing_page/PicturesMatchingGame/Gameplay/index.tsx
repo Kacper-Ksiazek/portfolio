@@ -6,6 +6,7 @@ import type { FunctionComponent } from "react";
 import SinglePicture from "./SinglePicture";
 import GameplayWrapper from "./GameplayWrapper";
 import SurrenderButton from "./SurrenderButton";
+import { ButtonsWrapper, StyledButton } from "./styled_components";
 
 const Gameplay: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
@@ -33,7 +34,21 @@ const Gameplay: FunctionComponent = (props) => {
                     );
                 })}
             </GameplayWrapper>
-            <SurrenderButton exitCurrentGameplay={context.closeCurrentGame} />
+
+            <ButtonsWrapper id="picture-matching-game-buttons-wrapper">
+                <SurrenderButton
+                    exitCurrentGameplay={context.navigation.exitCurrentGameplay} //
+                    disabled={context.gameplay.isOver}
+                />
+
+                <StyledButton
+                    color="success" //
+                    disabled={!context.gameplay.isOver}
+                    onClick={context.navigation.continueToTheGameSummary}
+                >
+                    Continue
+                </StyledButton>
+            </ButtonsWrapper>
         </>
     );
 };

@@ -7,14 +7,15 @@ import { usePicturesMatchingGameContext } from "./hooks/usePicturesMatchingGameC
 // Types
 import type { FunctionComponent } from "react";
 // Other components
+import Summary from "./Summary";
 import PickADifficulty from "./PickADifficulty";
 import ImageModel from "@/components/utils/ImageModel";
 import { PicturesMatchingGameContextProvider } from "./context";
 // Material UI Icons
 import SportsEsports from "@mui/icons-material/SportsEsports";
 // Styled Components
-import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 import Gameplay from "./Gameplay";
+import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 const Background = styled("span")(({ theme }) => ({
     position: "absolute",
     top: 0,
@@ -60,7 +61,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                     ...(introAnimations as any),
                 },
                 maxHeight: "540px",
-                transition: "max-height .2s linear",
+                transition: "max-height .15s .25s linear",
                 "&.gameplay-on": {
                     position: "fixed",
                     top: "-20px",
@@ -71,6 +72,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                     borderRadius: "0",
                     overflowY: "scroll",
                     zIndex: 10000,
+                    transition: "max-height .15s linear",
                     ".dark-section-wrapper-background-svg, #user-choice-animaiton-base": {
                         position: "fixed",
                         width: "calc(100vw - 8px)",
@@ -118,11 +120,13 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
             })()}
 
             {(() => {
-                switch (context.stage) {
+                switch (context.navigation.stage) {
                     case "SELECT_DIFFICULTY":
                         return <PickADifficulty />;
                     case "GAMEPLAY":
                         return <Gameplay />;
+                    case "SUMMARY":
+                        return <Summary />;
                 }
 
                 return <></>;

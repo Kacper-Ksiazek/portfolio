@@ -1,7 +1,6 @@
 // Tools
 import { useState } from "react";
 import { styled } from "@mui/system";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Components
@@ -11,13 +10,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 // Styled components
-import StyledButton from "@/components/atoms/forms/StyledButton";
-
-const SurrenderButtonBase = styled(StyledButton)(({ theme }) => ({
-    fontSize: "20px",
-    padding: "6px 48px",
-    animation: `${fadeSimple} .3s both`,
-}));
+import { StyledButton } from "./styled_components";
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
     ".MuiPaper-root": {
@@ -31,6 +24,7 @@ const DialogButton = styled(StyledButton)(({ theme }) => ({
 }));
 
 interface SurrenderButtonProps {
+    disabled: boolean;
     exitCurrentGameplay: () => void;
 }
 
@@ -53,18 +47,16 @@ const SurrenderButton: FunctionComponent<SurrenderButtonProps> = (props) => {
 
     return (
         <>
-            <div style={{ paddingBottom: "48px", paddingTop: "16px" }}>
-                <SurrenderButtonBase
-                    id="surrender-button"
-                    color="error" //
-                    onClick={(e) => {
-                        (e.target as any).blur();
-                        setOpenDialog(true);
-                    }}
-                >
-                    Surrender
-                </SurrenderButtonBase>
-            </div>
+            <StyledButton
+                color="error" //
+                onClick={(e) => {
+                    (e.target as any).blur();
+                    setOpenDialog(true);
+                }}
+                disabled={props.disabled}
+            >
+                Surrender
+            </StyledButton>
             {/*  */}
             <StyledDialog
                 open={openDialog} //

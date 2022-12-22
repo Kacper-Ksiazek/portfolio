@@ -1,11 +1,12 @@
 // Tools
 import { gameplayReducer } from "./GameplayReducer";
-import { usePositionFixedWindow } from "./_usePositionFixedWindow";
+import { useNavigationBetweenStagesMethods } from "./_useNavigationBetweenStagesMethods";
 import { createContext, useState, useMemo, useCallback, useReducer, useEffect } from "react";
 // Types
-import type { FunctionComponent, ReactNode, SetStateAction, Dispatch } from "react";
-import type { Difficulty, CurrentStage, PictureToMatch, UserChoiceAnimation } from "@/@types/pages/PicturesMatchingGame";
-import type { GameplayReducer, GameplayReducerPropsToBeUsed } from "@/@types/pages/PicturesMatchingGame/reducer";
+import type { FunctionComponent, ReactNode } from "react";
+import type { GameplayReducer } from "@/@types/pages/PicturesMatchingGame/reducer";
+import type { PicturesMatchingGameContextInterface } from "@/@types/pages/PicturesMatchingGame/context";
+import type { Difficulty, PictureToMatch, UserChoiceAnimation } from "@/@types/pages/PicturesMatchingGame";
 
 const ANIMATION_DURATIONS: Record<UserChoiceAnimation | "GAMEPLAY_PREPARATION", number> = Object.seal({
     INVALID_CHOICE: 350,
@@ -13,26 +14,11 @@ const ANIMATION_DURATIONS: Record<UserChoiceAnimation | "GAMEPLAY_PREPARATION", 
     GAMEPLAY_PREPARATION: 500,
 });
 
-interface PicturesMatchingGameContextInterface {
-    stage: CurrentStage;
-    difficulty: Difficulty;
-    pictureToDisplayInFullsize: PictureToMatch | null;
-    gameplay: GameplayReducerPropsToBeUsed;
-    //
-    startNewGame: () => void;
-    closeCurrentGame: () => void;
-    handlePictureOnClick: (clickedPicture: PictureToMatch) => void;
-    setDifficulty: Dispatch<SetStateAction<Difficulty>>;
-    setPictureToDisplayInFullsize: Dispatch<SetStateAction<PictureToMatch | null>>;
-}
-
 export const PicturesMatchingGameContext = createContext<PicturesMatchingGameContextInterface>({} as any);
 
 export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
     const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PicturesMatchingGameContextInterface["pictureToDisplayInFullsize"]>(null);
     const [difficulty, setDifficulty] = useState<Difficulty>("MEDIUM");
-    const [stage, setStage] = useState<CurrentStage>("SELECT_DIFFICULTY");
-    const positionFixedWindow = usePositionFixedWindow();
 
     const [gameplay, dispatch] = useReducer(gameplayReducer, {
         _previouslyClickedPicture: null,
@@ -55,33 +41,15 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
         )[difficulty];
     }, [difficulty]);
 
+    const navigationBetweenStages = useNavigationBetweenStagesMethods({
+        dispatch,
+        amountOfPicturesBasedOnDifficulty,
+        gameplayIsOver: gameplay.isOver,
+    });
+
     const handlePictureOnClick = useCallback((clickedPicture: PictureToMatch) => {
         dispatch({ type: "HANDLE_ON_CLICK", payload: clickedPicture });
     }, []);
-
-    const startNewGame = useCallback(() => {
-        positionFixedWindow.open();
-        setStage("GAMEPLAY");
-        dispatch({
-            type: "START_NEW_GAME",
-            payload: {
-                amountOfPictures: amountOfPicturesBasedOnDifficulty,
-            },
-        });
-    }, [amountOfPicturesBasedOnDifficulty, positionFixedWindow]);
-
-    const closeCurrentGame = useCallback(() => {
-        positionFixedWindow.close();
-        dispatch({
-            type: "START_EXITING",
-        });
-        setTimeout(() => {
-            dispatch({
-                type: "CLEAR_CURRENT_GAME",
-            });
-            setStage("SELECT_DIFFICULTY");
-        }, 500);
-    }, [positionFixedWindow]);
 
     useEffect(() => {
         const animation = gameplay.animation;
@@ -97,7 +65,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
                 INSANE: 3400,
             }[difficulty];
 
-            (document.getElementById("surrender-button") as any).style.animationDelay = `${delay + 500}ms`;
+            (document.getElementById("picture-matching-game-buttons-wrapper") as any).style.animationDelay = `${delay + 500}ms`;
 
             setTimeout(() => {
                 dispatch({ type: "END_ANIMATION" });
@@ -108,16 +76,15 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
     return (
         <PicturesMatchingGameContext.Provider
             value={{
-                stage,
+                navigation: navigationBetweenStages,
+
                 pictureToDisplayInFullsize,
                 difficulty,
                 gameplay,
 
                 setDifficulty,
-                startNewGame,
-                closeCurrentGame,
-                setPictureToDisplayInFullsize,
                 handlePictureOnClick,
+                setPictureToDisplayInFullsize,
             }}
         >
             {props.children}
