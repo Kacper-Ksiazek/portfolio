@@ -3,6 +3,8 @@ import { usePicturesMatchingGameContext } from "./hooks/usePicturesMatchingGameC
 // Types
 import type { FunctionComponent } from "react";
 import type { Difficulty } from "@/@types/pages/PicturesMatchingGame";
+// Other components
+import SmoothlyAppearingSection from "./SmoothlyAppearingSection";
 
 interface Option {
     type: Difficulty;
@@ -32,7 +34,7 @@ const PickADifficulty: FunctionComponent = (props) => {
     ];
 
     return (
-        <>
+        <SmoothlyAppearingSection>
             <h1>pick a difficulty</h1>
             <select onChange={(e) => context.setDifficulty(e.target.value as any)} value={context.difficulty}>
                 {options.map((item, index) => {
@@ -45,7 +47,7 @@ const PickADifficulty: FunctionComponent = (props) => {
             </select>
 
             <button onClick={context.navigation.startNewGame}>Begin</button>
-        </>
+        </SmoothlyAppearingSection>
     );
 };
 
