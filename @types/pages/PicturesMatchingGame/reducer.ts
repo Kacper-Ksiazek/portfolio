@@ -7,6 +7,11 @@ export interface GameplayReducerPropsToBeUsed {
     isOver: boolean;
     isExiting: boolean;
     animation: AnimationToDisplay;
+    time: {
+        count: boolean;
+        minutes: number;
+        seconds: number;
+    };
 }
 
 export interface GameplayReducer extends GameplayReducerPropsToBeUsed {
@@ -14,7 +19,7 @@ export interface GameplayReducer extends GameplayReducerPropsToBeUsed {
     _previouslyClickedPicture: PictureToMatch | null;
 }
 
-export type GameplayAction = OnClickAction | GoToNextTurnAction | StartNewGameAction | EndAnimationAction | ClearCurrentGameAction | StartExiting;
+export type GameplayAction = OnClickAction | GoToNextTurnAction | StartNewGameAction | EndAnimationAction | ClearCurrentGameAction | StartExiting | IncrementTime | StartTimeCounting;
 
 type OnClickAction = {
     type: "HANDLE_ON_CLICK";
@@ -35,6 +40,9 @@ type StartNewGameAction = {
 
 type EndAnimationAction = {
     type: "END_ANIMATION";
+    payload?: {
+        startCountingTime?: boolean;
+    };
 };
 
 type ClearCurrentGameAction = {
@@ -43,4 +51,12 @@ type ClearCurrentGameAction = {
 
 type StartExiting = {
     type: "START_EXITING";
+};
+
+type IncrementTime = {
+    type: "INCREMENT_TIME";
+};
+
+type StartTimeCounting = {
+    type: "START_TIME_COUNTING";
 };

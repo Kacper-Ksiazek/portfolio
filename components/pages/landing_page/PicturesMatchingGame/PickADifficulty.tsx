@@ -36,7 +36,7 @@ const PickADifficulty: FunctionComponent = (props) => {
     return (
         <SmoothlyAppearingSection>
             <h1>pick a difficulty</h1>
-            <select onChange={(e) => context.setDifficulty(e.target.value as any)} value={context.difficulty}>
+            <select onChange={(e) => context.methods.setDifficulty(e.target.value as any)} value={context.difficulty}>
                 {options.map((item, index) => {
                     return (
                         <option value={item.type} key={item.type}>

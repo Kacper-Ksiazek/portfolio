@@ -1,8 +1,26 @@
 // Tools
+import { useReducer } from "react";
 import ALL_AVAILABLE_IMAGES from "@/data/pictures_for_matching_game";
 // Types
 import type { PictureToMatchRaw, PictureToMatch } from "@/@types/pages/PicturesMatchingGame";
 import type { GameplayReducer, GameplayAction } from "@/@types/pages/PicturesMatchingGame/reducer";
+
+export const useGameplayReducer = () => useReducer(gameplayReducer, initialState);
+
+export const initialState: GameplayReducer = {
+    isExiting: false,
+    _amountOfRemainingPictures: 0,
+    _previouslyClickedPicture: null,
+    animation: null,
+    isOver: false,
+    pictures: [],
+    turn: 1,
+    time: {
+        count: false,
+        minutes: 0,
+        seconds: 0,
+    },
+};
 
 export const gameplayReducer = (state: GameplayReducer, action: GameplayAction): GameplayReducer => {
     switch (action.type) {
@@ -19,6 +37,8 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
                 //
                 if (clickedPicture.url === previouslyClickedPicture.url) {
                     const _amountOfRemainingPictures = state._amountOfRemainingPictures - 1;
+                    const isOver = _amountOfRemainingPictures === 0;
+
                     return {
                         ...state,
                         animation: "CORRECT_CHOICE",
@@ -28,7 +48,12 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
                         }),
                         _amountOfRemainingPictures,
                         _previouslyClickedPicture: null,
-                        isOver: _amountOfRemainingPictures === 0,
+                        turn: state.turn + 1,
+                        isOver,
+                        time: {
+                            ...state.time,
+                            count: !isOver,
+                        },
                     };
                 }
                 //
@@ -72,13 +97,9 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
             });
 
             return {
-                turn: 0,
-                isOver: false,
+                ...initialState,
                 animation: "INTRO",
                 pictures,
-                isExiting: false,
-                //
-                _previouslyClickedPicture: null,
                 _amountOfRemainingPictures: pictures.length / 2,
             };
         }
@@ -96,25 +117,48 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
                         unfold: false,
                     },
                 }),
+                time: {
+                    ...state.time,
+                    count: action.payload?.startCountingTime ? true : state.time.count,
+                },
             };
         }
 
         case "CLEAR_CURRENT_GAME": {
-            return {
-                isExiting: false,
-                _amountOfRemainingPictures: 0,
-                _previouslyClickedPicture: null,
-                animation: null,
-                isOver: false,
-                pictures: [],
-                turn: 0,
-            };
+            return initialState;
         }
 
         case "START_EXITING": {
             return {
                 ...state,
                 isExiting: true,
+            };
+        }
+
+        case "INCREMENT_TIME": {
+            let { minutes, seconds } = state.time;
+            if (seconds == 59) {
+                minutes += 1;
+                seconds = -1;
+            }
+
+            return {
+                ...state,
+                time: {
+                    count: true,
+                    minutes,
+                    seconds: seconds + 1,
+                },
+            };
+        }
+
+        case "START_TIME_COUNTING": {
+            return {
+                ...state,
+                time: {
+                    ...state.time,
+                    count: true,
+                },
             };
         }
     }

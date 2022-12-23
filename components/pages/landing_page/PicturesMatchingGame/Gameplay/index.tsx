@@ -3,6 +3,7 @@ import { usePicturesMatchingGameContext } from "../hooks/usePicturesMatchingGame
 // Types
 import type { FunctionComponent } from "react";
 // Other components
+import Timer from "./Clock";
 import SinglePicture from "./SinglePicture";
 import GameplayWrapper from "./GameplayWrapper";
 import SurrenderButton from "./SurrenderButton";
@@ -27,13 +28,14 @@ const Gameplay: FunctionComponent = (props) => {
                             data={picture}
                             introAnimaton={context.gameplay.animation === "INTRO"}
                             onClick={() => {
-                                if (!picture.isMatched) context.handlePictureOnClick(picture);
-                                else context.setPictureToDisplayInFullsize(picture);
+                                if (!picture.isMatched) context.methods.handlePictureOnClick(picture);
+                                else context.methods.setPictureToDisplayInFullsize(picture);
                             }}
                         />
                     );
                 })}
             </GameplayWrapper>
+            <Timer />
 
             <ButtonsWrapper id="picture-matching-game-buttons-wrapper">
                 <SurrenderButton

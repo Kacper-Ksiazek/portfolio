@@ -1,10 +1,9 @@
 // Tools
-import { gameplayReducer } from "./GameplayReducer";
+import { useGameplayReducer } from "./GameplayReducer";
+import { createContext, useState, useMemo, useCallback, useEffect } from "react";
 import { useNavigationBetweenStagesMethods } from "./_useNavigationBetweenStagesMethods";
-import { createContext, useState, useMemo, useCallback, useReducer, useEffect } from "react";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { GameplayReducer } from "@/@types/pages/PicturesMatchingGame/reducer";
 import type { PicturesMatchingGameContextInterface } from "@/@types/pages/PicturesMatchingGame/context";
 import type { Difficulty, PictureToMatch, UserChoiceAnimation } from "@/@types/pages/PicturesMatchingGame";
 
@@ -20,15 +19,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
     const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PicturesMatchingGameContextInterface["pictureToDisplayInFullsize"]>(null);
     const [difficulty, setDifficulty] = useState<Difficulty>("MEDIUM");
 
-    const [gameplay, dispatch] = useReducer(gameplayReducer, {
-        _previouslyClickedPicture: null,
-        _amountOfRemainingPictures: 0,
-        animation: null,
-        isOver: true,
-        pictures: [],
-        turn: 0,
-        isExiting: false,
-    } as GameplayReducer);
+    const [gameplay, dispatch] = useGameplayReducer();
 
     const amountOfPicturesBasedOnDifficulty = useMemo<number>(() => {
         return (
@@ -47,9 +38,16 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
         gameplayIsOver: gameplay.isOver,
     });
 
-    const handlePictureOnClick = useCallback((clickedPicture: PictureToMatch) => {
-        dispatch({ type: "HANDLE_ON_CLICK", payload: clickedPicture });
-    }, []);
+    const handlePictureOnClick = useCallback(
+        (clickedPicture: PictureToMatch) => {
+            dispatch({ type: "HANDLE_ON_CLICK", payload: clickedPicture });
+        },
+        [dispatch]
+    );
+
+    const incrementTime = useCallback(() => {
+        dispatch({ type: "INCREMENT_TIME" });
+    }, [dispatch]);
 
     useEffect(() => {
         const animation = gameplay.animation;
@@ -68,10 +66,15 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
             (document.getElementById("picture-matching-game-buttons-wrapper") as any).style.animationDelay = `${delay + 500}ms`;
 
             setTimeout(() => {
-                dispatch({ type: "END_ANIMATION" });
+                dispatch({
+                    type: "END_ANIMATION",
+                    payload: {
+                        startCountingTime: true,
+                    },
+                });
             }, delay);
         }
-    }, [gameplay.animation, difficulty]);
+    }, [gameplay.animation, difficulty, dispatch]);
 
     return (
         <PicturesMatchingGameContext.Provider
@@ -82,9 +85,12 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
                 difficulty,
                 gameplay,
 
-                setDifficulty,
-                handlePictureOnClick,
-                setPictureToDisplayInFullsize,
+                methods: {
+                    incrementTime,
+                    setDifficulty,
+                    handlePictureOnClick,
+                    setPictureToDisplayInFullsize,
+                },
             }}
         >
             {props.children}

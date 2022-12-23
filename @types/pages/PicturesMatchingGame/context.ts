@@ -9,10 +9,13 @@ export interface PicturesMatchingGameContextInterface {
     difficulty: Difficulty;
     pictureToDisplayInFullsize: PictureToMatch | null;
     gameplay: GameplayReducerPropsToBeUsed;
-    //
-    handlePictureOnClick: (clickedPicture: PictureToMatch) => void;
-    setDifficulty: Dispatch<SetStateAction<Difficulty>>;
-    setPictureToDisplayInFullsize: Dispatch<SetStateAction<PictureToMatch | null>>;
+
+    methods: {
+        incrementTime: () => void;
+        setDifficulty: Dispatch<SetStateAction<Difficulty>>;
+        handlePictureOnClick: (clickedPicture: PictureToMatch) => void;
+        setPictureToDisplayInFullsize: Dispatch<SetStateAction<PictureToMatch | null>>;
+    };
 }
 
 export interface NavigationBetweenStages {

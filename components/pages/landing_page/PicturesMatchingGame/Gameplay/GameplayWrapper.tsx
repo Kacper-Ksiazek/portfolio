@@ -31,6 +31,9 @@ export default styled("section")(({ theme }) => ({
     paddingBottom: "32px",
     "&.exiting": {
         animation: `${fadeSimpleOUT} .3s linear both`,
+        "&+#pictures-matching-game-clock": {
+            animation: `${fadeSimpleOUT} .2s linear both !important`,
+        },
     },
     "&.EASY": {
         maxWidth: "600px",
