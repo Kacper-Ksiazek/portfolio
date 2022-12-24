@@ -1,7 +1,7 @@
 // Types
 import type { AnimationToDisplay, PictureToMatch } from "./index";
 
-export interface GameplayReducerPropsToBeUsed {
+export interface Gameplay {
     pictures: PictureToMatch[];
     isOver: boolean;
     isExiting: boolean;
@@ -10,14 +10,16 @@ export interface GameplayReducerPropsToBeUsed {
         inTotal: number;
         mistakes: number;
     };
-    time: {
-        count: boolean;
-        minutes: number;
-        seconds: number;
-    };
+    time: Time;
 }
 
-export interface GameplayReducer extends GameplayReducerPropsToBeUsed {
+export interface Time {
+    count: boolean;
+    minutes: number;
+    seconds: number;
+}
+
+export interface GameplayReducer extends Gameplay {
     _amountOfRemainingPictures: number;
     _previouslyClickedPicture: PictureToMatch | null;
 }

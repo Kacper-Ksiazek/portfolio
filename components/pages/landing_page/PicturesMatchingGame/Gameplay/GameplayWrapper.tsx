@@ -31,7 +31,7 @@ export default styled("section")(({ theme }) => ({
     paddingBottom: "32px",
     "&.exiting": {
         animation: `${fadeSimpleOUT} .3s linear both`,
-        "&+#pictures-matching-game-clock": {
+        "&+#pictures-matching-progress-wrapper": {
             animation: `${fadeSimpleOUT} .2s linear both !important`,
         },
     },

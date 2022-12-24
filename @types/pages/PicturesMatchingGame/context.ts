@@ -1,14 +1,16 @@
 // Types
 import type { SetStateAction, Dispatch } from "react";
-import type { GameplayReducerPropsToBeUsed } from "./reducer";
-import type { Difficulty, PictureMatchingGameplayStage, PictureToMatch, UserChoiceAnimation } from "./index";
+import type { Gameplay } from "./reducer";
+import type { Difficulty, PictureMatchingGameplayStage, PictureToMatch } from "./index";
+
+export type { Gameplay };
 
 export interface PicturesMatchingGameContextInterface {
     navigation: NavigationBetweenStages;
 
     difficulty: Difficulty;
     pictureToDisplayInFullsize: PictureToMatch | null;
-    gameplay: GameplayReducerPropsToBeUsed;
+    gameplay: Gameplay;
 
     methods: {
         incrementTime: () => void;

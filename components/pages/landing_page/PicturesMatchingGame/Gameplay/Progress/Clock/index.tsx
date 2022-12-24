@@ -1,40 +1,43 @@
 // Tools
 import { useMemo, useEffect } from "react";
 import { formatTime } from "./utils/formatTime";
-import { usePicturesMatchingGameContext } from "../../../hooks/usePicturesMatchingGameContext";
 // Types
+import type { Gameplay, PicturesMatchingGameContextInterface } from "@/@types/pages/PicturesMatchingGame/context";
 import type { FunctionComponent } from "react";
 // Material UI Icons
 import AccessTime from "@mui/icons-material/AccessTime";
 // Styled components
 import ClockBase from "./ClockBase";
 
-const Clock: FunctionComponent = () => {
-    const context = usePicturesMatchingGameContext();
+interface ClockProps {
+    gameplay: Gameplay;
+    incrementTime: PicturesMatchingGameContextInterface["methods"]["incrementTime"];
+}
 
+const Clock: FunctionComponent<ClockProps> = (params) => {
     const countTime = useMemo<boolean>(() => {
-        return !context.gameplay.isExiting && context.gameplay.time.count;
-    }, [context.gameplay.isExiting, context.gameplay.time.count]);
+        return !params.gameplay.isExiting && params.gameplay.time.count;
+    }, [params]);
 
     useEffect(() => {
         let interval: ReturnType<typeof setInterval> | null = null;
-        if (countTime) interval = setInterval(context.methods.incrementTime, 1000);
+        if (countTime) interval = setInterval(params.incrementTime, 1000);
 
         return () => {
             if (interval !== null) clearInterval(interval);
         };
-    }, [context.methods.incrementTime, countTime]);
+    }, [countTime, params.incrementTime]);
 
     return (
         <ClockBase
             id="pictures-matching-game-clock"
             className={[
                 countTime ? "counting-active" : "", //
-                context.gameplay.isOver ? "is-over" : "",
+                params.gameplay.isOver ? "is-over" : "",
             ].join(" ")}
         >
             <AccessTime />
-            <span>{formatTime(context.gameplay.time)}</span>
+            <span>{formatTime(params.gameplay.time)}</span>
         </ClockBase>
     );
 };
