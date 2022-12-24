@@ -105,7 +105,7 @@ const Summary: FunctionComponent = (props) => {
 
             <ul>
                 <li className="duration">
-                    <span className="label">Duration:</span>
+                    <span className="label">Time:</span>
                     <strong className="primary">
                         {minutes}min {seconds}sec
                     </strong>

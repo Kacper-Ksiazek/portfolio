@@ -3,7 +3,7 @@ import { usePicturesMatchingGameContext } from "../hooks/usePicturesMatchingGame
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import Timer from "./Clock";
+import Timer from "./Progress";
 import SinglePicture from "./SinglePicture";
 import GameplayWrapper from "./GameplayWrapper";
 import SurrenderButton from "./SurrenderButton";
