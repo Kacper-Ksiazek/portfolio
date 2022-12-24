@@ -3,10 +3,12 @@ import { useMemo } from "react";
 import { usePicturesMatchingGameContext } from "@/components/pages/landing_page/PicturesMatchingGame/hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
+// Material UI Icons
+import NavigateNextOutlined from "@mui/icons-material/NavigateNextOutlined";
 // Other components
 import Clock from "./Clock";
 // Styled components
-import { ProgressWrapper, ProgressRow } from "./styled_components";
+import { ProgressWrapper, ProgressRow, ContinueButton } from "./styled_components";
 
 const Progress: FunctionComponent = () => {
     const context = usePicturesMatchingGameContext();
@@ -23,6 +25,15 @@ const Progress: FunctionComponent = () => {
                 context.gameplay.isOver ? "is-over" : "",
             ].join(" ")}
         >
+            <ContinueButton
+                color="success" //
+                onClick={context.navigation.continueToTheGameSummary}
+                disabled={!context.gameplay.isOver}
+            >
+                <span>Continue</span>
+                <NavigateNextOutlined />
+            </ContinueButton>
+
             <Clock
                 countTime={countTime} //
                 time={context.gameplay.time}

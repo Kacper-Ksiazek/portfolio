@@ -1,9 +1,9 @@
 // Tools
-import { useMemo, useEffect } from "react";
+import { useEffect } from "react";
 import { formatTime } from "./utils/formatTime";
 // Types
 import type { Time } from "@/@types/pages/PicturesMatchingGame/reducer";
-import type { Gameplay, PicturesMatchingGameContextInterface } from "@/@types/pages/PicturesMatchingGame/context";
+import type { PicturesMatchingGameContextInterface } from "@/@types/pages/PicturesMatchingGame/context";
 import type { FunctionComponent } from "react";
 // Material UI Icons
 import AccessTime from "@mui/icons-material/AccessTime";
@@ -27,7 +27,7 @@ const Clock: FunctionComponent<ClockProps> = (params) => {
     }, [params.countTime, params.incrementTime]);
 
     return (
-        <ProgressRow sx={{ fontSize: "28px" }}>
+        <ProgressRow sx={{ fontSize: "28px !important" }}>
             <AccessTime />
             <span>{formatTime(params.time)}</span>
         </ProgressRow>

@@ -56,7 +56,7 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                 maxHeight: "540px",
                 transition: "max-height .15s .25s linear",
                 "&.summary": {
-                    maxHeight: "500px",
+                    maxHeight: "520px",
                 },
                 "&.gameplay-on": {
                     position: "fixed",
