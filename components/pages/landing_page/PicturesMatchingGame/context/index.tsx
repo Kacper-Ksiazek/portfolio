@@ -1,6 +1,6 @@
 // Tools
 import { useGameplayReducer } from "./GameplayReducer";
-import { createContext, useState, useMemo, useCallback, useEffect } from "react";
+import { createContext, useState, useCallback, useEffect } from "react";
 import { useNavigationBetweenStagesMethods } from "./_useNavigationBetweenStagesMethods";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -16,27 +16,28 @@ const ANIMATION_DURATIONS: Record<UserChoiceAnimation | "GAMEPLAY_PREPARATION", 
 export const PicturesMatchingGameContext = createContext<PicturesMatchingGameContextInterface>({} as any);
 
 export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
+    const [difficulty, _setDifficulty] = useState<Difficulty>("MEDIUM");
     const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PicturesMatchingGameContextInterface["pictureToDisplayInFullsize"]>(null);
-    const [difficulty, setDifficulty] = useState<Difficulty>("MEDIUM");
 
     const [gameplay, dispatch] = useGameplayReducer();
 
-    const amountOfPicturesBasedOnDifficulty = useMemo<number>(() => {
-        return (
-            {
-                EASY: 4,
-                MEDIUM: 6,
-                HARD: 12,
-                INSANE: 20,
-            } as Record<Difficulty, number>
-        )[difficulty];
-    }, [difficulty]);
-
-    const navigationBetweenStages = useNavigationBetweenStagesMethods({
+    const { startNewGame, closeSummary, continueToTheGameSummary, exitCurrentGameplay, stage } = useNavigationBetweenStagesMethods({
         dispatch,
-        amountOfPicturesBasedOnDifficulty,
+        difficulty,
         gameplayIsOver: gameplay.isOver,
     });
+
+    const setDifficulty: PicturesMatchingGameContextInterface["methods"]["setDifficulty"] = useCallback(
+        (params) => {
+            if (params instanceof Object) {
+                _setDifficulty(params.value);
+                startNewGame(params.value);
+            } else {
+                _setDifficulty(params);
+            }
+        },
+        [startNewGame]
+    );
 
     const handlePictureOnClick = useCallback(
         (clickedPicture: PictureToMatch) => {
@@ -79,12 +80,16 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
     return (
         <PicturesMatchingGameContext.Provider
             value={{
-                navigation: navigationBetweenStages,
-
+                navigation: {
+                    stage,
+                    startNewGame,
+                    closeSummary,
+                    continueToTheGameSummary,
+                    exitCurrentGameplay,
+                },
                 pictureToDisplayInFullsize,
                 difficulty,
                 gameplay,
-
                 methods: {
                     incrementTime,
                     setDifficulty,

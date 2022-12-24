@@ -51,7 +51,8 @@ const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) =
                 />
                 {props.childrenOutsideContent}
                 <StyledContentWrapper>
-                    <Header {...props.header}></Header>
+                    {props.renderHeader && <Header {...props.header}></Header>}
+
                     {props.children}
                     <GitHubRedirection href={props.githubURL} />
                 </StyledContentWrapper>
@@ -62,5 +63,6 @@ const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) =
 
 DarkSectionWrapper.defaultProps = {
     shapesDirection: "left",
+    renderHeader: true,
 };
 export default DarkSectionWrapper;

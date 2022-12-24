@@ -12,7 +12,7 @@ export interface PicturesMatchingGameContextInterface {
 
     methods: {
         incrementTime: () => void;
-        setDifficulty: Dispatch<SetStateAction<Difficulty>>;
+        setDifficulty: (params: Difficulty | { value: Difficulty; startNewGameplay: boolean }) => void;
         handlePictureOnClick: (clickedPicture: PictureToMatch) => void;
         setPictureToDisplayInFullsize: Dispatch<SetStateAction<PictureToMatch | null>>;
     };
@@ -22,7 +22,7 @@ export interface NavigationBetweenStages {
     stage: PictureMatchingGameplayStage;
 
     /** Translates from "SELECT_DIFFICULTY" into "GAMEPLAY" */
-    startNewGame: () => void;
+    startNewGame: (difficulty?: Difficulty) => void;
     /** Translates from "GAMEPLAY" into "SELECT_DIFFICULTY" */
     exitCurrentGameplay: () => void;
     /** Translates from "GAMEPLAY" into "SUMMARY" */

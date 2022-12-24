@@ -24,11 +24,17 @@ const Background = styled("span")(({ theme }) => ({
         background: "#56bc5b",
     },
     transition: "background .3s linear",
+    // backgroundImage: "url('/images/landing-page/images-matching-game/rose-gdc35bc5ae_1920/thumbnail.jpg')",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
 }));
 
 interface PicturesMatchingGameWrapperProps {
     children: ReactNode;
     animation: AnimationToDisplay;
+    className: string;
+    preventHeaderFromRendering: boolean;
 }
 
 const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapperProps> = (props) => {
@@ -42,12 +48,16 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                 icon: <SportsEsports />,
                 description: `Another very frequently seen portfolio project is a images matching game, so I had decided to code my version of it either in order to spice up everything and more importantly to create second content separator.`,
             }}
+            renderHeader={!props.preventHeaderFromRendering}
             sx={{
                 "&.visible": {
                     ...(introAnimations as any),
                 },
                 maxHeight: "540px",
                 transition: "max-height .15s .25s linear",
+                "&.summary": {
+                    maxHeight: "500px",
+                },
                 "&.gameplay-on": {
                     position: "fixed",
                     top: "-20px",
@@ -84,6 +94,7 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                     },
                 },
             }}
+            className={props.className}
             githubURL="https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page/PicturesMatchingGame"
             childrenOutsideContent={
                 <Background

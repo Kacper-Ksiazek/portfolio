@@ -27,7 +27,14 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
     });
 
     return (
-        <PicturesMatchingGameWrapper animation={context.gameplay.animation}>
+        <PicturesMatchingGameWrapper
+            className={[
+                !context.gameplay.isExiting && context.navigation.stage === "GAMEPLAY" ? "gameplay-on" : "", //
+                context.navigation.stage === "SUMMARY" ? "summary" : "",
+            ].join(" ")}
+            animation={context.gameplay.animation}
+            preventHeaderFromRendering={context.navigation.stage === "SUMMARY"}
+        >
             {(() => {
                 if (context.pictureToDisplayInFullsize) {
                     return (

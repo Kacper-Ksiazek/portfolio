@@ -4,7 +4,7 @@ import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Styled components
-const SmoothlyAppearingSectionBase = styled("div")(({ theme }) => ({
+export const SmoothlyAppearingSectionBase = styled("div")(({ theme }) => ({
     animation: `${fadeSimple} .3s .2s linear both`,
     display: "flex",
     flexDirection: "column",

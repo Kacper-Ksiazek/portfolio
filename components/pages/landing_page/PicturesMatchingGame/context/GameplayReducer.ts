@@ -14,7 +14,10 @@ export const initialState: GameplayReducer = {
     animation: null,
     isOver: false,
     pictures: [],
-    turn: 1,
+    moves: {
+        inTotal: 0,
+        mistakes: 0,
+    },
     time: {
         count: false,
         minutes: 0,
@@ -48,7 +51,10 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
                         }),
                         _amountOfRemainingPictures,
                         _previouslyClickedPicture: null,
-                        turn: state.turn + 1,
+                        moves: {
+                            inTotal: state.moves.inTotal + 1,
+                            mistakes: state.moves.mistakes,
+                        },
                         isOver,
                         time: {
                             ...state.time,
@@ -67,7 +73,10 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
                             updateInto: { unfold: true },
                         }),
                         animation: "INVALID_CHOICE",
-                        turn: state.turn + 1,
+                        moves: {
+                            inTotal: state.moves.inTotal + 1,
+                            mistakes: state.moves.mistakes + 1,
+                        },
                         _previouslyClickedPicture: null,
                     };
                 }
@@ -80,7 +89,6 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
                         idsToModify: [clickedPicture.id],
                         updateInto: { unfold: true },
                     }),
-                    turn: state.turn + 1,
                     _previouslyClickedPicture: action.payload,
                 };
             }

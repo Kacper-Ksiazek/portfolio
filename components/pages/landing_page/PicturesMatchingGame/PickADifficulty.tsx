@@ -46,7 +46,7 @@ const PickADifficulty: FunctionComponent = (props) => {
                 })}
             </select>
 
-            <button onClick={context.navigation.startNewGame}>Begin</button>
+            <button onClick={() => context.navigation.startNewGame(context.difficulty)}>Begin</button>
         </SmoothlyAppearingSection>
     );
 };

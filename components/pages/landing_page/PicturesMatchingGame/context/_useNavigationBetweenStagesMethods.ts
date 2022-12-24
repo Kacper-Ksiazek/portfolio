@@ -5,12 +5,11 @@ import { usePositionFixedWindow } from "./_usePositionFixedWindow";
 import type { Dispatch } from "react";
 import type { GameplayAction } from "@/@types/pages/PicturesMatchingGame/reducer";
 import type { NavigationBetweenStages } from "@/@types/pages/PicturesMatchingGame/context";
-import type { PictureMatchingGameplayStage } from "@/@types/pages/PicturesMatchingGame";
+import type { PictureMatchingGameplayStage, Difficulty } from "@/@types/pages/PicturesMatchingGame";
 
 export interface NavigationBetweenStagesMethodsParams {
+    difficulty: Difficulty;
     gameplayIsOver: boolean;
-    amountOfPicturesBasedOnDifficulty: number;
-
     dispatch: Dispatch<GameplayAction>;
 }
 
@@ -18,7 +17,7 @@ export interface NavigationBetweenStagesMethodsParams {
 const CLOSE_ANIMATION_DURATION: number = 500;
 
 export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStagesMethodsParams): NavigationBetweenStages => {
-    const { amountOfPicturesBasedOnDifficulty, dispatch, gameplayIsOver } = params;
+    const { difficulty, dispatch } = params;
 
     const positionFixedWindow = usePositionFixedWindow();
     const [stage, setStage] = useState<PictureMatchingGameplayStage>("SELECT_DIFFICULTY");
@@ -27,32 +26,44 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
     const afterCloseAnimation = useCallback(
         (cb: () => void) => {
             positionFixedWindow.close();
-            dispatch({
+            params.dispatch({
                 type: "START_EXITING",
             });
             setTimeout(cb, CLOSE_ANIMATION_DURATION);
         },
-        [dispatch, positionFixedWindow]
+        [params, positionFixedWindow]
     );
 
-    const startNewGame: NavigationBetweenStages["startNewGame"] = useCallback(() => {
-        positionFixedWindow.open();
-        setStage("GAMEPLAY");
-        dispatch({
-            type: "START_NEW_GAME",
-            payload: {
-                amountOfPictures: amountOfPicturesBasedOnDifficulty,
-            },
-        });
-    }, [amountOfPicturesBasedOnDifficulty, positionFixedWindow, dispatch]);
+    const startNewGame: NavigationBetweenStages["startNewGame"] = useCallback(
+        (forcedDifficulty) => {
+            const amountOfPicturesBasedOnDifficulty: number = (
+                {
+                    EASY: 4,
+                    MEDIUM: 6,
+                    HARD: 12,
+                    INSANE: 20,
+                } as Record<Difficulty, number>
+            )[forcedDifficulty ?? difficulty];
+
+            positionFixedWindow.open();
+            setStage("GAMEPLAY");
+            dispatch({
+                type: "START_NEW_GAME",
+                payload: {
+                    amountOfPictures: amountOfPicturesBasedOnDifficulty,
+                },
+            });
+        },
+        [positionFixedWindow, dispatch, difficulty]
+    );
 
     const continueToTheGameSummary: NavigationBetweenStages["continueToTheGameSummary"] = useCallback(() => {
-        if (!gameplayIsOver) return;
+        if (!params.gameplayIsOver) return;
 
         afterCloseAnimation(() => {
             setStage("SUMMARY");
         });
-    }, [gameplayIsOver, afterCloseAnimation]);
+    }, [params.gameplayIsOver, afterCloseAnimation]);
 
     const closeSummary: NavigationBetweenStages["closeSummary"] = useCallback(() => {
         setStage("SELECT_DIFFICULTY");
@@ -60,12 +71,12 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
 
     const exitCurrentGameplay: NavigationBetweenStages["exitCurrentGameplay"] = useCallback(() => {
         afterCloseAnimation(() => {
-            dispatch({
+            params.dispatch({
                 type: "CLEAR_CURRENT_GAME",
             });
             setStage("SELECT_DIFFICULTY");
         });
-    }, [dispatch, afterCloseAnimation]);
+    }, [afterCloseAnimation, params]);
 
     return {
         stage,

@@ -2,11 +2,14 @@
 import type { AnimationToDisplay, PictureToMatch } from "./index";
 
 export interface GameplayReducerPropsToBeUsed {
-    turn: number;
     pictures: PictureToMatch[];
     isOver: boolean;
     isExiting: boolean;
     animation: AnimationToDisplay;
+    moves: {
+        inTotal: number;
+        mistakes: number;
+    };
     time: {
         count: boolean;
         minutes: number;

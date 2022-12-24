@@ -35,4 +35,5 @@ export interface DarkSectionWrapperProps {
     className?: string;
     id?: string;
     childrenOutsideContent?: ReactNode;
+    renderHeader?: boolean;
 }

@@ -28,7 +28,7 @@ export const usePositionFixedWindow = (): UsePositionFixedWindowResult => {
     const open = useCallback(() => {
         const userScroll = window.scrollY;
         const mainWrapper = getNode("MAIN_WRAPPER");
-        mainWrapper.classList.add("gameplay-on");
+        // mainWrapper.classList.add("gameplay-on");
 
         setTimeout(() => {
             [mainWrapper, getNode("SVG_BACKGROUND"), getNode("USER_CHOICE_ANIMATION_BASE")].forEach((node) => {
@@ -45,7 +45,7 @@ export const usePositionFixedWindow = (): UsePositionFixedWindowResult => {
 
     const close = useCallback(() => {
         const mainWrapper = getNode("MAIN_WRAPPER");
-        mainWrapper.classList.remove("gameplay-on");
+        // mainWrapper.classList.remove("gameplay-on");
 
         setTimeout(() => {
             [mainWrapper, getNode("SVG_BACKGROUND"), getNode("USER_CHOICE_ANIMATION_BASE")].forEach((node) => {
