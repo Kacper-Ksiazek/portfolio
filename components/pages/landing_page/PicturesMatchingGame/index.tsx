@@ -32,7 +32,6 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                 !context.gameplay.isExiting && context.navigation.stage === "GAMEPLAY" ? "gameplay-on" : "", //
                 context.navigation.stage === "SUMMARY" ? "summary" : "",
             ].join(" ")}
-            animation={context.gameplay.animation}
             preventHeaderFromRendering={context.navigation.stage === "SUMMARY"}
         >
             {(() => {

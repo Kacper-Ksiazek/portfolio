@@ -15,19 +15,22 @@ import StyledButton from "@/components/atoms/forms/StyledButton";
 import { Difficulty } from "@/@types/pages/PicturesMatchingGame";
 
 const SummaryBase = styled(SmoothlyAppearingSectionBase)(({ theme }) => ({
+    justifyContent: "flex-end",
     "strong.primary": {
         background: theme.palette.primary.main,
         padding: "0px 8px",
         borderRadius: "3px",
     },
-    h4: {
+    h3: {
+        fontWeight: "700",
         animation: `${fadeSimple} .3s .5s both`,
-        margin: "48px 0 24px 0",
+        margin: "128px 0 24px 0",
     },
     p: {
         animation: `${fadeSimple} .3s .6s both`,
         fontSize: "20px",
         margin: 0,
+        cursor: "default",
         "&.bottom": {
             marginTop: "32px",
         },
@@ -55,7 +58,7 @@ const SummaryBase = styled(SmoothlyAppearingSectionBase)(({ theme }) => ({
         top: "50%",
         left: "50%",
         transform: "translate(-50%,-50%)",
-        color: alpha("#fff", 0.05),
+        color: alpha("#fff", 0.1),
         animation: `${fadeSimple} .3s 2s both linear`,
     },
 }));
@@ -98,7 +101,7 @@ const Summary: FunctionComponent = (props) => {
     return (
         <SummaryBase>
             <StarBorderOutlined id="background-svg" />
-            <Typography variant="h4">Congratulations!</Typography>
+            <Typography variant="h3">Congratulations!</Typography>
             <p>
                 You have managed to complete a minigame on <strong className="primary">{context.difficulty}</strong> difficulty mode.
             </p>

@@ -1,38 +1,15 @@
 // Tools
-import { styled } from "@mui/system";
 import { introAnimations } from "./introAnimations";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { AnimationToDisplay } from "@/@types/pages/PicturesMatchingGame";
 // Material UI Icons
 import SportsEsports from "@mui/icons-material/SportsEsports";
 // Styled components
+import Background from "./Background";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
-
-const Background = styled("span")(({ theme }) => ({
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    zIndex: 1,
-    opacity: 0.2,
-    "&.INVALID_CHOICE": {
-        background: "#aa1b38",
-    },
-    "&.CORRECT_CHOICE": {
-        background: "#56bc5b",
-    },
-    transition: "background .3s linear",
-    // backgroundImage: "url('/images/landing-page/images-matching-game/rose-gdc35bc5ae_1920/thumbnail.jpg')",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-}));
 
 interface PicturesMatchingGameWrapperProps {
     children: ReactNode;
-    animation: AnimationToDisplay;
     className: string;
     preventHeaderFromRendering: boolean;
 }
@@ -56,7 +33,8 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                 maxHeight: "540px",
                 transition: "max-height .15s .25s linear",
                 "&.summary": {
-                    maxHeight: "520px",
+                    maxHeight: "calc(100vh - 40px)",
+                    height: "calc(100vh - 40px)",
                 },
                 "&.gameplay-on": {
                     position: "fixed",
@@ -96,12 +74,7 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
             }}
             className={props.className}
             githubURL="https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page/PicturesMatchingGame"
-            childrenOutsideContent={
-                <Background
-                    id="user-choice-animaiton-base" //
-                    className={props.animation ?? ""}
-                />
-            }
+            childrenOutsideContent={<Background />}
         >
             {props.children}
         </DarkSectionWrapper>

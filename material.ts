@@ -39,6 +39,10 @@ export default createTheme({
     components: {
         MuiTypography: {
             styleOverrides: {
+                h3: {
+                    fontFamily: "Montserrat Alternates",
+                    cursor: "default",
+                },
                 h4: {
                     fontWeight: 700,
                     fontFamily: "Montserrat Alternates",
