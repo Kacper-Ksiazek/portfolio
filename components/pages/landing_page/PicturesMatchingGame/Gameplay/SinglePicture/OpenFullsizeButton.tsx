@@ -14,6 +14,8 @@ const OpenFullsizeBase = styled("span")(({ theme }) => ({
     position: "absolute",
     zIndex: 5,
     width: "100%",
+    top: 0,
+    left: 0,
     height: "100%",
     borderRadius: "5px 10px 5px 10px",
     transition: "background .3s",

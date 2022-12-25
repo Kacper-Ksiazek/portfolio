@@ -7,7 +7,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import Summary from "./Summary";
 import PickADifficulty from "./PickADifficulty";
-import ImageModel from "@/components/utils/ImageModel";
+import ImageModelWithGallery from "./ImageModelWithGallery";
 import { PicturesMatchingGameContextProvider } from "./context";
 // Styled Components
 import Gameplay from "./Gameplay";
@@ -34,18 +34,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
             ].join(" ")}
             preventHeaderFromRendering={context.navigation.stage === "SUMMARY"}
         >
-            {(() => {
-                if (context.pictureToDisplayInFullsize) {
-                    return (
-                        <ImageModel
-                            open={true} //
-                            title={context.pictureToDisplayInFullsize.title}
-                            onClose={() => context.methods.setPictureToDisplayInFullsize(null)}
-                            imageURL={`/images/landing-page/images-matching-game/${context.pictureToDisplayInFullsize.url}/fullsize.jpg`}
-                        />
-                    );
-                }
-            })()}
+            <ImageModelWithGallery />
 
             {(() => {
                 switch (context.navigation.stage) {
