@@ -20,7 +20,7 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
     const { difficulty, dispatch } = params;
 
     const positionFixedWindow = usePositionFixedWindow();
-    const [stage, setStage] = useState<PictureMatchingGameplayStage>("SELECT_DIFFICULTY");
+    const [stage, setStage] = useState<PictureMatchingGameplayStage>("MENU");
 
     /** It's just a local utility */
     const afterCloseAnimation = useCallback(
@@ -65,8 +65,12 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
         });
     }, [params.gameplayIsOver, afterCloseAnimation]);
 
-    const closeSummary: NavigationBetweenStages["closeSummary"] = useCallback(() => {
-        setStage("SELECT_DIFFICULTY");
+    const goBackToMenu: NavigationBetweenStages["goBackToMenu"] = useCallback(() => {
+        setStage("MENU");
+    }, []);
+
+    const openGamesHistory: NavigationBetweenStages["goBackToMenu"] = useCallback(() => {
+        setStage("STATISTICS");
     }, []);
 
     const exitCurrentGameplay: NavigationBetweenStages["exitCurrentGameplay"] = useCallback(() => {
@@ -74,7 +78,7 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
             params.dispatch({
                 type: "CLEAR_CURRENT_GAME",
             });
-            setStage("SELECT_DIFFICULTY");
+            setStage("MENU");
         });
     }, [afterCloseAnimation, params]);
 
@@ -82,7 +86,8 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
         stage,
 
         startNewGame,
-        closeSummary,
+        goBackToMenu,
+        openGamesHistory,
         exitCurrentGameplay,
         continueToTheGameSummary,
     };

@@ -6,6 +6,7 @@ import { usePicturesMatchingGameContext } from "./hooks/usePicturesMatchingGameC
 import type { FunctionComponent } from "react";
 // Other components
 import Summary from "./Summary";
+import Statistics from "./Statistics";
 import PickADifficulty from "./PickADifficulty";
 import ImageModelWithGallery from "./ImageModelWithGallery";
 import { PicturesMatchingGameContextProvider } from "./context";
@@ -38,13 +39,14 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
 
             {(() => {
                 switch (context.navigation.stage) {
-                    case "SELECT_DIFFICULTY":
+                    case "MENU":
                         return <PickADifficulty />;
                     case "GAMEPLAY":
                         return <Gameplay />;
                     case "SUMMARY":
                         return <Summary />;
-                        return <></>;
+                    case "STATISTICS":
+                        return <Statistics />;
                 }
             })()}
         </PicturesMatchingGameWrapper>

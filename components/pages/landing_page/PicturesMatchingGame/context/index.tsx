@@ -21,7 +21,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
 
     const [gameplay, dispatch] = useGameplayReducer();
 
-    const { startNewGame, closeSummary, continueToTheGameSummary, exitCurrentGameplay, stage } = useNavigationBetweenStagesMethods({
+    const { startNewGame, goBackToMenu, continueToTheGameSummary, exitCurrentGameplay, stage, openGamesHistory } = useNavigationBetweenStagesMethods({
         dispatch,
         difficulty,
         gameplayIsOver: gameplay.isOver,
@@ -83,9 +83,10 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
                 navigation: {
                     stage,
                     startNewGame,
-                    closeSummary,
-                    continueToTheGameSummary,
+                    goBackToMenu,
+                    openGamesHistory,
                     exitCurrentGameplay,
+                    continueToTheGameSummary,
                 },
                 pictureToDisplayInFullsize,
                 difficulty,

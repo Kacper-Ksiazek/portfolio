@@ -45,6 +45,7 @@ const Gameplay: FunctionComponent = (props) => {
 
                 <StyledButton
                     color="success" //
+                    className="navigation"
                     disabled={!context.gameplay.isOver}
                     onClick={context.navigation.continueToTheGameSummary}
                 >

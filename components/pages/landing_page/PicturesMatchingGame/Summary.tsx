@@ -123,7 +123,7 @@ const Summary: FunctionComponent = (props) => {
             <p className="bottom">Now you can either go back to the difficulty selection stage, or keep playing {context.difficulty !== "INSANE" ? "on a higher difficulty" : ""}</p>
 
             <ButtonsWrapper>
-                <StyledButton onClick={context.navigation.closeSummary}>Return</StyledButton>
+                <StyledButton onClick={context.navigation.goBackToMenu}>Return</StyledButton>
                 <StyledButton onClick={keepPlaying} color="primary">
                     Keep playing
                 </StyledButton>

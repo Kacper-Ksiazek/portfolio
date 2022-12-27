@@ -35,7 +35,6 @@ const PickADifficulty: FunctionComponent = (props) => {
 
     return (
         <SmoothlyAppearingSection>
-            <h1>pick a difficulty</h1>
             <select onChange={(e) => context.methods.setDifficulty(e.target.value as any)} value={context.difficulty}>
                 {options.map((item, index) => {
                     return (
@@ -46,7 +45,19 @@ const PickADifficulty: FunctionComponent = (props) => {
                 })}
             </select>
 
-            <button onClick={() => context.navigation.startNewGame(context.difficulty)}>Begin</button>
+            <button
+                className="navigation" //
+                onClick={() => context.navigation.startNewGame(context.difficulty)}
+            >
+                Begin
+            </button>
+            <br />
+            <button
+                className="navigation" //
+                onClick={() => context.navigation.openGamesHistory()}
+            >
+                Games history
+            </button>
         </SmoothlyAppearingSection>
     );
 };

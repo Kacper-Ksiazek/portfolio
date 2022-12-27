@@ -54,6 +54,7 @@ const SurrenderButton: FunctionComponent<SurrenderButtonProps> = (props) => {
                     setOpenDialog(true);
                 }}
                 disabled={props.disabled}
+                className="navigation"
             >
                 Surrender
             </StyledButton>

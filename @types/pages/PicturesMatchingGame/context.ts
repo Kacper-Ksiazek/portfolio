@@ -23,12 +23,14 @@ export interface PicturesMatchingGameContextInterface {
 export interface NavigationBetweenStages {
     stage: PictureMatchingGameplayStage;
 
-    /** Translates from "SELECT_DIFFICULTY" into "GAMEPLAY" */
+    /** Translates from "MENU" into "GAMEPLAY" */
     startNewGame: (difficulty?: Difficulty) => void;
-    /** Translates from "GAMEPLAY" into "SELECT_DIFFICULTY" */
+    /** Translates from "GAMEPLAY" into "MENU" */
     exitCurrentGameplay: () => void;
     /** Translates from "GAMEPLAY" into "SUMMARY" */
     continueToTheGameSummary: () => void;
-    /** Translates from "SUMMARY" into "SELECT_DIFFICULTY" */
-    closeSummary: () => void;
+    /** Translates from "SUMMARY" into "MENU" */
+    goBackToMenu: () => void;
+    /** Translates from "MENU" into "STATISTICS" */
+    openGamesHistory: () => void;
 }

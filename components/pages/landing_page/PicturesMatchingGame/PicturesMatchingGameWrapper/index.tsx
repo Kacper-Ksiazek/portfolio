@@ -27,13 +27,18 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
             }}
             renderHeader={!props.preventHeaderFromRendering}
             sx={{
+                "button.navigation": {
+                    fontSize: "20px",
+                    padding: "6px 48px",
+                    "&:disabled": {
+                        background: "#fff",
+                        opacity: 0.5,
+                    },
+                },
                 "&.visible": {
                     ...(introAnimations as any),
                 },
-                maxHeight: "540px",
-                transition: "max-height .15s .25s linear",
                 "&.summary": {
-                    maxHeight: "calc(100vh - 40px)",
                     height: "calc(100vh - 40px)",
                 },
                 "&.gameplay-on": {
@@ -42,7 +47,6 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                     left: 0,
                     width: "100vw",
                     height: "100vh",
-                    maxHeight: "100vh",
                     borderRadius: "0",
                     overflowY: "scroll",
                     zIndex: 10000,

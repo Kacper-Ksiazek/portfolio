@@ -1,6 +1,6 @@
 // Tools
 import { useEffect } from "react";
-import { formatTime } from "./utils/formatTime";
+import { formatTime } from "@/utils/client/formatTime";
 // Types
 import type { Time } from "@/@types/pages/PicturesMatchingGame/reducer";
 import type { PicturesMatchingGameContextInterface } from "@/@types/pages/PicturesMatchingGame/context";
@@ -8,7 +8,7 @@ import type { FunctionComponent } from "react";
 // Material UI Icons
 import AccessTime from "@mui/icons-material/AccessTime";
 // Styled components
-import { ProgressRow } from "../styled_components";
+import { ProgressRow } from "./styled_components";
 
 interface ClockProps {
     time: Time;
