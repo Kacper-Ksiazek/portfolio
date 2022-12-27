@@ -1,24 +1,28 @@
 // Tools
-import { useState, useCallback } from "react";
+import { useState, useEffect } from "react";
+// Types
+import type { Dispatch, SetStateAction } from "react";
 
 type UseLocalStorageResult<T> = [
     T, //
-    (val: T) => void
+    Dispatch<SetStateAction<T>>
 ];
 
 export const useLocalStorage = <T>(localStorageKey: string, initialValue: T): UseLocalStorageResult<T> => {
-    const [value, _setValue] = useState(() => {
-        if (!localStorage || localStorage.getItem(localStorageKey) === null) return initialValue;
-        return JSON.parse(localStorage.getItem(localStorageKey) as string);
-    });
+    const [value, setValue] = useState<T>(initialValue);
 
-    const setValue = useCallback(
-        (value: T) => {
-            _setValue(value);
+    useEffect(() => {
+        if (localStorage) {
+            const valueFromLocalStorage = localStorage.getItem(localStorageKey);
+            if (valueFromLocalStorage !== null) setValue(JSON.parse(valueFromLocalStorage));
+        }
+    }, [localStorageKey]);
+
+    useEffect(() => {
+        if (localStorage) {
             localStorage.setItem(localStorageKey, JSON.stringify(value));
-        },
-        [localStorageKey]
-    );
+        }
+    }, [localStorageKey, value]);
 
     return [value, setValue];
 };

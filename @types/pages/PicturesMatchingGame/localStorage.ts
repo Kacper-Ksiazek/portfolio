@@ -1,8 +1,8 @@
 // Types
 import { Difficulty } from "@/@types/pages/PicturesMatchingGame";
 
-export interface StatisticsRecord {
-    difficulty: Difficulty;
+type GeneralStatisticsRecordKey = Difficulty | "TOTAL";
+export interface GeneralStatisticsRecord {
     games: {
         inTotal: number;
         won: number;
@@ -14,10 +14,14 @@ export interface StatisticsRecord {
 export interface GamesHistoryRecord {
     index: number;
     difficulty: Difficulty;
-    duration: {
-        minutes: number;
-        seconds: number;
-    };
+    /** The time unit here is a second */
+    duration: number;
     date: string;
     accurancy: number;
+    won: boolean;
+}
+
+export interface Statistics {
+    history: GamesHistoryRecord[];
+    general: Record<GeneralStatisticsRecordKey, GeneralStatisticsRecord>;
 }

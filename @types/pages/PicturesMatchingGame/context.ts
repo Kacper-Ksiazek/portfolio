@@ -2,6 +2,7 @@
 import type { SetStateAction, Dispatch } from "react";
 import type { Gameplay } from "./reducer";
 import type { Difficulty, PictureMatchingGameplayStage, PictureToMatch } from "./index";
+import type { Statistics } from "./localStorage";
 
 export type { Gameplay };
 
@@ -11,6 +12,7 @@ export interface PicturesMatchingGameContextInterface {
     difficulty: Difficulty;
     pictureToDisplayInFullsize: PictureToMatch | null;
     gameplay: Gameplay;
+    statistics: Statistics;
 
     methods: {
         incrementTime: () => void;

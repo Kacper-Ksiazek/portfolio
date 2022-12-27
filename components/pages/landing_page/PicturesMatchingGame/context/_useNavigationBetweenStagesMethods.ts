@@ -2,15 +2,17 @@
 import { useState, useCallback } from "react";
 import { usePositionFixedWindow } from "./_usePositionFixedWindow";
 // Types
-import type { Dispatch } from "react";
-import type { GameplayAction } from "@/@types/pages/PicturesMatchingGame/reducer";
+import type { Dispatch, SetStateAction } from "react";
 import type { NavigationBetweenStages } from "@/@types/pages/PicturesMatchingGame/context";
+import type { Gameplay, GameplayAction } from "@/@types/pages/PicturesMatchingGame/reducer";
+import type { Statistics } from "@/@types/pages/PicturesMatchingGame/localStorage";
 import type { PictureMatchingGameplayStage, Difficulty } from "@/@types/pages/PicturesMatchingGame";
 
 export interface NavigationBetweenStagesMethodsParams {
     difficulty: Difficulty;
-    gameplayIsOver: boolean;
+    gameplay: Gameplay;
     dispatch: Dispatch<GameplayAction>;
+    setStatistics: Dispatch<SetStateAction<Statistics>>;
 }
 
 /** Expressed in **ms** */
@@ -58,12 +60,55 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
     );
 
     const continueToTheGameSummary: NavigationBetweenStages["continueToTheGameSummary"] = useCallback(() => {
-        if (!params.gameplayIsOver) return;
+        if (!params.gameplay.isOver) return;
+
+        params.setStatistics((value) => {
+            const { gameplay } = params;
+            const { TOTAL, [difficulty]: current } = value.general;
+            const duration = gameplay.time.minutes * 60 + gameplay.time.seconds;
+
+            return {
+                history: [
+                    ...value.history,
+                    {
+                        accurancy: gameplay.moves.inTotal ? Number(((gameplay.moves.inTotal - gameplay.moves.mistakes) / gameplay.moves.inTotal).toFixed(2)) : 0,
+                        date: ((): string => {
+                            const date = new Date();
+                            return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+                        })(),
+                        difficulty,
+                        duration,
+                        index: (() => {
+                            if (value.history[value.history.length - 1]) return value.history[value.history.length - 1].index + 1;
+                            return 1;
+                        })(),
+                        won: true,
+                    },
+                ],
+                general: {
+                    ...value.general,
+                    [difficulty]: {
+                        games: {
+                            inTotal: current.games.inTotal + 1,
+                            won: current.games.won + 1,
+                        },
+                        totalTime: current.totalTime + duration,
+                    },
+                    TOTAL: {
+                        games: {
+                            inTotal: TOTAL.games.inTotal + 1,
+                            won: TOTAL.games.won + 1,
+                        },
+                        totalTime: TOTAL.totalTime + duration,
+                    },
+                },
+            };
+        });
 
         afterCloseAnimation(() => {
             setStage("SUMMARY");
         });
-    }, [params.gameplayIsOver, afterCloseAnimation]);
+    }, [params, afterCloseAnimation, difficulty]);
 
     const goBackToMenu: NavigationBetweenStages["goBackToMenu"] = useCallback(() => {
         setStage("MENU");
@@ -75,12 +120,55 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
 
     const exitCurrentGameplay: NavigationBetweenStages["exitCurrentGameplay"] = useCallback(() => {
         afterCloseAnimation(() => {
+            params.setStatistics((value) => {
+                const { gameplay } = params;
+                const { TOTAL, [difficulty]: current } = value.general;
+                const duration = gameplay.time.minutes * 60 + gameplay.time.seconds;
+
+                return {
+                    history: [
+                        ...value.history,
+                        {
+                            accurancy: gameplay.moves.inTotal ? Number(((gameplay.moves.inTotal - gameplay.moves.mistakes) / gameplay.moves.inTotal).toFixed(2)) : 0,
+                            date: ((): string => {
+                                const date = new Date();
+                                return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+                            })(),
+                            difficulty,
+                            duration,
+                            index: (() => {
+                                if (value.history[value.history.length - 1]) return value.history[value.history.length - 1].index + 1;
+                                return 1;
+                            })(),
+                            won: false,
+                        },
+                    ],
+                    general: {
+                        ...value.general,
+                        [difficulty]: {
+                            games: {
+                                inTotal: current.games.inTotal + 1,
+                                won: current.games.won,
+                            },
+                            totalTime: current.totalTime + duration,
+                        },
+                        TOTAL: {
+                            games: {
+                                inTotal: TOTAL.games.inTotal + 1,
+                                won: TOTAL.games.won,
+                            },
+                            totalTime: TOTAL.totalTime + duration,
+                        },
+                    },
+                };
+            });
+
             params.dispatch({
                 type: "CLEAR_CURRENT_GAME",
             });
             setStage("MENU");
         });
-    }, [afterCloseAnimation, params]);
+    }, [afterCloseAnimation, difficulty, params]);
 
     return {
         stage,

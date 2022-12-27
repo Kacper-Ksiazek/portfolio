@@ -1,6 +1,7 @@
 // Tools
 import { useGameplayReducer } from "./GameplayReducer";
 import { createContext, useState, useCallback, useEffect } from "react";
+import { useStatisticsFromLocalStorage } from "./_useStatisticsFromLocalStorage";
 import { useNavigationBetweenStagesMethods } from "./_useNavigationBetweenStagesMethods";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -18,13 +19,14 @@ export const PicturesMatchingGameContext = createContext<PicturesMatchingGameCon
 export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
     const [difficulty, _setDifficulty] = useState<Difficulty>("MEDIUM");
     const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PicturesMatchingGameContextInterface["pictureToDisplayInFullsize"]>(null);
-
+    const [statistics, setStatistics] = useStatisticsFromLocalStorage();
     const [gameplay, dispatch] = useGameplayReducer();
 
     const { startNewGame, goBackToMenu, continueToTheGameSummary, exitCurrentGameplay, stage, openGamesHistory } = useNavigationBetweenStagesMethods({
         dispatch,
         difficulty,
-        gameplayIsOver: gameplay.isOver,
+        gameplay,
+        setStatistics,
     });
 
     const setDifficulty: PicturesMatchingGameContextInterface["methods"]["setDifficulty"] = useCallback(
@@ -82,12 +84,14 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
             value={{
                 navigation: {
                     stage,
+
                     startNewGame,
                     goBackToMenu,
                     openGamesHistory,
                     exitCurrentGameplay,
                     continueToTheGameSummary,
                 },
+                statistics,
                 pictureToDisplayInFullsize,
                 difficulty,
                 gameplay,
