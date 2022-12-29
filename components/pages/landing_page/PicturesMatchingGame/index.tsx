@@ -46,7 +46,12 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                     case "SUMMARY":
                         return <Summary />;
                     case "STATISTICS":
-                        return <Statistics />;
+                        return (
+                            <Statistics
+                                general={context.statistics.general} //
+                                history={context.statistics.history}
+                            />
+                        );
                 }
             })()}
         </PicturesMatchingGameWrapper>

@@ -1,4 +1,5 @@
 // Tools
+import { formatTime } from "@/utils/client/formatTime";
 // Types
 import type { FunctionComponent } from "react";
 import type { GamesHistoryRecord } from "@/@types/pages/PicturesMatchingGame/localStorage";
@@ -6,7 +7,7 @@ import type { GamesHistoryRecord } from "@/@types/pages/PicturesMatchingGame/loc
 import { StyledTable } from "./styled_components";
 
 interface TableOfGamesHistoryProps {
-    history: GamesHistoryRecord[];
+    data: GamesHistoryRecord[];
 }
 
 const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props) => {
@@ -20,14 +21,22 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
                 <th>Accurancy</th>
             </thead>
             <tbody>
-                {props.history.map((item, index) => {
+                {props.data.reverse().map((item, index) => {
                     return (
                         <tr key={item.index}>
                             <td>{item.index}</td>
-                            <td>
+                            <td className="colored">
                                 <strong>{item.difficulty}</strong>
                             </td>
-                            <td>{`${item.duration.minutes}min ${item.duration.seconds}sec`}</td>
+                            <td>
+                                {formatTime({
+                                    time: {
+                                        seconds: item.duration,
+                                    },
+                                    outputType: "SHORT",
+                                })}
+                            </td>
+                            {/* <td>{`${item.duration.minutes}min ${item.duration.seconds}sec`}</td> */}
                             <td>{item.date}</td>
                             <td>
                                 <strong>{item.accurancy}%</strong>
