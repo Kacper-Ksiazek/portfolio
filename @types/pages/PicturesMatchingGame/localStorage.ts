@@ -14,6 +14,8 @@ export interface GeneralStatisticsRecord {
     };
     /** The time unit here is a second */
     totalTime: number;
+    /** In order to compute the average accuracy */
+    totalAccuracy: number;
 }
 
 export interface GamesHistoryRecord {
@@ -22,6 +24,6 @@ export interface GamesHistoryRecord {
     /** The time unit here is a second */
     duration: number;
     date: string;
-    accurancy: number;
+    accuracy: number;
     won: boolean;
 }

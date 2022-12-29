@@ -8,6 +8,7 @@ export const initialValue: Statistics = Object.seal({
                 won: 0,
             },
             totalTime: 0,
+            totalAccuracy: 0,
         },
         MEDIUM: {
             games: {
@@ -15,6 +16,7 @@ export const initialValue: Statistics = Object.seal({
                 won: 0,
             },
             totalTime: 0,
+            totalAccuracy: 0,
         },
         HARD: {
             games: {
@@ -22,6 +24,7 @@ export const initialValue: Statistics = Object.seal({
                 won: 0,
             },
             totalTime: 0,
+            totalAccuracy: 0,
         },
         INSANE: {
             games: {
@@ -29,6 +32,7 @@ export const initialValue: Statistics = Object.seal({
                 won: 0,
             },
             totalTime: 0,
+            totalAccuracy: 0,
         },
         TOTAL: {
             games: {
@@ -36,6 +40,7 @@ export const initialValue: Statistics = Object.seal({
                 won: 0,
             },
             totalTime: 0,
+            totalAccuracy: 0,
         },
     },
     history: [],

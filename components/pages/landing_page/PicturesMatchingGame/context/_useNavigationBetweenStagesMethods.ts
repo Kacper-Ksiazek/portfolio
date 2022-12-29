@@ -2,11 +2,10 @@
 import { useState, useCallback } from "react";
 import { usePositionFixedWindow } from "./_usePositionFixedWindow";
 // Types
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch } from "react";
 import type { SaveGame } from "./_useStatisticsFromLocalStorage/@types";
 import type { NavigationBetweenStages } from "@/@types/pages/PicturesMatchingGame/context";
 import type { Gameplay, GameplayAction } from "@/@types/pages/PicturesMatchingGame/reducer";
-import type { Statistics } from "@/@types/pages/PicturesMatchingGame/localStorage";
 import type { PictureMatchingGameplayStage, Difficulty } from "@/@types/pages/PicturesMatchingGame";
 
 export interface NavigationBetweenStagesMethodsParams {

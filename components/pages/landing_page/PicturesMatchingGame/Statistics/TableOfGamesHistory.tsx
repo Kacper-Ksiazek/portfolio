@@ -19,7 +19,7 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
                 <th>Result</th>
                 <th>Duration</th>
                 <th>Date</th>
-                <th>Accurancy</th>
+                <th>Accuracy</th>
             </thead>
             <tbody>
                 {props.data.map((item, index) => {
@@ -40,7 +40,7 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
                             </td>
                             <td>{item.date}</td>
                             <td>
-                                <strong>{item.accurancy}%</strong>
+                                <strong>{item.accuracy}%</strong>
                             </td>
                         </tr>
                     );

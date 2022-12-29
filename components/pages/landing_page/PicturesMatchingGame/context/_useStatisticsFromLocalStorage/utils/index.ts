@@ -6,7 +6,7 @@ import type { GamesHistoryRecord } from "@/@types/pages/PicturesMatchingGame/loc
 
 export { updateGeneralStatsRecord };
 
-export const computeAccuracy = (moves: Gameplay["moves"]): GamesHistoryRecord["accurancy"] => {
+export const computeAccuracy = (moves: Gameplay["moves"]): GamesHistoryRecord["accuracy"] => {
     const { inTotal, mistakes } = moves;
 
     return inTotal ? Number((((inTotal - mistakes) * 100) / inTotal).toFixed(2)) : 0;

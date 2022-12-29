@@ -12,7 +12,7 @@ export const useStatisticsFromLocalStorage = (): UseStatisticsFromLocalStorageRe
     const saveGame: SaveGame = (params) => {
         const { difficulty, gameplay } = params;
         const duration = utils.computeDuration(gameplay.time);
-        console.log(gameplay);
+        const accuracy = utils.computeAccuracy(gameplay.moves);
 
         setStatistics(({ general: currentGeneral, history: currentHistory }) => {
             return {
@@ -20,20 +20,25 @@ export const useStatisticsFromLocalStorage = (): UseStatisticsFromLocalStorageRe
                     {
                         won: gameplay.isOver,
                         duration,
+                        accuracy,
                         difficulty,
                         date: utils.getCurrentDate(),
                         index: utils.computeIndex(currentHistory),
-                        accurancy: utils.computeAccuracy(gameplay.moves),
                     },
                     ...currentHistory,
                 ],
                 general: {
                     ...currentGeneral,
-                    TOTAL: utils.updateGeneralStatsRecord({ record: currentGeneral.TOTAL, duration }),
+                    TOTAL: utils.updateGeneralStatsRecord({
+                        record: currentGeneral.TOTAL, //
+                        duration,
+                        accuracy,
+                    }),
                     [difficulty]: utils.updateGeneralStatsRecord({
                         record: currentGeneral[difficulty], //
                         duration,
                         lost: gameplay.isOver === false,
+                        accuracy,
                     }),
                 },
             };

@@ -81,7 +81,7 @@ const ButtonsWrapper = styled("div")(({ theme }) => ({
 
 const Summary: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
-    const accurancy = Math.round(((context.gameplay.moves.inTotal - context.gameplay.moves.mistakes) * 100) / context.gameplay.moves.inTotal);
+    const accuracy = Math.round(((context.gameplay.moves.inTotal - context.gameplay.moves.mistakes) * 100) / context.gameplay.moves.inTotal);
 
     const keepPlaying = () => {
         const nextDifficulty: Record<Difficulty, Difficulty> = {
@@ -116,9 +116,9 @@ const Summary: FunctionComponent = (props) => {
                     </strong>
                 </li>
 
-                <li className="accurancy">
-                    <span className="label">Accurancy:</span>
-                    <strong className="primary">{accurancy}%</strong>
+                <li className="accuracy">
+                    <span className="label">Accuracy:</span>
+                    <strong className="primary">{accuracy}%</strong>
                 </li>
             </ul>
 

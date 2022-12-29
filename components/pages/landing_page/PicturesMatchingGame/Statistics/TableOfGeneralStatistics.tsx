@@ -23,13 +23,14 @@ const TableOfStatistics: FunctionComponent<TableOfStatisticsProps> = (props) => 
                 <th>Difficulty</th>
                 <th>Games</th>
                 <th>Win rate</th>
-                <th>Avg time</th>
+                <th>avg. Time</th>
+                <th>avg. Accuracy</th>
             </thead>
             <tbody>
-                {Object.entries(props.data).map(([key, { games, totalTime }]) => {
+                {Object.entries(props.data).map(([key, { games, totalTime, totalAccuracy }]) => {
                     return (
                         <tr key={key}>
-                            <td className="colored">
+                            <td>
                                 <strong>{key}</strong>
                             </td>
                             <td>{games.inTotal}</td>
@@ -42,6 +43,7 @@ const TableOfStatistics: FunctionComponent<TableOfStatisticsProps> = (props) => 
                                     outputType: "SHORT",
                                 })}
                             </td>
+                            <td>{formatPercentage(totalAccuracy / games.inTotal)}</td>
                         </tr>
                     );
                 })}
