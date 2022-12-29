@@ -1,5 +1,6 @@
 // Tools
 import { styled, alpha } from "@mui/system";
+import { formatTime } from "@/utils/client/formatTime";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import { usePicturesMatchingGameContext } from "./hooks/usePicturesMatchingGameContext";
 // Types
@@ -82,8 +83,6 @@ const Summary: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
     const accurancy = Math.round(((context.gameplay.moves.inTotal - context.gameplay.moves.mistakes) * 100) / context.gameplay.moves.inTotal);
 
-    const { minutes, seconds } = context.gameplay.time;
-
     const keepPlaying = () => {
         const nextDifficulty: Record<Difficulty, Difficulty> = {
             EASY: "MEDIUM",
@@ -110,7 +109,10 @@ const Summary: FunctionComponent = (props) => {
                 <li className="duration">
                     <span className="label">Time:</span>
                     <strong className="primary">
-                        {minutes}min {seconds}sec
+                        {formatTime({
+                            time: context.gameplay.time,
+                            outputType: "SHORT",
+                        })}
                     </strong>
                 </li>
 

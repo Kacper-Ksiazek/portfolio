@@ -29,7 +29,12 @@ const Clock: FunctionComponent<ClockProps> = (params) => {
     return (
         <ProgressRow sx={{ fontSize: "28px !important" }}>
             <AccessTime />
-            <span>{formatTime(params.time)}</span>
+            <span>
+                {formatTime({
+                    outputType: "CLOCK",
+                    time: params.time,
+                })}
+            </span>
         </ProgressRow>
     );
 };

@@ -47,7 +47,6 @@ const isMinSecTimeFormat = (params: unknown): params is MinSecTimeFormat => {
         const keys = Object.keys(params);
 
         return (
-            keys.length === 2 && //
             keys.includes("minutes" as keyof MinSecTimeFormat) &&
             keys.includes("seconds" as keyof MinSecTimeFormat) &&
             !isNaN(Number((params as Record<keyof MinSecTimeFormat, unknown>)["minutes"])) &&
@@ -62,8 +61,7 @@ const isSecOnlyTimeFormat = (params: unknown): params is SecOnlyTimeFormat => {
         const keys = Object.keys(params);
 
         return (
-            keys.length === 1 && //
-            keys.includes("seconds" as keyof MinSecTimeFormat) &&
+            keys.includes("seconds" as keyof MinSecTimeFormat) && //
             !isNaN(Number((params as Record<keyof MinSecTimeFormat, unknown>)["seconds"]))
         );
     }
