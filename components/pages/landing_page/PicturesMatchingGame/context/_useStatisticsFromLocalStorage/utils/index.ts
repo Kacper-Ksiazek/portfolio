@@ -17,8 +17,8 @@ export const getCurrentDate = (): GamesHistoryRecord["date"] => {
     return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 };
 
-export const computeIndex = (history: Statistics["history"]): GamesHistoryRecord["index"] => {
-    if (history[history.length - 1]) return history[history.length - 1].index + 1;
+export const computeIndex = (gamesHistory: Statistics["history"]): GamesHistoryRecord["index"] => {
+    if (gamesHistory[gamesHistory.length - 1]) return gamesHistory[gamesHistory.length - 1].index + 1;
     return 1;
 };
 
