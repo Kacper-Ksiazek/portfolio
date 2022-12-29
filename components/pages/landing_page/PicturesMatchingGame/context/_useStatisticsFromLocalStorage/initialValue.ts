@@ -1,11 +1,6 @@
-// Types
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-//
-import type { Statistics } from "@/@types/pages/PicturesMatchingGame/localStorage";
+import type { Statistics } from "@/@types/pages/PicturesMatchingGame/context";
 
-export const useStatisticsFromLocalStorage = () => useLocalStorage<Statistics>("pictures-matching-games-stats", initialValue);
-
-const initialValue: Statistics = {
+export const initialValue: Statistics = Object.seal({
     general: {
         EASY: {
             games: {
@@ -44,4 +39,4 @@ const initialValue: Statistics = {
         },
     },
     history: [],
-};
+});

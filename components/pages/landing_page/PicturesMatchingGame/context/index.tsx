@@ -1,6 +1,6 @@
 // Tools
 import { useGameplayReducer } from "./GameplayReducer";
-import { createContext, useState, useCallback, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useStatisticsFromLocalStorage } from "./_useStatisticsFromLocalStorage";
 import { useNavigationBetweenStagesMethods } from "./_useNavigationBetweenStagesMethods";
 // Types
@@ -19,38 +19,30 @@ export const PicturesMatchingGameContext = createContext<PicturesMatchingGameCon
 export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
     const [difficulty, _setDifficulty] = useState<Difficulty>("MEDIUM");
     const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PicturesMatchingGameContextInterface["pictureToDisplayInFullsize"]>(null);
-    const [statistics, setStatistics] = useStatisticsFromLocalStorage();
+    const [statistics, saveGame] = useStatisticsFromLocalStorage();
     const [gameplay, dispatch] = useGameplayReducer();
 
-    const { startNewGame, goBackToMenu, continueToTheGameSummary, exitCurrentGameplay, stage, openGamesHistory } = useNavigationBetweenStagesMethods({
+    const navigation = useNavigationBetweenStagesMethods({
         dispatch,
         difficulty,
         gameplay,
-        setStatistics,
+        saveGame,
     });
 
-    const setDifficulty: PicturesMatchingGameContextInterface["methods"]["setDifficulty"] = useCallback(
-        (params) => {
-            if (params instanceof Object) {
-                _setDifficulty(params.value);
-                startNewGame(params.value);
-            } else {
-                _setDifficulty(params);
-            }
-        },
-        [startNewGame]
-    );
+    const setDifficulty: PicturesMatchingGameContextInterface["methods"]["setDifficulty"] = (params) => {
+        if (params instanceof Object) {
+            _setDifficulty(params.value);
+            navigation.startNewGame(params.value);
+        } else {
+            _setDifficulty(params);
+        }
+    };
 
-    const handlePictureOnClick = useCallback(
-        (clickedPicture: PictureToMatch) => {
-            dispatch({ type: "HANDLE_ON_CLICK", payload: clickedPicture });
-        },
-        [dispatch]
-    );
+    const handlePictureOnClick = (clickedPicture: PictureToMatch) => {
+        dispatch({ type: "HANDLE_ON_CLICK", payload: clickedPicture });
+    };
 
-    const incrementTime = useCallback(() => {
-        dispatch({ type: "INCREMENT_TIME" });
-    }, [dispatch]);
+    const incrementTime = () => dispatch({ type: "INCREMENT_TIME" });
 
     useEffect(() => {
         const animation = gameplay.animation;
@@ -82,15 +74,8 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
     return (
         <PicturesMatchingGameContext.Provider
             value={{
-                navigation: {
-                    stage,
+                navigation,
 
-                    startNewGame,
-                    goBackToMenu,
-                    openGamesHistory,
-                    exitCurrentGameplay,
-                    continueToTheGameSummary,
-                },
                 statistics,
                 pictureToDisplayInFullsize,
                 difficulty,

@@ -1,6 +1,11 @@
 // Types
 import { Difficulty } from "@/@types/pages/PicturesMatchingGame";
 
+export interface Statistics {
+    history: GamesHistoryRecord[];
+    general: Record<GeneralStatisticsRecordKey, GeneralStatisticsRecord>;
+}
+
 type GeneralStatisticsRecordKey = Difficulty | "TOTAL";
 export interface GeneralStatisticsRecord {
     games: {
@@ -19,9 +24,4 @@ export interface GamesHistoryRecord {
     date: string;
     accurancy: number;
     won: boolean;
-}
-
-export interface Statistics {
-    history: GamesHistoryRecord[];
-    general: Record<GeneralStatisticsRecordKey, GeneralStatisticsRecord>;
 }

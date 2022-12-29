@@ -3,6 +3,7 @@ import { useState, useCallback } from "react";
 import { usePositionFixedWindow } from "./_usePositionFixedWindow";
 // Types
 import type { Dispatch, SetStateAction } from "react";
+import type { SaveGame } from "./_useStatisticsFromLocalStorage/@types";
 import type { NavigationBetweenStages } from "@/@types/pages/PicturesMatchingGame/context";
 import type { Gameplay, GameplayAction } from "@/@types/pages/PicturesMatchingGame/reducer";
 import type { Statistics } from "@/@types/pages/PicturesMatchingGame/localStorage";
@@ -12,7 +13,7 @@ export interface NavigationBetweenStagesMethodsParams {
     difficulty: Difficulty;
     gameplay: Gameplay;
     dispatch: Dispatch<GameplayAction>;
-    setStatistics: Dispatch<SetStateAction<Statistics>>;
+    saveGame: SaveGame;
 }
 
 /** Expressed in **ms** */
@@ -62,53 +63,15 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
     const continueToTheGameSummary: NavigationBetweenStages["continueToTheGameSummary"] = useCallback(() => {
         if (!params.gameplay.isOver) return;
 
-        params.setStatistics((value) => {
-            const { gameplay } = params;
-            const { TOTAL, [difficulty]: current } = value.general;
-            const duration = gameplay.time.minutes * 60 + gameplay.time.seconds;
-
-            return {
-                history: [
-                    ...value.history,
-                    {
-                        accurancy: gameplay.moves.inTotal ? Number(((gameplay.moves.inTotal - gameplay.moves.mistakes) / gameplay.moves.inTotal).toFixed(2)) : 0,
-                        date: ((): string => {
-                            const date = new Date();
-                            return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
-                        })(),
-                        difficulty,
-                        duration,
-                        index: (() => {
-                            if (value.history[value.history.length - 1]) return value.history[value.history.length - 1].index + 1;
-                            return 1;
-                        })(),
-                        won: true,
-                    },
-                ],
-                general: {
-                    ...value.general,
-                    [difficulty]: {
-                        games: {
-                            inTotal: current.games.inTotal + 1,
-                            won: current.games.won + 1,
-                        },
-                        totalTime: current.totalTime + duration,
-                    },
-                    TOTAL: {
-                        games: {
-                            inTotal: TOTAL.games.inTotal + 1,
-                            won: TOTAL.games.won + 1,
-                        },
-                        totalTime: TOTAL.totalTime + duration,
-                    },
-                },
-            };
+        params.saveGame({
+            difficulty: params.difficulty,
+            gameplay: params.gameplay,
         });
 
         afterCloseAnimation(() => {
             setStage("SUMMARY");
         });
-    }, [params, afterCloseAnimation, difficulty]);
+    }, [params, afterCloseAnimation]);
 
     const goBackToMenu: NavigationBetweenStages["goBackToMenu"] = useCallback(() => {
         setStage("MENU");
@@ -120,47 +83,9 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
 
     const exitCurrentGameplay: NavigationBetweenStages["exitCurrentGameplay"] = useCallback(() => {
         afterCloseAnimation(() => {
-            params.setStatistics((value) => {
-                const { gameplay } = params;
-                const { TOTAL, [difficulty]: current } = value.general;
-                const duration = gameplay.time.minutes * 60 + gameplay.time.seconds;
-
-                return {
-                    history: [
-                        ...value.history,
-                        {
-                            accurancy: gameplay.moves.inTotal ? Number(((gameplay.moves.inTotal - gameplay.moves.mistakes) / gameplay.moves.inTotal).toFixed(2)) : 0,
-                            date: ((): string => {
-                                const date = new Date();
-                                return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
-                            })(),
-                            difficulty,
-                            duration,
-                            index: (() => {
-                                if (value.history[value.history.length - 1]) return value.history[value.history.length - 1].index + 1;
-                                return 1;
-                            })(),
-                            won: false,
-                        },
-                    ],
-                    general: {
-                        ...value.general,
-                        [difficulty]: {
-                            games: {
-                                inTotal: current.games.inTotal + 1,
-                                won: current.games.won,
-                            },
-                            totalTime: current.totalTime + duration,
-                        },
-                        TOTAL: {
-                            games: {
-                                inTotal: TOTAL.games.inTotal + 1,
-                                won: TOTAL.games.won,
-                            },
-                            totalTime: TOTAL.totalTime + duration,
-                        },
-                    },
-                };
+            params.saveGame({
+                difficulty: params.difficulty,
+                gameplay: params.gameplay,
             });
 
             params.dispatch({
@@ -168,7 +93,7 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
             });
             setStage("MENU");
         });
-    }, [afterCloseAnimation, difficulty, params]);
+    }, [afterCloseAnimation, params]);
 
     return {
         stage,

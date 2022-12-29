@@ -1,10 +1,10 @@
 // Types
-import type { SetStateAction, Dispatch } from "react";
 import type { Gameplay } from "./reducer";
-import type { Difficulty, PictureMatchingGameplayStage, PictureToMatch } from "./index";
 import type { Statistics } from "./localStorage";
+import type { SetStateAction, Dispatch } from "react";
+import type { Difficulty, PictureMatchingGameplayStage, PictureToMatch } from "./index";
 
-export type { Gameplay };
+export type { Gameplay, Statistics };
 
 export interface PicturesMatchingGameContextInterface {
     navigation: NavigationBetweenStages;
