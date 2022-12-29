@@ -16,18 +16,20 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
             <thead>
                 <th>Index</th>
                 <th>Difficulty</th>
+                <th>Result</th>
                 <th>Duration</th>
                 <th>Date</th>
                 <th>Accurancy</th>
             </thead>
             <tbody>
-                {props.data.reverse().map((item, index) => {
+                {props.data.map((item, index) => {
                     return (
                         <tr key={item.index}>
                             <td>{item.index}</td>
-                            <td className="colored">
+                            <td>
                                 <strong>{item.difficulty}</strong>
                             </td>
+                            <td className={item.won ? "win" : "lost"}>{item.won ? "WIN" : "LOST"}</td>
                             <td>
                                 {formatTime({
                                     time: {
@@ -36,7 +38,6 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
                                     outputType: "SHORT",
                                 })}
                             </td>
-                            {/* <td>{`${item.duration.minutes}min ${item.duration.seconds}sec`}</td> */}
                             <td>{item.date}</td>
                             <td>
                                 <strong>{item.accurancy}%</strong>
