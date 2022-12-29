@@ -12,17 +12,37 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T): Us
     const [value, setValue] = useState<T>(initialValue);
 
     useEffect(() => {
+        let timeout: ReturnType<typeof setTimeout> | null = null;
+
         if (localStorage) {
             const valueFromLocalStorage = localStorage.getItem(localStorageKey);
-            if (valueFromLocalStorage !== null) setValue(JSON.parse(valueFromLocalStorage));
+            if (valueFromLocalStorage !== null) {
+                setValue(JSON.parse(valueFromLocalStorage));
+            }
         }
+
+        return () => {
+            if (timeout !== null) clearTimeout(timeout);
+        };
     }, [localStorageKey]);
 
     useEffect(() => {
+        let timeout: ReturnType<typeof setTimeout> | null = null;
+
         if (localStorage) {
-            localStorage.setItem(localStorageKey, JSON.stringify(value));
+            if (JSON.stringify(value) === JSON.stringify(initialValue)) {
+                timeout = setTimeout(() => {
+                    localStorage.setItem(localStorageKey, JSON.stringify(value));
+                }, 3000);
+            } else {
+                localStorage.setItem(localStorageKey, JSON.stringify(value));
+            }
         }
-    }, [localStorageKey, value]);
+
+        return () => {
+            if (timeout !== null) clearTimeout(timeout);
+        };
+    }, [localStorageKey, value, initialValue]);
 
     return [value, setValue];
 };
