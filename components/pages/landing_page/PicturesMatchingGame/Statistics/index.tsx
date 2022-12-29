@@ -14,22 +14,30 @@ import StyledButton from "@/components/atoms/forms/StyledButton";
 interface StatisticsProps {
     history: Statistics["history"];
     general: Statistics["general"];
+    goBack: () => void;
 }
 
-const Statistics: FunctionComponent<StatisticsProps> = (props) => {
+const Statistics: FunctionComponent<StatisticsProps> = (params) => {
+    const close = () => {
+        document.getElementById("picture-matching-game-main-wrapper")?.scrollIntoView({
+            behavior: "smooth",
+        });
+        setTimeout(params.goBack, 300);
+    };
+
     return (
         <SmoothlyAppearingSection>
             <Typography variant="h4" sx={{ m: "0px 0 32px 0" }}>
                 General Statistics
             </Typography>
-            <TableOfGeneralStatistics data={props.general} />
+            <TableOfGeneralStatistics data={params.general} />
 
             <Typography variant="h4" sx={{ m: "64px 0 32px 0" }}>
                 Games History
             </Typography>
-            <TableOfGamesHistory data={props.history} />
+            <TableOfGamesHistory data={params.history} />
 
-            <StyledButton className="navigation" sx={{ mt: "32px" }}>
+            <StyledButton className="navigation" sx={{ mt: "32px" }} onClick={close}>
                 Return
             </StyledButton>
         </SmoothlyAppearingSection>

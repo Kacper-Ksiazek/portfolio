@@ -50,6 +50,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                             <Statistics
                                 general={context.statistics.general} //
                                 history={context.statistics.history}
+                                goBack={context.navigation.goBackToMenu}
                             />
                         );
                 }
