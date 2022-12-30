@@ -18,7 +18,7 @@ export const getCurrentDate = (): GamesHistoryRecord["date"] => {
 };
 
 export const computeIndex = (gamesHistory: Statistics["history"]): GamesHistoryRecord["index"] => {
-    if (gamesHistory[gamesHistory.length - 1]) return gamesHistory[gamesHistory.length - 1].index + 1;
+    if (gamesHistory.length) return gamesHistory[0].index + 1;
     return 1;
 };
 

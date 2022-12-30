@@ -1,5 +1,5 @@
 // Tools
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { formatTime } from "@/utils/client/formatTime";
 // Types
 import type { Time } from "@/@types/pages/PicturesMatchingGame/reducer";
@@ -17,13 +17,17 @@ interface ClockProps {
 }
 
 const Clock: FunctionComponent<ClockProps> = (params) => {
-    useEffect(() => {
-        let interval: ReturnType<typeof setInterval> | null = null;
-        if (params.countTime) interval = setInterval(params.incrementTime, 1000);
+    const interval = useRef<ReturnType<typeof setInterval> | null>(null);
 
-        return () => {
-            if (interval !== null) clearInterval(interval);
-        };
+    useEffect(() => {
+        if (params.countTime === false && interval.current !== null) {
+            clearInterval(interval.current);
+            interval.current = null;
+        }
+        //
+        else if (params.countTime === true && interval.current === null) {
+            interval.current = setInterval(params.incrementTime, 1000);
+        }
     }, [params.countTime, params.incrementTime]);
 
     return (
