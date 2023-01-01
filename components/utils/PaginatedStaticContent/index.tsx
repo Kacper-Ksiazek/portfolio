@@ -1,6 +1,6 @@
 // Tools
 import { reducer } from "./reducer";
-import { styled } from "@mui/system";
+import { styled, alpha } from "@mui/system";
 import { renderNTimes } from "@/utils/client/renderNTimes";
 import { useReducer, useRef, useEffect, useState } from "react";
 // Types
@@ -15,6 +15,9 @@ const PaginationStep = styled(StyledButton)(({ theme }) => ({
     fontSize: "20px",
     width: "42px",
     height: "42px",
+    "&:disabled": {
+        color: alpha("#fff", 0.3),
+    },
     "&.unclickable": {
         cursor: "default",
         background: `${theme.palette.primary.main} !important`,
@@ -46,7 +49,7 @@ const PaginatedStaticContent = <T extends unknown>(props: PaginatedStaticContent
     const [state, dispatch] = useReducer(reducer, {
         perPage: props.perPage,
         currentPage: 1,
-        pagesInTotal: Math.round(props.data.length / props.perPage),
+        pagesInTotal: Math.ceil(props.data.length / props.perPage),
     } as PaginatedStaticContentReducerState);
 
     const start: number = (state.currentPage - 1) * state.perPage;
@@ -71,7 +74,11 @@ const PaginatedStaticContent = <T extends unknown>(props: PaginatedStaticContent
             )}
 
             <PaginationWrapper>
-                <PaginationStep sx={{ mr: "16px" }}>
+                <PaginationStep
+                    sx={{ mr: "14px" }} //
+                    disabled={state.currentPage === 1}
+                    onClick={() => dispatch({ type: "PREVIOUS" })}
+                >
                     <NavigateBefore />
                 </PaginationStep>
 
@@ -91,7 +98,11 @@ const PaginatedStaticContent = <T extends unknown>(props: PaginatedStaticContent
                     ),
                 })}
 
-                <PaginationStep sx={{ ml: "16px" }}>
+                <PaginationStep
+                    sx={{ marginLeft: "24px !important" }} //
+                    disabled={state.currentPage === state.pagesInTotal}
+                    onClick={() => dispatch({ type: "NEXT" })}
+                >
                     <NavigateNext />
                 </PaginationStep>
             </PaginationWrapper>
