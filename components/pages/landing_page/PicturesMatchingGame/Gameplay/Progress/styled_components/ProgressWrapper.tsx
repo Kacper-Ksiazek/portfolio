@@ -8,9 +8,6 @@ const ProgressWrapper = styled("div")(({ theme }) => ({
     transform: "translateY(calc(-100% - 32px))",
     right: "20px",
     animation: `${fadeSimple} .3s .2s both`,
-    ".progress-row": {
-        background: alpha("#000", 0.35),
-    },
     ".progress-row, button": {
         padding: "6px 12px",
         width: "166px",
@@ -19,6 +16,10 @@ const ProgressWrapper = styled("div")(({ theme }) => ({
         borderRadius: "5px",
         letterSpacing: "1px",
         boxSizing: "content-box",
+    },
+    ".progress-row": {
+        background: alpha("#000", 0.35),
+        color: alpha("#fff", 0.3),
     },
     "&.counting-active": {
         ".progress-row": {

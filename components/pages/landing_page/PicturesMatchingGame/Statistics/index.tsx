@@ -1,4 +1,3 @@
-// Tools
 // Types
 import type { FunctionComponent } from "react";
 import type { Statistics } from "@/@types/pages/PicturesMatchingGame/localStorage";
