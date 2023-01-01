@@ -13,8 +13,10 @@ export const computeAccuracy = (moves: Gameplay["moves"]): GamesHistoryRecord["a
 };
 
 export const getCurrentDate = (): GamesHistoryRecord["date"] => {
+    const ensureTwoDigits = (n: number): string | number => (String(n).length == 2 ? n : `0${n}`);
     const date = new Date();
-    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+
+    return `${ensureTwoDigits(date.getDate())}.${ensureTwoDigits(date.getMonth() + 1)}.${date.getFullYear()}`;
 };
 
 export const computeIndex = (gamesHistory: Statistics["history"]): GamesHistoryRecord["index"] => {
