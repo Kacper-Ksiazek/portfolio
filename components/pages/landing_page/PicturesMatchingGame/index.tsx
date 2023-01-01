@@ -7,7 +7,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import Summary from "./Summary";
 import Statistics from "./Statistics";
-import PickADifficulty from "./PickADifficulty";
+import Menu from "./Menu";
 import ImageModelWithGallery from "./ImageModelWithGallery";
 import { PicturesMatchingGameContextProvider } from "./context";
 // Styled Components
@@ -40,7 +40,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
             {(() => {
                 switch (context.navigation.stage) {
                     case "MENU":
-                        return <PickADifficulty />;
+                        return <Menu />;
                     case "GAMEPLAY":
                         return <Gameplay />;
                     case "SUMMARY":
