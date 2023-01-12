@@ -1,5 +1,6 @@
 // Tools
 import { styled, alpha } from "@mui/system";
+import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 
 export const StyledTable = styled("table")(({ theme }) => ({
     fontSize: "18px",

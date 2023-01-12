@@ -37,6 +37,8 @@ type UniqueKey = string | number;
 interface PaginatedStaticContentProps<T> {
     perPage: number;
     data: T[];
+
+    renderGhostRecord?: (index: number) => ReactNode;
     renderItem: (item: T, key: UniqueKey) => ReactNode;
     keyResolver?: (item: T, index: number) => UniqueKey;
     renderWrapper: (content: ReactNode) => ReactElement;
@@ -55,6 +57,8 @@ const PaginatedStaticContent = <T extends unknown>(props: PaginatedStaticContent
     const start: number = (state.currentPage - 1) * state.perPage;
     const stop: number = state.currentPage * state.perPage;
 
+    const recordsOnCurrentPage = props.data.slice(start, stop);
+
     useEffect(() => {
         if (contentHasBeenDisplayed.current) {
             setTimeout(() => {
@@ -68,9 +72,21 @@ const PaginatedStaticContent = <T extends unknown>(props: PaginatedStaticContent
     return (
         <>
             {props.renderWrapper(
-                props.data.slice(start, stop).map((item, index) => {
-                    return props.renderItem(item, props.keyResolver ? props.keyResolver(item, index) : index);
-                })
+                <>
+                    {/* Display all games records on current page */}
+                    {recordsOnCurrentPage.map((item, index) => {
+                        return props.renderItem(item, props.keyResolver ? props.keyResolver(item, index) : index);
+                    })}
+                    {/* Fill the gap with ghost records */}
+                    {(() => {
+                        if (props.renderGhostRecord && recordsOnCurrentPage.length !== state.perPage) {
+                            return renderNTimes({
+                                n: state.perPage - recordsOnCurrentPage.length,
+                                renderElement: props.renderGhostRecord,
+                            });
+                        }
+                    })()}
+                </>
             )}
 
             <PaginationWrapper>

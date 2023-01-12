@@ -5,15 +5,18 @@ import { formatTime } from "@/utils/client/formatTime";
 import type { FunctionComponent } from "react";
 import type { GamesHistoryRecord } from "@/@types/pages/PicturesMatchingGame/localStorage";
 // Other components
+import GhostRecord from "./GhostRecord";
 import PaginatedStaticContent from "@/components/utils/PaginatedStaticContent";
 // Styled components
-import { StyledTable } from "./styled_components";
+import { StyledTable } from "../styled_components";
 
 interface TableOfGamesHistoryProps {
     data: GamesHistoryRecord[];
 }
 
 const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props) => {
+    const amountOfColumns = 6;
+
     return (
         <>
             <StyledTable id="pictures-matching-game-games-history-table">
@@ -32,6 +35,7 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
             <PaginatedStaticContent
                 data={props.data}
                 perPage={6}
+                keyResolver={(item) => item.index}
                 renderItem={(item, key) => {
                     return (
                         <tr key={key}>
@@ -59,6 +63,12 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
                     const DOMRoot = document.querySelector("#pictures-matching-game-games-history-table>tbody");
                     return createPortal(content, DOMRoot as HTMLElement);
                 }}
+                renderGhostRecord={(index) => (
+                    <GhostRecord
+                        key={index} //
+                        amountOfColumns={amountOfColumns}
+                    />
+                )}
             />
         </>
     );
