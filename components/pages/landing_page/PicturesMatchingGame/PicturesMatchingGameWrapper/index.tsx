@@ -51,12 +51,16 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                     overflowY: "scroll",
                     zIndex: 10000,
                     transition: "max-height .15s linear",
+                    display: "flex",
                     ".dark-section-wrapper-background-svg, #user-choice-animaiton-base": {
                         position: "fixed",
                         width: "calc(100vw - 8px)",
                         height: "100vh",
                         top: 0,
                         left: 0,
+                    },
+                    ".dark-section-content-wrapper": {
+                        justifyContent: "center",
                     },
                     ".dark-content-wrapper-github-redirection": {
                         display: "none",

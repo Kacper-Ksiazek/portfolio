@@ -50,7 +50,7 @@ const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) =
                     ].join(" ")}
                 />
                 {props.childrenOutsideContent}
-                <StyledContentWrapper>
+                <StyledContentWrapper className="dark-section-content-wrapper">
                     {props.renderHeader && <Header {...props.header}></Header>}
 
                     {props.children}
