@@ -8,15 +8,15 @@ import type { FunctionComponent } from "react";
 // Material UI Icons
 import AccessTime from "@mui/icons-material/AccessTime";
 // Styled components
-import { ProgressRow } from "./styled_components";
+import { ClockRow } from "./styled_components";
 
-interface ClockProps {
+interface TimerProps {
     time: Time;
     countTime: boolean;
     incrementTime: PicturesMatchingGameContextInterface["methods"]["incrementTime"];
 }
 
-const Clock: FunctionComponent<ClockProps> = (params) => {
+const Timer: FunctionComponent<TimerProps> = (params) => {
     const interval = useRef<ReturnType<typeof setInterval> | null>(null);
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const Clock: FunctionComponent<ClockProps> = (params) => {
     }, [params.countTime, params.incrementTime]);
 
     return (
-        <ProgressRow sx={{ fontSize: "28px !important" }}>
+        <ClockRow sx={{ fontSize: "28px !important" }}>
             <AccessTime />
             <span>
                 {formatTime({
@@ -39,8 +39,8 @@ const Clock: FunctionComponent<ClockProps> = (params) => {
                     time: params.time,
                 })}
             </span>
-        </ProgressRow>
+        </ClockRow>
     );
 };
 
-export default Clock;
+export default Timer;

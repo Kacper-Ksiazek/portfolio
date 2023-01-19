@@ -1,16 +1,16 @@
 // Tools
 import { useMemo } from "react";
+import dynamic from "next/dynamic";
 import { usePicturesMatchingGameContext } from "@/components/pages/landing_page/PicturesMatchingGame/hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
-// Material UI Icons
-import NavigateNextOutlined from "@mui/icons-material/NavigateNextOutlined";
 // Other components
-import Clock from "./Clock";
+import Timer from "./Timer";
+const ContinueButton = dynamic(() => import("./ContinueButton"));
 // Styled components
-import { ProgressWrapper, ProgressRow, ContinueButton } from "./styled_components";
+import { ClockWrapper, ClockRow } from "./styled_components";
 
-const Progress: FunctionComponent = () => {
+const Clock: FunctionComponent<{ limitContent: boolean }> = (props) => {
     const context = usePicturesMatchingGameContext();
 
     const countTime = useMemo<boolean>(() => {
@@ -18,37 +18,34 @@ const Progress: FunctionComponent = () => {
     }, [context.gameplay]);
 
     return (
-        <ProgressWrapper
+        <ClockWrapper
             id="pictures-matching-progress-wrapper"
             className={[
                 countTime ? "counting-active" : "", //
                 context.gameplay.isOver ? "is-over" : "",
             ].join(" ")}
         >
-            <ContinueButton
-                color="success" //
-                onClick={context.navigation.continueToTheGameSummary}
-                disabled={!context.gameplay.isOver}
-            >
-                <span>Continue</span>
-                <NavigateNextOutlined />
-            </ContinueButton>
-
-            <Clock
+            {!props.limitContent && (
+                <ContinueButton
+                    disabled={context.gameplay.isOver} //
+                    onClick={context.navigation.continueToTheGameSummary}
+                />
+            )}
+            <Timer
                 countTime={countTime} //
                 time={context.gameplay.time}
                 incrementTime={context.methods.incrementTime}
             />
 
-            <ProgressRow>
+            <ClockRow>
                 Moves: <strong>{context.gameplay.moves.inTotal}</strong>
-            </ProgressRow>
+            </ClockRow>
 
-            <ProgressRow>
+            <ClockRow>
                 Mode: <strong>{context.difficulty}</strong>
-            </ProgressRow>
-        </ProgressWrapper>
+            </ClockRow>
+        </ClockWrapper>
     );
 };
 
-export default Progress;
+export default Clock;

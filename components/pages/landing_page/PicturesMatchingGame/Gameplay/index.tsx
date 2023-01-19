@@ -1,9 +1,11 @@
 // Tools
+import dynamic from "next/dynamic";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import { usePicturesMatchingGameContext } from "../hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import Timer from "./Progress";
+const Clock = dynamic(() => import("./Clock"));
 import SinglePicture from "./SinglePicture";
 import GameplayWrapper from "./GameplayWrapper";
 import SurrenderButton from "./SurrenderButton";
@@ -11,6 +13,8 @@ import { ButtonsWrapper, StyledButton } from "./styled_components";
 
 const Gameplay: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
+
+    const { width } = useWindowSizes();
 
     return (
         <>
@@ -35,7 +39,8 @@ const Gameplay: FunctionComponent = (props) => {
                     );
                 })}
             </GameplayWrapper>
-            <Timer />
+
+            <Clock limitContent={width < 1250} />
 
             <ButtonsWrapper id="picture-matching-game-buttons-wrapper">
                 <SurrenderButton
