@@ -1,6 +1,5 @@
 // Tools
 import { styled, keyframes } from "@mui/system";
-import { SinglePictureBaseRWD } from "./RWD";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 
@@ -14,15 +13,13 @@ const introAppearingAnimation = keyframes({
 });
 // Styled components
 export default styled("div")(({ theme }) => ({
-    width: "100px",
-    height: "100px",
+    width: "100%",
     background: "#fff",
     borderRadius: "5px",
     position: "relative",
     color: theme.palette.primary.main,
     border: "3px solid #fff",
     boxSizing: "border-box",
-    margin: "3px",
     img: {
         borderRadius: "5px 10px 5px 10px",
         transition: "transform .3s",
@@ -41,23 +38,10 @@ export default styled("div")(({ theme }) => ({
             animation: `${fadeSimpleOUT} .3s 2s linear both`,
         },
     },
-    "&::after,&::before": {
-        content: '""',
-        position: "absolute",
-        top: "0",
-        height: "100%",
-        width: "52%",
-        background: "#fff",
-    },
-    "&::after": {
-        transition: "transform .2s",
-        left: "0",
-        zIndex: 2,
-    },
     "&::before": {
-        right: "0",
-        transition: "transform .2s",
-        zIndex: 1,
+        content: '""',
+        display: "block",
+        paddingBottom: "100%",
     },
     "&:not(&.intro-animation)": {
         cursor: "pointer",
@@ -74,14 +58,13 @@ export default styled("div")(({ theme }) => ({
         },
     },
     "&.display-image": {
-        "&::after": {
-            background: theme.palette.primary.main,
-            transform: "translateX(calc(-100% - 10px))",
-        },
-        "&::before": {
-            background: theme.palette.secondary.main,
-            transform: "translateX(calc(100% + 10px))",
-        },
+        // "&::after": {
+        //     background: theme.palette.primary.main,
+        //     transform: "translateX(calc(-100% - 10px))",
+        // },
+        // "&::before": {
+        //     background: theme.palette.secondary.main,
+        //     transform: "translateX(calc(100% + 10px))",
+        // },
     },
-    ...(SinglePictureBaseRWD as any),
 }));

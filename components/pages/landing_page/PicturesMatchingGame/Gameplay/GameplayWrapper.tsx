@@ -24,11 +24,11 @@ const applyAnimationDelay = (elementsInTotal: number): SxProps => {
 };
 
 export default styled("section")(({ theme }) => ({
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
+    display: "grid",
+    gap: "6px",
     maxWidth: "900px",
     paddingBottom: "32px",
+    width: "100%",
     "&.exiting": {
         animation: `${fadeSimpleOUT} .3s linear both`,
         "&+#pictures-matching-progress-wrapper": {
@@ -37,30 +37,67 @@ export default styled("section")(({ theme }) => ({
     },
     "&.EASY": {
         maxWidth: "600px",
+        gridTemplateColumns: "repeat(4, 1fr)",
+        gridTemplateRows: "repeat(2, fr)",
         ".single-picture": {
-            width: "140px",
-            height: "140px",
             ...applyAnimationDelay(4),
+        },
+        "@media (max-width:500px)": {
+            gridTemplateColumns: "repeat(6, 1fr)",
+            gridTemplateRows: "repeat(6, 1fr)",
+            ".single-picture": {
+                gridColumnEnd: "span 2",
+                gridRowEnd: "span 2",
+                "&:nth-of-type(7)": {
+                    gridColumnStart: "2",
+                },
+            },
         },
     },
     "&.MEDIUM": {
+        gridTemplateColumns: "repeat(6, 1fr)",
+        gridTemplateRows: "repeat(2, 1fr)",
         ".single-picture": {
-            width: "130px",
-            height: "130px",
             ...applyAnimationDelay(6),
+        },
+        "@media (max-width:700px)": {
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gridTemplateRows: "repeat(3, 1fr)",
+        },
+        "@media (max-width:500px)": {
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateRows: "repeat(4, 1fr)",
         },
     },
     "&.HARD": {
         maxWidth: "940px",
         ".single-picture": {
-            width: "110px",
-            height: "110px",
             ...applyAnimationDelay(12),
+        },
+        gridTemplateColumns: "repeat(8, 1fr)",
+        gridTemplateRows: "repeat(3, 1fr)",
+        "@media (max-width:800px)": {
+            gridTemplateColumns: "repeat(6, 1fr)",
+            gridTemplateRows: "repeat(4, 1fr)",
+        },
+        "@media (max-width:500px)": {
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gridTemplateRows: "repeat(6, 1fr)",
         },
     },
     "&.INSANE": {
         ".single-picture": {
             ...applyAnimationDelay(20),
+        },
+        gridTemplateColumns: "repeat(8, 1fr)",
+        gridTemplateRows: "repeat(5, 1fr)",
+        "@media (max-width:650px)": {
+            gridTemplateColumns: "repeat(5, 1fr)",
+            gridTemplateRows: "repeat(8, 1fr)",
+        },
+        "@media (max-width:420px)": {
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gridTemplateRows: "repeat(10, 1fr)",
         },
     },
 }));

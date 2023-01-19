@@ -33,7 +33,7 @@ const SinglePicture: FunctionComponent<SinglePictureProps> = (props) => {
                 objectPosition="center"
                 unoptimized
             />
-            ;
+
             {(() => {
                 if (props.data.unfold) {
                     return <>{props.data.isMatched && <OpenFullsizeButton />}</>;
