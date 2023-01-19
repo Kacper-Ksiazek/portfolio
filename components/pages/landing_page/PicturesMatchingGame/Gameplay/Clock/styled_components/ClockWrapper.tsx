@@ -3,11 +3,43 @@ import { alpha, styled } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Styled components
 const ProgressWrapper = styled("div")(({ theme }) => ({
-    position: "fixed",
-    top: "calc(100vh)",
-    transform: "translateY(calc(-100% - 32px))",
-    right: "20px",
-    animation: `${fadeSimple} .3s .2s both`,
+    "@media (min-width:841px)": {
+        position: "fixed",
+        top: "calc(100vh)",
+        transform: "translateY(calc(-100% - 32px))",
+        right: "20px",
+        animation: `${fadeSimple} .3s .2s both`,
+    },
+    "@media (max-width:840px)": {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        ".progress-row": {
+            height: "50px",
+            "&:not(&:nth-of-type(1))": {
+                marginLeft: "10px",
+                marginTop: "0",
+            },
+        },
+    },
+    "@media (max-width:600px)": {
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        width: "100%",
+        ".progress-row": {
+            boxSizing: "border-box !important",
+            marginTop: "0 !important",
+            marginLeft: "0 !important",
+            height: "58px",
+            "&:nth-of-type(1)": {
+                width: "100%",
+                marginBottom: "10px",
+            },
+            "&:nth-of-type(2), &:nth-of-type(3)": {
+                width: "calc(50% - 5px)",
+            },
+        },
+    },
     ".progress-row, button": {
         padding: "6px 12px",
         width: "166px",
