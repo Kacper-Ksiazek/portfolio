@@ -12,7 +12,7 @@ import ImageModelWithGallery from "./ImageModelWithGallery";
 import { PicturesMatchingGameContextProvider } from "./context";
 // Styled Components
 import Gameplay from "./Gameplay";
-import PicturesMatchingGameWrapper from "./PicturesMatchingGameWrapper";
+import MainWrapper from "./MainWrapper";
 
 const PicturesMatchingGame: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
@@ -28,7 +28,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
     });
 
     return (
-        <PicturesMatchingGameWrapper
+        <MainWrapper
             className={[
                 !context.gameplay.isExiting && context.navigation.stage === "GAMEPLAY" ? "gameplay-on" : "", //
                 context.navigation.stage === "SUMMARY" ? "summary" : "",
@@ -55,7 +55,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                         );
                 }
             })()}
-        </PicturesMatchingGameWrapper>
+        </MainWrapper>
     );
 };
 

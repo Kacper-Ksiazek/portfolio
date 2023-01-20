@@ -1,5 +1,5 @@
 // Tools
-import { introAnimations } from "./introAnimations";
+import theme from "@/material";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Icons
@@ -30,17 +30,16 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                 "button.navigation": {
                     fontSize: "20px",
                     padding: "6px 48px",
+                    height: "50px",
                     "&:disabled": {
                         background: "#fff",
                         opacity: 0.5,
                     },
                 },
-                "&.visible": {
-                    ...(introAnimations as any),
-                },
                 "&.summary": {
                     height: "calc(100vh - 40px)",
                 },
+
                 "&.gameplay-on": {
                     position: "fixed",
                     top: "-20px",
@@ -59,24 +58,35 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                         top: 0,
                         left: 0,
                     },
-                    ".dark-section-content-wrapper": {
-                        justifyContent: "center",
-                    },
                     ".dark-content-wrapper-github-redirection": {
                         display: "none",
                     },
                     "&::-webkit-scrollbar": {
                         width: "8px",
-                        background: "#f0eff4",
+                        background: theme.palette.background.paper,
                     },
 
                     "&::-webkit-scrollbar-track": {
-                        boxShadow: "inset 0 0 2px #888",
                         opacity: 0.1,
                     },
                     "&::-webkit-scrollbar-thumb": {
                         backgroundColor: "#da4167",
                         borderRadius: "2px",
+                    },
+                    "@media (max-width:900px)": {
+                        padding: "0 24px",
+                        ".dark-section-wrapper-background-svg, #user-choice-animaiton-base": {
+                            top: "-20px",
+                        },
+                    },
+                    "@media (max-width:600px)": {
+                        padding: "0 12px",
+                        // ".dark-content-wrapper-header-description": {
+                        //     display: "none",
+                        // },
+                    },
+                    "@media (max-width:500px)": {
+                        top: "-10px",
                     },
                 },
             }}

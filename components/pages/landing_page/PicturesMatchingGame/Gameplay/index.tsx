@@ -1,4 +1,5 @@
 // Tools
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import { usePicturesMatchingGameContext } from "../hooks/usePicturesMatchingGameContext";
@@ -15,6 +16,10 @@ const Gameplay: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
 
     const { width } = useWindowSizes();
+
+    useEffect(() => {
+        document.getElementById("picture-matching-game-main-wrapper")?.classList.add("visible");
+    }, []);
 
     return (
         <>
@@ -40,7 +45,7 @@ const Gameplay: FunctionComponent = (props) => {
                 })}
             </GameplayWrapper>
 
-            <Clock limitContent={width < 1250} />
+            <Clock limitContent={width < 1350} />
 
             <ButtonsWrapper id="picture-matching-game-buttons-wrapper">
                 <SurrenderButton

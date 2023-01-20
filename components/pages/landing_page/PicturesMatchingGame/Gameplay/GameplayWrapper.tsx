@@ -35,6 +35,9 @@ export default styled("section")(({ theme }) => ({
             animation: `${fadeSimpleOUT} .2s linear both !important`,
         },
     },
+    "@media (max-width:500px)": {
+        gap: "3px",
+    },
     "&.EASY": {
         maxWidth: "600px",
         gridTemplateColumns: "repeat(4, 1fr)",

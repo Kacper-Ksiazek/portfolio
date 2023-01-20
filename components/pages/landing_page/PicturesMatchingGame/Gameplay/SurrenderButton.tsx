@@ -5,10 +5,10 @@ import { styled } from "@mui/system";
 import type { FunctionComponent } from "react";
 // Material UI Components
 import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 // Styled components
 import { StyledButton } from "./styled_components";
 
