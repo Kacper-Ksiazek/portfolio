@@ -5,13 +5,10 @@ import { usePicturesMatchingGameContext } from "./hooks/usePicturesMatchingGameC
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import Summary from "./Summary";
-import Statistics from "./Statistics";
-import Menu from "./Menu";
+import GameStage from "./GameStage";
 import ImageModelWithGallery from "./ImageModelWithGallery";
 import { PicturesMatchingGameContextProvider } from "./context";
 // Styled Components
-import Gameplay from "./Gameplay";
 import MainWrapper from "./MainWrapper";
 
 const PicturesMatchingGame: FunctionComponent = (props) => {
@@ -37,24 +34,9 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
         >
             <ImageModelWithGallery />
 
-            {(() => {
-                switch (context.navigation.stage) {
-                    case "MENU":
-                        return <Menu />;
-                    case "GAMEPLAY":
-                        return <Gameplay />;
-                    case "SUMMARY":
-                        return <Summary />;
-                    case "STATISTICS":
-                        return (
-                            <Statistics
-                                general={context.statistics.general} //
-                                history={context.statistics.history}
-                                goBack={context.navigation.goBackToMenu}
-                            />
-                        );
-                }
-            })()}
+            {/*  */}
+            <GameStage />
+            {/*  */}
         </MainWrapper>
     );
 };

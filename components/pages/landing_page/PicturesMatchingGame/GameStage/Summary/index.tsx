@@ -1,7 +1,7 @@
 // Tools
 import { useEffect } from "react";
 import { formatTime } from "@/utils/client/formatTime";
-import { usePicturesMatchingGameContext } from "../hooks/usePicturesMatchingGameContext";
+import { usePicturesMatchingGameContext } from "@/components/pages/landing_page/PicturesMatchingGame/hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Components
