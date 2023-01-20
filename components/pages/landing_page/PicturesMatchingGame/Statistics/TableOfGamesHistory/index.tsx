@@ -8,7 +8,7 @@ import type { GamesHistoryRecord } from "@/@types/pages/PicturesMatchingGame/loc
 import GhostRecord from "./GhostRecord";
 import PaginatedStaticContent from "@/components/utils/PaginatedStaticContent";
 // Styled components
-import { StyledTable } from "../styled_components";
+import { StyledTable, TableWrapper } from "../styled_components";
 
 interface TableOfGamesHistoryProps {
     data: GamesHistoryRecord[];
@@ -19,18 +19,19 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
 
     return (
         <>
-            <StyledTable id="pictures-matching-game-games-history-table">
-                <thead>
-                    <th>Index</th>
-                    <th>Difficulty</th>
-                    <th>Result</th>
-                    <th>Duration</th>
-                    <th>Date</th>
-                    <th>Accuracy</th>
-                </thead>
-
-                <tbody />
-            </StyledTable>
+            <TableWrapper>
+                <StyledTable id="pictures-matching-game-games-history-table">
+                    <thead>
+                        <th>Index</th>
+                        <th>Difficulty</th>
+                        <th>Result</th>
+                        <th>Duration</th>
+                        <th>Date</th>
+                        <th>Accuracy</th>
+                    </thead>
+                    <tbody />
+                </StyledTable>
+            </TableWrapper>
 
             <PaginatedStaticContent
                 data={props.data}

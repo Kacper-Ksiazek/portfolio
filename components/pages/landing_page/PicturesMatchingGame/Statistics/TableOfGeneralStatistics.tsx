@@ -4,7 +4,7 @@ import { formatTime } from "@/utils/client/formatTime";
 import type { FunctionComponent, ReactNode } from "react";
 import type { Statistics } from "@/@types/pages/PicturesMatchingGame/localStorage";
 // Styled components
-import { StyledTable } from "./styled_components";
+import { StyledTable, TableWrapper } from "./styled_components";
 
 interface TableOfStatisticsProps {
     data: Statistics["general"];
@@ -18,37 +18,39 @@ const TableOfStatistics: FunctionComponent<TableOfStatisticsProps> = (props) => 
     };
 
     return (
-        <StyledTable>
-            <thead>
-                <th>Difficulty</th>
-                <th>Games</th>
-                <th>Win rate</th>
-                <th>avg. Time</th>
-                <th>avg. Accuracy</th>
-            </thead>
-            <tbody>
-                {Object.entries(props.data).map(([key, { games, totalTime, totalAccuracy }]) => {
-                    return (
-                        <tr key={key}>
-                            <td>
-                                <strong>{key}</strong>
-                            </td>
-                            <td>{games.inTotal}</td>
-                            <td>{formatPercentage((games.won * 100) / games.inTotal)}</td>
-                            <td>
-                                {formatTime({
-                                    time: {
-                                        seconds: Math.floor(totalTime / games.inTotal),
-                                    },
-                                    outputType: "SHORT",
-                                })}
-                            </td>
-                            <td>{formatPercentage(totalAccuracy / games.inTotal)}</td>
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </StyledTable>
+        <TableWrapper>
+            <StyledTable>
+                <thead>
+                    <th>Difficulty</th>
+                    <th>Games</th>
+                    <th>Win rate</th>
+                    <th>avg. Time</th>
+                    <th>avg. Accuracy</th>
+                </thead>
+                <tbody>
+                    {Object.entries(props.data).map(([key, { games, totalTime, totalAccuracy }]) => {
+                        return (
+                            <tr key={key}>
+                                <td>
+                                    <strong>{key}</strong>
+                                </td>
+                                <td>{games.inTotal}</td>
+                                <td>{formatPercentage((games.won * 100) / games.inTotal)}</td>
+                                <td>
+                                    {formatTime({
+                                        time: {
+                                            seconds: Math.floor(totalTime / games.inTotal),
+                                        },
+                                        outputType: "SHORT",
+                                    })}
+                                </td>
+                                <td>{formatPercentage(totalAccuracy / games.inTotal)}</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </StyledTable>
+        </TableWrapper>
     );
 };
 
