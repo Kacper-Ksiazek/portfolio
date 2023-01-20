@@ -1,4 +1,6 @@
 // Tools
+import { alpha } from "@mui/system";
+import theme from "material";
 import { formatTime } from "@/utils/client/formatTime";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -19,7 +21,13 @@ const TableOfStatistics: FunctionComponent<TableOfStatisticsProps> = (props) => 
 
     return (
         <TableWrapper>
-            <StyledTable>
+            <StyledTable
+                sx={{
+                    "tr:nth-of-type(5)": {
+                        background: alpha(theme.palette.secondary.main, 0.3),
+                    },
+                }}
+            >
                 <thead>
                     <th>Difficulty</th>
                     <th>Games</th>

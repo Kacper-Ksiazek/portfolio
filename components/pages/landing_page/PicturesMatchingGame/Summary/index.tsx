@@ -1,83 +1,17 @@
 // Tools
-import { styled, alpha } from "@mui/system";
+import { useEffect } from "react";
 import { formatTime } from "@/utils/client/formatTime";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import { usePicturesMatchingGameContext } from "./hooks/usePicturesMatchingGameContext";
+import { usePicturesMatchingGameContext } from "../hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Components
 import Typography from "@mui/material/Typography";
-// Other components
-import { SmoothlyAppearingSectionBase } from "./SmoothlyAppearingSection";
 // Material UI Icons
 import StarBorderOutlined from "@mui/icons-material/StarHalfOutlined";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 import { Difficulty } from "@/@types/pages/PicturesMatchingGame";
-
-const SummaryBase = styled(SmoothlyAppearingSectionBase)(({ theme }) => ({
-    justifyContent: "flex-end",
-    "strong.primary": {
-        background: theme.palette.primary.main,
-        padding: "0px 8px",
-        borderRadius: "3px",
-    },
-    h3: {
-        fontWeight: "700",
-        animation: `${fadeSimple} .3s .5s both`,
-        margin: "128px 0 24px 0",
-    },
-    p: {
-        animation: `${fadeSimple} .3s .6s both`,
-        fontSize: "20px",
-        margin: 0,
-        cursor: "default",
-        "&.bottom": {
-            marginTop: "32px",
-        },
-    },
-    ul: {
-        margin: "8px 0 16px 0",
-        listStyleType: "none",
-        li: {
-            "&:not(&:nth-of-type(1))": {
-                marginTop: "8px",
-            },
-            textAlign: "center",
-            fontSize: "20px",
-            display: "flex",
-            justifyContent: "center",
-            animation: `${fadeSimple} .3s 1s both`,
-            "span.label": {
-                marginRight: "12px",
-            },
-        },
-    },
-    "svg#background-svg": {
-        fontSize: "32rem",
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%,-50%)",
-        color: alpha("#fff", 0.1),
-        animation: `${fadeSimple} .3s 2s both linear`,
-    },
-}));
-
-const ButtonsWrapper = styled("div")(({ theme }) => ({
-    display: "flex",
-    margin: "24px 0 16px 0",
-    button: {
-        padding: "6px 24px",
-        fontSize: "20px",
-        "&:nth-of-type(1)": {
-            animation: `${fadeSimple} .3s 1.2s both`,
-        },
-        "&:nth-of-type(2)": {
-            animation: `${fadeSimple} .3s 1.3s both`,
-        },
-    },
-}));
+import { SummaryBase, ButtonsWrapper } from "./styled_components";
 
 const Summary: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
@@ -96,6 +30,14 @@ const Summary: FunctionComponent = (props) => {
             startNewGameplay: true,
         });
     };
+
+    useEffect(() => {
+        return () => {
+            setTimeout(() => {
+                document.getElementById("picture-matching-game-main-wrapper")?.classList.add("visible");
+            }, 100);
+        };
+    }, []);
 
     return (
         <SummaryBase>
