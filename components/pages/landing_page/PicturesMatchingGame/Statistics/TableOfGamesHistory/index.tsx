@@ -20,7 +20,14 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
     return (
         <>
             <TableWrapper>
-                <StyledTable id="pictures-matching-game-games-history-table">
+                <StyledTable
+                    id="pictures-matching-game-games-history-table"
+                    sx={{
+                        "th:nth-of-type(4)": {
+                            width: "140px",
+                        },
+                    }}
+                >
                     <thead>
                         <th>Index</th>
                         <th>Difficulty</th>

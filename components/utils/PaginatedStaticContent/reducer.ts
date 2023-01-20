@@ -16,7 +16,7 @@ type GoToParticularAction = {
     payload: number;
 };
 
-type PaginatedStaticContentReducerAction = GoToParticularAction | GoToNextAction | GoToPreviousAction;
+export type PaginatedStaticContentReducerAction = GoToParticularAction | GoToNextAction | GoToPreviousAction;
 
 export const reducer = (state: PaginatedStaticContentReducerState, action: PaginatedStaticContentReducerAction): PaginatedStaticContentReducerState => {
     switch (action.type) {
