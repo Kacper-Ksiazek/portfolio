@@ -6,7 +6,7 @@ import type { FunctionComponent } from "react";
 import Menu from "./Menu";
 import Summary from "./Summary";
 import Gameplay from "./Gameplay";
-import Statistics from "./Statistics";
+import GamesStatistics from "./GamesStatistics";
 
 const GameStage: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
@@ -20,7 +20,7 @@ const GameStage: FunctionComponent = (props) => {
             return <Summary />;
         case "STATISTICS":
             return (
-                <Statistics
+                <GamesStatistics
                     general={context.statistics.general} //
                     history={context.statistics.history}
                     goBack={context.navigation.goBackToMenu}

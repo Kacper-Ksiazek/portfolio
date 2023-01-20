@@ -10,13 +10,13 @@ import SmoothlyAppearingSection from "../SmoothlyAppearingSection";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 
-interface StatisticsProps {
+interface GamesStatisticsProps {
     history: Statistics["history"];
     general: Statistics["general"];
     goBack: () => void;
 }
 
-const Statistics: FunctionComponent<StatisticsProps> = (params) => {
+const GamesStatistics: FunctionComponent<GamesStatisticsProps> = (params) => {
     const close = () => {
         document.getElementById("picture-matching-game-main-wrapper")?.scrollIntoView({
             behavior: "smooth",
@@ -43,4 +43,4 @@ const Statistics: FunctionComponent<StatisticsProps> = (params) => {
     );
 };
 
-export default Statistics;
+export default GamesStatistics;
