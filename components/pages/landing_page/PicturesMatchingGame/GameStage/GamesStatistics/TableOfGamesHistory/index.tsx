@@ -30,12 +30,14 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
                     }}
                 >
                     <thead>
-                        <th>Index</th>
-                        <th>Difficulty</th>
-                        <th>Result</th>
-                        <th>Duration</th>
-                        <th>Date</th>
-                        <th>Accuracy</th>
+                        <tr>
+                            <th>Index</th>
+                            <th>Difficulty</th>
+                            <th>Result</th>
+                            <th>Duration</th>
+                            <th>Date</th>
+                            <th>Accuracy</th>
+                        </tr>
                     </thead>
                     <tbody />
                 </StyledTable>

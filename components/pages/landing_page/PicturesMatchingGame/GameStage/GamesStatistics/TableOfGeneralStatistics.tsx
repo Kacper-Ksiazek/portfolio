@@ -29,11 +29,13 @@ const TableOfStatistics: FunctionComponent<TableOfStatisticsProps> = (props) => 
                 }}
             >
                 <thead>
-                    <th>Difficulty</th>
-                    <th>Games</th>
-                    <th>Win rate</th>
-                    <th>avg. Time</th>
-                    <th>avg. Accuracy</th>
+                    <tr>
+                        <th>Difficulty</th>
+                        <th>Games</th>
+                        <th>Win rate</th>
+                        <th>avg. Time</th>
+                        <th>avg. Accuracy</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {Object.entries(props.data).map(([key, { games, totalTime, totalAccuracy }]) => {
