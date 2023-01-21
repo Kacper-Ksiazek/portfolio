@@ -3,6 +3,7 @@ import { useGameplayReducer } from "./GameplayReducer";
 import { createContext, useState, useEffect } from "react";
 import { useStatisticsFromLocalStorage } from "./_useStatisticsFromLocalStorage";
 import { useNavigationBetweenStagesMethods } from "./_useNavigationBetweenStagesMethods";
+import { requstDOMNode } from "@/components/pages/landing_page/PicturesMatchingGame/utils/getDOMNode";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 import type { PicturesMatchingGameContextInterface } from "@/@types/pages/PicturesMatchingGame/context";
@@ -58,7 +59,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
                 INSANE: 3400,
             }[difficulty];
 
-            (document.getElementById("picture-matching-game-buttons-wrapper") as any).style.animationDelay = `${delay + 500}ms`;
+            requstDOMNode("GAME_BUTTONS_WRAPPER").style.animationDelay = `${delay + 500}ms`;
 
             setTimeout(() => {
                 dispatch({

@@ -1,6 +1,7 @@
 // Tools
 import { createPortal } from "react-dom";
 import { formatTime } from "@/utils/client/formatTime";
+import { requstDOMNode } from "@/components/pages/landing_page/PicturesMatchingGame/utils/getDOMNode";
 // Types
 import type { FunctionComponent } from "react";
 import type { GamesHistoryRecord } from "@/@types/pages/PicturesMatchingGame/localStorage";
@@ -67,10 +68,7 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
                         </tr>
                     );
                 }}
-                renderWrapper={(content) => {
-                    const DOMRoot = document.querySelector("#pictures-matching-game-games-history-table>tbody");
-                    return createPortal(content, DOMRoot as HTMLElement);
-                }}
+                renderWrapper={(content) => createPortal(content, requstDOMNode("BODY_OF_GAMES_HISTORY_TABLE"))}
                 renderGhostRecord={(index) => (
                     <GhostRecord
                         key={index} //

@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import useWindowSizes from "@/hooks/useWindowSizes";
+import { requstDOMNode } from "@/components/pages/landing_page/PicturesMatchingGame/utils/getDOMNode";
 import { usePicturesMatchingGameContext } from "@/components/pages/landing_page/PicturesMatchingGame/hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -18,7 +19,7 @@ const Gameplay: FunctionComponent = (props) => {
     const { width } = useWindowSizes();
 
     useEffect(() => {
-        document.getElementById("picture-matching-game-main-wrapper")?.classList.add("visible");
+        requstDOMNode("MAIN_WRAPPER").classList.add("visible");
     }, []);
 
     return (

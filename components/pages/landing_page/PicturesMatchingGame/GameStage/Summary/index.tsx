@@ -1,5 +1,4 @@
 // Tools
-import { useEffect } from "react";
 import { formatTime } from "@/utils/client/formatTime";
 import { usePicturesMatchingGameContext } from "@/components/pages/landing_page/PicturesMatchingGame/hooks/usePicturesMatchingGameContext";
 // Types
@@ -30,14 +29,6 @@ const Summary: FunctionComponent = (props) => {
             startNewGameplay: true,
         });
     };
-
-    useEffect(() => {
-        return () => {
-            setTimeout(() => {
-                document.getElementById("picture-matching-game-main-wrapper")?.classList.add("visible");
-            }, 100);
-        };
-    }, []);
 
     return (
         <SummaryBase>

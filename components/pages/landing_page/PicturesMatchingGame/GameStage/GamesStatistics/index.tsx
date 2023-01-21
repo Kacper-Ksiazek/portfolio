@@ -1,3 +1,5 @@
+// Tools
+import { requstDOMNode } from "@/components/pages/landing_page/PicturesMatchingGame/utils/getDOMNode";
 // Types
 import type { FunctionComponent } from "react";
 import type { Statistics } from "@/@types/pages/PicturesMatchingGame/localStorage";
@@ -18,7 +20,7 @@ interface GamesStatisticsProps {
 
 const GamesStatistics: FunctionComponent<GamesStatisticsProps> = (params) => {
     const close = () => {
-        document.getElementById("picture-matching-game-main-wrapper")?.scrollIntoView({
+        requstDOMNode("MAIN_WRAPPER").scrollIntoView({
             behavior: "smooth",
         });
         setTimeout(params.goBack, 300);

@@ -1,6 +1,7 @@
 // Tools
 import { useState } from "react";
 import { styled } from "@mui/system";
+import { requstDOMNode } from "@/components/pages/landing_page/PicturesMatchingGame/utils/getDOMNode";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Components
@@ -33,7 +34,7 @@ const SurrenderButton: FunctionComponent<SurrenderButtonProps> = (props) => {
 
     const closeDialog = () => setOpenDialog(false);
     const exit = () => {
-        const mainWrapper = document.getElementById("picture-matching-game-main-wrapper") as HTMLElement;
+        const mainWrapper = requstDOMNode("MAIN_WRAPPER");
         mainWrapper.scrollTo({
             top: 0,
             left: 0,
