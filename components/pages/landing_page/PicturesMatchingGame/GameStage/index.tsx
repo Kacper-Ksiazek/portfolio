@@ -1,5 +1,5 @@
 // Tools
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
 import { usePicturesMatchingGameContext } from "../hooks/usePicturesMatchingGameContext";
 import { requstDOMNode } from "@/components/pages/landing_page/PicturesMatchingGame/utils/getDOMNode";
@@ -13,28 +13,38 @@ import GamesStatistics from "./GamesStatistics";
 
 const GameStage: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
+    const thisSectionHasBeenAlreadySeen = useRef<boolean>(false);
     const { hideNavigationBar, showNavigationBar } = useMainNavigationBarContext();
+
+    const { stage } = context.navigation;
 
     useEffect(() => {
         setTimeout(() => {
             const wrapper = requstDOMNode("MAIN_WRAPPER");
             wrapper.classList.add("visible");
 
-            if (["MENU", "SUMMARY"].includes(context.navigation.stage)) {
+            if (
+                stage === "SUMMARY" || //
+                (stage === "MENU" && thisSectionHasBeenAlreadySeen.current)
+            ) {
                 setTimeout(() => {
                     hideNavigationBar();
                     wrapper.scrollIntoView({ block: "center", behavior: "smooth" });
                 }, 1);
-            } else if (context.navigation.stage === "STATISTICS") {
+            } else if (stage === "STATISTICS") {
                 setTimeout(() => {
-                    showNavigationBar();
+                    hideNavigationBar();
                     wrapper.scrollIntoView({ block: "start", behavior: "smooth" });
                 }, 1);
             }
         }, 100);
-    }, [context.navigation.stage, hideNavigationBar, showNavigationBar]);
+        //
+        if (!thisSectionHasBeenAlreadySeen.current && stage !== "MENU") {
+            thisSectionHasBeenAlreadySeen.current = true;
+        }
+    }, [stage, hideNavigationBar]);
 
-    switch (context.navigation.stage) {
+    switch (stage) {
         case "MENU":
             return <Menu />;
         case "GAMEPLAY":
