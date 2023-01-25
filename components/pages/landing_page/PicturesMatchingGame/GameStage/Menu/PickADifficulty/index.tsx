@@ -14,6 +14,9 @@ const StyledSelect = styled(Select)(({ theme }) => ({
     fontSize: "16px",
     background: "#fff",
     animation: `${fadeSimple} .3s .4s both linear`,
+    "@media (max-width:500px)": {
+        width: "100%",
+    },
 }));
 
 interface PickADifficultyProps {
