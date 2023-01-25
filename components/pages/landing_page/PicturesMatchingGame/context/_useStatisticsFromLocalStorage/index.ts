@@ -33,6 +33,7 @@ export const useStatisticsFromLocalStorage = (): UseStatisticsFromLocalStorageRe
                         record: currentGeneral.TOTAL, //
                         duration,
                         accuracy,
+                        lost: gameplay.isOver === false,
                     }),
                     [difficulty]: utils.updateGeneralStatsRecord({
                         record: currentGeneral[difficulty], //
