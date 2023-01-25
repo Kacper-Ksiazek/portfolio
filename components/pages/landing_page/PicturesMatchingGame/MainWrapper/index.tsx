@@ -43,7 +43,6 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                         justifyContent: "center",
                     },
                 },
-
                 "&.gameplay-on": {
                     position: "fixed",
                     top: "-20px",
@@ -91,6 +90,7 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                     },
                     "@media (max-width:500px)": {
                         top: "-10px",
+                        height: "calc(100vh + 10px)",
                     },
                 },
             }}

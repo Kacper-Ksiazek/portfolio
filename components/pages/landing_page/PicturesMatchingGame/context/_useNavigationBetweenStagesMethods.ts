@@ -48,13 +48,15 @@ export const useNavigationBetweenStagesMethods = (params: NavigationBetweenStage
             )[forcedDifficulty ?? difficulty];
 
             positionFixedWindow.open();
-            setStage("GAMEPLAY");
-            dispatch({
-                type: "START_NEW_GAME",
-                payload: {
-                    amountOfPictures: amountOfPicturesBasedOnDifficulty,
-                },
-            });
+            setTimeout(() => {
+                setStage("GAMEPLAY");
+                dispatch({
+                    type: "START_NEW_GAME",
+                    payload: {
+                        amountOfPictures: amountOfPicturesBasedOnDifficulty,
+                    },
+                });
+            }, 20);
         },
         [positionFixedWindow, dispatch, difficulty]
     );

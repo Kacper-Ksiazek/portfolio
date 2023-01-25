@@ -31,6 +31,18 @@ const Gameplay: FunctionComponent = (props) => {
                     context.gameplay.isExiting ? "exiting" : "",
                 ].join(" ")}
             >
+                <span
+                    id="picture-matching-game-pictures-wrapper-user-scroll-anchor"
+                    style={{
+                        position: "absolute",
+                        width: "0px",
+                        height: "0px",
+                        zIndex: "20",
+                        left: "calc(50% - 5px)",
+                        top: "-70px",
+                    }}
+                />
+
                 {context.gameplay.pictures.map((picture, index) => {
                     return (
                         <SinglePicture

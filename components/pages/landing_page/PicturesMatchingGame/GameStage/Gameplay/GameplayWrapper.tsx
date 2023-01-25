@@ -29,6 +29,7 @@ export default styled("section")(({ theme }) => ({
     maxWidth: "900px",
     paddingBottom: "32px",
     width: "100%",
+    position: "relative",
     "&.exiting": {
         animation: `${fadeSimpleOUT} .3s linear both`,
         "&+#pictures-matching-progress-wrapper": {
