@@ -38,6 +38,10 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                 },
                 "&.summary": {
                     height: "calc(100vh - 40px)",
+                    ".dark-section-content-wrapper": {
+                        paddingBottom: "64px",
+                        justifyContent: "center",
+                    },
                 },
 
                 "&.gameplay-on": {

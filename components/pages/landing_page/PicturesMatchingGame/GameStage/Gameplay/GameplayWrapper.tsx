@@ -15,7 +15,7 @@ const applyAnimationDelay = (elementsInTotal: number): SxProps => {
         };
     }
     result["&.intro-animation"] = {
-        "span.question-mark, &::after, &::before": {
+        "span.question-mark, .hiding-mask-wing": {
             animationDelay: `${DEFAULT_DELAY + elementsInTotal * DELAY_BETWEEN_ELEMENTS + 500}ms !important`,
         },
     };

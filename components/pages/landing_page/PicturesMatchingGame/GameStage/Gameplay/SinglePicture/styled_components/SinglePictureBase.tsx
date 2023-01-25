@@ -31,7 +31,7 @@ export default styled("div")(({ theme }) => ({
     // Handle image displaying and fading
     //
     "&.intro-animation": {
-        "&::after,&::before": {
+        ".hiding-mask-wing": {
             animation: `${introAppearingAnimation} 1.6s 2s linear`,
         },
         "span.question-mark": {
@@ -52,19 +52,9 @@ export default styled("div")(({ theme }) => ({
             "span.question-mark": {
                 color: "#fff",
             },
-            "&::after, &::before": {
+            ".hiding-mask-wing": {
                 background: theme.palette.primary.main,
             },
         },
-    },
-    "&.display-image": {
-        // "&::after": {
-        //     background: theme.palette.primary.main,
-        //     transform: "translateX(calc(-100% - 10px))",
-        // },
-        // "&::before": {
-        //     background: theme.palette.secondary.main,
-        //     transform: "translateX(calc(100% + 10px))",
-        // },
     },
 }));
