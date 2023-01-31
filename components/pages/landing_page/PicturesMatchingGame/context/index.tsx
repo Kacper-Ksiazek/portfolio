@@ -1,108 +1,92 @@
 // Tools
-import { createContext, useState, useMemo } from "react";
-import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
-import ALL_AVAILABLE_IMAGES from "@/data/pictures_for_matching_game";
+import { useGameplayReducer } from "./GameplayReducer";
+import { createContext, useState, useEffect } from "react";
+import { useStatisticsFromLocalStorage } from "./_useStatisticsFromLocalStorage";
+import { useNavigationBetweenStagesMethods } from "./_useNavigationBetweenStagesMethods";
+import { requstDOMNode } from "@/components/pages/landing_page/PicturesMatchingGame/utils/getDOMNode";
 // Types
-import type { FunctionComponent, ReactNode, SetStateAction, Dispatch } from "react";
-import type { PictureToMatch } from "@/data/pictures_for_matching_game";
+import type { FunctionComponent, ReactNode } from "react";
+import type { PicturesMatchingGameContextInterface } from "@/@types/pages/PicturesMatchingGame/context";
+import type { Difficulty, PictureToMatch, UserChoiceAnimation } from "@/@types/pages/PicturesMatchingGame";
 
-interface PictureToMatchWithID extends PictureToMatch {
-    id: number;
-}
-type AnimationToDisplay = "invalid_choose" | null;
-
-interface PicturesMatchingGameContextInterface {
-    numberOfTurns: number;
-    animationToDisplay: AnimationToDisplay;
-    pictureToDisplayInFullsize: PictureToMatchWithID | null;
-    allPictures: PictureToMatchWithID[];
-    gameIsOver: boolean;
-    gameNumber: number;
-    //
-    startNewGame: () => void;
-    /**
-     * This function is triggered each time the picture is clicked, expects one parameter- a unique id of clicked element
-     */
-    handlePictureOnClick: (id: number) => void;
-    checkWehetherAImageShouldBeShown: (id: number) => boolean;
-    checkWhetherAImageHasBeenAlreadyMatched: (folder: string) => boolean;
-    setPictureToDisplayInFullsize: Dispatch<SetStateAction<PictureToMatchWithID | null>>;
-}
+const ANIMATION_DURATIONS: Record<UserChoiceAnimation | "GAMEPLAY_PREPARATION", number> = Object.seal({
+    INVALID_CHOICE: 350,
+    CORRECT_CHOICE: 350,
+    GAMEPLAY_PREPARATION: 500,
+});
 
 export const PicturesMatchingGameContext = createContext<PicturesMatchingGameContextInterface>({} as any);
 
 export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: ReactNode }> = (props) => {
-    // This one property is used to refresh useMemo hook and allow staring further games without refreshing the page
-    const [gameNumber, setGameNumber] = useState<number>(1);
+    const [difficulty, _setDifficulty] = useState<Difficulty>("MEDIUM");
+    const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PicturesMatchingGameContextInterface["pictureToDisplayInFullsize"]>(null);
+    const [statistics, saveGame] = useStatisticsFromLocalStorage();
+    const [gameplay, dispatch] = useGameplayReducer();
 
-    const [pictureToDisplayInFullsize, setPictureToDisplayInFullsize] = useState<PictureToMatchWithID | null>(null);
-    const [numberOfTurns, setNumberOfTurns] = useState<number>(0);
-    const [alreadyMatchedPictures, setAlreadyMatchedPictures] = useState<string[]>([]);
-    const [idsOfPicturesToDisplay, setIdsOfPicturesToDisplay] = useState<number[]>([]);
-    const [animationToDisplay, setAnimationToDisplay] = useState<AnimationToDisplay>(null);
-
-    const allPictures = useMemo<PictureToMatchWithID[]>(() => {
-        const _shuffle = (arr: any[]): any[] => arr.sort(() => 0.5 - Math.random());
-        const fiveRandomImages: PictureToMatch[] = _shuffle(ALL_AVAILABLE_IMAGES).slice(0, 5);
-        return _shuffle([...fiveRandomImages, ...fiveRandomImages]).map((el: PictureToMatch, index): PictureToMatchWithID => {
-            return { ...el, id: index };
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [gameNumber]);
-
-    useLazyLoadedImages({
-        id: "PICTURES_MATCHING_MINIGAME_SINGLE_IMAGE",
-        srcsToLazyLoad: allPictures.map((image) => `/images/landing-page/images-matching-game/${image.folder}/thumbnail.jpg`),
+    const navigation = useNavigationBetweenStagesMethods({
+        dispatch,
+        difficulty,
+        gameplay,
+        saveGame,
     });
 
-    const handlePictureOnClick = (id: number) => {
-        if (idsOfPicturesToDisplay.length === 2 || idsOfPicturesToDisplay.includes(id)) return;
-        if (idsOfPicturesToDisplay.length === 0) return setIdsOfPicturesToDisplay([id]);
-        setNumberOfTurns((val) => val + 1);
-        //
-        // Helper function to facilitate comparing of pictures reflecting by different ids
-        const _getFolderName = (id: number): string => (allPictures.find((el) => el.id === id) as PictureToMatchWithID).folder;
-        // Add currently clicked picture's id to the array in order to enable animations
-        setIdsOfPicturesToDisplay((val) => [...val, id]);
-        // Dedicate whether the pictures are equal
-        if (_getFolderName(id) === _getFolderName(idsOfPicturesToDisplay[0])) {
-            setAlreadyMatchedPictures((val) => [...val, _getFolderName(id)]);
-            setAnimationToDisplay(null);
-            setIdsOfPicturesToDisplay([]);
+    const setDifficulty: PicturesMatchingGameContextInterface["methods"]["setDifficulty"] = (params) => {
+        if (params instanceof Object) {
+            _setDifficulty(params.value);
+            navigation.startNewGame(params.value);
         } else {
-            setTimeout(() => {
-                setAnimationToDisplay("invalid_choose");
-                setTimeout(() => {
-                    setAnimationToDisplay(null);
-                    setIdsOfPicturesToDisplay([]);
-                }, 150);
-            }, 450);
+            _setDifficulty(params);
         }
     };
 
-    const startNewGame = () => {
-        setGameNumber((val) => val + 1);
-        setNumberOfTurns(1);
-        setAlreadyMatchedPictures([]);
-        setIdsOfPicturesToDisplay([]);
-        setAnimationToDisplay(null);
-        setPictureToDisplayInFullsize(null);
+    const handlePictureOnClick = (clickedPicture: PictureToMatch) => {
+        dispatch({ type: "HANDLE_ON_CLICK", payload: clickedPicture });
     };
+
+    const incrementTime = () => dispatch({ type: "INCREMENT_TIME" });
+
+    useEffect(() => {
+        const animation = gameplay.animation;
+        if (animation === "INVALID_CHOICE" || animation === "CORRECT_CHOICE") {
+            setTimeout(() => {
+                dispatch({ type: "END_ANIMATION" });
+            }, ANIMATION_DURATIONS[animation]);
+        } else if (animation === "INTRO") {
+            const delay: number = {
+                EASY: 2600,
+                MEDIUM: 2700,
+                HARD: 3000,
+                INSANE: 3400,
+            }[difficulty];
+
+            requstDOMNode("GAME_BUTTONS_WRAPPER").style.animationDelay = `${delay + 500}ms`;
+
+            setTimeout(() => {
+                dispatch({
+                    type: "END_ANIMATION",
+                    payload: {
+                        startCountingTime: true,
+                    },
+                });
+            }, delay);
+        }
+    }, [gameplay.animation, difficulty, dispatch]);
 
     return (
         <PicturesMatchingGameContext.Provider
             value={{
-                gameNumber,
-                animationToDisplay,
-                allPictures,
-                numberOfTurns,
+                navigation,
+
+                statistics,
                 pictureToDisplayInFullsize,
-                gameIsOver: alreadyMatchedPictures.length === 5,
-                startNewGame,
-                setPictureToDisplayInFullsize,
-                handlePictureOnClick,
-                checkWehetherAImageShouldBeShown: (id: number) => idsOfPicturesToDisplay.includes(id),
-                checkWhetherAImageHasBeenAlreadyMatched: (folder: string) => alreadyMatchedPictures.includes(folder),
+                difficulty,
+                gameplay,
+                methods: {
+                    incrementTime,
+                    setDifficulty,
+                    handlePictureOnClick,
+                    setPictureToDisplayInFullsize,
+                },
             }}
         >
             {props.children}

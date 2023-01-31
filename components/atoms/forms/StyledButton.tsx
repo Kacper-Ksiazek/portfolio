@@ -48,6 +48,7 @@ export default styled(ButtonBase, {
         transition: "all .3s",
         fontSize: "16px",
         padding: "4px 10px",
+        fontFamily: "Noto Sans",
         svg: {
             color: "inherit !important",
         },

@@ -18,7 +18,7 @@ export default {
         "&>*": {
             visibility: "hidden",
         },
-        "&::before": {
+        ".dark-section-wrapper-background-svg": {
             opacity: 0,
         },
     },
@@ -26,7 +26,7 @@ export default {
         "&>*": {
             visibility: "visible",
         },
-        "&::before": {
+        ".dark-section-wrapper-background-svg": {
             opacity: 1,
             animation: [
                 `${fadeSimple} 3s .5s linear backwards`, //

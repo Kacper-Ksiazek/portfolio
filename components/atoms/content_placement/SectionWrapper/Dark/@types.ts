@@ -31,4 +31,9 @@ export interface DarkSectionWrapperProps {
      * Reference to the code associated with the following project
      */
     githubURL: string;
+    //
+    className?: string;
+    id?: string;
+    childrenOutsideContent?: ReactNode;
+    renderHeader?: boolean;
 }
