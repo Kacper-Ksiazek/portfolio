@@ -1,5 +1,6 @@
 // Tools
 import { reducer } from "./reducer";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import usePagination from "@mui/material/usePagination";
 import { renderNTimes } from "@/utils/client/renderNTimes";
 import { useReducer, useRef, useEffect, useState } from "react";
@@ -23,7 +24,9 @@ interface PaginatedStaticContentProps<T> {
 }
 
 const PaginatedStaticContent = <T extends unknown>(props: PaginatedStaticContentProps<T>): ReactElement => {
+    const { width } = useWindowSizes();
     const contentHasBeenDisplayed = useRef<boolean>(true);
+    const scrollTopReference = useRef<HTMLElement | null>(null);
     const [displayContent, setDisplayContent] = useState<boolean>(false);
 
     const [state, dispatch] = useReducer(reducer, {
@@ -35,7 +38,7 @@ const PaginatedStaticContent = <T extends unknown>(props: PaginatedStaticContent
     const { items: paginationItems } = usePagination({
         page: state.currentPage,
         count: state.pagesInTotal,
-        siblingCount: 0,
+        siblingCount: width > 500 ? 1 : 0,
     });
 
     const start: number = (state.currentPage - 1) * state.perPage;
@@ -52,12 +55,18 @@ const PaginatedStaticContent = <T extends unknown>(props: PaginatedStaticContent
         }
     });
 
+    useEffect(() => {
+        scrollTopReference.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, [state.currentPage]);
+
     if (!displayContent) return <>Loading...</>;
     return (
         <>
             {props.renderWrapper(
                 <>
-                    {/* Display all games records on current page */}
+                    {/* Scroll top referecne */}
+                    <span ref={scrollTopReference} style={{ position: "absolute", top: "-200px" }} />
+                    {/* Display all records on current page */}
                     {recordsOnCurrentPage.map((item, index) => {
                         return props.renderItem(item, props.keyResolver ? props.keyResolver(item, index) : index);
                     })}
