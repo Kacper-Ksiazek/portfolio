@@ -47,6 +47,7 @@ export const TableWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     justifyContent: "flex-start",
     paddingBottom: "32px",
+    position: "relative",
     "@media (max-width:1080px)": {
         width: "100%",
         overflowX: "scroll",

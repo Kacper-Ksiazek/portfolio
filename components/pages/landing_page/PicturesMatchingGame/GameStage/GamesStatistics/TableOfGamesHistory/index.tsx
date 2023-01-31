@@ -45,7 +45,7 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
 
             <PaginatedStaticContent
                 data={props.data}
-                perPage={6}
+                perPage={10}
                 keyResolver={(item) => item.index}
                 renderItem={(item, key) => {
                     return (
