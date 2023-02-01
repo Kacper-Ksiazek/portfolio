@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import { useSendEmailContext } from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
@@ -18,7 +18,7 @@ const SimpleFlexBox = styled("div")(({ theme }) => ({
 }));
 
 const PendingFeignedPart: FunctionComponent<MUIStyledCommonProps> = (props) => {
-    const { setRequestStatus } = useManagementContext();
+    const { updateRequest } = useSendEmailContext();
 
     return (
         <>
@@ -28,7 +28,7 @@ const PendingFeignedPart: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     color="success" //
                     icon={<Check />}
                     tooltip="Feign success scenario"
-                    onClick={() => setRequestStatus("success_but_feigned")}
+                    onClick={() => updateRequest({ status: "success_but_feigned" })}
                     sx={{
                         animation: `${fadeSimple} .2s .3s linear both `,
                     }}
@@ -37,7 +37,7 @@ const PendingFeignedPart: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     color="error" //
                     icon={<Close />}
                     tooltip="Feign success scenario"
-                    onClick={() => setRequestStatus("error_but_feigned")}
+                    onClick={() => updateRequest({ status: "error_but_feigned" })}
                     sx={{
                         animation: `${fadeSimple} .2s .4s linear both `,
                     }}

@@ -1,98 +1,79 @@
 // Tools
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { ManagementContextProvider } from "./contexts/management";
-import { FormStageOneContextProvider } from "./contexts/formStageOne";
-import { FormStageTwoContextProvider } from "./contexts/formStageTwo";
-import useFormStageOne from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useFormStageOne";
-import useFormStageTwo from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useFormStageTwo";
-import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import { useState, useEffect } from "react";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useSendEmailContext } from "./hooks/useSendEmailContext";
+import { useSendRequestQuery } from "./hooks/queries/useSendRequestQuery";
 // Types
 import type { FunctionComponent } from "react";
+import type { Status } from "./contexts/@types";
 // Other components
 import Form from "./Form";
 import ProcessRequest from "./ProcessRequest";
+import { SendEmailContextProvider } from "./contexts";
 // Styled Components
 import SendMeAnEmailWrapper from "./_styled_components/SendMeAnEmailWrapper";
 
 const SendMeAnEmail: FunctionComponent = (props) => {
-    const INITIAL_INTRO_ANIMATION_DURATION: number = 1200;
+    const [specialWayOfRendering, setSpecialWayOfRendering] = useState<null | "displayOutroAnimation" | "hideIt">(null);
+    const [previouslySentEmail, setPreviouslySentEmail] = useLocalStorage<string | null>("email-has-been-already-send", null);
 
-    const { setRequestStatus, ...managementContext } = useManagementContext();
-    const { author, subject, message } = useFormStageOne();
-    const { country, email, github, website } = useFormStageTwo();
+    const { updateRequest, request } = useSendEmailContext();
 
-    // Used for handling initial intro animation
-    const [renderContent, setRenderContent] = useState<boolean>(false);
+    const sendRequest = useSendRequestQuery({ setPreviouslySentEmail });
 
     useEffect(() => {
-        setTimeout(() => {
-            setRenderContent(true);
-        }, INITIAL_INTRO_ANIMATION_DURATION);
-    }, []);
+        if (specialWayOfRendering === null && request.status === "fillingForm") return;
 
-    const sendRequest = async () => {
-        setRequestStatus("pending");
-        await axios
-            .post("./api/send_email", {
-                author,
-                subject,
-                message,
-                contact: {
-                    email,
-                    country: country ? country?.label : "",
-                    ...(github.length ? { github } : null),
-                    ...(website.length ? { website } : null),
-                },
-            })
-            .then(() => {
-                setRequestStatus("success");
-                localStorage.setItem("email-has-been-already-send", new Date().toLocaleString());
-            })
-            .catch((res) => {
-                managementContext.setFailedRequestHTTPStatus(res.response.status);
-                setRequestStatus("error");
-            });
-    };
-
-    useEffect(() => {
-        if (localStorage && localStorage.getItem("email-has-been-already-send")) {
-            setRequestStatus("already_succeeded");
+        if ((["fillingForm", "fillingForm_after_error", "fillingForm_after_success"] as Status[]).includes(request.status)) {
+            setSpecialWayOfRendering(null);
+            // ---
+            // Let the outro animation end and then simply stop rendering <ProcessRequest/> component
+            if ((["fillingForm_after_error", "fillingForm_after_success"] as Status[]).includes(request.status)) {
+                setTimeout(() => {
+                    updateRequest({ status: "fillingForm" });
+                }, 300);
+            }
         }
-    }, [setRequestStatus]);
+        //
+        else if (specialWayOfRendering === null) {
+            setSpecialWayOfRendering("displayOutroAnimation");
+            setTimeout(() => {
+                setSpecialWayOfRendering("hideIt");
+            }, 800);
+        }
+    }, [specialWayOfRendering, request.status, updateRequest]);
 
     return (
-        <SendMeAnEmailWrapper>
+        <SendMeAnEmailWrapper id="send-me-en-email-wrapper">
             {(() => {
-                if (renderContent) {
-                    if (managementContext.specialWayOfRenderingForm !== "hideIt") {
-                        return (
-                            <Form
-                                displayOutroAnimation={managementContext.specialWayOfRenderingForm === "displayOutroAnimation"} //
-                                sendRequest={sendRequest}
-                            />
-                        );
-                    }
+                if (specialWayOfRendering !== "hideIt" || previouslySentEmail) {
+                    return (
+                        <Form
+                            displayOutroAnimation={specialWayOfRendering === "displayOutroAnimation"} //
+                            sendRequest={sendRequest}
+                        />
+                    );
                 }
                 return <></>;
             })()}
 
-            {managementContext.requestStatus !== "fillingForm" && <ProcessRequest sendRequest={sendRequest} />}
+            {(request.status !== "fillingForm" || previouslySentEmail) && (
+                <ProcessRequest
+                    sendRequest={sendRequest} //
+                    emailHasBeenAlreadySent={Boolean(previouslySentEmail)}
+                />
+            )}
         </SendMeAnEmailWrapper>
     );
 };
 
 const SendMeAnEmailContextsWrapper: FunctionComponent = () => {
     return (
-        <ManagementContextProvider>
-            <FormStageOneContextProvider>
-                <FormStageTwoContextProvider>
-                    {/*  */}
-                    <SendMeAnEmail />
-                    {/*  */}
-                </FormStageTwoContextProvider>
-            </FormStageOneContextProvider>
-        </ManagementContextProvider>
+        <SendEmailContextProvider>
+            {/*  */}
+            <SendMeAnEmail />
+            {/*  */}
+        </SendEmailContextProvider>
     );
 };
 

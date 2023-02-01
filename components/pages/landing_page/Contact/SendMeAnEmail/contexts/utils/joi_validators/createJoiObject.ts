@@ -16,6 +16,7 @@ import { Restriction } from "@/@types/Restriction";
  * ```
  */
 // eslint-disable-next-line import/no-anonymous-default-export
-export default ({ max, min }: Restriction, required: boolean = true) => {
-    return required ? joi.string().min(min).max(max).required() : joi.string().min(min).max(max);
+export const createJoiObject = ({ max, min }: Restriction, required: boolean = true) => {
+    const result = joi.string().min(min).max(max);
+    return required ? result.required() : result;
 };

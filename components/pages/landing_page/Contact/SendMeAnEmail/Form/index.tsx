@@ -8,9 +8,9 @@ const Stage2 = dynamic(() => import("./stage_2"));
 const Stage3 = dynamic(() => import("./stage_3"));
 import BottomButtons from "./BottomButtons";
 import NavigationBetweenStages from "./NavigationBetweenStages";
-import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import { useSendEmailContext } from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useSendEmailContext";
 // Other components
-import { FormWrapper, Header, StageWrapper } from "./_styled_components";
+import { FormWrapper, StageWrapper } from "./_styled_components";
 
 interface EmailFormProps {
     sendRequest: () => void;
@@ -18,28 +18,27 @@ interface EmailFormProps {
 }
 
 const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
-    const { formFillingStage, setFormFillingStage } = useManagementContext();
+    const { formStage, setFormStage } = useSendEmailContext();
 
     const onContinueButtonClick = () => {
-        if (formFillingStage === "purpose") setFormFillingStage("contact_details");
-        else if (formFillingStage === "contact_details") setFormFillingStage("recaptcha");
+        if (formStage === "GENERAL_PURPOSE") setFormStage("CONTACT_DETAILS");
+        else if (formStage === "CONTACT_DETAILS") setFormStage("RECAPTCHA");
         else props.sendRequest();
     };
 
     return (
         <FormWrapper className={props.displayOutroAnimation ? "outro-animation" : ""}>
-            <Header>Send me an email</Header>
             <NavigationBetweenStages />
 
             <StageWrapper>
                 {/*  */}
                 {(() => {
-                    switch (formFillingStage) {
-                        case "purpose":
+                    switch (formStage) {
+                        case "GENERAL_PURPOSE":
                             return <Stage1 />;
-                        case "contact_details":
+                        case "CONTACT_DETAILS":
                             return <Stage2 />;
-                        case "recaptcha":
+                        case "RECAPTCHA":
                             return <Stage3 />;
                     }
                 })()}

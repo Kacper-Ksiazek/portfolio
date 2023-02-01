@@ -1,17 +1,14 @@
 // Tools
 import { styled } from "@mui/system";
-import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import ContactBase from "./ContactBase";
 import SendMeAnEmail from "./SendMeAnEmail";
-import WaysToReachMe from "./WaysToReachMe";
 import VisibilitySensor from "@/components/utils/VisibilitySensor";
 // Styled Components
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
-import Paragraph from "@/components/pages/landing_page/BreakTheIce/Content/_styled_components/Paragraph";
 
 const TextWrapper = styled("div")(({ theme }) => ({
     width: "calc(50% - 50px)",
@@ -40,20 +37,6 @@ const Contact: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 }}
             >
                 <ContactBase>
-                    <TextWrapper id="contact-details-wrapper">
-                        <Paragraph animationDelay={0.4}>
-                            {formatTextViaBolding(
-                                `I'm first year student of the *AGH University of Science and Technology* at the Faculty of *Engineering and Data Analysis* in Cracow, thus I'm looking forward to start either office job here or to work remotely.`
-                            )}
-                        </Paragraph>
-                        <Paragraph animationDelay={0.5} sx={{ mb: "20px" }}>
-                            {formatTextViaBolding(
-                                `Undoubtedly the fastest and the most reliable way to reach me is via *messenger*, because it is my primary communicator and you can expect almost *immediately response*. Nevertheless, You can be certain, that I will appreciate every effort put into sending me a message and therefore each message will be read and *responded* as soon as I will be able to do so.`
-                            )}
-                        </Paragraph>
-                        <WaysToReachMe />
-                    </TextWrapper>
-
                     <SendMeAnEmail />
                 </ContactBase>
             </VisibilitySensor>

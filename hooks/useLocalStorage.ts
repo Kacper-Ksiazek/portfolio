@@ -16,7 +16,7 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T): Us
 
         if (localStorage) {
             const valueFromLocalStorage = localStorage.getItem(localStorageKey);
-            if (valueFromLocalStorage !== null) {
+            if (valueFromLocalStorage !== null && valueFromLocalStorage !== undefined) {
                 setValue(JSON.parse(valueFromLocalStorage));
             }
         }

@@ -1,6 +1,6 @@
-export type FormFillingStage = "purpose" | "contact_details" | "recaptcha";
-export type SpecialWayOfRenderingForm = null | "displayOutroAnimation" | "hideIt";
-export type FieldName = "author" | "subject" | "message" | "country" | "email" | "github" | "website";
+// Types
+import type { CountryType } from "@/data/countries";
+
 export type Status =
     | "fillingForm"
     | "pending"
@@ -12,3 +12,20 @@ export type Status =
     | "pending_but_feigned"
     | "fillingForm_after_error"
     | "fillingForm_after_success";
+
+export type FormStage = "GENERAL_PURPOSE" | "CONTACT_DETAILS" | "RECAPTCHA";
+
+export interface EmailForm {
+    author: string;
+    subject: string;
+    message: string;
+    country: CountryType | null;
+    email: string;
+    github: string;
+    website: string;
+}
+
+export interface Request {
+    status: Status;
+    errorCode: number | null;
+}

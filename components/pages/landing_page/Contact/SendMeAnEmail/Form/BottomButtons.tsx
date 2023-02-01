@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import { useSendEmailContext } from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
@@ -23,25 +23,25 @@ interface BottomButtonsProps {
     onContinueButtonClick: () => void;
 }
 const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
-    const managementContext = useManagementContext();
+    const { updateRequest, invalidFormFields } = useSendEmailContext();
 
     const feignSucceededRequest = () => {
-        managementContext.setRequestStatus("pending");
+        updateRequest({ status: "pending" });
         setTimeout(() => {
-            managementContext.setRequestStatus("success_but_feigned");
+            updateRequest({ status: "success_but_feigned" });
         }, 750);
     };
 
     const feignInvalidRequest = () => {
-        managementContext.setRequestStatus("pending");
+        updateRequest({ status: "pending" });
         setTimeout(() => {
-            managementContext.setRequestStatus("error_but_feigned");
+            updateRequest({ status: "error_but_feigned" });
         }, 750);
     };
 
     return (
         <ButtonsBottomWrapper>
-            <SendMailButton disabled={managementContext.blockContinueButton} onClick={props.onContinueButtonClick} className="continue">
+            <SendMailButton disabled={invalidFormFields.length !== 0} onClick={props.onContinueButtonClick} className="continue">
                 <span className="text">Continue</span>
             </SendMailButton>
 

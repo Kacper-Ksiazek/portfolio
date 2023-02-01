@@ -18,30 +18,6 @@ const WaysToReachMe: FunctionComponent = (props) => {
         <>
             <Email emailToCopy="kacper.b.ksiazek@gmail.com" />
             <Phone phone="690 001 548" />
-
-            <Tooltip title="See me on Github" placement="top-start">
-                <SingleWayToReachMe
-                    icon={<GitHub />} //
-                    redirectAfterClick
-                    url="https://github.com/Kacper-Ksiazek"
-                />
-            </Tooltip>
-
-            <Tooltip title="See me on Linkedin" placement="top-start">
-                <SingleWayToReachMe
-                    icon={<LinkedIn />} //
-                    redirectAfterClick
-                    url="https://www.linkedin.com/in/kacper-b-książek"
-                />
-            </Tooltip>
-
-            <Tooltip title="See me on facebook" placement="top-start">
-                <SingleWayToReachMe
-                    icon={<Facebook />} //
-                    redirectAfterClick
-                    url="https://www.facebook.com/kacper.b.ksiazek"
-                />
-            </Tooltip>
         </>
     );
 };

@@ -1,9 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
-import { useEffect, useState, useRef } from "react";
-import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
+import { useState } from "react";
 import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
-import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -16,12 +14,7 @@ const Paragraph = styled("p")(({ theme }) => ({
 }));
 
 const FormStage1: FunctionComponent = (props) => {
-    const { setBlockContinueButton } = useManagementContext();
     const [ReCAPTCHAIsApproved, setReCAPTCHAIsApproved] = useState<boolean>(true);
-
-    useEffect(() => {
-        setBlockContinueButton(!ReCAPTCHAIsApproved);
-    }, [ReCAPTCHAIsApproved, setBlockContinueButton]);
 
     return (
         <>
@@ -29,7 +22,7 @@ const FormStage1: FunctionComponent = (props) => {
                 One last step before sending a message. Fore some reason the google recaptcha in this particular project is not eager to cooperate with me, so in order not to spend additional 3 hours
                 struggling to fix it I decided to let it be like this 🤷‍♀️🤷‍♀️
             </Paragraph>
-            <GoogleReCAPTCHA setReCAPTCHAIsApproved={setReCAPTCHAIsApproved} />
+            {/* <GoogleReCAPTCHA setReCAPTCHAIsApproved={setReCAPTCHAIsApproved} /> */}
         </>
     );
 };

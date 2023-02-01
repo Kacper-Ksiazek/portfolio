@@ -1,10 +1,8 @@
 // Tools
-import { useEffect } from "react";
 import { styled } from "@mui/system";
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
-import useFormStageTwo from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useFormStageTwo";
-import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import { useSendEmailContext } from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -21,19 +19,14 @@ const InformationAboutOptionality = styled("span")(({ theme }) => ({
 }));
 
 const FormStage1: FunctionComponent = (props) => {
-    const { everythingIsValid, ...formStageTwoContext } = useFormStageTwo();
-    const { setBlockContinueButton } = useManagementContext();
-
-    useEffect(() => {
-        setBlockContinueButton(!everythingIsValid);
-    }, [everythingIsValid, setBlockContinueButton]);
+    const { form, updateForm, invalidFormFields } = useSendEmailContext();
 
     return (
         <>
             <CountryInput
-                value={formStageTwoContext.country} //
-                onChange={(val) => formStageTwoContext.setCountry(val)}
-                error={formStageTwoContext.countryIsInvalid}
+                value={form.country} //
+                onChange={(val) => updateForm({ country: val })}
+                error={invalidFormFields.includes("country")}
                 sx={{
                     animation: `${fadeFromLeft} .2s .2s linear backwards`,
                 }}
@@ -42,9 +35,9 @@ const FormStage1: FunctionComponent = (props) => {
                 label="Email" //
                 color="secondary"
                 type="email"
-                value={formStageTwoContext.email}
-                onChange={(e) => formStageTwoContext.setEmail(e.target.value)}
-                error={formStageTwoContext.emailIsInvalid}
+                value={form.email}
+                onChange={(e) => updateForm({ email: e.target.value })}
+                error={invalidFormFields.includes("email")}
                 sx={{
                     animation: `${fadeFromLeft} .2s .3s linear backwards`,
                 }}
@@ -52,9 +45,9 @@ const FormStage1: FunctionComponent = (props) => {
             <StyledInput
                 label="Github*" //
                 color="secondary"
-                value={formStageTwoContext.github}
-                onChange={(e) => formStageTwoContext.setGithub(e.target.value)}
-                error={formStageTwoContext.githubIsInvalid}
+                value={form.github}
+                onChange={(e) => updateForm({ github: e.target.value })}
+                error={invalidFormFields.includes("github")}
                 sx={{
                     animation: `${fadeFromLeft} .2s .4s linear backwards`,
                 }}
@@ -62,9 +55,9 @@ const FormStage1: FunctionComponent = (props) => {
             <StyledInput
                 label="Website*" //
                 color="secondary"
-                value={formStageTwoContext.website}
-                onChange={(e) => formStageTwoContext.setWebsite(e.target.value)}
-                error={formStageTwoContext.websiteIsInvalid}
+                value={form.website}
+                onChange={(e) => updateForm({ website: e.target.value })}
+                error={invalidFormFields.includes("website")}
                 sx={{
                     animation: `${fadeFromLeft} .2s .5s linear backwards`,
                 }}

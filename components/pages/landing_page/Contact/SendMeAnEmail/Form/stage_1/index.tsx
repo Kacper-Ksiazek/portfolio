@@ -1,10 +1,8 @@
 // Tools
-import { useEffect } from "react";
 import { styled } from "@mui/system";
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
-import useFormStageOne from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useFormStageOne";
-import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import { useSendEmailContext } from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
 // Styled Components
@@ -18,21 +16,16 @@ const LengthNotification = styled("span")(({ theme }) => ({
 }));
 
 const FormStage1: FunctionComponent = (props) => {
-    const { everythingIsValid, ...formStageOneContext } = useFormStageOne();
-    const { setBlockContinueButton } = useManagementContext();
-
-    useEffect(() => {
-        setBlockContinueButton(!everythingIsValid);
-    }, [everythingIsValid, setBlockContinueButton]);
+    const { form, updateForm, invalidFormFields } = useSendEmailContext();
 
     return (
         <>
             <StyledInput
                 label="Your name" //
                 color="secondary"
-                value={formStageOneContext.author}
-                onChange={(e) => formStageOneContext.setAuthor(e.target.value)}
-                error={formStageOneContext.authorIsInvalid}
+                value={form.author}
+                onChange={(e) => updateForm({ author: e.target.value })}
+                error={invalidFormFields.includes("author")}
                 sx={{
                     animation: `${fadeFromLeft} .2s .2s linear backwards`,
                 }}
@@ -40,9 +33,9 @@ const FormStage1: FunctionComponent = (props) => {
             <StyledInput
                 label="Subject" //
                 color="secondary"
-                value={formStageOneContext.subject}
-                onChange={(e) => formStageOneContext.setSubject(e.target.value)}
-                error={formStageOneContext.subjectIsInvalid}
+                value={form.subject}
+                onChange={(e) => updateForm({ subject: e.target.value })}
+                error={invalidFormFields.includes("subject")}
                 sx={{
                     animation: `${fadeFromLeft} .2s .3s linear backwards`,
                 }}
@@ -52,14 +45,14 @@ const FormStage1: FunctionComponent = (props) => {
                 color="secondary"
                 multiline
                 rows={4}
-                value={formStageOneContext.message}
-                onChange={(e) => formStageOneContext.setMessage(e.target.value)}
-                error={formStageOneContext.messageIsInvalid}
+                value={form.message}
+                onChange={(e) => updateForm({ message: e.target.value })}
+                error={invalidFormFields.includes("message")}
                 sx={{
                     animation: `${fadeFromLeft} .2s .4s linear backwards`,
                 }}
             />
-            <LengthNotification>{formStageOneContext.message.length} / 500</LengthNotification>
+            <LengthNotification>{form.message.length} / 500</LengthNotification>
         </>
     );
 };

@@ -1,17 +1,15 @@
-// Types
-import type { FunctionComponent, ReactNode } from "react";
+// Tools
+import { styled } from "@mui/system";
+import introAnimations from "./introAnimations";
 // Styled components
-import BackgroundRectangle from "./BackgroundRectangle";
-import SendMeAnEmailWrapperBase from "./SendMeAnEmailWrapperBase";
-
-const SendMeAnEmailWrapper: FunctionComponent<{ children: ReactNode }> = (props) => {
-    return (
-        <SendMeAnEmailWrapperBase id="send-me-en-email-wrapper">
-            <BackgroundRectangle className="background-rectangle bottom" />
-            <BackgroundRectangle className="background-rectangle top" />
-            <div className="content">{props.children}</div>
-        </SendMeAnEmailWrapperBase>
-    );
-};
-
-export default SendMeAnEmailWrapper;
+export default styled("div")(({ theme }) => ({
+    width: "50%",
+    cursor: "default",
+    position: "relative",
+    padding: "10px",
+    alignSelf: "flex-start",
+    height: "600px",
+    overflow: "hidden",
+    boxSizing: "border-box",
+    ...(introAnimations as any),
+}));

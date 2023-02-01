@@ -1,5 +1,5 @@
 // Tools
-import useManagementContext from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useManagementContext";
+import { useSendEmailContext } from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { Status } from "../contexts/@types";
@@ -10,14 +10,15 @@ import Success from "./Success";
 
 interface ProcessRequestParams {
     sendRequest: () => void;
+    emailHasBeenAlreadySent: boolean;
 }
 
 const ProcessRequest: FunctionComponent<ProcessRequestParams> = (props) => {
-    const { setRequestStatus, requestStatus, failedRequestHTTPStatus } = useManagementContext();
+    const { updateRequest, request } = useSendEmailContext();
 
     const refresh = () => {
-        if (requestStatus === "error_but_feigned") {
-            return setRequestStatus("pending_but_feigned");
+        if (request.status === "error_but_feigned") {
+            return updateRequest({ status: "pending_but_feigned" });
         } else {
             props.sendRequest();
         }
@@ -26,27 +27,27 @@ const ProcessRequest: FunctionComponent<ProcessRequestParams> = (props) => {
     return (
         <>
             <Pending
-                outroAnimation={requestStatus !== "pending" && requestStatus !== "pending_but_feigned"} //
-                isFeigned={requestStatus === "pending_but_feigned"}
+                outroAnimation={request.status !== "pending" && request.status !== "pending_but_feigned"} //
+                isFeigned={request.status === "pending_but_feigned"}
             />
 
             {(() => {
-                if ((["success", "success_but_feigned", "fillingForm_after_success", "already_succeeded"] as Status[]).includes(requestStatus)) {
+                if (props.emailHasBeenAlreadySent || (["success", "success_but_feigned", "fillingForm_after_success"] as Status[]).includes(request.status)) {
                     return (
                         <Success
-                            isFeigned={requestStatus === "success_but_feigned"} //
-                            isAlreadySucceeded={requestStatus === "already_succeeded"}
-                            outroAnimation={requestStatus === "fillingForm_after_success"}
-                            goBackToTheForm={() => setRequestStatus("fillingForm_after_success")}
+                            isFeigned={request.status === "success_but_feigned"} //
+                            isAlreadySucceeded={props.emailHasBeenAlreadySent}
+                            outroAnimation={request.status === "fillingForm_after_success"}
+                            goBackToTheForm={() => updateRequest({ status: "fillingForm_after_success" })}
                         />
                     );
-                } else if ((["error", "error_but_feigned", "fillingForm_after_error"] as Status[]).includes(requestStatus)) {
+                } else if ((["error", "error_but_feigned", "fillingForm_after_error"] as Status[]).includes(request.status)) {
                     return (
                         <Error
-                            outroAnimation={requestStatus === "fillingForm_after_error"} //
-                            code={failedRequestHTTPStatus}
+                            outroAnimation={request.status === "fillingForm_after_error"} //
+                            code={Number(request.errorCode)}
                             refresh={refresh}
-                            goBackToTheForm={() => setRequestStatus("fillingForm_after_error")}
+                            goBackToTheForm={() => updateRequest({ status: "fillingForm_after_error" })}
                         />
                     );
                 }
