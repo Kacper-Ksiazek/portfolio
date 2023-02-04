@@ -44,6 +44,7 @@ export interface LightSectionWrapperProps {
      */
     contentWrapperSx?: SxProps;
     childrenOutsideContentWrapper?: ReactNode;
+    alternativeBackgroundLetterColor?: string;
 }
 
 const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props) => {
@@ -59,7 +60,18 @@ const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props)
                 <Header {...props.header} />
                 {props.children}
             </ContentWrapper>
-            {props.backgroundLetter && <BackgroundLetter letter={props.backgroundLetter} />}
+            {props.backgroundLetter && (
+                <BackgroundLetter
+                    letter={props.backgroundLetter} //
+                    sx={
+                        props.alternativeBackgroundLetterColor
+                            ? {
+                                  color: props.alternativeBackgroundLetterColor,
+                              }
+                            : {}
+                    }
+                />
+            )}
             {props.childrenOutsideContentWrapper && props.childrenOutsideContentWrapper}
         </LightWrapperBase>
     );

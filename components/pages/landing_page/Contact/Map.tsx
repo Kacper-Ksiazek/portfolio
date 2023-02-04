@@ -16,6 +16,7 @@ const MapBase = styled("span")(({ theme }) => ({
     backgroundSize: "cover",
     backgroundPosition: "right",
     backgroundRepeat: "no-repeat",
+    transition: "background-image .5s linear",
     "&::after": {
         content: '""',
         position: "absolute",
@@ -27,13 +28,32 @@ const MapBase = styled("span")(({ theme }) => ({
         backgroundSize: "cover",
         backgroundPosition: "right",
         backgroundRepeat: "no-repeat",
-        animation: `${fadeSimple} .3s 2s linear both`,
+        animation: `${fadeSimple} .3s 2s linear forward`,
+        transition: "background-image .5s",
+    },
+    "&.success": {
+        transition: "background-image .5s .6s linear",
+        backgroundImage: 'url("/images/landing-page/europe_map/light/success.png")',
+        "&::after": {
+            backgroundImage: 'url("/images/landing-page/europe_map/poland/success.png")',
+        },
+    },
+    "&.error": {
+        transition: "background-image .5s .6s linear",
+        backgroundImage: 'url("/images/landing-page/europe_map/light/error.png")',
+        "&::after": {
+            backgroundImage: 'url("/images/landing-page/europe_map/poland/error.png")',
+        },
     },
 }));
 
-const Map: FunctionComponent = (props) => {
+interface MapProps {
+    status: "success" | "error" | null;
+}
+
+const Map: FunctionComponent<MapProps> = (props) => {
     return (
-        <MapBase id="map">
+        <MapBase id="map" className={props.status ?? ""}>
             <span></span>
         </MapBase>
     );

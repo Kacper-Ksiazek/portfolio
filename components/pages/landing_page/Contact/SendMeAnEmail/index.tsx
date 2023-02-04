@@ -1,5 +1,6 @@
 // Tools
 import { useState, useEffect } from "react";
+import { useMapContext } from "../hooks/useMapContext";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useSendEmailContext } from "./hooks/useSendEmailContext";
 import { useSendRequestQuery } from "./hooks/queries/useSendRequestQuery";
@@ -17,6 +18,7 @@ const SendMeAnEmail: FunctionComponent = (props) => {
     const [specialWayOfRendering, setSpecialWayOfRendering] = useState<null | "displayOutroAnimation" | "hideIt">(null);
     const [previouslySentEmail, setPreviouslySentEmail] = useLocalStorage<string | null>("email-has-been-already-send", null);
 
+    const { changeMapStatus } = useMapContext();
     const { updateRequest, request } = useSendEmailContext();
 
     const sendRequest = useSendRequestQuery({ setPreviouslySentEmail });
@@ -42,6 +44,18 @@ const SendMeAnEmail: FunctionComponent = (props) => {
             }, 800);
         }
     }, [specialWayOfRendering, request.status, updateRequest]);
+
+    useEffect(() => {
+        const status = request.status;
+
+        if (status === "error" || status === "error_but_feigned") {
+            changeMapStatus("error");
+        } //
+        else if (status === "success" || status === "success_but_feigned") {
+            changeMapStatus("success");
+        } //
+        else changeMapStatus(null);
+    }, [request.status, changeMapStatus]);
 
     return (
         <SendMeAnEmailWrapper id="send-me-en-email-wrapper">
