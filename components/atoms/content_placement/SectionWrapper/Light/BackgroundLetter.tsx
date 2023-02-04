@@ -33,7 +33,7 @@ const BackgroundLetterBase = styled(ContentWrapper)(({ theme }) => ({
         fontWeight: 900,
         position: "absolute",
         bottom: "0",
-        color: alpha(theme.palette.secondary.main, 0.05),
+        color: alpha(theme.palette.secondary.main, 0.07),
         userSelect: "none",
         zIndex: 1,
         left: "50%",

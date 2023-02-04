@@ -3,7 +3,7 @@ import { styled } from "@mui/system";
 import introAnimations from "./introAnimations";
 // Styled components
 export default styled("div")(({ theme }) => ({
-    width: "50%",
+    width: "calc(50% + 64px)",
     cursor: "default",
     position: "relative",
     padding: "10px",
