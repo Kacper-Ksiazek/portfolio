@@ -1,5 +1,6 @@
 // Tools
 import dynamic from "next/dynamic";
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -7,10 +8,12 @@ const Stage1 = dynamic(() => import("./stage_1"));
 const Stage2 = dynamic(() => import("./stage_2"));
 const Stage3 = dynamic(() => import("./stage_3"));
 import BottomButtons from "./BottomButtons";
-import NavigationBetweenStages from "./NavigationBetweenStages";
+import NavigationBetweenStages from "./navigation";
 import { useSendEmailContext } from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useSendEmailContext";
 // Other components
 import { FormWrapper, StageWrapper } from "./_styled_components";
+// Styled Components
+import Paragraph from "@/components/pages/landing_page/BreakTheIce/Content/_styled_components/Paragraph";
 
 interface EmailFormProps {
     sendRequest: () => void;
@@ -28,8 +31,12 @@ const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
 
     return (
         <FormWrapper className={props.displayOutroAnimation ? "outro-animation" : ""}>
+            <Paragraph animationDelay={0.3}>
+                {formatTextViaBolding(
+                    `I'm first year student of the *AGH University of Science and Technology* at the Faculty of *Engineering and Data Analysis* in Cracow, thus I'm looking forward to start either office job here or to work remotely.`
+                )}
+            </Paragraph>
             <NavigationBetweenStages />
-
             <StageWrapper>
                 {/*  */}
                 {(() => {
