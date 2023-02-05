@@ -41,7 +41,6 @@ const BackgroundLetterBase = styled(ContentWrapper)(({ theme }) => ({
         transform: "translateX(-50%)",
         lineHeight: "800px",
         fontFamily: "Montserrat Alternates",
-        transition: "color .3s",
         "&.hide": {
             display: "none",
         },

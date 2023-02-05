@@ -5,6 +5,7 @@ import { alpha } from "@mui/system";
 import { useState, useMemo } from "react";
 import { useMapContext } from "./hooks/useMapContext";
 // Types
+import type { SxProps } from "@mui/system";
 import type { FunctionComponent } from "react";
 // Other components
 import ContactBase from "./ContactBase";
@@ -19,14 +20,22 @@ const Contact: FunctionComponent = () => {
     const [renderMap, setRenderMap] = useState<boolean>(false);
     const { status } = useMapContext();
 
-    const alternativeBackgroundLetterColor = useMemo<string>(() => {
+    const backgroundLetterSx = useMemo<SxProps>(() => {
         switch (status) {
             case "success":
-                return alpha(theme.palette.success.main, 0.1);
+                return {
+                    color: alpha(theme.palette.success.main, 0.1),
+                    transition: "color .5s .6s",
+                };
             case "error":
-                return alpha(theme.palette.error.main, 0.1);
+                return {
+                    color: alpha(theme.palette.error.main, 0.1),
+                    transition: "color .5s .6s",
+                };
         }
-        return "";
+        return {
+            transition: "color .5s",
+        };
     }, [status]);
 
     return (
@@ -39,7 +48,7 @@ const Contact: FunctionComponent = () => {
             backgroundLetter="R"
             round="left"
             id="contact"
-            alternativeBackgroundLetterColor={alternativeBackgroundLetterColor}
+            backgroundLetterSx={backgroundLetterSx}
             childrenOutsideContentWrapper={renderMap ? <Map status={status} /> : <></>}
         >
             <VisibilitySensor
