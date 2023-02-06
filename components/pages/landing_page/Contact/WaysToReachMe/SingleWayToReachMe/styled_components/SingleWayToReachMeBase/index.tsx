@@ -35,7 +35,7 @@ export default styled("div")(({ theme }) => ({
                 marginRight: "12px",
             },
             ".right-pointing-arrow": {
-                opacity: 0.1,
+                opacity: 0.15,
                 right: "8px",
             },
         },

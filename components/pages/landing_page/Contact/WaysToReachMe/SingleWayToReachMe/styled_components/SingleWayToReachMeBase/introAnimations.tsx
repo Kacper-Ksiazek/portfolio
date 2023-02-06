@@ -115,7 +115,7 @@ export default {
     "&::after": {
         content: '""',
         position: "absolute",
-        background: theme.palette.background.lightAnimationBar,
+        background: theme.palette.primary.main,
     },
     "&:nth-of-type(1)": {
         animation: `${borderAppearingAnimation} .001s 1.1s both`,

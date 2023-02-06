@@ -10,7 +10,7 @@ interface MapContextProviderProps {
 }
 
 const MapContextProvider: FunctionComponent<MapContextProviderProps> = (props) => {
-    const [status, changeMapStatus] = useState<MapStatus>("success");
+    const [status, changeMapStatus] = useState<MapStatus>(null);
 
     return (
         <mapContext.Provider

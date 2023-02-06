@@ -8,8 +8,8 @@ import { useMapContext } from "./hooks/useMapContext";
 import type { SxProps } from "@mui/system";
 import type { FunctionComponent } from "react";
 // Other components
-import ContactBase from "./ContactBase";
 const Map = dynamic(() => import("./Map"));
+import WaysToReachMe from "./WaysToReachMe";
 import SendMeAnEmail from "./SendMeAnEmail";
 import MapContextProvider from "./mapContext/Provider";
 import VisibilitySensor from "@/components/utils/VisibilitySensor";
@@ -63,9 +63,8 @@ const Contact: FunctionComponent = () => {
                     setRenderMap(true);
                 }}
             >
-                <ContactBase>
-                    <SendMeAnEmail />
-                </ContactBase>
+                <WaysToReachMe />
+                {/* <SendMeAnEmail /> */}
             </VisibilitySensor>
         </LightSectionWrapper>
     );
