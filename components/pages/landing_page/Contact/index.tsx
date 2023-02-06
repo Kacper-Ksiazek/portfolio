@@ -13,12 +13,15 @@ import WaysToReachMe from "./WaysToReachMe";
 import SendMeAnEmail from "./SendMeAnEmail";
 import MapContextProvider from "./mapContext/Provider";
 import VisibilitySensor from "@/components/utils/VisibilitySensor";
+import NavigationBetweenSections from "@/components/atoms/NavigationBetweenSections";
 // Styled Components
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 
 const Contact: FunctionComponent = () => {
     const [renderMap, setRenderMap] = useState<boolean>(false);
     const { status } = useMapContext();
+
+    const [currentSection, setCurrentSection] = useState<"Send me an email" | "Ways to reach me">("Send me an email");
 
     const backgroundLetterSx = useMemo<SxProps>(() => {
         switch (status) {
@@ -43,7 +46,14 @@ const Contact: FunctionComponent = () => {
             header={{
                 main: "Contact",
                 label: "How to reach me",
-                estimatedHeight: "100px",
+                estimatedHeight: "170px",
+                additionalJSX: (
+                    <NavigationBetweenSections
+                        sections={["Ways to reach me", "Send me an email"]} //
+                        currentSection={currentSection}
+                        onChoose={(val) => setCurrentSection(val as any)}
+                    />
+                ),
             }}
             backgroundLetter="R"
             round="left"
@@ -63,8 +73,8 @@ const Contact: FunctionComponent = () => {
                     setRenderMap(true);
                 }}
             >
-                <WaysToReachMe />
-                {/* <SendMeAnEmail /> */}
+                {currentSection === "Ways to reach me" && <WaysToReachMe writeToMe={() => setCurrentSection("Send me an email")} />}
+                {currentSection === "Send me an email" && <SendMeAnEmail />}
             </VisibilitySensor>
         </LightSectionWrapper>
     );

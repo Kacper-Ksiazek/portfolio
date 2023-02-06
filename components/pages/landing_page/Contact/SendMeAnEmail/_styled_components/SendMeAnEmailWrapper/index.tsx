@@ -7,7 +7,7 @@ export default styled("div")(({ theme }) => ({
     cursor: "default",
     position: "relative",
     alignSelf: "flex-start",
-    height: "570px",
+    height: "440px",
     overflow: "hidden",
     boxSizing: "border-box",
     ...(introAnimations as any),

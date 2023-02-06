@@ -9,8 +9,10 @@ import Tooltip from "@mui/material/Tooltip";
 import Email from "./Email";
 import Phone from "./Phone";
 import SingleWayToReachMe from "./SingleWayToReachMe";
+import StyledButton from "@/components/atoms/forms/StyledButton";
 // Material UI Icons
 import GitHub from "@mui/icons-material/GitHub";
+import EmailIcon from "@mui/icons-material/Email";
 import Facebook from "@mui/icons-material/Facebook";
 import LinkedIn from "@mui/icons-material/LinkedIn";
 import { Label, Paragraph } from "@/components/pages/landing_page/BreakTheIce/Content/_styled_components";
@@ -24,7 +26,7 @@ const WaysToReachMeWrapper = styled("div")(({ theme }) => ({
     boxSizing: "border-box",
 }));
 
-const WaysToReachMe: FunctionComponent = (props) => {
+const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
     return (
         <WaysToReachMeWrapper>
             <Paragraph animationDelay={0.3}>
@@ -61,6 +63,24 @@ const WaysToReachMe: FunctionComponent = (props) => {
                     url="https://www.facebook.com/kacper.b.ksiazek"
                 />
             </Tooltip>
+
+            <StyledButton
+                color="secondary"
+                onClick={props.writeToMe}
+                sx={{
+                    mt: "32px", //
+                    p: "8px 32px",
+                    fontSize: "18px",
+                    display: "flex",
+                    alignItems: "center",
+                    svg: {
+                        marginRight: "8px",
+                    },
+                }}
+            >
+                <EmailIcon />
+                <span>Write to me</span>
+            </StyledButton>
         </WaysToReachMeWrapper>
     );
 };

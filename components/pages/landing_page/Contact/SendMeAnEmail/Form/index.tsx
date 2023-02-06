@@ -1,6 +1,5 @@
 // Tools
 import dynamic from "next/dynamic";
-import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -13,7 +12,6 @@ import { useSendEmailContext } from "@/components/pages/landing_page/Contact/Sen
 // Other components
 import { FormWrapper, StageWrapper } from "./_styled_components";
 // Styled Components
-import { Label, Paragraph } from "@/components/pages/landing_page/BreakTheIce/Content/_styled_components";
 
 interface EmailFormProps {
     sendRequest: () => void;
@@ -31,12 +29,6 @@ const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
 
     return (
         <FormWrapper className={props.displayOutroAnimation ? "outro-animation" : ""}>
-            <Paragraph animationDelay={0.3}>
-                {formatTextViaBolding(
-                    `I'm first year student of the *AGH University of Science and Technology* at the Faculty of *Engineering and Data Analysis* in Cracow, thus I'm looking forward to start either office job here or to work remotely.`
-                )}
-            </Paragraph>
-            <Label animationDelay={0.4}>Send me an email</Label>
             <NavigationBetweenStages />
             <StageWrapper
                 className={[

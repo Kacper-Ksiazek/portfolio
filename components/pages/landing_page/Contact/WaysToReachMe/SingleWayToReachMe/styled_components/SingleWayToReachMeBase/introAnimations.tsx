@@ -17,7 +17,7 @@ const borderAppearingAnimation = keyframes({
         border: `1px solid #fff`,
     },
     to: {
-        border: `1px solid #ddd`,
+        border: `1px solid #c7c7c7`,
     },
 });
 

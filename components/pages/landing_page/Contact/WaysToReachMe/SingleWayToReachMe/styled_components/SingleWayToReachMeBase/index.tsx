@@ -6,7 +6,7 @@ export default styled("div")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
     fontSize: "18px",
-    border: `1px solid #ccc`,
+    border: `1px solid #c7c7c7`,
     padding: "4px 8px",
     borderRadius: "3px",
     position: "relative",
