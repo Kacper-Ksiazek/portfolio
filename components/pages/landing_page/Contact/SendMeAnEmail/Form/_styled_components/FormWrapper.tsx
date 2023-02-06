@@ -3,8 +3,7 @@ import { styled } from "@mui/system";
 import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
 import fadeToBottom from "@/components/keyframes/outro/fadeToBottom";
 // Styled components
-
-export const FormWrapper = styled("div")(({ theme }) => ({
+export default styled("div")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
@@ -21,11 +20,4 @@ export const FormWrapper = styled("div")(({ theme }) => ({
             marginTop: "16px",
         },
     },
-}));
-
-export const StageWrapper = styled("div")(({ theme }) => ({
-    display: "flex",
-    flexDirection: "column",
-    flexGrow: "1",
-    marginBottom: "10px",
 }));

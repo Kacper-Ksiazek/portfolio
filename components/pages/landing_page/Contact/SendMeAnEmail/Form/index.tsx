@@ -13,7 +13,7 @@ import { useSendEmailContext } from "@/components/pages/landing_page/Contact/Sen
 // Other components
 import { FormWrapper, StageWrapper } from "./_styled_components";
 // Styled Components
-import Paragraph from "@/components/pages/landing_page/BreakTheIce/Content/_styled_components/Paragraph";
+import { Label, Paragraph } from "@/components/pages/landing_page/BreakTheIce/Content/_styled_components";
 
 interface EmailFormProps {
     sendRequest: () => void;
@@ -21,7 +21,7 @@ interface EmailFormProps {
 }
 
 const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
-    const { formStage, setFormStage } = useSendEmailContext();
+    const { formStage, setFormStage, formStageIsChanging } = useSendEmailContext();
 
     const onContinueButtonClick = () => {
         if (formStage === "GENERAL_PURPOSE") setFormStage("CONTACT_DETAILS");
@@ -36,8 +36,14 @@ const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
                     `I'm first year student of the *AGH University of Science and Technology* at the Faculty of *Engineering and Data Analysis* in Cracow, thus I'm looking forward to start either office job here or to work remotely.`
                 )}
             </Paragraph>
+            <Label animationDelay={0.4}>Send me an email</Label>
             <NavigationBetweenStages />
-            <StageWrapper>
+            <StageWrapper
+                className={[
+                    formStageIsChanging ? "form-stage-is-changing" : "", //
+                    formStage,
+                ].join(" ")}
+            >
                 {/*  */}
                 {(() => {
                     switch (formStage) {

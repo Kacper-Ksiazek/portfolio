@@ -81,7 +81,7 @@ const BackgroundLetter: FunctionComponent<{ letter: string; sx: SxProps }> = (pr
 
     return (
         <>
-            <BackgroundLetterBase ref={previousLetterElement} sx={props.sx}>
+            <BackgroundLetterBase ref={previousLetterElement} sx={props.sx} className="hide">
                 {previousLetter.current}
             </BackgroundLetterBase>
             <BackgroundLetterBase ref={currentLetterElement} sx={props.sx}>

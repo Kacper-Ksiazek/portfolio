@@ -5,10 +5,13 @@ import * as validators from "./utils/joi_validators";
 import type { Dispatch, SetStateAction, FunctionComponent, ReactNode } from "react";
 import type { EmailForm, FormStage, Request } from "./@types";
 
+const STAGE_CHANGE_ANIMATION_DURATION = 1000;
+
 interface I_SendEmailContext {
     form: EmailForm;
     request: Request;
     formStage: FormStage;
+    formStageIsChanging: boolean;
     invalidFormFields: (keyof EmailForm)[];
 
     setFormStage: Dispatch<SetStateAction<FormStage>>;
@@ -19,7 +22,9 @@ interface I_SendEmailContext {
 export const SendEmailContext = createContext({} as I_SendEmailContext);
 
 export const SendEmailContextProvider: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-    const [formStage, setFormStage] = useState<FormStage>("GENERAL_PURPOSE");
+    const [formStage, _setFormStage] = useState<FormStage>("GENERAL_PURPOSE");
+    const [formStageIsChanging, setformStageIsChanging] = useState<boolean>(false);
+
     const [form, updateForm] = useReducer((state: EmailForm, newState: Partial<EmailForm>): EmailForm => {
         return {
             ...state,
@@ -53,6 +58,16 @@ export const SendEmailContextProvider: FunctionComponent<{ children: ReactNode }
     }, [formStage, form]);
     //
 
+    const setFormStage: I_SendEmailContext["setFormStage"] = (val) => {
+        if (formStageIsChanging) return;
+        setformStageIsChanging(true);
+
+        setTimeout(() => {
+            _setFormStage(val);
+            setformStageIsChanging(false);
+        }, STAGE_CHANGE_ANIMATION_DURATION);
+    };
+
     return (
         <SendEmailContext.Provider
             value={{
@@ -60,6 +75,7 @@ export const SendEmailContextProvider: FunctionComponent<{ children: ReactNode }
                 formStage,
                 invalidFormFields,
                 request,
+                formStageIsChanging,
 
                 updateForm,
                 updateRequest,

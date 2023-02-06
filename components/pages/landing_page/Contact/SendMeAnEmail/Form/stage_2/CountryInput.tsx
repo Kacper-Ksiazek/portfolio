@@ -14,7 +14,7 @@ interface AutocompleteProps {
     value: CountryType | null;
     error: boolean;
     onChange: (value: CountryType | null) => void;
-    sx: SxProps;
+    sx?: SxProps;
 }
 const AutocompleteCountry: FunctionComponent<AutocompleteProps> = (props) => {
     return (

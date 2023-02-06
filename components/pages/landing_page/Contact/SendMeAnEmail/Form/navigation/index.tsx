@@ -8,7 +8,7 @@ import Step from "./Step";
 // Styled components
 const StyledStepper = styled("div")(({ theme }) => ({
     display: "flex",
-    margin: "12px 0 24px 0",
+    margin: "0px 0 24px 0",
 }));
 
 const NavigationBetweenStages: FunctionComponent = (props) => {
@@ -21,7 +21,10 @@ const NavigationBetweenStages: FunctionComponent = (props) => {
                 completed={true}
                 label="General purpose"
                 active={formStage === "GENERAL_PURPOSE"} //
-                onClick={() => setFormStage("GENERAL_PURPOSE")}
+                onClick={() => {
+                    if (formStage === "GENERAL_PURPOSE") return;
+                    setFormStage("GENERAL_PURPOSE");
+                }}
             />
 
             <Step
@@ -29,14 +32,11 @@ const NavigationBetweenStages: FunctionComponent = (props) => {
                 completed={false}
                 label="Contact details"
                 active={formStage === "CONTACT_DETAILS"} //
-                onClick={() => setFormStage("CONTACT_DETAILS")}
+                onClick={() => {
+                    if (formStage === "CONTACT_DETAILS") return;
+                    setFormStage("CONTACT_DETAILS");
+                }}
             />
-
-            {/* <Step active={formStage === "CONTACT_DETAILS"} completed={false}>
-                <StepButton color="inherit" onClick={() => setFormStage("CONTACT_DETAILS")} className="single-nagivation-step two">
-                    Contact details
-                </StepButton>
-            </Step> */}
         </StyledStepper>
     );
 };
