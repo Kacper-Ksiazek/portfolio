@@ -1,20 +1,18 @@
-// Tools
-import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Styled components
-import Divider from "./Divider";
-import SingleNavigationStep from "./SingleNavigationStep";
-import NavigationBetweenStagesBase from "./NavigationBetweenStagesBase";
+import { Divider, SingleNavigationStep, NavigationBetweenSectionsBase } from "./styled_components";
 
-const NavigationBetweenStages: FunctionComponent = () => {
-    const stages: IceBreakingStage[] = ["General", "Competencies", "Education", "Hobbies", "Previous_Jobs"];
-    const context = useBreakTheIceContentContext();
+interface NavigationBetweenSectionsProps {
+    sections: string[];
+    currentSection: string;
+    onChoose: (val: string) => void;
+}
 
+const NavigationBetweenSections: FunctionComponent<NavigationBetweenSectionsProps> = (props) => {
     return (
-        <NavigationBetweenStagesBase>
-            {stages.map((item, index) => {
+        <NavigationBetweenSectionsBase>
+            {props.sections.map((item, index) => {
                 const stageLabel = item.replaceAll
                     ? item.replaceAll("_", " ")
                     : item
@@ -22,7 +20,7 @@ const NavigationBetweenStages: FunctionComponent = () => {
                           .map((char) => (char === "_" ? " " : char))
                           .join("");
 
-                const onClick = () => context.changeStage(item);
+                const onClick = () => props.onChoose(item);
 
                 return (
                     <div key={item} className="step-wrapper">
@@ -30,7 +28,7 @@ const NavigationBetweenStages: FunctionComponent = () => {
                         <SingleNavigationStep
                             className={[
                                 `single-navigation-button`, //
-                                context.currentIceBreakingStage === item ? "selected" : "",
+                                props.currentSection === item ? "selected" : "",
                             ].join(" ")} //
                             onClick={onClick}
                         >
@@ -41,8 +39,8 @@ const NavigationBetweenStages: FunctionComponent = () => {
                     </div>
                 );
             })}
-        </NavigationBetweenStagesBase>
+        </NavigationBetweenSectionsBase>
     );
 };
 
-export default NavigationBetweenStages;
+export default NavigationBetweenSections;
