@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { alpha } from "@mui/system";
 import { useState, useMemo } from "react";
 import { useMapContext } from "./hooks/useMapContext";
+import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Types
 import type { SxProps } from "@mui/system";
 import type { GeneralContactSection } from "./@types";
@@ -18,8 +19,9 @@ import LightSectionWrapper from "@/components/atoms/content_placement/SectionWra
 interface ContactWrapperProps {
     children: ReactNode;
 
+    hideContent: boolean;
     currentGeneralSection: GeneralContactSection;
-    setCurrentGeneralSection: Dispatch<SetStateAction<GeneralContactSection>>;
+    setCurrentGeneralSection: (val: GeneralContactSection) => void;
 }
 
 const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
@@ -82,6 +84,7 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                     height: "100%",
                     flexGrow: 1,
                     display: "flex",
+                    ...(props.hideContent ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}),
                 }}
                 onVisible={() => {
                     setRenderMap(true);

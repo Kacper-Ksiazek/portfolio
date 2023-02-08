@@ -10,14 +10,28 @@ import ContactWrapper from "./ContactWrapper";
 import MapContextProvider from "./mapContext/Provider";
 // Styled Components
 
+const CONTENT_HIDING_ANIMATION: number = 300;
+
 const Contact: FunctionComponent = () => {
     const [sendEmailSubsection, setSendEmailSubsection] = useState<SendEmailSubsection>("GENERAL_PURPOSE");
-    const [currentGeneralSection, setCurrentGeneralSection] = useState<GeneralContactSection>("WAYS_TO_REACH_ME");
+    const [currentGeneralSection, _setCurrentGeneralSection] = useState<GeneralContactSection>("WAYS_TO_REACH_ME");
+    const [hideContent, setHideContent] = useState<boolean>(false);
+
+    function setCurrentGeneralSection(val: GeneralContactSection) {
+        if (hideContent) return;
+
+        setHideContent(true);
+        setTimeout(() => {
+            setHideContent(false);
+            _setCurrentGeneralSection(val);
+        }, CONTENT_HIDING_ANIMATION + 100);
+    }
 
     return (
         <ContactWrapper
             currentGeneralSection={currentGeneralSection} //
             setCurrentGeneralSection={setCurrentGeneralSection}
+            hideContent={hideContent}
         >
             {(() => {
                 switch (currentGeneralSection) {

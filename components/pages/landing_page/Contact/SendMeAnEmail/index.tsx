@@ -84,7 +84,7 @@ const SendMeAnEmail: FunctionComponent = (props) => {
 
 interface SendMeAnEmailContextsWrapperProps {
     sendEmailSubsection: SendEmailSubsection;
-    setSendEmailSubsection: Dispatch<SetStateAction<SendEmailSubsection>>;
+    setSendEmailSubsection: (val: SendEmailSubsection) => void;
 }
 
 const SendMeAnEmailContextsWrapper: FunctionComponent<SendMeAnEmailContextsWrapperProps> = (props) => {

@@ -5,7 +5,7 @@ import { createContext, useState, useReducer, useMemo } from "react";
 // Types
 import type { EmailForm, Request } from "./@types";
 import type { SendEmailSubsection } from "../../@types";
-import type { Dispatch, SetStateAction, FunctionComponent, ReactNode } from "react";
+import type { FunctionComponent, ReactNode } from "react";
 
 const STAGE_CHANGE_ANIMATION_DURATION = 1000;
 
@@ -24,7 +24,7 @@ interface I_SendEmailContext {
 interface SendEmailContextProviderProps {
     children: ReactNode;
     sendEmailSubsection: SendEmailSubsection;
-    _setSendEmailSubsection: Dispatch<SetStateAction<SendEmailSubsection>>;
+    _setSendEmailSubsection: (val: SendEmailSubsection) => void;
 }
 
 export const SendEmailContext = createContext({} as I_SendEmailContext);

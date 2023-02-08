@@ -14,7 +14,6 @@ const StyledStep = styled("div")(({ theme }) => ({
     position: "relative",
     "span.index": {
         marginRight: "8px",
-        // background: theme.palette.primary.main,
         color: "#fff",
         fontWeight: 500,
         width: "32px",
@@ -115,7 +114,7 @@ const Step: FunctionComponent<StepProps> = (props) => {
                     <Check />
                 </span>
             </span>
-            {props.label}
+            <span>{props.label}</span>
         </StyledStep>
     );
 };
