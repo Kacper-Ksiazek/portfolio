@@ -1,10 +1,13 @@
+// Tools
+import { parseSection } from "./utils/parseSection";
 // Types
+import type { Section } from "./@types";
 import type { FunctionComponent } from "react";
 // Styled components
 import { Divider, SingleNavigationStep, NavigationBetweenSectionsBase } from "./styled_components";
 
 interface NavigationBetweenSectionsProps {
-    sections: string[];
+    sections: Section[];
     currentSection: string;
     onChoose: (val: string) => void;
 }
@@ -13,27 +16,22 @@ const NavigationBetweenSections: FunctionComponent<NavigationBetweenSectionsProp
     return (
         <NavigationBetweenSectionsBase>
             {props.sections.map((item, index) => {
-                const stageLabel = item.replaceAll
-                    ? item.replaceAll("_", " ")
-                    : item
-                          .split("")
-                          .map((char) => (char === "_" ? " " : char))
-                          .join("");
+                const { label, value } = parseSection(item);
 
-                const onClick = () => props.onChoose(item);
+                const onClick = () => props.onChoose(value);
 
                 return (
-                    <div key={item} className="step-wrapper">
+                    <div key={value} className="step-wrapper">
                         {index ? <Divider className="divider" /> : <span />}
                         <SingleNavigationStep
                             className={[
                                 `single-navigation-button`, //
-                                props.currentSection === item ? "selected" : "",
+                                props.currentSection === value ? "selected" : "",
                             ].join(" ")} //
                             onClick={onClick}
                         >
                             <span className="text" onClick={onClick}>
-                                {stageLabel}
+                                {label}
                             </span>
                         </SingleNavigationStep>
                     </div>
