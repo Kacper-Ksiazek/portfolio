@@ -62,8 +62,7 @@ const StyledStep = styled("div")(({ theme }) => ({
             transform: "translate(-80px, -50%)",
             width: "64px",
             height: "2px",
-            background: "black",
-            opacity: ".1",
+            background: alpha("#000", 0.12),
         },
     },
     "&.active": {

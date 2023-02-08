@@ -9,7 +9,6 @@ import type { ParamsWithCommonDuration, ParamsWithoutCommonDuration } from "../@
 interface GenerateStaticLineAnimations {
     NOTPseudoElement?: boolean;
     color: string;
-    sx?: SxProps;
     applyAnimationsInSeries?: {
         amountOfElements: number;
         delayBetweenAnimations: number;

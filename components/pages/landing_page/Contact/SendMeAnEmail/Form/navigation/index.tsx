@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
-import { generateStaticLineAnimations } from "@/utils/client/styled/lineAnimations";
+import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { generateSequentialLineAnimations } from "@/utils/client/styled/lineAnimations";
 import { useSendEmailContext } from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -12,24 +13,23 @@ const StyledStepper = styled("div")(({ theme }) => ({
     margin: "0px 0 24px 0",
     ".single-nagivation-step": {
         position: "relative",
-        ...generateStaticLineAnimations({
-            animations: {
-                initialDelay: 0.5,
-                commonDuration: 0.3,
-                start: {
-                    direction: "TOP",
-                },
-                end: {
-                    direction: "RIGHT",
-                    delay: 0.1,
-                },
-            },
-            color: "red",
-            applyAnimationsInSeries: {
-                amountOfElements: 2,
-                delayBetweenAnimations: 0.3,
+        ...generateSequentialLineAnimations({
+            color: theme.palette.primary.main,
+            sequence: [
+                ["TOP", "RIGHT"],
+                ["LEFT", "BOTTOM"],
+            ],
+            duration: 0.2,
+            playBackToBack: true,
+            delays: {
+                initial: 1,
+                beforeOutro: 0.2,
+                betweenSequenceElements: 0.05,
             },
         }),
+        "&::before": {
+            animation: `${fadeSimple} .2s linear both 1.8s`,
+        },
     },
 }));
 
