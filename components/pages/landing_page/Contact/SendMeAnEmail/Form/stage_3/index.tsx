@@ -13,7 +13,7 @@ const Paragraph = styled("p")(({ theme }) => ({
     animation: `${fadeFromLeft} .2s linear .2s both`,
 }));
 
-const FormStage1: FunctionComponent = (props) => {
+const SendEmailSubsection1: FunctionComponent = (props) => {
     const [ReCAPTCHAIsApproved, setReCAPTCHAIsApproved] = useState<boolean>(true);
 
     return (
@@ -27,4 +27,4 @@ const FormStage1: FunctionComponent = (props) => {
     );
 };
 
-export default FormStage1;
+export default SendEmailSubsection1;

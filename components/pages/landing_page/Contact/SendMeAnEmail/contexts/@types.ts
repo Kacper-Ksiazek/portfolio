@@ -13,7 +13,7 @@ export type Status =
     | "fillingForm_after_error"
     | "fillingForm_after_success";
 
-export type FormStage = "GENERAL_PURPOSE" | "CONTACT_DETAILS" | "RECAPTCHA";
+export type SendEmailSubsection = "GENERAL_PURPOSE" | "CONTACT_DETAILS" | "RECAPTCHA";
 
 export interface EmailForm {
     author: string;

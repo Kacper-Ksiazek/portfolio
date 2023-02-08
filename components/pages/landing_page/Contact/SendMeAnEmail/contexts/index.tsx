@@ -1,45 +1,52 @@
 // Tools
-import { createContext, useState, useReducer, useMemo } from "react";
 import * as validators from "./utils/joi_validators";
+import * as reducersDefaultValues from "./utils/reducersDefaultValues";
+import { createContext, useState, useReducer, useMemo } from "react";
 // Types
+import type { EmailForm, Request } from "./@types";
+import type { SendEmailSubsection } from "../../@types";
 import type { Dispatch, SetStateAction, FunctionComponent, ReactNode } from "react";
-import type { EmailForm, FormStage, Request } from "./@types";
 
 const STAGE_CHANGE_ANIMATION_DURATION = 1000;
 
 interface I_SendEmailContext {
     form: EmailForm;
     request: Request;
-    formStage: FormStage;
-    formStageIsChanging: boolean;
+    sendEmailSubsection: SendEmailSubsection;
+    sendEmailSubsectionIsChanging: boolean;
     invalidFormFields: (keyof EmailForm)[];
 
-    setFormStage: Dispatch<SetStateAction<FormStage>>;
     updateForm: (newForm: Partial<EmailForm>) => void;
     updateRequest: (newForm: Partial<Request>) => void;
+    setSendEmailSubsection: (val: SendEmailSubsection) => void;
+}
+
+interface SendEmailContextProviderProps {
+    children: ReactNode;
+    sendEmailSubsection: SendEmailSubsection;
+    _setSendEmailSubsection: Dispatch<SetStateAction<SendEmailSubsection>>;
 }
 
 export const SendEmailContext = createContext({} as I_SendEmailContext);
 
-export const SendEmailContextProvider: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-    const [formStage, _setFormStage] = useState<FormStage>("GENERAL_PURPOSE");
-    const [formStageIsChanging, setformStageIsChanging] = useState<boolean>(false);
+export const SendEmailContextProvider: FunctionComponent<SendEmailContextProviderProps> = (props) => {
+    const [sendEmailSubsectionIsChanging, setsendEmailSubsectionIsChanging] = useState<boolean>(false);
 
     const [form, updateForm] = useReducer((state: EmailForm, newState: Partial<EmailForm>): EmailForm => {
         return {
             ...state,
             ...newState,
         };
-    }, EMPTY_FORM_STATE);
+    }, reducersDefaultValues.EMPTY_FORM_STATE);
     const [request, updateRequest] = useReducer((state: Request, newState: Partial<Request>): Request => {
         return {
             ...state,
             ...newState,
         };
-    }, EMPTY_REQUEST_STATE);
+    }, reducersDefaultValues.EMPTY_REQUEST_STATE);
 
     const invalidFormFields = useMemo<(keyof EmailForm)[]>(() => {
-        switch (formStage) {
+        switch (props.sendEmailSubsection) {
             case "GENERAL_PURPOSE":
                 return validators.generalPurposeValidator({
                     author: form.author,
@@ -55,49 +62,33 @@ export const SendEmailContextProvider: FunctionComponent<{ children: ReactNode }
                 });
         }
         return [];
-    }, [formStage, form]);
-    //
+    }, [props.sendEmailSubsection, form]);
 
-    const setFormStage: I_SendEmailContext["setFormStage"] = (val) => {
-        if (formStageIsChanging) return;
-        setformStageIsChanging(true);
+    function setSendEmailSubsection(val: SendEmailSubsection) {
+        if (sendEmailSubsectionIsChanging) return;
+        setsendEmailSubsectionIsChanging(true);
 
         setTimeout(() => {
-            _setFormStage(val);
-            setformStageIsChanging(false);
+            props._setSendEmailSubsection(val);
+            setsendEmailSubsectionIsChanging(false);
         }, STAGE_CHANGE_ANIMATION_DURATION);
-    };
+    }
 
     return (
         <SendEmailContext.Provider
             value={{
                 form,
-                formStage,
+                sendEmailSubsection: props.sendEmailSubsection,
                 invalidFormFields,
                 request,
-                formStageIsChanging,
+                sendEmailSubsectionIsChanging,
 
                 updateForm,
                 updateRequest,
-                setFormStage,
+                setSendEmailSubsection,
             }}
         >
-            {children}
+            {props.children}
         </SendEmailContext.Provider>
     );
-};
-
-const EMPTY_FORM_STATE: EmailForm = {
-    author: "",
-    country: null,
-    email: "",
-    github: "",
-    message: "",
-    subject: "",
-    website: "",
-};
-
-const EMPTY_REQUEST_STATE: Request = {
-    errorCode: null,
-    status: "fillingForm",
 };

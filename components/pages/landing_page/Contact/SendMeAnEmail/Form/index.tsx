@@ -19,11 +19,11 @@ interface EmailFormProps {
 }
 
 const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
-    const { formStage, setFormStage, formStageIsChanging } = useSendEmailContext();
+    const { sendEmailSubsection, setSendEmailSubsection, sendEmailSubsectionIsChanging } = useSendEmailContext();
 
     const onContinueButtonClick = () => {
-        if (formStage === "GENERAL_PURPOSE") setFormStage("CONTACT_DETAILS");
-        else if (formStage === "CONTACT_DETAILS") setFormStage("RECAPTCHA");
+        if (sendEmailSubsection === "GENERAL_PURPOSE") setSendEmailSubsection("CONTACT_DETAILS");
+        else if (sendEmailSubsection === "CONTACT_DETAILS") setSendEmailSubsection("RECAPTCHA");
         else props.sendRequest();
     };
 
@@ -32,13 +32,13 @@ const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
             <NavigationBetweenStages />
             <StageWrapper
                 className={[
-                    formStageIsChanging ? "form-stage-is-changing" : "", //
-                    formStage,
+                    sendEmailSubsectionIsChanging ? "form-stage-is-changing" : "", //
+                    sendEmailSubsection,
                 ].join(" ")}
             >
                 {/*  */}
                 {(() => {
-                    switch (formStage) {
+                    switch (sendEmailSubsection) {
                         case "GENERAL_PURPOSE":
                             return <Stage1 />;
                         case "CONTACT_DETAILS":

@@ -12,7 +12,7 @@ const StyledStepper = styled("div")(({ theme }) => ({
 }));
 
 const NavigationBetweenStages: FunctionComponent = (props) => {
-    const { setFormStage, formStage } = useSendEmailContext();
+    const { setSendEmailSubsection, sendEmailSubsection } = useSendEmailContext();
 
     return (
         <StyledStepper className="navigation-between-stages">
@@ -20,10 +20,10 @@ const NavigationBetweenStages: FunctionComponent = (props) => {
                 index={1}
                 completed={true}
                 label="General purpose"
-                active={formStage === "GENERAL_PURPOSE"} //
+                active={sendEmailSubsection === "GENERAL_PURPOSE"} //
                 onClick={() => {
-                    if (formStage === "GENERAL_PURPOSE") return;
-                    setFormStage("GENERAL_PURPOSE");
+                    if (sendEmailSubsection === "GENERAL_PURPOSE") return;
+                    setSendEmailSubsection("GENERAL_PURPOSE");
                 }}
             />
 
@@ -31,10 +31,10 @@ const NavigationBetweenStages: FunctionComponent = (props) => {
                 index={2}
                 completed={false}
                 label="Contact details"
-                active={formStage === "CONTACT_DETAILS"} //
+                active={sendEmailSubsection === "CONTACT_DETAILS"} //
                 onClick={() => {
-                    if (formStage === "CONTACT_DETAILS") return;
-                    setFormStage("CONTACT_DETAILS");
+                    if (sendEmailSubsection === "CONTACT_DETAILS") return;
+                    setSendEmailSubsection("CONTACT_DETAILS");
                 }}
             />
         </StyledStepper>

@@ -5,8 +5,9 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useSendEmailContext } from "./hooks/useSendEmailContext";
 import { useSendRequestQuery } from "./hooks/queries/useSendRequestQuery";
 // Types
-import type { FunctionComponent } from "react";
 import type { Status } from "./contexts/@types";
+import type { SendEmailSubsection } from "../@types";
+import type { Dispatch, SetStateAction, FunctionComponent } from "react";
 // Other components
 import Form from "./Form";
 import ProcessRequest from "./ProcessRequest";
@@ -81,9 +82,17 @@ const SendMeAnEmail: FunctionComponent = (props) => {
     );
 };
 
-const SendMeAnEmailContextsWrapper: FunctionComponent = () => {
+interface SendMeAnEmailContextsWrapperProps {
+    sendEmailSubsection: SendEmailSubsection;
+    setSendEmailSubsection: Dispatch<SetStateAction<SendEmailSubsection>>;
+}
+
+const SendMeAnEmailContextsWrapper: FunctionComponent<SendMeAnEmailContextsWrapperProps> = (props) => {
     return (
-        <SendEmailContextProvider>
+        <SendEmailContextProvider
+            sendEmailSubsection={props.sendEmailSubsection} //
+            _setSendEmailSubsection={props.setSendEmailSubsection}
+        >
             {/*  */}
             <SendMeAnEmail />
             {/*  */}

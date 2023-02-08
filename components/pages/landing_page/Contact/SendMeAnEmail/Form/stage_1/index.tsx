@@ -14,7 +14,7 @@ const LengthNotification = styled("span")(({ theme }) => ({
     animation: `${fadeFromTop} .2s .4s linear backwards`,
 }));
 
-const FormStage1: FunctionComponent = (props) => {
+const SendEmailSubsection1: FunctionComponent = (props) => {
     const { form, updateForm, invalidFormFields } = useSendEmailContext();
 
     return (
@@ -47,4 +47,4 @@ const FormStage1: FunctionComponent = (props) => {
     );
 };
 
-export default FormStage1;
+export default SendEmailSubsection1;
