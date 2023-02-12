@@ -1,13 +1,13 @@
 // Tools
 import { useState, useEffect } from "react";
-import { useMapContext } from "../hooks/useMapContext";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useSendEmailContext } from "./hooks/useSendEmailContext";
 import { useSendRequestQuery } from "./hooks/queries/useSendRequestQuery";
+import { useMapContext } from "@/components/pages/landing_page/Contact/hooks/useMapContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { Status } from "./contexts/@types";
-import type { SendEmailSubsection } from "../@types";
+import type { SendEmailSubsection } from "@/components/pages/landing_page/Contact/@types";
 // Other components
 import Form from "./Form";
 import ProcessRequest from "./ProcessRequest";

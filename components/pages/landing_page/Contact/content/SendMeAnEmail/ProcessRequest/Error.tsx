@@ -9,8 +9,7 @@ import ErrorOutline from "@mui/icons-material/ErrorOutline";
 // Other components
 import ButtonWIthTooltip from "../_utils_components/ButtonWIthTooltip";
 // Styled components
-import Divider from "../_styled_components/Divider";
-import { BottomInformation, ProcessRequestStageWrapper } from "./_styled_components";
+import { BottomInformation, ProcessRequestStageWrapper, Divider } from "./_styled_components";
 
 const ButtonsWrapper = styled("div")(({ theme }) => ({
     position: "absolute",

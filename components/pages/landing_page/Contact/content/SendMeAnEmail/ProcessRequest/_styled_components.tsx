@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled, alpha } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import fadeToLeft from "@/components/keyframes/outro/fadeToLeft";
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
@@ -21,7 +21,7 @@ export const ProcessRequestStageWrapper = styled("div")(({ theme }) => ({
         animation: `${fadeToLeft} .3s both`,
     },
     "svg.main-icon": {
-        fontSize: "64px",
+        fontSize: "96px",
     },
     "&.success": {
         svg: {
@@ -52,4 +52,11 @@ export const ProcessRequestStageWrapper = styled("div")(({ theme }) => ({
 export const BottomInformation = styled("span")(({ theme }) => ({
     marginTop: "10px",
     textAlign: "center",
+}));
+
+export const Divider = styled("span")(({ theme }) => ({
+    width: "140px",
+    height: "1px",
+    background: alpha(theme.palette.text.primary, 0.1),
+    margin: "10px auto",
 }));

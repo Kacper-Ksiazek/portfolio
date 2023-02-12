@@ -1,14 +1,14 @@
 // Tools
 import { styled } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useSendEmailContext";
+import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
 import CodeOff from "@mui/icons-material/CodeOff";
 // Styled components
-import SendMailButton from "../_styled_components/SendMailButton";
-import ButtonWIthTooltip from "@/components/pages/landing_page/Contact/SendMeAnEmail/_utils_components/ButtonWIthTooltip";
+import ContinueButton from "./ContinueButton";
+import ButtonWIthTooltip from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/_utils_components/ButtonWIthTooltip";
 
 const ButtonsBottomWrapper = styled("footer")(({ theme }) => ({
     display: "flex",
@@ -45,13 +45,13 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
 
     return (
         <ButtonsBottomWrapper>
-            <SendMailButton
+            <ContinueButton
                 disabled={invalidFormFields.length !== 0} //
                 onClick={props.onContinueButtonClick}
                 className="continue"
             >
                 <span className="text">Continue</span>
-            </SendMailButton>
+            </ContinueButton>
 
             <div className="flex">
                 <ButtonWIthTooltip

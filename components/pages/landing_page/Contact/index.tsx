@@ -4,8 +4,7 @@ import { useState } from "react";
 import type { FunctionComponent } from "react";
 import type { GeneralContactSection, SendEmailSubsection } from "./@types";
 // Other components
-import WaysToReachMe from "./WaysToReachMe";
-import SendMeAnEmail from "./SendMeAnEmail";
+import Content from "./content";
 import ContactWrapper from "./ContactWrapper";
 import MapContextProvider from "./mapContext/Provider";
 // Styled Components
@@ -33,19 +32,12 @@ const Contact: FunctionComponent = () => {
             setCurrentGeneralSection={setCurrentGeneralSection}
             hideContent={hideContent}
         >
-            {(() => {
-                switch (currentGeneralSection) {
-                    case "WAYS_TO_REACH_ME":
-                        return <WaysToReachMe writeToMe={() => setCurrentGeneralSection("SEND_EMAIL_FORM")} />;
-                    case "SEND_EMAIL_FORM":
-                        return (
-                            <SendMeAnEmail
-                                sendEmailSubsection={sendEmailSubsection} //
-                                setSendEmailSubsection={setSendEmailSubsection}
-                            />
-                        );
-                }
-            })()}
+            <Content
+                currentGeneralSection={currentGeneralSection} //
+                sendEmailSubsection={sendEmailSubsection}
+                writeToMe={() => setCurrentGeneralSection("SEND_EMAIL_FORM")}
+                setSendEmailSubsection={setSendEmailSubsection}
+            />
         </ContactWrapper>
     );
 };

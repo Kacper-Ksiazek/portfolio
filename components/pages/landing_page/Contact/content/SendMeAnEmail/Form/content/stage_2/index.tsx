@@ -1,13 +1,13 @@
 // Tools
 import { styled } from "@mui/system";
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/SendMeAnEmail/hooks/useSendEmailContext";
+import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
 import CountryInput from "./CountryInput";
 // Styled Components
-import StyledInput from "@/components/pages/landing_page/Contact/SendMeAnEmail/Form/_styled_components/StyledInput";
+import StyledInput from "@/components/atoms/forms/StyledInput";
 
 const InformationAboutOptionality = styled("span")(({ theme }) => ({
     fontSize: "14px",

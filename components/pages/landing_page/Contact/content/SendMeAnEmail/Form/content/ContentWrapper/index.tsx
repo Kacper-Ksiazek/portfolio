@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
-import * as animations from "./inputsAnimations";
+import * as animations from "./keyframes";
 // Styled components
 
 export default styled("div")(({ theme }) => ({
