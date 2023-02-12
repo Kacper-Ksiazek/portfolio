@@ -17,7 +17,7 @@ const ProcessRequest: FunctionComponent<ProcessRequestParams> = (props) => {
     const { updateRequest, request } = useSendEmailContext();
 
     const refresh = () => {
-        if (request.status === "error_but_feigned") {
+        if (request.status === "error_but_feigned" || request.status === "success_but_feigned") {
             return updateRequest({ status: "pending_but_feigned" });
         } else {
             props.sendRequest();
@@ -37,6 +37,7 @@ const ProcessRequest: FunctionComponent<ProcessRequestParams> = (props) => {
                         <Success
                             isFeigned={request.status === "success_but_feigned"} //
                             isAlreadySucceeded={props.emailHasBeenAlreadySent}
+                            refresh={refresh}
                             outroAnimation={request.status === "fillingForm_after_success"}
                             goBackToTheForm={() => updateRequest({ status: "fillingForm_after_success" })}
                         />
@@ -44,7 +45,8 @@ const ProcessRequest: FunctionComponent<ProcessRequestParams> = (props) => {
                 } else if ((["error", "error_but_feigned", "fillingForm_after_error"] as Status[]).includes(request.status)) {
                     return (
                         <Error
-                            outroAnimation={request.status === "fillingForm_after_error"} //
+                            isFeigned={request.status === "error_but_feigned"} //
+                            outroAnimation={request.status === "fillingForm_after_error"}
                             code={Number(request.errorCode)}
                             refresh={refresh}
                             goBackToTheForm={() => updateRequest({ status: "fillingForm_after_error" })}

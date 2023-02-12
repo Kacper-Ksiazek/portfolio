@@ -60,3 +60,10 @@ export const Divider = styled("span")(({ theme }) => ({
     background: alpha(theme.palette.text.primary, 0.1),
     margin: "10px auto",
 }));
+
+export const AbsoluteButtonsWrapper = styled("div")(({ theme }) => ({
+    position: "absolute",
+    top: "10px",
+    right: "10px",
+    display: "flex",
+}));

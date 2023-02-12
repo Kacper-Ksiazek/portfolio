@@ -2,16 +2,18 @@
 import type { FunctionComponent } from "react";
 // Material UI Icons
 import Check from "@mui/icons-material/Check";
+import Refresh from "@mui/icons-material/Refresh";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 // Other components
-import ButtonWithTooltip from "../_utils_components/ButtonWIthTooltip";
+import ButtonWithTooltip from "../_utils_components/ButtonWithTooltip";
 // Styled components
-import { BottomInformation, ProcessRequestStageWrapper } from "./_styled_components";
+import { BottomInformation, ProcessRequestStageWrapper, AbsoluteButtonsWrapper } from "./_styled_components";
 
 interface SuccessResultProps {
     isFeigned: boolean;
     isAlreadySucceeded: boolean;
     outroAnimation: boolean;
+    refresh: () => void;
     goBackToTheForm: () => void;
 }
 
@@ -24,17 +26,20 @@ const SuccessResult: FunctionComponent<SuccessResultProps> = (props) => {
             ].join(" ")}
         >
             {props.isFeigned && (
-                <ButtonWithTooltip
-                    color="success" //
-                    tooltip="Return to the form"
-                    onClick={props.goBackToTheForm}
-                    icon={<ArrowBack />}
-                    sx={{
-                        position: "absolute",
-                        top: "10px",
-                        right: "10px",
-                    }}
-                />
+                <AbsoluteButtonsWrapper>
+                    <ButtonWithTooltip
+                        tooltip="Send request again" //
+                        color="success"
+                        onClick={props.refresh}
+                        icon={<Refresh />}
+                    />
+                    <ButtonWithTooltip
+                        color="success" //
+                        tooltip="Return to the form"
+                        onClick={props.goBackToTheForm}
+                        icon={<ArrowBack />}
+                    />
+                </AbsoluteButtonsWrapper>
             )}
 
             <Check className="main-icon" />

@@ -1,5 +1,3 @@
-// Tools
-import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
@@ -7,19 +5,13 @@ import Refresh from "@mui/icons-material/Refresh";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import ErrorOutline from "@mui/icons-material/ErrorOutline";
 // Other components
-import ButtonWIthTooltip from "../_utils_components/ButtonWIthTooltip";
+import ButtonWithTooltip from "../_utils_components/ButtonWithTooltip";
 // Styled components
-import { BottomInformation, ProcessRequestStageWrapper, Divider } from "./_styled_components";
-
-const ButtonsWrapper = styled("div")(({ theme }) => ({
-    position: "absolute",
-    top: "10px",
-    right: "10px",
-    display: "flex",
-}));
+import { BottomInformation, ProcessRequestStageWrapper, Divider, AbsoluteButtonsWrapper } from "./_styled_components";
 
 interface ErrorStatusProps {
     code: number;
+    isFeigned: boolean;
     outroAnimation: boolean;
     refresh: () => void;
     goBackToTheForm: () => void;
@@ -45,21 +37,23 @@ const ErrorStatus: FunctionComponent<ErrorStatusProps> = (props) => {
                 Error: <strong>{props.code}</strong>
             </span>
 
-            <ButtonsWrapper>
-                <ButtonWIthTooltip
-                    tooltip="Send request again" //
-                    color="error"
-                    onClick={props.refresh}
-                    icon={<Refresh />}
-                />
+            {props.isFeigned && (
+                <AbsoluteButtonsWrapper>
+                    <ButtonWithTooltip
+                        tooltip="Send request again" //
+                        color="error"
+                        onClick={props.refresh}
+                        icon={<Refresh />}
+                    />
 
-                <ButtonWIthTooltip
-                    tooltip="Return to the form" //
-                    color="error"
-                    onClick={props.goBackToTheForm}
-                    icon={<ArrowBack />}
-                />
-            </ButtonsWrapper>
+                    <ButtonWithTooltip
+                        tooltip="Return to the form" //
+                        color="error"
+                        onClick={props.goBackToTheForm}
+                        icon={<ArrowBack />}
+                    />
+                </AbsoluteButtonsWrapper>
+            )}
         </ProcessRequestStageWrapper>
     );
 };

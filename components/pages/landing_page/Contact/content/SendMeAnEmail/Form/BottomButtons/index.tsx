@@ -8,7 +8,7 @@ import type { FunctionComponent } from "react";
 import CodeOff from "@mui/icons-material/CodeOff";
 // Styled components
 import ContinueButton from "./ContinueButton";
-import ButtonWIthTooltip from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/_utils_components/ButtonWIthTooltip";
+import ButtonWIthTooltip from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/_utils_components/ButtonWithTooltip";
 
 const ButtonsBottomWrapper = styled("footer")(({ theme }) => ({
     display: "flex",

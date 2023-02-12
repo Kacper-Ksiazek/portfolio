@@ -8,7 +8,7 @@ import type { MUIStyledCommonProps } from "@mui/system";
 import Check from "@mui/icons-material/Check";
 import Close from "@mui/icons-material/Close";
 // Other components
-import ButtonWIthTooltip from "../../_utils_components/ButtonWIthTooltip";
+import ButtonWIthTooltip from "../../_utils_components/ButtonWithTooltip";
 // Styled Components
 import { Divider } from "../_styled_components";
 
