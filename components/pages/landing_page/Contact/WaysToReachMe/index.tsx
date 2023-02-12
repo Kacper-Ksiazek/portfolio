@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
+import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
@@ -73,6 +74,7 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
                     fontSize: "18px",
                     display: "flex",
                     alignItems: "center",
+                    animation: `${fadeSimple} .3s 2.4s both`,
                     svg: {
                         marginRight: "8px",
                     },

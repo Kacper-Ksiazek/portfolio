@@ -1,6 +1,5 @@
 // Tools
 import { styled } from "@mui/system";
-import introAnimations from "./introAnimations";
 // Styled components
 export default styled("div")(({ theme }) => ({
     width: "calc(50% + 64px)",
@@ -10,5 +9,4 @@ export default styled("div")(({ theme }) => ({
     height: "440px",
     overflow: "hidden",
     boxSizing: "border-box",
-    ...(introAnimations as any),
 }));

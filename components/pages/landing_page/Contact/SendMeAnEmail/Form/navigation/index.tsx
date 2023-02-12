@@ -16,13 +16,13 @@ const StyledStepper = styled("div")(({ theme }) => ({
         ...generateSequentialLineAnimations({
             color: theme.palette.primary.main,
             sequence: [
-                ["TOP", "RIGHT"],
-                ["LEFT", "BOTTOM"],
+                ["BOTTOM", "RIGHT"],
+                ["LEFT", "TOP"],
             ],
-            duration: 0.2,
+            duration: 0.25,
             playBackToBack: true,
             delays: {
-                initial: 1,
+                initial: 0.4,
                 beforeOutro: 0.2,
                 betweenSequenceElements: 0.05,
             },
