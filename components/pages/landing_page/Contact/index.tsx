@@ -26,6 +26,12 @@ const Contact: FunctionComponent = () => {
         }, CONTENT_HIDING_ANIMATION + 100);
     }
 
+    function writeToMe() {
+        const el = document.getElementById("contact");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+        setCurrentGeneralSection("SEND_EMAIL_FORM");
+    }
+
     return (
         <ContactWrapper
             currentGeneralSection={currentGeneralSection} //
@@ -36,7 +42,7 @@ const Contact: FunctionComponent = () => {
             <Content
                 currentGeneralSection={currentGeneralSection} //
                 sendEmailSubsection={sendEmailSubsection}
-                writeToMe={() => setCurrentGeneralSection("SEND_EMAIL_FORM")}
+                writeToMe={writeToMe}
                 setSendEmailSubsection={setSendEmailSubsection}
             />
         </ContactWrapper>
