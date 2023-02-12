@@ -5,6 +5,7 @@ export interface CountryType {
 
 // From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
 export const countries: readonly CountryType[] = [
+    { label: "Poland", code: "pl" },
     { label: "United Arab Emirates", code: "ae" },
     { label: "Afghanistan", code: "af" },
     { label: "Albania", code: "al" },
@@ -69,7 +70,6 @@ export const countries: readonly CountryType[] = [
     { label: "Peru", code: "pe" },
     { label: "Philippines", code: "ph" },
     { label: "Pakistan", code: "pk" },
-    { label: "Poland", code: "pl" },
     { label: "Portugal", code: "pt" },
     { label: "Paraguay", code: "py" },
     { label: "Qatar", code: "qa" },

@@ -1,14 +1,12 @@
 // Tools
-import theme from "@/material";
 import dynamic from "next/dynamic";
-import { alpha } from "@mui/system";
 import { useState, useMemo } from "react";
 import { useMapContext } from "./hooks/useMapContext";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Types
 import type { SxProps } from "@mui/system";
-import type { GeneralContactSection } from "./@types";
-import type { FunctionComponent, ReactNode, Dispatch, SetStateAction } from "react";
+import type { FunctionComponent, ReactNode } from "react";
+import type { GeneralContactSection, SendEmailSubsection } from "./@types";
 // Other components
 const Map = dynamic(() => import("./Map"));
 import VisibilitySensor from "@/components/utils/VisibilitySensor";
@@ -20,6 +18,7 @@ interface ContactWrapperProps {
     children: ReactNode;
 
     hideContent: boolean;
+    sendEmailSubsection: SendEmailSubsection;
     currentGeneralSection: GeneralContactSection;
     setCurrentGeneralSection: (val: GeneralContactSection) => void;
 }
@@ -29,22 +28,19 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
     const { status } = useMapContext();
 
     const backgroundLetterSx = useMemo<SxProps>(() => {
-        switch (status) {
-            case "success":
+        switch (props.currentGeneralSection) {
+            case "SEND_EMAIL_FORM":
                 return {
-                    color: alpha(theme.palette.success.main, 0.1),
-                    transition: "color .5s .6s",
+                    opacity: 0,
+                    transition: "opacity 1s",
                 };
-            case "error":
+            case "WAYS_TO_REACH_ME":
                 return {
-                    color: alpha(theme.palette.error.main, 0.1),
-                    transition: "color .5s .6s",
+                    opacity: 1,
+                    transition: "opacity 1s .8s",
                 };
         }
-        return {
-            transition: "color .5s",
-        };
-    }, [status]);
+    }, [props.currentGeneralSection]);
 
     return (
         <LightSectionWrapper
@@ -75,7 +71,17 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
             round="left"
             id="contact"
             backgroundLetterSx={backgroundLetterSx}
-            childrenOutsideContentWrapper={renderMap ? <Map status={status} /> : <></>}
+            childrenOutsideContentWrapper={
+                renderMap ? (
+                    <Map
+                        status={status} //
+                        sendEmailSubsection={props.sendEmailSubsection}
+                        currentGeneralSection={props.currentGeneralSection}
+                    />
+                ) : (
+                    <></>
+                )
+            }
         >
             <VisibilitySensor
                 offsetBottom={400} //

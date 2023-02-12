@@ -3,9 +3,10 @@ import { styled } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Types
 import type { FunctionComponent } from "react";
+import type { GeneralContactSection, SendEmailSubsection } from "./@types";
 // Styled components
 const MapBase = styled("span")(({ theme }) => ({
-    width: "60%",
+    width: "50%",
     animation: `${fadeSimple} .3s .7s linear both`,
     height: "100%",
     position: "absolute",
@@ -14,9 +15,9 @@ const MapBase = styled("span")(({ theme }) => ({
     top: 0,
     backgroundImage: 'url("/images/landing-page/europe_map/light/blank.png")',
     backgroundSize: "cover",
-    backgroundPosition: "right",
+    backgroundPosition: "left",
     backgroundRepeat: "no-repeat",
-    transition: "background-image .5s linear",
+    transition: "background-image .5s linear, width .5s, transform .5s",
     "&::after": {
         content: '""',
         position: "absolute",
@@ -26,7 +27,7 @@ const MapBase = styled("span")(({ theme }) => ({
         left: "0",
         backgroundImage: 'url("/images/landing-page/europe_map/poland/simple.png")',
         backgroundSize: "cover",
-        backgroundPosition: "right",
+        backgroundPosition: "left",
         backgroundRepeat: "no-repeat",
         animation: `${fadeSimple} .3s 2s linear forward`,
         transition: "background-image .5s",
@@ -45,15 +46,30 @@ const MapBase = styled("span")(({ theme }) => ({
             backgroundImage: 'url("/images/landing-page/europe_map/poland/error.png")',
         },
     },
+    "&.SEND_EMAIL_FORM": {
+        width: "70%",
+        "&.CONTACT_DETAILS": {
+            transform: "scale(1.4)",
+        },
+    },
 }));
 
 interface MapProps {
     status: "success" | "error" | null;
+    sendEmailSubsection: SendEmailSubsection;
+    currentGeneralSection: GeneralContactSection;
 }
 
 const Map: FunctionComponent<MapProps> = (props) => {
     return (
-        <MapBase id="map" className={props.status ?? ""}>
+        <MapBase
+            id="map"
+            className={[
+                props.status ?? "", //
+                props.currentGeneralSection,
+                props.sendEmailSubsection,
+            ].join(" ")}
+        >
             <span></span>
         </MapBase>
     );

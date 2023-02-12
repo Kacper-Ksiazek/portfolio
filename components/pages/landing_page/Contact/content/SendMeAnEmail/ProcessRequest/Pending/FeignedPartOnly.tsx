@@ -5,8 +5,7 @@ import { useSendEmailContext } from "@/components/pages/landing_page/Contact/con
 import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
 // Material UI Icons
-import Check from "@mui/icons-material/Check";
-import Close from "@mui/icons-material/Close";
+import CodeOff from "@mui/icons-material/CodeOff";
 // Other components
 import ButtonWIthTooltip from "../../_utils_components/ButtonWithTooltip";
 // Styled Components
@@ -21,7 +20,7 @@ const PendingFeignedPart: FunctionComponent<MUIStyledCommonProps> = (props) => {
             <div>
                 <ButtonWIthTooltip
                     color="success" //
-                    icon={<Check />}
+                    icon={<CodeOff />}
                     tooltip="Fake successful request"
                     onClick={() => updateRequest({ status: "success_but_feigned" })}
                     sx={{
@@ -30,7 +29,7 @@ const PendingFeignedPart: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 />{" "}
                 <ButtonWIthTooltip
                     color="error" //
-                    icon={<Close />}
+                    icon={<CodeOff />}
                     tooltip="Fake rejected request"
                     onClick={() => updateRequest({ status: "error_but_feigned" })}
                     sx={{

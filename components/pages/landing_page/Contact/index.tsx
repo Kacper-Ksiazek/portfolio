@@ -29,6 +29,7 @@ const Contact: FunctionComponent = () => {
     return (
         <ContactWrapper
             currentGeneralSection={currentGeneralSection} //
+            sendEmailSubsection={sendEmailSubsection}
             setCurrentGeneralSection={setCurrentGeneralSection}
             hideContent={hideContent}
         >

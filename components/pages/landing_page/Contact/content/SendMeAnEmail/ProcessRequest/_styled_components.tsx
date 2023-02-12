@@ -15,7 +15,7 @@ export const ProcessRequestStageWrapper = styled("div")(({ theme }) => ({
     height: "100%",
     width: "100%",
     animation: `${fadeFromTop} .3s .15s both`,
-    fontSize: "18px",
+    fontSize: "20px",
     userSelect: "none",
     "&.outro": {
         animation: `${fadeToLeft} .3s both`,
