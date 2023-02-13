@@ -7,7 +7,7 @@ import type { MUIStyledCommonProps } from "@mui/system";
 // Material UI Icons
 import CodeOff from "@mui/icons-material/CodeOff";
 // Other components
-import ButtonWIthTooltip from "../../_utils_components/ButtonWithTooltip";
+import ButtonWithTooltip from "../../_utils_components/ButtonWithTooltip";
 // Styled Components
 import { Divider } from "../_styled_components";
 
@@ -18,7 +18,7 @@ const PendingFeignedPart: FunctionComponent<MUIStyledCommonProps> = (props) => {
         <>
             <Divider />
             <div>
-                <ButtonWIthTooltip
+                <ButtonWithTooltip
                     color="success" //
                     icon={<CodeOff />}
                     tooltip="Fake successful request"
@@ -27,7 +27,7 @@ const PendingFeignedPart: FunctionComponent<MUIStyledCommonProps> = (props) => {
                         animation: `${fadeSimple} .2s .3s linear both `,
                     }}
                 />{" "}
-                <ButtonWIthTooltip
+                <ButtonWithTooltip
                     color="error" //
                     icon={<CodeOff />}
                     tooltip="Fake rejected request"

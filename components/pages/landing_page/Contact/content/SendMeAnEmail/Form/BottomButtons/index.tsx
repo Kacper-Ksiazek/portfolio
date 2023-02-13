@@ -8,7 +8,7 @@ import type { FunctionComponent } from "react";
 import CodeOff from "@mui/icons-material/CodeOff";
 // Styled components
 import ContinueButton from "./ContinueButton";
-import ButtonWIthTooltip from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/_utils_components/ButtonWIthTooltip";
+import ButtonWithTooltip from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/_utils_components/ButtonWithTooltip";
 
 const ButtonsBottomWrapper = styled("footer")(({ theme }) => ({
     display: "flex",
@@ -54,14 +54,14 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
             </ContinueButton>
 
             <div className="flex">
-                <ButtonWIthTooltip
+                <ButtonWithTooltip
                     color="error" //
                     tooltip="Fake invalid request"
                     onClick={feignInvalidRequest}
                     icon={<CodeOff />}
                     className="fake-invalid-request"
                 />
-                <ButtonWIthTooltip
+                <ButtonWithTooltip
                     color="success" //
                     tooltip="Fake successful request"
                     onClick={feignSucceededRequest}

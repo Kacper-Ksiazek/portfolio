@@ -17,7 +17,7 @@ const MapBase = styled("span")(({ theme }) => ({
     backgroundSize: "cover",
     backgroundPosition: "left",
     backgroundRepeat: "no-repeat",
-    transition: "background-image .5s linear, width .5s, transform .5s",
+    transition: "background-image .5s linear, width 1.2s, transform .6s",
     "&::after": {
         content: '""',
         position: "absolute",
@@ -48,8 +48,9 @@ const MapBase = styled("span")(({ theme }) => ({
     },
     "&.SEND_EMAIL_FORM": {
         width: "70%",
+        transform: "scale(1.2)",
         "&.CONTACT_DETAILS": {
-            transform: "scale(1.4)",
+            transform: "scale(1.3)",
         },
     },
 }));
