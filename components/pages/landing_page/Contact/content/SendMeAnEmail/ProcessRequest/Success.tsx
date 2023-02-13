@@ -9,23 +9,31 @@ import ButtonWithTooltip from "../_utils_components/ButtonWithTooltip";
 // Styled components
 import { BottomInformation, ProcessRequestStageWrapper, AbsoluteButtonsWrapper } from "./_styled_components";
 
-interface SuccessResultProps {
-    isFeigned: boolean;
-    isAlreadySucceeded: boolean;
+interface SuccessProps {
+    hasBeenAlreadySent: boolean;
+}
+
+interface FakedSuccessProps {
+    isStaged: boolean;
+    hasBeenAlreadySent: boolean;
     outroAnimation: boolean;
     refresh: () => void;
     goBackToTheForm: () => void;
 }
 
-const SuccessResult: FunctionComponent<SuccessResultProps> = (props) => {
+const SuccessResult: FunctionComponent<SuccessProps | FakedSuccessProps> = (props) => {
+    function isStaged(props: any): props is FakedSuccessProps {
+        return Object(props).hasOwnProperty("isStaged");
+    }
+
     return (
         <ProcessRequestStageWrapper
             className={[
                 "success", //
-                props.outroAnimation ? "outro" : "",
+                (props as any).outroAnimation ? "outro" : "",
             ].join(" ")}
         >
-            {props.isFeigned && (
+            {isStaged(props) && props.isStaged && (
                 <AbsoluteButtonsWrapper>
                     <ButtonWithTooltip
                         tooltip="Send request again" //
@@ -44,7 +52,7 @@ const SuccessResult: FunctionComponent<SuccessResultProps> = (props) => {
 
             <Check className="main-icon" />
             <BottomInformation>
-                Your message has been {props.isAlreadySucceeded ? <strong>ALREADY</strong> : <></>} sent <strong>successfully</strong>.
+                Your message has been {props.hasBeenAlreadySent ? <strong>ALREADY</strong> : <></>} sent <strong>successfully</strong>.
             </BottomInformation>
         </ProcessRequestStageWrapper>
     );

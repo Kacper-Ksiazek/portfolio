@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
+import { useState, useEffect } from "react";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import { generateSequentialLineAnimations } from "@/utils/client/styled/lineAnimations";
 import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
@@ -33,14 +34,28 @@ const StyledStepper = styled("div")(({ theme }) => ({
     },
 }));
 
-const NavigationBetweenStages: FunctionComponent = (props) => {
-    const { setSendEmailSubsection, sendEmailSubsection } = useSendEmailContext();
+const NavigationBetweenStages: FunctionComponent = () => {
+    const { setSendEmailSubsection, sendEmailSubsection, invalidFormFields } = useSendEmailContext();
+
+    const [generalPurposeSectionIsCorrect, setGeneralPurposeSectionIsCorrect] = useState<boolean>(false);
+    const [contactDetailsSectionIsCorrect, setContactDetailsSectionIsCorrect] = useState<boolean>(false);
+
+    useEffect(() => {
+        switch (sendEmailSubsection) {
+            case "GENERAL_PURPOSE":
+                setGeneralPurposeSectionIsCorrect(invalidFormFields.length === 0);
+                break;
+            case "CONTACT_DETAILS":
+                setContactDetailsSectionIsCorrect(invalidFormFields.length === 0);
+                break;
+        }
+    }, [invalidFormFields, sendEmailSubsection]);
 
     return (
         <StyledStepper className="navigation-between-stages">
             <Step
                 index={1}
-                completed={true}
+                completed={generalPurposeSectionIsCorrect}
                 label="General purpose"
                 active={sendEmailSubsection === "GENERAL_PURPOSE"} //
                 onClick={() => {
@@ -51,7 +66,7 @@ const NavigationBetweenStages: FunctionComponent = (props) => {
 
             <Step
                 index={2}
-                completed={false}
+                completed={contactDetailsSectionIsCorrect}
                 label="Contact details"
                 active={sendEmailSubsection === "CONTACT_DETAILS"} //
                 onClick={() => {

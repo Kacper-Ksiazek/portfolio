@@ -11,18 +11,18 @@ import { BottomInformation, ProcessRequestStageWrapper } from "../_styled_compon
 
 interface PendingProps {
     outroAnimation: boolean;
-    isFeigned: boolean;
+    isStaged: boolean;
 }
 
 const Pending: FunctionComponent<PendingProps> = (props) => {
     return (
         <ProcessRequestStageWrapper
             className={props.outroAnimation ? "outro" : ""} //
-            sx={props.isFeigned ? { pt: "16px" } : {}}
+            sx={props.isStaged ? { pt: "16px" } : {}}
         >
             <CircularProgress />
             <BottomInformation>Your request is processing</BottomInformation>
-            {props.isFeigned && <FeignedPartOnly />}
+            {props.isStaged && <FeignedPartOnly />}
         </ProcessRequestStageWrapper>
     );
 };

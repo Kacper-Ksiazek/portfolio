@@ -31,7 +31,7 @@ export const ProcessRequestStageWrapper = styled("div")(({ theme }) => ({
             color: theme.palette.success.main,
         },
     },
-    "&.error": {
+    "&.failure": {
         svg: {
             color: theme.palette.error.main,
         },

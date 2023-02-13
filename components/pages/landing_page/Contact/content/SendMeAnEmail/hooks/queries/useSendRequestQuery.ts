@@ -6,11 +6,7 @@ import type { SetStateAction, Dispatch } from "react";
 
 const API_ADDRESS = "./api/send_email";
 
-interface UseSendRequestQueryParams {
-    setPreviouslySentEmail: Dispatch<SetStateAction<string | null>>;
-}
-
-export const useSendRequestQuery = (params: UseSendRequestQueryParams): (() => Promise<void>) => {
+export const useSendRequestQuery = (setAlreadySentEmail: Dispatch<SetStateAction<string | null>>): (() => Promise<void>) => {
     const { updateRequest, form } = useSendEmailContext();
 
     return async () => {
@@ -32,7 +28,7 @@ export const useSendRequestQuery = (params: UseSendRequestQueryParams): (() => P
             })
             .then(() => {
                 updateRequest({ status: "success" });
-                params.setPreviouslySentEmail(new Date().toLocaleDateString());
+                setAlreadySentEmail(new Date().toLocaleDateString());
             })
             .catch((res) =>
                 updateRequest({

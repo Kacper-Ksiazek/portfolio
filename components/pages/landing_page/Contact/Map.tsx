@@ -32,25 +32,27 @@ const MapBase = styled("span")(({ theme }) => ({
         animation: `${fadeSimple} .3s 2s linear forward`,
         transition: "background-image .5s",
     },
-    "&.success": {
-        transition: "background-image .5s .6s linear",
-        backgroundImage: 'url("/images/landing-page/europe_map/light/success.png")',
-        "&::after": {
-            backgroundImage: 'url("/images/landing-page/europe_map/poland/success.png")',
-        },
-    },
-    "&.error": {
-        transition: "background-image .5s .6s linear",
-        backgroundImage: 'url("/images/landing-page/europe_map/light/error.png")',
-        "&::after": {
-            backgroundImage: 'url("/images/landing-page/europe_map/poland/error.png")',
-        },
-    },
     "&.SEND_EMAIL_FORM": {
         width: "70%",
         transform: "scale(1.2)",
         "&.CONTACT_DETAILS": {
             transform: "scale(1.3)",
+        },
+        "&.success": {
+            transform: "scale(1.6)",
+            transition: "background-image .5s .6s linear, width 1.2s, transform .6s",
+            backgroundImage: 'url("/images/landing-page/europe_map/light/success.png")',
+            "&::after": {
+                backgroundImage: 'url("/images/landing-page/europe_map/poland/success.png")',
+            },
+        },
+        "&.error": {
+            transform: "scale(1.6)",
+            transition: "background-image .5s .6s linear, width 1.2s, transform .6s",
+            backgroundImage: 'url("/images/landing-page/europe_map/light/error.png")',
+            "&::after": {
+                backgroundImage: 'url("/images/landing-page/europe_map/poland/error.png")',
+            },
         },
     },
 }));

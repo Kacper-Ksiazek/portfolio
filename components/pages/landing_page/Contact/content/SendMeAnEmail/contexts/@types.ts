@@ -1,17 +1,7 @@
 // Types
 import type { CountryType } from "@/data/countries";
 
-export type Status =
-    | "fillingForm"
-    | "pending"
-    | "success"
-    | "already_succeeded"
-    | "error"
-    | "success_but_feigned"
-    | "error_but_feigned"
-    | "pending_but_feigned"
-    | "fillingForm_after_error"
-    | "fillingForm_after_success";
+export type Status = "fillingForm" | "pending" | "success" | "already_succeeded" | "error" | "staged_success" | "staged_error" | "staged_pending" | "form_after_error" | "form_after_success";
 
 export type SendEmailSubsection = "GENERAL_PURPOSE" | "CONTACT_DETAILS" | "RECAPTCHA";
 

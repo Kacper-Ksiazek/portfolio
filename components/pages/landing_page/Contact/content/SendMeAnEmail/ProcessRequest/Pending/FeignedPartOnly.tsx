@@ -22,7 +22,7 @@ const PendingFeignedPart: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     color="success" //
                     icon={<CodeOff />}
                     tooltip="Fake successful request"
-                    onClick={() => updateRequest({ status: "success_but_feigned" })}
+                    onClick={() => updateRequest({ status: "staged_success" })}
                     sx={{
                         animation: `${fadeSimple} .2s .3s linear both `,
                     }}
@@ -31,7 +31,7 @@ const PendingFeignedPart: FunctionComponent<MUIStyledCommonProps> = (props) => {
                     color="error" //
                     icon={<CodeOff />}
                     tooltip="Fake rejected request"
-                    onClick={() => updateRequest({ status: "error_but_feigned" })}
+                    onClick={() => updateRequest({ status: "staged_error" })}
                     sx={{
                         animation: `${fadeSimple} .2s .4s linear both `,
                     }}

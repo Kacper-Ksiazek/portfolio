@@ -1,5 +1,5 @@
 // Tools
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 // Types
 import type { Dispatch, SetStateAction } from "react";
 
@@ -8,8 +8,13 @@ type UseLocalStorageResult<T> = [
     Dispatch<SetStateAction<T>>
 ];
 
-export const useLocalStorage = <T>(localStorageKey: string, initialValue: T): UseLocalStorageResult<T> => {
+interface UseLocalStorageOptions {
+    keepOriginalValue?: boolean;
+}
+
+export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, options?: UseLocalStorageOptions): UseLocalStorageResult<T> => {
     const [value, setValue] = useState<T>(initialValue);
+    const originalValue = useRef<T | null>(null);
 
     useEffect(() => {
         let timeout: ReturnType<typeof setTimeout> | null = null;
@@ -17,7 +22,9 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T): Us
         if (localStorage) {
             const valueFromLocalStorage = localStorage.getItem(localStorageKey);
             if (valueFromLocalStorage !== null && valueFromLocalStorage !== undefined) {
-                setValue(JSON.parse(valueFromLocalStorage));
+                const parsed: T = JSON.parse(valueFromLocalStorage);
+                setValue(parsed);
+                originalValue.current = parsed;
             }
         }
 
@@ -44,5 +51,8 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T): Us
         };
     }, [localStorageKey, value, initialValue]);
 
-    return [value, setValue];
+    return [
+        options && options.keepOriginalValue ? (originalValue.current as T) : value, //
+        setValue,
+    ];
 };

@@ -9,19 +9,19 @@ import ButtonWithTooltip from "../_utils_components/ButtonWithTooltip";
 // Styled components
 import { BottomInformation, ProcessRequestStageWrapper, Divider, AbsoluteButtonsWrapper } from "./_styled_components";
 
-interface ErrorStatusProps {
+interface FailureStatusProps {
     code: number;
-    isFeigned: boolean;
+    isStaged: boolean;
     outroAnimation: boolean;
     refresh: () => void;
     goBackToTheForm: () => void;
 }
 
-const ErrorStatus: FunctionComponent<ErrorStatusProps> = (props) => {
+const FailureStatus: FunctionComponent<FailureStatusProps> = (props) => {
     return (
         <ProcessRequestStageWrapper
             className={[
-                "error", //
+                "failure", //
                 props.outroAnimation ? "outro" : "",
             ].join(" ")}
         >
@@ -37,7 +37,7 @@ const ErrorStatus: FunctionComponent<ErrorStatusProps> = (props) => {
                 Error: <strong>{props.code}</strong>
             </span>
 
-            {props.isFeigned && (
+            {props.isStaged && (
                 <AbsoluteButtonsWrapper>
                     <ButtonWithTooltip
                         tooltip="Send request again" //
@@ -58,4 +58,4 @@ const ErrorStatus: FunctionComponent<ErrorStatusProps> = (props) => {
     );
 };
 
-export default ErrorStatus;
+export default FailureStatus;

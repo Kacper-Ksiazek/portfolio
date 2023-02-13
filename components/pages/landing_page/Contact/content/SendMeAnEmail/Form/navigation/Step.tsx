@@ -71,6 +71,9 @@ const StyledStep = styled("div")(({ theme }) => ({
         },
     },
     "&.completed": {
+        "span.index": {
+            background: theme.palette.success.main,
+        },
         "span.index span.content.incomplete": {
             opacity: 0,
         },

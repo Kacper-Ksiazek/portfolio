@@ -15,23 +15,23 @@ import { SendEmailContextProvider } from "./contexts";
 // Styled Components
 import SendMeAnEmailWrapper from "./_styled_components/SendMeAnEmailWrapper";
 
-const SendMeAnEmail: FunctionComponent = (props) => {
+const SendMeAnEmail: FunctionComponent = () => {
     const [specialWayOfRendering, setSpecialWayOfRendering] = useState<null | "displayOutroAnimation" | "hideIt">(null);
-    const [previouslySentEmail, setPreviouslySentEmail] = useLocalStorage<string | null>("email-has-been-already-send", null);
+    const [alreadySentEmail, setAlreadySentEmail] = useLocalStorage<string | null>("email-has-been-already-send", null, { keepOriginalValue: true });
 
     const { changeMapStatus } = useMapContext();
     const { updateRequest, request } = useSendEmailContext();
 
-    const sendRequest = useSendRequestQuery({ setPreviouslySentEmail });
+    const sendRequest = useSendRequestQuery(setAlreadySentEmail);
 
     useEffect(() => {
         if (specialWayOfRendering === null && request.status === "fillingForm") return;
 
-        if ((["fillingForm", "fillingForm_after_error", "fillingForm_after_success"] as Status[]).includes(request.status)) {
+        if ((["fillingForm", "form_after_error", "form_after_success"] as Status[]).includes(request.status)) {
             setSpecialWayOfRendering(null);
             // ---
             // Let the outro animation end and then simply stop rendering <ProcessRequest/> component
-            if ((["fillingForm_after_error", "fillingForm_after_success"] as Status[]).includes(request.status)) {
+            if ((["form_after_error", "form_after_success"] as Status[]).includes(request.status)) {
                 setTimeout(() => {
                     updateRequest({ status: "fillingForm" });
                 }, 300);
@@ -49,19 +49,19 @@ const SendMeAnEmail: FunctionComponent = (props) => {
     useEffect(() => {
         const status = request.status;
 
-        if (status === "error" || status === "error_but_feigned") {
+        if (status === "error" || status === "staged_error") {
             changeMapStatus("error");
         } //
-        else if (status === "success" || status === "success_but_feigned") {
+        else if (status === "success" || status === "staged_success" || alreadySentEmail) {
             changeMapStatus("success");
         } //
         else changeMapStatus(null);
-    }, [request.status, changeMapStatus]);
+    }, [request.status, changeMapStatus, alreadySentEmail]);
 
     return (
         <SendMeAnEmailWrapper id="send-me-en-email-wrapper">
             {(() => {
-                if (specialWayOfRendering !== "hideIt" || previouslySentEmail) {
+                if (specialWayOfRendering !== "hideIt" && !alreadySentEmail) {
                     return (
                         <Form
                             displayOutroAnimation={specialWayOfRendering === "displayOutroAnimation"} //
@@ -72,12 +72,16 @@ const SendMeAnEmail: FunctionComponent = (props) => {
                 return <></>;
             })()}
 
-            {(request.status !== "fillingForm" || previouslySentEmail) && (
-                <ProcessRequest
-                    sendRequest={sendRequest} //
-                    emailHasBeenAlreadySent={Boolean(previouslySentEmail)}
-                />
-            )}
+            {(() => {
+                if (request.status !== "fillingForm" || alreadySentEmail) {
+                    return (
+                        <ProcessRequest
+                            sendRequest={sendRequest} //
+                            emailHasBeenAlreadySent={Boolean(alreadySentEmail)}
+                        />
+                    );
+                }
+            })()}
         </SendMeAnEmailWrapper>
     );
 };

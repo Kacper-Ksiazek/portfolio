@@ -32,14 +32,14 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
     const feignSucceededRequest = () => {
         updateRequest({ status: "pending" });
         setTimeout(() => {
-            updateRequest({ status: "success_but_feigned" });
+            updateRequest({ status: "staged_success" });
         }, 750);
     };
 
     const feignInvalidRequest = () => {
         updateRequest({ status: "pending" });
         setTimeout(() => {
-            updateRequest({ status: "error_but_feigned" });
+            updateRequest({ status: "staged_error" });
         }, 750);
     };
 

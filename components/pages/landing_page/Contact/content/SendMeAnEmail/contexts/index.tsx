@@ -3,9 +3,8 @@ import * as validators from "./utils/joi_validators";
 import * as reducersDefaultValues from "./utils/reducersDefaultValues";
 import { createContext, useState, useReducer, useMemo } from "react";
 // Types
-import type { EmailForm, Request } from "./@types";
-import type { SendEmailSubsection } from "../../@types";
 import type { FunctionComponent, ReactNode } from "react";
+import type { EmailForm, Request, SendEmailSubsection } from "./@types";
 
 const STAGE_CHANGE_ANIMATION_DURATION = 1000;
 
