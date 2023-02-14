@@ -1,10 +1,12 @@
+// Tools
+import { useSectionsParser } from "./hooks/useSectionsParser";
+import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
 import Content from "./content";
 import BottomButtons from "./BottomButtons";
 import NavigationBetweenStages from "./navigation";
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
 // Styled Components
 import FormWrapper from "./FormWrapper";
 
@@ -14,22 +16,17 @@ interface EmailFormProps {
 }
 
 const EmailForm: FunctionComponent<EmailFormProps> = (props) => {
-    const { sendEmailSubsection, setSendEmailSubsection, sendEmailSubsectionIsChanging } = useSendEmailContext();
-
-    const onContinueButtonClick = () => {
-        if (sendEmailSubsection === "GENERAL_PURPOSE") setSendEmailSubsection("CONTACT_DETAILS");
-        else if (sendEmailSubsection === "CONTACT_DETAILS") setSendEmailSubsection("RECAPTCHA");
-        else props.sendRequest();
-    };
+    const { validSections, proceed } = useSectionsParser(props.sendRequest);
+    const { emailFormSubsection, emailFormSubsectionIsChanging } = useSendEmailContext();
 
     return (
         <FormWrapper className={props.displayOutroAnimation ? "outro-animation" : ""}>
-            <NavigationBetweenStages />
+            <NavigationBetweenStages validSections={validSections} />
             <Content
-                sendEmailSubsection={sendEmailSubsection} //
-                sendEmailSubsectionIsChanging={sendEmailSubsectionIsChanging}
+                emailFormSubsection={emailFormSubsection} //
+                emailFormSubsectionIsChanging={emailFormSubsectionIsChanging}
             />
-            <BottomButtons onContinueButtonClick={onContinueButtonClick} />
+            <BottomButtons onContinueButtonClick={proceed} />
         </FormWrapper>
     );
 };

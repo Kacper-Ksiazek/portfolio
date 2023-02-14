@@ -3,7 +3,7 @@ import { styled } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Types
 import type { FunctionComponent } from "react";
-import type { GeneralContactSection, SendEmailSubsection } from "./@types";
+import type { GeneralContactSection, EmailFormSubsection } from "./@types";
 // Styled components
 const MapBase = styled("span")(({ theme }) => ({
     width: "50%",
@@ -59,7 +59,7 @@ const MapBase = styled("span")(({ theme }) => ({
 
 interface MapProps {
     status: "success" | "error" | null;
-    sendEmailSubsection: SendEmailSubsection;
+    emailFormSubsection: EmailFormSubsection;
     currentGeneralSection: GeneralContactSection;
 }
 
@@ -70,7 +70,7 @@ const Map: FunctionComponent<MapProps> = (props) => {
             className={[
                 props.status ?? "", //
                 props.currentGeneralSection,
-                props.sendEmailSubsection,
+                props.emailFormSubsection,
             ].join(" ")}
         >
             <span></span>

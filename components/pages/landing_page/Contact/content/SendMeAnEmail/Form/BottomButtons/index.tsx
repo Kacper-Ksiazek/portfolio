@@ -27,7 +27,7 @@ interface BottomButtonsProps {
     onContinueButtonClick: () => void;
 }
 const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
-    const { updateRequest, invalidFormFields } = useSendEmailContext();
+    const { updateRequest, invalidFormFields, emailFormSubsection } = useSendEmailContext();
 
     const feignSucceededRequest = () => {
         updateRequest({ status: "pending" });
@@ -53,22 +53,28 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
                 <span className="text">Continue</span>
             </ContinueButton>
 
-            <div className="flex">
-                <ButtonWithTooltip
-                    color="error" //
-                    tooltip="Fake invalid request"
-                    onClick={feignInvalidRequest}
-                    icon={<CodeOff />}
-                    className="fake-invalid-request"
-                />
-                <ButtonWithTooltip
-                    color="success" //
-                    tooltip="Fake successful request"
-                    onClick={feignSucceededRequest}
-                    icon={<CodeOff />}
-                    className="fake-valid-request"
-                />
-            </div>
+            {(() => {
+                if (emailFormSubsection !== "RECAPTCHA") {
+                    return (
+                        <div className="flex">
+                            <ButtonWithTooltip
+                                color="error" //
+                                tooltip="Fake invalid request"
+                                onClick={feignInvalidRequest}
+                                icon={<CodeOff />}
+                                className="fake-invalid-request"
+                            />
+                            <ButtonWithTooltip
+                                color="success" //
+                                tooltip="Fake successful request"
+                                onClick={feignSucceededRequest}
+                                icon={<CodeOff />}
+                                className="fake-valid-request"
+                            />
+                        </div>
+                    );
+                }
+            })()}
         </ButtonsBottomWrapper>
     );
 };

@@ -6,7 +6,7 @@ import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Types
 import type { SxProps } from "@mui/system";
 import type { FunctionComponent, ReactNode } from "react";
-import type { GeneralContactSection, SendEmailSubsection } from "./@types";
+import type { GeneralContactSection, EmailFormSubsection } from "./@types";
 // Other components
 const Map = dynamic(() => import("./Map"));
 import VisibilitySensor from "@/components/utils/VisibilitySensor";
@@ -18,7 +18,7 @@ interface ContactWrapperProps {
     children: ReactNode;
 
     hideContent: boolean;
-    sendEmailSubsection: SendEmailSubsection;
+    emailFormSubsection: EmailFormSubsection;
     currentGeneralSection: GeneralContactSection;
     setCurrentGeneralSection: (val: GeneralContactSection) => void;
 }
@@ -75,7 +75,7 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                 renderMap ? (
                     <Map
                         status={status} //
-                        sendEmailSubsection={props.sendEmailSubsection}
+                        emailFormSubsection={props.emailFormSubsection}
                         currentGeneralSection={props.currentGeneralSection}
                     />
                 ) : (

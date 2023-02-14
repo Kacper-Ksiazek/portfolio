@@ -5,38 +5,38 @@ import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import * as reducersDefaultValues from "./utils/reducersDefaultValues";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { EmailForm, Request, SendEmailSubsection } from "./@types";
+import type { EmailForm, Request, EmailFormSubsection } from "./@types";
 
 const STAGE_CHANGE_ANIMATION_DURATION = 1000;
 
 interface I_SendEmailContext {
     form: EmailForm;
     request: Request;
-    sendEmailSubsection: SendEmailSubsection;
-    sendEmailSubsectionIsChanging: boolean;
+    emailFormSubsection: EmailFormSubsection;
+    emailFormSubsectionIsChanging: boolean;
     invalidFormFields: (keyof EmailForm)[];
 
     updateForm: (newForm: Partial<EmailForm>) => void;
     updateRequest: (newForm: Partial<Request>) => void;
-    setSendEmailSubsection: (val: SendEmailSubsection) => void;
+    setEmailFormSubsection: (val: EmailFormSubsection) => void;
 }
 
 interface SendEmailContextProviderProps {
     children: ReactNode;
-    sendEmailSubsection: SendEmailSubsection;
-    _setSendEmailSubsection: (val: SendEmailSubsection) => void;
+    emailFormSubsection: EmailFormSubsection;
+    _setEmailFormSubsection: (val: EmailFormSubsection) => void;
 }
 
 export const SendEmailContext = createContext({} as I_SendEmailContext);
 
 export const SendEmailContextProvider: FunctionComponent<SendEmailContextProviderProps> = (props) => {
-    const [sendEmailSubsectionIsChanging, setsendEmailSubsectionIsChanging] = useState<boolean>(false);
+    const [emailFormSubsectionIsChanging, setemailFormSubsectionIsChanging] = useState<boolean>(false);
 
     const [form, updateForm] = useSimpleReducer<EmailForm>(reducersDefaultValues.EMPTY_FORM_STATE);
     const [request, updateRequest] = useSimpleReducer<Request>(reducersDefaultValues.EMPTY_REQUEST_STATE);
 
     const invalidFormFields = useMemo<(keyof EmailForm)[]>(() => {
-        switch (props.sendEmailSubsection) {
+        switch (props.emailFormSubsection) {
             case "GENERAL_PURPOSE":
                 return validators.generalPurposeValidator({
                     author: form.author,
@@ -50,17 +50,18 @@ export const SendEmailContextProvider: FunctionComponent<SendEmailContextProvide
                     ...(form.github ? { github: form.github } : null),
                     country: form.country ? form.country.label : "",
                 });
+            case "RECAPTCHA":
+                return form.ReCAPTCHAIsApproved ? [] : ["ReCAPTCHAIsApproved"];
         }
-        return [];
-    }, [props.sendEmailSubsection, form]);
+    }, [props.emailFormSubsection, form]);
 
-    function setSendEmailSubsection(val: SendEmailSubsection) {
-        if (sendEmailSubsectionIsChanging) return;
-        setsendEmailSubsectionIsChanging(true);
+    function setEmailFormSubsection(val: EmailFormSubsection) {
+        if (emailFormSubsectionIsChanging) return;
+        setemailFormSubsectionIsChanging(true);
 
         setTimeout(() => {
-            props._setSendEmailSubsection(val);
-            setsendEmailSubsectionIsChanging(false);
+            props._setEmailFormSubsection(val);
+            setemailFormSubsectionIsChanging(false);
         }, STAGE_CHANGE_ANIMATION_DURATION);
     }
 
@@ -68,14 +69,14 @@ export const SendEmailContextProvider: FunctionComponent<SendEmailContextProvide
         <SendEmailContext.Provider
             value={{
                 form,
-                sendEmailSubsection: props.sendEmailSubsection,
+                emailFormSubsection: props.emailFormSubsection,
                 invalidFormFields,
                 request,
-                sendEmailSubsectionIsChanging,
+                emailFormSubsectionIsChanging,
 
                 updateForm,
                 updateRequest,
-                setSendEmailSubsection,
+                setEmailFormSubsection,
             }}
         >
             {props.children}

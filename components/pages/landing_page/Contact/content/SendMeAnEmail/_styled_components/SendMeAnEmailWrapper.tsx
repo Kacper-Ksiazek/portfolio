@@ -7,6 +7,5 @@ export default styled("div")(({ theme }) => ({
     position: "relative",
     alignSelf: "flex-start",
     height: "440px",
-    overflow: "hidden",
     boxSizing: "border-box",
 }));

@@ -1,11 +1,11 @@
 // Tools
 import { styled } from "@mui/system";
-import { useState, useEffect } from "react";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import { generateSequentialLineAnimations } from "@/utils/client/styled/lineAnimations";
+import { generateSequentialLineAnimations, generateStaticLineAnimations } from "@/utils/client/styled/lineAnimations";
 import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
+import type { EmailFormSubsection } from "@/components/pages/landing_page/Contact/@types";
 // Other components
 import Step from "./Step";
 // Styled components
@@ -28,52 +28,68 @@ const StyledStepper = styled("div")(({ theme }) => ({
                 betweenSequenceElements: 0.05,
             },
         }),
+        "&:nth-of-type(3)": generateStaticLineAnimations({
+            animations: {
+                commonDuration: 0.25,
+                start: {
+                    direction: "BOTTOM",
+                },
+                end: {
+                    direction: "TOP",
+                },
+            },
+            color: theme.palette.primary.main,
+        }),
         "&::before": {
             animation: `${fadeSimple} .2s linear both 1.8s`,
         },
     },
 }));
 
-const NavigationBetweenStages: FunctionComponent = () => {
-    const { setSendEmailSubsection, sendEmailSubsection, invalidFormFields } = useSendEmailContext();
+interface NavigationBetweenStagesProps {
+    validSections: Record<EmailFormSubsection, boolean>;
+}
 
-    const [generalPurposeSectionIsCorrect, setGeneralPurposeSectionIsCorrect] = useState<boolean>(false);
-    const [contactDetailsSectionIsCorrect, setContactDetailsSectionIsCorrect] = useState<boolean>(false);
+const NavigationBetweenStages: FunctionComponent<NavigationBetweenStagesProps> = (props) => {
+    const { setEmailFormSubsection, emailFormSubsection } = useSendEmailContext();
 
-    useEffect(() => {
-        switch (sendEmailSubsection) {
-            case "GENERAL_PURPOSE":
-                setGeneralPurposeSectionIsCorrect(invalidFormFields.length === 0);
-                break;
-            case "CONTACT_DETAILS":
-                setContactDetailsSectionIsCorrect(invalidFormFields.length === 0);
-                break;
-        }
-    }, [invalidFormFields, sendEmailSubsection]);
+    function parseSection(section: EmailFormSubsection): {
+        isValid: boolean; //
+        isActive: boolean;
+        isBlocked: boolean;
+    } {
+        return {
+            isValid: props.validSections[section],
+            isActive: emailFormSubsection === section,
+            isBlocked: section !== "RECAPTCHA" && emailFormSubsection === "RECAPTCHA",
+        };
+    }
 
     return (
         <StyledStepper className="navigation-between-stages">
-            <Step
-                index={1}
-                completed={generalPurposeSectionIsCorrect}
-                label="General purpose"
-                active={sendEmailSubsection === "GENERAL_PURPOSE"} //
-                onClick={() => {
-                    if (sendEmailSubsection === "GENERAL_PURPOSE") return;
-                    setSendEmailSubsection("GENERAL_PURPOSE");
-                }}
-            />
+            {(
+                [
+                    { label: "General purpose", section: "GENERAL_PURPOSE" },
+                    { label: "Contact details", section: "CONTACT_DETAILS" },
+                    { label: "ReCAPTCHA", section: "RECAPTCHA" },
+                ] as { label: string; section: EmailFormSubsection }[]
+            )
+                .slice(0, emailFormSubsection === "RECAPTCHA" ? 3 : 2)
+                .map(({ label, section }, index) => {
+                    const { isActive, isBlocked, isValid } = parseSection(section);
 
-            <Step
-                index={2}
-                completed={contactDetailsSectionIsCorrect}
-                label="Contact details"
-                active={sendEmailSubsection === "CONTACT_DETAILS"} //
-                onClick={() => {
-                    if (sendEmailSubsection === "CONTACT_DETAILS") return;
-                    setSendEmailSubsection("CONTACT_DETAILS");
-                }}
-            />
+                    return (
+                        <Step
+                            key={index} //
+                            index={index + 1}
+                            label={label}
+                            active={isActive}
+                            completed={isValid}
+                            blocked={isBlocked}
+                            onClick={() => setEmailFormSubsection(section)}
+                        />
+                    );
+                })}
         </StyledStepper>
     );
 };

@@ -2,7 +2,7 @@
 import { useState } from "react";
 // Types
 import type { FunctionComponent } from "react";
-import type { GeneralContactSection, SendEmailSubsection } from "./@types";
+import type { GeneralContactSection, EmailFormSubsection } from "./@types";
 // Other components
 import Content from "./content";
 import ContactWrapper from "./ContactWrapper";
@@ -12,7 +12,7 @@ import MapContextProvider from "./mapContext/Provider";
 const CONTENT_HIDING_ANIMATION: number = 300;
 
 const Contact: FunctionComponent = () => {
-    const [sendEmailSubsection, setSendEmailSubsection] = useState<SendEmailSubsection>("GENERAL_PURPOSE");
+    const [emailFormSubsection, setEmailFormSubsection] = useState<EmailFormSubsection>("CONTACT_DETAILS");
     const [currentGeneralSection, _setCurrentGeneralSection] = useState<GeneralContactSection>("WAYS_TO_REACH_ME");
     const [hideContent, setHideContent] = useState<boolean>(false);
 
@@ -35,15 +35,15 @@ const Contact: FunctionComponent = () => {
     return (
         <ContactWrapper
             currentGeneralSection={currentGeneralSection} //
-            sendEmailSubsection={sendEmailSubsection}
+            emailFormSubsection={emailFormSubsection}
             setCurrentGeneralSection={setCurrentGeneralSection}
             hideContent={hideContent}
         >
             <Content
                 currentGeneralSection={currentGeneralSection} //
-                sendEmailSubsection={sendEmailSubsection}
+                emailFormSubsection={emailFormSubsection}
                 writeToMe={writeToMe}
-                setSendEmailSubsection={setSendEmailSubsection}
+                setEmailFormSubsection={setEmailFormSubsection}
             />
         </ContactWrapper>
     );

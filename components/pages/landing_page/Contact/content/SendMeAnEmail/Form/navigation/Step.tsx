@@ -66,9 +66,13 @@ const StyledStep = styled("div")(({ theme }) => ({
         },
     },
     "&.active": {
+        cursor: "default",
         "span.index::before": {
             transform: "translateY(0)",
         },
+    },
+    "&.blocked": {
+        cursor: "default",
     },
     "&.completed": {
         "span.index": {
@@ -95,6 +99,7 @@ interface StepProps {
     index: number;
     label: string;
     active: boolean;
+    blocked: boolean;
     completed: boolean;
     onClick: () => void;
 }
@@ -105,10 +110,14 @@ const Step: FunctionComponent<StepProps> = (props) => {
             role="button"
             className={[
                 `${props.active ? "active" : ""}`, //
+                `${props.blocked ? "blocked" : ""}`,
                 `${props.completed ? "completed" : "incompleted"}`,
                 "single-nagivation-step",
             ].join(" ")}
-            onClick={props.onClick}
+            onClick={() => {
+                if (props.active || props.blocked) return;
+                props.onClick();
+            }}
         >
             <span className="index">
                 <span className="content incomplete">{props.index}</span>

@@ -1,7 +1,9 @@
 // Tools
-import { styled } from "@mui/system";
 import { useState } from "react";
+import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { styled } from "@mui/system";
 import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
+import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -13,18 +15,32 @@ const Paragraph = styled("p")(({ theme }) => ({
     animation: `${fadeFromLeft} .2s linear .2s both`,
 }));
 
-const SendEmailSubsection1: FunctionComponent = (props) => {
-    const [ReCAPTCHAIsApproved, setReCAPTCHAIsApproved] = useState<boolean>(true);
+const PreventFromNavigating = styled("span")(({ theme }) => ({
+    position: "absolute",
+    top: "-50px",
+    width: "100%",
+    height: "100px",
+    zIndex: 20,
+}));
+
+const EmailFormSubsection1: FunctionComponent = (props) => {
+    const { updateForm, form } = useSendEmailContext();
+    const [identityReminder, setIdentityReminder] = useState<boolean>(false);
+
+    function setReCAPTCHAIsApproved(val: boolean) {
+        updateForm({ ReCAPTCHAIsApproved: val });
+    }
 
     return (
         <>
-            <Paragraph>
-                One last step before sending a message. Fore some reason the google recaptcha in this particular project is not eager to cooperate with me, so in order not to spend additional 3 hours
-                struggling to fix it I decided to let it be like this 🤷‍♀️🤷‍♀️
-            </Paragraph>
-            {/* <GoogleReCAPTCHA setReCAPTCHAIsApproved={setReCAPTCHAIsApproved} /> */}
+            {!form.ReCAPTCHAIsApproved && <PreventFromNavigating onMouseEnter={() => setIdentityReminder(true)} />}
+
+            <Paragraph>One last step before sending a message.</Paragraph>
+            <GoogleReCAPTCHA setReCAPTCHAIsApproved={setReCAPTCHAIsApproved} />
+
+            {identityReminder && <Paragraph sx={{ animation: `${fadeSimple} .3s both` }}>In order to go back, you have to confirm that you are not a robot!</Paragraph>}
         </>
     );
 };
 
-export default SendEmailSubsection1;
+export default EmailFormSubsection1;

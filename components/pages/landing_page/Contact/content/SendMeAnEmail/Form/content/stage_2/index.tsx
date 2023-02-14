@@ -17,7 +17,7 @@ const InformationAboutOptionality = styled("span")(({ theme }) => ({
     userSelect: "none",
 }));
 
-const SendEmailSubsection1: FunctionComponent = (props) => {
+const EmailFormSubsection1: FunctionComponent = (props) => {
     const { form, updateForm, invalidFormFields } = useSendEmailContext();
 
     return (
@@ -54,4 +54,4 @@ const SendEmailSubsection1: FunctionComponent = (props) => {
     );
 };
 
-export default SendEmailSubsection1;
+export default EmailFormSubsection1;

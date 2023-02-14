@@ -7,7 +7,7 @@ import { useMapContext } from "@/components/pages/landing_page/Contact/hooks/use
 // Types
 import type { FunctionComponent } from "react";
 import type { Status } from "./contexts/@types";
-import type { SendEmailSubsection } from "@/components/pages/landing_page/Contact/@types";
+import type { EmailFormSubsection } from "@/components/pages/landing_page/Contact/@types";
 // Other components
 import Form from "./Form";
 import ProcessRequest from "./ProcessRequest";
@@ -87,15 +87,15 @@ const SendMeAnEmail: FunctionComponent = () => {
 };
 
 interface SendMeAnEmailContextsWrapperProps {
-    sendEmailSubsection: SendEmailSubsection;
-    setSendEmailSubsection: (val: SendEmailSubsection) => void;
+    emailFormSubsection: EmailFormSubsection;
+    setEmailFormSubsection: (val: EmailFormSubsection) => void;
 }
 
 const SendMeAnEmailContextsWrapper: FunctionComponent<SendMeAnEmailContextsWrapperProps> = (props) => {
     return (
         <SendEmailContextProvider
-            sendEmailSubsection={props.sendEmailSubsection} //
-            _setSendEmailSubsection={props.setSendEmailSubsection}
+            emailFormSubsection={props.emailFormSubsection} //
+            _setEmailFormSubsection={props.setEmailFormSubsection}
         >
             {/*  */}
             <SendMeAnEmail />

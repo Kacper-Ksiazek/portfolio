@@ -2,17 +2,17 @@
 import dynamic from "next/dynamic";
 // Types
 import type { FunctionComponent } from "react";
-import type { SendEmailSubsection, GeneralContactSection } from "../@types";
+import type { EmailFormSubsection, GeneralContactSection } from "../@types";
 // Other components
 import WaysToReachMe from "./WaysToReachMe";
 const SendMeAnEmail = dynamic(() => import("./SendMeAnEmail"));
 
 interface ContactContentProps {
-    sendEmailSubsection: SendEmailSubsection;
+    emailFormSubsection: EmailFormSubsection;
     currentGeneralSection: GeneralContactSection;
 
     writeToMe: () => void;
-    setSendEmailSubsection: (val: SendEmailSubsection) => void;
+    setEmailFormSubsection: (val: EmailFormSubsection) => void;
 }
 
 const ContactContent: FunctionComponent<ContactContentProps> = (props) => {
@@ -22,8 +22,8 @@ const ContactContent: FunctionComponent<ContactContentProps> = (props) => {
         case "SEND_EMAIL_FORM":
             return (
                 <SendMeAnEmail
-                    sendEmailSubsection={props.sendEmailSubsection} //
-                    setSendEmailSubsection={props.setSendEmailSubsection}
+                    emailFormSubsection={props.emailFormSubsection} //
+                    setEmailFormSubsection={props.setEmailFormSubsection}
                 />
             );
     }
