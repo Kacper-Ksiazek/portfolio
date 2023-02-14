@@ -17,10 +17,14 @@ const Paragraph = styled("p")(({ theme }) => ({
 
 const PreventFromNavigating = styled("span")(({ theme }) => ({
     position: "absolute",
-    top: "-50px",
+    top: "0px",
     width: "100%",
-    height: "100px",
+    height: "120px",
+    transform: "translateY(-50%)",
     zIndex: 20,
+    "@media (max-width:770px)": {
+        height: "160px",
+    },
 }));
 
 const EmailFormSubsection1: FunctionComponent = (props) => {

@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Types
 import type { FunctionComponent } from "react";
@@ -55,6 +56,12 @@ const MapBase = styled("span")(({ theme }) => ({
             },
         },
     },
+    "@media (max-width:1300px)": {
+        width: "60%",
+    },
+    "@media (max-width:1000px)": {
+        width: "80%",
+    },
 }));
 
 interface MapProps {
@@ -64,6 +71,9 @@ interface MapProps {
 }
 
 const Map: FunctionComponent<MapProps> = (props) => {
+    const { width } = useWindowSizes();
+
+    if (width < 800) return <></>;
     return (
         <MapBase
             id="map"

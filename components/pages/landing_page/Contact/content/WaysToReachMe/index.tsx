@@ -25,6 +25,10 @@ const WaysToReachMeWrapper = styled("div")(({ theme }) => ({
     alignSelf: "flex-start",
     overflow: "hidden",
     boxSizing: "border-box",
+    "@media (max-width:1000px)": {
+        width: "100%",
+        marginTop: "24px",
+    },
 }));
 
 const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
@@ -77,6 +81,9 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
                     animation: `${fadeSimple} .3s 2.4s both`,
                     svg: {
                         marginRight: "6px",
+                    },
+                    "@media (max-width:500px)": {
+                        width: "100%",
                     },
                 }}
             >

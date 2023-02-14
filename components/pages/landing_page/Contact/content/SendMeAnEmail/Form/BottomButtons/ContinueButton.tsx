@@ -54,4 +54,7 @@ export default styled(ButtonBase)(({ theme }) => ({
         background: alpha(theme.palette.text.primary, 0.4),
         color: theme.palette.text.primary,
     },
+    "@media (max-width:500px)": {
+        width: "100%",
+    },
 }));

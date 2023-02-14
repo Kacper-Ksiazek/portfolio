@@ -21,6 +21,17 @@ const ButtonsBottomWrapper = styled("footer")(({ theme }) => ({
         display: "flex",
         animation: `${fadeSimple} .3s 1.7s linear both`,
     },
+    "@media (max-width:500px)": {
+        flexDirection: "column",
+        "div.flex": {
+            width: "100%",
+            marginTop: "12px",
+            justifyContent: "space-between",
+            button: {
+                width: "calc(50% - 6px)",
+            },
+        },
+    },
 }));
 
 interface BottomButtonsProps {

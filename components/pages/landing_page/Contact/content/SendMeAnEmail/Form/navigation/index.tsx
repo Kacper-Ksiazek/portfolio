@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/system";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import { generateSequentialLineAnimations, generateStaticLineAnimations } from "@/utils/client/styled/lineAnimations";
 import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
@@ -44,6 +45,23 @@ const StyledStepper = styled("div")(({ theme }) => ({
             animation: `${fadeSimple} .2s linear both 1.8s`,
         },
     },
+    "@media (max-width:800px)": {
+        justifyContent: "space-between",
+        ".single-nagivation-step": {
+            background: "#fff",
+            "&:nth-of-type(1)": {
+                paddingRight: "8px",
+                zIndex: 2,
+            },
+            "&:not(&:nth-of-type(1))": {
+                marginLeft: 0,
+                "&::before": {
+                    width: "30vw",
+                    transform: "translate(-105%,50%)",
+                },
+            },
+        },
+    },
 }));
 
 interface NavigationBetweenStagesProps {
@@ -52,6 +70,7 @@ interface NavigationBetweenStagesProps {
 
 const NavigationBetweenStages: FunctionComponent<NavigationBetweenStagesProps> = (props) => {
     const { setEmailFormSubsection, emailFormSubsection } = useSendEmailContext();
+    const { width } = useWindowSizes();
 
     function parseSection(section: EmailFormSubsection): {
         isValid: boolean; //
@@ -74,7 +93,7 @@ const NavigationBetweenStages: FunctionComponent<NavigationBetweenStagesProps> =
                     { label: "ReCAPTCHA", section: "RECAPTCHA" },
                 ] as { label: string; section: EmailFormSubsection }[]
             )
-                .slice(0, emailFormSubsection === "RECAPTCHA" ? 3 : 2)
+                .slice(0, emailFormSubsection === "RECAPTCHA" && width > 800 ? 3 : 2)
                 .map(({ label, section }, index) => {
                     const { isActive, isBlocked, isValid } = parseSection(section);
 

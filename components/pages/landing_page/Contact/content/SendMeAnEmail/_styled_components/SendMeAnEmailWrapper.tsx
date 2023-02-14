@@ -8,4 +8,9 @@ export default styled("div")(({ theme }) => ({
     alignSelf: "flex-start",
     height: "440px",
     boxSizing: "border-box",
+    "@media (max-width:1000px)": {
+        width: "100%",
+        marginTop: "24px",
+        height: "500px",
+    },
 }));
