@@ -10,8 +10,10 @@ const FeignedPartOnly = dynamic(() => import("./FeignedPartOnly"));
 import { BottomInformation, ProcessRequestStageWrapper } from "../_styled_components";
 
 interface PendingProps {
-    outroAnimation: boolean;
     isStaged: boolean;
+    outroAnimation: boolean;
+
+    goBackToTheForm: () => void;
 }
 
 const Pending: FunctionComponent<PendingProps> = (props) => {
@@ -22,7 +24,7 @@ const Pending: FunctionComponent<PendingProps> = (props) => {
         >
             <CircularProgress />
             <BottomInformation>Your request is processing</BottomInformation>
-            {props.isStaged && <FeignedPartOnly />}
+            {props.isStaged && <FeignedPartOnly goBackToTheForm={props.goBackToTheForm} />}
         </ProcessRequestStageWrapper>
     );
 };

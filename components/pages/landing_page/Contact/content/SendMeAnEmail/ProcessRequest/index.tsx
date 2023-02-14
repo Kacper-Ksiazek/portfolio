@@ -24,10 +24,14 @@ const ProcessRequest: FunctionComponent<ProcessRequestParams> = (props) => {
             <Pending
                 outroAnimation={requestParser.outroAnimatins.pending} //
                 isStaged={isStaged}
+                goBackToTheForm={goBackToTheForm}
             />
 
             {(() => {
                 switch (requestParser.screenToDisplay) {
+                    case null:
+                        return <></>;
+
                     case "SUCCESS":
                         return (
                             <Success

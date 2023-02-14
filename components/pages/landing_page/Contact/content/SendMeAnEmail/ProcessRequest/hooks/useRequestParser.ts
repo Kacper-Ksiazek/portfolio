@@ -35,10 +35,10 @@ export function useRequestParser(sendRequest: () => void): UseRequestParserResul
     return {
         isStaged: status.slice(0, 7) === "staged_",
         errorCode: request.errorCode ?? 400,
-        screenToDisplay: status.includes("pending") ? null : status.includes("success") ? "SUCCESS" : "FAILURE",
+        screenToDisplay: status.includes("pending") || status.includes("form_after") ? null : status.includes("success") ? "SUCCESS" : "FAILURE",
         outroAnimatins: {
-            success: status === "form_after_success",
-            failure: status === "form_after_error",
+            success: status === "form_after_success" || status === "staged_pending",
+            failure: status === "form_after_error" || status === "staged_pending",
             pending: status !== "pending" && status !== "staged_pending",
         },
 
