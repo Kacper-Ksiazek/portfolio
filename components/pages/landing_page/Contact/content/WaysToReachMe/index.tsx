@@ -66,17 +66,17 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
             </Tooltip>
 
             <StyledButton
-                color="secondary"
+                color="primary"
                 onClick={props.writeToMe}
                 sx={{
                     mt: "32px", //
-                    p: "8px 32px",
-                    fontSize: "18px",
+                    padding: "12px 32px",
                     display: "flex",
+                    fontFamily: "Montserrat Alternates",
                     alignItems: "center",
                     animation: `${fadeSimple} .3s 2.4s both`,
                     svg: {
-                        marginRight: "8px",
+                        marginRight: "6px",
                     },
                 }}
             >
