@@ -1,7 +1,8 @@
 // Tools
 import * as validators from "./utils/joi_validators";
+import { createContext, useState, useMemo } from "react";
+import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import * as reducersDefaultValues from "./utils/reducersDefaultValues";
-import { createContext, useState, useReducer, useMemo } from "react";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 import type { EmailForm, Request, SendEmailSubsection } from "./@types";
@@ -31,18 +32,8 @@ export const SendEmailContext = createContext({} as I_SendEmailContext);
 export const SendEmailContextProvider: FunctionComponent<SendEmailContextProviderProps> = (props) => {
     const [sendEmailSubsectionIsChanging, setsendEmailSubsectionIsChanging] = useState<boolean>(false);
 
-    const [form, updateForm] = useReducer((state: EmailForm, newState: Partial<EmailForm>): EmailForm => {
-        return {
-            ...state,
-            ...newState,
-        };
-    }, reducersDefaultValues.EMPTY_FORM_STATE);
-    const [request, updateRequest] = useReducer((state: Request, newState: Partial<Request>): Request => {
-        return {
-            ...state,
-            ...newState,
-        };
-    }, reducersDefaultValues.EMPTY_REQUEST_STATE);
+    const [form, updateForm] = useSimpleReducer<EmailForm>(reducersDefaultValues.EMPTY_FORM_STATE);
+    const [request, updateRequest] = useSimpleReducer<Request>(reducersDefaultValues.EMPTY_REQUEST_STATE);
 
     const invalidFormFields = useMemo<(keyof EmailForm)[]>(() => {
         switch (props.sendEmailSubsection) {
