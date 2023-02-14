@@ -5,7 +5,7 @@ import Check from "@mui/icons-material/Check";
 import Refresh from "@mui/icons-material/Refresh";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 // Other components
-import ButtonWithTooltip from "../_utils_components/ButtonWithTooltip";
+import ButtonWithTooltip from "@/components/atoms/forms/ButtonWithTooltip";
 // Styled components
 import { BottomInformation, ProcessRequestStageWrapper, AbsoluteButtonsWrapper } from "./_styled_components";
 

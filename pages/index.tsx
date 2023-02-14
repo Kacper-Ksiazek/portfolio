@@ -1,5 +1,4 @@
 // Tools
-import dynamic from "next/dynamic";
 import { prisma } from "@/prisma/db";
 import { formatProjectDate } from "@/utils/api/date-formatter";
 // Types
@@ -15,7 +14,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
         <>
             <SEO description="Since the age of 16 software engineering enjoyer, then freelancer, now Data Science at AGH in Cracow freshman. This portfolio is an extensive introduction of my person including information regarding my previous education and working experience, my current hobbies and foremost my motives and goals. " />
             <>
-                {/* <IntroductionScreen /> */}
+                <IntroductionScreen />
                 <LandingPageContent {...props} />
             </>
         </>

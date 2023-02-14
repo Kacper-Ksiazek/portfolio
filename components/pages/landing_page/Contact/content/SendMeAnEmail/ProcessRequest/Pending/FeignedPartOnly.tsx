@@ -7,7 +7,7 @@ import type { FunctionComponent } from "react";
 import CodeOff from "@mui/icons-material/CodeOff";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 // Other components
-import ButtonWithTooltip from "../../_utils_components/ButtonWithTooltip";
+import ButtonWithTooltip from "@/components/atoms/forms/ButtonWithTooltip";
 // Styled Components
 import { Divider } from "../_styled_components";
 
