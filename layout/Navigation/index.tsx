@@ -10,6 +10,7 @@ import type { FunctionComponent } from "react";
 import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import Logo from "./Logo";
+import DarkThemeButton from "./DarkThemeButton";
 const MobileMenuButton = dynamic(() => import("./MobileMenuButton"));
 // Styled Components
 import MobileAuthor from "./styled_components/MobileAuthor";
@@ -92,6 +93,9 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
                     >
                         Contact
                     </SingleNavigationRoute>
+
+                    <DarkThemeButton />
+
                     <MobileAuthor>
                         <span id="mobile-menu-bottom-card-name">Kacper Książek</span>
                         <span id="mobile-menu-bottom-card-year">{new Date(Date.now()).getUTCFullYear()}</span>

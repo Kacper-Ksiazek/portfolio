@@ -49,6 +49,16 @@ export default styled("div")(({ theme }) => ({
         "#mobile-menu-opener": {
             color: "#fff",
         },
+        "#theme-switch": {
+            border: `1px solid #fff`,
+            "#choice-indicator": {
+                background: "#fff",
+                border: `1px solid #000`,
+                svg: {
+                    color: "#000",
+                },
+            },
+        },
 
         ".MuiButtonBase-root": {
             border: "1px solid #fff",
@@ -106,6 +116,16 @@ export default styled("div")(({ theme }) => ({
         },
         "#mobile-menu-opener": {
             color: "#000",
+        },
+        "#theme-switch": {
+            border: `1px solid ${theme.palette.text.primary}`,
+            "#choice-indicator": {
+                background: "#000",
+                border: `1px solid ${theme.palette.background.default}`,
+                svg: {
+                    color: theme.palette.background.default,
+                },
+            },
         },
     },
     //
