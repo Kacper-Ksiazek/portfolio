@@ -2,6 +2,7 @@
 import { useRef, useEffect } from "react";
 import { styled, alpha, keyframes } from "@mui/system";
 // Types
+import type { SxProps } from "@mui/system";
 import type { FunctionComponent } from "react";
 // Styled components
 import ContentWrapper from "../_ContentWrapper";
@@ -28,12 +29,12 @@ const outro = keyframes({
 });
 
 const BackgroundLetterBase = styled(ContentWrapper)(({ theme }) => ({
+    color: alpha(theme.palette.secondary.main, 0.07),
     ["@media (min-width:1001px)"]: {
         fontSize: "1000px",
         fontWeight: 900,
         position: "absolute",
         bottom: "0",
-        color: alpha(theme.palette.secondary.main, 0.05),
         userSelect: "none",
         zIndex: 1,
         left: "50%",
@@ -55,8 +56,8 @@ const BackgroundLetterBase = styled(ContentWrapper)(({ theme }) => ({
     },
 }));
 
-// Styled Components
-const BackgroundLetter: FunctionComponent<{ letter: string }> = (props) => {
+const BackgroundLetter: FunctionComponent<{ letter: string; sx: SxProps }> = (props) => {
+    // Styled Components
     const previousLetter = useRef<string>("");
 
     const previousLetterElement = useRef<HTMLDivElement | null>(null);
@@ -80,8 +81,12 @@ const BackgroundLetter: FunctionComponent<{ letter: string }> = (props) => {
 
     return (
         <>
-            <BackgroundLetterBase ref={previousLetterElement}>{previousLetter.current}</BackgroundLetterBase>
-            <BackgroundLetterBase ref={currentLetterElement}>{props.letter}</BackgroundLetterBase>
+            <BackgroundLetterBase ref={previousLetterElement} sx={props.sx} className="hide">
+                {previousLetter.current}
+            </BackgroundLetterBase>
+            <BackgroundLetterBase ref={currentLetterElement} sx={props.sx}>
+                {props.letter}
+            </BackgroundLetterBase>
         </>
     );
 };

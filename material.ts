@@ -82,7 +82,9 @@ export default createTheme({
         MuiAutocomplete: {
             styleOverrides: {
                 root: {
-                    background: "#fff",
+                    ".MuiOutlinedInput-root": {
+                        background: "#fff",
+                    },
                 },
                 noOptions: {
                     background: `#F0EFF4`,

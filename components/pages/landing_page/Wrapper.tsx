@@ -18,6 +18,7 @@ const LandingPageWrapper: FunctionComponent<LandingPageServerSideProps> = (props
                 schools={props.schools}
                 previousJobs={props.previousJobs}
             />
+
             <ToDoList />
             <Projects projects={props.projects} />
             <PicturesMatchingGame />

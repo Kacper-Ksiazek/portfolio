@@ -1,5 +1,4 @@
 // Tools
-import dynamic from "next/dynamic";
 import { prisma } from "@/prisma/db";
 import { formatProjectDate } from "@/utils/api/date-formatter";
 // Types

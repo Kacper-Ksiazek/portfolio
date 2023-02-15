@@ -43,6 +43,8 @@ export interface LightSectionWrapperProps {
      * Custom `MaterialUI` styles to be applied to the `sx` attribute of the **content wrapper**
      */
     contentWrapperSx?: SxProps;
+    childrenOutsideContentWrapper?: ReactNode;
+    backgroundLetterSx?: SxProps;
 }
 
 const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props) => {
@@ -58,7 +60,13 @@ const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props)
                 <Header {...props.header} />
                 {props.children}
             </ContentWrapper>
-            {props.backgroundLetter && <BackgroundLetter letter={props.backgroundLetter} />}
+            {props.backgroundLetter && (
+                <BackgroundLetter
+                    letter={props.backgroundLetter} //
+                    sx={props.backgroundLetterSx ?? {}}
+                />
+            )}
+            {props.childrenOutsideContentWrapper && props.childrenOutsideContentWrapper}
         </LightWrapperBase>
     );
 };
