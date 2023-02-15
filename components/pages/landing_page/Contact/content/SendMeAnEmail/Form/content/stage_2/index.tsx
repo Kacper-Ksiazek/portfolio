@@ -36,11 +36,11 @@ const EmailFormSubsection1: FunctionComponent = (props) => {
                 error={invalidFormFields.includes("email")}
             />
             <StyledInput
-                label="Github*" //
+                label="LinkedIn*" //
                 color="secondary"
-                value={form.github}
-                onChange={(e) => updateForm({ github: e.target.value })}
-                error={invalidFormFields.includes("github")}
+                value={form.linkedIn}
+                onChange={(e) => updateForm({ linkedIn: e.target.value })}
+                error={invalidFormFields.includes("linkedIn")}
             />
             <StyledInput
                 label="Website*" //

@@ -47,7 +47,7 @@ export const SendEmailContextProvider: FunctionComponent<SendEmailContextProvide
                 return validators.contactDetailsValidator({
                     email: form.email,
                     ...(form.website ? { website: form.website } : null),
-                    ...(form.github ? { github: form.github } : null),
+                    ...(form.linkedIn ? { linkedIn: form.linkedIn } : null),
                     country: form.country ? form.country.label : "",
                 });
             case "RECAPTCHA":

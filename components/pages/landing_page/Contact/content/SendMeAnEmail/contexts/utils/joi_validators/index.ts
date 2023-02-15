@@ -27,7 +27,7 @@ export const generalPurposeValidator = (body: ValidateGeneralPurposeBody) => {
 interface ValidateContactDetailsBody {
     country: string;
     email: string;
-    github?: string;
+    linkedIn?: string;
     website?: string;
 }
 
@@ -37,10 +37,10 @@ export const contactDetailsValidator = (body: ValidateContactDetailsBody) => {
             .object({
                 country: createJoiObject(restrictions.contact.country),
                 email: createJoiObject(restrictions.contact.country).email({ tlds: false }),
-                github: createJoiObject(restrictions.contact.github, false).custom((val, helper) => {
-                    if (val.slice(0, 19) === restrictions.contact.github.startWith) return val;
+                linkedIn: createJoiObject(restrictions.contact.linkedIn, false).custom((val, helper) => {
+                    if (val.slice(0, 25) === restrictions.contact.linkedIn.startWith) return val;
                     else {
-                        return helper.error("github.invalid");
+                        return helper.error("any.invalid");
                     }
                 }),
                 website: createJoiObject(restrictions.contact.website, false),

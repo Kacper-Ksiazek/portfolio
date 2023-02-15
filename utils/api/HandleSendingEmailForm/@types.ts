@@ -12,7 +12,7 @@ export interface JoiValidationSchema {
     contact: {
         country: any;
         email: any;
-        github: any;
+        linkedIn: any;
         website: any;
     };
 }
@@ -24,7 +24,7 @@ export interface ValidatedData {
     contact: {
         country: string;
         email: string;
-        github?: string;
+        linkedIn?: string;
         website?: string;
     };
 }

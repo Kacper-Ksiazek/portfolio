@@ -6,7 +6,7 @@ export interface SendEmailFormRestrictions {
     author: Restriction;
     message: Restriction;
     contact: {
-        github: Restriction;
+        linkedIn: Restriction;
         website: Restriction;
         email: Restriction;
         country: Restriction;
@@ -20,7 +20,7 @@ export default {
     contact: {
         country: { min: 3, max: 60 },
         email: { min: 3, max: 60 },
-        github: { min: 22, max: 255, startWith: `https://github.com/` },
+        linkedIn: { min: 22, max: 255, startWith: `https://www.linkedin.com/` },
         website: { min: 6, max: 60 },
     },
 } as SendEmailFormRestrictions;

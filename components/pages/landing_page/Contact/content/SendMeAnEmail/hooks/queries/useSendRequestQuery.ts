@@ -10,7 +10,7 @@ export const useSendRequestQuery = (setAlreadySentEmail: Dispatch<SetStateAction
     const { updateRequest, form } = useSendEmailContext();
 
     return async () => {
-        const { author, subject, message, email, country, github, website } = form;
+        const { author, subject, message, email, country, linkedIn, website } = form;
 
         updateRequest({ status: "pending" });
 
@@ -22,7 +22,7 @@ export const useSendRequestQuery = (setAlreadySentEmail: Dispatch<SetStateAction
                 contact: {
                     email,
                     country: country ? country?.label : "",
-                    ...(github.length ? { github } : null),
+                    ...(linkedIn.length ? { linkedIn } : null),
                     ...(website.length ? { website } : null),
                 },
             })

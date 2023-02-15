@@ -46,7 +46,7 @@ export default class HandleSendingEmailForm {
                             <li style='font-size:16px; color: #000'>Country: <strong style='color: #DA4167'>${data.contact.country}<strong></li>
                             <li style='font-size:16px; color: #000'>Email address: <strong style='color: #DA4167'>${data.contact.email}<strong></li>
                             <li style='font-size:16px; color: #000'>Website ${data.contact.website}</li>
-                            <li style='font-size:16px; color: #000'>Github: ${data.contact.github}</li>
+                            <li style='font-size:16px; color: #000'>LinkedIn: ${data.contact.linkedIn}</li>
                         </ul>
                         `,
                     priority: "high",
@@ -70,10 +70,10 @@ export default class HandleSendingEmailForm {
             contact: joi.object({
                 country: transformIntoJoi(restrictions.contact.country).required(),
                 email: transformIntoJoi(restrictions.contact.country).required().email({ tlds: false }),
-                github: transformIntoJoi(restrictions.contact.github).custom((val, helper) => {
-                    if (val.slice(0, 19) === restrictions.contact.github.startWith) return val;
+                linkedIn: transformIntoJoi(restrictions.contact.linkedIn).custom((val, helper) => {
+                    if (val.slice(0, 25) === restrictions.contact.linkedIn.startWith) return val;
                     else {
-                        return helper.error("github.invalid");
+                        return helper.error("linkedIn.invalid");
                     }
                 }),
                 website: transformIntoJoi(restrictions.contact.website),

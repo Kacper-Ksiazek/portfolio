@@ -11,7 +11,7 @@ export interface EmailForm {
     message: string;
     country: CountryType | null;
     email: string;
-    github: string;
+    linkedIn: string;
     website: string;
     ReCAPTCHAIsApproved: boolean;
 }

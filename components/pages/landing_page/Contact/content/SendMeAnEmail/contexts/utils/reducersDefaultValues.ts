@@ -4,7 +4,7 @@ export const EMPTY_FORM_STATE: EmailForm = {
     author: "",
     country: null,
     email: "",
-    github: "",
+    linkedIn: "",
     message: "",
     subject: "",
     website: "",
