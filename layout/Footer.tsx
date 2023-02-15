@@ -46,7 +46,7 @@ const Footer: FunctionComponent<MUIStyledCommonProps> = (props) => {
     return (
         <FooterBase>
             <AuthorHeader>Created by: Kacper Książek</AuthorHeader>
-            <span>2022</span>
+            <span>2020 - 2023</span>
         </FooterBase>
     );
 };

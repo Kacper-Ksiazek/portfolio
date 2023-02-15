@@ -1,5 +1,5 @@
 // Tools
-import theme from "@/material";
+import { COLORS } from "@/material";
 import { keyframes } from "@mui/system";
 // Types
 import type { SxProps } from "@mui/system";
@@ -103,7 +103,7 @@ const outroRightVertical8px = keyframes({
 
 export default {
     "&.right-vertical": {
-        background: theme.palette.secondary.main,
+        background: COLORS.secondary,
         top: "-15px",
         right: "-15px",
         width: "15px",

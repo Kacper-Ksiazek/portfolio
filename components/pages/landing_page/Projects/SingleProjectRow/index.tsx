@@ -43,6 +43,22 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
     },
     "&.visible": {
         visibility: "visible",
+        "@media (min-width:1000px)": {
+            ".single-project-text-content-wrapper": {
+                ".technologies-wrapper, h4, .duration, p, .read-more ": {
+                    position: "relative",
+                    "&::after": {
+                        content: "''",
+                        position: "absolute",
+                        background: theme.palette.background.lightAnimationBar,
+                        width: "100%",
+                        height: "100%",
+                        top: 0,
+                        left: 0,
+                    },
+                },
+            },
+        },
         ["@media (min-width:1301px)"]: introAnimationsFor1301pxAndUpDisplay,
         ["@media (min-width:1000px) and (max-width: 1350px)"]: introAnimationsFor1000pxTo1350pxDisplay,
         ["@media (max-width:1000px)"]: {

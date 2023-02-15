@@ -1,20 +1,18 @@
-// Tools
 import "@/styles/general.css";
-import theme from "@/material";
 // Types
 import type { AppProps } from "next/app";
-// Material UI Components
-import { ThemeProvider } from "@mui/material";
+// Other components
+import MuiThemeProvider from "@/material/MuiThemeProvider";
 // Styled components
 import Layout from "@/layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <ThemeProvider theme={theme}>
+        <MuiThemeProvider>
             <Layout>
                 <Component {...pageProps} />
             </Layout>
-        </ThemeProvider>
+        </MuiThemeProvider>
     );
 }
 

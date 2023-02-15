@@ -1,10 +1,8 @@
 // Tools
-import theme from "@/material";
 import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
-import DarkMode from "@mui/icons-material/DarkMode";
 import LightMode from "@mui/icons-material/LightMode";
 // Styled components
 const DarkThemeButtonBase = styled("button")(({ theme }) => ({

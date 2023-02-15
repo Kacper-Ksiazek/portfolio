@@ -1,5 +1,5 @@
 // Tools
-import theme from "@/material";
+import { COLORS } from "@/material";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import { thumbnailIntroAnimation, thumbnailOutroAnimation, backgroundLineAnimation, separatorAnimation } from "./keyframes";
 // Types
@@ -17,12 +17,12 @@ export default {
                 border: "5px",
             },
             "&::after": {
-                background: theme.palette.primary.main,
+                background: COLORS.primary,
                 zIndex: 2,
                 animation: `${thumbnailIntroAnimation} .4s .95s both linear, ${thumbnailOutroAnimation} .4s 1.6s forwards linear`,
             },
             "&::before": {
-                background: theme.palette.secondary.main,
+                background: COLORS.secondary,
                 zIndex: 1,
                 animation: `${thumbnailIntroAnimation} .4s .8s both linear, ${thumbnailOutroAnimation} .4s 1.75s forwards linear`,
             },
@@ -57,12 +57,12 @@ export default {
                 border: "5px",
             },
             "&::after": {
-                background: theme.palette.primary.main,
+                background: COLORS.primary,
                 zIndex: 2,
                 animation: `${thumbnailIntroAnimation} .4s 1.15s both linear, ${thumbnailOutroAnimation} .4s 1.8s forwards linear`,
             },
             "&::before": {
-                background: theme.palette.secondary.main,
+                background: COLORS.secondary,
                 zIndex: 1,
                 animation: `${thumbnailIntroAnimation} .4s 1.2s both linear, ${thumbnailOutroAnimation} .4s 1.95s forwards linear`,
             },

@@ -1,5 +1,5 @@
 // Tools
-import theme from "@/material";
+import { useTheme } from "@mui/material/styles";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Icons
@@ -15,6 +15,8 @@ interface PicturesMatchingGameWrapperProps {
 }
 
 const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapperProps> = (props) => {
+    const theme = useTheme();
+
     return (
         <DarkSectionWrapper
             id="picture-matching-game-main-wrapper"
