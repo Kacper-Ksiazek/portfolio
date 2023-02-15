@@ -1,8 +1,22 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled, keyframes } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+
+const wrapperOutroAnimation = keyframes({
+    "0%": {
+        opacity: 1,
+    },
+    "99.99999%": {
+        opacity: 0,
+    },
+    "100%": {
+        opacity: 0,
+        zIndex: -1,
+    },
+});
+
 // Styled components
 export default styled("div")(({ theme }) => ({
     position: "fixed",
@@ -56,7 +70,7 @@ export default styled("div")(({ theme }) => ({
     },
 
     "&.display-outro-animation": {
-        animation: `${fadeSimpleOUT} .2s .1s linear both !important`,
+        animation: `${wrapperOutroAnimation} .2s .1s linear both !important`,
         "#portfolio-logo-image": {
             animation: `${fadeSimpleOUT} .3s linear both`,
         },

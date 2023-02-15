@@ -1,6 +1,6 @@
 // Tools
-import { useMemo, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 import useStylesOnScoll from "./hooks/useOnScollStyles";
 import { useStylesBasedOnURL } from "./hooks/useStylesBasedOnURL";
 import { useMobileMenuHandlers } from "./hooks/useMobileMenuHandlers";
