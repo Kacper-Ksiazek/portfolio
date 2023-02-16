@@ -1,6 +1,6 @@
 // Tools
 import { useRef, useEffect } from "react";
-import { styled, alpha, keyframes } from "@mui/system";
+import { styled, keyframes, alpha } from "@mui/system";
 // Types
 import type { SxProps } from "@mui/system";
 import type { FunctionComponent } from "react";
@@ -29,7 +29,11 @@ const outro = keyframes({
 });
 
 const BackgroundLetterBase = styled(ContentWrapper)(({ theme }) => ({
-    color: alpha(theme.palette.secondary.main, 0.07),
+    color:
+        theme.palette.mode === "light" //
+            ? alpha(theme.palette.secondary.main, 0.07)
+            : alpha("#fff", 0.05),
+
     ["@media (min-width:1001px)"]: {
         fontSize: "1000px",
         fontWeight: 900,

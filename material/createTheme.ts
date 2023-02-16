@@ -20,6 +20,7 @@ interface CreateThemeParams {
         default: string;
         paper: string;
         lightAnimationBar: string;
+        lightSectionBackground: string;
     };
     text: {
         primary: string;
@@ -30,7 +31,7 @@ interface CreateThemeParams {
 export function createTheme(props: CreateThemeParams): Theme {
     return _createTheme({
         palette: {
-            mode: "light",
+            mode: props.mode,
             primary: {
                 main: props.primary,
             },
@@ -47,10 +48,7 @@ export function createTheme(props: CreateThemeParams): Theme {
                 main: props.warning,
             },
             background: props.background,
-            text: {
-                primary: props.text.primary,
-                secondary: props.text.secondary,
-            },
+            text: props.text,
         },
         typography: {
             fontFamily: '"Noto Sans", sans-serif',

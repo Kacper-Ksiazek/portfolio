@@ -6,7 +6,10 @@ import type { FunctionComponent } from "react";
 const YearToIndicateBase = styled("span")(({ theme }) => ({
     fontSize: "160px",
     fontWeight: 900,
-    color: alpha(theme.palette.secondary.main, 0.05),
+    color:
+        theme.palette.mode === "light" //
+            ? alpha(theme.palette.secondary.main, 0.05)
+            : alpha("#fff", 0.05),
     letterSpacing: "10px",
     userSelect: "none",
     zIndex: -1,

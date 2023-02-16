@@ -7,7 +7,7 @@ import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
 import SectionWrapper from "../../_SectionWrapper";
 
 export default styled(SectionWrapper)(({ theme }) => ({
-    background: "white",
+    background: theme.palette.background.lightSectionBackground,
     overflow: "hidden",
     boxSizing: "border-box",
     "&.round-left": {

@@ -1,8 +1,10 @@
+import { alpha } from "@mui/system";
 import { createTheme } from "./createTheme";
 
 declare module "@mui/material/styles/createPalette" {
     interface TypeBackground {
         lightAnimationBar: string;
+        lightSectionBackground: string;
     }
 }
 
@@ -31,6 +33,7 @@ export const lightTheme = createTheme({
         default: "#F0EFF4",
         paper: "#3D2645",
         lightAnimationBar: "#F2E8EF",
+        lightSectionBackground: "#fff",
     },
 });
 
@@ -42,8 +45,9 @@ export const darkTheme = createTheme({
         secondary: "#000",
     },
     background: {
-        default: "#F0EFF4",
-        paper: "#3D2645",
-        lightAnimationBar: "#F2E8EF",
+        default: "#161619",
+        paper: "#121212",
+        lightAnimationBar: "#474748",
+        lightSectionBackground: "#1D1D1F",
     },
 });
