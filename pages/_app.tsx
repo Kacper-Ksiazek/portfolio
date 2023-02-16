@@ -1,4 +1,4 @@
-import "@/styles/general.css";
+import "@/styles/fonts.css";
 // Types
 import type { AppProps } from "next/app";
 // Other components

@@ -5,6 +5,7 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 // Types
 import type { FunctionComponent, SetStateAction, Dispatch, ReactNode } from "react";
 // Material UI Components
+import GlobalStyles from "./GlobalStyles";
 import { ThemeProvider } from "@mui/material";
 
 type Theme = "light" | "dark";
@@ -27,6 +28,7 @@ const MUIThemeContextProvider: FunctionComponent<{ children: ReactNode }> = (pro
             }}
         >
             <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+                <GlobalStyles />
                 {props.children}
                 {/*  */}
             </ThemeProvider>
