@@ -126,6 +126,13 @@ export function createTheme(props: CreateThemeParams): Theme {
                     },
                 },
             },
+            MuiFormLabel: {
+                styleOverrides: {
+                    root: {
+                        color: alpha(props.text.primary, 0.75),
+                    },
+                },
+            },
         },
     }) as Theme;
 }
