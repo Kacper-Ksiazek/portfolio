@@ -7,5 +7,5 @@ export default styled("div")(({ theme }) => ({
     left: 0,
     width: "100%",
     height: "100%",
-    backgroundImage: 'url("/images/single-project/relevent-technologies.svg")',
+    backgroundImage: `url("/images/single-project/relevent-technologies-background/${theme.palette.mode}.svg")`,
 }));

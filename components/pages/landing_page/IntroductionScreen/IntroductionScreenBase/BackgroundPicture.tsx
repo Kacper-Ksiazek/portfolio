@@ -1,26 +1,9 @@
 // Tools
-import { keyframes } from "@mui/system";
 import { useState, useEffect } from "react";
 import { styled, alpha } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
-const filterBlurOnHoverStart = keyframes({
-    from: {
-        filter: "blur(10px)",
-    },
-    to: {
-        filter: "blur(0px)",
-    },
-});
-const filterBlurOnHoverEnd = keyframes({
-    from: {
-        filter: "blur(0px)",
-    },
-    to: {
-        filter: "blur(10px)",
-    },
-});
 
 const BackgroundPictureWrapper = styled("div")(({ theme }) => ({
     position: "absolute",
@@ -73,15 +56,15 @@ const BackgroundPictureImage = styled("div")(({ theme }) => ({
     filter: "blur(10px)",
     transition: "transform 1s, background-position 60s linear, filter 2s",
     backgroundPosition: "center top",
-    backgroundImage: "url('./images/landing-page/introduction-screen/fullsize.jpg')",
+    backgroundImage: `url('./images/landing-page/introduction-screen/${theme.palette.mode}/fullsize.jpg')`,
     ["@media (max-width:1450px)"]: {
-        backgroundImage: "url('./images/landing-page/introduction-screen/width1450px.jpg')",
+        backgroundImage: `url('./images/landing-page/introduction-screen/${theme.palette.mode}/width1450px.jpg')`,
     },
     ["@media (max-width:1000px)"]: {
-        backgroundImage: "url('./images/landing-page/introduction-screen/width1000px.jpg')",
+        backgroundImage: `url('./images/landing-page/introduction-screen/${theme.palette.mode}/width1000px.jpg')`,
     },
     ["@media (max-width:750px)"]: {
-        backgroundImage: "url('./images/landing-page/introduction-screen/width750px.jpg')",
+        backgroundImage: `url('./images/landing-page/introduction-screen/${theme.palette.mode}/width750px.jpg')`,
     },
 }));
 

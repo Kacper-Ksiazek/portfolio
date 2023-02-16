@@ -37,10 +37,10 @@ const DarkSectionWrapperBackgroundSVG = styled("span")(({ theme }) => ({
     backgroundPosition: "center ",
     backgroundSize: "cover !important",
     "&.left": {
-        background: "url(/images/components/dark-section-wrapper/left.svg)",
+        background: `url(/images/components/dark-section-wrapper/${theme.palette.mode}/left.svg)`,
     },
     "&.right": {
-        background: "url(/images/components/dark-section-wrapper/right.svg)",
+        background: `url(/images/components/dark-section-wrapper/${theme.palette.mode}/right.svg)`,
     },
 }));
 
