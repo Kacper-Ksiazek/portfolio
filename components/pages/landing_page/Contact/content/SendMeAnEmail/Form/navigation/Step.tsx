@@ -20,7 +20,10 @@ const StyledStep = styled("div")(({ theme }) => ({
         height: "32px",
         fontSize: "20px",
         position: "relative",
-        background: alpha(theme.palette.text.primary, 0.7),
+        background:
+            theme.palette.mode === "light" //
+                ? alpha(theme.palette.text.primary, 0.7)
+                : alpha(theme.palette.text.primary, 0.2),
         borderRadius: "10px 4px 10px 4px",
         zIndex: 1,
         overflow: "hidden",
@@ -62,7 +65,10 @@ const StyledStep = styled("div")(({ theme }) => ({
             transform: "translate(-80px, -50%)",
             width: "64px",
             height: "2px",
-            background: alpha("#000", 0.12),
+            background:
+                theme.palette.mode === "light" //
+                    ? alpha("#000", 0.12)
+                    : alpha("#fff", 0.3),
         },
     },
     "&.active": {

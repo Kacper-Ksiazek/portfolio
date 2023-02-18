@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Icons
-import SportsEsports from "@mui/icons-material/SportsEsports";
+import Code from "@mui/icons-material/Code";
 // Styled components
 import Background from "./Background";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
@@ -24,7 +24,7 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
             header={{
                 main: "React image matching game",
                 index: 2,
-                icon: <SportsEsports />,
+                icon: <Code />,
                 description: `Another very frequently seen portfolio project is a images matching game, so I had decided to code my version of it either in order to spice up everything and more importantly to create second content separator.`,
             }}
             renderHeader={!props.preventHeaderFromRendering}

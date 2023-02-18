@@ -4,17 +4,17 @@ import { styled, alpha } from "@mui/system";
 export const StyledTable = styled("table")(({ theme }) => ({
     fontSize: "18px",
     th: {
-        background: alpha("#000", 0.6),
+        background: theme.palette.mode === "light" ? alpha("#000", 0.6) : "#000",
     },
     tr: {
         "&:nth-of-type(odd) td": {
-            background: alpha("#000", 0.2),
+            background: theme.palette.mode === "light" ? alpha("#000", 0.2) : alpha("#000", 0.5),
             "&.win": {
                 background: alpha(theme.palette.success.main, 0.36),
             },
         },
         "&:nth-of-type(even) td": {
-            background: alpha("#000", 0.3),
+            background: theme.palette.mode === "light" ? alpha("#000", 0.3) : alpha("#000", 0.8),
             "&.win": {
                 background: alpha(theme.palette.success.main, 0.52),
             },

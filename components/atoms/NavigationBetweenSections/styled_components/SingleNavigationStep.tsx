@@ -1,8 +1,10 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled, alpha } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Styled components
-export default styled("div")(({ theme }) => ({
+export default styled("div", {
+    shouldForwardProp: (prop: string) => !["subtleBackground"].includes(prop),
+})<{ subtleBackground: boolean }>(({ theme, ...props }) => ({
     fontWeight: 500,
     fontSize: "18px",
     position: "relative",
@@ -11,6 +13,7 @@ export default styled("div")(({ theme }) => ({
     padding: "0 10px",
     transition: "background .2s",
     borderRadius: "3px",
+    background: props.subtleBackground ? alpha(theme.palette.text.primary, 0.14) : "transparent",
     "&:nth-of-type(1)": {
         animation: `${fadeSimple} .2s .6s both linear`,
     },
@@ -32,7 +35,7 @@ export default styled("div")(({ theme }) => ({
         width: "100%",
         height: "100%",
         transition: "transform .2s, background .3s",
-        transform: "translateY(-100%)",
+        transform: "translateY(00%)",
     },
     "&:nth-of-type(even)": {
         "&:before": {

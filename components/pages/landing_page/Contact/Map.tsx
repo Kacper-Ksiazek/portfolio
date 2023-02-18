@@ -42,7 +42,7 @@ const MapBase = styled("span")(({ theme }) => ({
         "&.success": {
             transform: "scale(1.6)",
             transition: "background-image .5s .6s linear, width 1.2s, transform .6s",
-            backgroundImage: `url("/images/landing-page/europe_map/${theme.palette.mode}/success2.png")`,
+            backgroundImage: `url("/images/landing-page/europe_map/${theme.palette.mode}/success.png")`,
             "&::after": {
                 backgroundImage: 'url("/images/landing-page/europe_map/poland/success.png")',
             },

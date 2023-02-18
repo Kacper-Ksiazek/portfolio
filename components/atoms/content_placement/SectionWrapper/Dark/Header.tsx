@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled, alpha } from "@mui/system";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { HeaderProps } from "./@types";
@@ -40,7 +40,7 @@ const Description = styled("p")(({ theme }) => ({
     maxWidth: "840px",
     width: "100%",
     strong: {
-        color: "#fff",
+        color: theme.palette.primary.main,
     },
     "&::after": {
         content: "''",
@@ -50,7 +50,10 @@ const Description = styled("p")(({ theme }) => ({
         width: "160px",
         height: "2px",
         borderRadius: "1px",
-        background: "#503C57",
+        background:
+            theme.palette.mode === "light" //
+                ? "#64516A"
+                : "#892E45",
         transform: "translateX(-50%)",
     },
 }));
@@ -58,7 +61,10 @@ const Description = styled("p")(({ theme }) => ({
 const IconWrapper = styled("span")(({ theme }) => ({
     position: "absolute",
     top: "-32%",
-    color: "#503C57",
+    color:
+        theme.palette.mode === "light" //
+            ? "#64516A"
+            : "#892E45",
     svg: {
         fontSize: "256px",
     },

@@ -12,7 +12,6 @@ import MenuItem from "@mui/material/MenuItem";
 const StyledSelect = styled(Select)(({ theme }) => ({
     width: "240px",
     fontSize: "16px",
-    background: "#fff",
     animation: `${fadeSimple} .3s .4s both linear`,
     "@media (max-width:500px)": {
         width: "100%",
@@ -29,13 +28,7 @@ const PickADifficulty: FunctionComponent<PickADifficultyProps> = (props) => {
         <StyledSelect
             onChange={(e) => props.setDifficulty(e.target.value as any)} //
             value={props.difficulty}
-            MenuProps={{
-                sx: {
-                    ".MuiList-root": {
-                        background: "#fff",
-                    },
-                },
-            }}
+            MenuProps={{}}
         >
             {options.map((item) => {
                 return (

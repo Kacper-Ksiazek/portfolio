@@ -88,7 +88,7 @@ export function createTheme(props: CreateThemeParams): Theme {
                     tooltip: {
                         fontSize: "16px",
                         fontWeight: 400,
-                        background: alpha(props.text.primary, 0.75),
+                        background: alpha("#000", 0.75),
                         padding: "4px 16px",
                         cursor: "default",
                         borderRadius: "3px",
@@ -96,13 +96,15 @@ export function createTheme(props: CreateThemeParams): Theme {
                     },
                 },
             },
-            MuiAutocomplete: {
+            MuiOutlinedInput: {
                 styleOverrides: {
                     root: {
-                        ".MuiOutlinedInput-root": {
-                            background: props.text.secondary,
-                        },
+                        background: alpha(props.text.secondary, 0.2),
                     },
+                },
+            },
+            MuiAutocomplete: {
+                styleOverrides: {
                     noOptions: {
                         background: props.background.default,
                     },

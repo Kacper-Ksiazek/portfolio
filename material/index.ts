@@ -1,4 +1,3 @@
-import { alpha } from "@mui/system";
 import { createTheme } from "./createTheme";
 
 declare module "@mui/material/styles/createPalette" {

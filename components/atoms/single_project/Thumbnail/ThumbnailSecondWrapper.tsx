@@ -9,7 +9,6 @@ export default styled("div")(({ theme }) => ({
     width: "calc(100% - 10px)",
     height: "calc(100% - 10px)",
     zIndex: 3,
-    background: "#fff",
     img: {
         transition: "transform .5s",
     },

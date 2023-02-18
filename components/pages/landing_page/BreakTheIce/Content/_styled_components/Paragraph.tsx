@@ -7,9 +7,6 @@ export default styled("p", {
 })<{ animationDelay: number }>(({ theme, ...props }) => ({
     fontSize: "18px",
     margin: "20px 0 0 0",
-    strong: {
-        color: theme.palette.secondary.main,
-    },
     animation: `${fadeFromLeft} .3s ${props.animationDelay}s both`,
     "&:nth-of-type(1)": {
         margin: "0",

@@ -14,7 +14,7 @@ const fadeSimple = keyframes({
 });
 const borderAppearingAnimation = keyframes({
     from: {
-        border: `1px solid #fff`,
+        border: `1px solid transparent`,
     },
     to: {
         border: `1px solid #c7c7c7`,

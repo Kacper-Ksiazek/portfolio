@@ -26,10 +26,10 @@ const GlobalStyles: FunctionComponent = (props) => {
 
                         "&::-webkit-scrollbar": {
                             width: "8px",
-                            background: "#f0eff4",
+                            background: theme.palette.background.default,
                         },
                         "&::-webkit-scrollbar-track": {
-                            boxShadow: "inset 0 0 2px #888",
+                            boxShadow: `inset 0 0 2px ${theme.palette.mode === "light" ? "#888" : "#000"}`,
                             opacity: 0.1,
                         },
                         "&::-webkit-scrollbar-thumb": {
