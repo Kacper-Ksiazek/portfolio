@@ -28,6 +28,20 @@ const ColorThemeSwitchBase = styled("button")(({ theme }) => ({
     "&.dark": {
         justifyContent: "flex-end",
     },
+    "@media (max-width:1000px)": {
+        width: "110px",
+        height: "48px",
+        position: "absolute",
+        bottom: "100px",
+        left: "calc(50% - 55px)",
+        margin: "0",
+        "span#choice-indicator": {
+            width: "72px",
+            svg: {
+                fontSize: "2rem",
+            },
+        },
+    },
 }));
 
 const ChoiceIndicator = styled("span")(({ theme }) => ({
@@ -46,7 +60,7 @@ const ChoiceIndicator = styled("span")(({ theme }) => ({
     },
 }));
 
-const ColorThemeSwitch: FunctionComponent = () => {
+const ColorThemeSwitch: FunctionComponent<{ closeMobileMenu: () => void }> = (props) => {
     const context = useContext(MUIContext);
     const [displayModal, setDisplayModal] = useState<boolean>(false);
 
@@ -55,6 +69,7 @@ const ColorThemeSwitch: FunctionComponent = () => {
 
         setTimeout(() => {
             context.setTheme(context.theme === "dark" ? "light" : "dark");
+            props.closeMobileMenu();
         }, 500);
 
         setTimeout(() => {

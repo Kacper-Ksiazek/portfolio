@@ -20,6 +20,8 @@ export default styled("div")(({ theme }) => ({
         justifyContent: "center",
         zIndex: 20,
         transform: "translateX(-100%)",
+        boxSizing: "border-box",
+        paddingTop: "96px",
         "&::before": {
             content: "''",
             position: "absolute",
@@ -51,6 +53,9 @@ export default styled("div")(({ theme }) => ({
                     animation: `${fadeFromBottom} .2s .6s both linear`,
                 },
             },
+            "#theme-switch": {
+                animation: `${fadeFromBottom} .2s .65s both linear`,
+            },
             "#mobile-menu-bottom-card-name": {
                 animation: `${fadeSimple} .2s .7s both linear`,
             },
@@ -65,14 +70,17 @@ export default styled("div")(({ theme }) => ({
             },
             ".single-main-navigation-route": {
                 "&:nth-of-type(1)": {
-                    animation: `${fadeToTop} .2s .1s both linear`,
+                    animation: `${fadeToTop} .2s .15s both linear`,
                 },
                 "&:nth-of-type(2)": {
-                    animation: `${fadeToTop} .2s .05s both linear`,
+                    animation: `${fadeToTop} .2s .1s both linear`,
                 },
                 "&:nth-of-type(3)": {
-                    animation: `${fadeToTop} .2s both linear`,
+                    animation: `${fadeToTop} .2s .05s both linear`,
                 },
+            },
+            "#theme-switch": {
+                animation: `${fadeToTop} .2s  both linear`,
             },
             "#mobile-menu-bottom-card-name": {
                 animation: `${fadeSimpleOUT} .2s both linear`,

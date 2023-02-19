@@ -94,7 +94,7 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
                         Contact
                     </SingleNavigationRoute>
 
-                    <ColorThemeSwitch />
+                    <ColorThemeSwitch closeMobileMenu={toogleVisibility} />
 
                     <MobileAuthor>
                         <span id="mobile-menu-bottom-card-name">Kacper Książek</span>

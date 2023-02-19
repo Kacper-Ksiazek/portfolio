@@ -8,9 +8,7 @@ import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import VisibilitySensorBase from "react-visibility-sensor";
 // Styled components
-const ChildrenWrapper = styled("div")(({ theme }) => ({
-    //
-}));
+const ChildrenWrapper = styled("div")(({ theme }) => ({}));
 
 interface VisibilitySensorProps {
     children: ReactNode;
@@ -76,6 +74,14 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
     // Add `.visible` class to the first children
     useEffect(() => {
         if (width && width < 1000) {
+            contentHasBeenShownOnce.current = true;
+            setIsVisible(true);
+
+            if (wrapperElement.current?.firstChild) {
+                (wrapperElement.current.firstChild as any).classList.add("visible");
+                (wrapperElement.current.firstChild as any).classList.remove("not-visable");
+            }
+
             if (props.onVisible) props.onVisible();
 
             return;
