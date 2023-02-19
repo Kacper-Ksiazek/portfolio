@@ -14,6 +14,7 @@ interface GenerateStaticLineAnimations {
         delayBetweenAnimations: number;
     };
     animations: ParamsWithCommonDuration | ParamsWithoutCommonDuration;
+    sx?: SxProps;
 }
 
 export function generateStaticLineAnimations(params: GenerateStaticLineAnimations): SxProps {
@@ -26,6 +27,7 @@ export function generateStaticLineAnimations(params: GenerateStaticLineAnimation
         background: params.color,
         zIndex: "20",
         animation: getAnimationPropertyValue(params.animations),
+        ...(params.sx ? params.sx : {}),
     };
 
     const durations = establishDurations(params.animations);
@@ -42,7 +44,7 @@ export function generateStaticLineAnimations(params: GenerateStaticLineAnimation
                 content: "''",
                 ...result,
             },
-        };
+        } as any;
 
         if (params.applyAnimationsInSeries) {
             delete (result as any)["&::after"].animation;

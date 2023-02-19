@@ -33,10 +33,12 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
     const DELAY_BETWEEN_SHOWING_IDENTICAL_ELEMENTS: number = 2200;
 
     const { width } = useWindowSizes();
-    const [isVisible, setIsVisible] = useState<boolean>(false);
     const wrapperElement = useRef<HTMLElement | null>(null);
 
-    const changeVisibility = (visibility: boolean) => {
+    const contentHasBeenShownOnce = useRef<boolean>(false);
+    const [isVisible, setIsVisible] = useState<boolean>(contentHasBeenShownOnce.current);
+
+    function onVisibilitySensorChange(visibility: boolean) {
         if (isVisible) return;
 
         if (visibility) {
@@ -69,7 +71,7 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
                 setIsVisible(true);
             }
         }
-    };
+    }
 
     // Add `.visible` class to the first children
     useEffect(() => {
@@ -81,6 +83,7 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
 
         if (wrapperElement.current?.firstChild) {
             if (isVisible) {
+                contentHasBeenShownOnce.current = true;
                 (wrapperElement.current.firstChild as any).classList.add("visible");
                 (wrapperElement.current.firstChild as any).classList.remove("not-visable");
                 if (props.removeVisibleCSSClassIn) {
@@ -126,7 +129,7 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
 
     return (
         <VisibilitySensorBase
-            onChange={changeVisibility} //
+            onChange={onVisibilitySensorChange} //
             offset={{
                 top: props.offsetTop ?? 300,
                 bottom: props.offsetBottom ?? 300,
