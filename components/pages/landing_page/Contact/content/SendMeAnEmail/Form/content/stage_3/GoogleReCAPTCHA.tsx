@@ -1,5 +1,5 @@
 // Tools
-import material from "@/material";
+import { useTheme } from "@mui/material";
 import { useRef, useEffect } from "react";
 // Types
 import type { FunctionComponent } from "react";
@@ -12,6 +12,7 @@ interface GoogleReCAPTCHAProps {
 
 const GoogleReCAPTCHA: FunctionComponent<GoogleReCAPTCHAProps> = (props) => {
     const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+    const theme = useTheme();
 
     useEffect(() => (recaptchaRef.current as ReCAPTCHA).reset(), []);
 
@@ -35,7 +36,7 @@ const GoogleReCAPTCHA: FunctionComponent<GoogleReCAPTCHAProps> = (props) => {
             ref={recaptchaRef} //
             sitekey={getSiteKey()}
             onChange={onReCAPTCHAChange}
-            theme={material.palette.mode}
+            theme={theme.palette.mode}
             hidden={false}
         />
     );
