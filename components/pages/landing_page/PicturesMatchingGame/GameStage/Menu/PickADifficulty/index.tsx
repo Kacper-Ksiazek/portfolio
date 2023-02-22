@@ -1,6 +1,7 @@
 // Tools
 import { options } from "./options";
 import { styled } from "@mui/system";
+import { useTheme } from "@mui/material";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Types
 import type { Difficulty } from "@/@types/pages/PicturesMatchingGame";
@@ -16,6 +17,9 @@ const StyledSelect = styled(Select)(({ theme }) => ({
     "@media (max-width:500px)": {
         width: "100%",
     },
+    ...(theme.palette.mode === "light" && {
+        background: theme.palette.background.default,
+    }),
 }));
 
 interface PickADifficultyProps {
@@ -24,11 +28,23 @@ interface PickADifficultyProps {
 }
 
 const PickADifficulty: FunctionComponent<PickADifficultyProps> = (props) => {
+    const theme = useTheme();
+
     return (
         <StyledSelect
             onChange={(e) => props.setDifficulty(e.target.value as any)} //
             value={props.difficulty}
-            MenuProps={{}}
+            MenuProps={
+                theme.palette.mode === "light"
+                    ? {
+                          sx: {
+                              ".MuiList-root": {
+                                  background: "#fff",
+                              },
+                          },
+                      }
+                    : {}
+            }
         >
             {options.map((item) => {
                 return (
