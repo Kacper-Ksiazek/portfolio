@@ -1,3 +1,4 @@
+import { mixins } from "./mixins";
 import { alpha } from "@mui/system";
 import { createTheme as _createTheme } from "@mui/material/styles";
 // Types
@@ -134,5 +135,6 @@ export function createTheme(props: CreateThemeParams): Theme {
                 },
             },
         },
+        mixins: mixins,
     }) as Theme;
 }
