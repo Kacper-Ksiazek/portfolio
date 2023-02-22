@@ -1,5 +1,5 @@
 // Tools
-import theme from "@/material";
+import { COLORS } from "@/material";
 import { keyframes } from "@mui/system";
 
 export const ContentDisappearing_StageOne = keyframes({
@@ -30,7 +30,7 @@ export const ContentDisappearing_StageTwo = keyframes({
 
 export const Redirect_BackgroundColor = keyframes({
     from: {
-        background: theme.palette.primary.main,
+        background: COLORS.primary,
     },
     to: {
         background: "transparent",

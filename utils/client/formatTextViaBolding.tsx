@@ -1,10 +1,10 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled, alpha } from "@mui/system";
 // Types
 import type { ReactNode } from "react";
 // Styled components
 const StyledStrong = styled("strong")(({ theme }) => ({
-    color: theme.palette.secondary.main,
+    color: theme.palette.primary.main,
 }));
 const StyledPrimaryStrong = styled("strong")(({ theme }) => ({
     color: theme.palette.primary.main,

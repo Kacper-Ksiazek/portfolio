@@ -12,7 +12,7 @@ import MapContextProvider from "./mapContext/Provider";
 const CONTENT_HIDING_ANIMATION: number = 300;
 
 const Contact: FunctionComponent = () => {
-    const [emailFormSubsection, setEmailFormSubsection] = useState<EmailFormSubsection>("CONTACT_DETAILS");
+    const [emailFormSubsection, setEmailFormSubsection] = useState<EmailFormSubsection>("GENERAL_PURPOSE");
     const [currentGeneralSection, _setCurrentGeneralSection] = useState<GeneralContactSection>("WAYS_TO_REACH_ME");
     const [hideContent, setHideContent] = useState<boolean>(false);
 

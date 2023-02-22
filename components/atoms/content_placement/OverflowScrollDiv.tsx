@@ -1,5 +1,6 @@
 // Tools
 import { forwardRef } from "react";
+import { useTheme } from "@mui/material";
 import { styled, alpha } from "@mui/system";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Types
@@ -48,6 +49,8 @@ interface OverflowScrollDivProps {
 }
 
 const OverflowScrollDiv = forwardRef<HTMLDivElement, OverflowScrollDivProps>((props, ref) => {
+    const theme = useTheme();
+
     if (!props.id && !props.maxHeight) {
         throw new Error(
             "`OverflowScrollDiv` component has to have its height fixed either by passing it in `maxHeight` prop or by adding particular component unique id and then specyfing height more flexibly (in order to achive responsibility for instance) in another place able to add styles"
@@ -66,7 +69,7 @@ const OverflowScrollDiv = forwardRef<HTMLDivElement, OverflowScrollDivProps>((pr
                 <ScrollBarHidder
                     sx={{
                         animation: `${fadeSimpleOUT} .3s ${props.displayScrollBarAfterTimeout}ms linear both`,
-                        background: props.scrollbarHidderColor ?? "#fff",
+                        background: props.scrollbarHidderColor ?? theme.palette.background.lightSectionBackground,
                     }}
                 />
             )}

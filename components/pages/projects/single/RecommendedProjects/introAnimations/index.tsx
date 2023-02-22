@@ -1,5 +1,5 @@
 // Tools
-import theme from "@/material";
+import { COLORS } from "@/material";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
@@ -56,17 +56,17 @@ export default {
                     animation: `${fadeSimple} .01s .9s both`,
                 },
                 "&::after": {
-                    background: theme.palette.primary.main,
+                    background: COLORS.primary,
                     animation: `${thumbnailIntroFast} 1.1s .3s both linear`,
                 },
                 "&::before": {
-                    background: theme.palette.secondary.main,
+                    background: COLORS.secondary,
                     animation: `${thumbnailIntroSlow} 1.4s .2s both linear`,
                 },
                 ".number-of-features": {
                     animation: `${numberOfFeaturesBackgroundTransform} .001s 2.3s both linear`,
                     "&::after": {
-                        background: theme.palette.secondary.main,
+                        background: COLORS.secondary,
                         content: "''",
                         position: "absolute",
                         top: "0%",

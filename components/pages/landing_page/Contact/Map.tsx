@@ -14,7 +14,7 @@ const MapBase = styled("span")(({ theme }) => ({
     zIndex: 1,
     right: "0",
     top: 0,
-    backgroundImage: 'url("/images/landing-page/europe_map/light/blank.png")',
+    backgroundImage: `url("/images/landing-page/europe_map/${theme.palette.mode}/blank.png")`,
     backgroundSize: "cover",
     backgroundPosition: "left",
     backgroundRepeat: "no-repeat",
@@ -42,7 +42,7 @@ const MapBase = styled("span")(({ theme }) => ({
         "&.success": {
             transform: "scale(1.6)",
             transition: "background-image .5s .6s linear, width 1.2s, transform .6s",
-            backgroundImage: 'url("/images/landing-page/europe_map/light/success.png")',
+            backgroundImage: `url("/images/landing-page/europe_map/${theme.palette.mode}/success.png")`,
             "&::after": {
                 backgroundImage: 'url("/images/landing-page/europe_map/poland/success.png")',
             },
@@ -50,7 +50,7 @@ const MapBase = styled("span")(({ theme }) => ({
         "&.error": {
             transform: "scale(1.6)",
             transition: "background-image .5s .6s linear, width 1.2s, transform .6s",
-            backgroundImage: 'url("/images/landing-page/europe_map/light/error.png")',
+            backgroundImage: `url("/images/landing-page/europe_map/${theme.palette.mode}/error.png")`,
             "&::after": {
                 backgroundImage: 'url("/images/landing-page/europe_map/poland/error.png")',
             },

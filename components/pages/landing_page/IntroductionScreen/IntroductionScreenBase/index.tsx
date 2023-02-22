@@ -1,5 +1,5 @@
 // Tools
-import theme from "@/material";
+import { COLORS } from "@/material";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 // Types
@@ -83,7 +83,7 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
                                 }}
                             />
                             <BackgroundShape
-                                backgroundColor={theme.palette.secondary.main} //
+                                backgroundColor={COLORS.secondary} //
                                 initialHeight="200px"
                                 zIndex={9}
                                 delays={{

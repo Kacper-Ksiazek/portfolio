@@ -33,8 +33,8 @@ export default styled(ButtonBase, {
             contrast: "#fff",
         },
         text: {
-            main: theme.palette.text.primary,
-            contrast: "#fff",
+            main: theme.palette.mode == "light" ? theme.palette.text.primary : "#F0EFF4",
+            contrast: theme.palette.mode == "light" ? theme.palette.text.secondary : "#121212",
         },
     };
 
@@ -60,9 +60,12 @@ export default styled(ButtonBase, {
             background: fontColor,
         },
         "&.Mui-disabled": {
-            border: `1px solid ${theme.palette.text.primary}`,
-            background: alpha(theme.palette.text.primary, 0.4),
-            color: theme.palette.text.primary,
+            border: `1px solid #000`,
+            background:
+                theme.palette.mode === "light" //
+                    ? alpha(theme.palette.text.primary, 0.4)
+                    : alpha(theme.palette.text.secondary, 0.4),
+            color: alpha(theme.palette.text.primary, 0.8),
         },
         ...(props.iconButton && {
             padding: 0,

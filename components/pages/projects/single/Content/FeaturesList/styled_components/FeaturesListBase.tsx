@@ -1,20 +1,10 @@
 // Tools
-import theme from "@/material";
 import { styled, keyframes } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Types
 import type { SxProps } from "@mui/system";
 // Styled components
-
-const SingleFeatureBorderAnimation = keyframes({
-    from: {
-        border: `2px solid ${theme.palette.background.default}`,
-    },
-    to: {
-        border: `2px solid ${theme.palette.background.paper}`,
-    },
-});
 
 export default styled("section")(({ theme }) => ({
     display: "flex",
@@ -27,7 +17,7 @@ export default styled("section")(({ theme }) => ({
             visibility: "visible",
         },
         ".single-feature": {
-            ...addAnimationsToNFirstElements(5),
+            ...addAnimationsToNFirstElements(5, theme.palette.background),
         },
         "#features-display-toggler": {
             animation: `${fadeSimple} .3s 1.4s both`,
@@ -39,7 +29,14 @@ export default styled("section")(({ theme }) => ({
  * Generates **CSS** clauses matching `nth-of-type` convention, based on received amount of children to tackle.
  * Returns CSS-in-JS Object, adequate to MaterialUI's styles managing approach.
  */
-const addAnimationsToNFirstElements = (amountOfElements: number): SxProps => {
+const addAnimationsToNFirstElements = (
+    amountOfElements: number,
+    background: {
+        default: string;
+        paper: string;
+        lightAnimationBar: string;
+    }
+): SxProps => {
     const DELAY_BETWEEN_ELEMENTS: number = 0.1;
     const result: SxProps = {};
 
@@ -51,7 +48,7 @@ const addAnimationsToNFirstElements = (amountOfElements: number): SxProps => {
             left: 0,
             width: "100%",
             height: "100%",
-            background: theme.palette.background.lightAnimationBar,
+            background: background.lightAnimationBar,
             zIndex: 3,
         },
     };
@@ -63,7 +60,14 @@ const addAnimationsToNFirstElements = (amountOfElements: number): SxProps => {
             },
             animation: [
                 `${fadeSimple} .3s ${0.2 + index * DELAY_BETWEEN_ELEMENTS}s both linear`, //
-                `${SingleFeatureBorderAnimation} .3s ${0.8 + index * DELAY_BETWEEN_ELEMENTS}s both linear`,
+                `${keyframes({
+                    from: {
+                        border: `2px solid ${background.default}`,
+                    },
+                    to: {
+                        border: `2px solid ${background.paper}`,
+                    },
+                })} .3s ${0.8 + index * DELAY_BETWEEN_ELEMENTS}s both linear`,
             ].join(", "),
         };
     }

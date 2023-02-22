@@ -1,18 +1,14 @@
 // Tools
-import { styled, alpha } from "@mui/system";
-// Material UI Components
-import ButtonBase from "@mui/material/ButtonBase";
+import { styled } from "@mui/system";
 // Styled components
-export default styled(ButtonBase)(({ theme }) => ({
+import StyledButton from "@/components/atoms/forms/StyledButton";
+
+export default styled(StyledButton)(({ theme }) => ({
     background: theme.palette.primary.main,
     alignSelf: "flex-start",
     padding: "12px 32px",
-    fontSize: "16px",
-    borderRadius: "3px",
     fontFamily: "Montserrat Alternates",
-    color: "#fff",
     overflow: "hidden",
-    transition: "all .3s",
     "&:hover, &:focus": {
         "&::after, &::before": {
             transform: "translateX(0)",
@@ -50,10 +46,7 @@ export default styled(ButtonBase)(({ theme }) => ({
         position: "reltive",
         zIndex: 2,
     },
-    "&.Mui-disabled": {
-        background: alpha(theme.palette.text.primary, 0.4),
-        color: theme.palette.text.primary,
-    },
+
     "@media (max-width:500px)": {
         width: "100%",
     },

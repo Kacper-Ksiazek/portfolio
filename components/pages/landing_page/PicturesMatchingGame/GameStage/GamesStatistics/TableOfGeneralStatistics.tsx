@@ -1,6 +1,6 @@
 // Tools
+import { COLORS } from "material";
 import { alpha } from "@mui/system";
-import theme from "material";
 import { formatTime } from "@/utils/client/formatTime";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -24,7 +24,7 @@ const TableOfStatistics: FunctionComponent<TableOfStatisticsProps> = (props) => 
             <StyledTable
                 sx={{
                     "tr:nth-of-type(5)": {
-                        background: alpha(theme.palette.secondary.main, 0.3),
+                        background: alpha(COLORS.secondary, 0.3),
                     },
                 }}
             >

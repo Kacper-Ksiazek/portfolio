@@ -49,13 +49,15 @@ export const SingleNagivationStep = styled("span")(({ theme }) => ({
         position: "absolute",
         content: "''",
         width: "100%",
+        top: "50%",
+        transform: "translateY(-50%)",
         height: "5px",
-        background: "#000",
+        background: theme.palette.text.primary,
         transition: "all .3s",
     },
     "&.active": {
         "&:after": {
-            transform: "scaleY(2)",
+            transform: "translateY(-50%) scaleY(2)",
             background: theme.palette.primary.main,
         },
     },

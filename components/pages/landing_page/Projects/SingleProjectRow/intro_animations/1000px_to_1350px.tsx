@@ -1,5 +1,5 @@
 // Tools
-import theme from "@/material";
+import { COLORS } from "@/material";
 import { stopRendering } from "./_keyframes/stopRendering";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import {
@@ -43,12 +43,12 @@ export default {
         "&.even": {
             // Initial animation shapes
             ".intro-bar1": {
-                background: theme.palette.secondary.main,
+                background: COLORS.secondary,
                 zIndex: 10,
                 animation: `${introForLeftSideProjects} .5s linear both , ${outroForLeftSideProjects} .5s 1s linear forwards `,
             },
             ".intro-bar2": {
-                background: theme.palette.primary.main,
+                background: COLORS.primary,
                 zIndex: 11,
                 animation: `${introForLeftSideProjects} .5s .1s linear both , ${outroForLeftSideProjects} .5s .9s linear forwards `,
             },
@@ -92,12 +92,12 @@ export default {
         "&.odd": {
             // Initial animation shapes
             ".intro-bar1": {
-                background: theme.palette.secondary.main,
+                background: COLORS.secondary,
                 zIndex: 10,
                 animation: `${introForRightSideProjects} .5s linear both, ${outroForRightSideProjects} .5s 1s linear forwards `,
             },
             ".intro-bar2": {
-                background: theme.palette.primary.main,
+                background: COLORS.primary,
                 zIndex: 11,
                 animation: `${introForRightSideProjects} .5s .1s linear both, ${outroForRightSideProjects} .5s .9s linear forwards`,
             },
@@ -138,25 +138,13 @@ export default {
         },
         ".thumbnail-wrapper": {
             "&::before": {
-                background: theme.palette.primary.main,
+                background: COLORS.primary,
             },
             ".direct-img-wrapper, .border-shape": {
                 animation: `${fadeSimple} .001s 2s both`,
             },
         },
         ".single-project-text-content-wrapper": {
-            ".technologies-wrapper, h4, .duration, p, .read-more": {
-                position: "relative",
-                "&::after": {
-                    content: "''",
-                    position: "absolute",
-                    background: theme.palette.background.lightAnimationBar,
-                    width: "100%",
-                    height: "100%",
-                    top: 0,
-                    left: 0,
-                },
-            },
             ".technologies-wrapper>*": {
                 animation: `${fadeSimple} .001s 2.45s both`,
             },
@@ -183,12 +171,12 @@ export default {
     "&.first-row": {
         ".project-card": {
             ".intro-bar1": {
-                background: theme.palette.secondary.main,
+                background: COLORS.secondary,
                 zIndex: 10,
                 animation: `${introForFirstProject} .5s linear both, ${outroForFirstProject} .5s 1s linear forwards`,
             },
             ".intro-bar2": {
-                background: theme.palette.primary.main,
+                background: COLORS.primary,
                 zIndex: 11,
                 animation: `${introForFirstProject} .5s .1s linear both, ${outroForFirstProject} .5s .9s linear forwards`,
             },

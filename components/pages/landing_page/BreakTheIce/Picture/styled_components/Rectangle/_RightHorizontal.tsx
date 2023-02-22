@@ -1,5 +1,5 @@
 // Tools
-import theme from "@/material";
+import { COLORS } from "@/material";
 import { keyframes } from "@mui/system";
 // Types
 import type { SxProps } from "@mui/system";
@@ -104,7 +104,7 @@ const outroRightHorizotal8px = keyframes({
 
 export default {
     "&.right-horizontal": {
-        background: theme.palette.secondary.main,
+        background: COLORS.secondary,
         top: "-15px",
         right: "-15px",
         width: "calc(75% - 100px)",

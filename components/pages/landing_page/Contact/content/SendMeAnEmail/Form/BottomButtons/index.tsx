@@ -60,6 +60,7 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
                 disabled={invalidFormFields.length !== 0} //
                 onClick={props.onContinueButtonClick}
                 className="continue"
+                color="primary"
             >
                 <span className="text">Continue</span>
             </ContinueButton>

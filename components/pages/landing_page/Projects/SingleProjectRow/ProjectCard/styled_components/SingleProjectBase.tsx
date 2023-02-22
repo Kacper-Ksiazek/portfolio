@@ -42,14 +42,16 @@ export default styled("div")(({ theme }) => ({
         position: "absolute",
         height: "100%",
         width: "80px",
-        background: alpha(theme.palette.secondary.main, 0.1),
+        background:
+            theme.palette.mode === "light" //
+                ? alpha(theme.palette.secondary.main, 0.1)
+                : alpha("#fff", 0.05),
         borderRadius: "3px",
         transition: "width .3s ease-out, transform .3s linear, background .3s linear",
     },
     "&:hover": {
         "&::before": {
             width: "130%",
-            background: alpha(theme.palette.secondary.main, 0.05),
         },
         "&.odd": {
             "&::before": {

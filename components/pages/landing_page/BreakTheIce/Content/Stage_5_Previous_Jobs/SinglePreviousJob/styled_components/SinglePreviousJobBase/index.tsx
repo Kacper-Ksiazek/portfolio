@@ -44,7 +44,7 @@ export default styled("div")(({ theme }) => ({
         position: "absolute",
         top: "50%",
         height: "calc(100% + 24px)",
-        background: "#EEDFE9",
+        background: theme.palette.mode === "light" ? "#EEDFE9" : "#343435",
         width: "80px",
         transform: "translateY(-50%)",
         zIndex: "-1",

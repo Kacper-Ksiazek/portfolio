@@ -12,6 +12,7 @@ export default styled("span")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    borderRadius: "3px",
     svg: {
         color: "#fff",
     },

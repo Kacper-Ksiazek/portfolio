@@ -8,13 +8,10 @@ export default styled(ButtonBase)(({ theme }) => ({
     border: `1px solid ${theme.palette.text.primary}`,
     borderRadius: "5px 10px 5px 10px",
     height: "32px",
-    padding: "0 30px",
+    padding: "0 32px",
     fontWeight: "500",
-    marginLeft: "20px",
+    marginRight: "20px",
     overflow: "hidden",
-    "&:nth-of-type(1)": {
-        marginLeft: "0",
-    },
     "span.text": {
         position: "relative",
         zIndex: 2,
@@ -55,7 +52,7 @@ export default styled(ButtonBase)(({ theme }) => ({
         },
     },
     ["@media (max-width:1000px)"]: {
-        marginLeft: "0px",
+        marginRight: "0px",
         fontSize: "20px",
         width: "calc(100% - 20px)",
         padding: "24px 0",

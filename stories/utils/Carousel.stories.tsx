@@ -1,5 +1,4 @@
 // Tools
-import theme from "@/material";
 import { styled } from "@mui/system";
 import Carousel from "@/components/utils/Carousel";
 // Types

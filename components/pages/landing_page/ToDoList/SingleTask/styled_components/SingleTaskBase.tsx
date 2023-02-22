@@ -8,7 +8,7 @@ export default styled("div")(({ theme }) => ({
     alignItems: "center",
     width: "100%",
     padding: "5px 10px",
-    background: "#fff",
+    background: theme.palette.text.secondary,
     borderRadius: "3px",
     cursor: "default",
     color: theme.palette.text.primary,

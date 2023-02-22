@@ -32,6 +32,7 @@ const Layout: FunctionComponent<LayoutProps> = (props) => {
                 <Snackbar />
 
                 <LazyLoadedImages key={`${router.asPath}-lazy-loaded-images`} />
+                <div id="modals-wrapper"></div>
             </SnackbarContextProvider>
         </MainNavigationBarContextProvider>
     );

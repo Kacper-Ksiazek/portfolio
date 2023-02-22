@@ -1,5 +1,5 @@
 // Tools
-import theme from "@/material";
+import { COLORS } from "@/material";
 import { keyframes } from "@mui/system";
 
 export const numberOfFeaturesBarIntro = keyframes({
@@ -30,7 +30,7 @@ export const numberOfFeaturesBackgroundTransform = keyframes({
         background: "transparent",
     },
     to: {
-        background: theme.palette.primary.main,
+        background: COLORS.primary,
     },
 });
 

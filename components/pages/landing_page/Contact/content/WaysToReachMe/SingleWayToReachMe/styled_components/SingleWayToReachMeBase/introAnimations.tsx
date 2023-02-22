@@ -1,5 +1,5 @@
 // Tools
-import theme from "@/material";
+import { COLORS } from "@/material";
 import { keyframes } from "@mui/system";
 // Types
 import type { SxProps } from "@mui/system";
@@ -14,7 +14,7 @@ const fadeSimple = keyframes({
 });
 const borderAppearingAnimation = keyframes({
     from: {
-        border: `1px solid #fff`,
+        border: `1px solid transparent`,
     },
     to: {
         border: `1px solid #c7c7c7`,
@@ -115,7 +115,7 @@ export default {
     "&::after": {
         content: '""',
         position: "absolute",
-        background: theme.palette.primary.main,
+        background: COLORS.primary,
     },
     "&:nth-of-type(1)": {
         animation: `${borderAppearingAnimation} .001s 1.1s both`,

@@ -23,7 +23,7 @@ const GamesStatistics: FunctionComponent<GamesStatisticsProps> = (params) => {
         requstDOMNode("MAIN_WRAPPER").scrollIntoView({
             behavior: "smooth",
         });
-        setTimeout(params.goBack, 300);
+        setTimeout(params.goBack, 580);
     };
 
     return (

@@ -1,5 +1,6 @@
 // Tools
 import { prisma } from "@/prisma/db";
+import { useTheme } from "@mui/material";
 import { formatProjectDate } from "@/utils/api/date-formatter";
 // Types
 import type { NextPage, GetStaticProps } from "next";
@@ -10,6 +11,8 @@ import LandingPageContent from "@/components/pages/landing_page/Wrapper";
 import IntroductionScreen from "@/components/pages/landing_page/IntroductionScreen";
 
 const Home: NextPage<LandingPageServerSideProps> = (props) => {
+    const theme = useTheme();
+
     return (
         <>
             <SEO description="Since the age of 16 software engineering enjoyer, then freelancer, now Data Science at AGH in Cracow freshman. This portfolio is an extensive introduction of my person including information regarding my previous education and working experience, my current hobbies and foremost my motives and goals. " />
