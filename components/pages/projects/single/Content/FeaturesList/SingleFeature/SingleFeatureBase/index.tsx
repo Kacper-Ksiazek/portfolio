@@ -5,7 +5,7 @@ import { styled } from "@mui/system";
 export default styled("div")(({ theme }) => ({
     marginTop: "20px",
     position: "relative",
-    borderRadius: "3px",
+    borderRadius: "5px",
     border: `2px solid ${theme.palette.background.paper}`,
     boxSizing: "border-box",
     cursor: "pointer",

@@ -13,7 +13,7 @@ export default styled("div", {
     padding: "0 10px",
     transition: "background .2s",
     borderRadius: "3px",
-    background: props.subtleBackground ? alpha(theme.palette.text.primary, 0.14) : "transparent",
+    background: props.subtleBackground && theme.palette.mode === "dark" ? alpha(theme.palette.text.primary, 0.14) : "transparent",
     "&:nth-of-type(1)": {
         animation: `${fadeSimple} .2s .6s both linear`,
     },
