@@ -1,11 +1,20 @@
 // Tools
-import { styled } from "@mui/system";
 import { createPortal } from "react-dom";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { styled, keyframes } from "@mui/system";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
-import { generateStaticLineAnimations } from "@/utils/client/styled/lineAnimations";
 // Types
 import type { FunctionComponent } from "react";
+
+const intro = keyframes({
+    from: {
+        transform: "scaleX(0)",
+        transformOrigin: "right",
+    },
+    to: {
+        transform: "scaleX(1)",
+        transformOrigin: "right",
+    },
+});
 
 const ModalBase = styled("span")(({ theme }) => ({
     position: "fixed",
@@ -13,35 +22,15 @@ const ModalBase = styled("span")(({ theme }) => ({
     width: "100vw",
     height: "100vh",
     zIndex: "20",
-    ...(generateStaticLineAnimations({
-        animations: {
-            initialDelay: 0,
-            commonDuration: 0.4,
-            start: {
-                direction: "RIGHT",
-            },
-            end: {
-                direction: "RIGHT",
-                delay: 1,
-            },
-        },
-        color: theme.palette.text.secondary,
-        sx: {
-            zIndex: 9,
-            transition: "background .5s",
-        },
-    }) as any),
-    "&::before": {
+    "&::after": {
         content: '""',
         position: "absolute",
         inset: "0 0 0 0",
         width: "100%",
         height: "100%",
+        transition: "background .5s",
         background: theme.palette.background.paper,
-        animation: [
-            `${fadeSimple} .001s both .8s`, //
-            `${fadeSimpleOUT} 1.2s forwards 2s`,
-        ].join(", "),
+        animation: `${intro} .3s forwards linear, ${fadeSimpleOUT} .8s 1s both linear`,
     },
 
     ".content": {

@@ -28,6 +28,8 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
 
     const [keepContrastFontColor, setKeepContrastFontColor] = useState<boolean>(false);
 
+    const mobileMenuIsOpened: boolean = mobileMenuStatus === "opened";
+
     useEffect(() => {
         let timeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -47,8 +49,8 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
         <NavigationBase
             key={introAnimation}
             className={[
-                mobileMenuStatus !== "opened" && applyOnScrollStyles ? "on-scroll-styles" : "", //
-                improveContrast || mobileMenuStatus === "opened" ? "contrast-colors" : "",
+                !mobileMenuIsOpened && applyOnScrollStyles ? "on-scroll-styles" : "", //
+                improveContrast || mobileMenuIsOpened ? "contrast-colors" : "",
                 appearingAnimation !== null ? `display-${appearingAnimation}-animation` : "",
                 introAnimation,
                 keepContrastFontColor ? "keep-contrast-font-color" : "",
@@ -56,7 +58,7 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
         >
             <div id="main-navigation-content">
                 <Logo
-                    mobileMenuIsOpened={mobileMenuStatus === "opened"} //
+                    mobileMenuIsOpened={mobileMenuIsOpened} //
                     closeMobileMenu={toogleVisibility}
                 />
 
@@ -65,7 +67,7 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
                         return (
                             <MobileMenuButton
                                 onClick={toogleVisibility} //
-                                isOpened={mobileMenuStatus === "opened"}
+                                isOpened={mobileMenuIsOpened}
                             />
                         );
                     }
@@ -74,27 +76,27 @@ const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
                 <RoutesWrapper className={mobileMenuStatus ?? ""}>
                     <SingleNavigationRoute
                         idOfElementToScroll="about-me" //
-                        mobileMenuIsOpened={mobileMenuStatus === "opened"}
+                        mobileMenuIsOpened={mobileMenuIsOpened}
                         closeMobileMenu={toogleVisibility}
                     >
                         About me
                     </SingleNavigationRoute>
                     <SingleNavigationRoute
                         idOfElementToScroll="projects" //
-                        mobileMenuIsOpened={mobileMenuStatus === "opened"}
+                        mobileMenuIsOpened={mobileMenuIsOpened}
                         closeMobileMenu={toogleVisibility}
                     >
                         Projects
                     </SingleNavigationRoute>
                     <SingleNavigationRoute
                         idOfElementToScroll="contact" //
-                        mobileMenuIsOpened={mobileMenuStatus === "opened"}
+                        mobileMenuIsOpened={mobileMenuIsOpened}
                         closeMobileMenu={toogleVisibility}
                     >
                         Contact
                     </SingleNavigationRoute>
 
-                    <ColorThemeSwitch closeMobileMenu={toogleVisibility} />
+                    <ColorThemeSwitch closeMobileMenu={() => mobileMenuIsOpened && toogleVisibility()} />
 
                     <MobileAuthor>
                         <span id="mobile-menu-bottom-card-name">Kacper Książek</span>

@@ -74,7 +74,7 @@ const ColorThemeSwitch: FunctionComponent<{ closeMobileMenu: () => void }> = (pr
 
         setTimeout(() => {
             setDisplayModal(false);
-        }, 3000);
+        }, 2000);
     }
 
     return (

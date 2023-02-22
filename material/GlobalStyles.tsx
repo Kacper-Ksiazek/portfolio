@@ -27,6 +27,7 @@ const GlobalStyles: FunctionComponent = (props) => {
                         "&::-webkit-scrollbar": {
                             width: "8px",
                             background: theme.palette.background.default,
+                            transition: "background .3s",
                         },
                         "&::-webkit-scrollbar-track": {
                             boxShadow: `inset 0 0 2px ${theme.palette.mode === "light" ? "#888" : "#000"}`,
