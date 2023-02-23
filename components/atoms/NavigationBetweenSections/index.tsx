@@ -1,4 +1,5 @@
 // Tools
+import * as CSSClasses from "./CSSClasses";
 import { parseSection } from "./utils/parseSection";
 // Types
 import type { Section } from "./@types";
@@ -22,11 +23,11 @@ const NavigationBetweenSections: FunctionComponent<NavigationBetweenSectionsProp
                 const onClick = () => props.onChoose(value);
 
                 return (
-                    <div key={value} className="step-wrapper">
-                        {index ? <Divider className="divider" /> : <span />}
+                    <div key={value} className={CSSClasses.STEP_WRAPPER}>
+                        {index ? <Divider className={CSSClasses.DIVIDER} /> : <span />}
                         <SingleNavigationStep
                             className={[
-                                `single-navigation-button`, //
+                                CSSClasses.STEP_BUTTON, //
                                 props.currentSection === value ? "selected" : "",
                             ].join(" ")} //
                             onClick={onClick}
