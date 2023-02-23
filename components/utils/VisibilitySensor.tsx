@@ -31,7 +31,6 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
     const DELAY_BETWEEN_SHOWING_IDENTICAL_ELEMENTS: number = 2200;
 
     const { width } = useWindowSizes();
-    const wrapperElement = useRef<HTMLElement | null>(null);
 
     const contentHasBeenShownOnce = useRef<boolean>(false);
     const [isVisible, setIsVisible] = useState<boolean>(contentHasBeenShownOnce.current);
@@ -71,66 +70,10 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
         }
     }
 
-    // Add `.visible` class to the first children
-    useEffect(() => {
-        if (width && width < 1000) {
-            contentHasBeenShownOnce.current = true;
-            setIsVisible(true);
-
-            if (wrapperElement.current?.firstChild) {
-                (wrapperElement.current.firstChild as any).classList.add("visible");
-                (wrapperElement.current.firstChild as any).classList.remove("not-visable");
-            }
-
-            if (props.onVisible) props.onVisible();
-
-            return;
-        }
-
-        if (wrapperElement.current?.firstChild) {
-            if (isVisible) {
-                contentHasBeenShownOnce.current = true;
-                (wrapperElement.current.firstChild as any).classList.add("visible");
-                (wrapperElement.current.firstChild as any).classList.remove("not-visable");
-                if (props.removeVisibleCSSClassIn) {
-                    setTimeout(() => {
-                        if (wrapperElement.current) {
-                            (wrapperElement.current.firstChild as any).classList.remove("visible");
-                        }
-                    }, props.removeVisibleCSSClassIn);
-                }
-            }
-            //
-            // else {
-            //     (wrapperElement.current.firstChild as any).classList.remove("visible");
-            //     (wrapperElement.current.firstChild as any).classList.add("not-visable");
-            // }
-        }
-    }, [isVisible, props.removeVisibleCSSClassIn, width, props.onVisible, props]);
-
-    // Remove `visible` class after fixed period of the time
-    useEffect(() => {
-        if (wrapperElement.current?.firstChild) {
-            if (width < 1000) {
-                (wrapperElement.current.firstChild as any).classList.add("visible");
-                (wrapperElement.current.firstChild as any).classList.remove("not-visable");
-            }
-            if (props.removeVisibleCSSClassIn) {
-                setTimeout(() => {
-                    if (wrapperElement.current && wrapperElement.current.firstChild) {
-                        (wrapperElement.current.firstChild as any).classList.remove("visible");
-                    }
-                }, props.removeVisibleCSSClassIn);
-            }
-        }
-    }, [width, props.removeVisibleCSSClassIn]);
+    //
 
     if (width <= 1000) {
-        return (
-            <ChildrenWrapper ref={wrapperElement as any} sx={props.childWrapperSx}>
-                {props.children}
-            </ChildrenWrapper>
-        );
+        return <ChildrenWrapper sx={props.childWrapperSx}>{props.children}</ChildrenWrapper>;
     }
 
     return (
@@ -143,7 +86,7 @@ const VisibilitySensor: FunctionComponent<VisibilitySensorProps> = (props) => {
             partialVisibility={true}
             intervalDelay={200}
         >
-            <ChildrenWrapper ref={wrapperElement as any} sx={props.childWrapperSx}>
+            <ChildrenWrapper sx={props.childWrapperSx}>
                 {(() => {
                     if (props.dontRenderNotVisableChildren && isVisible === false) return null;
                     return props.children;

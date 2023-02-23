@@ -14,7 +14,7 @@ export interface DarkSectionWrapperProps {
     /**
      * Specifies the rotation of two background rectangles.
      */
-    shapesDirection?: "left" | "right";
+    shapesDirection: "left" | "right";
     /**
      * Handles section's premade header along with its smaller label
      */

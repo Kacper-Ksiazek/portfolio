@@ -2,7 +2,7 @@
 import { styled } from "@mui/system";
 import introAnimations from "./introAnimations";
 // Other components
-import DarkWrapperBase from "@/components/atoms/content_placement/SectionWrapper/Dark/DarkWrapperBase";
+import DarkWrapperBase from "@/components/atoms/content_placement/SectionWrapper/Dark/styled_components/DarkWrapperBase";
 
 export default styled(DarkWrapperBase)(({ theme }) => ({
     display: "flex",
