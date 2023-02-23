@@ -14,7 +14,7 @@ interface RenderOnScrollProps {
     /** Styles applied to the wrapper */
     sx?: SxProps;
     /** Styles before animation */
-    from: Styles;
+    from?: Styles;
     /** Styles applied when **visible** */
     to: Styles;
     children: ReactNode;
@@ -30,8 +30,9 @@ const RenderOnScroll: FunctionComponent<RenderOnScrollProps> = (props) => {
             className="render-on-scroll-wrapper"
             ref={ref as any}
             sx={{
+                visibility: elementIsVisible ? "visible" : "hidden",
                 ...applySxProps(props.sx, theme),
-                ...(elementIsVisible ? props.to : props.from),
+                ...(elementIsVisible ? props.to : props.from ?? {}),
             }}
         >
             {props.children}

@@ -7,12 +7,15 @@ export function useElementVisibility(ref: RefObject<Element>): boolean {
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(([{ isIntersecting }], observer) => {
-            if (isIntersecting) {
-                observer.unobserve(ref.current as any);
-                setIsVisible(true);
-            }
-        });
+        const observer = new IntersectionObserver(
+            ([{ isIntersecting }], observer) => {
+                if (isIntersecting) {
+                    observer.unobserve(ref.current as any);
+                    setIsVisible(true);
+                }
+            },
+            { rootMargin: "100px" }
+        );
 
         if (ref.current) {
             observer.observe(ref.current);
