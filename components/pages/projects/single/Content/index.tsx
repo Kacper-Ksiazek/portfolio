@@ -21,7 +21,6 @@ const SingleProjectContent: FunctionComponent<SingleProjectContentProps> = ({ pr
             header={{
                 label: "Project",
                 main: "Realization details",
-                estimatedHeight: "84px",
             }}
             round="left"
             unlimitedHeight

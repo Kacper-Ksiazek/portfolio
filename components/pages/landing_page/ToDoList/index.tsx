@@ -13,8 +13,8 @@ import SingleTask from "./SingleTask";
 import Code from "@mui/icons-material/Code";
 // Styled Components
 import NoResults from "./NoResults";
-import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 import OverflowScrollDiv from "@/components/atoms/content_placement/OverflowScrollDiv";
+import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 
 const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
     const { displaySnackbar } = useSnackbar();
@@ -109,11 +109,7 @@ const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
                 icon: <Code />,
                 description: `To do list project is undoubtedly a *part and parcel* of everyone's frontend developer portfolio, because this at the first glance unassuming piece of software is actually a *very accurate and reliable gauge of somebody's competencies*.`,
             }}
-            sx={{
-                "&.visible": toDoListIntroAnimations as any,
-            }}
             githubURL={"https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page"}
-            onVisible={onVisible}
         >
             {(() => {
                 if (tasksArray.entries.length) {

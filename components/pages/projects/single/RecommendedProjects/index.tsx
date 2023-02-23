@@ -56,13 +56,15 @@ const RecommendedProjects: FunctionComponent<RecommendedProjectsProps> = ({ reco
             header={{
                 label: "See more",
                 main: "Rest of my work",
-                additionalJSX: (
-                    <InformationAboutNumberOfProjects>
-                        {formatTextViaBolding(`There are *${recommendedProjects.length}* more projects to see`, true)}
-                        {/*  */}
-                    </InformationAboutNumberOfProjects>
-                ),
-                estimatedHeight: "130px",
+                additionalJSX: {
+                    node: (
+                        <InformationAboutNumberOfProjects>
+                            {formatTextViaBolding(`There are *${recommendedProjects.length}* more projects to see`, true)}
+                            {/*  */}
+                        </InformationAboutNumberOfProjects>
+                    ),
+                    whenVisible: {},
+                },
             }}
             round="right"
         >

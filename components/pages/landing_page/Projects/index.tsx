@@ -47,12 +47,15 @@ const Projects: FunctionComponent<ProjectsProps> = ({ projects }) => {
             header={{
                 label: "Insight into my work",
                 main: "Projects",
-                additionalJSX: (
-                    <ParagraphForHeader>
-                        I have always found building more complex and bigger projects the best way to thoroughly learn new technologies, thus in 3 years I managed to amass a nice collection of them.
-                    </ParagraphForHeader>
-                ),
-                estimatedHeight: "134px",
+                additionalJSX: {
+                    node: (
+                        <ParagraphForHeader>
+                            I have always found building more complex and bigger projects the best way to thoroughly learn new technologies, thus in 3 years I managed to amass a nice collection of
+                            them.
+                        </ParagraphForHeader>
+                    ),
+                    whenVisible: {},
+                },
             }}
             round="right"
             unlimitedHeight

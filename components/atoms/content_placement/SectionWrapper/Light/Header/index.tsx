@@ -10,6 +10,7 @@ import type { LightSectionWrapperProps } from "../@types";
 import RenderOnScroll from "@/components/utils/RenderOnScroll";
 // Styled components
 import { Header, Label, HeaderWrapper } from "./styled_components";
+import { Styles } from "@/@types/MUI";
 
 const LightSectionHeader: FunctionComponent<LightSectionWrapperProps["header"]> = (props) => {
     const LABEL: CSSClassName = "light-section-wrapper-label";
@@ -17,7 +18,7 @@ const LightSectionHeader: FunctionComponent<LightSectionWrapperProps["header"]> 
 
     return (
         <RenderOnScroll
-            to={(theme) => ({
+            to={(theme): Styles => ({
                 [`.${LABEL}`]: {
                     span: {
                         animation: `${fadeSimple} .001s .7s both`,
@@ -30,7 +31,7 @@ const LightSectionHeader: FunctionComponent<LightSectionWrapperProps["header"]> 
                         animation: chainAnimations([
                             [keyframes.label.stageOne, 0.3, 0.3],
                             [keyframes.label.stageTwo, 0.2, 0.3],
-                            // [hidePseudoElement, 0.0001],
+                            [hidePseudoElement, 0.0001],
                         ]),
                     },
                 },
