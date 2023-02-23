@@ -14,7 +14,7 @@ export function useElementVisibility(ref: RefObject<Element>): boolean {
                     setIsVisible(true);
                 }
             },
-            { rootMargin: "100px" }
+            { rootMargin: "-200px" }
         );
 
         if (ref.current) {
