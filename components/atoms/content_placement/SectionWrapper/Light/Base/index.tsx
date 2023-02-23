@@ -1,8 +1,6 @@
 // Tools
 import RWD from "./RWD";
-import { styled } from "@mui/system";
-import introAnimations from "./introAnimations";
-import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
+import { styled } from "@mui/material";
 // Styled components
 import SectionWrapper from "../../_SectionWrapper";
 
@@ -20,5 +18,5 @@ export default styled(SectionWrapper)(({ theme }) => ({
         height: "800px",
     },
     //
-    ...mergeSXObjects(RWD, introAnimations),
+    ...(RWD as any),
 }));

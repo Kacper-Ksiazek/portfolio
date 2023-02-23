@@ -24,10 +24,6 @@ export interface DarkSectionWrapperProps {
      */
     sx?: SxProps;
     /**
-     * allback which is fired once when the element appears on the screen
-     * */
-    onVisible?: () => void;
-    /**
      * Reference to the code associated with the following project
      */
     githubURL: string;
