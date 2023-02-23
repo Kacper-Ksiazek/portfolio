@@ -1,7 +1,9 @@
 // Tools
-import { useState, useEffect } from "react";
+import { repeat } from "@/utils/client/styled/repeat";
+import { fadeSimple } from "@/components/keyframes/intro";
+import { useBackgroundLetter } from "./hooks/useBackgroundLetter";
 import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
-import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
+import * as NavigationBetweenSectionsCSSClasses from "@/components/atoms/NavigationBetweenSections/CSSClasses";
 // Types
 import type { FunctionComponent } from "react";
 import type { Hobby, School } from "@prisma/client";
@@ -11,14 +13,13 @@ import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheI
 import Content from "./Content";
 import Picture from "./Picture";
 import NavigationBetweenStages from "./NavigationBetweenStages";
-import VisibilitySensor from "@/components/utils/VisibilitySensor";
 import { BreakTheIceContextProvider } from "./contexts/BreakTheIceContentContext";
 // Styled Components
 import BreakTheIceBase from "./styled_components/BreakTheIceBase";
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 
 const BreakTheIce: FunctionComponent = () => {
-    const { currentIceBreakingStage } = useBreakTheIceContentContext();
+    const letter = useBackgroundLetter();
 
     useLazyLoadedImages({
         id: "ICE_BREAKING_STAGE",
@@ -33,48 +34,29 @@ const BreakTheIce: FunctionComponent = () => {
         ).map((stage) => `/images/landing-page/${stage}.jpg`),
     });
 
-    const [letter, setLetter] = useState<string>("K");
-
-    // Update letter after stage being change
-    useEffect(() => {
-        const letters: Record<IceBreakingStage, string> = {
-            General: "K",
-            Competencies: "A",
-            Education: "C",
-            Hobbies: "P",
-            Previous_Jobs: "E",
-        };
-        setLetter(letters[currentIceBreakingStage]);
-    }, [currentIceBreakingStage]);
-
     return (
         <LightSectionWrapper
             round="left"
             header={{
                 label: `Let's break the ice`,
                 main: "About me",
-                additionalJSX: <NavigationBetweenStages />,
-                estimatedHeight: "134px",
+                additionalJSX: {
+                    node: <NavigationBetweenStages />,
+                    whenVisible: {
+                        [`.${NavigationBetweenSectionsCSSClasses.STEP_WRAPPER}`]: repeat(5, (index) => ({
+                            animation: `${fadeSimple} .2s ${0.6 + index * 0.1}s both linear`,
+                        })),
+                    },
+                },
             }}
             backgroundLetter={letter}
             id="about-me"
             contentWrapperSx={{ display: "flex" }}
         >
-            <VisibilitySensor
-                offsetBottom={250} //
-                dontRenderNotVisableChildren
-                removeVisibleCSSClassIn={2300}
-                childWrapperSx={{
-                    height: "100%",
-                    flexGrow: 1,
-                    display: "flex",
-                }}
-            >
-                <BreakTheIceBase>
-                    <Content />
-                    <Picture />
-                </BreakTheIceBase>
-            </VisibilitySensor>
+            <BreakTheIceBase>
+                <Content />
+                <Picture />
+            </BreakTheIceBase>
         </LightSectionWrapper>
     );
 };
