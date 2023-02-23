@@ -1,7 +1,7 @@
 // Tools
 import { fadeSimple } from "@/components/keyframes/intro";
 // Types
-export type { Direction } from "./Base";
+import type { Direction } from "./Base";
 import type { FunctionComponent } from "react";
 // Other components
 import RenderOnScroll from "@/components/utils/RenderOnScroll";
