@@ -14,4 +14,19 @@ declare module "@mui/material/styles/createMixins" {
     }
 }
 
-export const mixins: MixinsOptions = {};
+export const mixins: MixinsOptions = {
+    absolute_center: {
+        position: "absolute",
+        inset: "50% 50%",
+        transform: "translate(-50%, -50%)",
+    },
+    absolute_full: {
+        position: "absolute",
+        inset: 0,
+    },
+    flex_center: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+};
