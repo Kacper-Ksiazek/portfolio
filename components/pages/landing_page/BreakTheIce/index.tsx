@@ -13,6 +13,7 @@ import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheI
 import Content from "./Content";
 import Picture from "./Picture";
 import NavigationBetweenStages from "./NavigationBetweenStages";
+import RenderWhenVisible from "@/components/utils/RenderWhenVisible";
 import { BreakTheIceContextProvider } from "./contexts/BreakTheIceContentContext";
 // Styled Components
 import BreakTheIceBase from "./styled_components/BreakTheIceBase";
@@ -53,10 +54,12 @@ const BreakTheIce: FunctionComponent = () => {
             id="about-me"
             contentWrapperSx={{ display: "flex" }}
         >
-            <BreakTheIceBase>
-                <Content />
-                <Picture />
-            </BreakTheIceBase>
+            <RenderWhenVisible>
+                <BreakTheIceBase>
+                    <Content />
+                    <Picture />
+                </BreakTheIceBase>
+            </RenderWhenVisible>
         </LightSectionWrapper>
     );
 };

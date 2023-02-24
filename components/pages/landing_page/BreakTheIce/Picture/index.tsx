@@ -1,79 +1,18 @@
 // Tools
-import { styled } from "@mui/system";
-import { useEffect, useRef, useMemo, useState } from "react";
+import { usePlayIntroAnimation } from "./hooks/usePlayIntroAnimation";
+import { useBackgroundShapesRefs } from "./hooks/useBackgroundShapesRefs";
 import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
-import type { FunctionComponent, MutableRefObject } from "react";
+import type { FunctionComponent } from "react";
 // Other components
 import Image from "next/image";
 // Styled components
-import Rectangle from "./styled_components/Rectangle";
-import PictureWrapper from "./styled_components/PictureWrapper";
-
-const PictureSectionWrapper = styled("div")(({ theme }) => ({
-    width: "calc(50% - 50px)",
-    position: "relative",
-    overflow: "hidden",
-}));
-
-const PictureBase = styled("div")(({ theme }) => ({
-    position: "relative",
-    zIndex: 2,
-    width: "100%",
-    height: "100%",
-    borderRadius: "10px",
-    background: theme.palette.primary.main,
-}));
+import { PictureBase, PictureSectionWrapper, PictureWrapper, Rectangle } from "./styled_components";
 
 const Picture: FunctionComponent = () => {
-    const INTRO_ANIMATION_DURATION: number = 2000;
     const { currentIceBreakingStage, previousIceBreakingStage } = useBreakTheIceContentContext();
-
-    const [playIntroAnimation, setPlayIntroAnimation] = useState<boolean>(true);
-
-    const LeftHorizontalRectangleElement = useRef<HTMLSpanElement | null>(null);
-    const LeftVerticalRectangleElement = useRef<HTMLSpanElement | null>(null);
-    const RightHorizontalRectangleElement = useRef<HTMLSpanElement | null>(null);
-    const RightVerticalRectangleElement = useRef<HTMLSpanElement | null>(null);
-
-    const AllRefs = useMemo<MutableRefObject<HTMLSpanElement | null>[]>(() => {
-        return [LeftHorizontalRectangleElement, LeftVerticalRectangleElement, RightHorizontalRectangleElement, RightVerticalRectangleElement];
-    }, []);
-
-    useEffect(() => {
-        AllRefs.forEach((el) => {
-            if (el.current) {
-                el.current.classList.remove("outro");
-                el.current.classList.add("intro");
-            }
-        });
-
-        setTimeout(() => {
-            AllRefs.forEach((el) => {
-                if (el.current) {
-                    el.current.classList.remove("intro");
-                    el.current.classList.add("outro");
-                }
-            });
-            setTimeout(() => {
-                AllRefs.forEach((el) => {
-                    if (el.current) {
-                        el.current.classList.remove("outro");
-                    }
-                });
-            }, 1200);
-        }, 1200);
-    }, [AllRefs, currentIceBreakingStage]);
-
-    useEffect(() => {
-        const currentTimeout: ReturnType<typeof setTimeout> = setTimeout(() => {
-            setPlayIntroAnimation(false);
-        }, INTRO_ANIMATION_DURATION);
-
-        return () => {
-            clearTimeout(currentTimeout);
-        };
-    }, []);
+    const playIntroAnimation: boolean = usePlayIntroAnimation();
+    const refs = useBackgroundShapesRefs(currentIceBreakingStage);
 
     return (
         <PictureSectionWrapper
@@ -82,10 +21,10 @@ const Picture: FunctionComponent = () => {
             className={playIntroAnimation ? "play-intro-animation" : ""}
         >
             <PictureWrapper id="picture-direct-wrapper">
-                <Rectangle className="left-horizontal" ref={LeftHorizontalRectangleElement} />
-                <Rectangle className="left-vertical" ref={LeftVerticalRectangleElement} />
-                <Rectangle className="right-horizontal" ref={RightHorizontalRectangleElement} />
-                <Rectangle className="right-vertical" ref={RightVerticalRectangleElement} />
+                <Rectangle className="left-horizontal" ref={refs.LeftHorizontalRectangleElement as any} />
+                <Rectangle className="left-vertical" ref={refs.LeftVerticalRectangleElement as any} />
+                <Rectangle className="right-horizontal" ref={refs.RightHorizontalRectangleElement as any} />
+                <Rectangle className="right-vertical" ref={refs.RightVerticalRectangleElement as any} />
                 <PictureBase>
                     <Image
                         alt="stage-picture" //
