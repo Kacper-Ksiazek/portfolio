@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/system";
 import useWindowSizes from "@/hooks/useWindowSizes";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 import { generateSequentialLineAnimations, generateStaticLineAnimations } from "@/utils/client/styled/lineAnimations";
 import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
 // Types

@@ -1,9 +1,7 @@
 // Tools
-import { repeat } from "@/utils/client/styled/repeat";
-import { fadeSimple } from "@/components/keyframes/intro";
 import { useBackgroundLetter } from "./hooks/useBackgroundLetter";
 import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
-import * as NavigationBetweenSectionsCSSClasses from "@/components/atoms/NavigationBetweenSections/CSSClasses";
+import { generateFadeSimpleAnimations } from "@/components/atoms/NavigationBetweenSections/helpers/generateFadeSimpleAnimations";
 // Types
 import type { FunctionComponent } from "react";
 import type { Hobby, School } from "@prisma/client";
@@ -44,9 +42,7 @@ const BreakTheIce: FunctionComponent = () => {
                 additionalJSX: {
                     node: <NavigationBetweenStages />,
                     whenVisible: {
-                        [`.${NavigationBetweenSectionsCSSClasses.STEP_WRAPPER}`]: repeat(5, (index) => ({
-                            animation: `${fadeSimple} .2s ${0.6 + index * 0.1}s both linear`,
-                        })),
+                        ...generateFadeSimpleAnimations(5),
                     },
                 },
             }}

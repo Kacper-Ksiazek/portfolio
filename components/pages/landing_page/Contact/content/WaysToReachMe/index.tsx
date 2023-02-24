@@ -25,6 +25,7 @@ const WaysToReachMeWrapper = styled("div")(({ theme }) => ({
     alignSelf: "flex-start",
     overflow: "hidden",
     boxSizing: "border-box",
+    paddingTop: "24px",
     "@media (max-width:1000px)": {
         width: "100%",
         marginTop: "24px",

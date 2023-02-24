@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 // Types
 import type { RefObject } from "react";
 
-export function useElementVisibility(ref: RefObject<Element>): boolean {
+export function useElementVisibility(ref: RefObject<Element>, onVisible: (() => void) | undefined): boolean {
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
     useEffect(() => {
@@ -12,6 +12,8 @@ export function useElementVisibility(ref: RefObject<Element>): boolean {
                 if (isIntersecting) {
                     observer.unobserve(ref.current as any);
                     setIsVisible(true);
+
+                    if (typeof onVisible === "function") onVisible();
                 }
             },
             { rootMargin: "-200px" }
@@ -27,7 +29,7 @@ export function useElementVisibility(ref: RefObject<Element>): boolean {
                 observer.unobserve(ref.current);
             }
         };
-    }, [ref]);
+    }, [ref, onVisible]);
 
     return isVisible;
 }

@@ -2,14 +2,15 @@
 import dynamic from "next/dynamic";
 import { useState, useMemo } from "react";
 import { useMapContext } from "./hooks/useMapContext";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
+import { generateFadeSimpleAnimations } from "@/components/atoms/NavigationBetweenSections/helpers/generateFadeSimpleAnimations";
 // Types
 import type { Styles } from "@/@types/MUI";
 import type { FunctionComponent, ReactNode } from "react";
 import type { GeneralContactSection, EmailFormSubsection } from "./@types";
 // Other components
 const Map = dynamic(() => import("./Map"));
-import VisibilitySensor from "@/components/utils/VisibilitySensor";
+import RenderWhenVisible from "@/components/utils/RenderWhenVisible";
 import NavigationBetweenSections from "@/components/atoms/NavigationBetweenSections";
 // Styled Components
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
@@ -67,7 +68,9 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                             onChoose={(val) => props.setCurrentGeneralSection(val as any)}
                         />
                     ),
-                    whenVisible: {},
+                    whenVisible: {
+                        ...generateFadeSimpleAnimations(2),
+                    },
                 },
             }}
             backgroundLetter="R"
@@ -86,21 +89,12 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                 )
             }
         >
-            <VisibilitySensor
-                offsetBottom={400} //
-                dontRenderNotVisableChildren
-                childWrapperSx={{
-                    height: "100%",
-                    flexGrow: 1,
-                    display: "flex",
-                    ...(props.hideContent ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}),
-                }}
-                onVisible={() => {
-                    setRenderMap(true);
-                }}
+            <RenderWhenVisible
+                onVisible={() => setRenderMap(true)} //
+                sx={props.hideContent ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}}
             >
                 {props.children}
-            </VisibilitySensor>
+            </RenderWhenVisible>
         </LightSectionWrapper>
     );
 };

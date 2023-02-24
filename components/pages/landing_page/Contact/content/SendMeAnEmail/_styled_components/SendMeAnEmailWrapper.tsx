@@ -6,8 +6,9 @@ export default styled("div")(({ theme }) => ({
     cursor: "default",
     position: "relative",
     alignSelf: "flex-start",
-    height: "440px",
+    height: "460px",
     boxSizing: "border-box",
+    paddingTop: "24px",
     "@media (max-width:1000px)": {
         width: "100%",
         marginTop: "24px",
