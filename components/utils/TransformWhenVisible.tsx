@@ -1,7 +1,7 @@
 // Tools
 import { useRef } from "react";
 import { useTheme } from "@mui/material";
-import { useElementVisibility } from "./hooks/useElementVisibility";
+import { useElementVisibility } from "@/hooks/useElementVisibility";
 import { applySxProps } from "@/utils/client/styled/applyOptionalSxProps";
 // Types
 import type { Styles, SxProps } from "@/@types/MUI";
@@ -9,8 +9,7 @@ import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
 import Box from "@mui/material/Box";
 
-interface RenderOnScrollProps {
-    rootMargin?: `${number}px`;
+interface TransformWhenVisibleProps {
     /** Styles applied to the wrapper */
     sx?: SxProps;
     /** Styles before animation */
@@ -20,7 +19,7 @@ interface RenderOnScrollProps {
     children: ReactNode;
 }
 
-const RenderOnScroll: FunctionComponent<RenderOnScrollProps> = (props) => {
+const TransformWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (props) => {
     const theme = useTheme();
     const ref = useRef<Element>(null);
     const elementIsVisible = useElementVisibility(ref);
@@ -41,4 +40,4 @@ const RenderOnScroll: FunctionComponent<RenderOnScrollProps> = (props) => {
     );
 };
 
-export default RenderOnScroll;
+export default TransformWhenVisible;

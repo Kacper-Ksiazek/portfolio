@@ -4,7 +4,7 @@ import { fadeSimple } from "@/components/keyframes/intro";
 import type { Direction } from "./Base";
 import type { FunctionComponent } from "react";
 // Other components
-import RenderOnScroll from "@/components/utils/RenderOnScroll";
+import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Styled Components
 import DarkSectionWrapperBackgroundSVGBase from "./Base";
 
@@ -12,7 +12,7 @@ const DarkSectionBackground: FunctionComponent<{ direction: Direction }> = (prop
     const BACKGROUND: CSSClassName = "dark-wrapper-background";
 
     return (
-        <RenderOnScroll
+        <TransformWhenVisible
             to={{
                 [`.${BACKGROUND}`]: {
                     animation: `${fadeSimple} 2s 2s both linear`,
@@ -24,7 +24,7 @@ const DarkSectionBackground: FunctionComponent<{ direction: Direction }> = (prop
                 direction={props.direction} //
                 className={BACKGROUND}
             />
-        </RenderOnScroll>
+        </TransformWhenVisible>
     );
 };
 

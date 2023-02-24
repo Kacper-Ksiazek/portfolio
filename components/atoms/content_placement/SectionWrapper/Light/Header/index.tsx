@@ -7,7 +7,7 @@ import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 import type { FunctionComponent } from "react";
 import type { LightSectionWrapperProps } from "../@types";
 // Other components
-import RenderOnScroll from "@/components/utils/RenderOnScroll";
+import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Styled components
 import { Header, Label, HeaderWrapper } from "./styled_components";
 import { Styles } from "@/@types/MUI";
@@ -17,7 +17,7 @@ const LightSectionHeader: FunctionComponent<LightSectionWrapperProps["header"]> 
     const HEADER: CSSClassName = "light-section-wrapper-header";
 
     return (
-        <RenderOnScroll
+        <TransformWhenVisible
             to={(theme): Styles => ({
                 [`.${LABEL}`]: {
                     span: {
@@ -43,7 +43,7 @@ const LightSectionHeader: FunctionComponent<LightSectionWrapperProps["header"]> 
                     "&::after": {
                         content: '""',
                         ...theme.mixins.absolute_full,
-                        background: theme.palette.text.primary,
+                        background: "#000",
 
                         animation: chainAnimations([
                             [keyframes.header.stageOne, 0.3, 0.8],
@@ -66,7 +66,7 @@ const LightSectionHeader: FunctionComponent<LightSectionWrapperProps["header"]> 
 
                 {props.additionalJSX && props.additionalJSX.node}
             </HeaderWrapper>
-        </RenderOnScroll>
+        </TransformWhenVisible>
     );
 };
 

@@ -8,7 +8,7 @@ import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 import type { HeaderProps } from "../@types";
 import type { FunctionComponent } from "react";
 // Other components
-import RenderOnScroll from "@/components/utils/RenderOnScroll";
+import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Styled components
 import HeaderBase from "./Base";
 import { Description, Divider, IconWrapper } from "./styled_components";
@@ -25,7 +25,7 @@ const DarkSectionHeader: FunctionComponent<HeaderProps> = (props) => {
     const EVERY: Selector = [LABEL_HEADER, DESCRIPTION, MAIN_HEADER].map((el) => `.${el}`).join(", ");
 
     return (
-        <RenderOnScroll
+        <TransformWhenVisible
             from={{ visibility: "hidden" }}
             to={{
                 visibility: "visible",
@@ -112,7 +112,7 @@ const DarkSectionHeader: FunctionComponent<HeaderProps> = (props) => {
 
                 <Divider className={DIVIDER} />
             </HeaderBase>
-        </RenderOnScroll>
+        </TransformWhenVisible>
     );
 };
 
