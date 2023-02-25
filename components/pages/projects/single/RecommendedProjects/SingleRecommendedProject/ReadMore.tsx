@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
@@ -12,19 +12,20 @@ import StyledButton from "@/components/atoms/forms/StyledButton";
 const ReadMoreButton = styled(StyledButton)(({ theme }) => ({
     display: "flex",
     alignItems: "center",
-    width: "170px",
     fontFamily: "Montserrat Alternates",
-    padding: "4px 0",
+    padding: "6px 24px",
     svg: {
-        fontSize: "18px",
-        margin: "1px 0 0 10px",
+        fontSize: "24px",
+        margin: "1px 0 0 4px",
     },
     ["@media (max-width:1300px)"]: {
         marginTop: "12px",
     },
     ["@media (max-width:680px)"]: {
         width: "100%",
+        height: "50px",
         marginTop: "24px",
+        fontSize: "20px",
     },
 }));
 

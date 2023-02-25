@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled, alpha } from "@mui/system";
 
 export const TechnologiesListBase = styled("ul")(({ theme }) => ({
     display: "flex",
@@ -24,9 +24,9 @@ export const SingleTechnology = styled("li")(({ theme }) => ({
         },
     },
     "&.small": {
-        padding: "0 6px",
+        padding: "2px 6px",
         fontSize: "14px",
-        marginRight: "4px",
+        marginRight: "6px",
     },
 }));
 

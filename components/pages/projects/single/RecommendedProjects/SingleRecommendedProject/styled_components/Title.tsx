@@ -2,11 +2,12 @@
 import { styled } from "@mui/system";
 // Styled components
 export default styled("h3")(({ theme }) => ({
-    fontSize: "30px",
+    fontSize: "32px",
     cursor: "default",
-    margin: "0px 0 4px 0",
+    margin: "2px 0 8px 0",
     ["@media (min-width: 680px)"]: {
         "&.long-header": {
+            fontSize: "28px",
             ["@media (max-width:1510px)"]: {
                 fontSize: "28px",
             },
@@ -32,12 +33,10 @@ export default styled("h3")(({ theme }) => ({
 
     ["@media (max-width:680px)"]: {
         fontSize: "32px",
-        lineHeight: "41px",
         margin: "0px 0 4px 0",
     },
     ["@media (max-width:500px)"]: {
         fontSize: "28px",
-        lineHeight: "28px",
-        margin: "2px 0 12px 0",
+        margin: "4px 0 12px 0",
     },
 }));

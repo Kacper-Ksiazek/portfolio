@@ -1,31 +1,48 @@
-// Tools
-import dynamic from "next/dynamic";
-import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
 import type { RecommendedProject } from "@/@types/pages/projects/SingleProject";
-// Material UI Components
-import Typography from "@mui/material/Typography";
 // Other components
 import Thumbnail from "./Thumbnail";
 import Duration from "@/components/atoms/single_project/Duration";
 import TechnologiesList from "@/components/atoms/TechnologiesList";
-const NumberOfFeatures = dynamic(() => import("./NumberOfFeatures"));
 // Styled components
-import Header from "./styled_components/Header";
-import ReadMore from "./styled_components/ReadMore";
-import SingleRecommendedProjectBase from "./styled_components/SingleRecommendedProjectBase";
+import ReadMore from "./ReadMore";
+import Description from "./Description";
+import SingleRecommendedProjectBase from "./Base";
+import { Title, Divider } from "./styled_components";
 
 interface SingleRecommendedProjectProps {
     data: RecommendedProject;
+    index: number;
     numberOfTechnologiesToDisplay: number;
 }
 
-const SingleRecommendedProject: FunctionComponent<SingleRecommendedProjectProps> = ({ data, numberOfTechnologiesToDisplay }) => {
+const SingleRecommendedProject: FunctionComponent<SingleRecommendedProjectProps> = ({ data, numberOfTechnologiesToDisplay, ...props }) => {
     return (
         <SingleRecommendedProjectBase className="single-recommended-project">
-            <Duration end={data.end} start={data.start} smaller />
-            <Header className={data.title.length > 20 ? "long-header" : ""}>{data.title}</Header>
+            {props.index !== 0 ? <Divider className="single-recommended-project-divider" /> : <></>}
+            <Thumbnail
+                folder={data.folder} //
+                id={data.id}
+                numberOfFeautres={data.numberOfFeautres}
+            />
+
+            <Duration
+                end={data.end} //
+                start={data.start}
+                smaller
+                sx={{ margin: 0 }}
+            />
+
+            <Title
+                className={[
+                    data.title.length > 20 ? "long-header" : "", //
+                    "single-recommended-project-title",
+                ].join(" ")}
+            >
+                {data.title}
+            </Title>
+
             <TechnologiesList
                 technologies={data.releventTechnologies.slice(0, numberOfTechnologiesToDisplay)} //
                 small
@@ -33,14 +50,8 @@ const SingleRecommendedProject: FunctionComponent<SingleRecommendedProjectProps>
                 thereAreMoreTechnologies={data.releventTechnologies.length > numberOfTechnologiesToDisplay}
             />
 
-            <Thumbnail folder={data.folder} id={data.id}>
-                {data.numberOfFeautres ? <NumberOfFeatures numberOfFeatures={data.numberOfFeautres} /> : <></>}
-            </Thumbnail>
+            <Description text={data.shortDescription} />
 
-            <Typography variant="body1" sx={{ flexGrow: 1 }}>
-                {formatTextViaBolding(data.shortDescription.slice(0, 150))}
-                <span>{` ...`}</span>
-            </Typography>
             <ReadMore id={data.id} />
         </SingleRecommendedProjectBase>
     );

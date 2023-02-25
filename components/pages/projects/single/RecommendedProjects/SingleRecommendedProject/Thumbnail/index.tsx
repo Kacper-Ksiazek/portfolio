@@ -1,14 +1,17 @@
 // Tools
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 // Types
-import type { FunctionComponent, ReactNode } from "react";
+import type { FunctionComponent } from "react";
+// Other components
+const NumberOfFeatures = dynamic(() => import("./NumberOfFeatures"));
 // Styled components
 import Thumbnail from "@/components/atoms/single_project/Thumbnail";
 
 interface ThumbnailProps {
     id: string;
     folder: string;
-    children: ReactNode;
+    numberOfFeautres: number;
 }
 
 const ThumbnailBase: FunctionComponent<ThumbnailProps> = (props) => {
@@ -18,8 +21,14 @@ const ThumbnailBase: FunctionComponent<ThumbnailProps> = (props) => {
         <Thumbnail
             folder={props.folder} //
             onClick={() => router.push(`/projects/${props.id}`)}
+            sx={{
+                width: "100%",
+                overflow: "hidden",
+                flexGrow: 1,
+                marginBottom: "20px",
+            }}
         >
-            {props.children}
+            {props.numberOfFeautres ? <NumberOfFeatures numberOfFeatures={props.numberOfFeautres} /> : <></>}
         </Thumbnail>
     );
 };

@@ -48,7 +48,7 @@ const Carosuel: FunctionComponent<CarosuelProps> = (props) => {
 
     const totalAdditionalPadding = useRef<number>(0);
 
-    // Set width of wrapper and of each children
+    // Set width of the wrapper and of each children
     useEffect(() => {
         if (childrenElemenetsWrapperElement.current) {
             const singleItemWidth: string = `(${generalCarosuelWrapperElement.current?.offsetWidth}px - ${props.spacing * (props.itemsPerSlide - 1)}px) / ${props.itemsPerSlide}`;
@@ -77,13 +77,6 @@ const Carosuel: FunctionComponent<CarosuelProps> = (props) => {
                         if (el.classList.contains("initial-active")) return;
                         el.classList.add("active");
                     });
-                    // // Remove .active class from other elements
-                    // setTimeout(() => {
-                    //     [...[...(childNodes as any)].slice(0, currentPage), ...[...(childNodes as any)].slice(currentPage + props.itemsPerSlide)].forEach((el: HTMLElement) => {
-                    //         el.classList.remove("active");
-                    //     });
-                    // }, 400);
-                    // childrenElemenetsWrapperElement.
                 }
             },
             componentHasBeenFullMounted ? 10 : props.itemsInTotal * 120

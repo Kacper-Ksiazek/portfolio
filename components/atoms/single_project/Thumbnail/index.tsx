@@ -2,6 +2,7 @@
 import { forwardRef } from "react";
 import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/project";
 // Types
+import type { Styles } from "@/@types/MUI";
 import type { ForwardRefExoticComponent, ReactNode } from "react";
 // Styled components
 import ThumbnailMainWrapper from "./ThumbnailMainWrapper";
@@ -12,12 +13,19 @@ import { ShapeBottomBig, ShapeBottomSmall, ShapeTopBig, ShapeTopSmall } from "./
 interface ThumbnailProps {
     folder: string;
     children?: ReactNode;
+    sx?: Styles;
+
     onClick?: () => void;
 }
 
 const Thumbnail: ForwardRefExoticComponent<ThumbnailProps> = forwardRef((props, ref) => {
     return (
-        <ThumbnailMainWrapper className="thumbnail-wrapper" ref={ref as any} onClick={props.onClick}>
+        <ThumbnailMainWrapper
+            className="thumbnail-wrapper" //
+            ref={ref as any}
+            onClick={props.onClick}
+            sx={props.sx}
+        >
             {props.children}
             <ShapeBottomBig className="border-shape big left" />
             <ShapeBottomSmall className="border-shape small left" />
