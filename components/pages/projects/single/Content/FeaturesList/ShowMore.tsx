@@ -38,12 +38,12 @@ interface ShowMoreProps {
 const ShowMore: FunctionComponent<ShowMoreProps> = (props) => {
     const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-    const onClick = () => {
+    function onClick() {
         if (buttonRef.current) buttonRef.current.blur();
 
         if (props.allFeaturesAreShown) props.showLess();
         else props.showMore();
-    };
+    }
 
     return (
         <ShowMoreButton
