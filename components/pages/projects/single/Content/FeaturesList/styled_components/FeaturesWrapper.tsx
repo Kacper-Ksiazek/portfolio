@@ -7,6 +7,7 @@ export default styled("div")(({ theme }) => ({
     display: "flex",
     flexWrap: "wrap",
     marginTop: "16px",
+    width: "100%",
     "&.features-intro": {
         transition: "max-height .3s linear, background .3s linear",
         ".single-feature": {

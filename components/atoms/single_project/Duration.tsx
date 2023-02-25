@@ -1,7 +1,7 @@
 // Tools
-import { styled } from "@mui/system";
+import { alpha, styled } from "@mui/material";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 import type { FunctionComponent } from "react";
 // Material UI Icons
 import AccessTime from "@mui/icons-material/AccessTime";
@@ -12,11 +12,12 @@ const DurationBase = styled("div")(({ theme }) => ({
     alignItems: "center",
     marginTop: "4px",
     cursor: "default",
+    color: alpha(theme.palette.text.primary, 0.8),
     svg: {
         marginRight: "5px",
     },
     "&.smaller": {
-        fontSize: "14px",
+        fontSize: "16px",
         svg: {
             fontSize: "18px",
         },

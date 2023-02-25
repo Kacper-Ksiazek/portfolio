@@ -1,5 +1,5 @@
 // Tools
-import { styled, alpha } from "@mui/system";
+import { styled, alpha } from "@mui/material";
 import { shapesOnHoverAnimations } from "@/components/atoms/single_project/Thumbnail/onHover";
 
 // Styled components
@@ -15,6 +15,12 @@ export default styled("div")(({ theme }) => ({
     ".thumbnail-wrapper": {
         height: "200px",
         width: "240px",
+        "&::before": {
+            content: "''",
+            zIndex: 5,
+            ...theme.mixins.absolute_full,
+            background: theme.palette.primary.main,
+        },
     },
     ".intro-bar1, .intro-bar2": {
         position: "absolute",

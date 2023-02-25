@@ -75,7 +75,7 @@ export default {
                         animation: `${introScaleXFromRight} .2s 2.3s linear both, ${outroForLeftSideProjects} .4s 2.6s forwards linear`,
                     },
                 },
-                p: {
+                ".description": {
                     "&::after": {
                         animation: `${introScaleXFromRight} .2s 2.35s linear both, ${outroForLeftSideProjects} .4s 2.65s forwards linear`,
                     },
@@ -124,7 +124,7 @@ export default {
                         animation: `${introScaleXFromLeft} .2s 2.4s linear both, ${outroForRightSideProjects} .4s 2.6s forwards linear`,
                     },
                 },
-                p: {
+                ".description": {
                     "&::after": {
                         animation: `${introScaleXFromLeft} .2s 2.45s linear both, ${outroForRightSideProjects} .4s 2.85s forwards linear`,
                     },
@@ -154,7 +154,7 @@ export default {
             ".duration>*": {
                 animation: `${fadeSimple} .001s 2.55s both`,
             },
-            "p>*": {
+            ".description>*": {
                 animation: `${fadeSimple} .001s 2.6s both`,
             },
             ".read-more a": {

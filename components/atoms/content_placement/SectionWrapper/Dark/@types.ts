@@ -14,7 +14,7 @@ export interface DarkSectionWrapperProps {
     /**
      * Specifies the rotation of two background rectangles.
      */
-    shapesDirection?: "left" | "right";
+    shapesDirection: "left" | "right";
     /**
      * Handles section's premade header along with its smaller label
      */
@@ -23,10 +23,6 @@ export interface DarkSectionWrapperProps {
      *  Custom `MaterialUI` styles to be applied to the `sx` attribute of the **section main element**
      */
     sx?: SxProps;
-    /**
-     * allback which is fired once when the element appears on the screen
-     * */
-    onVisible?: () => void;
     /**
      * Reference to the code associated with the following project
      */

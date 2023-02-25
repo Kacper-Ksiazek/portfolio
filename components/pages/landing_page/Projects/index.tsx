@@ -1,8 +1,7 @@
 // Tools
-import { styled } from "@mui/system";
-import { useEffect, useState } from "react";
-import useWindowSizes from "@/hooks/useWindowSizes";
+import { styled } from "@mui/material";
 import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
+import { useNumberOfTechnologiesToDisplay } from "./hooks/useNumberOfTechnologiesToDisplay";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
@@ -22,7 +21,6 @@ const ProjectsWrapper = styled("div")(({ theme }) => ({
 const ParagraphForHeader = styled("p")(({ theme }) => ({
     margin: "4px 0 0 0",
     fontSize: "18px",
-    animation: `${fadeFromLeft} .3s .7s both linear`,
 }));
 
 interface ProjectsProps {
@@ -30,29 +28,26 @@ interface ProjectsProps {
 }
 
 const Projects: FunctionComponent<ProjectsProps> = ({ projects }) => {
-    const { width } = useWindowSizes();
-    const [numberOfTechnologiesToDisplay, setNumberOfTechnologiesToDisplay] = useState<number>(5);
-
-    useEffect(() => {
-        if (width > 1600) setNumberOfTechnologiesToDisplay(5);
-        else if (width <= 1600 && width > 1480) setNumberOfTechnologiesToDisplay(4);
-        else if (width <= 1480 && width > 1350) setNumberOfTechnologiesToDisplay(3);
-        else if (width <= 1350 && width > 1200) setNumberOfTechnologiesToDisplay(4);
-        else if (width <= 1200 && width > 1000) setNumberOfTechnologiesToDisplay(3);
-        else setNumberOfTechnologiesToDisplay(5);
-    }, [width]);
+    const numberOfTechnologiesToDisplay = useNumberOfTechnologiesToDisplay();
 
     return (
         <LightSectionWrapper
             header={{
                 label: "Insight into my work",
                 main: "Projects",
-                additionalJSX: (
-                    <ParagraphForHeader>
-                        I have always found building more complex and bigger projects the best way to thoroughly learn new technologies, thus in 3 years I managed to amass a nice collection of them.
-                    </ParagraphForHeader>
-                ),
-                estimatedHeight: "134px",
+                additionalJSX: {
+                    node: (
+                        <ParagraphForHeader className="project-header-paragraph">
+                            I have always found building more complex and bigger projects the best way to thoroughly learn new technologies, thus in 3 years I managed to amass a nice collection of
+                            them.
+                        </ParagraphForHeader>
+                    ),
+                    whenVisible: {
+                        ".project-header-paragraph": {
+                            animation: `${fadeFromLeft} .3s .7s both linear`,
+                        },
+                    },
+                },
             }}
             round="right"
             unlimitedHeight

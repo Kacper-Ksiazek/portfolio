@@ -2,14 +2,15 @@
 import dynamic from "next/dynamic";
 import { useState, useMemo } from "react";
 import { useMapContext } from "./hooks/useMapContext";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
+import { generateFadeSimpleAnimations } from "@/components/atoms/NavigationBetweenSections/helpers/generateFadeSimpleAnimations";
 // Types
-import type { SxProps } from "@mui/system";
+import type { Styles } from "@/@types/MUI";
 import type { FunctionComponent, ReactNode } from "react";
 import type { GeneralContactSection, EmailFormSubsection } from "./@types";
 // Other components
 const Map = dynamic(() => import("./Map"));
-import VisibilitySensor from "@/components/utils/VisibilitySensor";
+import RenderWhenVisible from "@/components/utils/RenderWhenVisible";
 import NavigationBetweenSections from "@/components/atoms/NavigationBetweenSections";
 // Styled Components
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
@@ -27,7 +28,7 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
     const [renderMap, setRenderMap] = useState<boolean>(false);
     const { status } = useMapContext();
 
-    const backgroundLetterSx = useMemo<SxProps>(() => {
+    const backgroundLetterSx = useMemo<Styles>(() => {
         switch (props.currentGeneralSection) {
             case "SEND_EMAIL_FORM":
                 return {
@@ -47,26 +48,30 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
             header={{
                 main: "Contact",
                 label: "How to reach me",
-                estimatedHeight: "170px",
-                additionalJSX: (
-                    <NavigationBetweenSections
-                        sections={
-                            [
-                                {
-                                    label: "Ways to reach me",
-                                    value: "WAYS_TO_REACH_ME",
-                                },
-                                {
-                                    label: "Send me an email",
-                                    value: "SEND_EMAIL_FORM",
-                                },
-                            ] as { label: string; value: GeneralContactSection }[]
-                        } //
-                        subtleBackground
-                        currentSection={props.currentGeneralSection}
-                        onChoose={(val) => props.setCurrentGeneralSection(val as any)}
-                    />
-                ),
+                additionalJSX: {
+                    node: (
+                        <NavigationBetweenSections
+                            sections={
+                                [
+                                    {
+                                        label: "Ways to reach me",
+                                        value: "WAYS_TO_REACH_ME",
+                                    },
+                                    {
+                                        label: "Send me an email",
+                                        value: "SEND_EMAIL_FORM",
+                                    },
+                                ] as { label: string; value: GeneralContactSection }[]
+                            } //
+                            subtleBackground
+                            currentSection={props.currentGeneralSection}
+                            onChoose={(val) => props.setCurrentGeneralSection(val as any)}
+                        />
+                    ),
+                    whenVisible: {
+                        ...generateFadeSimpleAnimations(2),
+                    },
+                },
             }}
             backgroundLetter="R"
             round="left"
@@ -84,21 +89,12 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                 )
             }
         >
-            <VisibilitySensor
-                offsetBottom={400} //
-                dontRenderNotVisableChildren
-                childWrapperSx={{
-                    height: "100%",
-                    flexGrow: 1,
-                    display: "flex",
-                    ...(props.hideContent ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}),
-                }}
-                onVisible={() => {
-                    setRenderMap(true);
-                }}
+            <RenderWhenVisible
+                onVisible={() => setRenderMap(true)} //
+                sx={props.hideContent ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}}
             >
                 {props.children}
-            </VisibilitySensor>
+            </RenderWhenVisible>
         </LightSectionWrapper>
     );
 };
