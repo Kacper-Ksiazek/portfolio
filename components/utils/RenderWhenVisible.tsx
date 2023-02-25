@@ -24,7 +24,7 @@ const RenderWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (props) 
 
     return (
         <Box
-            className="render-on-scroll-wrapper"
+            className="render-when-visible-wrapper"
             ref={ref as any}
             sx={{
                 ...applySxProps(props.sx, theme),

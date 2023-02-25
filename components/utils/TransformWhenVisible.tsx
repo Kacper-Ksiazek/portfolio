@@ -16,17 +16,20 @@ interface TransformWhenVisibleProps {
     from?: Styles;
     /** Styles applied when **visible** */
     to: SxProps;
+
+    onVisible?: () => void;
+
     children: ReactNode;
 }
 
 const TransformWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (props) => {
     const theme = useTheme();
     const ref = useRef<Element>(null);
-    const elementIsVisible = useElementVisibility(ref);
+    const elementIsVisible = useElementVisibility(ref, props.onVisible);
 
     return (
         <Box
-            className="render-on-scroll-wrapper"
+            className="transform-when-visible-wrapper"
             ref={ref as any}
             sx={{
                 visibility: elementIsVisible ? "visible" : "hidden",

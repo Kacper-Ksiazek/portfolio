@@ -7,10 +7,12 @@ export function useElementVisibility(ref: RefObject<Element>, onVisible: (() => 
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
     useEffect(() => {
+        if (!ref.current) return;
+
         const observer = new IntersectionObserver(
             ([{ isIntersecting }], observer) => {
                 if (isIntersecting) {
-                    observer.unobserve(ref.current as any);
+                    if (ref.current) observer.unobserve(ref.current as any);
                     setIsVisible(true);
 
                     if (typeof onVisible === "function") onVisible();
