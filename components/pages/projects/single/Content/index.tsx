@@ -23,6 +23,7 @@ const SingleProjectContent: FunctionComponent<SingleProjectContentProps> = ({ pr
                 main: "Realization details",
             }}
             round="left"
+            unlimitedHeight
         >
             <ProjectDescription
                 description={project.description} //
