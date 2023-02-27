@@ -1,8 +1,7 @@
 // Tools
+import * as intro from "@/components/keyframes/intro";
 import { styled, keyframes, alpha } from "@mui/material";
-import { fadeSimple } from "@/components/keyframes/intro";
-import { fadeFromLeft } from "@/components/keyframes/intro";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Styled components
 const introAnimation = keyframes({
     "0%": {
@@ -69,14 +68,14 @@ export default styled("div")(({ theme }) => ({
     "&.intro": {
         animation: `${introAnimation} .5s both`,
         "span.label": {
-            animation: `${fadeFromLeft} .3s .6s both`,
+            animation: `${intro.fadeFromLeft} .3s .6s both`,
         },
         button: {
             "&:nth-of-type(1)": {
-                animation: `${fadeSimple} .3s .7s both`,
+                animation: `${intro.fadeSimple} .3s .7s both`,
             },
             "&:nth-of-type(2)": {
-                animation: `${fadeSimple} .3s .8s both`,
+                animation: `${intro.fadeSimple} .3s .8s both`,
             },
         },
     },

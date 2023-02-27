@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Styled components
 export default styled("div")(({ theme }) => ({
     display: "flex",

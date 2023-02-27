@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 import * as keyframes from "./keyframes";
 // Material UI Components
 import ButtonBase from "@mui/material/ButtonBase";

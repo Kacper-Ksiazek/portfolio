@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Types
 import type { SxProps } from "@mui/material";
 // Styled components

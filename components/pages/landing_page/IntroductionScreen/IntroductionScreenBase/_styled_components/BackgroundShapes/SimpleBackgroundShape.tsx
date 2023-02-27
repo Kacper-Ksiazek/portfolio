@@ -1,6 +1,6 @@
 // Tools
 import { styled, keyframes } from "@mui/material";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Styled components
 import BackgroundShapeBase from "./_BackgroundShapeBase";
 

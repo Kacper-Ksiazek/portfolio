@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { fadeFromLeft } from "@/components/keyframes/intro";
-import fadeToBottom from "@/components/keyframes/outro/fadeToBottom";
+import { fadeToBottom } from "@/components/keyframes/outro";
 // Styled components
 export default styled("div")(({ theme }) => ({
     display: "flex",

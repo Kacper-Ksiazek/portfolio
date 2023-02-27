@@ -1,10 +1,8 @@
 // Tools
 import RWD from "./RWD";
 import { styled } from "@mui/material";
-import { fadeSimple } from "@/components/keyframes/intro";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
-import fadeToTop from "@/components/keyframes/outro/fadeToTop";
-import { fadeFromBottom } from "@/components/keyframes/intro";
+import * as intro from "@/components/keyframes/intro";
+import * as outro from "@/components/keyframes/outro";
 
 export default styled("div")(({ theme }) => ({
     position: "absolute",
@@ -20,15 +18,15 @@ export default styled("div")(({ theme }) => ({
         position: "relative",
         flexGrow: "1",
         "&.intro": {
-            animation: `${fadeFromBottom} .2s linear both`,
+            animation: `${intro.fadeFromBottom} .2s linear both`,
             ".gallery-navigation-button": {
-                animation: `${fadeSimple} .2s .5s linear both`,
+                animation: `${intro.fadeSimple} .2s .5s linear both`,
             },
         },
         "&.outro": {
-            animation: `${fadeToTop} .2s linear both`,
+            animation: `${outro.fadeToTop} .2s linear both`,
             ".gallery-navigation-button": {
-                animation: `${fadeSimpleOUT} .2s .5s linear both`,
+                animation: `${outro.fadeSimpleOUT} .2s .5s linear both`,
             },
         },
     },
