@@ -1,6 +1,6 @@
 // Tools
 import { COLORS } from "@/material";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 import { thumbnailIntroAnimation, thumbnailOutroAnimation, backgroundLineAnimation, separatorAnimation } from "./keyframes";
 // Types
 import type { SxProps } from "@mui/material";

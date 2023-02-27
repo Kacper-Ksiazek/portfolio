@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { useState, useEffect } from "react";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Types
 import type { FunctionComponent, ReactNode } from "react";

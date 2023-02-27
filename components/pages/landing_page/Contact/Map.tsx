@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import useWindowSizes from "@/hooks/useWindowSizes";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 // Types
 import type { FunctionComponent } from "react";
 import type { GeneralContactSection, EmailFormSubsection } from "./@types";

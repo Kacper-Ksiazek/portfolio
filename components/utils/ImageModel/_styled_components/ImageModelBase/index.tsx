@@ -1,10 +1,10 @@
 // Tools
 import RWD from "./RWD";
 import { styled } from "@mui/material";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 import fadeToTop from "@/components/keyframes/outro/fadeToTop";
-import fadeFromBottom from "@/components/keyframes/intro/fadeFromBottom";
+import { fadeFromBottom } from "@/components/keyframes/intro";
 
 export default styled("div")(({ theme }) => ({
     position: "absolute",

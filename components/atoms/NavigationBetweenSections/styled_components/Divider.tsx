@@ -1,6 +1,6 @@
 // Tools
 import { styled, alpha } from "@mui/material";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 // Styled components
 export default styled("span")(({ theme }) => ({
     transform: "rotate(10deg)",

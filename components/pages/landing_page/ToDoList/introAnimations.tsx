@@ -1,7 +1,7 @@
 // Tools
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
-import fadeFromBottom from "@/components/keyframes/intro/fadeFromBottom";
+import { fadeSimple } from "@/components/keyframes/intro";
+import { fadeFromLeft } from "@/components/keyframes/intro";
+import { fadeFromBottom } from "@/components/keyframes/intro";
 // Types
 import type { SxProps } from "@mui/material";
 

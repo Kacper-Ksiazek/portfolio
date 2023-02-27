@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 // Styled components
 export default styled("div")(({ theme }) => ({
     position: "absolute",

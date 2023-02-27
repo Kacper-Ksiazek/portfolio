@@ -1,7 +1,7 @@
 // Tools
 import { COLORS } from "@/material";
 import { stopRendering } from "./_keyframes/stopRendering";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 import {
     introForFirstProject,
     introForLeftSideProjects,

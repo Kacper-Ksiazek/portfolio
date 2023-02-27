@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Styled components
 export default styled("div")(({ theme }) => ({

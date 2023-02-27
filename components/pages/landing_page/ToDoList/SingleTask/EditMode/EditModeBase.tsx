@@ -1,6 +1,6 @@
 // Tools
 import { styled, keyframes } from "@mui/material";
-import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
+import { fadeFromLeft } from "@/components/keyframes/intro";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Styled components
 const introAnimation = keyframes({

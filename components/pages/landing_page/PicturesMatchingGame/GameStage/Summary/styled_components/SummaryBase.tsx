@@ -1,6 +1,6 @@
 // Tools
 import { styled, alpha } from "@mui/material";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 // Other components
 import { SmoothlyAppearingSectionBase } from "../../SmoothlyAppearingSection";
 

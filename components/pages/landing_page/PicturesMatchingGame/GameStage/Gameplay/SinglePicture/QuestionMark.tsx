@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 // Types
 import type { FunctionComponent } from "react";
 // Styled Components

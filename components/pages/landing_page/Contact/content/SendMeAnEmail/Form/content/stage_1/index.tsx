@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
+import { fadeFromTop } from "@/components/keyframes/intro";
 import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";

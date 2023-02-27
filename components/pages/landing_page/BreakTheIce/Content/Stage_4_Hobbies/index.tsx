@@ -1,7 +1,7 @@
 // Tools
 import RWD from "./RWD";
 import useWindowSizes from "@/hooks/useWindowSizes";
-import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
+import { fadeFromTop } from "@/components/keyframes/intro";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types

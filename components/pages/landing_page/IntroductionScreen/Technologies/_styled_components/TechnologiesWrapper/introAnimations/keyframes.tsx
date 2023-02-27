@@ -1,6 +1,6 @@
 // Tools
 import { keyframes } from "@mui/material";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 
 const singleTechnologyPulse = keyframes({
     "0%,100%": {
