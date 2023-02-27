@@ -2,7 +2,6 @@
 import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";
 // Material UI Icons
@@ -32,7 +31,7 @@ const ITRelatedJobIconBase = styled("span")(({ theme }) => ({
     },
 }));
 
-const ITRelatedJobIcon: FunctionComponent<MUIStyledCommonProps> = (props) => {
+const ITRelatedJobIcon: FunctionComponent = () => {
     return (
         <Tooltip title="Coding job" placement="top">
             <ITRelatedJobIconBase>

@@ -3,14 +3,13 @@ import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import SingleSchool from "./SingleSchool";
 // Styled Components
 import Paragraph from "../_styled_components/Paragraph";
 import OverflowScrollDiv from "@/components/atoms/content_placement/OverflowScrollDiv";
 
-const Education: FunctionComponent<MUIStyledCommonProps> = (props) => {
+const Education: FunctionComponent = () => {
     const { schools } = useBreakTheIceContentContext();
 
     return (

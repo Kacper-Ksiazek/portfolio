@@ -3,7 +3,6 @@ import { styled } from "@mui/system";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 // Styled Components
 const QuestionMarkBase = styled("span")(({ theme }) => ({
     fontWeight: 700,
@@ -19,7 +18,7 @@ const QuestionMarkBase = styled("span")(({ theme }) => ({
     animation: `${fadeSimple} .3s .1s linear both`,
 }));
 
-const QuestionMark: FunctionComponent<MUIStyledCommonProps> = (props) => {
+const QuestionMark: FunctionComponent = () => {
     return <QuestionMarkBase className="question-mark">?</QuestionMarkBase>;
 };
 

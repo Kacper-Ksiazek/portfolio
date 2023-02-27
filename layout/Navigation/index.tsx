@@ -7,7 +7,6 @@ import { useMobileMenuHandlers } from "./hooks/useMobileMenuHandlers";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import Logo from "./Logo";
 import ColorThemeSwitch from "./ColorThemeSwitch";
@@ -18,7 +17,7 @@ import SingleNavigationRoute from "./SingleNavigationRoute";
 import RoutesWrapper from "./styled_components/RoutesWrapper";
 import NavigationBase from "./styled_components/NavigationBase";
 
-const Navigation: FunctionComponent<MUIStyledCommonProps> = () => {
+const Navigation: FunctionComponent = () => {
     const OUTRO_ANIMATION_DURATION = 700;
 
     const applyOnScrollStyles = useStylesOnScoll();

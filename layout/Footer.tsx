@@ -2,7 +2,6 @@
 import { styled } from "@mui/system";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 // Styled Components
 const FooterBase = styled("footer")(({ theme }) => ({
     background: theme.palette.background.paper,
@@ -42,7 +41,7 @@ const AuthorHeader = styled("h4")(({ theme }) => ({
         fontSize: "18px",
     },
 }));
-const Footer: FunctionComponent<MUIStyledCommonProps> = (props) => {
+const Footer: FunctionComponent = () => {
     return (
         <FooterBase>
             <AuthorHeader>Created by: Kacper Książek</AuthorHeader>
