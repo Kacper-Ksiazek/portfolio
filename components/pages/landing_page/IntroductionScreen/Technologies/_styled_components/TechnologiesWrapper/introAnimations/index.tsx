@@ -1,7 +1,7 @@
 // Tools
 import { fadeSimple, singleTechnologyPulse, singleTechnologyPulse2 } from "./keyframes";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 
 type CSSAnimationTimeExpression = `${number}.${number}s` | `${number}s`;
 

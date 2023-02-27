@@ -1,6 +1,6 @@
 // Tools
 import { options } from "./options";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import { useTheme } from "@mui/material";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Types

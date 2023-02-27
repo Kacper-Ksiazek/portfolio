@@ -1,11 +1,11 @@
 // Tools
 import { forwardRef } from "react";
 import { useTheme } from "@mui/material";
-import { styled, alpha } from "@mui/system";
+import { styled, alpha } from "@mui/material";
 import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
 // Types
 import type { ReactNode } from "react";
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 // Styled components
 const Wrapper = styled("div", {
     shouldForwardProp: (prop: string) => !["maxHeightWhileScrollable"].includes(prop),

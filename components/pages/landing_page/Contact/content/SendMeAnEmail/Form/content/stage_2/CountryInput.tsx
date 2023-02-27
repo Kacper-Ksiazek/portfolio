@@ -2,7 +2,7 @@
 import { countries } from "@/data/countries";
 import type { FunctionComponent } from "react";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 import type { CountryType } from "@/data/countries";
 // Material UI Components
 import Box from "@mui/material/Box";

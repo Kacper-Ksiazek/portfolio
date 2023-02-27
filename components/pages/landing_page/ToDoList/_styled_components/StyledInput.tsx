@@ -1,5 +1,5 @@
 // Tools
-import { styled, alpha } from "@mui/system";
+import { styled, alpha } from "@mui/material";
 // Styled components
 export default styled("input")(({ theme }) => ({
     padding: "5px 10px",

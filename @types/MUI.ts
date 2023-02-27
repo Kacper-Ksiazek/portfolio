@@ -1,5 +1,5 @@
 import type { Theme } from "@mui/material";
-import type { SystemStyleObject } from "@mui/system";
+import type { SystemStyleObject } from "@mui/material";
 
 export { Theme };
 

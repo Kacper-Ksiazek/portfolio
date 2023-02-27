@@ -1,5 +1,5 @@
 // Tools
-import { keyframes } from "@mui/system";
+import { keyframes } from "@mui/material";
 
 import { scaleToBottom, scaleToLeft, scaleToRight, scaleToTop } from "./scale";
 // import { fadeToBottom, fadeToLeft, fadeToRight, fadeToTop, fadeSimple } from "./fade";

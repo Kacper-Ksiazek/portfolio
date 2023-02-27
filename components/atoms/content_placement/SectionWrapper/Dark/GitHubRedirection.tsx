@@ -1,6 +1,6 @@
 // Tools
 import { useState } from "react";
-import { styled, keyframes } from "@mui/system";
+import { styled, keyframes } from "@mui/material";
 // Types
 import type { FunctionComponent } from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";

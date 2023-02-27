@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Material UI Icons
 import EmojiEvents from "@mui/icons-material/EmojiEvents";
 // Styled components

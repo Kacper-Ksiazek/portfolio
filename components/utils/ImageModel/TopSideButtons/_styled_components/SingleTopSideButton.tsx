@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Material UI Components
 import ButtonBase from "@mui/material/ButtonBase";
 // Styled components

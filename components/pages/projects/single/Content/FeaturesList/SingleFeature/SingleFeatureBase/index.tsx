@@ -1,6 +1,6 @@
 // Tools
 import RWD from "./RWD";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Styled components
 export default styled("div")(({ theme }) => ({
     marginTop: "20px",

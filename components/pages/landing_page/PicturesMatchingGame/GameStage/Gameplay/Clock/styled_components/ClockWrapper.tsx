@@ -1,5 +1,5 @@
 // Tools
-import { alpha, styled } from "@mui/system";
+import { alpha, styled } from "@mui/material";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Styled components
 const ProgressWrapper = styled("div")(({ theme }) => ({

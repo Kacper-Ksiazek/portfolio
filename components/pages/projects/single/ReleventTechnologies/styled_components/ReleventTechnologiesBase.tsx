@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Other components
 import DarkWrapperBase from "@/components/atoms/content_placement/SectionWrapper/Dark/styled_components/DarkWrapperBase";
 

@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Styled components
 export const Paragraph = styled("p")(({ theme }) => ({
     fontSize: "18px",

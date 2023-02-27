@@ -1,6 +1,6 @@
 // Tools
 import RWD from "./RWD";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Other components
 import MinigameStage from "@/components/pages/landing_page/IntroductionScreen/MinigameStages/_MinigameStage";

@@ -1,7 +1,7 @@
 // Tools
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 
 export default {
     ".colored-header": {

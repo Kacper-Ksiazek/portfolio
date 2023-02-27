@@ -1,5 +1,5 @@
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 
 export const mergeSXObjects = (...objectToMerge: SxProps[]): Record<any, any> => {
     const result: Record<any, any> = {};

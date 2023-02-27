@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import { useState } from "react";
 // Types
 import type { ImageProps } from "next/image";

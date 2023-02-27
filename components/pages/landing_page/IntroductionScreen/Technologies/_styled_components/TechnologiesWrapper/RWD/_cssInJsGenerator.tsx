@@ -1,5 +1,5 @@
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 
 interface PlaceTechnologiesInsideWingParams {
     contentSidePadding: number;

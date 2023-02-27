@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 import type { Color } from "@/components/atoms/forms/StyledButton";

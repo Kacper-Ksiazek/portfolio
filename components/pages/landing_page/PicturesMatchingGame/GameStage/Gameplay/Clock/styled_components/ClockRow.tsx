@@ -1,7 +1,7 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Types
-import type { BoxProps } from "@mui/system";
+import type { BoxProps } from "@mui/material";
 import type { FunctionComponent } from "react";
 // Styled components
 const ProgressRowBase = styled("div")(({ theme, ...props }) => ({

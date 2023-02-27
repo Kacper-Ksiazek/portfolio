@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import { useLandingScreenTechnologiesContext } from "./hooks/useLandingScreenTechnologiesContext";
 // Types
 import type { FunctionComponent } from "react";

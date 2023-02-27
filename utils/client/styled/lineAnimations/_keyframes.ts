@@ -1,5 +1,5 @@
 // Tools
-import { keyframes } from "@mui/system";
+import { keyframes } from "@mui/material";
 // Types
 import type { AnimationName, Orientation, Direction } from "./@types";
 

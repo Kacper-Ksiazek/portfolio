@@ -1,5 +1,5 @@
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";

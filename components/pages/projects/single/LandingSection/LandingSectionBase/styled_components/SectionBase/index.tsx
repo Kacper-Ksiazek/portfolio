@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import onHoverStyles from "./onHoverStyles";
 // Styled components
 import Section from "@/components/atoms/content_placement/SectionWrapper/Light/Base";

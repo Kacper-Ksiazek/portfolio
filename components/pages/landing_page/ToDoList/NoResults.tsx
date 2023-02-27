@@ -1,5 +1,5 @@
 // Tools
-import { styled, alpha } from "@mui/system";
+import { styled, alpha } from "@mui/material";
 import fadeFromBottom from "@/components/keyframes/intro/fadeFromBottom";
 // Types
 import type { FunctionComponent } from "react";

@@ -1,8 +1,8 @@
 // Tools
 import { COLORS } from "@/material";
-import { keyframes } from "@mui/system";
+import { keyframes } from "@mui/material";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 
 const introLeftVertical15px = keyframes({
     "0%": {

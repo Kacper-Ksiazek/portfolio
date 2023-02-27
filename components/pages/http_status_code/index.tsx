@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Styled components
 export const HTTPStatusCodeContentWrapper = styled("section", {

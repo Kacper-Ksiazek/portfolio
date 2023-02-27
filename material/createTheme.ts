@@ -1,5 +1,5 @@
 import { mixins } from "./mixins";
-import { alpha } from "@mui/system";
+import { alpha } from "@mui/material";
 import { createTheme as _createTheme } from "@mui/material/styles";
 // Types
 import type { Theme } from "@mui/material/styles";

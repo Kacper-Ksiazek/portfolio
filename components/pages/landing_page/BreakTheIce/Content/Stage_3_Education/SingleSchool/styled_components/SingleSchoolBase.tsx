@@ -1,5 +1,5 @@
 // Tools
-import { styled, keyframes } from "@mui/system";
+import { styled, keyframes } from "@mui/material";
 import fadeFromLeft from "@/components/keyframes/intro/fadeFromBottom";
 // Styled components
 const dividerIntro = keyframes({

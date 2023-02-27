@@ -1,7 +1,7 @@
 // Tools
 import { placeItemsInsideWing } from "./_cssInJsGenerator";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 
 export default {
     ...(placeItemsInsideWing({

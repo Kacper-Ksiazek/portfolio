@@ -2,7 +2,7 @@
 import { useResponsivity } from "./useResponsivity";
 import { useState, useMemo, useCallback } from "react";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 import type { Feature } from "@/@types/prisma/Project";
 
 interface UseFeatureListManagement {

@@ -1,6 +1,6 @@
 // Tools
 import RWD from "./RWD";
-import { styled, alpha } from "@mui/system";
+import { styled, alpha } from "@mui/material";
 import introAnimations from "./animations/intro";
 import contentAppearing from "./animations/content_appearing";
 import contentDisappearing from "./animations/content_disappearing";

@@ -1,6 +1,6 @@
 // Tools
 import { useState, useEffect } from "react";
-import { styled, keyframes } from "@mui/system";
+import { styled, keyframes } from "@mui/material";
 // Material UI Icons
 import EmojiEvents from "@mui/icons-material/EmojiEvents";
 // Types

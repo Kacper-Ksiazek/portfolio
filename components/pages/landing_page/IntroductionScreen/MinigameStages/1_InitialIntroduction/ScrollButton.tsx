@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import { useState, useEffect } from "react";
 // Types
 import type { FunctionComponent } from "react";

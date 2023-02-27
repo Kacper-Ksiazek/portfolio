@@ -1,5 +1,5 @@
 // Tools
-import { styled, alpha } from "@mui/system";
+import { styled, alpha } from "@mui/material";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 

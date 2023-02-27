@@ -1,5 +1,5 @@
 // Tools
-import { styled, alpha } from "@mui/system";
+import { styled, alpha } from "@mui/material";
 import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
 // Types
 import type { FunctionComponent, ReactNode } from "react";

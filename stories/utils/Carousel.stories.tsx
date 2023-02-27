@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import Carousel from "@/components/utils/Carousel";
 // Types
 import type { ComponentMeta, ComponentStoryFn } from "@storybook/react";

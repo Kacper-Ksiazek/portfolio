@@ -1,5 +1,5 @@
 // Tools
-import { styled, alpha } from "@mui/system";
+import { styled, alpha } from "@mui/material";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 import fadeToLeft from "@/components/keyframes/outro/fadeToLeft";
 import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";

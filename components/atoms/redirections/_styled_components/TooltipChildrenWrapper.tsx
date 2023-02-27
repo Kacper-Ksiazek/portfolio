@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Styled components
 export default styled("span")(({ theme }) => ({
     ["@media (max-width:500px)"]: {

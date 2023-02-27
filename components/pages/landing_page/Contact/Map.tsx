@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Types

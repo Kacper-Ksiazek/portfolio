@@ -1,5 +1,5 @@
 // Tools
-import { keyframes } from "@mui/system";
+import { keyframes } from "@mui/material";
 
 import * as GENERAL_PURPOSE from "./GENERAL_PURPOSE";
 import * as CONTACT_DETAILS from "./CONTACT_DETAILS";
