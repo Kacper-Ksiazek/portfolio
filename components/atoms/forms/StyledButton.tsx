@@ -1,5 +1,5 @@
 // Tools
-import { styled, alpha } from "@mui/system";
+import { styled, alpha } from "@mui/material";
 // Types
 import type { ButtonBaseProps } from "@mui/material/ButtonBase";
 // Material UI Components
@@ -33,8 +33,8 @@ export default styled(ButtonBase, {
             contrast: "#fff",
         },
         text: {
-            main: theme.palette.mode == "light" ? theme.palette.text.primary : "#F0EFF4",
-            contrast: theme.palette.mode == "light" ? theme.palette.text.secondary : "#121212",
+            main: theme.palette.mode == "light" ? theme.palette.text.primary : theme.palette.background.lightSectionBackground,
+            contrast: theme.palette.mode == "light" ? theme.palette.text.secondary : "#fff",
         },
     };
 
@@ -65,7 +65,7 @@ export default styled(ButtonBase, {
                 theme.palette.mode === "light" //
                     ? alpha(theme.palette.text.primary, 0.4)
                     : alpha(theme.palette.text.secondary, 0.4),
-            color: alpha(theme.palette.text.primary, 0.8),
+            color: alpha("#000", 0.8),
         },
         ...(props.iconButton && {
             padding: 0,

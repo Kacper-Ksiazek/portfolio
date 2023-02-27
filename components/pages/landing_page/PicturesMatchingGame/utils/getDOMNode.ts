@@ -7,7 +7,7 @@ type ReleventHTMLElement =
     | "BODY_OF_GAMES_HISTORY_TABLE";
 
 const selectors: Record<ReleventHTMLElement, string> = Object.seal({
-    SVG_BACKGROUND: "#picture-matching-game-main-wrapper>.dark-section-wrapper-background-svg",
+    SVG_BACKGROUND: "#picture-matching-game-main-wrapper .dark-section-wrapper-background-svg",
     MAIN_WRAPPER: "#picture-matching-game-main-wrapper",
     PICTURES_WRAPPER: "#picture-matching-game-pictures-wrapper",
     PICTURES_WRAPPER_SCROLL_ANCHOR: "#picture-matching-game-pictures-wrapper-user-scroll-anchor",

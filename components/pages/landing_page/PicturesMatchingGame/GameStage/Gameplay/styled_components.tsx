@@ -1,10 +1,10 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import fadeSimple from "@/components/keyframes/intro/fadeSimple";
 // Other components
-import _StyledButton from "@/components/atoms/forms/StyledButton";
+import StyledButton from "@/components/atoms/forms/StyledButton";
 
-export const StyledButton = styled(_StyledButton)(({ theme }) => ({}));
+export { StyledButton };
 
 export const ButtonsWrapper = styled("div")(({ theme }) => ({
     animation: `${fadeSimple} .3s both`,

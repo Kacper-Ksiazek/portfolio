@@ -1,27 +1,9 @@
 // Tools
-import { keyframes } from "@mui/system";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 // Types
-import type { SxProps } from "@mui/system";
-
-const pulse = keyframes({
-    from: {
-        opacity: 1,
-    },
-    to: {
-        opacity: 0.6,
-    },
-});
+import type { SxProps } from "@mui/material";
 
 export default {
-    // ".dark-section-wrapper-background-svg": {
-    //     opacity: 1,
-    //     animation: [
-    //         `${fadeSimple} 3s .5s linear backwards`, //
-    //         `${pulse} .9s 3.6s infinite linear alternate forwards`,
-    //     ].join(", "),
-    // },
-
     h4: {
         "&:nth-of-type(1)": {
             animation: `${fadeSimple} .3s 1.2s linear both`,
