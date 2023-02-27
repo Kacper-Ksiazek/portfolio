@@ -1,6 +1,6 @@
 // Tools
 import { useState } from "react";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import { requstDOMNode } from "@/components/pages/landing_page/PicturesMatchingGame/utils/getDOMNode";
 // Types
 import type { FunctionComponent } from "react";

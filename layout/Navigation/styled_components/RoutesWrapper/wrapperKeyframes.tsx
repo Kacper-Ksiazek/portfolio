@@ -1,5 +1,5 @@
 // Tools
-import { keyframes } from "@mui/system";
+import { keyframes } from "@mui/material";
 
 export const wrapperIntroAnimation = keyframes({
     "0%": {

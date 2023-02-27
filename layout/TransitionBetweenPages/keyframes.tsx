@@ -1,5 +1,5 @@
 // Tools
-import { styled, keyframes } from "@mui/system";
+import { styled, keyframes } from "@mui/material";
 
 export const intro = keyframes({
     from: {

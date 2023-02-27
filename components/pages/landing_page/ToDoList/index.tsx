@@ -5,7 +5,6 @@ import { useSnackbar } from "@/hooks/useSnackbar";
 import { toDoListIntroAnimations } from "./introAnimations";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import AddNewTask from "./AddNewTask";
 import SingleTask from "./SingleTask";
@@ -16,7 +15,7 @@ import NoResults from "./NoResults";
 import OverflowScrollDiv from "@/components/atoms/content_placement/OverflowScrollDiv";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 
-const ToDoList: FunctionComponent<MUIStyledCommonProps> = (props) => {
+const ToDoList: FunctionComponent = () => {
     const { displaySnackbar } = useSnackbar();
 
     const tasksArray = useArray<string>(["Go and help mum with laundry", "Mow the lawn for my grandparents", "Show everyone around how to make exquisite software"]);

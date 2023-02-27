@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Styled components
 export const MainHeader = styled("h1")(({ theme }) => ({
     fontSize: "64px",

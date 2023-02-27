@@ -1,19 +1,18 @@
 // Tools
 import RWD from "./RWD";
 import useWindowSizes from "@/hooks/useWindowSizes";
-import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
+import { fadeFromTop } from "@/components/keyframes/intro";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import SingleHobby from "./SingleHobby";
 import Carousel from "@/components/utils/Carousel";
 // Styled Components
 import Paragraph from "../_styled_components/Paragraph";
 
-const Hobbies: FunctionComponent<MUIStyledCommonProps> = (props) => {
+const Hobbies: FunctionComponent = () => {
     const { width } = useWindowSizes();
 
     const { hobbies } = useBreakTheIceContentContext();

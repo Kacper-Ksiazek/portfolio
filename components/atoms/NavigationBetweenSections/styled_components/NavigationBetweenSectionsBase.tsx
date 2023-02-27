@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import * as CSSClasses from "../CSSClasses";
 // Styled components
 export default styled("div")(({ theme }) => ({

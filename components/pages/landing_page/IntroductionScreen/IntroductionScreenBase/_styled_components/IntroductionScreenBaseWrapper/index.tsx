@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
 //
 import RWD from "./RWD";

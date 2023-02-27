@@ -1,8 +1,7 @@
 // Tools
-import { styled, keyframes } from "@mui/system";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { styled, keyframes } from "@mui/material";
+import { fadeSimple, fadeFromTop } from "@/components/keyframes/intro";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 
 const wrapperOutroAnimation = keyframes({
     "0%": {

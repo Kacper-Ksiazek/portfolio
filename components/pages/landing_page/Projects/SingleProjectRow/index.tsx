@@ -1,6 +1,6 @@
 // Tools
 import dynamic from "next/dynamic";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import { hidePseudoElement } from "@/components/keyframes/outro";
 import introAnimationsFor1301pxAndUpDisplay from "./intro_animations/1301px_and_up";

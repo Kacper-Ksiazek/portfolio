@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import { intro, loadingMessageGleam, outro } from "./keyframes";
 
 const _RectangleBase = styled("span")(({ theme }) => ({

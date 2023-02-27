@@ -1,9 +1,8 @@
 // Tools
-import { keyframes } from "@mui/system";
+import { keyframes } from "@mui/material";
 
 import { scaleToBottom, scaleToLeft, scaleToRight, scaleToTop } from "./scale";
-// import { fadeToBottom, fadeToLeft, fadeToRight, fadeToTop, fadeSimple } from "./fade";
-import { fadeSimpleOUT } from "./fade";
+import { fadeSimpleOUT, fadeToBottom, fadeToTop, fadeToLeft, fadeToRight } from "./fade";
 
 export {
     scaleToBottom, //
@@ -11,11 +10,10 @@ export {
     scaleToRight,
     scaleToTop,
     fadeSimpleOUT,
-    // fadeToBottom,
-    // fadeToLeft,
-    // fadeToRight,
-    // fadeToTop,
-    // fadeSimple,
+    fadeToBottom,
+    fadeToLeft,
+    fadeToRight,
+    fadeToTop,
 };
 
 export const hidePseudoElement = keyframes({

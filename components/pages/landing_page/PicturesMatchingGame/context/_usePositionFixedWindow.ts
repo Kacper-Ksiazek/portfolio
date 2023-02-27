@@ -14,13 +14,11 @@ export const usePositionFixedWindow = (): UsePositionFixedWindowResult => {
     const { hideNavigationBar } = useMainNavigationBarContext();
 
     const open = useCallback(() => {
-        console.log("fixed is opening");
         const userScroll = window.scrollY;
         const mainWrapper = requstDOMNode("MAIN_WRAPPER");
 
         setTimeout(() => {
             [mainWrapper, requstDOMNode("SVG_BACKGROUND"), requstDOMNode("USER_CHOICE_ANIMATION_BASE")].forEach((node) => {
-                console.log(node);
                 node.style.top = `${userScroll - 20}px`;
             });
             setTimeout(() => {
@@ -33,11 +31,7 @@ export const usePositionFixedWindow = (): UsePositionFixedWindowResult => {
     }, [disableUserScroll, hideNavigationBar]);
 
     const close = useCallback(() => {
-        console.log("fixed is closing");
-
         const mainWrapper = requstDOMNode("MAIN_WRAPPER");
-        // mainWrapper.classList.remove("gameplay-on");
-
         setTimeout(() => {
             [mainWrapper, requstDOMNode("SVG_BACKGROUND"), requstDOMNode("USER_CHOICE_ANIMATION_BASE")].forEach((node) => {
                 node.style.top = `0`;

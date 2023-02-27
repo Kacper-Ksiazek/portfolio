@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
+import { fadeFromLeft } from "@/components/keyframes/intro";
 import { useNumberOfTechnologiesToDisplay } from "./hooks/useNumberOfTechnologiesToDisplay";
 // Types
 import type { FunctionComponent } from "react";

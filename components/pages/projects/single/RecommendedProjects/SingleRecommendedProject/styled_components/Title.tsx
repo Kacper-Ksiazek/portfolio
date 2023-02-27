@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Styled components
 export default styled("h3")(({ theme }) => ({
     fontSize: "32px",

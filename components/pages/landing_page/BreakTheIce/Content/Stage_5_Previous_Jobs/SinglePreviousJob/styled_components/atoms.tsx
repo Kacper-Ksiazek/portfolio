@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 
 export const Header = styled("h4")(({ theme }) => ({
     margin: 0,

@@ -1,6 +1,6 @@
 // Tools
 import dynamic from "next/dynamic";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import { useEffect, useRef } from "react";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";

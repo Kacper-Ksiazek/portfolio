@@ -1,10 +1,9 @@
 // Tools
-import { styled } from "@mui/system";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { styled } from "@mui/material";
+import { fadeSimple } from "@/components/keyframes/intro";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
-import type { MUIStyledCommonProps } from "@mui/system";
 // Other components
 import TechnologiesList from "@/components/atoms/TechnologiesList";
 // Styled Components
@@ -31,7 +30,7 @@ const DisplayTechnologiesWrapper = styled("div")(({ theme }) => ({
     },
 }));
 
-const Competencies: FunctionComponent<MUIStyledCommonProps> = (props) => {
+const Competencies: FunctionComponent = () => {
     return (
         <>
             <Paragraph animationDelay={0.7}>

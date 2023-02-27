@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 
 export const Label = styled("span")(({ theme }) => ({
     margin: "0 0 5px 0",

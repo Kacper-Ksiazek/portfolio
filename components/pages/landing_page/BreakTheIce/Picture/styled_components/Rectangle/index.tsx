@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 //
 import _LeftHorizontal from "./_LeftHorizontal";
 import _LeftVertical from "./_LeftVertical";

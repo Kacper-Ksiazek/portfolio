@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Styled components
 export default styled("section")(({ theme }) => ({
     width: "calc(100vw - 40px)",

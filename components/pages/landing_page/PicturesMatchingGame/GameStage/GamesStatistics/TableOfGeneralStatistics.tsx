@@ -1,6 +1,6 @@
 // Tools
 import { COLORS } from "material";
-import { alpha } from "@mui/system";
+import { alpha } from "@mui/material";
 import { formatTime } from "@/utils/client/formatTime";
 // Types
 import type { FunctionComponent, ReactNode } from "react";

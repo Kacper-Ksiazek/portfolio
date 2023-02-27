@@ -1,6 +1,6 @@
 // Tools
 import dynamic from "next/dynamic";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import { useState, useContext } from "react";
 import { MUIContext } from "@/material/MuiThemeProvider";
 import useBlockUserScroll from "@/hooks/useBlockUserScroll";

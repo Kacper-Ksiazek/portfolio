@@ -1,8 +1,8 @@
 // Tools
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 import * as WrapperIntroAnimations from "./keyframes";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 
 export default {
     "&.display-intro-animations": {

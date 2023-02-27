@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 // Styled components
 const _ShapeBig = styled("span")(({ theme }) => ({
     position: "absolute",

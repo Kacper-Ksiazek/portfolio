@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import useWindowSizes from "@/hooks/useWindowSizes";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 import type { FunctionComponent, ReactNode } from "react";
 // Styled components
 import { CarosuelWrapper, ChildrenElementsWrapper, NavigationWrapper, SingleNagivationStep } from "./_styled_components";

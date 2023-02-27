@@ -1,7 +1,7 @@
 // Tools
-import { styled, keyframes } from "@mui/system";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { styled, keyframes } from "@mui/material";
+import { fadeSimple } from "@/components/keyframes/intro";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 
 const introAppearingAnimation = keyframes({
     "0%,100%": {

@@ -1,8 +1,8 @@
 // Tools
-import { styled } from "@mui/system";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { styled } from "@mui/material";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 // Styled components
 const DEFAULT_DELAY = 300;
 const DELAY_BETWEEN_ELEMENTS = 50;

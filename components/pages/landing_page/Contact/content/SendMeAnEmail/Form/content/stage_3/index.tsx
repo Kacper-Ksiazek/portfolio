@@ -1,8 +1,8 @@
 // Tools
 import { useState } from "react";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import { styled } from "@mui/system";
-import fadeFromLeft from "@/components/keyframes/intro/fadeFromLeft";
+import { fadeSimple } from "@/components/keyframes/intro";
+import { styled } from "@mui/material";
+import { fadeFromLeft } from "@/components/keyframes/intro";
 import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";

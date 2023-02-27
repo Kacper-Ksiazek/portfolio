@@ -1,7 +1,7 @@
 // Tools
-import { keyframes } from "@mui/system";
+import { keyframes } from "@mui/material";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 // IT HAS TO BE UNIQUE ANIMATION
 const fadeSimple = keyframes({
     from: {

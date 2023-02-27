@@ -1,6 +1,6 @@
 // Tools
-import { keyframes } from "@mui/system";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { keyframes } from "@mui/material";
+import { fadeSimple } from "@/components/keyframes/intro";
 //
 import * as Redirect from "./keyframes/RedirectAnimations";
 import * as Duration from "./keyframes/DurationAnimations";
@@ -8,7 +8,7 @@ import * as MainHeader from "./keyframes/MainHeaderAnimations";
 import * as Description from "./keyframes/DescriptionAnimations";
 import * as Technologies from "./keyframes/TechnologiesAnimations";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 
 const BackgroundBarIntro = keyframes({
     from: {

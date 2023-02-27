@@ -1,8 +1,7 @@
 // Tools
-import { styled, alpha } from "@mui/system";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import fadeToLeft from "@/components/keyframes/outro/fadeToLeft";
-import fadeFromTop from "@/components/keyframes/intro/fadeFromTop";
+import { styled, alpha } from "@mui/material";
+import { fadeToLeft } from "@/components/keyframes/outro";
+import { fadeSimple, fadeFromTop } from "@/components/keyframes/intro";
 // Styled components
 export const ProcessRequestStageWrapper = styled("div")(({ theme }) => ({
     display: "flex",

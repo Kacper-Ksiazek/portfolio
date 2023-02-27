@@ -1,7 +1,7 @@
 // Tools
-import { styled, alpha, keyframes } from "@mui/system";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { styled, alpha, keyframes } from "@mui/material";
+import { fadeSimple } from "@/components/keyframes/intro";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Styled components
 
 const progressBarIntro = keyframes({

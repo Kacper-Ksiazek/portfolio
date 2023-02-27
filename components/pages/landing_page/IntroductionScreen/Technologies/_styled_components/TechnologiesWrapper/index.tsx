@@ -1,6 +1,6 @@
 // Tools
 import RWD from "./RWD";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import introAnimations from "./introAnimations";
 import minigameProcessing from "./minigame_animations/processing";
 import throphyCollecting from "./minigame_animations/throphy_collecting";

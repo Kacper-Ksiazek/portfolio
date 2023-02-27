@@ -1,5 +1,5 @@
 // Tools
-import { styled, alpha } from "@mui/system";
+import { styled, alpha } from "@mui/material";
 
 export const StyledTable = styled("table")(({ theme }) => ({
     fontSize: "18px",

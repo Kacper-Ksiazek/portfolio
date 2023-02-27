@@ -1,6 +1,6 @@
 // Tools
 import { COLORS } from "@/material";
-import { keyframes } from "@mui/system";
+import { keyframes } from "@mui/material";
 
 export const RedirectIntro_BackgroundColor = keyframes({
     from: {

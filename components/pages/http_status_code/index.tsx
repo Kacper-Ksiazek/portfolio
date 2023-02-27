@@ -1,6 +1,6 @@
 // Tools
-import { styled } from "@mui/system";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { styled } from "@mui/material";
+import { fadeSimple } from "@/components/keyframes/intro";
 // Styled components
 export const HTTPStatusCodeContentWrapper = styled("section", {
     shouldForwardProp: (prop: string) => !["reversedSkew"].includes(prop),

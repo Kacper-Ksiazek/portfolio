@@ -1,7 +1,7 @@
 // Tools
 import { COLORS } from "@/material";
 import { stopRendering } from "./_keyframes/stopRendering";
-import fadeSimple from "@/components/keyframes/intro/fadeSimple";
+import { fadeSimple } from "@/components/keyframes/intro";
 import {
     introForFirstProject,
     introForLeftSideProjects,
@@ -12,7 +12,7 @@ import {
 } from "./_keyframes/projectCardBackgroundRectangles";
 import { introScaleXFromLeft, introScaleXFromRight, introScaleYFromTop, outroScaleXToLeft, outroScaleXToRight } from "./_keyframes/scale";
 // Types
-import type { SxProps } from "@mui/system";
+import type { SxProps } from "@mui/material";
 
 export default {
     "&::after": {

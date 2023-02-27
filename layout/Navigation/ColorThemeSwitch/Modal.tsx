@@ -1,7 +1,7 @@
 // Tools
 import { createPortal } from "react-dom";
-import { styled, keyframes } from "@mui/system";
-import fadeSimpleOUT from "@/components/keyframes/outro/fadeSimpleOUT";
+import { styled, keyframes } from "@mui/material";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Types
 import type { FunctionComponent } from "react";
 

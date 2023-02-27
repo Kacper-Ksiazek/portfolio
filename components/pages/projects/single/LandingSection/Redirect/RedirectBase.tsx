@@ -1,6 +1,6 @@
 // Tools
 import RWD from "./RWD";
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import { barIntroAnimation, barOutroAnimation } from "./keyframes";
 // Material UI Components
 import ButtonBase from "@mui/material/ButtonBase";

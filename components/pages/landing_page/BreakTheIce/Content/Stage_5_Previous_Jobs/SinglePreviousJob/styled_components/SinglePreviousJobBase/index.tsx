@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 import RWD from "./RWD";
 import introAnimations from "./introAnimations";
 // Styled components
