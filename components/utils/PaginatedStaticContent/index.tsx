@@ -64,8 +64,8 @@ const PaginatedStaticContent = <T extends unknown>(props: PaginatedStaticContent
         <>
             {props.renderWrapper(
                 <>
+                    <tr ref={scrollTopReference as any} style={{ position: "absolute", top: "-200px" }} />
                     {/* Scroll top referecne */}
-                    <span ref={scrollTopReference} style={{ position: "absolute", top: "-200px" }} />
                     {/* Display all records on current page */}
                     {recordsOnCurrentPage.map((item, index) => {
                         return props.renderItem(item, props.keyResolver ? props.keyResolver(item, index) : index);

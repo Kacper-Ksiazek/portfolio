@@ -15,7 +15,7 @@ interface LineProps {
 
 export default styled(BackgroundShapeBase, {
     shouldForwardProp: (prop: string) => {
-        return !(["initialHeight", "backgroundColor"] as (keyof LineProps | string)[]).includes(prop);
+        return !(["initialHeight", "backgroundColor", "zIndex", "delays"] as (keyof LineProps | string)[]).includes(prop);
     },
 })<LineProps>(({ theme, ...props }) => {
     const introAnimationOne = keyframes({
