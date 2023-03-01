@@ -1,8 +1,7 @@
 // Tools
 import dynamic from "next/dynamic";
 import { OPTIONS } from "./options";
-import { useState, useContext } from "react";
-import { MUIContext } from "@/material/MuiThemeProvider";
+import { useThemeToggler, useThemeContext } from "./hooks";
 // Types
 import type { Option } from "./options";
 import type { FunctionComponent } from "react";
@@ -15,35 +14,16 @@ const Modal = dynamic(() => import("./Modal"), { ssr: false });
 import { Wrapper, Menu, ExitButton } from "./styled_components";
 
 const ColorThemeSwitch: FunctionComponent<{ closeMobileMenu: () => void }> = (props) => {
-    const context = useContext(MUIContext);
-    const [displayModal, setDisplayModal] = useState<boolean>(false);
+    const context = useThemeContext();
 
-    const isDark: boolean = context.theme === "dark";
-
-    function toggleColorTheme() {
-        setDisplayModal(true);
-
-        setTimeout(() => {
-            context.setTheme(isDark ? "light" : "dark");
-            props.closeMobileMenu();
-        }, 500);
-
-        setTimeout(() => {
-            setDisplayModal(false);
-        }, 2000);
-    }
-
+    const { displayModal, toggleColorTheme } = useThemeToggler(props.closeMobileMenu);
     const activeTheme: Option = OPTIONS.find((el) => el.value === context.theme) as Option;
 
     return (
         <>
             <Wrapper
                 id="theme-switch" //
-                className={[
-                    context.theme, //
-                    "unfolded",
-                ].join(" ")}
-                onClick={toggleColorTheme}
+                className={"unfolded"}
             >
                 <ThemeOption
                     id="theme-switch"

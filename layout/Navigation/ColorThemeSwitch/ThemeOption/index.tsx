@@ -1,4 +1,5 @@
 // Tools
+import { useState } from "react";
 import dynamic from "next/dynamic";
 // Types
 import type { FunctionComponent, ReactNode } from "react";

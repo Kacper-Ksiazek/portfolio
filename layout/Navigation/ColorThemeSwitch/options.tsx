@@ -1,11 +1,10 @@
 // Types
 import type { ReactNode } from "react";
+import type { ThemeMode } from "@/@types/MUI";
 // Material UI Icons
 import DarkMode from "@mui/icons-material/DarkMode";
 import LightMode from "@mui/icons-material/LightMode";
 import SettingsBrightness from "@mui/icons-material/SettingsBrightness";
-
-type ThemeMode = "light" | "dark" | "system_preferred";
 
 export interface Option {
     label: string;
