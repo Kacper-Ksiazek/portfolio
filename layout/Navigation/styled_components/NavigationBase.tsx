@@ -49,12 +49,17 @@ export default styled("div")(({ theme }) => ({
             color: "#fff",
         },
         "#theme-switch": {
-            border: `1px solid #fff`,
-            "#choice-indicator": {
-                background: "#fff",
-                border: `1px solid #000`,
-                svg: {
-                    color: "#000",
+            "button.active-theme": {
+                border: `1px solid #fff`,
+                ".icon-wrapper": {
+                    background: "#fff",
+                    border: `1px solid #000`,
+                    svg: {
+                        color: "#000",
+                    },
+                },
+                ".theme-name": {
+                    color: "#fff",
                 },
             },
         },
@@ -117,12 +122,17 @@ export default styled("div")(({ theme }) => ({
             color: theme.palette.text.primary,
         },
         "#theme-switch": {
-            border: `1px solid ${theme.palette.text.primary}`,
-            "#choice-indicator": {
-                background: theme.palette.text.primary,
-                border: `1px solid ${theme.palette.background.default}`,
-                svg: {
-                    color: theme.palette.background.default,
+            "button.active-theme": {
+                border: `1px solid ${theme.palette.text.primary}`,
+                ".icon-wrapper": {
+                    background: theme.palette.text.primary,
+                    border: `1px solid ${theme.palette.background.default}`,
+                    svg: {
+                        color: theme.palette.background.default,
+                    },
+                },
+                ".theme-name": {
+                    color: theme.palette.text.primary,
                 },
             },
         },

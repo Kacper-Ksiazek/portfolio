@@ -8,14 +8,14 @@ export default styled(ButtonBase)(({ theme }) => ({
     border: `1px solid ${theme.palette.text.primary}`,
     borderRadius: "5px 10px 5px 10px",
     height: "32px",
-    padding: "0 32px",
+    padding: "2px 32px",
     fontWeight: "500",
     marginRight: "20px",
+    fontSize: "16px",
     overflow: "hidden",
     "span.text": {
         position: "relative",
         zIndex: 2,
-        transition: "color .15s",
     },
     "span.line": {
         position: "absolute",
