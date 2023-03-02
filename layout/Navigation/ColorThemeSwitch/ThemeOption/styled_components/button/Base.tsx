@@ -27,7 +27,7 @@ export default styled("button")(({ theme }) => ({
         },
 
         ".icon-wrapper svg, .theme-name": {
-            color: alpha("#fff", 0.8),
+            color: alpha("#fff", 0.7),
             transition: "color .3s",
         },
 

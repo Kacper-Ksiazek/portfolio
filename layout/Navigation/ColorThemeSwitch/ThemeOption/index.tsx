@@ -1,5 +1,4 @@
 // Tools
-import { useState } from "react";
 import dynamic from "next/dynamic";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -14,6 +13,7 @@ interface ThemeOptionButtonProps {
     buttonClassName?: string;
     id?: string;
     menuItemIndex?: number;
+    isActiveBySystemPreference?: boolean;
 
     onClick?: () => void;
 }
@@ -21,16 +21,32 @@ interface ThemeOptionButtonProps {
 const ThemeOption: FunctionComponent<ThemeOptionButtonProps> = (props) => {
     const isMenuItem: boolean = props.menuItemIndex !== undefined;
 
+    function handleOnClick() {
+        if (typeof props.onClick === "function") props.onClick();
+    }
+
     return (
         <Wrapper className={isMenuItem ? "menu-item" : ""}>
             {isMenuItem && <MenuItemRoot menuItemIndex={props.menuItemIndex as number} />}
 
-            <Button.Base id={props.id} className={`${props.buttonClassName} color-theme-button`}>
+            <Button.Base
+                id={props.id} //
+                className={[
+                    props.buttonClassName ?? "", //
+                    `color-theme-button`,
+                    props.isActiveBySystemPreference ? "active-theme" : "",
+                ].join(" ")}
+                onClick={handleOnClick}
+            >
                 <Button.ThemeName className="theme-name">{props.label}</Button.ThemeName>
                 <Button.IconWrapper className="icon-wrapper">{props.icon}</Button.IconWrapper>
             </Button.Base>
         </Wrapper>
     );
+};
+
+ThemeOption.defaultProps = {
+    isActiveBySystemPreference: false,
 };
 
 export default ThemeOption;

@@ -5,6 +5,7 @@ import { useThemeToggler, useThemeContext } from "./hooks";
 // Types
 import type { Option } from "./options";
 import type { FunctionComponent } from "react";
+import type { ThemeMode } from "@/material/MuiThemeProvider/@types";
 // Material UI Icons
 import Close from "@mui/icons-material/Close";
 // Other components
@@ -18,6 +19,8 @@ const ColorThemeSwitch: FunctionComponent<{ closeMobileMenu: () => void }> = (pr
 
     const { displayModal, toggleColorTheme } = useThemeToggler(props.closeMobileMenu);
     const activeTheme: Option = OPTIONS.find((el) => el.value === context.theme) as Option;
+
+    const isActiveBySystemPreference = (val: ThemeMode): boolean => val === context.themeToBeUsed;
 
     return (
         <>
@@ -38,7 +41,9 @@ const ColorThemeSwitch: FunctionComponent<{ closeMobileMenu: () => void }> = (pr
                                 label={item.label} //
                                 icon={item.icon}
                                 key={index}
+                                isActiveBySystemPreference={isActiveBySystemPreference(item.value)}
                                 menuItemIndex={index}
+                                onClick={() => toggleColorTheme(item.value)}
                             />
                         );
                     })}
