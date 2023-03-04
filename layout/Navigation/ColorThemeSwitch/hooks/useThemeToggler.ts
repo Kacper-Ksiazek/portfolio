@@ -1,7 +1,7 @@
 // Tools
 import { useState } from "react";
 import { useThemeContext } from "./useThemeContext";
-import { darkThemeIsPreffered } from "@/material/MuiThemeProvider/utils";
+import { isDarkThemePreferred } from "@/material/MuiThemeProvider/utils";
 // Types
 import type { ThemeMode } from "@/@types/MUI";
 
@@ -11,10 +11,21 @@ interface UseThemeTogglerResult {
 }
 
 function determineWhetherDisplayModal({ choosen, current }: { current: ThemeMode; choosen: ThemeMode }): boolean {
-    const themeModeHasChanged = current !== choosen;
-    const systemPreferenceMatchChoosenTheme = choosen === "system_preferred" ? (darkThemeIsPreffered() ? current === "dark" : current === "light") : false;
+    const darkThemeIsPreferred = isDarkThemePreferred();
 
-    return themeModeHasChanged && !systemPreferenceMatchChoosenTheme;
+    // Zamiana z Dark na system nie dziala
+
+    switch (choosen) {
+        case "system_preferred":
+            return darkThemeIsPreferred ? current !== "dark" : current !== "light";
+        case "dark":
+            return !(darkThemeIsPreferred && current === "system_preferred");
+        case "light":
+            return !(!darkThemeIsPreferred && current === "system_preferred");
+        default:
+            new Error(`Unexpected type of theme **${choosen as never}** has been provided to the function **determineWhetherDisplayModal** `);
+            return false;
+    }
 }
 
 export function useThemeToggler(closeMobileMenu: () => void): UseThemeTogglerResult {

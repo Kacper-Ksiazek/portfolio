@@ -1,6 +1,6 @@
 // Tools
 import { useState, useEffect } from "react";
-import { darkThemeIsPreffered } from "../utils";
+import { isDarkThemePreferred } from "../utils";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 // Types
 import type { I_MUIContext, ThemeToBeUsed, ThemeMode } from "../@types";
@@ -15,7 +15,7 @@ export function useThemeControl(): I_MUIContext {
         let timeout: null | ReturnType<typeof setTimeout> = null;
 
         if (localStorageTheme === "system_preferred") {
-            timeout = setTimeout(() => setThemeToBeUsed(darkThemeIsPreffered() ? "dark" : "light"), APPLY_LOCAL_STORAGE_THEME_TIMEOUT);
+            timeout = setTimeout(() => setThemeToBeUsed(isDarkThemePreferred() ? "dark" : "light"), APPLY_LOCAL_STORAGE_THEME_TIMEOUT);
         } else {
             setThemeToBeUsed(localStorageTheme);
         }

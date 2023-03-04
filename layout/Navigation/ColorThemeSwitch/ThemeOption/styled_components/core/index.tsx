@@ -28,9 +28,6 @@ export const LinkToTheElement = styled(VerticallyCentredSpan)(({ theme }) => ({
     height: "2px",
     width: "36px",
     background: "#fff",
-    "&.menu-element-1": {
-        width: "58px",
-    },
 }));
 
 export const EdgeDot = styled("span")(({ theme }) => ({
