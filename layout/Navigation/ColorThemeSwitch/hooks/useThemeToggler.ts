@@ -13,8 +13,6 @@ interface UseThemeTogglerResult {
 function determineWhetherDisplayModal({ choosen, current }: { current: ThemeMode; choosen: ThemeMode }): boolean {
     const darkThemeIsPreferred = isDarkThemePreferred();
 
-    // Zamiana z Dark na system nie dziala
-
     switch (choosen) {
         case "system_preferred":
             return darkThemeIsPreferred ? current !== "dark" : current !== "light";
@@ -32,17 +30,21 @@ export function useThemeToggler(closeMobileMenu: () => void): UseThemeTogglerRes
     const context = useThemeContext();
     const [displayModal, setDisplayModal] = useState<boolean>(false);
 
+    function setTheme(theme: ThemeMode) {
+        context.setTheme(theme);
+        closeMobileMenu();
+    }
+
     function toggleColorTheme(choosenTheme: ThemeMode) {
         const displayModal: boolean = determineWhetherDisplayModal({ choosen: choosenTheme, current: context.theme });
 
-        if (displayModal) setDisplayModal(true);
-
-        setTimeout(() => {
-            context.setTheme(choosenTheme);
-            closeMobileMenu();
-        }, 500);
-
-        if (displayModal) setTimeout(() => setDisplayModal(false), 2000);
+        if (displayModal) {
+            setDisplayModal(true);
+            setTimeout(() => setTheme(choosenTheme), 500);
+            setTimeout(() => setDisplayModal(false), 2000);
+        } else {
+            setTheme(choosenTheme);
+        }
     }
 
     return { displayModal, toggleColorTheme };
