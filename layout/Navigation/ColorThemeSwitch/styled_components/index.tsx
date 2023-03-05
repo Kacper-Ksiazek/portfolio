@@ -9,7 +9,6 @@ export { Menu, ExitButton };
 export const Wrapper = styled("div")(({ theme }) => ({
     position: "relative",
     marginLeft: "48px",
-    marginRight: "200px", // ! TO BE DELATED
     button: {
         border: `1px solid ${theme.palette.text.primary}`,
         background: "transparent",

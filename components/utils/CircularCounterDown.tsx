@@ -15,12 +15,10 @@ const CircularCounterDown: FunctionComponent<CircularCounterDownProps> = (props)
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setProgress((val) => val - 1);
+            setProgress((val) => Math.max(val - 1, 0));
         }, props.time / 100);
-        const timeout = setTimeout(() => clearInterval(interval), props.time + 1);
 
         return () => {
-            clearTimeout(timeout);
             clearInterval(interval);
         };
     }, [props.time]);

@@ -1,11 +1,11 @@
 // Tools
-import { useState } from "react";
 import dynamic from "next/dynamic";
 import { OPTIONS } from "./options";
 import { useThemeToggler, useThemeContext } from "./hooks";
 // Types
 import type { Option } from "./options";
 import type { FunctionComponent } from "react";
+import type { ColorThemeSwitchProps } from "./@types";
 import type { ThemeMode } from "@/material/MuiThemeProvider/@types";
 // Material UI Icons
 import Close from "@mui/icons-material/Close";
@@ -15,10 +15,10 @@ const Modal = dynamic(() => import("./Modal"), { ssr: false });
 // Styled components
 import { Wrapper, Menu, ExitButton } from "./styled_components";
 
-const ColorThemeSwitch: FunctionComponent<{ closeMobileMenu: () => void }> = (props) => {
+const ColorThemeSwitch: FunctionComponent<ColorThemeSwitchProps> = (props) => {
     const context = useThemeContext();
 
-    const { displayModal, toggleColorTheme, openMenu, menuUnwrapStage, closeMenu } = useThemeToggler(props.closeMobileMenu);
+    const { displayModal, toggleColorTheme, openMenu, menuUnwrapStage, closeMenu } = useThemeToggler(props);
     const activeTheme: Option = OPTIONS.find((el) => el.value === context.theme) as Option;
 
     const isActiveBySystemPreference = (val: ThemeMode): boolean => val === context.themeToBeUsed;

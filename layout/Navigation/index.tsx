@@ -10,6 +10,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import Logo from "./Logo";
 import ColorThemeSwitch from "./ColorThemeSwitch";
+
 const MobileMenuButton = dynamic(() => import("./MobileMenuButton"));
 // Styled Components
 import MobileAuthor from "./styled_components/MobileAuthor";
@@ -26,6 +27,7 @@ const Navigation: FunctionComponent = () => {
     const { status: mobileMenuStatus, renderMobileMenuButton, toogleVisibility } = useMobileMenuHandlers();
 
     const [keepContrastFontColor, setKeepContrastFontColor] = useState<boolean>(false);
+    const [colorThemeMenuIsOpened, setColorThemeMenuIsOpened] = useState<boolean>(false);
 
     const mobileMenuIsOpened: boolean = mobileMenuStatus === "opened";
 
@@ -53,6 +55,7 @@ const Navigation: FunctionComponent = () => {
                 appearingAnimation !== null ? `display-${appearingAnimation}-animation` : "",
                 introAnimation,
                 keepContrastFontColor ? "keep-contrast-font-color" : "",
+                colorThemeMenuIsOpened ? "color-theme-menu-is-opened" : "",
             ].join(" ")}
         >
             <div id="main-navigation-content">
@@ -95,7 +98,10 @@ const Navigation: FunctionComponent = () => {
                         Contact
                     </SingleNavigationRoute>
 
-                    <ColorThemeSwitch closeMobileMenu={() => mobileMenuIsOpened && toogleVisibility()} />
+                    <ColorThemeSwitch
+                        closeMobileMenu={() => mobileMenuIsOpened && toogleVisibility()} //
+                        setColorThemeMenuIsOpened={setColorThemeMenuIsOpened}
+                    />
 
                     <MobileAuthor>
                         <span id="mobile-menu-bottom-card-name">Kacper Książek</span>
