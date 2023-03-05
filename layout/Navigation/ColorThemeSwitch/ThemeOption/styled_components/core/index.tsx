@@ -1,5 +1,4 @@
 // Tools
-import { Styles } from "@/@types/MUI";
 import { styled } from "@mui/material";
 
 const VerticallyCentredSpan = styled("span")(({ theme }) => ({
@@ -11,8 +10,12 @@ const VerticallyCentredSpan = styled("span")(({ theme }) => ({
 export const MainRoot = styled(VerticallyCentredSpan)(({ theme }) => ({
     width: "2px",
     height: "calc(100% + 16px)",
-    background: "#fff",
     left: "22px",
+    "&::before": {
+        content: '""',
+        ...theme.mixins.absolute_full,
+        background: "#fff",
+    },
 }));
 
 export const MiddleDot = styled("span")(({ theme }) => ({

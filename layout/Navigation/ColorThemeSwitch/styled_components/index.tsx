@@ -1,9 +1,10 @@
 // Tools
 import { styled } from "@mui/material";
 // Styled components
+import Menu from "./Menu";
 import ExitButton from "./ExitButton";
 
-export { ExitButton };
+export { Menu, ExitButton };
 
 export const Wrapper = styled("div")(({ theme }) => ({
     position: "relative",
@@ -20,15 +21,4 @@ export const Wrapper = styled("div")(({ theme }) => ({
         fontSize: "16px",
         fontWeight: 500,
     },
-}));
-
-export const Menu = styled("div")(({ theme }) => ({
-    position: "absolute",
-    bottom: "0px",
-    width: "100%",
-    transform: "translateY(100%)",
-    left: "0",
-    boxSizing: "border-box",
-    display: "flex",
-    flexDirection: "column",
 }));

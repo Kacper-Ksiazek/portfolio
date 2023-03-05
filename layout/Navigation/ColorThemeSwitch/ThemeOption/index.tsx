@@ -29,18 +29,22 @@ const ThemeOption: FunctionComponent<ThemeOptionButtonProps> = (props) => {
         <Wrapper className={isMenuItem ? "menu-item" : ""}>
             {isMenuItem && <MenuItemRoot menuItemIndex={props.menuItemIndex as number} />}
 
-            <Button.Base
-                id={props.id} //
-                className={[
-                    props.buttonClassName ?? "", //
-                    `color-theme-button`,
-                    props.isActiveBySystemPreference ? "active-theme" : "",
-                ].join(" ")}
-                onClick={handleOnClick}
-            >
-                <Button.ThemeName className="theme-name">{props.label}</Button.ThemeName>
-                <Button.IconWrapper className="icon-wrapper">{props.icon}</Button.IconWrapper>
-            </Button.Base>
+            <div style={{ position: "relative" }}>
+                {isMenuItem && <span className="intro-animation-bar" />}
+
+                <Button.Base
+                    id={props.id} //
+                    className={[
+                        props.buttonClassName ?? "", //
+                        `color-theme-button`,
+                        props.isActiveBySystemPreference ? "active-theme" : "",
+                    ].join(" ")}
+                    onClick={handleOnClick}
+                >
+                    <Button.ThemeName className="theme-name">{props.label}</Button.ThemeName>
+                    <Button.IconWrapper className="icon-wrapper">{props.icon}</Button.IconWrapper>
+                </Button.Base>
+            </div>
         </Wrapper>
     );
 };

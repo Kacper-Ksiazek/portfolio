@@ -4,9 +4,8 @@ import { scaleToRight } from "@/components/keyframes/outro";
 import { scaleFromRight } from "@/components/keyframes/intro";
 // Styled components
 export default styled(ButtonBase)(({ theme }) => ({
-    marginTop: "16px",
     height: "32px",
-    width: "48px",
+    width: "36px",
     background: `${theme.palette.error.main} !important`,
     overflow: "hidden",
     border: `1px solid ${theme.palette.error.main} !important`,

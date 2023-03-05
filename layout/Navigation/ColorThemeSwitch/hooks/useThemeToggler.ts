@@ -7,8 +7,13 @@ import type { ThemeMode } from "@/@types/MUI";
 
 interface UseThemeTogglerResult {
     displayModal: boolean;
+    menuUnwrapStage: MenuUnwrapStage;
+
+    openMenu: () => void;
+    closeMenu: () => void;
     toggleColorTheme: (val: ThemeMode) => void;
 }
+type MenuUnwrapStage = "HIDDEN" | "OPEN" | "CLOSE";
 
 function determineWhetherDisplayModal({ choosen, current }: { current: ThemeMode; choosen: ThemeMode }): boolean {
     const darkThemeIsPreferred = isDarkThemePreferred();
@@ -29,6 +34,7 @@ function determineWhetherDisplayModal({ choosen, current }: { current: ThemeMode
 export function useThemeToggler(closeMobileMenu: () => void): UseThemeTogglerResult {
     const context = useThemeContext();
     const [displayModal, setDisplayModal] = useState<boolean>(false);
+    const [menuUnwrapStage, setMenuUnwrapStage] = useState<MenuUnwrapStage>("HIDDEN");
 
     function setTheme(theme: ThemeMode) {
         context.setTheme(theme);
@@ -40,12 +46,27 @@ export function useThemeToggler(closeMobileMenu: () => void): UseThemeTogglerRes
 
         if (displayModal) {
             setDisplayModal(true);
-            setTimeout(() => setTheme(choosenTheme), 500);
+            setTimeout(() => {
+                setMenuUnwrapStage("HIDDEN");
+                setTheme(choosenTheme);
+            }, 500);
             setTimeout(() => setDisplayModal(false), 2000);
         } else {
             setTheme(choosenTheme);
         }
     }
 
-    return { displayModal, toggleColorTheme };
+    function closeMenu() {
+        setMenuUnwrapStage("CLOSE");
+        // setTimeout(() => setMenuUnwrapStage("HIDDEN"), 1000);
+        setMenuUnwrapStage("HIDDEN");
+    }
+
+    return {
+        displayModal, //
+        menuUnwrapStage,
+        toggleColorTheme,
+        openMenu: () => setMenuUnwrapStage("OPEN"),
+        closeMenu,
+    };
 }

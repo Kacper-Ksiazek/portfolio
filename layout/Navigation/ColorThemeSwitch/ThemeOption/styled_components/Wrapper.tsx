@@ -7,4 +7,11 @@ export default styled("div")(({ theme }) => ({
         marginTop: "16px",
         paddingLeft: "64px",
     },
+
+    ".intro-animation-bar": {
+        ...theme.mixins.absolute_full,
+        background: "#fff",
+        zIndex: 2,
+        borderRadius: 5,
+    },
 }));
