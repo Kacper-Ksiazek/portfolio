@@ -1,6 +1,6 @@
 // Tools
 import { keyframes } from "@mui/material";
-import { scaleToLeft, hidePseudoElement, scaleToRight } from "@/components/keyframes/outro";
+import { scaleToLeft, scaleToRight } from "@/components/keyframes/outro";
 import { fadeSimple, scaleFromTop, scaleFromLeft } from "@/components/keyframes/intro";
 // Types
 import type { Styles } from "@/@types/MUI";
@@ -53,7 +53,6 @@ export default {
                         animation: chainAnimations([
                             [scaleFromLeft, 0.24, 0.6 + diff],
                             [scaleToLeft, 0.24, 0.1],
-                            [hidePseudoElement, 0.001, 0.001],
                         ]),
                     },
                     ".intro-animation-bar + button": {

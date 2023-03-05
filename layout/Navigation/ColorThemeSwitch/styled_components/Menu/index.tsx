@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import introAnimations from "./introAnimations";
+import outroAnimations from "./outroAnimations";
 
 export default styled("div")(({ theme }) => ({
     position: "absolute",
@@ -27,5 +28,9 @@ export default styled("div")(({ theme }) => ({
 
     "&.intro": {
         ...(introAnimations as any),
+    },
+
+    "&.outro": {
+        ...(outroAnimations as any),
     },
 }));

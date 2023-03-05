@@ -39,7 +39,7 @@ const ColorThemeSwitch: FunctionComponent<{ closeMobileMenu: () => void }> = (pr
                 {(() => {
                     if (menuUnwrapStage !== "HIDDEN") {
                         return (
-                            <Menu className={menuUnwrapStage === "CLOSE" ? "outro" : "intro"}>
+                            <Menu className={menuUnwrapStage === "CLOSE" ? "outro" : "intro"} key={menuUnwrapStage}>
                                 {OPTIONS.filter((el) => el.value !== activeTheme.value).map((item, index) => {
                                     return (
                                         <ThemeOption

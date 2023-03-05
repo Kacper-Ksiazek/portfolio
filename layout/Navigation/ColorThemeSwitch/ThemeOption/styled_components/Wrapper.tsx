@@ -10,7 +10,7 @@ export default styled("div")(({ theme }) => ({
 
     ".intro-animation-bar": {
         ...theme.mixins.absolute_full,
-        background: "#fff",
+        background: "#F0EFF4",
         zIndex: 2,
         borderRadius: 5,
     },

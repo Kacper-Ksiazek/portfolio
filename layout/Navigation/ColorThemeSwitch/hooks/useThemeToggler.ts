@@ -58,15 +58,19 @@ export function useThemeToggler(closeMobileMenu: () => void): UseThemeTogglerRes
 
     function closeMenu() {
         setMenuUnwrapStage("CLOSE");
-        // setTimeout(() => setMenuUnwrapStage("HIDDEN"), 1000);
-        setMenuUnwrapStage("HIDDEN");
+        setTimeout(() => setMenuUnwrapStage("HIDDEN"), 1500);
+    }
+
+    function openMenu() {
+        if (menuUnwrapStage !== "HIDDEN") return;
+        setMenuUnwrapStage("OPEN");
     }
 
     return {
         displayModal, //
         menuUnwrapStage,
         toggleColorTheme,
-        openMenu: () => setMenuUnwrapStage("OPEN"),
+        openMenu,
         closeMenu,
     };
 }
