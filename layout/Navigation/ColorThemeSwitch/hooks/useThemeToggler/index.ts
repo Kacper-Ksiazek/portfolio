@@ -26,7 +26,7 @@ export function useThemeToggler(params: UseThemeTogglerProps): UseThemeTogglerRe
             setDisplayModal(true);
 
             setTimeout(() => {
-                closeMenu();
+                closeMenu({ immediately: true });
                 setTheme(choosenTheme);
             }, 500);
 

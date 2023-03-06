@@ -5,7 +5,7 @@ import type { MenuUnwrapStage, SetColorThemeMenuIsOpened } from "./@types";
 
 interface UseMenuUnwrapStageResult {
     menuUnwrapStage: MenuUnwrapStage;
-    closeMenu: () => void;
+    closeMenu: (options?: { immediately: boolean }) => void;
     openMenu: () => void;
 }
 
@@ -16,10 +16,12 @@ export function useMenuUnwrapStage(setColorThemeMenuIsOpened: SetColorThemeMenuI
         setColorThemeMenuIsOpened(!(menuUnwrapStage === "HIDDEN"));
     }, [menuUnwrapStage, setColorThemeMenuIsOpened]);
 
-    function closeMenu() {
+    const closeMenu: UseMenuUnwrapStageResult["closeMenu"] = function (options) {
+        if (options && options.immediately) return setMenuUnwrapStage("HIDDEN");
+
         setMenuUnwrapStage("CLOSE");
         setTimeout(() => setMenuUnwrapStage("HIDDEN"), 1500);
-    }
+    };
 
     function openMenu() {
         if (menuUnwrapStage !== "HIDDEN") return;
