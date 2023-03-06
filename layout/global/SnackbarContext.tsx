@@ -46,7 +46,6 @@ export const SnackbarContextProvider: FunctionComponent<SnackbarContextProviderP
             const id = Date.now();
             const hideAfter = addSnackbarParams.hideAfter ?? DEFAULT_HIDE_AFTER;
             const timeout = setTimeout(() => {
-                console.log("objecCLOSINGt");
                 closeSnackbar(id);
             }, hideAfter + INTRO_ANIMATION_DURATION);
 
