@@ -12,7 +12,9 @@ export const IconWrapper = styled("span")(({ theme }) => ({
     position: "relative",
     ...theme.mixins.flex_center,
     zIndex: 1,
+    transition: "background .3s linear",
     svg: {
+        transition: "color .3s linear",
         color: theme.palette.background.default,
         fontSize: "1.4rem",
     },

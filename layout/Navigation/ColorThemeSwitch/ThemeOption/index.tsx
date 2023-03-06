@@ -29,7 +29,7 @@ const ThemeOption: FunctionComponent<ThemeOptionButtonProps> = (props) => {
         <Wrapper className={isMenuItem ? "menu-item" : ""}>
             {isMenuItem && <MenuItemRoot menuItemIndex={props.menuItemIndex as number} />}
 
-            <div style={{ position: "relative" }}>
+            <div className="button-wrapper">
                 {isMenuItem && <span className="intro-animation-bar" />}
 
                 <Button.Base
@@ -38,6 +38,7 @@ const ThemeOption: FunctionComponent<ThemeOptionButtonProps> = (props) => {
                         props.buttonClassName ?? "", //
                         `color-theme-button`,
                         props.isActiveBySystemPreference ? "active-theme" : "",
+                        isMenuItem ? "theme-option" : "",
                     ].join(" ")}
                     onClick={handleOnClick}
                 >

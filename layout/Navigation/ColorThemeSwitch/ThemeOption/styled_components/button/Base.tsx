@@ -13,11 +13,11 @@ export default styled("button")(({ theme }) => ({
     flexDirection: "row",
     width: "128px",
     zIndex: 1,
+    transition: "background .2s",
 
     "&:not(&.active-theme)": {
         overflow: "hidden",
-        background: theme.palette.background.paper,
-        border: "1px solid #fff",
+        border: `1px solid ${theme.palette.text.primary}`,
         "&::before": {
             content: "''",
             ...theme.mixins.absolute_full,
@@ -27,7 +27,7 @@ export default styled("button")(({ theme }) => ({
         },
 
         ".icon-wrapper svg, .theme-name": {
-            color: alpha("#fff", 0.7),
+            color: alpha(theme.palette.text.primary, 0.7),
             transition: "color .3s",
         },
 
@@ -42,14 +42,17 @@ export default styled("button")(({ theme }) => ({
     },
     "&.active-theme": {
         ".theme-name": {
-            color: "#fff",
+            color: theme.palette.text.primary,
         },
     },
     "&.unfolded": {
-        background: theme.palette.background.paper,
+        background: theme.palette.primary.main,
         ".theme-name": {
             color: "#fff !important",
         },
+    },
+    "&.theme-option": {
+        background: theme.palette.mode === "dark" ? theme.palette.background.paper : theme.palette.background.default,
     },
 
     "@media (max-width:1000px)": {

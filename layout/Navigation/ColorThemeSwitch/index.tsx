@@ -40,13 +40,11 @@ const ColorThemeSwitch: FunctionComponent<ColorThemeSwitchProps> = (props) => {
         <>
             <Wrapper
                 id="theme-switch" //
-                className={"unfolded"}
             >
                 <ThemeOption
-                    id="theme-switch"
                     icon={activeTheme.icon} //
                     label={activeTheme.label}
-                    buttonClassName={`active-theme  ${"unfolded"}`}
+                    buttonClassName={`active-theme  ${menuUnwrapStage !== "HIDDEN" ? "unfolded" : ""}`}
                     onClick={openMenu}
                 />
                 {(() => {

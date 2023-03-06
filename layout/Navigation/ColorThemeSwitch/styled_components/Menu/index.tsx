@@ -18,10 +18,11 @@ export default styled("div")(({ theme }) => ({
         alignSelf: "flex-start",
         marginTop: "16px",
         left: "5px",
+        overflow: "hidden",
+        borderRadius: "10px",
         "&::after": {
             content: "''",
-            background: "#fff",
-            borderRadius: "5px",
+            background: theme.palette.mode === "dark" ? "#F0EFF4" : theme.palette.primary.main,
             ...theme.mixins.absolute_full,
         },
     },
