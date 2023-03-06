@@ -1,10 +1,8 @@
 // Tools
+import { useState } from "react";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
-import useStylesOnScoll from "./hooks/useOnScollStyles";
-import { useStylesBasedOnURL } from "./hooks/useStylesBasedOnURL";
-import { useMobileMenuHandlers } from "./hooks/useMobileMenuHandlers";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
+import { useKeepContrastFontColor, useMobileMenuHandlers, useStylesOnScoll, useStylesBasedOnURL } from "./hooks";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -19,32 +17,15 @@ import RoutesWrapper from "./styled_components/RoutesWrapper";
 import NavigationBase from "./styled_components/NavigationBase";
 
 const Navigation: FunctionComponent = () => {
-    const OUTRO_ANIMATION_DURATION = 700;
-
     const applyOnScrollStyles = useStylesOnScoll();
     const { appearingAnimation } = useMainNavigationBarContext();
     const { improveContrast, introAnimation } = useStylesBasedOnURL();
     const { status: mobileMenuStatus, renderMobileMenuButton, toogleVisibility } = useMobileMenuHandlers();
 
-    const [keepContrastFontColor, setKeepContrastFontColor] = useState<boolean>(false);
+    const keepContrastFontColor = useKeepContrastFontColor(mobileMenuStatus);
     const [colorThemeMenuIsOpened, setColorThemeMenuIsOpened] = useState<boolean>(false);
 
     const mobileMenuIsOpened: boolean = mobileMenuStatus === "opened";
-
-    useEffect(() => {
-        let timeout: ReturnType<typeof setTimeout> | null = null;
-
-        if (mobileMenuStatus === "closed") {
-            setKeepContrastFontColor(true);
-            timeout = setTimeout(() => {
-                setKeepContrastFontColor(false);
-            }, OUTRO_ANIMATION_DURATION);
-        }
-
-        return () => {
-            if (timeout !== null) clearTimeout(timeout);
-        };
-    }, [mobileMenuStatus]);
 
     return (
         <NavigationBase

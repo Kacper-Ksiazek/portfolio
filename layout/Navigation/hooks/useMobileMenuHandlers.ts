@@ -5,7 +5,7 @@ import useWindowSizes from "@/hooks/useWindowSizes";
 import useBlockUserScroll from "@/hooks/useBlockUserScroll";
 // Types
 
-type Status = "opened" | "closed" | null;
+export type Status = "opened" | "closed" | null;
 
 interface UseMobileMenuHandlerResult {
     status: Status;
