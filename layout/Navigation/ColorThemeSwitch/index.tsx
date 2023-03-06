@@ -2,6 +2,7 @@
 import dynamic from "next/dynamic";
 import { OPTIONS } from "./options";
 import { useThemeToggler, useThemeContext } from "./hooks";
+import { isDarkThemePreferred } from "@/material/MuiThemeProvider/utils";
 // Types
 import type { Option } from "./options";
 import type { FunctionComponent } from "react";
@@ -21,7 +22,19 @@ const ColorThemeSwitch: FunctionComponent<ColorThemeSwitchProps> = (props) => {
     const { displayModal, toggleColorTheme, openMenu, menuUnwrapStage, closeMenu } = useThemeToggler(props);
     const activeTheme: Option = OPTIONS.find((el) => el.value === context.theme) as Option;
 
-    const isActiveBySystemPreference = (val: ThemeMode): boolean => val === context.themeToBeUsed;
+    function isActiveBySystemPreference(val: ThemeMode): boolean {
+        const { themeToBeUsed } = context;
+        const systemPreferredTheme = isDarkThemePreferred() ? "dark" : "light";
+
+        if (val === themeToBeUsed) return true;
+        else if (val === "system_preferred") {
+            return (
+                (themeToBeUsed === "dark" && systemPreferredTheme === "dark") || //
+                (themeToBeUsed === "light" && systemPreferredTheme === "light")
+            );
+        }
+        return false;
+    }
 
     return (
         <>
