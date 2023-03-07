@@ -4,13 +4,15 @@ import { useState, useEffect } from "react";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import useBlockUserScroll from "@/hooks/useBlockUserScroll";
 // Types
+export type Status = "opened" | "closed" | "opened_without_animation" | "closed_without_animation" | null;
 
-type Status = "opened" | "closed" | null;
+export type ToggleVisibilityParams = { skipAnimation?: boolean };
+export type ToggleVisibility = (options?: ToggleVisibilityParams) => void;
 
 interface UseMobileMenuHandlerResult {
     status: Status;
     renderMobileMenuButton: boolean;
-    toogleVisibility: () => void;
+    toogleVisibility: ToggleVisibility;
 }
 
 export const useMobileMenuHandlers = (): UseMobileMenuHandlerResult => {
@@ -28,15 +30,17 @@ export const useMobileMenuHandlers = (): UseMobileMenuHandlerResult => {
         setStatus(null);
     }, [router.pathname]);
 
-    const toogleVisibility = () => {
-        if (status === "opened") {
-            setStatus("closed");
+    function toogleVisibility(options?: ToggleVisibilityParams) {
+        const skipAnimation: boolean = Boolean(options?.skipAnimation);
+
+        if (status?.startsWith("opened")) {
+            setStatus(skipAnimation ? "closed_without_animation" : "closed");
             enableUserScroll();
         } else {
             disableUserScroll();
-            setStatus("opened");
+            setStatus(skipAnimation ? "opened_without_animation" : "opened");
         }
-    };
+    }
 
     return {
         status,

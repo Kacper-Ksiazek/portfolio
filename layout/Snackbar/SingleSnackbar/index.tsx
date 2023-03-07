@@ -21,7 +21,7 @@ interface SingleSnackbarProps {
 }
 
 const SingleSnackbar: FunctionComponent<SingleSnackbarProps> = (props) => {
-    const INTRO_ANIMATION_DURATION: number = 800;
+    const INTRO_ANIMATION_DURATION: number = 700;
 
     const [displayCircularCounterDown, setDisplayCircularCounterDown] = useState<boolean>(false);
 
@@ -48,7 +48,7 @@ const SingleSnackbar: FunctionComponent<SingleSnackbarProps> = (props) => {
                         return (
                             <CounterWrapper onClick={props.close} className="snackbar-counter-down-wrapper">
                                 <Close className="close-icon" />
-                                {props.hideAfter && <CircularCounterDown time={props.hideAfter - 350 - INTRO_ANIMATION_DURATION} />}
+                                {props.hideAfter && <CircularCounterDown time={props.hideAfter} />}
                             </CounterWrapper>
                         );
                     } else {

@@ -1,94 +1,56 @@
 // Tools
+import { useMemo } from "react";
 import dynamic from "next/dynamic";
-import { styled } from "@mui/material";
-import { useState, useContext } from "react";
-import { MUIContext } from "@/material/MuiThemeProvider";
-import useBlockUserScroll from "@/hooks/useBlockUserScroll";
+import { OPTIONS } from "./options";
+import { useThemeToggler, useThemeContext } from "./hooks";
+import { isDarkThemePreferred } from "@/material/MuiThemeProvider/utils";
 // Types
+import type { Option } from "./options";
+import type { ColorThemeSwitchProps } from "./@types";
 import type { FunctionComponent } from "react";
 // Other components
-const Modal = dynamic(() => import("./Modal"), { ssr: false });
-// Material UI Icons
-import DarkMode from "@mui/icons-material/DarkMode";
-import LightMode from "@mui/icons-material/LightMode";
-// Styled components
-const ColorThemeSwitchBase = styled("button")(({ theme }) => ({
-    border: `1px solid ${theme.palette.text.primary}`,
-    borderRadius: "10px",
-    height: "32px",
-    width: "54px",
-    marginLeft: "24px",
-    background: "transparent",
-    position: "relative",
-    display: "flex",
-    cursor: "pointer",
-    padding: "0px",
-    boxSizing: "border-box",
-    justifyContent: "flex-start",
-    "&.dark": {
-        justifyContent: "flex-end",
-    },
-    "@media (max-width:1000px)": {
-        width: "110px",
-        height: "48px",
-        position: "absolute",
-        bottom: "100px",
-        left: "calc(50% - 55px)",
-        margin: "0",
-        "span#choice-indicator": {
-            width: "72px",
-            svg: {
-                fontSize: "2rem",
-            },
-        },
-    },
-}));
+import Modal from "./Modal";
+const Mobile = dynamic(() => import("./Mobile"));
+const Desktop = dynamic(() => import("./Desktop"));
 
-const ChoiceIndicator = styled("span")(({ theme }) => ({
-    borderRadius: "10px",
-    height: "100%",
-    width: "34px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    border: `1px solid ${theme.palette.background.default}`,
-    background: "#000",
-    boxSizing: "border-box",
-    svg: {
-        color: theme.palette.background.default,
-        fontSize: "1.4rem",
-    },
-}));
+const ColorThemeSwitch: FunctionComponent<ColorThemeSwitchProps> = (props) => {
+    const context = useThemeContext();
 
-const ColorThemeSwitch: FunctionComponent<{ closeMobileMenu: () => void }> = (props) => {
-    const context = useContext(MUIContext);
-    const [displayModal, setDisplayModal] = useState<boolean>(false);
+    const { displayModal, toggleColorTheme, openMenu, menuUnwrapStage, closeMenu } = useThemeToggler({
+        closeMobileMenu: props.closeMobileMenu,
+        setColorThemeMenuIsOpened: props.setColorThemeMenuIsOpened,
+    });
 
-    function toggleColorTheme() {
-        setDisplayModal(true);
+    const activeTheme: Option = OPTIONS.find((el) => el.value === context.theme) as Option;
+    const themeActiveBySystemPreference = useMemo<Option["value"] | null>(() => {
+        const { themeToBeUsed, theme } = context;
+        const systemPreferredTheme = isDarkThemePreferred() ? "dark" : "light";
 
-        setTimeout(() => {
-            context.setTheme(context.theme === "dark" ? "light" : "dark");
-            props.closeMobileMenu();
-        }, 500);
-
-        setTimeout(() => {
-            setDisplayModal(false);
-        }, 2000);
-    }
+        if (theme === "system_preferred" && themeToBeUsed === systemPreferredTheme) return systemPreferredTheme;
+        else if (theme === systemPreferredTheme) return "system_preferred";
+        return null;
+    }, [context]);
 
     return (
         <>
-            <ColorThemeSwitchBase
-                id="theme-switch" //
-                onClick={toggleColorTheme}
-                className={context.theme}
-            >
-                <ChoiceIndicator id="choice-indicator">
-                    {/*  */}
-                    {context.theme === "dark" ? <DarkMode /> : <LightMode />}
-                </ChoiceIndicator>
-            </ColorThemeSwitchBase>
+            {props.viewport === "large" ? (
+                <Desktop
+                    activeTheme={activeTheme} //
+                    menu={{
+                        close: closeMenu,
+                        open: openMenu,
+                        unwrapStage: menuUnwrapStage,
+                    }}
+                    themeActiveBySystemPreference={themeActiveBySystemPreference}
+                    toggleColorTheme={toggleColorTheme}
+                />
+            ) : (
+                <Mobile
+                    activeTheme={activeTheme} //
+                    toggleColorTheme={toggleColorTheme}
+                    themeActiveBySystemPreference={themeActiveBySystemPreference}
+                />
+            )}
 
             {displayModal && <Modal />}
         </>

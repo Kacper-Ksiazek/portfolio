@@ -8,14 +8,14 @@ export default styled(ButtonBase)(({ theme }) => ({
     border: `1px solid ${theme.palette.text.primary}`,
     borderRadius: "5px 10px 5px 10px",
     height: "32px",
-    padding: "0 32px",
+    padding: "2px 32px",
     fontWeight: "500",
     marginRight: "20px",
+    fontSize: "16px",
     overflow: "hidden",
     "span.text": {
         position: "relative",
         zIndex: 2,
-        transition: "color .15s",
     },
     "span.line": {
         position: "absolute",
@@ -56,7 +56,7 @@ export default styled(ButtonBase)(({ theme }) => ({
         fontSize: "20px",
         width: "calc(100% - 20px)",
         padding: "24px 0",
-        maxWidth: "300px",
+        maxWidth: "340px",
         "&:not(&:nth-of-type(1))": {
             marginTop: "20px",
         },

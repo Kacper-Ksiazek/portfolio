@@ -26,8 +26,8 @@ export default styled("div")(({ theme }) => ({
     height: "80px",
     zIndex: 12,
     transition: "all .3s",
-    paddingLeft: "64px",
-    paddingRight: "64px",
+    paddingLeft: "86px",
+    paddingRight: "86px",
     boxSizing: "border-box",
     background: "transparent",
 
@@ -49,12 +49,17 @@ export default styled("div")(({ theme }) => ({
             color: "#fff",
         },
         "#theme-switch": {
-            border: `1px solid #fff`,
-            "#choice-indicator": {
-                background: "#fff",
-                border: `1px solid #000`,
-                svg: {
-                    color: "#000",
+            "button.active-theme": {
+                border: `1px solid #fff`,
+                ".icon-wrapper": {
+                    background: "#fff",
+                    border: `1px solid #000`,
+                    svg: {
+                        color: "#000",
+                    },
+                },
+                ".theme-name": {
+                    color: "#fff",
                 },
             },
         },
@@ -106,10 +111,12 @@ export default styled("div")(({ theme }) => ({
     "&.on-scroll-styles": {
         color: theme.palette.text.primary,
         paddingTop: "0px",
-        boxSizing: "border-box",
         background: theme.palette.background.default,
-        paddingLeft: "32px",
-        paddingRight: "32px",
+        boxSizing: "border-box",
+        "&:not(&.color-theme-menu-is-opened)": {
+            paddingLeft: "32px",
+            paddingRight: "32px",
+        },
         "#main-navigation-content": {
             maxWidth: "1400px",
         },
@@ -117,12 +124,17 @@ export default styled("div")(({ theme }) => ({
             color: theme.palette.text.primary,
         },
         "#theme-switch": {
-            border: `1px solid ${theme.palette.text.primary}`,
-            "#choice-indicator": {
-                background: theme.palette.text.primary,
-                border: `1px solid ${theme.palette.background.default}`,
-                svg: {
-                    color: theme.palette.background.default,
+            "button.active-theme": {
+                border: `1px solid ${theme.palette.text.primary}`,
+                ".icon-wrapper": {
+                    background: theme.palette.text.primary,
+                    border: `1px solid ${theme.palette.background.default}`,
+                    svg: {
+                        color: theme.palette.background.default,
+                    },
+                },
+                ".theme-name": {
+                    color: theme.palette.text.primary,
                 },
             },
         },
