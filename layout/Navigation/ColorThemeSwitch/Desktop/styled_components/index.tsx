@@ -20,4 +20,7 @@ export const Wrapper = styled("div")(({ theme }) => ({
         fontSize: "16px",
         fontWeight: 500,
     },
+    "@media (max-width:1100px)": {
+        marginLeft: "0px",
+    },
 }));

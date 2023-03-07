@@ -8,7 +8,6 @@ import type { FunctionComponent } from "react";
 // Other components
 import Logo from "./Logo";
 import ColorThemeSwitch from "./ColorThemeSwitch";
-
 const MobileMenuButton = dynamic(() => import("./MobileMenuButton"));
 // Styled Components
 import MobileAuthor from "./styled_components/MobileAuthor";
@@ -82,6 +81,7 @@ const Navigation: FunctionComponent = () => {
                     <ColorThemeSwitch
                         closeMobileMenu={() => mobileMenuIsOpened && toogleVisibility()} //
                         setColorThemeMenuIsOpened={setColorThemeMenuIsOpened}
+                        viewport={renderMobileMenuButton ? "small" : "large"}
                     />
 
                     <MobileAuthor>

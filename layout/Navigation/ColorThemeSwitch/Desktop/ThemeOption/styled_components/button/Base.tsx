@@ -54,19 +54,4 @@ export default styled("button")(({ theme }) => ({
     "&.theme-option": {
         background: theme.palette.mode === "dark" ? theme.palette.background.paper : theme.palette.background.default,
     },
-
-    "@media (max-width:1000px)": {
-        width: "110px",
-        height: "48px",
-        position: "absolute",
-        bottom: "100px",
-        left: "calc(50% - 55px)",
-        margin: "0",
-        "span.icon-wrapper": {
-            width: "72px",
-            svg: {
-                fontSize: "2rem",
-            },
-        },
-    },
 }));
