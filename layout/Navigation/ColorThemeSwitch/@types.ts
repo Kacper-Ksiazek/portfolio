@@ -2,11 +2,12 @@
 import type { Option } from "./options";
 import type { Dispatch, SetStateAction } from "react";
 import type { ThemeMode } from "@/material/MuiThemeProvider/@types";
+import type { ToggleVisibility } from "../hooks/useMobileMenuHandlers";
 
 export interface ColorThemeSwitchProps {
     viewport: "small" | "large";
 
-    closeMobileMenu: () => void;
+    closeMobileMenu: ToggleVisibility;
     setColorThemeMenuIsOpened: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -20,6 +21,12 @@ export interface DesktopColorThemeSwitchProps {
         close: () => void;
         open: () => void;
     };
+}
+
+export interface MobileColorThemeSwitchProps {
+    activeTheme: Option;
+    themeActiveBySystemPreference: Option["value"] | null;
+    toggleColorTheme: ToggleColorTheme;
 }
 
 export type ToggleColorTheme = (val: ThemeMode) => void;

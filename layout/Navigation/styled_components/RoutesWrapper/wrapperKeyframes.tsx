@@ -12,7 +12,7 @@ export const wrapperIntroAnimation = keyframes({
     },
     "100%": {
         transform: "translateX(0%)",
-        height: "100vh",
+        height: "100dvh",
     },
 });
 
@@ -23,11 +23,11 @@ export const wrapperOutroAnimation = keyframes({
     },
     "33%,66%": {
         transform: "translateX(0%)",
-        height: "64px",
+        height: "80px",
     },
     "100%": {
         transform: "translateX(100%)",
-        height: "64px",
+        height: "80px",
     },
 });
 

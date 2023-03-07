@@ -13,11 +13,15 @@ const Header = styled("h3")(({ theme }) => ({
     fontSize: "32px",
     fontWeight: 700,
     fontFamily: "Montserrat Alternates",
-    ["@media (max-width:500px)"]: {
+    "@media (max-width:1100px)": {
+        marginLeft: "8px",
+        fontSize: "30px",
+    },
+    "@media (max-width:500px)": {
         fontSize: "28px",
         marginLeft: "16px",
     },
-    ["@media (max-width:340px)"]: {
+    "@media (max-width:340px)": {
         fontSize: "24px",
         marginLeft: "12px",
     },
@@ -35,6 +39,10 @@ const ImageWrapper = styled("div")(({ theme }) => ({
     position: "relative",
     width: "60px",
     height: "40px",
+    "@media (max-width:1100px)": {
+        height: "36px",
+        width: "54px",
+    },
     ["@media (max-width:500px)"]: {
         width: "48px",
         height: "32px",

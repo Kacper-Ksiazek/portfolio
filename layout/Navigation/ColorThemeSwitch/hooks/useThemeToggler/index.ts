@@ -14,9 +14,11 @@ export function useThemeToggler(params: UseThemeTogglerProps): UseThemeTogglerRe
 
     const { closeMenu, menuUnwrapStage, openMenu } = useMenuUnwrapStage(params.setColorThemeMenuIsOpened);
 
-    function setTheme(theme: ThemeMode) {
-        context.setTheme(theme);
-        params.closeMobileMenu();
+    function setTheme(choosenTheme: ThemeMode) {
+        const themeHasChangedSignificantly = determineWhetherDisplayModal({ choosen: choosenTheme, current: context.theme });
+        if (themeHasChangedSignificantly) params.closeMobileMenu({ skipAnimation: true });
+
+        context.setTheme(choosenTheme);
     }
 
     function toggleColorTheme(choosenTheme: ThemeMode) {

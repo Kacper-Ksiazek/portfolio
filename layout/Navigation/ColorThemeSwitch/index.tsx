@@ -33,16 +33,24 @@ const ColorThemeSwitch: FunctionComponent<ColorThemeSwitchProps> = (props) => {
 
     return (
         <>
-            <Desktop
-                activeTheme={activeTheme} //
-                menu={{
-                    close: closeMenu,
-                    open: openMenu,
-                    unwrapStage: menuUnwrapStage,
-                }}
-                themeActiveBySystemPreference={themeActiveBySystemPreference}
-                toggleColorTheme={toggleColorTheme}
-            />
+            {props.viewport === "large" ? (
+                <Desktop
+                    activeTheme={activeTheme} //
+                    menu={{
+                        close: closeMenu,
+                        open: openMenu,
+                        unwrapStage: menuUnwrapStage,
+                    }}
+                    themeActiveBySystemPreference={themeActiveBySystemPreference}
+                    toggleColorTheme={toggleColorTheme}
+                />
+            ) : (
+                <Mobile
+                    activeTheme={activeTheme} //
+                    toggleColorTheme={toggleColorTheme}
+                    themeActiveBySystemPreference={themeActiveBySystemPreference}
+                />
+            )}
 
             {displayModal && <Modal />}
         </>

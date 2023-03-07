@@ -79,7 +79,7 @@ const Navigation: FunctionComponent = () => {
                     </SingleNavigationRoute>
 
                     <ColorThemeSwitch
-                        closeMobileMenu={() => mobileMenuIsOpened && toogleVisibility()} //
+                        closeMobileMenu={(options) => mobileMenuIsOpened && toogleVisibility(options)} //
                         setColorThemeMenuIsOpened={setColorThemeMenuIsOpened}
                         viewport={renderMobileMenuButton ? "small" : "large"}
                     />
