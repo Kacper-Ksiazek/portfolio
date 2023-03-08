@@ -25,9 +25,7 @@ export default styled(ButtonBase)(({ theme }) => ({
         color: "#fff",
         opacity: 0,
     },
-    ["@media (max-width:1100px)"]: {
-        borderRadius: "5px",
-    },
+
     "&.intro": {
         animation: [
             `${keyframes.intro_stageOne} .5s both linear`, //
@@ -59,5 +57,12 @@ export default styled(ButtonBase)(({ theme }) => ({
         svg: {
             opacity: 1,
         },
+    },
+    ["@media (max-width:1100px)"]: {
+        borderRadius: "5px 10px 5px 10px !important",
+    },
+    ["@media (max-width:500px)"]: {
+        bottom: "12px",
+        right: "12px",
     },
 }));
