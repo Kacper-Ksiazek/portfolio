@@ -1,10 +1,12 @@
 // Tools
 import { useState, useEffect } from "react";
+import useWindowSizes from "./useWindowSizes";
 // Types
 import type { RefObject } from "react";
 
 export function useElementVisibility(ref: RefObject<Element>, onVisible: (() => void) | undefined): boolean {
     const [isVisible, setIsVisible] = useState<boolean>(false);
+    const { width } = useWindowSizes();
 
     useEffect(() => {
         if (!ref.current) return;
@@ -18,7 +20,7 @@ export function useElementVisibility(ref: RefObject<Element>, onVisible: (() => 
                     if (typeof onVisible === "function") onVisible();
                 }
             },
-            { rootMargin: "-200px" }
+            { rootMargin: width > 400 ? "-200px" : "-50px" }
         );
 
         if (ref.current) {
@@ -31,7 +33,7 @@ export function useElementVisibility(ref: RefObject<Element>, onVisible: (() => 
                 observer.unobserve(ref.current);
             }
         };
-    }, [ref, onVisible]);
+    }, [ref, onVisible, width]);
 
     return isVisible;
 }
