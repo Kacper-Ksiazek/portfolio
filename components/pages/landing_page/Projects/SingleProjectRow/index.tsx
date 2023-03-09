@@ -10,7 +10,7 @@ import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
 // Other components
 import ProjectCard from "./ProjectCard";
-import YearToIndicate from "./YearToIndicate";
+import YearIndicator from "./YearIndicator";
 const Timeline = dynamic(() => import("./Timeline"));
 import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Styled components
@@ -68,22 +68,20 @@ const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
                     "&::after": {
                         animation: `${hidePseudoElement} .001s 2.6s both`,
                     },
-                    "@media (min-width:1000px)": {
-                        ".single-project-text-content-wrapper": {
-                            ".technologies-wrapper, h4, .duration, p, .read-more ": {
-                                position: "relative",
-                                "&::after": {
-                                    content: "''",
-                                    ...theme.mixins.absolute_full,
-                                    background: theme.palette.background.lightAnimationBar,
-                                },
+                    ".single-project-text-content-wrapper": {
+                        ".technologies-wrapper, h4, .duration, p, .read-more ": {
+                            position: "relative",
+                            "&::after": {
+                                content: "''",
+                                ...theme.mixins.absolute_full,
+                                background: theme.palette.background.lightAnimationBar,
                             },
                         },
                     },
                     "@media (min-width:1301px)": {
                         ...introAnimationsFor1301pxAndUpDisplay,
                     },
-                    "@media (min-width:1000px) and (max-width: 1350px)": {
+                    "@media (min-width:750px) and (max-width: 1400px)": {
                         ...introAnimationsFor1000pxTo1350pxDisplay,
                     },
                     "@media (max-width:1000px)": {
@@ -104,7 +102,7 @@ const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
                     order,
                 ].join(" ")}
             >
-                {data.yearToIndicate && <YearToIndicate year={data.yearToIndicate} order={order} />}
+                {data.yearToIndicate && <YearIndicator year={data.yearToIndicate} order={order} />}
 
                 <ProjectCard
                     data={data} //
@@ -113,7 +111,7 @@ const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
                 />
 
                 {(() => {
-                    if (width > 1350) {
+                    if (width > 1400) {
                         return (
                             <Timeline
                                 isFirst={isFirst} //
