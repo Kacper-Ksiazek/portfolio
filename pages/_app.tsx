@@ -7,6 +7,9 @@ import MuiThemeProvider from "@/material/MuiThemeProvider";
 import Layout from "@/layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
+    useEffect(() => {
+        window.history.scrollRestoration = "manual";
+    }, []);
     return (
         <MuiThemeProvider>
             <Layout>
