@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { CSS_CLASSES } from "../_css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -54,7 +55,7 @@ interface RedirectionsProps {
 
 const Redirections: FunctionComponent<RedirectionsProps> = (props) => {
     return (
-        <RedirectionsBase className={`read-more ${props.liveDemoURL ? "double" : ""}`}>
+        <RedirectionsBase className={`${CSS_CLASSES.PROJECT_CARD.REDIRECTIONS} ${props.liveDemoURL ? "double" : ""}`}>
             <InternalRedirection url={`/projects/${props.id}`}>Read more</InternalRedirection>
 
             {(() => {

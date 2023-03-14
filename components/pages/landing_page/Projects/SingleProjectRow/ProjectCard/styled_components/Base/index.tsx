@@ -13,9 +13,6 @@ export default styled("div")(({ theme }) => ({
     justifyContent: "space-between",
     alignItems: "center",
 
-    ".intro-bar1, .intro-bar2": {
-        position: "absolute",
-    },
     "&.odd": {
         flexDirection: "row-reverse",
         paddingLeft: "12px",

@@ -5,12 +5,16 @@ export default {
         width: "calc(50% + 40px)",
         marginBottom: "32px",
     },
-    "@media (max-width:1100px)": {
+    "@media (max-width:1200px)": {
         width: "calc(50% + 90px)",
+    },
+    "@media (max-width:1100px)": {
+        width: "calc(50% + 140px)",
+        marginBottom: "48px",
     },
     "@media (max-width:1000px)": {
         width: "100%",
-        marginBottom: "48px",
+        marginBottom: "64px",
     },
 
     "@media (max-width:750px)": {

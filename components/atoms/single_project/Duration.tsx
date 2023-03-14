@@ -29,6 +29,7 @@ interface DurationProps {
     end: string;
     smaller?: boolean;
     sx?: SxProps;
+    className?: string;
 }
 
 const Duration: FunctionComponent<DurationProps> = (props) => {
@@ -37,6 +38,7 @@ const Duration: FunctionComponent<DurationProps> = (props) => {
             className={[
                 "duration", //
                 props.smaller ? "smaller" : "",
+                props.className ?? "",
             ].join(" ")}
             sx={props.sx}
         >

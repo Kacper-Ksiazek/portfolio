@@ -1,3 +1,5 @@
+// Tools
+import { CSS_CLASSES } from "../_css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
@@ -10,10 +12,11 @@ import ThumbnailWrapper from "./ThumbnailWrapper";
 import Duration from "@/components/atoms/single_project/Duration";
 import TechnologiesList from "@/components/atoms/TechnologiesList";
 // Styled components
-import { SingleProjectBase, SingleProjectTextContent } from "./styled_components";
+import { SingleProjectBase, SingleProjectTextContent, IntroBar } from "./styled_components";
 
 interface ProjectCardProps {
     data: Project;
+    isFirst: boolean;
     order: "even" | "odd";
     numberOfTechnologiesToDisplay: number;
 }
@@ -23,8 +26,16 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
 
     return (
         <SingleProjectBase className={[order, "project-card"].join(" ")}>
-            <span className="intro-bar1" />
-            <span className="intro-bar2" />
+            {(() => {
+                if (props.isFirst) {
+                    return (
+                        <>
+                            <IntroBar className={CSS_CLASSES.INTRO_BAR_ANIMATIONS.PRIMARY} />
+                            <IntroBar className={CSS_CLASSES.INTRO_BAR_ANIMATIONS.SECONDARY} />
+                        </>
+                    );
+                }
+            })()}
 
             <SingleProjectTextContent className="single-project-text-content-wrapper">
                 <TechnologiesList

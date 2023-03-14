@@ -26,3 +26,9 @@ export const timelineCoreEntireIntro = keyframes({
         height: "100%",
     },
 });
+
+export const timeline = {
+    connection: timelineConnectionIntro,
+    coreHalf: timelineCoreHalfIntro,
+    coreEntire: timelineCoreEntireIntro,
+};

@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { CSS_CLASSES } from "./_css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
@@ -72,19 +73,19 @@ const Dot = styled("span")(({ theme }) => ({
     height: "24px",
     // Left side
     "&.odd": {
-        "&.dot.left": {
+        [`&.${CSS_CLASSES.TIMELINE.LEFT_DOT}`]: {
             left: "-17px",
         },
-        "&.dot.right": {
+        [`&.${CSS_CLASSES.TIMELINE.RIGHT_DOT}`]: {
             right: "0",
         },
     },
     // Right side
     "&.even": {
-        "&.dot.left": {
+        [`&.${CSS_CLASSES.TIMELINE.LEFT_DOT}`]: {
             left: "0",
         },
-        "&.dot.right": {
+        [`&.${CSS_CLASSES.TIMELINE.RIGHT_DOT}`]: {
             right: "-17px",
         },
     },
@@ -113,8 +114,8 @@ const Timeline: FunctionComponent<TimelineProps> = (props) => {
                     "timeline-connection",
                 ].join(" ")}
             >
-                <Dot className={`dot left ${props.order}`} />
-                <Dot className={`dot right ${props.order}`} />
+                <Dot className={`${CSS_CLASSES.TIMELINE.LEFT_DOT} ${props.order}`} />
+                <Dot className={`${CSS_CLASSES.TIMELINE.RIGHT_DOT} ${props.order}`} />
             </Connection>
         </TimelineCore>
     );

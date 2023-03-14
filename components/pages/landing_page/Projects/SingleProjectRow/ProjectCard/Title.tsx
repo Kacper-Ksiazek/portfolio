@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { CSS_CLASSES } from "../_css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Components
@@ -22,7 +23,7 @@ interface TitleProps {
 
 const Title: FunctionComponent<TitleProps> = (props) => {
     return (
-        <ProjectTitleBase variant="h4">
+        <ProjectTitleBase variant="h4" className={CSS_CLASSES.PROJECT_CARD.TITLE}>
             <span>{props.content}</span>
         </ProjectTitleBase>
     );

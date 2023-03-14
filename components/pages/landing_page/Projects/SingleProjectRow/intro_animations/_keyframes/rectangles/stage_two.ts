@@ -1,7 +1,7 @@
 // Tools
 import { keyframes } from "@mui/material";
 
-export const firstProject = keyframes({
+export const stage_two_firstProject = keyframes({
     "0%": {
         left: "auto",
         height: "100%",
@@ -26,7 +26,7 @@ export const firstProject = keyframes({
     },
 });
 
-export const rightSide = keyframes({
+export const stage_two_rightSide = keyframes({
     "0%": {
         height: "100%",
         width: "100%",
@@ -44,7 +44,7 @@ export const rightSide = keyframes({
         right: "auto",
     },
 });
-export const leftSide = keyframes({
+export const stage_two_leftSide = keyframes({
     "0%": {
         height: "100%",
         width: "100%",

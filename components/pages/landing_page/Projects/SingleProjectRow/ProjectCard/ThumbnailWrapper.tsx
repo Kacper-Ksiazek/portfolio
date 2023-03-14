@@ -15,7 +15,7 @@ const ThumbnailWrapperBase = styled("div")(({ theme }) => ({
         height: "200px",
         width: "240px",
         position: "relative",
-        "&::before": {
+        "&::after": {
             content: "''",
             zIndex: 5,
             ...theme.mixins.absolute_full,

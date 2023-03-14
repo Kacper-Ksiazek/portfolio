@@ -1,3 +1,5 @@
+// Tools
+import { CSS_CLASSES } from "../_css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
@@ -15,7 +17,7 @@ const YearIndicator: FunctionComponent<YearIndicatorProps> = (props) => {
                 .split("")
                 .map((item, index) => {
                     return (
-                        <span className="digit" key={index}>
+                        <span className={CSS_CLASSES.YEAR_DIGIT} key={index}>
                             {item}
                         </span>
                     );
