@@ -1,12 +1,12 @@
 // Tools
 import { styled } from "@mui/material";
 import { fadeFromLeft } from "@/components/keyframes/intro";
-import { useNumberOfTechnologiesToDisplay } from "./hooks/useNumberOfTechnologiesToDisplay";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
 // Other components
 import SingleProjectRow from "./SingleProjectRow";
+import { ProjectsContextProvider } from "./context";
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 // Styled components
 const ProjectsWrapper = styled("div")(({ theme }) => ({
@@ -28,8 +28,6 @@ interface ProjectsProps {
 }
 
 const Projects: FunctionComponent<ProjectsProps> = ({ projects }) => {
-    const numberOfTechnologiesToDisplay = useNumberOfTechnologiesToDisplay();
-
     return (
         <LightSectionWrapper
             header={{
@@ -53,21 +51,22 @@ const Projects: FunctionComponent<ProjectsProps> = ({ projects }) => {
             unlimitedHeight
             id="projects"
         >
-            <ProjectsWrapper>
-                {projects.map((item, index) => {
-                    return (
-                        <SingleProjectRow
-                            key={item.id} //
-                            data={item}
-                            index={index}
-                            isFirst={index === 0}
-                            isLast={index === projects.length - 1}
-                            order={index % 2 === 0 ? "even" : "odd"}
-                            numberOfTechnologiesToDisplay={numberOfTechnologiesToDisplay}
-                        />
-                    );
-                })}
-            </ProjectsWrapper>
+            <ProjectsContextProvider>
+                <ProjectsWrapper>
+                    {projects.map((item, index) => {
+                        return (
+                            <SingleProjectRow
+                                key={item.id} //
+                                data={item}
+                                index={index}
+                                isFirst={index === 0}
+                                isLast={index === projects.length - 1}
+                                order={index % 2 === 0 ? "even" : "odd"}
+                            />
+                        );
+                    })}
+                </ProjectsWrapper>
+            </ProjectsContextProvider>
         </LightSectionWrapper>
     );
 };

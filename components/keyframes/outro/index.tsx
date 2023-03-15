@@ -18,7 +18,9 @@ export {
 
 export const hidePseudoElement = keyframes({
     to: {
-        content: "''",
+        width: 0,
+        height: 0,
+        display: "none",
     },
 });
 

@@ -14,13 +14,15 @@ interface TransformWhenVisibleProps {
     sx?: SxProps;
     children: ReactNode;
 
+    rootMargin?: number;
+
     onVisible?: () => void;
 }
 
 const RenderWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (props) => {
     const theme = useTheme();
     const ref = useRef<Element>(null);
-    const elementIsVisible = useElementVisibility(ref, props.onVisible);
+    const elementIsVisible = useElementVisibility(ref, props.onVisible, props.rootMargin);
 
     return (
         <Box

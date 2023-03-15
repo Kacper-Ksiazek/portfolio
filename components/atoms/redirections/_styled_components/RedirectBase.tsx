@@ -11,10 +11,6 @@ export default styled(StyledButton)(({ theme }) => ({
     "svg.right-arrow": {
         marginLeft: "4px",
     },
-    ["@media (max-width:500px)"]: {
-        margin: 0,
-        width: "100%",
-    },
 
     "&.small": {
         fontSize: "14px",
@@ -22,8 +18,13 @@ export default styled(StyledButton)(({ theme }) => ({
         "svg.right-arrow": {
             fontSize: "16px",
         },
-        ["@media (max-width:500px)"]: {
-            fontSize: "16px",
-        },
+    },
+
+    ["@media (max-width:500px)"]: {
+        margin: 0,
+        width: "100%",
+        fontSize: "20px !important",
+        padding: "6px 48px",
+        height: "50px",
     },
 }));

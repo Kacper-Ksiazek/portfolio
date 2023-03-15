@@ -1,9 +1,7 @@
 // Tools
 import { styled, alpha } from "@mui/material";
-// Types
-import type { FunctionComponent } from "react";
-// Other components
-const YearToIndicateBase = styled("span")(({ theme }) => ({
+
+export default styled("span")(({ theme }) => ({
     fontSize: "160px",
     fontWeight: 900,
     color:
@@ -20,7 +18,8 @@ const YearToIndicateBase = styled("span")(({ theme }) => ({
     "&.odd": {
         marginRight: "200px",
     },
-    ["@media (max-width:1350px)"]: {
+    ["@media (max-width:1400px)"]: {
+        paddingTop: "48px",
         fontSize: "128px",
         lineHeight: "144px",
         "&.even": {
@@ -53,25 +52,3 @@ const YearToIndicateBase = styled("span")(({ theme }) => ({
         textAlign: "center",
     },
 }));
-interface YearToIndicateProps {
-    year: number;
-    order: "even" | "odd";
-}
-
-const YearToIndicate: FunctionComponent<YearToIndicateProps> = (props) => {
-    return (
-        <YearToIndicateBase className={["year-indicator", props.order].join(" ")}>
-            {String(props.year)
-                .split("")
-                .map((item, index) => {
-                    return (
-                        <span className="digit" key={index}>
-                            {item}
-                        </span>
-                    );
-                })}
-        </YearToIndicateBase>
-    );
-};
-
-export default YearToIndicate;
