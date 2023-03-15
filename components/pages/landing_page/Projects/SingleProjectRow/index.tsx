@@ -19,7 +19,7 @@ const SingleProjectRow = styled("div")(({ theme }) => ({
     width: "100%",
     position: "relative",
     justifyContent: "flex-end",
-    ["@media (min-width:1001px)"]: {
+    ["@media (min-width:751px)"]: {
         "&::after": {
             content: "''",
             position: "absolute",
@@ -81,8 +81,8 @@ const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
                     "@media (min-width:750px) and (max-width: 1400px)": {
                         ...introAnimations.between_750px_and_1400px,
                     },
-                    "@media (max-width: 1400px)": {
-                        // ...introAnimations.below_750px,
+                    "@media (max-width: 750px)": {
+                        ...introAnimations.below_750px.introAnimationsForThumbnail,
                     },
                     "@media (max-width:1000px)": {
                         flexDirection: "column",

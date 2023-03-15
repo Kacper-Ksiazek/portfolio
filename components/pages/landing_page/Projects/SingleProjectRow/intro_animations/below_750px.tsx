@@ -1,149 +1,72 @@
 // Tools
-import { COLORS } from "@/material";
-import { stopRendering } from "./_keyframes/stopRendering";
-import { fadeSimple } from "@/components/keyframes/intro";
-import {
-    introForFirstProject,
-    introForLeftSideProjects,
-    introForRightSideProjects,
-    outroForFirstProject,
-    outroForLeftSideProjects,
-    outroForRightSideProjects,
-} from "./_keyframes/projectCardBackgroundRectangles";
-import { timelineConnectionIntro, timelineCoreEntireIntro, timelineCoreHalfIntro } from "./_keyframes/timeline";
-import { introScaleXFromLeft, introScaleXFromRight, introScaleYFromTop, outroScaleXToLeft, outroScaleXToRight } from "./_keyframes/scale";
+import { fadeSimple, scale } from "./_keyframes";
+import { repeat } from "@/utils/client/styled/repeat";
+import { repeatForEachSelector, getAnimationsBasedOnSide } from "./utils";
+import { SELECTORS, PROJECT_CARD_ELEMENTS_CONTENTS } from "../_css_references";
 // Types
-import type { SxProps } from "@mui/material";
+import type { Side } from "./@types";
+import type { Styles } from "@/@types/MUI";
 
-export default {
-    "&::after": {
-        animation: `${stopRendering} .001s 4.4s both linear`,
-    },
-    ".year-indicator": {
-        ".digit": {
-            "&:nth-of-type(1)": {
-                animation: `${fadeSimple} .2s .9s both linear`,
-            },
-            "&:nth-of-type(2)": {
-                animation: `${fadeSimple} .2s 1.2s both linear`,
-            },
-            "&:nth-of-type(3)": {
-                animation: `${fadeSimple} .2s 1.5s both linear`,
-            },
-            "&:nth-of-type(4)": {
-                animation: `${fadeSimple} .2s 1.8s both linear`,
-            },
+function genereateAnimationsForThumbnailBasedOnSide(side: Side): Styles {
+    const { thumbnail } = getAnimationsBasedOnSide(side);
+
+    return {
+        [`${SELECTORS.THUMBNAIL}::after`]: {
+            animation: `${thumbnail.intro} .3s linear both, ${thumbnail.outro} .3s .4s forwards linear`,
         },
-    },
+    };
+}
+
+function generateAnimationsForTextContentBasedOnSide(side: Side): Styles {
+    const { content } = getAnimationsBasedOnSide(side);
+
+    return repeatForEachSelector(Object.values(SELECTORS.PROJECT_CARD), (index) => {
+        const diff = index * 0.05;
+        return {
+            "&::after": {
+                animation: `${content.intro} .2s ${0.2 + diff}s linear both, ${content.outro} .4s ${0.5 + diff}s forwards linear`,
+            },
+        };
+    });
+}
+
+export const introAnimationsForThumbnail: Styles = {
+    [SELECTORS.YEAR_DIGIT]: repeat(4, (index) => ({
+        [`&:nth-of-type(${index + 1})`]: {
+            animation: `${fadeSimple} .2s ${0.9 + index * 0.3}s both linear`,
+        },
+    })),
 
     ".project-card": {
         "&::before": {
-            animation: `${introScaleYFromTop} .4s 2.4s both ease-out`,
+            animation: `${scale.intro.fromTop} 1s 1.6s both ease-out`,
         },
         // Elements on left side
-        "&.even": {
-            // Thumbnail picture animation
-            ".thumbnail-wrapper": {
-                "&::before": {
-                    animation: `${introForLeftSideProjects} .4s 1.3s linear both, ${outroScaleXToLeft} .2s 1.7s forwards linear`,
-                },
-            },
-            // Text content
-            ".single-project-text-content-wrapper": {
-                ".technologies-wrapper": {
-                    "&::after": {
-                        animation: `${introScaleXFromRight} .2s 2.1s linear both, ${outroForLeftSideProjects} .4s 2.4s forwards linear`,
-                    },
-                },
-                h4: {
-                    "&::after": {
-                        animation: `${introScaleXFromRight} .2s 2.15s linear both, ${outroForLeftSideProjects} .4s 2.45s forwards linear`,
-                    },
-                },
-                ".duration": {
-                    "&::after": {
-                        animation: `${introScaleXFromRight} .2s 2.2s linear both, ${outroForLeftSideProjects} .4s 2.5s forwards linear`,
-                    },
-                },
-                ".description": {
-                    "&::after": {
-                        animation: `${introScaleXFromRight} .2s 2.25s linear both, ${outroForLeftSideProjects} .4s 2.55s forwards linear`,
-                    },
-                },
-                ".read-more": {
-                    "&::after": {
-                        animation: `${introScaleXFromRight} .2s 2.4s linear both, ${outroForLeftSideProjects} .4s 2.6s forwards linear`,
-                    },
-                },
-            },
-        },
-
+        "&.even": genereateAnimationsForThumbnailBasedOnSide("left"),
         // Elements on right side
-        "&.odd": {
-            // Thumbnail picture animation
-            ".thumbnail-wrapper": {
-                "&::before": {
-                    animation: `${introForRightSideProjects} .4s 1.3s linear both, ${outroScaleXToRight} .2s 1.9s forwards linear`,
-                },
-            },
-            // Text content
-            ".single-project-text-content-wrapper": {
-                ".technologies-wrapper": {
-                    "&::after": {
-                        animation: `${introScaleXFromLeft} .2s 2.1s linear both, ${outroForRightSideProjects} .4s 2.4s forwards linear`,
-                    },
-                },
-                h4: {
-                    "&::after": {
-                        animation: `${introScaleXFromLeft} .2s 2.15s linear both, ${outroForRightSideProjects} .4s 2.45s forwards linear`,
-                    },
-                },
-                ".duration": {
-                    "&::after": {
-                        animation: `${introScaleXFromLeft} .2s 2.2s linear both, ${outroForRightSideProjects} .4s 2.5s forwards linear`,
-                    },
-                },
-                ".description": {
-                    "&::after": {
-                        animation: `${introScaleXFromLeft} .2s 2.25s linear both, ${outroForRightSideProjects} .4s 2.55s forwards linear`,
-                    },
-                },
-                ".read-more": {
-                    "&::after": {
-                        animation: `${introScaleXFromLeft} .2s 2.4s linear both, ${outroForRightSideProjects} .4s 2.6s forwards linear`,
-                    },
-                },
-            },
-        },
+        "&.odd": genereateAnimationsForThumbnailBasedOnSide("right"),
+
         ".thumbnail-wrapper": {
-            "&::before": {
-                background: COLORS.primary,
-            },
             ".direct-img-wrapper, .border-shape": {
-                animation: `${fadeSimple} .001s 1.8s both`,
-            },
-        },
-        ".single-project-text-content-wrapper": {
-            ".technologies-wrapper>*": {
-                animation: `${fadeSimple} .001s 2.35s both`,
-            },
-            "h4>*": {
-                animation: `${fadeSimple} .001s 2.4s both`,
-            },
-            ".duration>*": {
-                animation: `${fadeSimple} .001s 2.45s both`,
-            },
-            ".description>*": {
-                animation: `${fadeSimple} .001s 2.5s both`,
-            },
-            ".read-more a": {
-                animation: `${fadeSimple} .001s 2.55s both`,
-            },
-            h4: {
-                "&::after": {
-                    height: "calc(100% + 10px)",
-                },
+                animation: `${fadeSimple} .001s .35s both`,
             },
         },
     },
-} as SxProps;
+};
+
+export const introAnimationsForTextContent: Styles = {
+    ".single-project-text-content-wrapper": {
+        "&.even": generateAnimationsForTextContentBasedOnSide("left"),
+        "&.odd": generateAnimationsForTextContentBasedOnSide("right"),
+
+        ...repeatForEachSelector(PROJECT_CARD_ELEMENTS_CONTENTS, (index) => ({
+            animation: `${fadeSimple} .001s ${0.5 + index * 0.05}s both`,
+        })),
+
+        [SELECTORS.PROJECT_CARD.REDIRECTIONS]: {
+            a: {
+                animation: `${fadeSimple} .3s ${1}s both`,
+            },
+        },
+    },
+};

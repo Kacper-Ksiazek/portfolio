@@ -2,7 +2,7 @@
 import { repeat } from "@/utils/client/styled/repeat";
 import { getAnimationsBasedOnSide, repeatForEachSelector } from "./utils";
 import { SELECTORS, PROJECT_CARD_ELEMENTS_CONTENTS } from "../_css_references";
-import { fadeSimple, hidePseudoElement, rectangles, scale, timeline } from "./_keyframes";
+import { fadeSimple, hidePseudoElement, rectangles, scale } from "./_keyframes";
 // Types
 import type { Side } from "./@types";
 import type { Styles } from "@/@types/MUI";

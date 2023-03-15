@@ -19,6 +19,7 @@ export default styled("span")(({ theme }) => ({
         marginRight: "200px",
     },
     ["@media (max-width:1400px)"]: {
+        paddingTop: "48px",
         fontSize: "128px",
         lineHeight: "144px",
         "&.even": {

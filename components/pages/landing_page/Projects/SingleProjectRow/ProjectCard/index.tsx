@@ -33,7 +33,7 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
                 }
             })()}
 
-            <TextContentWrapper>
+            <TextContentWrapper order={order}>
                 <Technologies data={props.data.releventTechnologies} />
 
                 <Title content={data.title} />

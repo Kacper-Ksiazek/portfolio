@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { introAnimationsForTextContent } from "../intro_animations/below_750px";
 import { useProjectsContext } from "../../hooks/useProjectsContext";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -18,18 +19,20 @@ const Base = styled("div")(({ theme }) => ({
 
 interface TextContentWrapperProps {
     children: ReactNode;
+    order: "even" | "odd";
 }
 
 const TextContentWrapper: FunctionComponent<TextContentWrapperProps> = (props) => {
-    const { viewport } = useProjectsContext();
+    const { viewport, intersectionObserverMargin } = useProjectsContext();
 
-    const body: ReactNode = <Base className="single-project-text-content-wrapper">{props.children}</Base>;
+    const body: ReactNode = <Base className={`single-project-text-content-wrapper ${props.order}`}>{props.children}</Base>;
+
     if (viewport !== "small") return body;
+
     return (
         <TransformWhenVisible
-            to={(theme) => ({
-                //
-            })}
+            to={introAnimationsForTextContent} //
+            rootMargin={intersectionObserverMargin}
         >
             {body}
         </TransformWhenVisible>
