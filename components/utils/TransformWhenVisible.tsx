@@ -17,6 +17,8 @@ interface TransformWhenVisibleProps {
     /** Styles applied when **visible** */
     to: SxProps;
 
+    rootMargin?: number;
+
     onVisible?: () => void;
 
     children: ReactNode;
@@ -25,7 +27,7 @@ interface TransformWhenVisibleProps {
 const TransformWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (props) => {
     const theme = useTheme();
     const ref = useRef<Element>(null);
-    const elementIsVisible = useElementVisibility(ref, props.onVisible);
+    const elementIsVisible = useElementVisibility(ref, props.onVisible, props.rootMargin);
 
     return (
         <Box
@@ -38,7 +40,6 @@ const TransformWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (prop
             }}
         >
             {props.children}
-            {/*  */}
         </Box>
     );
 };
