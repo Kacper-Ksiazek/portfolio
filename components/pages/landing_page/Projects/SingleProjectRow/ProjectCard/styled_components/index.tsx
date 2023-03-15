@@ -3,9 +3,8 @@ import { styled } from "@mui/material";
 import { CSS_CLASSES } from "../../_css_references";
 
 import SingleProjectBase from "./Base";
-import SingleProjectTextContent from "./SingleProjectTextContent";
 
-export { SingleProjectBase, SingleProjectTextContent };
+export { SingleProjectBase };
 
 export const IntroBar = styled("span")(({ theme }) => ({
     position: "absolute",

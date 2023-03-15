@@ -1,6 +1,6 @@
 // Tools
 import { styled, alpha } from "@mui/material";
-import { CSS_CLASSES } from "../_css_references";
+import { CSS_CLASSES } from "../../_css_references";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";

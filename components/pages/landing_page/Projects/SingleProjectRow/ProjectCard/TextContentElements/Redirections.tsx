@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import { CSS_CLASSES } from "../_css_references";
+import { CSS_CLASSES } from "../../_css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Other components

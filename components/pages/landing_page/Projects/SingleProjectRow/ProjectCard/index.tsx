@@ -4,25 +4,21 @@ import { CSS_CLASSES } from "../_css_references";
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
 // Other components
-import Title from "./Title";
-import Description from "./Description";
-import Redirections from "./Redirections";
 import ThumbnailWrapper from "./ThumbnailWrapper";
-
+import TextContentWrapper from "./TextContentWrapper";
 import Duration from "@/components/atoms/single_project/Duration";
-import TechnologiesList from "@/components/atoms/TechnologiesList";
+import { Description, Redirections, Technologies, Title } from "./TextContentElements";
 // Styled components
-import { SingleProjectBase, SingleProjectTextContent, IntroBar } from "./styled_components";
+import { SingleProjectBase, IntroBar } from "./styled_components";
 
 interface ProjectCardProps {
     data: Project;
     isFirst: boolean;
     order: "even" | "odd";
-    numberOfTechnologiesToDisplay: number;
 }
 
 const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
-    const { data, order, numberOfTechnologiesToDisplay } = props;
+    const { data, order } = props;
 
     return (
         <SingleProjectBase className={[order, "project-card"].join(" ")}>
@@ -37,19 +33,16 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
                 }
             })()}
 
-            <SingleProjectTextContent className="single-project-text-content-wrapper">
-                <TechnologiesList
-                    technologies={data.releventTechnologies.slice(0, numberOfTechnologiesToDisplay)} //
-                    doNotWrap
-                    small
-                    thereAreMoreTechnologies={data.releventTechnologies.length > numberOfTechnologiesToDisplay}
-                />
+            <TextContentWrapper>
+                <Technologies data={props.data.releventTechnologies} />
+
                 <Title content={data.title} />
                 <Duration end={data.end} start={data.start} smaller />
                 <Description content={data.shortDescription} />
 
                 <Redirections id={data.id} liveDemoURL={data.liveDemoURL} />
-            </SingleProjectTextContent>
+            </TextContentWrapper>
+
             <ThumbnailWrapper folder={data.folder} id={data.id} />
         </SingleProjectBase>
     );

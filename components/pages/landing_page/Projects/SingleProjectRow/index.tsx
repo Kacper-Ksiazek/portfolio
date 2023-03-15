@@ -1,9 +1,9 @@
 // Tools
 import dynamic from "next/dynamic";
 import { styled } from "@mui/material";
-import useWindowSizes from "@/hooks/useWindowSizes";
 import * as introAnimations from "./intro_animations";
 import { hidePseudoElement } from "@/components/keyframes/outro";
+import { useProjectsContext } from "../hooks/useProjectsContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
@@ -51,13 +51,11 @@ interface SingleProjectProps {
     isLast: boolean;
     isFirst: boolean;
     order: "even" | "odd";
-    numberOfTechnologiesToDisplay: number;
 }
 
 const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
-    const { data, order, isFirst, isLast, numberOfTechnologiesToDisplay } = props;
-    const { width } = useWindowSizes();
-
+    const { data, order, isFirst, isLast } = props;
+    const context = useProjectsContext();
     const thisRowIsAYearIndicator: boolean = !isFirst && Boolean(props.data.yearToIndicate);
 
     return (
@@ -94,6 +92,7 @@ const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
                     },
                 },
             })}
+            rootMargin={context.intersectionObserverMargin}
         >
             <SingleProjectRow
                 className={[
@@ -110,11 +109,10 @@ const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
                     data={data} //
                     order={order}
                     isFirst={isFirst}
-                    numberOfTechnologiesToDisplay={numberOfTechnologiesToDisplay}
                 />
 
                 {(() => {
-                    if (width > 1400) {
+                    if (context.viewport === "large") {
                         return (
                             <Timeline
                                 isFirst={isFirst} //
