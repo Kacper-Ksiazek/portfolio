@@ -50,7 +50,15 @@ const BreakTheIce: FunctionComponent = () => {
             id="about-me"
             contentWrapperSx={{ display: "flex" }}
         >
-            <RenderWhenVisible>
+            <RenderWhenVisible
+                sx={{
+                    flexGrow: 1, //
+                    display: "flex",
+                    "@media (max-width:1000px)": {
+                        minHeight: "1100px",
+                    },
+                }}
+            >
                 <BreakTheIceBase>
                     <Content />
                     <Picture />
