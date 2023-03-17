@@ -20,6 +20,9 @@ const SnackbarsWrapper = styled("section")(({ theme }) => ({
         width: "100%",
         padding: "0 10px",
         boxSizing: "border-box",
+        ".single-snackbar": {
+            width: "100%",
+        },
     },
 }));
 const Snackbar: FunctionComponent = () => {
