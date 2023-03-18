@@ -5,7 +5,6 @@ export default {
     "@media (max-width:1600px)": {
         "#picture-main-wrapper": {
             "#picture-direct-wrapper": {
-                height: "380px",
                 width: "calc(100% - 20px)",
             },
         },
@@ -25,7 +24,6 @@ export default {
         "#picture-main-wrapper": {
             width: "calc(45% - 16px)",
             "#picture-direct-wrapper": {
-                height: "320px",
                 width: "calc(100% - 16px)",
             },
         },
@@ -36,9 +34,6 @@ export default {
         },
         "#picture-main-wrapper": {
             width: "calc(40% - 16px)",
-            "#picture-direct-wrapper": {
-                height: "240px",
-            },
         },
     },
     "@media (max-width:1000px)": {
