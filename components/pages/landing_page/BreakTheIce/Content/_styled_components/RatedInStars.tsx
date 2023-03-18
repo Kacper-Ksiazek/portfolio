@@ -36,6 +36,7 @@ const SingleLanguageBase = styled("div", {
 const Description = styled("span")(({ theme }) => ({
     fontWeight: 300,
     width: "calc(100% - 90px - 120px - 20px)",
+    color: alpha(theme.palette.text.primary, 0.8),
     ["@media (max-width:600px)"]: {
         width: "100%",
         marginTop: "5px",

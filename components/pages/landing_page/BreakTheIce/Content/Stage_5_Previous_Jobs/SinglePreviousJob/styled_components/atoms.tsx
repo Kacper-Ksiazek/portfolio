@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { styled, alpha } from "@mui/material";
 
 export const Header = styled("h4")(({ theme }) => ({
     margin: 0,
@@ -10,6 +10,7 @@ export const Header = styled("h4")(({ theme }) => ({
 export const Description = styled("p")(({ theme }) => ({
     margin: "8px 0 0 0",
     fontSize: "16px",
+    color: alpha(theme.palette.text.primary, 0.8),
     ["@media (max-width:1000px)"]: {
         fontSize: "18px",
     },

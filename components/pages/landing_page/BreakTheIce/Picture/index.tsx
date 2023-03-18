@@ -7,7 +7,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import Image from "next/image";
 // Styled components
-import { PictureBase, PictureSectionWrapper, PictureWrapper, Rectangle } from "./styled_components";
+import { PictureWrapper, ImageDirectWrapper, BackgroundRectangle, PictureSection } from "./styled_components";
 
 const Picture: FunctionComponent = () => {
     const { currentIceBreakingStage, previousIceBreakingStage } = useBreakTheIceContentContext();
@@ -15,26 +15,27 @@ const Picture: FunctionComponent = () => {
     const refs = useBackgroundShapesRefs(currentIceBreakingStage);
 
     return (
-        <PictureSectionWrapper
+        <PictureSection
             key={currentIceBreakingStage} //
             id="picture-main-wrapper"
             className={playIntroAnimation ? "play-intro-animation" : ""}
         >
             <PictureWrapper id="picture-direct-wrapper">
-                <Rectangle className="left-horizontal" ref={refs.LeftHorizontalRectangleElement as any} />
-                <Rectangle className="left-vertical" ref={refs.LeftVerticalRectangleElement as any} />
-                <Rectangle className="right-horizontal" ref={refs.RightHorizontalRectangleElement as any} />
-                <Rectangle className="right-vertical" ref={refs.RightVerticalRectangleElement as any} />
-                <PictureBase>
+                <BackgroundRectangle id="LEFT_HORIZONTAL" ref={refs.LEFT_HORIZONTAL} />
+                <BackgroundRectangle id="LEFT_VERTICAL" ref={refs.LEFT_VERTICAL} />
+                <BackgroundRectangle id="RIGHT_HORIZONTAL" ref={refs.RIGHT_HORIZONTAL} />
+                <BackgroundRectangle id="RIGHT_VERTICAL" ref={refs.RIGHT_VERTICAL} />
+
+                <ImageDirectWrapper>
                     <Image
                         alt="stage-picture" //
                         src={`/images/landing-page/${previousIceBreakingStage ?? currentIceBreakingStage}.jpg`}
                         layout="fill"
                         unoptimized
                     />
-                </PictureBase>
+                </ImageDirectWrapper>
             </PictureWrapper>
-        </PictureSectionWrapper>
+        </PictureSection>
     );
 };
 

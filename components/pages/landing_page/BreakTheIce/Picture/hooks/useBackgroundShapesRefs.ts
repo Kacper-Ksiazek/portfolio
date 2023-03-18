@@ -1,24 +1,20 @@
 // Tools
-import { useEffect, useRef, useMemo, useState } from "react";
+import { useEffect, useRef, useMemo } from "react";
 // Types
 import type { RefObject } from "react";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
+import type { ID } from "../styled_components/Picture/BackgroundRectrangle/keyframes/@types";
 
-interface UseBackgroundShapesRefsResult {
-    LeftHorizontalRectangleElement: RefObject<HTMLSpanElement | null>;
-    LeftVerticalRectangleElement: RefObject<HTMLSpanElement | null>;
-    RightHorizontalRectangleElement: RefObject<HTMLSpanElement | null>;
-    RightVerticalRectangleElement: RefObject<HTMLSpanElement | null>;
-}
+type UseBackgroundShapesRefsResult = Record<ID, RefObject<HTMLSpanElement | null>>;
 
 export function useBackgroundShapesRefs(currentIceBreakingStage: IceBreakingStage): UseBackgroundShapesRefsResult {
-    const LeftHorizontalRectangleElement = useRef<HTMLSpanElement | null>(null);
-    const LeftVerticalRectangleElement = useRef<HTMLSpanElement | null>(null);
-    const RightHorizontalRectangleElement = useRef<HTMLSpanElement | null>(null);
-    const RightVerticalRectangleElement = useRef<HTMLSpanElement | null>(null);
+    const LEFT_HORIZONTAL = useRef<HTMLSpanElement | null>(null);
+    const LEFT_VERTICAL = useRef<HTMLSpanElement | null>(null);
+    const RIGHT_HORIZONTAL = useRef<HTMLSpanElement | null>(null);
+    const RIGHT_VERTICAL = useRef<HTMLSpanElement | null>(null);
 
     const AllRefs = useMemo<RefObject<HTMLSpanElement | null>[]>(() => {
-        return [LeftHorizontalRectangleElement, LeftVerticalRectangleElement, RightHorizontalRectangleElement, RightVerticalRectangleElement];
+        return [LEFT_HORIZONTAL, LEFT_VERTICAL, RIGHT_HORIZONTAL, RIGHT_VERTICAL];
     }, []);
 
     useEffect(() => {
@@ -47,9 +43,9 @@ export function useBackgroundShapesRefs(currentIceBreakingStage: IceBreakingStag
     }, [AllRefs, currentIceBreakingStage]);
 
     return {
-        LeftHorizontalRectangleElement,
-        LeftVerticalRectangleElement,
-        RightHorizontalRectangleElement,
-        RightVerticalRectangleElement,
+        LEFT_HORIZONTAL,
+        LEFT_VERTICAL,
+        RIGHT_HORIZONTAL,
+        RIGHT_VERTICAL,
     };
 }

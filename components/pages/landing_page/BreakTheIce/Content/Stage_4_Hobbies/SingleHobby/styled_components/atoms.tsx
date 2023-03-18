@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { styled, alpha } from "@mui/material";
 
 export const Label = styled("span")(({ theme }) => ({
     margin: "0 0 5px 0",
@@ -22,6 +22,7 @@ export const Header = styled("h4")(({ theme }) => ({
 export const Description = styled("p")(({ theme }) => ({
     margin: "0",
     fontSize: "18px",
+    color: alpha(theme.palette.text.primary, 0.8),
 }));
 
 export const Reference = styled("a")(({ theme }) => ({
