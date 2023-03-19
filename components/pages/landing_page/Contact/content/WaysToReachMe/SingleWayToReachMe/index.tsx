@@ -42,11 +42,13 @@ const SingleWayToReachMe = forwardRef<HTMLDivElement, SingleWayToReachMeProps>((
             ].join(" ")} //
         >
             {icon}
-            <SingleWayToReachMeText className="single-way-to-reach-me-text">
+            <SingleWayToReachMeText className={`single-way-to-reach-me-text ${redirectAfterClick ? "clickable" : ""}`}>
                 {messagePrefix ?? <></>}
                 {hiddenURL({ text: url, hide: hideURL ?? false })}
             </SingleWayToReachMeText>
+
             {redirectAfterClick && <ClickabilityIndicatingArrow />}
+
             <div className="children-wrapper">{children}</div>
         </SingleWayToReachMeBase>
     );

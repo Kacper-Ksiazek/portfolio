@@ -43,7 +43,7 @@ const LightSectionHeader: FunctionComponent<LightSectionWrapperProps["header"]> 
                     "&::after": {
                         content: '""',
                         ...theme.mixins.absolute_full,
-                        background: "#000",
+                        background: theme.palette.background.lightAnimationBar,
 
                         animation: chainAnimations([
                             [keyframes.header.stageOne, 0.3, 0.8],

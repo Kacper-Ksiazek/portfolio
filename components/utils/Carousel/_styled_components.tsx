@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 // Styled components
 export const CarosuelWrapper = styled("div")(({ theme }) => ({
     position: "relative",
@@ -52,7 +53,7 @@ export const SingleNagivationStep = styled("span")(({ theme }) => ({
         top: "50%",
         transform: "translateY(-50%)",
         height: "5px",
-        background: theme.palette.text.primary,
+        background: alpha(theme.palette.text.primary, 0.8),
         transition: "all .3s",
     },
     "&.active": {

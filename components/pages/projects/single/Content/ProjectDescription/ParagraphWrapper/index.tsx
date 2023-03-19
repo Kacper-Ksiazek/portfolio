@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { styled, alpha } from "@mui/material";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
@@ -8,6 +8,7 @@ const Paragraph = styled("p")(({ theme }) => ({
     fontSize: "18px",
     margin: 0,
     cursor: "default",
+    color: alpha(theme.palette.text.primary, 0.8),
 }));
 const Header = styled("h3")(({ theme }) => ({
     fontSize: "24px",
