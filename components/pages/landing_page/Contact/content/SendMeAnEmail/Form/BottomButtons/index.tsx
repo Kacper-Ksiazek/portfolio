@@ -38,21 +38,21 @@ interface BottomButtonsProps {
     onContinueButtonClick: () => void;
 }
 const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
-    const { updateRequest, invalidFormFields, emailFormSubsection } = useSendEmailContext();
+    const { updateRequest, invalidFormFields, emailFormSubsection, form } = useSendEmailContext();
 
-    const feignSucceededRequest = () => {
+    function feignSucceededRequest() {
         updateRequest({ status: "pending" });
         setTimeout(() => {
             updateRequest({ status: "staged_success" });
         }, 750);
-    };
+    }
 
-    const feignInvalidRequest = () => {
+    function feignInvalidRequest() {
         updateRequest({ status: "pending" });
         setTimeout(() => {
             updateRequest({ status: "staged_error" });
         }, 750);
-    };
+    }
 
     return (
         <ButtonsBottomWrapper>

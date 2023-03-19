@@ -25,7 +25,7 @@ const EmailFormSubsection1: FunctionComponent = (props) => {
             <CountryInput
                 value={form.country} //
                 onChange={(val) => updateForm({ country: val })}
-                error={invalidFormFields.includes("country")}
+                error={form.country !== null && invalidFormFields.includes("country")}
             />
             <StyledInput
                 label="Email" //
@@ -33,7 +33,7 @@ const EmailFormSubsection1: FunctionComponent = (props) => {
                 type="email"
                 value={form.email}
                 onChange={(e) => updateForm({ email: e.target.value })}
-                error={invalidFormFields.includes("email")}
+                error={form.email !== "" && invalidFormFields.includes("email")}
             />
             <StyledInput
                 label="LinkedIn*" //
