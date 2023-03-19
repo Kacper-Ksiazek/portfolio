@@ -3,7 +3,7 @@ import { useEffect, useRef, useMemo } from "react";
 // Types
 import type { RefObject } from "react";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
-import type { ID } from "../styled_components/Picture/BackgroundRectrangle/keyframes/@types";
+import type { ID } from "../styled_components/BackgroundRectrangle/keyframes/@types";
 
 type UseBackgroundShapesRefsResult = Record<ID, RefObject<HTMLSpanElement | null>>;
 
