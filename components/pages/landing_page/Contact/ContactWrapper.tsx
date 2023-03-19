@@ -90,7 +90,10 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
         >
             <RenderWhenVisible
                 onVisible={() => setRenderMap(true)} //
-                sx={props.hideContent ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}}
+                sx={{
+                    flexGrow: 1,
+                    ...(props.hideContent ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}),
+                }}
             >
                 {props.children}
             </RenderWhenVisible>
