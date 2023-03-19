@@ -63,7 +63,6 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                                     },
                                 ] as { label: string; value: GeneralContactSection }[]
                             } //
-                            subtleBackground
                             currentSection={props.currentGeneralSection}
                             onChoose={(val) => props.setCurrentGeneralSection(val as any)}
                         />

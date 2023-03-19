@@ -9,6 +9,7 @@ export default styled(StyledButton)(({ theme }) => ({
     padding: "12px 32px",
     fontFamily: "Montserrat Alternates",
     overflow: "hidden",
+    height: "42px",
     "&:hover, &:focus": {
         "&::after, &::before": {
             transform: "translateX(0)",
@@ -20,24 +21,18 @@ export default styled(StyledButton)(({ theme }) => ({
             transition: "transform .15s  linear",
         },
     },
-    "&::after": {
+
+    "&::after, &::before": {
         content: "''",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
+        ...theme.mixins.absolute_full,
+    },
+
+    "&::after": {
         background: theme.palette.secondary.main,
         transform: "translateX(calc(100% + 10px))",
         transition: "transform .15s linear",
     },
     "&::before": {
-        content: "''",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
         background: "#000",
         transform: "translateX(calc(100% + 10px))",
         transition: "transform .15s .1s linear",

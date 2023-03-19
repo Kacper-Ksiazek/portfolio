@@ -6,13 +6,17 @@ import { barIntroAnimation, barOutroAnimation } from "./keyframes";
 import ButtonBase from "@mui/material/ButtonBase";
 // Styled components
 export default styled(ButtonBase)(({ theme }) => ({
-    padding: "4px 24px",
-    fontSize: "16px",
+    padding: "4px 32px",
+    fontSize: "18px",
+    height: "42px",
     borderRadius: "3px",
     textTransform: "capitalize",
     fontFamily: "Montserrat Alternates",
     overflow: "hidden",
     background: theme.palette.primary.main,
+    svg: {
+        fontSize: "24px",
+    },
     "&:not(&:nth-of-type(1))": {
         marginLeft: "12px",
     },

@@ -10,7 +10,7 @@ import type { ColorThemeSwitchProps } from "./@types";
 import type { FunctionComponent } from "react";
 // Other components
 import Modal from "./Modal";
-const Mobile = dynamic(() => import("./Mobile"));
+const Mobile = dynamic(() => import("./Mobile"), { ssr: false });
 const Desktop = dynamic(() => import("./Desktop"));
 
 const ColorThemeSwitch: FunctionComponent<ColorThemeSwitchProps> = (props) => {

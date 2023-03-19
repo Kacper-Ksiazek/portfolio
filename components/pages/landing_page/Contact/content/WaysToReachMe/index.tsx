@@ -75,7 +75,8 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
                 onClick={props.writeToMe}
                 sx={{
                     mt: "32px", //
-                    padding: "12px 32px",
+                    padding: "6px 32px",
+                    height: "42px",
                     display: "flex",
                     fontFamily: "Montserrat Alternates",
                     alignItems: "center",

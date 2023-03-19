@@ -21,7 +21,7 @@ const ButtonWithTooltip: FunctionComponent<ButtonWithTooltipProps> = (props) => 
             <StyledButton
                 color={props.color} //
                 onClick={props.onClick}
-                sx={{ width: "43px", height: "43px", ...props.sx }}
+                sx={{ width: "42px", height: "42px", ...props.sx }}
                 className={props.className}
             >
                 {props.icon}
