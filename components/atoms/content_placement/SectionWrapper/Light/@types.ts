@@ -7,6 +7,12 @@ export interface HeaderAdditionalJSX {
     node: ReactNode;
 }
 
+export interface HeaderProps {
+    main: string;
+    label: string;
+    additionalJSX?: HeaderAdditionalJSX;
+}
+
 export interface LightSectionWrapperProps {
     /**
      * Specifies more curved top corner
@@ -19,11 +25,7 @@ export interface LightSectionWrapperProps {
     /**
      * Handles section's premade header along with its smaller label
      */
-    header: {
-        main: string;
-        label: string;
-        additionalJSX?: HeaderAdditionalJSX;
-    };
+    header: HeaderProps;
     /**
      * The letter to be displayed in the background
      */
