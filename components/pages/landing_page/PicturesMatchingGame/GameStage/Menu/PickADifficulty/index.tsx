@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 const StyledSelect = styled(Select)(({ theme }) => ({
     width: "240px",
     fontSize: "16px",
-    animation: `${fadeSimple} .3s .4s both linear`,
+    animation: `${fadeSimple} .4s .6s both linear`,
     "@media (max-width:500px)": {
         width: "100%",
     },

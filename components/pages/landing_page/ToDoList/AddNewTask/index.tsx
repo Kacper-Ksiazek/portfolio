@@ -22,7 +22,7 @@ const AddNewTask = forwardRef<HTMLInputElement, AddNewTaskProps>((props, inputEl
     };
 
     return (
-        <AddNewTaskBase>
+        <AddNewTaskBase id="add-new-task-wrapper">
             <StyledInput
                 type="text" //
                 placeholder="Type a new task here..."

@@ -8,6 +8,7 @@ import type { FunctionComponent } from "react";
 import GameStage from "./GameStage";
 import ImageModelWithGallery from "./ImageModelWithGallery";
 import { PicturesMatchingGameContextProvider } from "./context";
+import RenderWhenVisible from "@/components/utils/RenderWhenVisible";
 // Styled Components
 import MainWrapper from "./MainWrapper";
 
@@ -35,7 +36,16 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
             <ImageModelWithGallery />
 
             {/*  */}
-            <GameStage />
+            <RenderWhenVisible
+                sx={{
+                    minHeight: "190px",
+                    "@media (max-width:750px)": {
+                        height: "270px",
+                    },
+                }}
+            >
+                <GameStage />
+            </RenderWhenVisible>
             {/*  */}
         </MainWrapper>
     );

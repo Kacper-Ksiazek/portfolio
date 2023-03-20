@@ -2,14 +2,21 @@
 import { useState, useRef } from "react";
 import { useArray } from "@/hooks/useArray";
 import { useSnackbar } from "@/hooks/useSnackbar";
+import { repeat } from "@/utils/client/styled/repeat";
+import { scaleToLeft } from "@/components/keyframes/outro";
 import { toDoListIntroAnimations } from "./introAnimations";
+import { chainAnimations } from "@/utils/client/styled/chainAnimations";
+import { fadeSimple, scaleFromRight } from "@/components/keyframes/intro";
 // Types
+import type { Styles } from "@/@types/MUI";
 import type { FunctionComponent } from "react";
 // Other components
 import AddNewTask from "./AddNewTask";
 import SingleTask from "./SingleTask";
 // Material UI Icons
 import Code from "@mui/icons-material/Code";
+// Other components
+import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Styled Components
 import NoResults from "./NoResults";
 import OverflowScrollDiv from "@/components/atoms/content_placement/OverflowScrollDiv";
@@ -110,39 +117,76 @@ const ToDoList: FunctionComponent = () => {
             }}
             githubURL={"https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page"}
         >
-            {(() => {
-                if (tasksArray.entries.length) {
-                    return (
-                        <>
-                            <OverflowScrollDiv
-                                maxHeight="192px" //
-                                ref={taskWrapperElement as any}
-                                sx={{ maxWidth: "800px", margin: "0 auto" }}
-                            >
-                                {tasksArray.entries.map((item, index) => {
-                                    return (
-                                        <SingleTask
-                                            key={`${index}-${item}`} //
-                                            index={index}
-                                            task={item}
-                                            showIntroAnimation={showIntroAnimation}
-                                            deleteThisTask={() => deleteSingleTask(index)}
-                                            modifyThisTask={(value: string) => modifySingleTask(index, value)}
-                                            freshlyCreated={index === freshlyCreatedTaskIndex}
-                                        />
-                                    );
-                                })}
-                            </OverflowScrollDiv>
-                        </>
-                    );
-                } else {
-                    return <NoResults />;
-                }
-            })()}
-            <AddNewTask
-                ref={inputElement} //
-                saveNewTask={addNewTask}
-            />
+            <TransformWhenVisible
+                sx={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }} //
+                to={(theme): Styles => ({
+                    ".single-task-wrapper": {
+                        width: "100%",
+                        position: "relative",
+                        "&:not(&:nth-of-type(1))": {
+                            marginTop: "10px",
+                        },
+                        "&::after": {
+                            content: "''",
+                            position: "absolute",
+                            ...theme.mixins.absolute_full,
+                            background: theme.palette.background.lightAnimationBar,
+                        },
+                        ...repeat(4, (index) => {
+                            const diff = index * 0.1;
+                            return {
+                                ".single-task": {
+                                    animation: `${fadeSimple} .001s ${0.8 + diff}s both !important`,
+                                },
+                                "&::after": {
+                                    animation: chainAnimations([
+                                        [scaleFromRight, 0.3, 0.5 + diff],
+                                        [scaleToLeft, 0.3, 0.5],
+                                    ]),
+                                },
+                            };
+                        }),
+                    },
+                    "#add-new-task-wrapper": {
+                        animation: `${fadeSimple} .3s 1s both linear`,
+                    },
+                })}
+            >
+                {(() => {
+                    if (tasksArray.entries.length) {
+                        return (
+                            <>
+                                <OverflowScrollDiv
+                                    maxHeight="192px" //
+                                    ref={taskWrapperElement as any}
+                                    sx={{ maxWidth: "800px", margin: "0 auto" }}
+                                >
+                                    {tasksArray.entries.map((item, index) => {
+                                        return (
+                                            <div className="single-task-wrapper" key={`${index}-${item}`}>
+                                                <SingleTask
+                                                    index={index}
+                                                    task={item}
+                                                    showIntroAnimation={showIntroAnimation}
+                                                    deleteThisTask={() => deleteSingleTask(index)}
+                                                    modifyThisTask={(value: string) => modifySingleTask(index, value)}
+                                                    freshlyCreated={index === freshlyCreatedTaskIndex}
+                                                />
+                                            </div>
+                                        );
+                                    })}
+                                </OverflowScrollDiv>
+                            </>
+                        );
+                    } else {
+                        return <NoResults />;
+                    }
+                })()}
+                <AddNewTask
+                    ref={inputElement} //
+                    saveNewTask={addNewTask}
+                />
+            </TransformWhenVisible>
         </DarkSectionWrapper>
     );
 };

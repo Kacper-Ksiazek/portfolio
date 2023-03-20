@@ -49,11 +49,7 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
 
     return (
         <SingleTaskBase
-            className={[
-                props.showIntroAnimation ? "show-intro-animation" : "", //
-                classAppliedToWrapper,
-                "single-task",
-            ].join(" ")} //
+            className={[classAppliedToWrapper, "single-task"].join(" ")} //
         >
             <TaskIndex className="index">{props.index + 1}</TaskIndex>
             <span className="text">{props.task}</span>

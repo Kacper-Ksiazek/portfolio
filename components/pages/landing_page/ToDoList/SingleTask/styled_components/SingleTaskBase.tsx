@@ -32,9 +32,7 @@ export default styled("div")(({ theme }) => ({
         width: "calc(100% - 100px)",
         transition: "opacity .3s .2s",
     },
-    "&:not(&:nth-of-type(1))": {
-        marginTop: "10px",
-    },
+
     "&.deleting": {
         transform: "scaleY(0)",
         maxHeight: 0,
