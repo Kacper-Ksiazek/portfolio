@@ -13,6 +13,7 @@ const StyledSkeleton = styled(Skeleton)(({ theme }) => ({
     position: "relative",
     width: "100%",
     height: "100%",
+    zIndex: 5,
 }));
 
 interface NextImageWithSkeletonProps extends ImageProps {
@@ -31,6 +32,7 @@ const NextImageWithSkeleton: FunctionComponent<NextImageWithSkeletonProps> = (pr
                 }
                 {...props}
                 onLoad={() => setRenderSkeleton(false)}
+                style={{ display: renderSkeleton ? "none" : "block" }}
             />
         </>
     );

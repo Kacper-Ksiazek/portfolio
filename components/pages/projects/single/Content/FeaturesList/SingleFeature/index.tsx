@@ -1,7 +1,7 @@
 // Tools
 import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/project";
 // Types
-import type { FunctionComponent } from "react";
+import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import NextImageWithSkeleton from "@/components/atoms/NextImageWithSkeleton";
 // Styled components
@@ -11,14 +11,16 @@ interface SingleFeatureProps {
     index: number;
     folder: string;
     imageURL: string;
-    previewThisFeature: () => void;
+    children?: ReactNode;
+
+    onClick: () => void;
 }
 
 const SingleFeature: FunctionComponent<SingleFeatureProps> = (props) => {
     return (
         <SingleFeatureBase
             className="single-feature" //
-            onClick={props.previewThisFeature}
+            onClick={props.onClick}
         >
             <NextImageWithSkeleton
                 alt={props.imageURL} //
@@ -29,6 +31,7 @@ const SingleFeature: FunctionComponent<SingleFeatureProps> = (props) => {
                     subject: props.imageURL,
                 })}
             />
+            {props.children && props.children}
         </SingleFeatureBase>
     );
 };

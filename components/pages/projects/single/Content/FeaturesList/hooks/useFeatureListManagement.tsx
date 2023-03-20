@@ -1,6 +1,6 @@
 // Tools
 import { useResponsivity } from "./useResponsivity";
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, MutableRefObject } from "react";
 // Types
 import type { SxProps } from "@mui/material";
 import type { Feature } from "@/@types/prisma/Project";
@@ -10,12 +10,13 @@ interface UseFeatureListManagement {
     featuresToDisplay: Feature[];
     allFeaturesAreShown: boolean;
     featuresAnimation: "features-intro" | "features-outro";
+    amountOfFeaturesInOneRow: number;
 
     showMore: () => void;
     showLess: () => void;
 }
 
-export const useFeatureListManagement = (allFeatures: Feature[], WRAPPER_ELEMENT_ID: string): UseFeatureListManagement => {
+export const useFeatureListManagement = (allFeatures: Feature[], featuresWrapper: MutableRefObject<HTMLDivElement | null>): UseFeatureListManagement => {
     const { amountOfFeaturesInOneRow, heightOfOneFeature } = useResponsivity();
 
     const [displayAllFeatures, setDisplayAllFeatures] = useState<boolean>(false);
@@ -30,8 +31,9 @@ export const useFeatureListManagement = (allFeatures: Feature[], WRAPPER_ELEMENT
         setDisplayAllFeatures(true);
     };
     const showLess = useCallback(() => {
-        const wrapper = document.getElementById(WRAPPER_ELEMENT_ID);
-        if (wrapper && wrapper.offsetParent && (wrapper.offsetParent as HTMLDivElement).offsetParent) {
+        const wrapper = featuresWrapper.current;
+
+        if (wrapper) {
             const BOTTOM_OFFSET: number = 200;
 
             window.scrollTo({
@@ -47,7 +49,7 @@ export const useFeatureListManagement = (allFeatures: Feature[], WRAPPER_ELEMENT
 
         setFeaturesAnimation("features-outro");
         setTimeout(() => setDisplayAllFeatures(false), 501);
-    }, [WRAPPER_ELEMENT_ID]);
+    }, [featuresWrapper]);
 
     const wrapperExtraCSS = useMemo<SxProps>(() => {
         if (!displayAllFeatures) return { maxHeight: `${heightOfOneFeature}px` };
@@ -66,6 +68,8 @@ export const useFeatureListManagement = (allFeatures: Feature[], WRAPPER_ELEMENT
         featuresToDisplay, //
         allFeaturesAreShown: displayAllFeatures,
         featuresAnimation,
+        amountOfFeaturesInOneRow,
+
         showLess,
         showMore,
     };

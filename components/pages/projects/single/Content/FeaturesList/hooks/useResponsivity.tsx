@@ -8,7 +8,7 @@ interface UseResponsivity {
 }
 
 export const useResponsivity = (): UseResponsivity => {
-    const { width, height } = useWindowSizes();
+    const { width } = useWindowSizes();
 
     const amountOfFeaturesInOneRow = useMemo<number>(() => {
         if (width > 1450) return 5;
