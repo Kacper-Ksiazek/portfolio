@@ -93,6 +93,9 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                 sx={{
                     flexGrow: 1,
                     ...(props.hideContent ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}),
+                    minHeight: "600px",
+                    display: "flex",
+                    flexDirection: "column",
                 }}
             >
                 {props.children}

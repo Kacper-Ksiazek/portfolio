@@ -1,6 +1,7 @@
 // Tools
 import { useTheme } from "@mui/material";
 import { useRef, useEffect } from "react";
+import useWindowSizes from "@/hooks/useWindowSizes";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -13,6 +14,7 @@ interface GoogleReCAPTCHAProps {
 const GoogleReCAPTCHA: FunctionComponent<GoogleReCAPTCHAProps> = (props) => {
     const recaptchaRef = useRef<ReCAPTCHA | null>(null);
     const theme = useTheme();
+    const { width } = useWindowSizes();
 
     useEffect(() => (recaptchaRef.current as ReCAPTCHA).reset(), []);
 
@@ -38,6 +40,13 @@ const GoogleReCAPTCHA: FunctionComponent<GoogleReCAPTCHAProps> = (props) => {
             onChange={onReCAPTCHAChange}
             theme={theme.palette.mode}
             hidden={false}
+            style={
+                width < 750
+                    ? {
+                          margin: "0 auto",
+                      }
+                    : {}
+            }
         />
     );
 };

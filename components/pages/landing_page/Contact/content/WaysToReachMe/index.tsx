@@ -1,5 +1,4 @@
 // Tools
-import { styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
@@ -17,24 +16,12 @@ import EmailIcon from "@mui/icons-material/Email";
 import Facebook from "@mui/icons-material/Facebook";
 import LinkedIn from "@mui/icons-material/LinkedIn";
 import { Label, Paragraph } from "@/components/pages/landing_page/BreakTheIce/Content/_styled_components";
-
-const WaysToReachMeWrapper = styled("div")(({ theme }) => ({
-    width: "calc(50% + 64px)",
-    cursor: "default",
-    position: "relative",
-    alignSelf: "flex-start",
-    overflow: "hidden",
-    boxSizing: "border-box",
-    paddingTop: "24px",
-    "@media (max-width:1000px)": {
-        width: "100%",
-        marginTop: "24px",
-    },
-}));
+// Styled components
+import SectionWrapper from "../SectionWrapper";
 
 const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
     return (
-        <WaysToReachMeWrapper>
+        <SectionWrapper>
             <Paragraph animationDelay={0.3}>
                 {formatTextViaBolding(
                     `I'm freshman at *AGH University of Science and Technology* at the Faculty of *Engineering and Data Analysis* (WGGiOŚ) in Cracow and due to the loads of responsibilities related to my college, at the moment I consider only part-time jobs as well as internships with an opportunity to develop.`
@@ -92,7 +79,7 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
                 <EmailIcon />
                 <span>Write to me</span>
             </StyledButton>
-        </WaysToReachMeWrapper>
+        </SectionWrapper>
     );
 };
 

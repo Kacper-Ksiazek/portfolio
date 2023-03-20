@@ -13,7 +13,7 @@ import Form from "./Form";
 import ProcessRequest from "./ProcessRequest";
 import { SendEmailContextProvider } from "./contexts";
 // Styled Components
-import SendMeAnEmailWrapper from "./_styled_components/SendMeAnEmailWrapper";
+import SectionWrapper from "../SectionWrapper";
 
 const SendMeAnEmail: FunctionComponent = () => {
     const [specialWayOfRendering, setSpecialWayOfRendering] = useState<null | "displayOutroAnimation" | "hideIt">(null);
@@ -59,7 +59,7 @@ const SendMeAnEmail: FunctionComponent = () => {
     }, [request.status, changeMapStatus, alreadySentEmail]);
 
     return (
-        <SendMeAnEmailWrapper id="send-me-en-email-wrapper">
+        <SectionWrapper id="send-me-en-email-wrapper" sx={{ height: "460px" }}>
             {(() => {
                 if (specialWayOfRendering !== "hideIt" && !alreadySentEmail) {
                     return (
@@ -82,7 +82,7 @@ const SendMeAnEmail: FunctionComponent = () => {
                     );
                 }
             })()}
-        </SendMeAnEmailWrapper>
+        </SectionWrapper>
     );
 };
 
