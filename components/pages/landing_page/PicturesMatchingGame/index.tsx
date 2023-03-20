@@ -39,6 +39,11 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
             <RenderWhenVisible
                 sx={{
                     minHeight: "190px",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
                     "@media (max-width:750px)": {
                         height: "270px",
                     },
