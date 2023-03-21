@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { styled, alpha } from "@mui/material";
 // Styled components
 export default styled("header")(({ theme }) => ({
     display: "flex",
@@ -23,6 +23,7 @@ export default styled("header")(({ theme }) => ({
         fontSize: "20px",
         textAlign: "center",
         fontFamily: "Montserrat Alternates",
+        color: alpha("#fff", 0.8),
     },
 
     ["@media (max-width:500px)"]: {

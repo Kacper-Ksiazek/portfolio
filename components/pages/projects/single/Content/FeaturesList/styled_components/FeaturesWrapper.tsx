@@ -18,6 +18,7 @@ export default styled("div")(({ theme }) => ({
     },
     "&.features-outro": {
         transition: "max-height .3s .15s linear, background .3s",
+        maxHeight: "200px",
         ".single-feature": {
             "&:not(&:nth-of-type(-n + 5))": {
                 animation: `${fadeSimpleOUT} .2s both`,

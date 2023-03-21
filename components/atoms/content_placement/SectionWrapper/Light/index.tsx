@@ -1,3 +1,5 @@
+// Tools
+import { useState } from "react";
 // Types
 import type { FunctionComponent } from "react";
 import type { LightSectionWrapperProps } from "./@types";
@@ -9,6 +11,8 @@ import LightWrapperBase from "./Base";
 import BackgroundLetter from "./BackgroundLetter";
 
 const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props) => {
+    const [displayBackgroundLetter, setDisplayBackgroundLetter] = useState<boolean>(false);
+
     return (
         <LightWrapperBase
             className={[
@@ -18,10 +22,10 @@ const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props)
             id={props.id}
         >
             <ContentWrapper sx={props.contentWrapperSx as any}>
-                <Header {...props.header} />
+                <Header {...props.header} setDisplayBackgroundLetter={setDisplayBackgroundLetter} />
                 {props.children}
             </ContentWrapper>
-            {props.backgroundLetter && (
+            {displayBackgroundLetter && props.backgroundLetter && (
                 <BackgroundLetter
                     letter={props.backgroundLetter} //
                     sx={props.backgroundLetterSx ?? {}}

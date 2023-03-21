@@ -7,9 +7,9 @@ const NumberOfFeaturesBase = styled("span")(({ theme }) => ({
     position: "absolute",
     bottom: "12px",
     left: "12px",
-    fontSize: "18px",
-    padding: "6px 24px",
-    borderRadius: "6px",
+    fontSize: "16px",
+    padding: "4px 12px",
+    borderRadius: "3px",
     zIndex: 20,
     color: theme.palette.text.primary,
     overflow: "hidden",
@@ -38,7 +38,7 @@ const NumberOfFeatures: FunctionComponent<NumberOfFeaturesProps> = (props) => {
     return (
         <NumberOfFeaturesBase className="single-recommended-project-number-of-features">
             <strong>{props.numberOfFeatures}</strong>
-            <span>Features</span>
+            <span>Photos</span>
         </NumberOfFeaturesBase>
     );
 };

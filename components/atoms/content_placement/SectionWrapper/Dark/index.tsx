@@ -1,3 +1,5 @@
+// Tools
+import { useState } from "react";
 // Types
 import type { FunctionComponent } from "react";
 import type { DarkSectionWrapperProps } from "./@types";
@@ -9,6 +11,8 @@ import GitHubRedirection from "./GitHubRedirection";
 import { DarkWrapperBase, StyledContentWrapper } from "./styled_components";
 
 const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) => {
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+
     return (
         <DarkWrapperBase
             id={props.id}
@@ -19,10 +23,11 @@ const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) =
 
             {props.childrenOutsideContent}
             <StyledContentWrapper className="dark-section-content-wrapper">
-                {props.renderHeader && <Header {...props.header}></Header>}
+                <Header {...props.header} setIsVisible={setIsVisible} />
 
                 {props.children}
-                <GitHubRedirection href={props.githubURL} />
+
+                {isVisible && <GitHubRedirection href={props.githubURL} />}
             </StyledContentWrapper>
         </DarkWrapperBase>
     );
@@ -30,6 +35,5 @@ const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) =
 
 DarkSectionWrapper.defaultProps = {
     shapesDirection: "left",
-    renderHeader: true,
 };
 export default DarkSectionWrapper;

@@ -4,20 +4,25 @@ import { fadeSimple } from "@/components/keyframes/intro";
 import { hidePseudoElement } from "@/components/keyframes/outro";
 import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 // Types
-import type { FunctionComponent } from "react";
-import type { LightSectionWrapperProps } from "../@types";
+import type { HeaderProps } from "../@types";
+import type { FunctionComponent, Dispatch, SetStateAction } from "react";
 // Other components
 import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Styled components
 import { Header, Label, HeaderWrapper } from "./styled_components";
 import { Styles } from "@/@types/MUI";
 
-const LightSectionHeader: FunctionComponent<LightSectionWrapperProps["header"]> = (props) => {
+interface LightSectionHeaderProps extends HeaderProps {
+    setDisplayBackgroundLetter: Dispatch<SetStateAction<boolean>>;
+}
+
+const LightSectionHeader: FunctionComponent<LightSectionHeaderProps> = (props) => {
     const LABEL: CSSClassName = "light-section-wrapper-label";
     const HEADER: CSSClassName = "light-section-wrapper-header";
 
     return (
         <TransformWhenVisible
+            onVisible={() => props.setDisplayBackgroundLetter(true)}
             to={(theme): Styles => ({
                 [`.${LABEL}`]: {
                     span: {
@@ -43,7 +48,7 @@ const LightSectionHeader: FunctionComponent<LightSectionWrapperProps["header"]> 
                     "&::after": {
                         content: '""',
                         ...theme.mixins.absolute_full,
-                        background: "#000",
+                        background: theme.palette.background.lightAnimationBar,
 
                         animation: chainAnimations([
                             [keyframes.header.stageOne, 0.3, 0.8],

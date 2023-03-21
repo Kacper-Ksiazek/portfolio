@@ -1,17 +1,18 @@
 // Tools
 import { styled } from "@mui/material";
 // Styled components
-export default styled("div")(({ theme }) => ({
-    width: "calc(50% + 64px)",
+export default styled("section")(({ theme }) => ({
+    width: "100%",
     cursor: "default",
     position: "relative",
     alignSelf: "flex-start",
-    height: "460px",
+    maxWidth: "750px",
     boxSizing: "border-box",
     paddingTop: "24px",
+    overflow: "hidden",
     "@media (max-width:1000px)": {
+        maxWidth: "none",
         width: "100%",
-        marginTop: "24px",
-        height: "500px",
+        flexGrow: 1,
     },
 }));

@@ -1,6 +1,7 @@
 // Tools
 import { useState } from "react";
 import { styled, keyframes } from "@mui/material";
+import { fadeSimple } from "@/components/keyframes/intro";
 // Types
 import type { FunctionComponent } from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -16,6 +17,7 @@ const GitHubRedirectionBase = styled("span")(({ theme }) => ({
     textDecoration: "none",
     display: "flex",
     alignItems: "center",
+    animation: `${fadeSimple} .3s 2.4s linear both`,
     "svg.github-icon": {
         opacity: 0.3,
         fontSize: "32px",
@@ -83,7 +85,7 @@ const GitHubRedirection: FunctionComponent<GitHubRedirectionProps> = (props) => 
             ].join(" ")} //
         >
             <span className="bar" />
-            <Tooltip title="Inspect code on github" placement="top">
+            <Tooltip title="See code on github" placement="top">
                 <a
                     href={props.href} //
                     target="_blank"

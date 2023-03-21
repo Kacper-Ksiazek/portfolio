@@ -6,14 +6,18 @@ import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 // Types
 import type { HeaderProps } from "../@types";
-import type { FunctionComponent } from "react";
+import type { FunctionComponent, Dispatch, SetStateAction } from "react";
 // Other components
 import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Styled components
 import HeaderBase from "./Base";
 import { Description, Divider, IconWrapper } from "./styled_components";
 
-const DarkSectionHeader: FunctionComponent<HeaderProps> = (props) => {
+interface DarkSectionHeaderProps extends HeaderProps {
+    setIsVisible: Dispatch<SetStateAction<boolean>>;
+}
+
+const DarkSectionHeader: FunctionComponent<DarkSectionHeaderProps> = (props) => {
     const theme = useTheme();
 
     const ICON: CSSClassName = "dark-content-wrapper-header-icon";
@@ -23,6 +27,8 @@ const DarkSectionHeader: FunctionComponent<HeaderProps> = (props) => {
     const DESCRIPTION: CSSClassName = "dark-content-wrapper-header-description";
 
     const EVERY: Selector = [LABEL_HEADER, DESCRIPTION, MAIN_HEADER].map((el) => `.${el}`).join(", ");
+
+    if (props.render === false) return <></>;
 
     return (
         <TransformWhenVisible
@@ -92,6 +98,7 @@ const DarkSectionHeader: FunctionComponent<HeaderProps> = (props) => {
                     },
                 },
             }}
+            onVisible={() => props.setIsVisible(true)}
         >
             <HeaderBase>
                 <IconWrapper className={ICON}>{props.icon}</IconWrapper>
@@ -114,6 +121,10 @@ const DarkSectionHeader: FunctionComponent<HeaderProps> = (props) => {
             </HeaderBase>
         </TransformWhenVisible>
     );
+};
+
+DarkSectionHeader.defaultProps = {
+    render: true,
 };
 
 export default DarkSectionHeader;

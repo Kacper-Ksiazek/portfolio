@@ -1,5 +1,5 @@
 // Tools
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fadeSimple } from "@/components/keyframes/intro";
 import { styled } from "@mui/material";
 import { fadeFromLeft } from "@/components/keyframes/intro";
@@ -35,9 +35,20 @@ const EmailFormSubsection1: FunctionComponent = (props) => {
         updateForm({ ReCAPTCHAIsApproved: val });
     }
 
+    function remindAboutCaptcha() {
+        setIdentityReminder(true);
+    }
+
+    // On dismout
+    useEffect(() => {
+        return () => {
+            console.log("objecdismoutingt", form.ReCAPTCHAIsApproved);
+        };
+    }, [form.ReCAPTCHAIsApproved]);
+
     return (
         <>
-            {!form.ReCAPTCHAIsApproved && <PreventFromNavigating onMouseEnter={() => setIdentityReminder(true)} />}
+            {!form.ReCAPTCHAIsApproved && <PreventFromNavigating onMouseEnter={remindAboutCaptcha} onClick={remindAboutCaptcha} />}
 
             <Paragraph>One last step before sending a message.</Paragraph>
             <GoogleReCAPTCHA setReCAPTCHAIsApproved={setReCAPTCHAIsApproved} />

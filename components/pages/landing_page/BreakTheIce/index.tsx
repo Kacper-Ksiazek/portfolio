@@ -14,7 +14,7 @@ import NavigationBetweenStages from "./NavigationBetweenStages";
 import RenderWhenVisible from "@/components/utils/RenderWhenVisible";
 import { BreakTheIceContextProvider } from "./contexts/BreakTheIceContentContext";
 // Styled Components
-import BreakTheIceBase from "./styled_components/BreakTheIceBase";
+import BreakTheIceBase from "./Base";
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
 
 const BreakTheIce: FunctionComponent = () => {
@@ -50,7 +50,15 @@ const BreakTheIce: FunctionComponent = () => {
             id="about-me"
             contentWrapperSx={{ display: "flex" }}
         >
-            <RenderWhenVisible>
+            <RenderWhenVisible
+                sx={{
+                    flexGrow: 1, //
+                    display: "flex",
+                    "@media (max-width:1000px)": {
+                        minHeight: "1100px",
+                    },
+                }}
+            >
                 <BreakTheIceBase>
                     <Content />
                     <Picture />

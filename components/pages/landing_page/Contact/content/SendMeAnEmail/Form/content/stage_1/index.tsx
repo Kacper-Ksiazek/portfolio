@@ -24,14 +24,14 @@ const EmailFormSubsection1: FunctionComponent = (props) => {
                 color="secondary"
                 value={form.author}
                 onChange={(e) => updateForm({ author: e.target.value })}
-                error={invalidFormFields.includes("author")}
+                error={form.author !== "" && invalidFormFields.includes("author")}
             />
             <StyledInput
                 label="Subject" //
                 color="secondary"
                 value={form.subject}
                 onChange={(e) => updateForm({ subject: e.target.value })}
-                error={invalidFormFields.includes("subject")}
+                error={form.subject !== "" && invalidFormFields.includes("subject")}
             />
             <StyledInput
                 label="Message" //
@@ -40,7 +40,7 @@ const EmailFormSubsection1: FunctionComponent = (props) => {
                 rows={4}
                 value={form.message}
                 onChange={(e) => updateForm({ message: e.target.value })}
-                error={invalidFormFields.includes("message")}
+                error={form.message !== "" && invalidFormFields.includes("message")}
             />
             <LengthNotification>{form.message.length} / 500</LengthNotification>
         </>

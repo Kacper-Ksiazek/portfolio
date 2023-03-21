@@ -2,7 +2,13 @@
 import { keyframes } from "@mui/material";
 
 type Animation = [ReturnType<typeof keyframes>, number, number] | [ReturnType<typeof keyframes>, number];
-
+/**
+ *
+ * Takes an array of tuples matching following pattern:
+ * ```ts
+ * [animation, duration:number, delay:number]
+ * ```
+ */
 export function chainAnimations(animations: Animation[]): string {
     let totalDelay = 0;
     let result: string[] = [];

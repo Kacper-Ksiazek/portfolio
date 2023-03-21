@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { styled, alpha } from "@mui/material";
 // Styled components
 export const ColoredHeader = styled("h3")(({ theme }) => ({
     fontSize: "30px",
@@ -23,4 +23,5 @@ export const Description = styled("p")(({ theme }) => ({
     fontSize: "24px",
     textAlign: "center",
     margin: "10px 0 20px 0",
+    color: alpha(theme.palette.text.primary, 0.8),
 }));

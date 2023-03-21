@@ -36,7 +36,7 @@ const SingleSnackbar: FunctionComponent<SingleSnackbarProps> = (props) => {
     }, []);
 
     return (
-        <SingleSnackbarBase className={[props.displayHidingAnimation ? "outro" : "", props.severity].join(" ")}>
+        <SingleSnackbarBase className={[props.displayHidingAnimation ? "outro" : "", props.severity, "single-snackbar"].join(" ")}>
             <StyledAlert
                 severity={props.severity} //
                 variant="filled"

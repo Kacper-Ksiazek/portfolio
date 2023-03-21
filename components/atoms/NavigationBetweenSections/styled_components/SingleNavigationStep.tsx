@@ -1,9 +1,7 @@
 // Tools
-import { styled, alpha } from "@mui/material";
+import { styled } from "@mui/material";
 // Styled components
-export default styled("div", {
-    shouldForwardProp: (prop: string) => !["subtleBackground"].includes(prop),
-})<{ subtleBackground: boolean }>(({ theme, ...props }) => ({
+export default styled("div")(({ theme, ...props }) => ({
     fontWeight: 500,
     fontSize: "18px",
     position: "relative",
@@ -12,7 +10,6 @@ export default styled("div", {
     padding: "0 10px",
     transition: "background .2s",
     borderRadius: "3px",
-    background: props.subtleBackground && theme.palette.mode === "dark" ? alpha(theme.palette.text.primary, 0.14) : "transparent",
     "&:before": {
         content: "''",
         position: "absolute",

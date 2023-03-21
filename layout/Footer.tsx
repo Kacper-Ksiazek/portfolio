@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { styled, alpha } from "@mui/material";
 // Types
 import type { FunctionComponent } from "react";
 // Styled Components
@@ -28,6 +28,9 @@ const FooterBase = styled("footer")(({ theme }) => ({
         margin: "0 auto 0px auto",
         borderRadius: "0px",
     },
+    ".years": {
+        color: alpha("#fff", 0.8),
+    },
 }));
 const AuthorHeader = styled("h4")(({ theme }) => ({
     margin: "10px 0 0 0",
@@ -45,7 +48,7 @@ const Footer: FunctionComponent = () => {
     return (
         <FooterBase>
             <AuthorHeader>Created by: Kacper Książek</AuthorHeader>
-            <span>2019 - 2023</span>
+            <span className="years">2019 - 2023</span>
         </FooterBase>
     );
 };

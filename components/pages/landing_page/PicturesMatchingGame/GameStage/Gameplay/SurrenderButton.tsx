@@ -18,6 +18,12 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
         background: "#fff",
         fontSize: "18px",
     },
+    ".MuiDialogTitle-root": {
+        color: "#000",
+    },
+    ".MuiDialogContentText-root": {
+        color: "#000",
+    },
 }));
 const DialogButton = styled(StyledButton)(({ theme }) => ({
     fontSize: "18px",

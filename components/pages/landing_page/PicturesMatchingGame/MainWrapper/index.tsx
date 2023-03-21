@@ -26,8 +26,8 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                 index: 2,
                 icon: <Code />,
                 description: `Another very frequently seen portfolio project is a images matching game, so I had decided to code my version of it either in order to spice up everything and more importantly to create second content separator.`,
+                render: !props.preventHeaderFromRendering,
             }}
-            renderHeader={!props.preventHeaderFromRendering}
             sx={{
                 "button.navigation": {
                     fontSize: "20px",

@@ -10,7 +10,6 @@ import { Divider, SingleNavigationStep, NavigationBetweenSectionsBase } from "./
 interface NavigationBetweenSectionsProps {
     sections: Section[];
     currentSection: string;
-    subtleBackground?: boolean;
     onChoose: (val: string) => void;
 }
 
@@ -31,7 +30,6 @@ const NavigationBetweenSections: FunctionComponent<NavigationBetweenSectionsProp
                                 props.currentSection === value ? "selected" : "",
                             ].join(" ")} //
                             onClick={onClick}
-                            subtleBackground={props.subtleBackground ?? false}
                         >
                             <span className="text" onClick={onClick}>
                                 {label}

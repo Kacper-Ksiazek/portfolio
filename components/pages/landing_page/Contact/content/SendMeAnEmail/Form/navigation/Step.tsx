@@ -55,22 +55,6 @@ const StyledStep = styled("div")(({ theme }) => ({
             },
         },
     },
-    "&:not(&:nth-of-type(1))": {
-        marginLeft: "96px",
-        "&::before": {
-            content: "''",
-            position: "absolute",
-            top: "50%",
-            left: "0",
-            transform: "translate(-80px, -50%)",
-            width: "64px",
-            height: "2px",
-            background:
-                theme.palette.mode === "light" //
-                    ? alpha("#000", 0.12)
-                    : alpha("#fff", 0.3),
-        },
-    },
     "&.active": {
         cursor: "default",
         "span.index::before": {
@@ -98,6 +82,9 @@ const StyledStep = styled("div")(({ theme }) => ({
         "span.index span.content.complete": {
             opacity: 0,
         },
+    },
+    "@media (max-width:700px)": {
+        fontSize: "16px",
     },
 }));
 

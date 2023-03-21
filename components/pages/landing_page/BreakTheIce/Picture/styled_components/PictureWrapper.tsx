@@ -5,7 +5,7 @@ export default styled("div")(({ theme }) => ({
     position: "absolute",
     left: "50%",
     top: "20px",
-    height: "450px",
+    aspectRatio: "16/12",
     maxWidth: "550px",
     width: "calc(100% - 30px)",
     transform: "translateX(-50%)",

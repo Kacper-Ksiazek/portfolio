@@ -7,6 +7,8 @@ export interface HeaderProps {
     main: string;
     description: string;
     icon: ReactNode;
+
+    render?: boolean;
 }
 
 export interface DarkSectionWrapperProps {
@@ -31,5 +33,4 @@ export interface DarkSectionWrapperProps {
     className?: string;
     id?: string;
     childrenOutsideContent?: ReactNode;
-    renderHeader?: boolean;
 }

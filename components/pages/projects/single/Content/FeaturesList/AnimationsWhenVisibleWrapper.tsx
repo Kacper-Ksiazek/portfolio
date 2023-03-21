@@ -21,7 +21,9 @@ const AnimationsWhenVisibleWrapper: FunctionComponent<AnimationsWhenVisibleWrapp
                 flexDirection: "column",
                 alignItems: "center",
             }}
+            from={{ opacity: 0 }}
             to={(theme) => ({
+                opacity: 1,
                 "#features-display-toggler": {
                     animation: `${fadeSimple} .3s 1.4s both`,
                 },

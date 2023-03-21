@@ -21,7 +21,7 @@ const Education: FunctionComponent = () => {
                 *never making excuses* and the term of hard working was never something strange for me.`)}
             </Paragraph>
             <OverflowScrollDiv
-                maxHeight="380px" //
+                maxHeight="350px" //
                 sx={{
                     mt: "20px", //
                 }}

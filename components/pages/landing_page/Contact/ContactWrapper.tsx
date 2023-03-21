@@ -63,7 +63,6 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                                     },
                                 ] as { label: string; value: GeneralContactSection }[]
                             } //
-                            subtleBackground
                             currentSection={props.currentGeneralSection}
                             onChoose={(val) => props.setCurrentGeneralSection(val as any)}
                         />
@@ -91,7 +90,13 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
         >
             <RenderWhenVisible
                 onVisible={() => setRenderMap(true)} //
-                sx={props.hideContent ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}}
+                sx={{
+                    flexGrow: 1,
+                    ...(props.hideContent ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}),
+                    minHeight: "600px",
+                    display: "flex",
+                    flexDirection: "column",
+                }}
             >
                 {props.children}
             </RenderWhenVisible>
