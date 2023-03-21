@@ -1,6 +1,6 @@
 // Tools
 import { fadeSimple } from "@/components/keyframes/intro";
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
+import { useRequestContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useRequestContext";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
@@ -16,7 +16,7 @@ interface PendingFeignedPartProps {
 }
 
 const PendingFeignedPart: FunctionComponent<PendingFeignedPartProps> = (props) => {
-    const { updateRequest } = useSendEmailContext();
+    const { updateRequest } = useRequestContext();
 
     return (
         <>

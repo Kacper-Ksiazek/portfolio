@@ -1,13 +1,15 @@
 // Tools
 import axios from "axios";
-import { useSendEmailContext } from "../../hooks/useSendEmailContext";
+import { useRequestContext } from "../useRequestContext";
+import { useFormContext } from "@/components/pages/landing_page/Contact/hooks/useFormContext";
 // Types
 import type { SetStateAction, Dispatch } from "react";
 
 const API_ADDRESS = "./api/send_email";
 
 export const useSendRequestQuery = (setAlreadySentEmail: Dispatch<SetStateAction<string | null>>): (() => Promise<void>) => {
-    const { updateRequest, form } = useSendEmailContext();
+    const { updateRequest } = useRequestContext();
+    const { form } = useFormContext();
 
     return async () => {
         const { author, subject, message, email, country, linkedIn, website } = form;

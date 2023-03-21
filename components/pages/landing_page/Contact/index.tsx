@@ -6,7 +6,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import ContactWrapper from "./ContactWrapper";
 import WaysToReachMe from "./content/WaysToReachMe";
-import { MapContextProvider, ContactNavigationContextProvider } from "./contexts";
+import { MapContextProvider, ContactNavigationContextProvider, FormContextProvider } from "./contexts";
 
 const SendMeAnEmail = dynamic(() => import("./content/SendMeAnEmail"));
 // Styled Components
@@ -37,9 +37,11 @@ const Contact: FunctionComponent = () => {
 const ContactWithContexts: FunctionComponent = () => {
     return (
         <ContactNavigationContextProvider>
-            <MapContextProvider>
-                <Contact />
-            </MapContextProvider>
+            <FormContextProvider>
+                <MapContextProvider>
+                    <Contact />
+                </MapContextProvider>
+            </FormContextProvider>
         </ContactNavigationContextProvider>
     );
 };

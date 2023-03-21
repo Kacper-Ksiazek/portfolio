@@ -1,8 +1,7 @@
 // Tools
 import { useEffect } from "react";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
-import { useContactNavigation } from "@/components/pages/landing_page/Contact/hooks/useContactNavigation";
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
+import { useContactNavigation, useFormContext } from "@/components/pages/landing_page/Contact/hooks";
 // Types
 import type { EmailFormSubsection } from "@/components/pages/landing_page/Contact/@types";
 
@@ -14,7 +13,7 @@ interface UseSectionsParserResult {
 
 export function useSectionsParser(sendRequest: () => void): UseSectionsParserResult {
     const contactNavigationContext = useContactNavigation();
-    const { invalidFormFields } = useSendEmailContext();
+    const { invalidFormFields } = useFormContext();
 
     const emailFormSubsection = contactNavigationContext.stages.form.current;
 

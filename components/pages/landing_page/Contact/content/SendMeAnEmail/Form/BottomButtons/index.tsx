@@ -1,8 +1,8 @@
 // Tools
 import { styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
-import { useContactNavigation } from "@/components/pages/landing_page/Contact/hooks/useContactNavigation";
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
+import { useContactNavigation, useFormContext } from "@/components/pages/landing_page/Contact/hooks";
+import { useRequestContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useRequestContext";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
@@ -40,7 +40,8 @@ interface BottomButtonsProps {
 }
 const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
     const contactNavigationContext = useContactNavigation();
-    const { updateRequest, invalidFormFields } = useSendEmailContext();
+    const { updateRequest } = useRequestContext();
+    const { invalidFormFields } = useFormContext();
 
     function feignSucceededRequest() {
         updateRequest({ status: "pending" });

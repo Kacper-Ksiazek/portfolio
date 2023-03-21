@@ -1,5 +1,5 @@
 // Tools
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
+import { useRequestContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useRequestContext";
 
 interface UseRequestParserResult {
     isStaged: boolean;
@@ -16,7 +16,7 @@ interface UseRequestParserResult {
 }
 
 export function useRequestParser(sendRequest: () => void): UseRequestParserResult {
-    const { updateRequest, request } = useSendEmailContext();
+    const { updateRequest, request } = useRequestContext();
     const { status } = request;
 
     function goBackToTheForm() {

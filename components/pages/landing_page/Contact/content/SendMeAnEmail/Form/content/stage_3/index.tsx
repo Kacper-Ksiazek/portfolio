@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { fadeSimple } from "@/components/keyframes/intro";
 import { styled } from "@mui/material";
 import { fadeFromLeft } from "@/components/keyframes/intro";
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
+import { useFormContext } from "@/components/pages/landing_page/Contact/hooks/useFormContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -28,7 +28,7 @@ const PreventFromNavigating = styled("span")(({ theme }) => ({
 }));
 
 const EmailFormSubsection1: FunctionComponent = (props) => {
-    const { updateForm, form } = useSendEmailContext();
+    const { updateForm, form } = useFormContext();
     const [identityReminder, setIdentityReminder] = useState<boolean>(false);
 
     function setReCAPTCHAIsApproved(val: boolean) {

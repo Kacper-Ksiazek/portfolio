@@ -1,7 +1,7 @@
 // Tools
 import { useEffect } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { useSendEmailContext } from "./hooks/useSendEmailContext";
+import { useRequestContext } from "./hooks/useRequestContext";
 import { useSendRequestQuery } from "./hooks/queries/useSendRequestQuery";
 import { useSpecialWayOfRendering } from "./hooks/useSpecialWayOfRendering";
 import { useMapContext } from "@/components/pages/landing_page/Contact/hooks/useMapContext";
@@ -10,7 +10,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import Form from "./Form";
 import ProcessRequest from "./ProcessRequest";
-import { SendEmailContextProvider } from "./contexts";
+import { RequestContextProvider } from "./contexts/requestContext";
 // Styled Components
 import SectionWrapper from "../_SectionWrapper";
 
@@ -20,7 +20,7 @@ const SendMeAnEmail: FunctionComponent = () => {
     const specialWayOfRendering = useSpecialWayOfRendering();
     const sendRequest = useSendRequestQuery(setAlreadySentEmail);
 
-    const { request } = useSendEmailContext();
+    const { request } = useRequestContext();
     const { changeMapStatus } = useMapContext();
 
     useEffect(() => {
@@ -65,9 +65,9 @@ const SendMeAnEmail: FunctionComponent = () => {
 
 const SendMeAnEmailContextsWrapper: FunctionComponent = () => {
     return (
-        <SendEmailContextProvider>
+        <RequestContextProvider>
             <SendMeAnEmail />
-        </SendEmailContextProvider>
+        </RequestContextProvider>
     );
 };
 

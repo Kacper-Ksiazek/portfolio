@@ -1,13 +1,13 @@
 // Tools
 import { useState, useEffect } from "react";
-import { useSendEmailContext } from "../hooks/useSendEmailContext";
+import { useRequestContext } from "./useRequestContext";
 // Types
-import type { Status } from "../contexts/@types";
+import type { Status } from "../contexts/requestContext";
 
 type SpecialWayOfRendering = null | "displayOutroAnimation" | "hideIt";
 
 export function useSpecialWayOfRendering(): SpecialWayOfRendering {
-    const { request, updateRequest } = useSendEmailContext();
+    const { request, updateRequest } = useRequestContext();
     const [specialWayOfRendering, setSpecialWayOfRendering] = useState<SpecialWayOfRendering>(null);
 
     useEffect(() => {

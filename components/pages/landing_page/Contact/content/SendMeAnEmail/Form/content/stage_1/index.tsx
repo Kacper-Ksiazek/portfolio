@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { fadeFromTop } from "@/components/keyframes/intro";
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
+import { useFormContext } from "@/components/pages/landing_page/Contact/hooks/useFormContext";
 // Types
 import type { FunctionComponent } from "react";
 // Styled Components
@@ -14,8 +14,8 @@ const LengthNotification = styled("span")(({ theme }) => ({
     animation: `${fadeFromTop} .2s .4s linear backwards`,
 }));
 
-const EmailFormSubsection1: FunctionComponent = (props) => {
-    const { form, updateForm, invalidFormFields } = useSendEmailContext();
+const EmailFormSubsection1: FunctionComponent = () => {
+    const { form, updateForm, invalidFormFields } = useFormContext();
 
     return (
         <>

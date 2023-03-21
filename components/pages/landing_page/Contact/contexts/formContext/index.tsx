@@ -2,31 +2,36 @@
 import { createContext, useMemo } from "react";
 import * as validators from "./utils/joi_validators";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
-import * as reducersDefaultValues from "./utils/reducersDefaultValues";
 import { useContactNavigation } from "@/components/pages/landing_page/Contact/hooks/useContactNavigation";
 // Types
-import type { EmailForm, Request } from "./@types";
+import type { EmailForm } from "./@types";
 import type { FunctionComponent, ReactNode } from "react";
 
-interface I_SendEmailContext {
+interface I_FormContext {
     form: EmailForm;
-    request: Request;
     invalidFormFields: (keyof EmailForm)[];
 
     updateForm: (newForm: Partial<EmailForm>) => void;
-    updateRequest: (newForm: Partial<Request>) => void;
 }
 
-interface SendEmailContextProviderProps {
+interface FormContextProviderProps {
     children: ReactNode;
 }
 
-export const SendEmailContext = createContext({} as I_SendEmailContext);
+export const formContext = createContext({} as I_FormContext);
 
-export const SendEmailContextProvider: FunctionComponent<SendEmailContextProviderProps> = (props) => {
+const FormContextProvider: FunctionComponent<FormContextProviderProps> = (props) => {
     const contactNavigationContext = useContactNavigation();
-    const [form, updateForm] = useSimpleReducer<EmailForm>(reducersDefaultValues.EMPTY_FORM_STATE);
-    const [request, updateRequest] = useSimpleReducer<Request>(reducersDefaultValues.EMPTY_REQUEST_STATE);
+    const [form, updateForm] = useSimpleReducer<EmailForm>({
+        author: "",
+        country: null,
+        email: "",
+        linkedIn: "",
+        message: "",
+        subject: "",
+        website: "",
+        ReCAPTCHAIsApproved: false,
+    });
 
     const emailFormSubsection = contactNavigationContext.stages.form.current;
 
@@ -51,17 +56,17 @@ export const SendEmailContextProvider: FunctionComponent<SendEmailContextProvide
     }, [emailFormSubsection, form]);
 
     return (
-        <SendEmailContext.Provider
+        <formContext.Provider
             value={{
                 form,
                 invalidFormFields,
-                request,
 
                 updateForm,
-                updateRequest,
             }}
         >
             {props.children}
-        </SendEmailContext.Provider>
+        </formContext.Provider>
     );
 };
+
+export default FormContextProvider;
