@@ -17,7 +17,7 @@ import Facebook from "@mui/icons-material/Facebook";
 import LinkedIn from "@mui/icons-material/LinkedIn";
 import { Label, Paragraph } from "@/components/pages/landing_page/BreakTheIce/Content/_styled_components";
 // Styled components
-import SectionWrapper from "../SectionWrapper";
+import SectionWrapper from "../_SectionWrapper";
 
 const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
     return (

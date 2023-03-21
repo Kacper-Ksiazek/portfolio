@@ -3,11 +3,12 @@ import dynamic from "next/dynamic";
 import { useState, useMemo } from "react";
 import { useMapContext } from "./hooks/useMapContext";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
+import { useContactNavigation } from "./hooks/useContactNavigation";
 import { generateFadeSimpleAnimations } from "@/components/atoms/NavigationBetweenSections/helpers/generateFadeSimpleAnimations";
 // Types
 import type { Styles } from "@/@types/MUI";
+import type { GeneralContactSection } from "./@types";
 import type { FunctionComponent, ReactNode } from "react";
-import type { GeneralContactSection, EmailFormSubsection } from "./@types";
 // Other components
 const Map = dynamic(() => import("./Map"));
 import RenderWhenVisible from "@/components/utils/RenderWhenVisible";
@@ -17,19 +18,17 @@ import LightSectionWrapper from "@/components/atoms/content_placement/SectionWra
 
 interface ContactWrapperProps {
     children: ReactNode;
-
-    hideContent: boolean;
-    emailFormSubsection: EmailFormSubsection;
-    currentGeneralSection: GeneralContactSection;
-    setCurrentGeneralSection: (val: GeneralContactSection) => void;
 }
 
 const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
     const [renderMap, setRenderMap] = useState<boolean>(false);
     const { status } = useMapContext();
+    const navigationContext = useContactNavigation();
+
+    const generalSection = navigationContext.stages.generalSection.current;
 
     const backgroundLetterSx = useMemo<Styles>(() => {
-        switch (props.currentGeneralSection) {
+        switch (generalSection) {
             case "SEND_EMAIL_FORM":
                 return {
                     opacity: 0,
@@ -41,7 +40,7 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                     transition: "opacity 1s .8s",
                 };
         }
-    }, [props.currentGeneralSection]);
+    }, [generalSection]);
 
     return (
         <LightSectionWrapper
@@ -63,8 +62,8 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                                     },
                                 ] as { label: string; value: GeneralContactSection }[]
                             } //
-                            currentSection={props.currentGeneralSection}
-                            onChoose={(val) => props.setCurrentGeneralSection(val as any)}
+                            currentSection={generalSection}
+                            onChoose={(val: string) => navigationContext.updaters.setCurrentGeneralSection(val as any)}
                         />
                     ),
                     whenVisible: {
@@ -80,8 +79,8 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                 renderMap ? (
                     <Map
                         status={status} //
-                        emailFormSubsection={props.emailFormSubsection}
-                        currentGeneralSection={props.currentGeneralSection}
+                        emailFormSubsection={navigationContext.stages.form.current}
+                        currentGeneralSection={generalSection}
                     />
                 ) : (
                     <></>
@@ -92,7 +91,7 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                 onVisible={() => setRenderMap(true)} //
                 sx={{
                     flexGrow: 1,
-                    ...(props.hideContent ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}),
+                    ...(navigationContext.stages.generalSection.isChanging ? { animation: `${fadeSimpleOUT} .3s both linear` } : {}),
                     minHeight: "600px",
                     display: "flex",
                     flexDirection: "column",

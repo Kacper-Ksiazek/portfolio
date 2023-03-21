@@ -1,50 +1,27 @@
 // Tools
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useSendEmailContext } from "./hooks/useSendEmailContext";
 import { useSendRequestQuery } from "./hooks/queries/useSendRequestQuery";
+import { useSpecialWayOfRendering } from "./hooks/useSpecialWayOfRendering";
 import { useMapContext } from "@/components/pages/landing_page/Contact/hooks/useMapContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { Status } from "./contexts/@types";
-import type { EmailFormSubsection } from "@/components/pages/landing_page/Contact/@types";
 // Other components
 import Form from "./Form";
 import ProcessRequest from "./ProcessRequest";
 import { SendEmailContextProvider } from "./contexts";
 // Styled Components
-import SectionWrapper from "../SectionWrapper";
+import SectionWrapper from "../_SectionWrapper";
 
 const SendMeAnEmail: FunctionComponent = () => {
-    const [specialWayOfRendering, setSpecialWayOfRendering] = useState<null | "displayOutroAnimation" | "hideIt">(null);
     const [alreadySentEmail, setAlreadySentEmail] = useLocalStorage<string | null>("email-has-been-already-send", null, { keepOriginalValue: true });
 
-    const { changeMapStatus } = useMapContext();
-    const { updateRequest, request } = useSendEmailContext();
-
+    const specialWayOfRendering = useSpecialWayOfRendering();
     const sendRequest = useSendRequestQuery(setAlreadySentEmail);
 
-    useEffect(() => {
-        if (specialWayOfRendering === null && request.status === "fillingForm") return;
-
-        if ((["fillingForm", "form_after_error", "form_after_success"] as Status[]).includes(request.status)) {
-            setSpecialWayOfRendering(null);
-            // ---
-            // Let the outro animation end and then simply stop rendering <ProcessRequest/> component
-            if ((["form_after_error", "form_after_success"] as Status[]).includes(request.status)) {
-                setTimeout(() => {
-                    updateRequest({ status: "fillingForm" });
-                }, 300);
-            }
-        }
-        //
-        else if (specialWayOfRendering === null) {
-            setSpecialWayOfRendering("displayOutroAnimation");
-            setTimeout(() => {
-                setSpecialWayOfRendering("hideIt");
-            }, 800);
-        }
-    }, [specialWayOfRendering, request.status, updateRequest]);
+    const { request } = useSendEmailContext();
+    const { changeMapStatus } = useMapContext();
 
     useEffect(() => {
         const status = request.status;
@@ -86,20 +63,10 @@ const SendMeAnEmail: FunctionComponent = () => {
     );
 };
 
-interface SendMeAnEmailContextsWrapperProps {
-    emailFormSubsection: EmailFormSubsection;
-    setEmailFormSubsection: (val: EmailFormSubsection) => void;
-}
-
-const SendMeAnEmailContextsWrapper: FunctionComponent<SendMeAnEmailContextsWrapperProps> = (props) => {
+const SendMeAnEmailContextsWrapper: FunctionComponent = () => {
     return (
-        <SendEmailContextProvider
-            emailFormSubsection={props.emailFormSubsection} //
-            _setEmailFormSubsection={props.setEmailFormSubsection}
-        >
-            {/*  */}
+        <SendEmailContextProvider>
             <SendMeAnEmail />
-            {/*  */}
         </SendEmailContextProvider>
     );
 };

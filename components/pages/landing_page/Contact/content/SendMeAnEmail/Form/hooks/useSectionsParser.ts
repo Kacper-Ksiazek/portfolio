@@ -1,6 +1,7 @@
 // Tools
 import { useEffect } from "react";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
+import { useContactNavigation } from "@/components/pages/landing_page/Contact/hooks/useContactNavigation";
 import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { EmailFormSubsection } from "@/components/pages/landing_page/Contact/@types";
@@ -12,7 +13,10 @@ interface UseSectionsParserResult {
 }
 
 export function useSectionsParser(sendRequest: () => void): UseSectionsParserResult {
-    const { setEmailFormSubsection, emailFormSubsection, invalidFormFields } = useSendEmailContext();
+    const contactNavigationContext = useContactNavigation();
+    const { invalidFormFields } = useSendEmailContext();
+
+    const emailFormSubsection = contactNavigationContext.stages.form.current;
 
     const [validSections, updateValidSections] = useSimpleReducer<UseSectionsParserResult["validSections"]>({
         CONTACT_DETAILS: false,
@@ -29,10 +33,10 @@ export function useSectionsParser(sendRequest: () => void): UseSectionsParserRes
         if (everythingHasBeenFulfilledProperly) return sendRequest();
 
         if (emailFormSubsection === "GENERAL_PURPOSE") {
-            setEmailFormSubsection(validSections.CONTACT_DETAILS ? "RECAPTCHA" : "CONTACT_DETAILS");
+            contactNavigationContext.updaters.setEmailFormSubsection(validSections.CONTACT_DETAILS ? "RECAPTCHA" : "CONTACT_DETAILS");
         } //
         else if (emailFormSubsection === "CONTACT_DETAILS") {
-            setEmailFormSubsection(validSections.GENERAL_PURPOSE ? "RECAPTCHA" : "GENERAL_PURPOSE");
+            contactNavigationContext.updaters.setEmailFormSubsection(validSections.GENERAL_PURPOSE ? "RECAPTCHA" : "GENERAL_PURPOSE");
         }
     }
 

@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
+import { useContactNavigation } from "@/components/pages/landing_page/Contact/hooks/useContactNavigation";
 import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -38,7 +39,8 @@ interface BottomButtonsProps {
     onContinueButtonClick: () => void;
 }
 const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
-    const { updateRequest, invalidFormFields, emailFormSubsection, form } = useSendEmailContext();
+    const contactNavigationContext = useContactNavigation();
+    const { updateRequest, invalidFormFields } = useSendEmailContext();
 
     function feignSucceededRequest() {
         updateRequest({ status: "pending" });
@@ -66,7 +68,7 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
             </ContinueButton>
 
             {(() => {
-                if (emailFormSubsection !== "RECAPTCHA") {
+                if (contactNavigationContext.stages.form.current !== "RECAPTCHA") {
                     return (
                         <div className="flex">
                             <ButtonWithTooltip

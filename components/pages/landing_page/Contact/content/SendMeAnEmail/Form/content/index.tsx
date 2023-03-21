@@ -1,8 +1,8 @@
 // Tools
 import dynamic from "next/dynamic";
+import { useContactNavigation } from "@/components/pages/landing_page/Contact/hooks/useContactNavigation";
 // Types
 import type { FunctionComponent } from "react";
-import type { EmailFormSubsection } from "@/components/pages/landing_page/Contact/@types";
 // Other components
 const Stage1 = dynamic(() => import("./stage_1"));
 const Stage2 = dynamic(() => import("./stage_2"));
@@ -10,23 +10,20 @@ const Stage3 = dynamic(() => import("./stage_3"));
 // Styled components
 import ContentWrapper from "./ContentWrapper";
 
-interface FormContentProps {
-    emailFormSubsection: EmailFormSubsection;
-    emailFormSubsectionIsChanging: boolean;
-}
+const FormContent: FunctionComponent = (props) => {
+    const contactNavigationContext = useContactNavigation();
 
-const FormContent: FunctionComponent<FormContentProps> = (props) => {
-    const { emailFormSubsection, emailFormSubsectionIsChanging } = props;
+    const emailFormSubsection = contactNavigationContext.stages.form.current;
 
     return (
         <ContentWrapper
             className={[
-                emailFormSubsectionIsChanging ? "form-stage-is-changing" : "", //
+                contactNavigationContext.stages.form.isChanging ? "form-stage-is-changing" : "", //
                 emailFormSubsection,
             ].join(" ")}
         >
             {(() => {
-                switch (props.emailFormSubsection) {
+                switch (emailFormSubsection) {
                     case "GENERAL_PURPOSE":
                         return <Stage1 />;
                     case "CONTACT_DETAILS":
