@@ -36,8 +36,10 @@ const ButtonsBottomWrapper = styled("footer")(({ theme }) => ({
 }));
 
 interface BottomButtonsProps {
+    continueButtonMsg: string;
     onContinueButtonClick: () => void;
 }
+
 const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
     const contactNavigationContext = useContactNavigation();
     const { updateRequest } = useRequestContext();
@@ -65,7 +67,7 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
                 className="continue"
                 color="primary"
             >
-                <span className="text">Continue</span>
+                <span className="text">{props.continueButtonMsg}</span>
             </ContinueButton>
 
             {(() => {

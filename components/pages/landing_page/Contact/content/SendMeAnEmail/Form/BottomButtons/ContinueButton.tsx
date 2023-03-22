@@ -4,41 +4,43 @@ import { styled } from "@mui/material";
 import StyledButton from "@/components/atoms/forms/StyledButton";
 
 export default styled(StyledButton)(({ theme }) => ({
-    background: theme.palette.primary.main,
     alignSelf: "flex-start",
     padding: "12px 32px",
     fontFamily: "Montserrat Alternates",
     overflow: "hidden",
     height: "42px",
+    fontSize: "16px",
+    position: "relative",
+    "&:not(&.Mui-disabled)": {
+        background: `${theme.palette.primary.main} !important` as any,
+        "span.text": {
+            transition: "color .15s linear",
+        },
+    },
     "&:hover, &:focus": {
-        "&::after, &::before": {
-            transform: "translateX(0)",
-        },
-        "&::after": {
-            transition: "transform .15s .1s linear",
-        },
         "&::before": {
-            transition: "transform .15s  linear",
+            transform: "scaleY(1)",
+            width: "100%",
+            transition: "transform .15s linear",
+        },
+        "span.text": {
+            color: "#fff",
         },
     },
 
-    "&::after, &::before": {
+    "&::before": {
         content: "''",
         ...theme.mixins.absolute_full,
+        right: "0",
+        left: "auto",
+        background: theme.palette.secondary.main,
+        transform: "scaleY(0)",
+        width: "0%",
+        transition: "transform .001s .15s linear, width .15s linear",
     },
 
-    "&::after": {
-        background: theme.palette.secondary.main,
-        transform: "translateX(calc(100% + 10px))",
-        transition: "transform .15s linear",
-    },
-    "&::before": {
-        background: "#000",
-        transform: "translateX(calc(100% + 10px))",
-        transition: "transform .15s .1s linear",
-    },
     "span.text": {
-        position: "reltive",
+        position: "relative",
         zIndex: 2,
     },
 

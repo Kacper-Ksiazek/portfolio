@@ -1,15 +1,17 @@
 // Tools
-import { createContext, useMemo } from "react";
 import * as validators from "./utils/joi_validators";
+import { createContext, useMemo, useEffect } from "react";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useContactNavigation } from "@/components/pages/landing_page/Contact/hooks/useContactNavigation";
 // Types
 import type { EmailForm } from "./@types";
 import type { FunctionComponent, ReactNode } from "react";
+import type { EmailFormSubsection } from "@/components/pages/landing_page/Contact/@types";
 
 interface I_FormContext {
     form: EmailForm;
     invalidFormFields: (keyof EmailForm)[];
+    validSections: Record<EmailFormSubsection, boolean>;
 
     updateForm: (newForm: Partial<EmailForm>) => void;
 }
@@ -55,11 +57,22 @@ const FormContextProvider: FunctionComponent<FormContextProviderProps> = (props)
         }
     }, [emailFormSubsection, form]);
 
+    const [validSections, updateValidSections] = useSimpleReducer<Record<EmailFormSubsection, boolean>>({
+        CONTACT_DETAILS: false,
+        GENERAL_PURPOSE: false,
+        RECAPTCHA: false,
+    });
+
+    useEffect(() => {
+        updateValidSections({ [emailFormSubsection]: invalidFormFields.length === 0 });
+    }, [invalidFormFields, emailFormSubsection, updateValidSections]);
+
     return (
         <formContext.Provider
             value={{
                 form,
                 invalidFormFields,
+                validSections,
 
                 updateForm,
             }}

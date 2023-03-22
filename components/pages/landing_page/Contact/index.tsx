@@ -1,6 +1,7 @@
 // Tools
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
-import { useContactNavigation } from "./hooks/useContactNavigation";
+import { useContactNavigation, useFormContext } from "./hooks";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -13,12 +14,23 @@ const SendMeAnEmail = dynamic(() => import("./content/SendMeAnEmail"));
 
 const Contact: FunctionComponent = () => {
     const navigationContext = useContactNavigation();
+    const { validSections } = useFormContext();
 
     function writeToMe() {
         const el = document.getElementById("contact");
         if (el) el.scrollIntoView({ behavior: "smooth" });
         navigationContext.updaters.setCurrentGeneralSection("SEND_EMAIL_FORM");
     }
+
+    // Prevent from going back to the once approved recaptcha
+    const emailFormSubsection = navigationContext.stages.form.current;
+    const generalSection = navigationContext.stages.generalSection.current;
+
+    useEffect(() => {
+        if (emailFormSubsection === "RECAPTCHA" && generalSection === "WAYS_TO_REACH_ME" && validSections.RECAPTCHA) {
+            navigationContext.updaters.setEmailFormSubsection("GENERAL_PURPOSE");
+        }
+    }, [emailFormSubsection, generalSection, navigationContext.updaters, validSections]);
 
     return (
         <ContactWrapper>
