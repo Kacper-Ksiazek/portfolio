@@ -15,8 +15,3 @@ export interface EmailForm {
     website: string;
     ReCAPTCHAIsApproved: boolean;
 }
-
-export interface Request {
-    status: Status;
-    errorCode: number | null;
-}

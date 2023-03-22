@@ -14,6 +14,7 @@ interface AutocompleteProps {
     value: CountryType | null;
     error: boolean;
     onChange: (value: CountryType | null) => void;
+    color: "primary" | "secondary";
     sx?: SxProps;
 }
 const AutocompleteCountry: FunctionComponent<AutocompleteProps> = (props) => {
@@ -49,7 +50,7 @@ const AutocompleteCountry: FunctionComponent<AutocompleteProps> = (props) => {
                     <TextField
                         {...params}
                         label="Country"
-                        color="secondary"
+                        color={props.color}
                         inputProps={{
                             ...params.inputProps,
                         }}

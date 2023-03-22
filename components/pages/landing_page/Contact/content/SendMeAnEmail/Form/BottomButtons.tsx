@@ -1,13 +1,14 @@
 // Tools
 import { styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
+import { useContactNavigation, useFormContext } from "@/components/pages/landing_page/Contact/hooks";
+import { useRequestContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useRequestContext";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
 import CodeOff from "@mui/icons-material/CodeOff";
 // Styled components
-import ContinueButton from "./ContinueButton";
+import ContinueButton from "../../_ContinueButton";
 import ButtonWithTooltip from "@/components/atoms/forms/ButtonWithTooltip";
 
 const ButtonsBottomWrapper = styled("footer")(({ theme }) => ({
@@ -35,10 +36,14 @@ const ButtonsBottomWrapper = styled("footer")(({ theme }) => ({
 }));
 
 interface BottomButtonsProps {
+    continueButtonMsg: string;
     onContinueButtonClick: () => void;
 }
+
 const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
-    const { updateRequest, invalidFormFields, emailFormSubsection, form } = useSendEmailContext();
+    const contactNavigationContext = useContactNavigation();
+    const { updateRequest } = useRequestContext();
+    const { invalidFormFields } = useFormContext();
 
     function feignSucceededRequest() {
         updateRequest({ status: "pending" });
@@ -62,11 +67,11 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
                 className="continue"
                 color="primary"
             >
-                <span className="text">Continue</span>
+                <span className="text">{props.continueButtonMsg}</span>
             </ContinueButton>
 
             {(() => {
-                if (emailFormSubsection !== "RECAPTCHA") {
+                if (contactNavigationContext.stages.form.current !== "RECAPTCHA") {
                     return (
                         <div className="flex">
                             <ButtonWithTooltip

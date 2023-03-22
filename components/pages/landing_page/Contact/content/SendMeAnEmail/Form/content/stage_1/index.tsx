@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { fadeFromTop } from "@/components/keyframes/intro";
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
+import { useFormContext } from "@/components/pages/landing_page/Contact/hooks/useFormContext";
 // Types
 import type { FunctionComponent } from "react";
 // Styled Components
@@ -14,28 +14,28 @@ const LengthNotification = styled("span")(({ theme }) => ({
     animation: `${fadeFromTop} .2s .4s linear backwards`,
 }));
 
-const EmailFormSubsection1: FunctionComponent = (props) => {
-    const { form, updateForm, invalidFormFields } = useSendEmailContext();
+const EmailFormSubsection1: FunctionComponent<{ color: "primary" | "secondary" }> = (props) => {
+    const { form, updateForm, invalidFormFields } = useFormContext();
 
     return (
         <>
             <StyledInput
                 label="Your name" //
-                color="secondary"
+                color={props.color}
                 value={form.author}
                 onChange={(e) => updateForm({ author: e.target.value })}
                 error={form.author !== "" && invalidFormFields.includes("author")}
             />
             <StyledInput
                 label="Subject" //
-                color="secondary"
+                color={props.color}
                 value={form.subject}
                 onChange={(e) => updateForm({ subject: e.target.value })}
                 error={form.subject !== "" && invalidFormFields.includes("subject")}
             />
             <StyledInput
                 label="Message" //
-                color="secondary"
+                color={props.color}
                 multiline
                 rows={4}
                 value={form.message}

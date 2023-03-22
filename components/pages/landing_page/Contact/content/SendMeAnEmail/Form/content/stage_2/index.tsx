@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { fadeFromTop } from "@/components/keyframes/intro";
-import { useSendEmailContext } from "@/components/pages/landing_page/Contact/content/SendMeAnEmail/hooks/useSendEmailContext";
+import { useFormContext } from "@/components/pages/landing_page/Contact/hooks/useFormContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -17,8 +17,8 @@ const InformationAboutOptionality = styled("span")(({ theme }) => ({
     userSelect: "none",
 }));
 
-const EmailFormSubsection1: FunctionComponent = (props) => {
-    const { form, updateForm, invalidFormFields } = useSendEmailContext();
+const EmailFormSubsection1: FunctionComponent<{ color: "primary" | "secondary" }> = (props) => {
+    const { form, updateForm, invalidFormFields } = useFormContext();
 
     return (
         <>
@@ -26,10 +26,11 @@ const EmailFormSubsection1: FunctionComponent = (props) => {
                 value={form.country} //
                 onChange={(val) => updateForm({ country: val })}
                 error={form.country !== null && invalidFormFields.includes("country")}
+                color={props.color}
             />
             <StyledInput
                 label="Email" //
-                color="secondary"
+                color={props.color}
                 type="email"
                 value={form.email}
                 onChange={(e) => updateForm({ email: e.target.value })}
@@ -37,14 +38,14 @@ const EmailFormSubsection1: FunctionComponent = (props) => {
             />
             <StyledInput
                 label="LinkedIn*" //
-                color="secondary"
+                color={props.color}
                 value={form.linkedIn}
                 onChange={(e) => updateForm({ linkedIn: e.target.value })}
                 error={invalidFormFields.includes("linkedIn")}
             />
             <StyledInput
                 label="Website*" //
-                color="secondary"
+                color={props.color}
                 value={form.website}
                 onChange={(e) => updateForm({ website: e.target.value })}
                 error={invalidFormFields.includes("website")}
