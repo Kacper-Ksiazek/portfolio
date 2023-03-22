@@ -17,7 +17,7 @@ const InformationAboutOptionality = styled("span")(({ theme }) => ({
     userSelect: "none",
 }));
 
-const EmailFormSubsection1: FunctionComponent = () => {
+const EmailFormSubsection1: FunctionComponent<{ color: "primary" | "secondary" }> = (props) => {
     const { form, updateForm, invalidFormFields } = useFormContext();
 
     return (
@@ -26,10 +26,11 @@ const EmailFormSubsection1: FunctionComponent = () => {
                 value={form.country} //
                 onChange={(val) => updateForm({ country: val })}
                 error={form.country !== null && invalidFormFields.includes("country")}
+                color={props.color}
             />
             <StyledInput
                 label="Email" //
-                color="secondary"
+                color={props.color}
                 type="email"
                 value={form.email}
                 onChange={(e) => updateForm({ email: e.target.value })}
@@ -37,14 +38,14 @@ const EmailFormSubsection1: FunctionComponent = () => {
             />
             <StyledInput
                 label="LinkedIn*" //
-                color="secondary"
+                color={props.color}
                 value={form.linkedIn}
                 onChange={(e) => updateForm({ linkedIn: e.target.value })}
                 error={invalidFormFields.includes("linkedIn")}
             />
             <StyledInput
                 label="Website*" //
-                color="secondary"
+                color={props.color}
                 value={form.website}
                 onChange={(e) => updateForm({ website: e.target.value })}
                 error={invalidFormFields.includes("website")}
