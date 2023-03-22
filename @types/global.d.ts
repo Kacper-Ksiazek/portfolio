@@ -9,4 +9,6 @@ declare global {
 
     /** Sugar syntax type */
     type TimeInMS = number;
+
+    type A = string;
 }
