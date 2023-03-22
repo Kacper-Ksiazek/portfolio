@@ -18,6 +18,7 @@ import LinkedIn from "@mui/icons-material/LinkedIn";
 import { Label, Paragraph } from "@/components/pages/landing_page/BreakTheIce/Content/_styled_components";
 // Styled components
 import SectionWrapper from "../_SectionWrapper";
+import ContinueButton from "../_ContinueButton";
 
 const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
     return (
@@ -57,16 +58,11 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
                 />
             </Tooltip>
 
-            <StyledButton
+            <ContinueButton
                 color="primary"
                 onClick={props.writeToMe}
                 sx={{
                     mt: "32px", //
-                    padding: "6px 32px",
-                    height: "42px",
-                    display: "flex",
-                    fontFamily: "Montserrat Alternates",
-                    alignItems: "center",
                     animation: `${fadeSimple} .3s 2.4s both`,
                     svg: {
                         marginRight: "6px",
@@ -76,9 +72,11 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
                     },
                 }}
             >
-                <EmailIcon />
-                <span>Write to me</span>
-            </StyledButton>
+                <span className="text">
+                    <EmailIcon />
+                    <span>Write to me</span>
+                </span>
+            </ContinueButton>
         </SectionWrapper>
     );
 };

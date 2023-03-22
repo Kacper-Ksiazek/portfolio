@@ -14,7 +14,7 @@ export default styled(StyledButton)(({ theme }) => ({
     "&:not(&.Mui-disabled)": {
         background: `${theme.palette.primary.main} !important` as any,
         "span.text": {
-            transition: "color .15s linear",
+            color: "#fff",
         },
     },
     "&:hover, &:focus": {
@@ -22,9 +22,6 @@ export default styled(StyledButton)(({ theme }) => ({
             transform: "scaleY(1)",
             width: "100%",
             transition: "transform .15s linear",
-        },
-        "span.text": {
-            color: "#fff",
         },
     },
 
@@ -36,12 +33,14 @@ export default styled(StyledButton)(({ theme }) => ({
         background: theme.palette.secondary.main,
         transform: "scaleY(0)",
         width: "0%",
-        transition: "transform .001s .15s linear, width .15s linear",
+        transition: "transform .001s .2s linear, width .15s linear",
     },
 
     "span.text": {
         position: "relative",
         zIndex: 2,
+        display: "flex",
+        alignItems: "center",
     },
 
     "@media (max-width:500px)": {

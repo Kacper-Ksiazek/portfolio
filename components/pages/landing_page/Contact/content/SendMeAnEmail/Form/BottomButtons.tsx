@@ -8,7 +8,7 @@ import type { FunctionComponent } from "react";
 // Material UI Icons
 import CodeOff from "@mui/icons-material/CodeOff";
 // Styled components
-import ContinueButton from "./ContinueButton";
+import ContinueButton from "../../_ContinueButton";
 import ButtonWithTooltip from "@/components/atoms/forms/ButtonWithTooltip";
 
 const ButtonsBottomWrapper = styled("footer")(({ theme }) => ({
