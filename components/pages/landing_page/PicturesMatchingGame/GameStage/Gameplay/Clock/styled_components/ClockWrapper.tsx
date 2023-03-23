@@ -3,14 +3,8 @@ import { alpha, styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
 // Styled components
 const ProgressWrapper = styled("div")(({ theme }) => ({
-    "@media (min-width:1351px)": {
-        position: "fixed",
-        top: "calc(100vh)",
-        transform: "translateY(calc(-100% - 32px))",
-        right: "20px",
+    "@media (min-width:601px)": {
         animation: `${fadeSimple} .3s .2s both`,
-    },
-    "@media (max-width:1350px)": {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",

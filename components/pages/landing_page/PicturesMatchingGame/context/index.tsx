@@ -6,6 +6,7 @@ import { useNavigationBetweenStagesMethods } from "./_useNavigationBetweenStages
 import { requstDOMNode } from "@/components/pages/landing_page/PicturesMatchingGame/utils/getDOMNode";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
+import type { RecordTimeAction } from "@/@types/pages/PicturesMatchingGame/reducer";
 import type { PicturesMatchingGameContextInterface } from "@/@types/pages/PicturesMatchingGame/context";
 import type { Difficulty, PictureToMatch, UserChoiceAnimation } from "@/@types/pages/PicturesMatchingGame";
 
@@ -39,11 +40,13 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
         }
     };
 
-    const handlePictureOnClick = (clickedPicture: PictureToMatch) => {
+    function handlePictureOnClick(clickedPicture: PictureToMatch) {
         dispatch({ type: "HANDLE_ON_CLICK", payload: clickedPicture });
-    };
+    }
 
-    const incrementTime = () => dispatch({ type: "INCREMENT_TIME" });
+    function recordTime(payload: RecordTimeAction["payload"]) {
+        dispatch({ type: "RECORD_TIME", payload });
+    }
 
     useEffect(() => {
         const animation = gameplay.animation;
@@ -82,7 +85,7 @@ export const PicturesMatchingGameContextProvider: FunctionComponent<{ children: 
                 difficulty,
                 gameplay,
                 methods: {
-                    incrementTime,
+                    recordTime,
                     setDifficulty,
                     handlePictureOnClick,
                     setPictureToDisplayInFullsize,

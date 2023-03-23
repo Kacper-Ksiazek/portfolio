@@ -1,45 +1,41 @@
 // Tools
-import { useMemo } from "react";
-import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import { usePicturesMatchingGameContext } from "@/components/pages/landing_page/PicturesMatchingGame/hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
 import Timer from "./Timer";
-const ContinueButton = dynamic(() => import("./ContinueButton"));
 // Styled components
 import { ClockWrapper, ClockRow } from "./styled_components";
 
-const Clock: FunctionComponent<{ limitContent: boolean }> = (props) => {
-    const context = usePicturesMatchingGameContext();
+const INTRO_ANIMATION_DURATION: TimeInMS = 3000;
 
-    const countTime = useMemo<boolean>(() => {
-        return !context.gameplay.isExiting && context.gameplay.time.count;
-    }, [context.gameplay]);
+const Clock: FunctionComponent<{ limitContent: boolean }> = () => {
+    const context = usePicturesMatchingGameContext();
+    const { isCounting } = context.gameplay.time;
+
+    useEffect(() => {
+        if (context.gameplay.isOver && context.gameplay.time.isCounting) context.methods.recordTime("stop");
+        else if (!context.gameplay.time.isCounting && !context.gameplay.isOver) {
+            setTimeout(() => {
+                context.methods.recordTime("start");
+            }, INTRO_ANIMATION_DURATION);
+        }
+    }, [context.gameplay.isOver, context.gameplay.time.isCounting, context.methods]);
 
     return (
         <ClockWrapper
             id="pictures-matching-progress-wrapper"
             className={[
-                countTime ? "counting-active" : "", //
+                context.gameplay.time.isCounting ? "counting-active" : "", //
                 context.gameplay.isOver ? "is-over" : "",
             ].join(" ")}
         >
-            {!props.limitContent && (
-                <ContinueButton
-                    disabled={context.gameplay.isOver} //
-                    onClick={context.navigation.continueToTheGameSummary}
-                />
-            )}
-            <Timer
-                countTime={countTime} //
-                time={context.gameplay.time}
-                incrementTime={context.methods.incrementTime}
-            />
-
             <ClockRow>
                 Moves: <strong>{context.gameplay.moves.inTotal}</strong>
             </ClockRow>
+
+            <Timer countTime={isCounting} />
 
             <ClockRow>
                 Mode: <strong>{context.difficulty}</strong>
