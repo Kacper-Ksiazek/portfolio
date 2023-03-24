@@ -31,7 +31,7 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                 !context.gameplay.isExiting && context.navigation.stage === "GAMEPLAY" ? "gameplay-on" : "", //
                 context.navigation.stage === "SUMMARY" ? "summary" : "",
             ].join(" ")}
-            preventHeaderFromRendering={context.navigation.stage === "SUMMARY"}
+            preventHeaderFromRendering={context.navigation.stage === "SUMMARY" || context.navigation.stage === "GAMEPLAY"}
         >
             <ImageModelWithGallery />
 
@@ -44,8 +44,9 @@ const PicturesMatchingGame: FunctionComponent = (props) => {
                     justifyContent: "center",
                     alignItems: "center",
                     flexDirection: "column",
+                    flexGrow: 1,
                     "@media (max-width:750px)": {
-                        height: "270px",
+                        minHeight: "270px",
                     },
                 }}
             >

@@ -11,10 +11,11 @@ import Summary from "./Summary";
 import Gameplay from "./Gameplay";
 import GamesStatistics from "./GamesStatistics";
 
-const GameStage: FunctionComponent = (props) => {
+const GameStage: FunctionComponent = () => {
     const context = usePicturesMatchingGameContext();
+    const { hideNavigationBar } = useMainNavigationBarContext();
+
     const thisSectionHasBeenAlreadySeen = useRef<boolean>(false);
-    const { hideNavigationBar, showNavigationBar } = useMainNavigationBarContext();
 
     const { stage } = context.navigation;
 
@@ -46,7 +47,7 @@ const GameStage: FunctionComponent = (props) => {
 
     switch (stage) {
         case "MENU":
-            return <Menu />;
+            return <Menu introAnimationsWithExtraDelay={thisSectionHasBeenAlreadySeen.current === false} />;
         case "GAMEPLAY":
             return <Gameplay />;
         case "SUMMARY":

@@ -9,7 +9,7 @@ const ProgressRowBase = styled("div")(({ theme, ...props }) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    fontSize: "16px",
+    fontSize: "18px",
     transition: "color .3s linear, background .3s linear",
     svg: {
         fontSize: "inherit",

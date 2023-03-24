@@ -29,7 +29,6 @@ export const formatTime = (params: FormatTimeParams): string => {
     //
     else if (isStartEndFormat(params.time)) {
         const delta = Math.floor((params.time.end - params.time.start) / 1000);
-        console.log(delta, params.time);
         minutes = Math.floor(delta / 60);
         seconds = delta % 60;
     }

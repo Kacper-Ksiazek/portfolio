@@ -39,7 +39,7 @@ const Timer: FunctionComponent<TimerProps> = (props) => {
     }, [props.countTime]);
 
     return (
-        <ClockRow sx={{ fontSize: "28px !important" }}>
+        <ClockRow sx={{ fontSize: "30px !important" }}>
             <AccessTime />
             <span>
                 {formatTime({

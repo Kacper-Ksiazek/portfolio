@@ -44,7 +44,7 @@ const ProgressWrapper = styled("div")(({ theme }) => ({
         boxSizing: "content-box",
     },
     ".progress-row": {
-        background: alpha("#000", 0.35),
+        background: alpha(theme.palette.mode === "dark" ? "#fff" : "#000", 0.04),
         color: alpha("#fff", 0.3),
     },
     "&.counting-active": {
@@ -55,7 +55,7 @@ const ProgressWrapper = styled("div")(({ theme }) => ({
     "&.is-over": {
         ".progress-row": {
             color: alpha("#fff", 0.9),
-            background: alpha("#000", 0.5),
+            background: theme.palette.mode === "dark" ? alpha("#fff", 0.08) : alpha("#000", 0.5),
         },
     },
 }));

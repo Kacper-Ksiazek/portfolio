@@ -12,6 +12,8 @@ import SinglePicture from "./SinglePicture";
 import GameplayWrapper from "./GameplayWrapper";
 import SurrenderButton from "./SurrenderButton";
 import { ButtonsWrapper, StyledButton } from "./styled_components";
+// Other components
+import SectionHeader from "../atoms/SectionHeader";
 
 const Gameplay: FunctionComponent = (props) => {
     const context = usePicturesMatchingGameContext();
@@ -24,6 +26,10 @@ const Gameplay: FunctionComponent = (props) => {
 
     return (
         <>
+            <SectionHeader sx={{ mb: "32px" }}>
+                Find all <strong>{context.gameplay.pictures.length / 2} pairs</strong> of matching pictures
+            </SectionHeader>
+
             <GameplayWrapper
                 id="picture-matching-game-pictures-wrapper" //
                 className={[

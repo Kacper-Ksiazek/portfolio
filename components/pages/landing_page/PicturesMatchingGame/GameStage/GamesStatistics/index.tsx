@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 // Other components
 import TableOfGamesHistory from "./TableOfGamesHistory";
 import TableOfGeneralStatistics from "./TableOfGeneralStatistics";
-import SmoothlyAppearingSection from "../SmoothlyAppearingSection";
+import SmoothlyAppearingSection from "../atoms/SmoothlyAppearingSection";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 

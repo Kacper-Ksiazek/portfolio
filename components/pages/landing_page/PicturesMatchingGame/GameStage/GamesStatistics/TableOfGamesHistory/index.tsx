@@ -1,5 +1,7 @@
 // Tools
+import { useMemo } from "react";
 import { createPortal } from "react-dom";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import { formatTime } from "@/utils/client/formatTime";
 import { requstDOMNode } from "@/components/pages/landing_page/PicturesMatchingGame/utils/getDOMNode";
 // Types
@@ -17,6 +19,13 @@ interface TableOfGamesHistoryProps {
 
 const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props) => {
     const amountOfColumns = 6;
+    const { height } = useWindowSizes();
+
+    const recordsToDisplay = useMemo<number>(() => {
+        if (height > 950) return 10;
+        else if (height > 650) return 8;
+        return 6;
+    }, [height]);
 
     return (
         <>
@@ -44,8 +53,9 @@ const TableOfGamesHistory: FunctionComponent<TableOfGamesHistoryProps> = (props)
             </TableWrapper>
 
             <PaginatedStaticContent
+                key={recordsToDisplay}
                 data={props.data}
-                perPage={10}
+                perPage={recordsToDisplay}
                 keyResolver={(item) => item.index}
                 renderItem={(item, key) => {
                     return (

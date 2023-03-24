@@ -20,7 +20,7 @@ const TableOfStatistics: FunctionComponent<TableOfStatisticsProps> = (props) => 
     };
 
     return (
-        <TableWrapper>
+        <TableWrapper className="delay-1">
             <StyledTable
                 sx={{
                     "tr:nth-of-type(5)": {

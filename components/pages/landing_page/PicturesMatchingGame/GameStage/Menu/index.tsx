@@ -5,11 +5,10 @@ import { usePicturesMatchingGameContext } from "@/components/pages/landing_page/
 import type { FunctionComponent } from "react";
 // Material UI Components
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 // Other components
 import PickADifficulty from "./PickADifficulty";
 import StyledButton from "@/components/atoms/forms/StyledButton";
-import SmoothlyAppearingSection from "../SmoothlyAppearingSection";
+import { SmoothlyAppearingSection, SectionHeader } from "../atoms";
 // Material UI Icons
 import NavigateNext from "@mui/icons-material/NavigateNext";
 // Styled components
@@ -26,18 +25,16 @@ const ButtonsWrapper = styled("div")(({ theme }) => ({
     },
 }));
 
-const Menu: FunctionComponent = (props) => {
+const Menu: FunctionComponent<{ introAnimationsWithExtraDelay: boolean }> = (props) => {
     const context = usePicturesMatchingGameContext();
 
     return (
-        <SmoothlyAppearingSection>
-            <Typography variant="h4" sx={{ mt: 0, mb: "16px", fontSize: "22px", textAlign: "center" }}>
-                Pick a difficulty and start a game
-            </Typography>
+        <SmoothlyAppearingSection className={props.introAnimationsWithExtraDelay ? "extra-delay" : ""}>
+            <SectionHeader>Pick a difficulty and start a game</SectionHeader>
 
             <PickADifficulty difficulty={context.difficulty} setDifficulty={context.methods.setDifficulty} />
 
-            <ButtonsWrapper>
+            <ButtonsWrapper className="bottom-buttons-wrapper">
                 <StyledButton
                     className="navigation" //
                     onClick={() => context.navigation.openGamesHistory()}

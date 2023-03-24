@@ -4,7 +4,7 @@ import { fadeSimple } from "@/components/keyframes/intro";
 
 export default styled("div")(({ theme }) => ({
     display: "flex",
-    margin: "24px 0 16px 0",
+    margin: "24px 0 64px 0",
     button: {
         padding: "6px 24px",
         fontSize: "20px",

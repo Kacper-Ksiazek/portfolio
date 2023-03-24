@@ -2,9 +2,9 @@
 import { styled, alpha } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
 // Other components
-import { SmoothlyAppearingSectionBase } from "../../SmoothlyAppearingSection";
+import SmoothlyAppearingSection from "../../atoms/SmoothlyAppearingSection";
 
-export default styled(SmoothlyAppearingSectionBase)(({ theme }) => ({
+export default styled(SmoothlyAppearingSection)(({ theme }) => ({
     justifyContent: "flex-end",
     "strong.primary": {
         background: theme.palette.primary.main,

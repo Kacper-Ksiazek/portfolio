@@ -31,7 +31,7 @@ export default styled("div")(({ theme }) => ({
     // Handle image displaying and fading
     //
     "&.intro-animation": {
-        ".hiding-mask-wing": {
+        ".hiding-mask": {
             animation: `${introAppearingAnimation} 1.6s 2s linear`,
         },
         "span.question-mark": {
@@ -52,7 +52,7 @@ export default styled("div")(({ theme }) => ({
             "span.question-mark": {
                 color: "#fff",
             },
-            ".hiding-mask-wing": {
+            ".hiding-mask": {
                 background: theme.palette.primary.main,
             },
         },

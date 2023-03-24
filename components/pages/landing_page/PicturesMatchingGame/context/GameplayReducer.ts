@@ -143,7 +143,6 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
 
         case "RECORD_TIME": {
             if (action.payload === "start" && state.time.isCounting) return state;
-            console.log(action.payload);
 
             return {
                 ...state,
