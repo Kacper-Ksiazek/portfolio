@@ -29,10 +29,12 @@ const PaginatedStaticContent = <T extends unknown>(props: PaginatedStaticContent
     const scrollTopReference = useRef<HTMLElement | null>(null);
     const [displayContent, setDisplayContent] = useState<boolean>(false);
 
+    const pagesInTotal = Math.ceil(props.data.length / props.perPage);
+
     const [state, dispatch] = useReducer(reducer, {
         perPage: props.perPage,
         currentPage: 1,
-        pagesInTotal: Math.ceil(props.data.length / props.perPage),
+        pagesInTotal,
     } as PaginatedStaticContentReducerState);
 
     const { items: paginationItems } = usePagination({
@@ -82,15 +84,17 @@ const PaginatedStaticContent = <T extends unknown>(props: PaginatedStaticContent
                 </>
             )}
 
-            <PaginationWrapper>
-                {paginationItems.map((item, index) => {
-                    return (
-                        <li key={index}>
-                            <PaginationItem dispatch={dispatch} item={item} state={state} />
-                        </li>
-                    );
-                })}
-            </PaginationWrapper>
+            {pagesInTotal > 1 && (
+                <PaginationWrapper>
+                    {paginationItems.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                <PaginationItem dispatch={dispatch} item={item} state={state} />
+                            </li>
+                        );
+                    })}
+                </PaginationWrapper>
+            )}
         </>
     );
 };

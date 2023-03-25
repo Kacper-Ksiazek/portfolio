@@ -38,6 +38,7 @@ const Menu: FunctionComponent<{ introAnimationsWithExtraDelay: boolean }> = (pro
                 <StyledButton
                     className="navigation" //
                     onClick={() => context.navigation.openGamesHistory()}
+                    disabled={context.statistics.history.length === 0}
                 >
                     Games history
                 </StyledButton>
