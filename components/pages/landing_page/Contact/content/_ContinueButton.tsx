@@ -9,7 +9,7 @@ export default styled(StyledButton)(({ theme }) => ({
     fontFamily: "Montserrat Alternates",
     overflow: "hidden",
     height: "42px",
-    fontSize: "16px",
+    fontSize: "18px",
     position: "relative",
     "&:not(&.Mui-disabled)": {
         background: `${theme.palette.primary.main} !important` as any,

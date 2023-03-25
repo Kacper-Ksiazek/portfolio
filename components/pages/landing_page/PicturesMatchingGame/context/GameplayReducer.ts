@@ -19,9 +19,9 @@ export const initialState: GameplayReducer = {
         mistakes: 0,
     },
     time: {
-        count: false,
-        minutes: 0,
-        seconds: 0,
+        start: 0,
+        end: 0,
+        isCounting: false,
     },
 };
 
@@ -58,7 +58,6 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
                         isOver,
                         time: {
                             ...state.time,
-                            count: !isOver,
                         },
                     };
                 }
@@ -127,7 +126,6 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
                 }),
                 time: {
                     ...state.time,
-                    count: action.payload?.startCountingTime ? true : state.time.count,
                 },
             };
         }
@@ -143,29 +141,15 @@ export const gameplayReducer = (state: GameplayReducer, action: GameplayAction):
             };
         }
 
-        case "INCREMENT_TIME": {
-            let { minutes, seconds } = state.time;
-            if (seconds == 59) {
-                minutes += 1;
-                seconds = -1;
-            }
+        case "RECORD_TIME": {
+            if (action.payload === "start" && state.time.isCounting) return state;
 
             return {
                 ...state,
                 time: {
-                    count: true,
-                    minutes,
-                    seconds: seconds + 1,
-                },
-            };
-        }
-
-        case "START_TIME_COUNTING": {
-            return {
-                ...state,
-                time: {
-                    ...state.time,
-                    count: true,
+                    start: action.payload === "start" ? Date.now() : state.time.start,
+                    end: action.payload === "stop" ? Date.now() : state.time.end,
+                    isCounting: action.payload === "start",
                 },
             };
         }

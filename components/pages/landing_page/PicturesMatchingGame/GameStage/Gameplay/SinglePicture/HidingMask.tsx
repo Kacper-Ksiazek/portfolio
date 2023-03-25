@@ -27,7 +27,7 @@ const HidingMask: FunctionComponent<HidingMaskProps> = (props) => {
     return (
         <HidingMaskBase
             className={[
-                "hiding-mask-wing", //
+                "hiding-mask", //
                 props.unfold ? "unfold" : "",
             ].join(" ")}
         />

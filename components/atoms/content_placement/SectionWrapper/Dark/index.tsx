@@ -27,7 +27,7 @@ const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) =
 
                 {props.children}
 
-                {isVisible && <GitHubRedirection href={props.githubURL} />}
+                {isVisible && props.header.render != false && <GitHubRedirection href={props.githubURL} />}
             </StyledContentWrapper>
         </DarkWrapperBase>
     );

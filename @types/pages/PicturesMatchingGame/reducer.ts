@@ -14,9 +14,9 @@ export interface Gameplay {
 }
 
 export interface Time {
-    count: boolean;
-    minutes: number;
-    seconds: number;
+    start: number;
+    end: number;
+    isCounting: boolean;
 }
 
 export interface GameplayReducer extends Gameplay {
@@ -24,7 +24,7 @@ export interface GameplayReducer extends Gameplay {
     _previouslyClickedPicture: PictureToMatch | null;
 }
 
-export type GameplayAction = OnClickAction | GoToNextTurnAction | StartNewGameAction | EndAnimationAction | ClearCurrentGameAction | StartExiting | IncrementTime | StartTimeCounting;
+export type GameplayAction = OnClickAction | GoToNextTurnAction | StartNewGameAction | EndAnimationAction | ClearCurrentGameAction | StartExiting | RecordTimeAction;
 
 type OnClickAction = {
     type: "HANDLE_ON_CLICK";
@@ -58,10 +58,7 @@ type StartExiting = {
     type: "START_EXITING";
 };
 
-type IncrementTime = {
-    type: "INCREMENT_TIME";
-};
-
-type StartTimeCounting = {
-    type: "START_TIME_COUNTING";
+export type RecordTimeAction = {
+    type: "RECORD_TIME";
+    payload: "start" | "stop";
 };

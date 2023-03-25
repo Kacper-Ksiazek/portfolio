@@ -3,14 +3,8 @@ import { alpha, styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
 // Styled components
 const ProgressWrapper = styled("div")(({ theme }) => ({
-    "@media (min-width:1351px)": {
-        position: "fixed",
-        top: "calc(100vh)",
-        transform: "translateY(calc(-100% - 32px))",
-        right: "20px",
+    "@media (min-width:601px)": {
         animation: `${fadeSimple} .3s .2s both`,
-    },
-    "@media (max-width:1350px)": {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -50,7 +44,7 @@ const ProgressWrapper = styled("div")(({ theme }) => ({
         boxSizing: "content-box",
     },
     ".progress-row": {
-        background: alpha("#000", 0.35),
+        background: alpha(theme.palette.mode === "dark" ? "#fff" : "#000", 0.04),
         color: alpha("#fff", 0.3),
     },
     "&.counting-active": {
@@ -61,7 +55,7 @@ const ProgressWrapper = styled("div")(({ theme }) => ({
     "&.is-over": {
         ".progress-row": {
             color: alpha("#fff", 0.9),
-            background: alpha("#000", 0.5),
+            background: theme.palette.mode === "dark" ? alpha("#fff", 0.08) : alpha("#000", 0.5),
         },
     },
 }));

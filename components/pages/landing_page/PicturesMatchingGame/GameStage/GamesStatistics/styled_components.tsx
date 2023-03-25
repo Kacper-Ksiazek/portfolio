@@ -1,5 +1,6 @@
 // Tools
 import { styled, alpha } from "@mui/material";
+import { fadeSimple } from "@/components/keyframes/intro";
 
 export const StyledTable = styled("table")(({ theme }) => ({
     fontSize: "18px",
@@ -48,6 +49,7 @@ export const TableWrapper = styled("div")(({ theme }) => ({
     justifyContent: "flex-start",
     paddingBottom: "32px",
     position: "relative",
+    animation: `${fadeSimple} .3s .2s linear both`,
     "@media (max-width:1080px)": {
         width: "100%",
         overflowX: "scroll",

@@ -1,7 +1,7 @@
 // Types
-import type { Gameplay } from "./reducer";
 import type { Statistics } from "./localStorage";
 import type { SetStateAction, Dispatch } from "react";
+import type { Gameplay, RecordTimeAction } from "./reducer";
 import type { Difficulty, PictureMatchingGameplayStage, PictureToMatch } from "./index";
 
 export type { Gameplay, Statistics };
@@ -15,7 +15,7 @@ export interface PicturesMatchingGameContextInterface {
     statistics: Statistics;
 
     methods: {
-        incrementTime: () => void;
+        recordTime: (which: RecordTimeAction["payload"]) => void;
         setDifficulty: (params: Difficulty | { value: Difficulty; startNewGameplay: boolean }) => void;
         handlePictureOnClick: (clickedPicture: PictureToMatch) => void;
         setPictureToDisplayInFullsize: Dispatch<SetStateAction<PictureToMatch | null>>;

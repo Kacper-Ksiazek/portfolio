@@ -21,9 +21,9 @@ const PaginationItem: FunctionComponent<PaginationItemProps> = (props) => {
     if (type === "previous") {
         return (
             <PaginationStep
-                sx={{ mr: "14px" }} //
-                disabled={state.currentPage === 1}
+                disabled={state.currentPage === 1} //
                 onClick={() => dispatch({ type: "PREVIOUS" })}
+                className="previous"
             >
                 <NavigateBefore />
             </PaginationStep>
@@ -33,9 +33,9 @@ const PaginationItem: FunctionComponent<PaginationItemProps> = (props) => {
     else if (type === "next") {
         return (
             <PaginationStep
-                sx={{ marginLeft: "24px !important" }} //
-                disabled={state.currentPage === state.pagesInTotal}
+                disabled={state.currentPage === state.pagesInTotal} //
                 onClick={() => dispatch({ type: "NEXT" })}
+                className="next"
             >
                 <NavigateNext />
             </PaginationStep>

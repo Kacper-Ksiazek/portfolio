@@ -12,7 +12,7 @@ import ScrollToParticularSection from "@/components/pages/landing_page/ScrollToP
 const LandingPageWrapper: FunctionComponent<LandingPageServerSideProps> = (props) => {
     return (
         <>
-            <ScrollToParticularSection />
+            {/* <ScrollToParticularSection />
             <BreakTheIce
                 hobbies={props.hobbies} //
                 schools={props.schools}
@@ -20,9 +20,9 @@ const LandingPageWrapper: FunctionComponent<LandingPageServerSideProps> = (props
             />
 
             <ToDoList />
-            <Projects projects={props.projects} />
+            <Projects projects={props.projects} /> */}
             <PicturesMatchingGame />
-            <Contact />
+            {/* <Contact /> */}
         </>
     );
 };

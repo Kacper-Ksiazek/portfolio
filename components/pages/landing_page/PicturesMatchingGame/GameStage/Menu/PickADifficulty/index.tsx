@@ -2,7 +2,6 @@
 import { options } from "./options";
 import { styled } from "@mui/material";
 import { useTheme } from "@mui/material";
-import { fadeSimple } from "@/components/keyframes/intro";
 // Types
 import type { Difficulty } from "@/@types/pages/PicturesMatchingGame";
 import type { FunctionComponent } from "react";
@@ -13,7 +12,6 @@ import MenuItem from "@mui/material/MenuItem";
 const StyledSelect = styled(Select)(({ theme }) => ({
     width: "240px",
     fontSize: "16px",
-    animation: `${fadeSimple} .4s .4s both linear`,
     "@media (max-width:500px)": {
         width: "100%",
     },
@@ -45,6 +43,7 @@ const PickADifficulty: FunctionComponent<PickADifficultyProps> = (props) => {
                       }
                     : {}
             }
+            className="delay-1"
         >
             {options.map((item) => {
                 return (

@@ -25,6 +25,14 @@ export const PaginationStep = styled(StyledButton)(({ theme }) => ({
         color: "#fff",
         borderColor: theme.palette.primary.main,
     },
+    "@media (min-width:360px)": {
+        "&.previous": {
+            marginRight: "14px",
+        },
+        "&.next": {
+            marginLeft: "24px",
+        },
+    },
 }));
 
 export const PaginationWrapper = styled("ul")(({ theme }) => ({

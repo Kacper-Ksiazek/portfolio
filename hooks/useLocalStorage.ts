@@ -9,7 +9,8 @@ type UseLocalStorageResult<T> = [
 ];
 
 interface UseLocalStorageOptions {
-    keepOriginalValue?: boolean;
+    /** Use default value over updated one */
+    stickWithOriginalValue?: boolean;
 }
 
 export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, options?: UseLocalStorageOptions): UseLocalStorageResult<T> => {
@@ -52,7 +53,7 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, opt
     }, [localStorageKey, value, initialValue]);
 
     return [
-        options && options.keepOriginalValue ? (originalValue.current as T) : value, //
+        options && options.stickWithOriginalValue ? (originalValue.current as T) : value, //
         setValue,
     ];
 };

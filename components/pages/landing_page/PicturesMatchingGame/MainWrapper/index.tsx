@@ -30,16 +30,17 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
             }}
             sx={{
                 "button.navigation": {
-                    fontSize: "20px",
+                    fontSize: "18px",
                     padding: "6px 48px",
-                    height: "50px",
+                    height: "42px",
+                    fontFamily: "Montserrat Alternates",
                     "&:disabled": {
                         background: "#fff",
                         opacity: 0.5,
                     },
                 },
                 "&.summary": {
-                    height: "calc(100vh - 40px)",
+                    height: "calc(100dvh - 40px)",
                     ".dark-section-content-wrapper": {
                         paddingBottom: "64px",
                         justifyContent: "center",
@@ -50,12 +51,13 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                     top: "-20px",
                     left: 0,
                     width: "100vw",
-                    height: "100vh",
+                    height: "100dvh",
                     borderRadius: "0",
                     overflowY: "scroll",
                     zIndex: 10000,
                     transition: "max-height .15s linear",
                     display: "flex",
+                    alignItems: "center",
                     ".dark-section-wrapper-background-svg, #user-choice-animaiton-base": {
                         position: "fixed",
                         width: "calc(100vw - 8px)",
@@ -86,13 +88,10 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                     },
                     "@media (max-width:600px)": {
                         padding: "0 12px",
-                        // ".dark-content-wrapper-header-description": {
-                        //     display: "none",
-                        // },
                     },
                     "@media (max-width:500px)": {
                         top: "-10px",
-                        height: "calc(100vh + 10px)",
+                        height: "calc(100dvh + 10px)",
                     },
                 },
             }}

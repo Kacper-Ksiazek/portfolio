@@ -8,8 +8,8 @@ export { StyledButton };
 
 export const ButtonsWrapper = styled("div")(({ theme }) => ({
     animation: `${fadeSimple} .3s both`,
-    paddingBottom: "64px",
     paddingTop: "24px",
+    paddingBottom: "32px",
     display: "flex",
     "@media (max-width:840px)": {
         button: {

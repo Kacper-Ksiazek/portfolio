@@ -12,7 +12,7 @@ import SectionWrapper from "../_SectionWrapper";
 
 const SendMeAnEmail: FunctionComponent = () => {
     const { request } = useRequestContext();
-    const [alreadySentEmail, setAlreadySentEmail] = useLocalStorage<string | null>("email-has-been-already-send", null, { keepOriginalValue: true });
+    const [alreadySentEmail, setAlreadySentEmail] = useLocalStorage<string | null>("email-has-been-already-send", null, { stickWithOriginalValue: true });
 
     const specialWayOfRendering = useSpecialWayOfRendering();
     const sendRequest = useSendRequestQuery(setAlreadySentEmail);
