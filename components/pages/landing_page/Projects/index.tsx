@@ -21,7 +21,7 @@ const ProjectsWrapper = styled("div")(({ theme }) => ({
 const ParagraphForHeader = styled("p")(({ theme }) => ({
     margin: "4px 0 0 0",
     fontSize: "18px",
-    color: alpha("#fff", 0.8),
+    color: alpha(theme.palette.text.primary, 0.8),
 }));
 
 interface ProjectsProps {

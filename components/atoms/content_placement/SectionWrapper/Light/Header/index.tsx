@@ -58,7 +58,7 @@ const LightSectionHeader: FunctionComponent<LightSectionHeaderProps> = (props) =
                     },
                 },
 
-                ...(props.additionalJSX ? props.additionalJSX.whenVisible : {}),
+                ...(props.additionalJSX && props.additionalJSX.whenVisible ? props.additionalJSX.whenVisible : {}),
             })}
         >
             <HeaderWrapper>
