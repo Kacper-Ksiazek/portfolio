@@ -15,6 +15,9 @@ export const SingleTaskBase = styled("div")(({ theme }) => ({
     "&:not(&:nth-of-type(1))": {
         marginTop: "24px",
     },
+    "&.urgent": {
+        background: theme.palette.secondary.main,
+    },
 }));
 
 export const Description = styled("h4")(({ theme }) => ({

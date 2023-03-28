@@ -18,12 +18,15 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
     const { data } = props;
 
     return (
-        <SingleTaskBase>
+        <SingleTaskBase className={props.data.urgent ? "urgent" : ""}>
             <CheckIcon isChecked={data.isCompleted} />
 
             <FlexBox column horizontal="start">
                 <Description>{data.description}</Description>
-                <Label label={props.data.label} />
+                <FlexBox>
+                    {props.data.urgent && <Label indicateUrgency />}
+                    <Label label={props.data.label} />
+                </FlexBox>
             </FlexBox>
 
             <Manage />

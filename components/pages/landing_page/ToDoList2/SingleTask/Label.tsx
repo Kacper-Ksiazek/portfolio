@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { CLASSES } from "../css_references";
 import { useLabelsContext } from "../hooks/useLabelsContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -12,14 +13,42 @@ const LabelBase = styled("span")(({ theme }) => ({
     userSelect: "none",
     display: "flex",
     alignItems: "center",
+    boxSizing: "border-box",
+    "&:not(&:nth-of-type(1))": {
+        marginLeft: "8px",
+    },
 }));
 
-interface LabelProps {
+interface PropsWithLabel {
     label: string;
 }
+interface PropsIndicatingUrgency {
+    indicateUrgency: true;
+}
 
-const Label: FunctionComponent<LabelProps> = (props) => {
+function isUrgencyIndicating(props: unknown): props is PropsIndicatingUrgency {
+    return typeof props === "object" && props !== null && ("indicateUrgency" as keyof PropsIndicatingUrgency) in props;
+}
+
+const Label: FunctionComponent<PropsWithLabel | PropsIndicatingUrgency> = (props) => {
     const { getCorrespondingColor } = useLabelsContext();
+    const className = CLASSES.SINGLE_TASK.SINGLE_TASK_LABEL;
+
+    if (isUrgencyIndicating(props)) {
+        return (
+            <LabelBase
+                sx={(theme) => ({
+                    color: "#fff",
+                    background: theme.palette.primary.main,
+                    border: "none",
+                })}
+                className={className}
+            >
+                URGENT
+            </LabelBase>
+        );
+    }
+
     const color = getCorrespondingColor(props.label);
 
     return (
@@ -28,7 +57,7 @@ const Label: FunctionComponent<LabelProps> = (props) => {
                 color,
                 borderColor: color,
             }}
-            className="single-task-label"
+            className={className}
         >
             {props.label}
         </LabelBase>
