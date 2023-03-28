@@ -92,6 +92,7 @@ const GitHubRedirection: FunctionComponent<GitHubRedirectionProps> = (props) => 
                     rel="noreferrer"
                     onMouseOver={onHover}
                     onMouseLeave={onBlur}
+                    tabIndex={-1}
                 >
                     <GitHubIcon className="github-icon" />
                 </a>

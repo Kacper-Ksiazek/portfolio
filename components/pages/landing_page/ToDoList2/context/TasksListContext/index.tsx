@@ -28,13 +28,14 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
         setTasks((tasks) => tasks.filter((el) => el.id != idToBeRemoved));
     }
 
-    function add(newTask: TaskWithoutID) {
+    function add(newTask: Omit<TaskWithoutID, "isCompleted">) {
         setTasks((tasks) => {
             return [
                 ...tasks,
                 {
                     ...newTask,
                     id: Date.now(),
+                    isCompleted: false,
                 },
             ];
         });

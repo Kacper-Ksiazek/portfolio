@@ -4,4 +4,5 @@ export interface Task {
     urgent: boolean;
     dueDate: Date | null;
     label: string;
+    isCompleted: boolean;
 }

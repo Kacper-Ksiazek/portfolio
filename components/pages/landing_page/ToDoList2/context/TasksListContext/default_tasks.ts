@@ -8,6 +8,7 @@ export const DEFAULT_TASKS: Task[] = [
         description: "Complete linear algebra assigments",
         urgent: false,
         dueDate: null,
+        isCompleted: false,
     },
     {
         id: 2,
@@ -15,6 +16,7 @@ export const DEFAULT_TASKS: Task[] = [
         description: "Do groceries for the rest of the week",
         urgent: false,
         dueDate: null,
+        isCompleted: false,
     },
     {
         id: 3,
@@ -22,6 +24,7 @@ export const DEFAULT_TASKS: Task[] = [
         description: "Add this long awaited feature to my portfolio",
         urgent: false,
         dueDate: null,
+        isCompleted: false,
     },
     {
         id: 4,
@@ -29,5 +32,6 @@ export const DEFAULT_TASKS: Task[] = [
         description: "Hand in the fourth Procedural Programming project",
         dueDate: null,
         urgent: true,
+        isCompleted: false,
     },
 ];
