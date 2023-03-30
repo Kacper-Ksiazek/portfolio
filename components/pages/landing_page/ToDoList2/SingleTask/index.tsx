@@ -1,38 +1,53 @@
 // Tools
+import { useSingleTaskContext } from "./hooks/useSingleTaskContext";
 // Types
-import type { Task } from "../@types";
 import type { FunctionComponent } from "react";
+import type { Task, TaskWithoutID } from "../@types";
 // Other components
 import Label from "./Label";
 import Manage from "./Manage";
 import CheckIcon from "./CheckIcon";
+import { SingleTaskContextProvider } from "./context";
 // Styled components
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
-import { SingleTaskBase, Description } from "./styled_components";
+import { SingleTaskBase, Description, UrgencyBar } from "./styled_components";
 
-interface SingleTaskProps {
-    data: Task;
-    markAsComplete: () => void;
-}
-
-const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
-    const { data } = props;
+const SingleTask: FunctionComponent = () => {
+    const { data } = useSingleTaskContext();
 
     return (
-        <SingleTaskBase className={props.data.urgent ? "urgent" : ""}>
+        <SingleTaskBase>
+            <UrgencyBar className={data.urgent ? "active" : ""} />
+
             <CheckIcon isChecked={data.isCompleted} />
 
             <FlexBox column horizontal="start">
                 <Description>{data.description}</Description>
                 <FlexBox>
-                    {props.data.urgent && <Label indicateUrgency />}
-                    <Label label={props.data.label} />
+                    {data.urgent && <Label indicateUrgency />}
+                    <Label label={data.label} />
                 </FlexBox>
             </FlexBox>
 
-            <Manage isUrgent={data.urgent} />
+            <Manage />
         </SingleTaskBase>
     );
 };
 
-export default SingleTask;
+interface SingleTaskWithContextProps {
+    data: Task;
+    edit: (val: Partial<TaskWithoutID>) => void;
+}
+
+const SingleTaskWithContext: FunctionComponent<SingleTaskWithContextProps> = (props) => {
+    return (
+        <SingleTaskContextProvider
+            data={props.data} //
+            edit={props.edit}
+        >
+            <SingleTask />
+        </SingleTaskContextProvider>
+    );
+};
+
+export default SingleTaskWithContext;

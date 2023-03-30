@@ -2,6 +2,7 @@
 import { styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
+import { useSingleTaskContext } from "@/components/pages/landing_page/ToDoList2/SingleTask/hooks/useSingleTaskContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -31,16 +32,17 @@ const UnwindedMenuBase = styled("div")(({ theme }) => ({
 }));
 
 interface UnwindedMenuProps {
-    isUrgent: boolean;
     className: string;
     sx: SxProps;
 }
 
-const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = ({ isUrgent, ...props }) => {
+const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
+    const { data } = useSingleTaskContext();
+
     return (
         <UnwindedMenuBase {...props}>
             {(() => {
-                if (isUrgent) return <MenuActionButton icon={<ArrowDownwardOutlined />} label="Make less-important" />;
+                if (data.urgent) return <MenuActionButton icon={<ArrowDownwardOutlined />} label="Make less-important" />;
                 return <MenuActionButton icon={<ArrowUpwardOutlined />} label="Make urgent" />;
             })()}
 

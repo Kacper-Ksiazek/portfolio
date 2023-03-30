@@ -10,11 +10,7 @@ import UnwindIconButton from "./UnwindIconButton";
 // Styled components
 import { ManageWrapper, ModalBase } from "./styled_components";
 
-interface ManageProps {
-    isUrgent: boolean;
-}
-
-const Manage: FunctionComponent<ManageProps> = (props) => {
+const Manage: FunctionComponent = () => {
     const {
         value: unwindMenu, //
         isChanging,
@@ -39,7 +35,6 @@ const Manage: FunctionComponent<ManageProps> = (props) => {
                                     top: `${position.top}px`,
                                     left: `${position.left}px`,
                                 }}
-                                isUrgent={props.isUrgent}
                             />
                         </ModalBase>,
                         document.getElementById("modals-wrapper") as HTMLElement

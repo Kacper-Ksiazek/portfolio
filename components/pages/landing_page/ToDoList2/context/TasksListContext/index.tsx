@@ -4,11 +4,10 @@ import { DEFAULT_TASKS } from "./default_tasks";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useLabelsContext } from "../../hooks/useLabelsContext";
 // Types
-import type { Task } from "../../@types";
+import type { Task, TaskWithoutID } from "../../@types";
 import type { FunctionComponent, ReactNode } from "react";
 
 type ID = Task["id"];
-type TaskWithoutID = Omit<Task, "id">;
 
 export interface I_TasksListContext {
     tasks: Task[];

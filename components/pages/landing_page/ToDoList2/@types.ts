@@ -6,3 +6,5 @@ export interface Task {
     label: string;
     isCompleted: boolean;
 }
+
+export type TaskWithoutID = Omit<Task, "id">;

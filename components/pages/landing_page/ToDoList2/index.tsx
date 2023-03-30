@@ -9,20 +9,9 @@ import Code from "@mui/icons-material/Code";
 import SingleTask from "./SingleTask";
 // Styled Components
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
-import { Task } from "./@types";
 
-interface ToDoListProps {
-    //
-}
-
-const ToDoList: FunctionComponent<ToDoListProps> = (props) => {
+const ToDoList: FunctionComponent = () => {
     const { tasks, edit } = useTaskListContext();
-
-    function markAsComplete(id: Task["id"]) {
-        edit(id, {
-            isCompleted: true,
-        });
-    }
 
     return (
         <DarkSectionWrapper
@@ -45,7 +34,7 @@ const ToDoList: FunctionComponent<ToDoListProps> = (props) => {
                         <SingleTask
                             key={item.id} //
                             data={item}
-                            markAsComplete={() => markAsComplete(item.id)}
+                            edit={(val) => edit(item.id, val)}
                         />
                     );
                 })}
@@ -54,7 +43,7 @@ const ToDoList: FunctionComponent<ToDoListProps> = (props) => {
     );
 };
 
-const ToDoListWithContexts: FunctionComponent = (props) => {
+const ToDoListWithContexts: FunctionComponent = () => {
     return (
         <LabelsContextProvider>
             <TaskListContextProvider>
