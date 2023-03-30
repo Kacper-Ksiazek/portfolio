@@ -1,3 +1,4 @@
+// Tools
 // Types
 import type { Task } from "../@types";
 import type { FunctionComponent } from "react";
@@ -29,7 +30,7 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
                 </FlexBox>
             </FlexBox>
 
-            <Manage />
+            <Manage isUrgent={data.urgent} />
         </SingleTaskBase>
     );
 };

@@ -11,6 +11,7 @@ export const SingleTaskBase = styled("div")(({ theme }) => ({
     borderRadius: "5px",
     position: "relative",
     paddingRight: "40px",
+    zIndex: 1,
     backdropFilter: "blur(3px)",
     "&:not(&:nth-of-type(1))": {
         marginTop: "24px",

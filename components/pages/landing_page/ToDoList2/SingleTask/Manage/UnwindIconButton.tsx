@@ -1,17 +1,14 @@
 // Tools
+import { forwardRef } from "react";
 import { styled } from "@mui/material";
 // Types
-import type { FunctionComponent } from "react";
-// Material UI Components
 import IconButton from "@mui/material/IconButton";
+// Material UI Components
+import Tooltip from "@mui/material/Tooltip";
 // Material UI Icons
 import MoreVertRounded from "@mui/icons-material/MoreVertRounded";
 // Styled components
 const UnwindIconButtonBase = styled(IconButton)(({ theme }) => ({
-    position: "absolute",
-    top: "50%",
-    right: "8px",
-    transform: "translateY(-50%)",
     ...theme.mixins.flex_center,
     color: "#fff",
     cursor: "pointer",
@@ -20,15 +17,19 @@ const UnwindIconButtonBase = styled(IconButton)(({ theme }) => ({
     },
 }));
 interface UnwindIconButtonProps {
-    //
+    onClick: () => void;
 }
 
-const UnwindIconButton: FunctionComponent<UnwindIconButtonProps> = (props) => {
+const UnwindIconButton = forwardRef<HTMLButtonElement, UnwindIconButtonProps>((props, ref) => {
     return (
-        <UnwindIconButtonBase tabIndex={-1}>
-            <MoreVertRounded />
-        </UnwindIconButtonBase>
+        <Tooltip title="More" placement="top">
+            <UnwindIconButtonBase ref={ref} tabIndex={-1} onClick={props.onClick}>
+                <MoreVertRounded />
+            </UnwindIconButtonBase>
+        </Tooltip>
     );
-};
+});
+
+UnwindIconButton.displayName = "UnwindIconButton";
 
 export default UnwindIconButton;
