@@ -27,15 +27,26 @@ const CheckIconBase = styled("button")(({ theme }) => ({
         background: alpha("#fff", 0.2),
     },
     marginRight: "12px",
+    "&.checked": {
+        background: theme.palette.primary.main,
+        opacity: 1,
+    },
 }));
 interface CheckIconProps {
     isChecked: boolean;
+    onClick: () => void;
 }
 
 const CheckIcon: FunctionComponent<CheckIconProps> = (props) => {
     return (
         <Tooltip title={`Mark as ${props.isChecked ? "in progress" : "completed"}`} placement="top">
-            <CheckIconBase className="single-task-check">
+            <CheckIconBase
+                onClick={props.onClick} //
+                className={[
+                    "single-task-check", //
+                    props.isChecked ? "checked" : "",
+                ].join(" ")}
+            >
                 <CheckRounded />
             </CheckIconBase>
         </Tooltip>

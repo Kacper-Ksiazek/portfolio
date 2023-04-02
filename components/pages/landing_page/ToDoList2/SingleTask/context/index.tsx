@@ -6,7 +6,7 @@ import type { FunctionComponent, ReactNode } from "react";
 
 interface SingleTaskContext {
     data: Task;
-    edit: (val: TaskWithoutID) => void;
+    edit: (val: Partial<TaskWithoutID>) => void;
 }
 
 export const singleTaskContext = createContext<SingleTaskContext>({} as any);

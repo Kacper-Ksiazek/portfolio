@@ -13,13 +13,17 @@ import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import { SingleTaskBase, Description, UrgencyBar } from "./styled_components";
 
 const SingleTask: FunctionComponent = () => {
-    const { data } = useSingleTaskContext();
+    const { data, edit } = useSingleTaskContext();
+
+    function markAsCompleted() {
+        edit({ isCompleted: true });
+    }
 
     return (
         <SingleTaskBase>
             <UrgencyBar className={data.urgent ? "active" : ""} />
 
-            <CheckIcon isChecked={data.isCompleted} />
+            <CheckIcon isChecked={data.isCompleted} onClick={markAsCompleted} />
 
             <FlexBox column horizontal="start">
                 <Description>{data.description}</Description>
