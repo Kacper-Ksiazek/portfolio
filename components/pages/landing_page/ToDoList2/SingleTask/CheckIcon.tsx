@@ -1,4 +1,5 @@
 // Tools
+import { CLASSES } from "../css_references";
 import { styled, alpha } from "@mui/material";
 // Types
 import type { FunctionComponent } from "react";
@@ -19,6 +20,8 @@ const CheckIconBase = styled("button")(({ theme }) => ({
     cursor: "pointer",
     svg: {
         fontSize: "34px",
+        opacity: 0,
+        transition: "opacity .3s",
     },
     transition: "all .3s",
     "&:focus, &:hover": {
@@ -27,10 +30,7 @@ const CheckIconBase = styled("button")(({ theme }) => ({
         background: alpha("#fff", 0.2),
     },
     marginRight: "12px",
-    "&.checked": {
-        background: theme.palette.primary.main,
-        opacity: 1,
-    },
+    position: "relative",
 }));
 interface CheckIconProps {
     isChecked: boolean;
@@ -43,7 +43,7 @@ const CheckIcon: FunctionComponent<CheckIconProps> = (props) => {
             <CheckIconBase
                 onClick={props.onClick} //
                 className={[
-                    "single-task-check", //
+                    CLASSES.SINGLE_TASK.CHECK_ICON, //
                     props.isChecked ? "checked" : "",
                 ].join(" ")}
             >

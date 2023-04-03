@@ -32,7 +32,7 @@ function isUrgencyIndicating(props: unknown): props is PropsIndicatingUrgency {
 
 const Label: FunctionComponent<PropsWithLabel | PropsIndicatingUrgency> = (props) => {
     const { getCorrespondingColor } = useLabelsContext();
-    const className = CLASSES.SINGLE_TASK.SINGLE_TASK_LABEL;
+    const className = CLASSES.SINGLE_TASK.LABEL;
 
     if (isUrgencyIndicating(props)) {
         return (
@@ -40,7 +40,7 @@ const Label: FunctionComponent<PropsWithLabel | PropsIndicatingUrgency> = (props
                 sx={(theme) => ({
                     color: "#fff",
                     background: theme.palette.primary.main,
-                    border: "none",
+                    borderColor: "transparent",
                 })}
                 className={className}
             >

@@ -1,4 +1,5 @@
 // Tools
+import { CLASSES, SELECTORS, SINGLE_TASK_STAGES } from "../css_references";
 import { useSingleTaskContext } from "./hooks/useSingleTaskContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -10,30 +11,46 @@ import CheckIcon from "./CheckIcon";
 import { SingleTaskContextProvider } from "./context";
 // Styled components
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
-import { SingleTaskBase, Description, UrgencyBar } from "./styled_components";
+import { SingleTaskBase, Description, Background } from "./styled_components";
 
 const SingleTask: FunctionComponent = () => {
     const { data, edit } = useSingleTaskContext();
 
-    function markAsCompleted() {
-        edit({ isCompleted: true });
+    function toggleCompletion() {
+        edit({ isCompleted: !data.isCompleted });
+    }
+
+    function remove() {
+        //
     }
 
     return (
-        <SingleTaskBase>
-            <UrgencyBar className={data.urgent ? "active" : ""} />
+        <SingleTaskBase
+            className={
+                data.isCompleted ? SINGLE_TASK_STAGES.CHECKED : "" //
+            }
+        >
+            <Background
+                className={[
+                    data.urgent ? "active" : "", //
+                    CLASSES.SINGLE_TASK.BACKGROUND,
+                ].join(" ")}
+            />
 
-            <CheckIcon isChecked={data.isCompleted} onClick={markAsCompleted} />
+            <CheckIcon isChecked={data.isCompleted} onClick={toggleCompletion} />
 
             <FlexBox column horizontal="start">
-                <Description>{data.description}</Description>
+                <Description className={CLASSES.SINGLE_TASK.DESCRIPTION}>
+                    {data.description}
+                    {/*  */}
+                </Description>
                 <FlexBox>
                     {data.urgent && <Label indicateUrgency />}
                     <Label label={data.label} />
                 </FlexBox>
             </FlexBox>
 
-            <Manage />
+            <Manage isCompleted={data.isCompleted} remove={remove} />
         </SingleTaskBase>
     );
 };

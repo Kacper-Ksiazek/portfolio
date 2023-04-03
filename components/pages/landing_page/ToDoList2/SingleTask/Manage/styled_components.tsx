@@ -5,6 +5,8 @@ export const ManageWrapper = styled("div")(({ theme }) => ({
     position: "absolute",
     top: "50%",
     right: "8px",
+    width: "46px",
+    height: "46px",
     transform: "translateY(-50%)",
     ...theme.mixins.flex_center,
     color: "#fff",

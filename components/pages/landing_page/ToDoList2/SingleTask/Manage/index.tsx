@@ -7,10 +7,18 @@ import type { FunctionComponent } from "react";
 // Other components
 import UnwindedMenu from "./UnwindedMenu";
 import UnwindIconButton from "./UnwindIconButton";
+// Material UI Icons
+import MoreVertRounded from "@mui/icons-material/MoreVertRounded";
+import DeleteOutlineOutlined from "@mui/icons-material/DeleteOutlineOutlined";
 // Styled components
 import { ManageWrapper, ModalBase } from "./styled_components";
 
-const Manage: FunctionComponent = () => {
+interface ManageProps {
+    isCompleted: boolean;
+    remove: () => void;
+}
+
+const Manage: FunctionComponent<ManageProps> = (props) => {
     const {
         value: unwindMenu, //
         isChanging,
@@ -23,7 +31,24 @@ const Manage: FunctionComponent = () => {
 
     return (
         <ManageWrapper>
-            <UnwindIconButton onClick={open} ref={buttonElementRef} />
+            <UnwindIconButton
+                ref={buttonElementRef} //
+                onClick={open}
+                tooltip="More"
+                active={!props.isCompleted}
+            >
+                <MoreVertRounded />
+            </UnwindIconButton>
+
+            <UnwindIconButton
+                ref={buttonElementRef} //
+                onClick={props.remove}
+                tooltip="Delete"
+                active={props.isCompleted}
+            >
+                <DeleteOutlineOutlined />
+            </UnwindIconButton>
+
             {(() => {
                 if (renderUnwindedMenu) {
                     return createPortal(
