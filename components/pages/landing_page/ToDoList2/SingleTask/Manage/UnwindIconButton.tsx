@@ -27,6 +27,7 @@ const UnwindIconButtonBase = styled(IconButton)(({ theme }) => ({
     svg: {
         opacity: 0,
         fontSize: "24px",
+        transition: "opacity .3s",
     },
 }));
 interface UnwindIconButtonProps {
@@ -38,7 +39,17 @@ interface UnwindIconButtonProps {
 
 const UnwindIconButton = forwardRef<HTMLButtonElement, UnwindIconButtonProps>((props, ref) => {
     return (
-        <Tooltip title={props.tooltip} placement="top">
+        <Tooltip
+            title={props.tooltip} //
+            placement="top"
+            PopperProps={
+                !props.active
+                    ? {
+                          sx: { display: "none" },
+                      }
+                    : {}
+            }
+        >
             <UnwindIconButtonBase
                 ref={ref} //
                 tabIndex={-1}

@@ -28,7 +28,7 @@ const ToDoList: FunctionComponent = () => {
                 <h1>filters gonna be here</h1>
             </div>
 
-            <section className="tasks-wrapper">
+            <section className="tasks-wrapper" style={{ minHeight: "376px" }}>
                 {tasks.map((item, index) => {
                     return (
                         <SingleTask

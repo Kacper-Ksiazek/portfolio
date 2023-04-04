@@ -15,6 +15,8 @@ import { ManageWrapper, ModalBase } from "./styled_components";
 
 interface ManageProps {
     isCompleted: boolean;
+    isDeleting: boolean;
+
     remove: () => void;
 }
 
@@ -35,7 +37,7 @@ const Manage: FunctionComponent<ManageProps> = (props) => {
                 ref={buttonElementRef} //
                 onClick={open}
                 tooltip="More"
-                active={!props.isCompleted}
+                active={props.isCompleted === false}
             >
                 <MoreVertRounded />
             </UnwindIconButton>
@@ -44,7 +46,7 @@ const Manage: FunctionComponent<ManageProps> = (props) => {
                 ref={buttonElementRef} //
                 onClick={props.remove}
                 tooltip="Delete"
-                active={props.isCompleted}
+                active={props.isCompleted === true && props.isDeleting === false}
             >
                 <DeleteOutlineOutlined />
             </UnwindIconButton>
@@ -60,6 +62,7 @@ const Manage: FunctionComponent<ManageProps> = (props) => {
                                     top: `${position.top}px`,
                                     left: `${position.left}px`,
                                 }}
+                                remove={props.remove}
                             />
                         </ModalBase>,
                         document.getElementById("modals-wrapper") as HTMLElement

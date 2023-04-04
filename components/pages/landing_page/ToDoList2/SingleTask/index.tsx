@@ -1,8 +1,8 @@
 // Tools
-import { CLASSES, SELECTORS, SINGLE_TASK_STAGES } from "../css_references";
+import { CLASSES, SINGLE_TASK_STAGES } from "../css_references";
 import { useSingleTaskContext } from "./hooks/useSingleTaskContext";
 // Types
-import type { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import type { Task, TaskWithoutID } from "../@types";
 // Other components
 import Label from "./Label";
@@ -15,20 +15,23 @@ import { SingleTaskBase, Description, Background } from "./styled_components";
 
 const SingleTask: FunctionComponent = () => {
     const { data, edit } = useSingleTaskContext();
+    const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
     function toggleCompletion() {
         edit({ isCompleted: !data.isCompleted });
     }
 
     function remove() {
+        setIsDeleting(true);
         //
     }
 
     return (
         <SingleTaskBase
-            className={
-                data.isCompleted ? SINGLE_TASK_STAGES.CHECKED : "" //
-            }
+            className={[
+                data.isCompleted ? SINGLE_TASK_STAGES.CHECKED : "", //
+                isDeleting ? SINGLE_TASK_STAGES.DELETING : "",
+            ].join(" ")}
         >
             <Background
                 className={[
@@ -41,16 +44,20 @@ const SingleTask: FunctionComponent = () => {
 
             <FlexBox column horizontal="start">
                 <Description className={CLASSES.SINGLE_TASK.DESCRIPTION}>
-                    {data.description}
-                    {/*  */}
+                    <span>{data.description}</span>
                 </Description>
-                <FlexBox>
+
+                <FlexBox className={CLASSES.SINGLE_TASK.LABELS_WRAPPER}>
                     {data.urgent && <Label indicateUrgency />}
                     <Label label={data.label} />
                 </FlexBox>
             </FlexBox>
 
-            <Manage isCompleted={data.isCompleted} remove={remove} />
+            <Manage
+                isCompleted={data.isCompleted} //
+                isDeleting={isDeleting}
+                remove={remove}
+            />
         </SingleTaskBase>
     );
 };

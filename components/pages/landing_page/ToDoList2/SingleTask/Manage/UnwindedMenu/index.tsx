@@ -34,20 +34,32 @@ const UnwindedMenuBase = styled("div")(({ theme }) => ({
 interface UnwindedMenuProps {
     className: string;
     sx: SxProps;
+    remove: () => void;
 }
 
 const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
     const { data } = useSingleTaskContext();
 
+    const isUrgent: boolean = data.urgent;
+
     return (
         <UnwindedMenuBase {...props}>
-            {(() => {
-                if (data.urgent) return <MenuActionButton icon={<ArrowDownwardOutlined />} label="Make less-important" />;
-                return <MenuActionButton icon={<ArrowUpwardOutlined />} label="Make urgent" />;
-            })()}
-
-            <MenuActionButton icon={<ModeEditOutlineOutlined />} label="Edit" />
-            <MenuActionButton icon={<DeleteOutlineOutlined />} label="Delete" color="error" />
+            <MenuActionButton
+                icon={isUrgent ? <ArrowUpwardOutlined /> : <ArrowDownwardOutlined />} //
+                label={isUrgent ? "Make urgent" : "Make-less-important"}
+                onClick={() => console.log("essa")}
+            />
+            <MenuActionButton
+                icon={<ModeEditOutlineOutlined />} //
+                label="Edit"
+                onClick={() => console.log("essa")}
+            />
+            <MenuActionButton
+                icon={<DeleteOutlineOutlined />} //
+                label="Delete"
+                color="error"
+                onClick={props.remove}
+            />
         </UnwindedMenuBase>
     );
 };

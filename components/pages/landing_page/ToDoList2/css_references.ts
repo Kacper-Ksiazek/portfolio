@@ -4,11 +4,13 @@ interface CSSReferenceStructure<T extends CSSClassName | Selector> {
         CHECK_ICON: T;
         BACKGROUND: T;
         DESCRIPTION: T;
+        LABELS_WRAPPER: T;
     };
 }
 
 export const SINGLE_TASK_STAGES = {
     CHECKED: "is-checked",
+    DELETING: "is-deleting",
 };
 
 export const CLASSES: CSSReferenceStructure<CSSClassName> = {
@@ -17,6 +19,7 @@ export const CLASSES: CSSReferenceStructure<CSSClassName> = {
         CHECK_ICON: "single-task-check-icon",
         DESCRIPTION: "single-task-title",
         BACKGROUND: "single-task-background",
+        LABELS_WRAPPER: "single-task-labels-wrapper",
     },
 };
 

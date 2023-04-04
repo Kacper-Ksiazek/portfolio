@@ -49,15 +49,21 @@ interface MenuActionButtonProps {
     icon: ReactNode;
     label: string;
     color?: "default" | "error";
+    onClick: () => void;
 }
 
 const MenuActionButton: FunctionComponent<MenuActionButtonProps> = (props) => {
     return (
         <Tooltip title={props.label} placement="right">
-            <MenuActionButtonBase sx={(theme) => (props.color === "error" ? { background: theme.palette.error.main } : new Object())}>
-                {props.icon}
-                <span className="label">{props.label}</span>
-            </MenuActionButtonBase>
+            <span>
+                <MenuActionButtonBase
+                    sx={(theme) => (props.color === "error" ? { background: theme.palette.error.main } : new Object())} //
+                    onClick={props.onClick}
+                >
+                    {props.icon}
+                    <span className="label">{props.label}</span>
+                </MenuActionButtonBase>
+            </span>
         </Tooltip>
     );
 };
