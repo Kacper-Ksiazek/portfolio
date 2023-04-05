@@ -11,7 +11,7 @@ import SingleTask from "./SingleTask";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 
 const ToDoList: FunctionComponent = () => {
-    const { tasks, edit } = useTaskListContext();
+    const { tasks, edit, remove } = useTaskListContext();
 
     return (
         <DarkSectionWrapper
@@ -34,7 +34,8 @@ const ToDoList: FunctionComponent = () => {
                         <SingleTask
                             key={item.id} //
                             data={item}
-                            edit={(val) => edit(item.id, val)}
+                            update={(val) => edit(item.id, val)}
+                            remove={() => remove(item.id)}
                         />
                     );
                 })}

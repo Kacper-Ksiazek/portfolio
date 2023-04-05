@@ -7,6 +7,7 @@ import type { FunctionComponent } from "react";
 import CheckRounded from "@mui/icons-material/CheckRounded";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";
+import { useSingleTaskContext } from "./hooks/useSingleTaskContext";
 // Styled components
 const CheckIconBase = styled("button")(({ theme }) => ({
     border: "2px solid",
@@ -30,18 +31,17 @@ const CheckIconBase = styled("button")(({ theme }) => ({
     },
     position: "relative",
 }));
-interface CheckIconProps {
-    isChecked: boolean;
-    onClick: () => void;
-}
 
-const CheckIcon: FunctionComponent<CheckIconProps> = (props) => {
+const CheckIcon: FunctionComponent = () => {
+    const { data, actions } = useSingleTaskContext();
+    const { isCompleted } = data;
+
     return (
         <div className={CLASSES.SINGLE_TASK.CHECK_ICON} style={{ marginRight: "12px" }}>
-            <Tooltip title={`Mark as ${props.isChecked ? "in progress" : "completed"}`} placement="top">
+            <Tooltip title={`Mark as ${isCompleted ? "in progress" : "completed"}`} placement="top">
                 <CheckIconBase
-                    onClick={props.onClick} //
-                    className={props.isChecked ? "checked" : ""}
+                    onClick={actions.togglePriority} //
+                    className={isCompleted ? "checked" : ""}
                 >
                     <CheckRounded />
                 </CheckIconBase>

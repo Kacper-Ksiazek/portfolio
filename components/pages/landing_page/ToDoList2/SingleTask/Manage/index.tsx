@@ -2,6 +2,7 @@
 import { createPortal } from "react-dom";
 import { useDelayedState } from "@/hooks/useDelayedState";
 import { useModalControl } from "./hooks/useModalControl";
+import { useSingleTaskContext } from "../hooks/useSingleTaskContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -13,19 +14,9 @@ import DeleteOutlineOutlined from "@mui/icons-material/DeleteOutlineOutlined";
 // Styled components
 import { ManageWrapper, ModalBase } from "./styled_components";
 
-interface ManageProps {
-    isCompleted: boolean;
-    isDeleting: boolean;
-
-    remove: () => void;
-}
-
-const Manage: FunctionComponent<ManageProps> = (props) => {
-    const {
-        value: unwindMenu, //
-        isChanging,
-        setValue: setUnwindMenu,
-    } = useDelayedState<boolean>(false, 500);
+const Manage: FunctionComponent = () => {
+    const { data, actions, stages } = useSingleTaskContext();
+    const { value: unwindMenu, isChanging, setValue: setUnwindMenu } = useDelayedState<boolean>(false, 500);
 
     const renderUnwindedMenu: boolean = unwindMenu || (!unwindMenu && isChanging);
 
@@ -37,16 +28,16 @@ const Manage: FunctionComponent<ManageProps> = (props) => {
                 ref={buttonElementRef} //
                 onClick={open}
                 tooltip="More"
-                active={props.isCompleted === false}
+                active={data.isCompleted === false}
             >
                 <MoreVertRounded />
             </UnwindIconButton>
 
             <UnwindIconButton
                 ref={buttonElementRef} //
-                onClick={props.remove}
+                onClick={actions.remove}
                 tooltip="Delete"
-                active={props.isCompleted === true && props.isDeleting === false}
+                active={data.isCompleted === true && stages.isDeleting === false}
             >
                 <DeleteOutlineOutlined />
             </UnwindIconButton>
@@ -62,7 +53,6 @@ const Manage: FunctionComponent<ManageProps> = (props) => {
                                     top: `${position.top}px`,
                                     left: `${position.left}px`,
                                 }}
-                                remove={props.remove}
                             />
                         </ModalBase>,
                         document.getElementById("modals-wrapper") as HTMLElement

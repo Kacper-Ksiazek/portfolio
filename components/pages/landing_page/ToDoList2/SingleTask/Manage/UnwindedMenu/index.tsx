@@ -4,6 +4,7 @@ import { fadeSimple } from "@/components/keyframes/intro";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
 import { useSingleTaskContext } from "@/components/pages/landing_page/ToDoList2/SingleTask/hooks/useSingleTaskContext";
 // Types
+import type { SxProps } from "@/@types/MUI";
 import type { FunctionComponent } from "react";
 // Other components
 import MenuActionButton from "./MenuActionButton";
@@ -12,7 +13,6 @@ import ArrowUpwardOutlined from "@mui/icons-material/ArrowUpwardOutlined";
 import DeleteOutlineOutlined from "@mui/icons-material/DeleteOutlineOutlined";
 import ArrowDownwardOutlined from "@mui/icons-material/ArrowDownwardOutlined";
 import ModeEditOutlineOutlined from "@mui/icons-material/ModeEditOutlineOutlined";
-import { SxProps } from "@/@types/MUI";
 // Styled Components
 const UnwindedMenuBase = styled("div")(({ theme }) => ({
     position: "absolute",
@@ -34,11 +34,10 @@ const UnwindedMenuBase = styled("div")(({ theme }) => ({
 interface UnwindedMenuProps {
     className: string;
     sx: SxProps;
-    remove: () => void;
 }
 
 const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
-    const { data } = useSingleTaskContext();
+    const { data, actions } = useSingleTaskContext();
 
     const isUrgent: boolean = data.urgent;
 
@@ -58,7 +57,7 @@ const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
                 icon={<DeleteOutlineOutlined />} //
                 label="Delete"
                 color="error"
-                onClick={props.remove}
+                onClick={actions.remove}
             />
         </UnwindedMenuBase>
     );

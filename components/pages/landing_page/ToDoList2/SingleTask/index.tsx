@@ -2,8 +2,8 @@
 import { CLASSES, SINGLE_TASK_STAGES } from "../css_references";
 import { useSingleTaskContext } from "./hooks/useSingleTaskContext";
 // Types
-import { FunctionComponent, useState } from "react";
-import type { Task, TaskWithoutID } from "../@types";
+import type { FunctionComponent } from "react";
+import type { SingleTaskContextProviderProps } from "./context/@types";
 // Other components
 import Label from "./Label";
 import Manage from "./Manage";
@@ -14,23 +14,13 @@ import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import { SingleTaskBase, Description, Background } from "./styled_components";
 
 const SingleTask: FunctionComponent = () => {
-    const { data, edit } = useSingleTaskContext();
-    const [isDeleting, setIsDeleting] = useState<boolean>(false);
-
-    function toggleCompletion() {
-        edit({ isCompleted: !data.isCompleted });
-    }
-
-    function remove() {
-        setIsDeleting(true);
-        //
-    }
+    const { data, stages } = useSingleTaskContext();
 
     return (
         <SingleTaskBase
             className={[
                 data.isCompleted ? SINGLE_TASK_STAGES.CHECKED : "", //
-                isDeleting ? SINGLE_TASK_STAGES.DELETING : "",
+                stages.isDeleting ? SINGLE_TASK_STAGES.DELETING : "",
             ].join(" ")}
         >
             <Background
@@ -40,7 +30,7 @@ const SingleTask: FunctionComponent = () => {
                 ].join(" ")}
             />
 
-            <CheckIcon isChecked={data.isCompleted} onClick={toggleCompletion} />
+            <CheckIcon />
 
             <FlexBox column horizontal="start">
                 <Description className={CLASSES.SINGLE_TASK.DESCRIPTION}>
@@ -53,26 +43,14 @@ const SingleTask: FunctionComponent = () => {
                 </FlexBox>
             </FlexBox>
 
-            <Manage
-                isCompleted={data.isCompleted} //
-                isDeleting={isDeleting}
-                remove={remove}
-            />
+            <Manage />
         </SingleTaskBase>
     );
 };
 
-interface SingleTaskWithContextProps {
-    data: Task;
-    edit: (val: Partial<TaskWithoutID>) => void;
-}
-
-const SingleTaskWithContext: FunctionComponent<SingleTaskWithContextProps> = (props) => {
+const SingleTaskWithContext: FunctionComponent<Omit<SingleTaskContextProviderProps, "children">> = (props) => {
     return (
-        <SingleTaskContextProvider
-            data={props.data} //
-            edit={props.edit}
-        >
+        <SingleTaskContextProvider {...props}>
             <SingleTask />
         </SingleTaskContextProvider>
     );
