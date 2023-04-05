@@ -49,6 +49,7 @@ const Manage: FunctionComponent = () => {
                             <span className="clickable-background" onClick={close} />
                             <UnwindedMenu
                                 className={unwindMenu && isChanging ? "outro" : ""}
+                                close={close}
                                 sx={{
                                     top: `${position.top}px`,
                                     left: `${position.left}px`,

@@ -14,10 +14,12 @@ interface LeftTopPosition {
 
 interface UseModalControlResult {
     open: () => void;
-    close: () => void;
+    close: () => Promise<void>;
     buttonElementRef: MutableRefObject<HTMLButtonElement | null>;
     position: LeftTopPosition;
 }
+
+const UNWIND_MENU_CLOSE_ANIMATION_DURATION: TimeInMS = 300;
 
 export function useModalControl(isOpened: boolean, setUnwindMenu: Dispatch<SetStateAction<boolean>>): UseModalControlResult {
     const { width } = useWindowSizes();
@@ -43,10 +45,12 @@ export function useModalControl(isOpened: boolean, setUnwindMenu: Dispatch<SetSt
         setUnwindMenu(true);
     }
 
-    function close() {
+    async function close() {
         enableUserScroll();
         setUnwindMenu(false);
         showNavigationBar();
+
+        await new Promise((resolve) => setTimeout(resolve, UNWIND_MENU_CLOSE_ANIMATION_DURATION));
     }
 
     return {

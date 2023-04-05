@@ -34,6 +34,7 @@ const UnwindedMenuBase = styled("div")(({ theme }) => ({
 interface UnwindedMenuProps {
     className: string;
     sx: SxProps;
+    close: () => Promise<void>;
 }
 
 const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
@@ -41,23 +42,27 @@ const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
 
     const isUrgent: boolean = data.urgent;
 
+    function handleOnClick(cb: () => void) {
+        props.close().then(cb);
+    }
+
     return (
         <UnwindedMenuBase {...props}>
             <MenuActionButton
                 icon={isUrgent ? <ArrowUpwardOutlined /> : <ArrowDownwardOutlined />} //
                 label={isUrgent ? "Make urgent" : "Make-less-important"}
-                onClick={() => console.log("essa")}
+                onClick={() => handleOnClick(() => console.log("essa"))}
             />
             <MenuActionButton
                 icon={<ModeEditOutlineOutlined />} //
                 label="Edit"
-                onClick={() => console.log("essa")}
+                onClick={() => handleOnClick(() => console.log("essa"))}
             />
             <MenuActionButton
                 icon={<DeleteOutlineOutlined />} //
                 label="Delete"
                 color="error"
-                onClick={actions.remove}
+                onClick={() => handleOnClick(actions.remove)}
             />
         </UnwindedMenuBase>
     );
