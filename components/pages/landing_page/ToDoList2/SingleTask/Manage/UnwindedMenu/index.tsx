@@ -2,7 +2,6 @@
 import { styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
-import { useSingleTaskContext } from "@/components/pages/landing_page/ToDoList2/SingleTask/hooks/useSingleTaskContext";
 // Types
 import type { SxProps } from "@/@types/MUI";
 import type { FunctionComponent } from "react";
@@ -32,37 +31,37 @@ const UnwindedMenuBase = styled("div")(({ theme }) => ({
 }));
 
 interface UnwindedMenuProps {
+    isUrgent: boolean;
     className: string;
     sx: SxProps;
-    close: () => Promise<void>;
+
+    closeMenu: () => Promise<void>;
+    toggleUrgency: () => void;
+    remove: () => void;
 }
 
 const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
-    const { data, actions } = useSingleTaskContext();
-
-    const isUrgent: boolean = data.urgent;
-
-    function handleOnClick(cb: () => void) {
-        props.close().then(cb);
+    function handleOnClick(cb: () => void): () => void {
+        return () => props.closeMenu().then(cb);
     }
 
     return (
-        <UnwindedMenuBase {...props}>
+        <UnwindedMenuBase className={props.className} sx={props.sx}>
             <MenuActionButton
-                icon={isUrgent ? <ArrowUpwardOutlined /> : <ArrowDownwardOutlined />} //
-                label={isUrgent ? "Make urgent" : "Make-less-important"}
-                onClick={() => handleOnClick(() => actions.toggleUrgency())}
+                icon={props.isUrgent ? <ArrowDownwardOutlined /> : <ArrowUpwardOutlined />} //
+                label={props.isUrgent ? "Make-less-important" : "Make urgent"}
+                onClick={handleOnClick(props.toggleUrgency)}
             />
             <MenuActionButton
                 icon={<ModeEditOutlineOutlined />} //
                 label="Edit"
-                onClick={() => handleOnClick(() => console.log("essa"))}
+                onClick={handleOnClick(() => console.log("essa"))}
             />
             <MenuActionButton
                 icon={<DeleteOutlineOutlined />} //
                 label="Delete"
                 color="error"
-                onClick={() => handleOnClick(actions.remove)}
+                onClick={handleOnClick(props.remove)}
             />
         </UnwindedMenuBase>
     );

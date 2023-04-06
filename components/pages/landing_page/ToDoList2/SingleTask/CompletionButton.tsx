@@ -7,9 +7,8 @@ import type { FunctionComponent } from "react";
 import CheckRounded from "@mui/icons-material/CheckRounded";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";
-import { useSingleTaskContext } from "./hooks/useSingleTaskContext";
 // Styled components
-const CheckIconBase = styled("button")(({ theme }) => ({
+const CompletionButtonBase = styled("button")(({ theme }) => ({
     border: "2px solid",
     width: "46px",
     height: "46px",
@@ -32,22 +31,24 @@ const CheckIconBase = styled("button")(({ theme }) => ({
     position: "relative",
 }));
 
-const CheckIcon: FunctionComponent = () => {
-    const { data, actions } = useSingleTaskContext();
-    const { isCompleted } = data;
+interface CompletionButtonProps {
+    isCompleted: boolean;
+    toggleCompletion: () => void;
+}
 
+const CompletionButton: FunctionComponent<CompletionButtonProps> = ({ isCompleted, toggleCompletion }) => {
     return (
         <div className={CLASSES.SINGLE_TASK.CHECK_ICON} style={{ marginRight: "12px" }}>
             <Tooltip title={`Mark as ${isCompleted ? "in progress" : "completed"}`} placement="top">
-                <CheckIconBase
-                    onClick={actions.toggleCompletion} //
+                <CompletionButtonBase
+                    onClick={toggleCompletion} //
                     className={isCompleted ? "checked" : ""}
                 >
                     <CheckRounded />
-                </CheckIconBase>
+                </CompletionButtonBase>
             </Tooltip>
         </div>
     );
 };
 
-export default CheckIcon;
+export default CompletionButton;

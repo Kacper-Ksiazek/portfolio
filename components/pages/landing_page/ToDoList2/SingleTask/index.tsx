@@ -1,59 +1,59 @@
 // Tools
-import { CLASSES, SINGLE_TASK_STAGES } from "../css_references";
-import { useSingleTaskContext } from "./hooks/useSingleTaskContext";
+import { useTaskRemover } from "./hooks/useTaskRemover";
+import { SINGLE_TASK_STAGES } from "../css_references";
 // Types
 import type { FunctionComponent } from "react";
-import type { SingleTaskContextProviderProps } from "./context/@types";
+import type { Task, TaskEditCallback } from "../@types";
 // Other components
-import Label from "./Label";
 import Manage from "./Manage";
-import CheckIcon from "./CheckIcon";
-import { SingleTaskContextProvider } from "./context";
+import Content from "./Content";
+import Background from "./Background";
+import CompletionButton from "./CompletionButton";
 // Styled components
-import FlexBox from "@/components/atoms/content_placement/FlexBox";
-import { SingleTaskBase, Description, Background } from "./styled_components";
+import { SingleTaskBase } from "./styled_components";
 
-const SingleTask: FunctionComponent = () => {
-    const { data, stages } = useSingleTaskContext();
+interface SingleTaskProps {
+    data: Task;
+    update: (cb: TaskEditCallback) => void;
+    remove: () => void;
+}
+
+const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
+    const { data } = props;
+    const { isTaskBeingRemoved, remove } = useTaskRemover(props.remove);
+
+    function toggleCompletion() {
+        props.update((currentValue) => ({ isCompleted: !currentValue.isCompleted }));
+    }
+
+    function toggleUrgency() {
+        props.update((currentValue) => ({ urgent: !currentValue.urgent }));
+    }
 
     return (
         <SingleTaskBase
             className={[
                 data.isCompleted ? SINGLE_TASK_STAGES.CHECKED : "", //
-                stages.isDeleting ? SINGLE_TASK_STAGES.DELETING : "",
+                isTaskBeingRemoved ? SINGLE_TASK_STAGES.DELETING : "",
             ].join(" ")}
         >
-            <Background
-                className={[
-                    data.urgent ? "active" : "", //
-                    CLASSES.SINGLE_TASK.BACKGROUND,
-                ].join(" ")}
+            <Background isUrgent={data.urgent} />
+
+            <CompletionButton
+                isCompleted={data.isCompleted} //
+                toggleCompletion={toggleCompletion}
             />
 
-            <CheckIcon />
+            <Content description={data.description} isUrget={data.urgent} label={data.label} />
 
-            <FlexBox column horizontal="start">
-                <Description className={CLASSES.SINGLE_TASK.DESCRIPTION}>
-                    <span>{data.description}</span>
-                </Description>
-
-                <FlexBox className={CLASSES.SINGLE_TASK.LABELS_WRAPPER}>
-                    {data.urgent && <Label indicateUrgency />}
-                    <Label label={data.label} />
-                </FlexBox>
-            </FlexBox>
-
-            <Manage />
+            <Manage
+                isUrgent={data.urgent} //
+                isCompleted={data.isCompleted}
+                isDeleting={isTaskBeingRemoved}
+                remove={remove}
+                toggleUrgency={toggleUrgency}
+            />
         </SingleTaskBase>
     );
 };
-
-const SingleTaskWithContext: FunctionComponent<Omit<SingleTaskContextProviderProps, "children">> = (props) => {
-    return (
-        <SingleTaskContextProvider {...props}>
-            <SingleTask />
-        </SingleTaskContextProvider>
-    );
-};
-
-export default SingleTaskWithContext;
+export default SingleTask;

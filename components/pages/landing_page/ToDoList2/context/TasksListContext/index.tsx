@@ -2,9 +2,8 @@
 import { createContext } from "react";
 import { DEFAULT_TASKS } from "./default_tasks";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { useLabelsContext } from "../../hooks/useLabelsContext";
 // Types
-import type { Task, TaskWithoutID } from "../../@types";
+import type { Task, TaskEditCallback, TaskWithoutID } from "../../@types";
 import type { FunctionComponent, ReactNode } from "react";
 
 type ID = Task["id"];
@@ -14,14 +13,13 @@ export interface I_TasksListContext {
 
     remove: (id: ID) => void;
     add: (val: TaskWithoutID) => void;
-    edit: (id: ID, val: Partial<TaskWithoutID>) => void;
+    edit: (id: ID, val: TaskEditCallback) => void;
 }
 
 export const taskListContext = createContext<I_TasksListContext>({} as any);
 
 export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
     const [tasks, setTasks] = useLocalStorage<Task[]>("to-do-list-tasks", DEFAULT_TASKS);
-    const { labels: availableLabels } = useLabelsContext();
 
     function remove(idToBeRemoved: ID) {
         setTasks((tasks) => tasks.filter((el) => el.id != idToBeRemoved));
@@ -40,21 +38,15 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
         });
     }
 
-    function edit(idToBeEdited: ID, newValue: Partial<TaskWithoutID>) {
-        if (newValue.hasOwnProperty("label" as keyof TaskWithoutID)) {
-            if (!availableLabels.includes(newValue.label as string)) {
-                throw new Error(`Unsupported label of **${newValue.label}** has been provided`);
-            }
-        }
-
+    function edit(idToBeEdited: ID, cb: TaskEditCallback) {
         setTasks((tasks) =>
-            tasks.map((task) => {
-                if (task.id === idToBeEdited)
+            tasks.map((currentValue) => {
+                if (currentValue.id === idToBeEdited)
                     return {
-                        ...task,
-                        ...newValue,
+                        ...currentValue,
+                        ...cb(currentValue),
                     };
-                return task;
+                return currentValue;
             })
         );
     }

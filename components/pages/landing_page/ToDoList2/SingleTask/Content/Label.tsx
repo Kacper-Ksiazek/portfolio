@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
-import { CLASSES } from "../css_references";
-import { useLabelsContext } from "../hooks/useLabelsContext";
+import { CLASSES } from "../../css_references";
+import { useLabelsContext } from "../../hooks/useLabelsContext";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components

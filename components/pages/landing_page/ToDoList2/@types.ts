@@ -8,3 +8,5 @@ export interface Task {
 }
 
 export type TaskWithoutID = Omit<Task, "id">;
+
+export type TaskEditCallback = (currentValue: TaskWithoutID) => Partial<TaskWithoutID>;

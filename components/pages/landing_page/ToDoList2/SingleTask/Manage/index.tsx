@@ -1,65 +1,67 @@
 // Tools
-import { createPortal } from "react-dom";
+import { styled } from "@mui/material";
 import { useDelayedState } from "@/hooks/useDelayedState";
 import { useModalControl } from "./hooks/useModalControl";
-import { useSingleTaskContext } from "../hooks/useSingleTaskContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
 import UnwindedMenu from "./UnwindedMenu";
-import UnwindIconButton from "./UnwindIconButton";
-// Material UI Icons
-import MoreVertRounded from "@mui/icons-material/MoreVertRounded";
-import DeleteOutlineOutlined from "@mui/icons-material/DeleteOutlineOutlined";
+import DefaultActionButton from "./DefaultActionButton";
 // Styled components
-import { ManageWrapper, ModalBase } from "./styled_components";
+import ModalWrapper from "./ModalWrapper";
 
-const Manage: FunctionComponent = () => {
-    const { data, actions, stages } = useSingleTaskContext();
+const ManageWrapper = styled("div")(({ theme }) => ({
+    position: "absolute",
+    top: "50%",
+    right: "8px",
+    width: "46px",
+    height: "46px",
+    transform: "translateY(-50%)",
+    ...theme.mixins.flex_center,
+    color: "#fff",
+    cursor: "pointer",
+}));
+
+interface ManageProps {
+    isCompleted: boolean;
+    isDeleting: boolean;
+    isUrgent: boolean;
+
+    toggleUrgency: () => void;
+    remove: () => void;
+}
+
+const Manage: FunctionComponent<ManageProps> = (props) => {
     const { value: unwindMenu, isChanging, setValue: setUnwindMenu } = useDelayedState<boolean>(false, 500);
 
     const renderUnwindedMenu: boolean = unwindMenu || (!unwindMenu && isChanging);
 
     const { buttonElementRef, close, open, position } = useModalControl(renderUnwindedMenu, setUnwindMenu);
-
     return (
         <ManageWrapper>
-            <UnwindIconButton
+            <DefaultActionButton
                 ref={buttonElementRef} //
-                onClick={open}
-                tooltip="More"
-                active={data.isCompleted === false}
+                remove={props.remove}
+                showUnwindButton={!props.isCompleted}
+                showDeleteButton={props.isCompleted && !props.isDeleting}
+                unwindMenuList={open}
+            />
+            <ModalWrapper
+                close={close} //
+                isOpen={renderUnwindedMenu}
             >
-                <MoreVertRounded />
-            </UnwindIconButton>
-
-            <UnwindIconButton
-                ref={buttonElementRef} //
-                onClick={actions.remove}
-                tooltip="Delete"
-                active={data.isCompleted === true && stages.isDeleting === false}
-            >
-                <DeleteOutlineOutlined />
-            </UnwindIconButton>
-
-            {(() => {
-                if (renderUnwindedMenu) {
-                    return createPortal(
-                        <ModalBase>
-                            <span className="clickable-background" onClick={close} />
-                            <UnwindedMenu
-                                className={unwindMenu && isChanging ? "outro" : ""}
-                                close={close}
-                                sx={{
-                                    top: `${position.top}px`,
-                                    left: `${position.left}px`,
-                                }}
-                            />
-                        </ModalBase>,
-                        document.getElementById("modals-wrapper") as HTMLElement
-                    );
-                }
-            })()}
+                <UnwindedMenu
+                    className={unwindMenu && isChanging ? "outro" : ""}
+                    isUrgent={props.isUrgent}
+                    sx={{
+                        top: `${position.top}px`,
+                        left: `${position.left}px`,
+                    }}
+                    closeMenu={close}
+                    remove={props.remove}
+                    toggleUrgency={props.toggleUrgency}
+                />
+            </ModalWrapper>
         </ManageWrapper>
     );
 };
