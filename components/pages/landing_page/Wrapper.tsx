@@ -3,6 +3,7 @@ import type { FunctionComponent } from "react";
 import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
 // Other components
 import Contact from "@/components/pages/landing_page/Contact";
+import ToDoList2 from "@/components/pages/landing_page/ToDoList2";
 import Projects from "@/components/pages/landing_page/Projects";
 import ToDoList from "@/components/pages/landing_page/ToDoList";
 import BreakTheIce from "@/components/pages/landing_page/BreakTheIce";
@@ -12,7 +13,8 @@ import ScrollToParticularSection from "@/components/pages/landing_page/ScrollToP
 const LandingPageWrapper: FunctionComponent<LandingPageServerSideProps> = (props) => {
     return (
         <>
-            <ScrollToParticularSection />
+            <ToDoList2 />
+            {/* <ScrollToParticularSection />
             <BreakTheIce
                 hobbies={props.hobbies} //
                 schools={props.schools}
@@ -21,8 +23,8 @@ const LandingPageWrapper: FunctionComponent<LandingPageServerSideProps> = (props
 
             <ToDoList />
             <Projects projects={props.projects} />
+        <Contact /> */}
             <PicturesMatchingGame />
-            <Contact />
         </>
     );
 };
