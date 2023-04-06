@@ -1,5 +1,5 @@
 // Tools
-import { alpha, styled } from "@mui/material";
+import { Box, alpha, styled } from "@mui/material";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
@@ -16,9 +16,6 @@ const MenuActionButtonBase = styled("button")(({ theme }) => ({
     color: alpha("#fff", 0.8),
     letterSpacing: "1px",
     boxSizing: "border-box",
-    "&:not(&:nth-of-type(1))": {
-        marginTop: "6px",
-    },
     svg: {
         fontSize: "24px",
     },
@@ -55,7 +52,14 @@ interface MenuActionButtonProps {
 const MenuActionButton: FunctionComponent<MenuActionButtonProps> = (props) => {
     return (
         <Tooltip title={props.label} placement="right">
-            <span>
+            <Box
+                sx={{
+                    "&:not(&:nth-of-type(1))": {
+                        marginTop: "6px",
+                    },
+                }}
+                component="span"
+            >
                 <MenuActionButtonBase
                     sx={(theme) => (props.color === "error" ? { background: theme.palette.error.main } : new Object())} //
                     onClick={props.onClick}
@@ -63,7 +67,7 @@ const MenuActionButton: FunctionComponent<MenuActionButtonProps> = (props) => {
                     {props.icon}
                     <span className="label">{props.label}</span>
                 </MenuActionButtonBase>
-            </span>
+            </Box>
         </Tooltip>
     );
 };

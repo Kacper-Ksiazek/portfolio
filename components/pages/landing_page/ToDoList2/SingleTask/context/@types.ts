@@ -14,10 +14,11 @@ export interface SingleTaskContext {
 
     actions: {
         remove: () => void;
-        /** Switches urgency */
-        togglePriority: () => void;
+        toggleCompletion: () => void;
         toggleEditMode: () => void;
         modify: (val: ModifyParams) => void;
+        /** Switches urgency */
+        toggleUrgency: () => void;
     };
 }
 

@@ -14,10 +14,12 @@ export const SingleTaskContextProvider: FunctionComponent<SingleTaskContextProvi
     const [isDeleting, setIsDeleting] = useState<boolean>(false);
     const { displaySnackbar } = useSnackbar();
 
-    function togglePriority() {
+    function toggleCompletion() {
         props.update({ isCompleted: !props.data.isCompleted });
     }
-
+    function toggleUrgency() {
+        props.update({ urgent: !props.data.urgent });
+    }
     function modify(params: ModifyParams) {
         props.update(params);
     }
@@ -47,9 +49,10 @@ export const SingleTaskContextProvider: FunctionComponent<SingleTaskContextProvi
                 },
                 actions: {
                     modify,
-                    togglePriority,
+                    toggleCompletion,
                     remove,
                     toggleEditMode,
+                    toggleUrgency,
                 },
             }}
         >

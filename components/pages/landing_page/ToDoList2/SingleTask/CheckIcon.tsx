@@ -40,7 +40,7 @@ const CheckIcon: FunctionComponent = () => {
         <div className={CLASSES.SINGLE_TASK.CHECK_ICON} style={{ marginRight: "12px" }}>
             <Tooltip title={`Mark as ${isCompleted ? "in progress" : "completed"}`} placement="top">
                 <CheckIconBase
-                    onClick={actions.togglePriority} //
+                    onClick={actions.toggleCompletion} //
                     className={isCompleted ? "checked" : ""}
                 >
                     <CheckRounded />

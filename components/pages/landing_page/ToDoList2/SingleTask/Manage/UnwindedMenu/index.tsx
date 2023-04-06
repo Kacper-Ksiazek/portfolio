@@ -51,7 +51,7 @@ const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
             <MenuActionButton
                 icon={isUrgent ? <ArrowUpwardOutlined /> : <ArrowDownwardOutlined />} //
                 label={isUrgent ? "Make urgent" : "Make-less-important"}
-                onClick={() => handleOnClick(() => console.log("essa"))}
+                onClick={() => handleOnClick(() => actions.toggleUrgency())}
             />
             <MenuActionButton
                 icon={<ModeEditOutlineOutlined />} //
