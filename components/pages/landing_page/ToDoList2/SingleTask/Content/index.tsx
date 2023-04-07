@@ -21,7 +21,7 @@ const Content: FunctionComponent<ContentProps> = (props) => {
             </Description>
 
             <FlexBox className={CLASSES.SINGLE_TASK.LABELS_WRAPPER}>
-                {props.isUrget && <Label indicateUrgency />}
+                <Label indicateUrgency={props.isUrget} />
                 <Label label={props.label} />
             </FlexBox>
         </FlexBox>

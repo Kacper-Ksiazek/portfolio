@@ -14,8 +14,30 @@ const LabelBase = styled("span")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
     boxSizing: "border-box",
-    "&:not(&:nth-of-type(1))": {
-        marginLeft: "8px",
+    "&.urgency": {
+        marginRight: "0px",
+        width: 0,
+        padding: "2px 0",
+        transform: "scaleX(0)",
+        transition: "all .3s",
+        transformOrigin: "left",
+        borderColor: "transparent",
+        background: theme.palette.primary.main,
+        span: {
+            opacity: 0,
+            transition: "opacity .3s",
+        },
+        "&.active": {
+            transform: "scaleX(1)",
+            width: "auto",
+            marginRight: "8px",
+            padding: "2px 6px",
+            transition: "all .3s",
+            span: {
+                opacity: 1,
+                transition: "opacity .3s .3s",
+            },
+        },
     },
 }));
 
@@ -23,7 +45,7 @@ interface PropsWithLabel {
     label: string;
 }
 interface PropsIndicatingUrgency {
-    indicateUrgency: true;
+    indicateUrgency: boolean;
 }
 
 function isUrgencyIndicating(props: unknown): props is PropsIndicatingUrgency {
@@ -36,15 +58,8 @@ const Label: FunctionComponent<PropsWithLabel | PropsIndicatingUrgency> = (props
 
     if (isUrgencyIndicating(props)) {
         return (
-            <LabelBase
-                sx={(theme) => ({
-                    color: "#fff",
-                    background: theme.palette.primary.main,
-                    borderColor: "transparent",
-                })}
-                className={className}
-            >
-                URGENT
+            <LabelBase className={`${className} urgency ${props.indicateUrgency ? "active" : ""}`}>
+                <span>URGENT</span>
             </LabelBase>
         );
     }
