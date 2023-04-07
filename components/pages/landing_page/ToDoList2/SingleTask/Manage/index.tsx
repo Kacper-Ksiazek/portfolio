@@ -4,9 +4,10 @@ import { useDelayedState } from "@/hooks/useDelayedState";
 import { useModalControl } from "./hooks/useModalControl";
 // Types
 import type { FunctionComponent } from "react";
+import type { UseEditModeResult } from "../hooks/useEditMode";
 // Other components
 import UnwindedMenu from "./UnwindedMenu";
-import DefaultActionButton from "./DefaultActionButton";
+import VisibleActionButton from "./VisibleActionButton";
 // Styled components
 import ModalWrapper from "./ModalWrapper";
 
@@ -14,21 +15,30 @@ const ManageWrapper = styled("div")(({ theme }) => ({
     position: "absolute",
     top: "50%",
     right: "8px",
-    width: "46px",
+    width: "200px",
     height: "46px",
     transform: "translateY(-50%)",
-    ...theme.mixins.flex_center,
     color: "#fff",
     cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
 }));
 
 interface ManageProps {
-    isCompleted: boolean;
-    isDeleting: boolean;
     isUrgent: boolean;
+    isDeleting: boolean;
+    isCompleted: boolean;
+    isInEditMode: boolean;
+    /** Edit mode related property, indicates whether any changes has been applied */
+    somethingHasChanged: boolean;
+    newState: UseEditModeResult["newState"];
 
-    toggleUrgency: () => void;
     remove: () => void;
+    applyChanges: () => void;
+    toggleUrgency: () => void;
+    toggleOpenMode: () => void;
+    updateNewState: UseEditModeResult["updateNewState"];
 }
 
 const Manage: FunctionComponent<ManageProps> = (props) => {
@@ -39,13 +49,22 @@ const Manage: FunctionComponent<ManageProps> = (props) => {
     const { buttonElementRef, close, open, position } = useModalControl(renderUnwindedMenu, setUnwindMenu);
     return (
         <ManageWrapper>
-            <DefaultActionButton
-                ref={buttonElementRef} //
-                remove={props.remove}
-                showUnwindButton={!props.isCompleted}
-                showDeleteButton={props.isCompleted && !props.isDeleting}
+            <VisibleActionButton
+                ref={buttonElementRef}
+                //
+                newState={props.newState}
+                isInEditMode={props.isInEditMode}
+                showUnwindButton={!props.isInEditMode && !props.isCompleted}
+                showDeleteButton={!props.isInEditMode && props.isCompleted && !props.isDeleting}
+                somethingHasChanged={props.somethingHasChanged}
+                //
                 unwindMenuList={open}
+                remove={props.remove}
+                applyChanges={props.applyChanges}
+                exitEditMode={props.toggleOpenMode}
+                updateNewState={props.updateNewState}
             />
+
             <ModalWrapper
                 close={close} //
                 isOpen={renderUnwindedMenu}
@@ -60,6 +79,7 @@ const Manage: FunctionComponent<ManageProps> = (props) => {
                     closeMenu={close}
                     remove={props.remove}
                     toggleUrgency={props.toggleUrgency}
+                    openEditMode={props.toggleOpenMode}
                 />
             </ModalWrapper>
         </ManageWrapper>

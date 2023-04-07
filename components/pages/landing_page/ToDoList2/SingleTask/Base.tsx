@@ -17,7 +17,7 @@ const hideSingleTaskWrapper = keyframes({
     },
 });
 
-export const SingleTaskBase = styled("div")(({ theme }) => ({
+export default styled("div")(({ theme }) => ({
     background: theme.palette.background.default,
     width: "720px",
     display: "flex",
@@ -36,7 +36,7 @@ export const SingleTaskBase = styled("div")(({ theme }) => ({
     [`&.${SINGLE_TASK_STAGES.CHECKED}`]: {
         background: theme.palette.background.lightSectionBackground,
         [SELECTORS.SINGLE_TASK.CHECK_ICON]: {
-            svg: {
+            "svg.check-icon": {
                 opacity: 1,
             },
         },
@@ -92,6 +92,15 @@ export const SingleTaskBase = styled("div")(({ theme }) => ({
                 height: "calc(100% + 4px)",
                 top: "-2px",
                 left: "-2px",
+            },
+        },
+    },
+
+    [`&.${SINGLE_TASK_STAGES.IN_EDIT_MODE}`]: {
+        [SELECTORS.SINGLE_TASK.BACKGROUND]: {
+            transform: "scaleX(1)",
+            "&.active": {
+                transition: "background .2s",
             },
         },
     },

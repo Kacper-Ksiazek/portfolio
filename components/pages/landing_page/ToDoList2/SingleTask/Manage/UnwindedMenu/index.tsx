@@ -35,9 +35,10 @@ interface UnwindedMenuProps {
     className: string;
     sx: SxProps;
 
-    closeMenu: () => Promise<void>;
-    toggleUrgency: () => void;
     remove: () => void;
+    toggleUrgency: () => void;
+    openEditMode: () => void;
+    closeMenu: () => Promise<void>;
 }
 
 const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
@@ -55,7 +56,7 @@ const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
             <MenuActionButton
                 icon={<ModeEditOutlineOutlined />} //
                 label="Edit"
-                onClick={handleOnClick(() => console.log("essa"))}
+                onClick={handleOnClick(props.openEditMode)}
             />
             <MenuActionButton
                 icon={<DeleteOutlineOutlined />} //
