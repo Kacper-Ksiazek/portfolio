@@ -24,9 +24,9 @@ const UNWIND_MENU_CLOSE_ANIMATION_DURATION: TimeInMS = 300;
 export function useModalControl(isOpened: boolean, setUnwindMenu: Dispatch<SetStateAction<boolean>>): UseModalControlResult {
     const { width } = useWindowSizes();
     const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
-    const [position, dispatch] = useSimpleReducer<LeftTopPosition>({ top: 0, left: 0 });
     const { hideNavigationBar, showNavigationBar } = useMainNavigationBarContext();
 
+    const [position, dispatch] = useSimpleReducer<LeftTopPosition>({ top: 0, left: 0 });
     const buttonElementRef = useRef<HTMLButtonElement | null>(null);
 
     useEffect(() => {

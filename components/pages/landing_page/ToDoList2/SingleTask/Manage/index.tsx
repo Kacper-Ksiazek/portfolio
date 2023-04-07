@@ -4,7 +4,6 @@ import { useDelayedState } from "@/hooks/useDelayedState";
 import { useModalControl } from "./hooks/useModalControl";
 // Types
 import type { FunctionComponent } from "react";
-import type { UseEditModeResult } from "../hooks/useEditMode";
 // Other components
 import UnwindedMenu from "./UnwindedMenu";
 import VisibleActionButton from "./VisibleActionButton";
@@ -15,7 +14,7 @@ const ManageWrapper = styled("div")(({ theme }) => ({
     position: "absolute",
     top: "50%",
     right: "8px",
-    width: "200px",
+    width: "80px",
     height: "46px",
     transform: "translateY(-50%)",
     color: "#fff",
@@ -30,15 +29,9 @@ interface ManageProps {
     isDeleting: boolean;
     isCompleted: boolean;
     isInEditMode: boolean;
-    /** Edit mode related property, indicates whether any changes has been applied */
-    somethingHasChanged: boolean;
-    newState: UseEditModeResult["newState"];
 
     remove: () => void;
-    applyChanges: () => void;
     toggleUrgency: () => void;
-    toggleOpenMode: () => void;
-    updateNewState: UseEditModeResult["updateNewState"];
 }
 
 const Manage: FunctionComponent<ManageProps> = (props) => {
@@ -52,17 +45,11 @@ const Manage: FunctionComponent<ManageProps> = (props) => {
             <VisibleActionButton
                 ref={buttonElementRef}
                 //
-                newState={props.newState}
-                isInEditMode={props.isInEditMode}
                 showUnwindButton={!props.isInEditMode && !props.isCompleted}
                 showDeleteButton={!props.isInEditMode && props.isCompleted && !props.isDeleting}
-                somethingHasChanged={props.somethingHasChanged}
                 //
                 unwindMenuList={open}
                 remove={props.remove}
-                applyChanges={props.applyChanges}
-                exitEditMode={props.toggleOpenMode}
-                updateNewState={props.updateNewState}
             />
 
             <ModalWrapper
@@ -79,7 +66,6 @@ const Manage: FunctionComponent<ManageProps> = (props) => {
                     closeMenu={close}
                     remove={props.remove}
                     toggleUrgency={props.toggleUrgency}
-                    openEditMode={props.toggleOpenMode}
                 />
             </ModalWrapper>
         </ManageWrapper>

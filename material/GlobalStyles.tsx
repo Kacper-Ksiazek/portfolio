@@ -8,6 +8,13 @@ const GlobalStyles: FunctionComponent = (props) => {
         <_GlobalStyles
             styles={(theme) => {
                 return {
+                    ".MuiDateCalendar-root": {
+                        background: theme.palette.background.default,
+                        ".MuiDayCalendar-weekDayLabel": {
+                            color: theme.palette.text.primary,
+                        },
+                    },
+
                     ".alternative-font-family": {
                         fontFamily: '"Montserrat Alternates", sans-serif',
                     },

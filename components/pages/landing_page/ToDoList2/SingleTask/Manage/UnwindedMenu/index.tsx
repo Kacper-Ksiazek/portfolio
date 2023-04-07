@@ -2,6 +2,7 @@
 import { styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
+import { useEditModeContext } from "../../hooks/useEditModeContext";
 // Types
 import type { SxProps } from "@/@types/MUI";
 import type { FunctionComponent } from "react";
@@ -37,13 +38,17 @@ interface UnwindedMenuProps {
 
     remove: () => void;
     toggleUrgency: () => void;
-    openEditMode: () => void;
     closeMenu: () => Promise<void>;
 }
 
 const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
+    const editModeContext = useEditModeContext();
+
     function handleOnClick(cb: () => void): () => void {
-        return () => props.closeMenu().then(cb);
+        return () => {
+            props.closeMenu();
+            cb();
+        };
     }
 
     return (
@@ -56,7 +61,7 @@ const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
             <MenuActionButton
                 icon={<ModeEditOutlineOutlined />} //
                 label="Edit"
-                onClick={handleOnClick(props.openEditMode)}
+                onClick={handleOnClick(editModeContext.toggleIsOpened)}
             />
             <MenuActionButton
                 icon={<DeleteOutlineOutlined />} //

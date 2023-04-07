@@ -1,7 +1,6 @@
 // Tools
 import { forwardRef } from "react";
-// Types
-import type { UseEditModeResult } from "../../hooks/useEditMode";
+import { useEditModeContext } from "../../hooks/useEditModeContext";
 // Material UI Icons
 import CheckRounded from "@mui/icons-material/CheckRounded";
 import CloseRounded from "@mui/icons-material/CloseRounded";
@@ -9,25 +8,20 @@ import MoreVertRounded from "@mui/icons-material/MoreVertRounded";
 import DeleteOutlineOutlined from "@mui/icons-material/DeleteOutlineOutlined";
 // Other components
 import StyledIconButton from "./StyledIconButton";
-import SmoothConditionalRender from "./SmoothConditionalRender";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
+import SmoothConditionalRender from "@/components/utils/SmoothConditionalRender";
 
 interface DefaultActionButtonProps {
-    isInEditMode: boolean;
     showUnwindButton: boolean;
     showDeleteButton: boolean;
     /** Edit mode related property, indicates whether any changes has been applied */
-    somethingHasChanged: boolean;
-    newState: UseEditModeResult["newState"];
 
     remove: () => void;
-    exitEditMode: () => void;
-    applyChanges: () => void;
     unwindMenuList: () => void;
-    updateNewState: UseEditModeResult["updateNewState"];
 }
 
 const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonProps>((props, ref) => {
+    const editModeContext = useEditModeContext();
     return (
         <>
             <SmoothConditionalRender when={props.showUnwindButton}>
@@ -49,17 +43,17 @@ const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonPro
                 </StyledIconButton>
             </SmoothConditionalRender>
 
-            <SmoothConditionalRender when={props.isInEditMode}>
+            <SmoothConditionalRender when={editModeContext.isOpened}>
                 <FlexBox horizontal="end">
                     <StyledIconButton
-                        onClick={props.applyChanges} //
+                        onClick={editModeContext.saveAndExit} //
                         tooltip="Apply changes"
-                        disabled={!props.somethingHasChanged}
+                        disabled={!editModeContext.someChangesHaveBeenMade}
                     >
                         <CheckRounded />
                     </StyledIconButton>
                     <StyledIconButton
-                        onClick={props.exitEditMode} //
+                        onClick={editModeContext.toggleIsOpened} //
                         tooltip="Discard changes"
                     >
                         <CloseRounded />

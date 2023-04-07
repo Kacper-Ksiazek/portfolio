@@ -6,7 +6,7 @@ import type { ChangeEvent } from "react";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 // Styled components
-const StyledSelect = styled(Select)(({ theme }) => ({
+const StyledSelectBase = styled(Select)(({ theme }) => ({
     fontSize: "16px",
     "@media (max-width:500px)": {
         width: "100%",
@@ -30,7 +30,7 @@ type OnChangeEvent<T> = ChangeEvent<HTMLHtmlElement> & {
     };
 };
 
-interface PickADifficultyProps<T> {
+interface StyledSelectProps<T> {
     value: T;
     options: (T | OptionWithAlias<T>)[];
     onChange: (e: OnChangeEvent<T>) => void;
@@ -38,9 +38,9 @@ interface PickADifficultyProps<T> {
     sx?: SxProps;
 }
 
-export default function PickADifficulty<T extends number | string | Record<any, any>>(props: PickADifficultyProps<T>) {
+export default function StyledSelect<T extends number | string | Record<any, any>>(props: StyledSelectProps<T>) {
     return (
-        <StyledSelect
+        <StyledSelectBase
             onChange={props.onChange as any} //
             value={props.value}
             MenuProps={{
@@ -72,6 +72,6 @@ export default function PickADifficulty<T extends number | string | Record<any, 
                     </MenuItem>
                 );
             })}
-        </StyledSelect>
+        </StyledSelectBase>
     );
 }

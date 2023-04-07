@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
 import Fade from "@mui/material/Fade";
+import { Styles } from "@/@types/MUI";
 interface SmoothConditionalRenderProps {
     when: boolean;
     children: ReactNode;
+    styles?: Styles;
 }
 
 const OUTRO_ANIMATION_DURATION: TimeInMS = 300;
@@ -27,7 +29,14 @@ const SmoothConditionalRender: FunctionComponent<SmoothConditionalRenderProps> =
 
     return (
         <Fade in={stage === "RENDER"}>
-            <span style={{ position: "absolute" }}>{props.children}</span>
+            <span
+                style={{
+                    position: "absolute", //
+                    ...(props.styles as any),
+                }}
+            >
+                {props.children}
+            </span>
         </Fade>
     );
 };

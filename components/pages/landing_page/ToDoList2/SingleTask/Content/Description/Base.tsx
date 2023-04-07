@@ -1,17 +1,15 @@
 // Tools
 import { styled } from "@mui/material";
-import { CLASSES } from "../../css_references";
-// Types
-import type { FunctionComponent, ReactNode } from "react";
 
-const DescriptionBase = styled("h4")(({ theme }) => ({
-    fontSize: "20px",
-    fontWeight: "500",
+export default styled("div")(({ theme }) => ({
     cursor: "default",
     userSelect: "none",
     margin: "0 0 6px 0",
     position: "relative",
     transition: "color .3s",
+    height: "28px",
+    width: "100%",
+    display: "flex",
     "&::before": {
         content: "''",
         transform: "scaleX(0)",
@@ -24,14 +22,17 @@ const DescriptionBase = styled("h4")(({ theme }) => ({
         transition: "transform .3s",
         transformOrigin: "left",
     },
+    h4: {
+        fontSize: "20px",
+        margin: 0,
+        fontWeight: "500",
+    },
+    ".MuiFormControl-root": {
+        width: "calc(100% - 56px)",
+        input: {
+            padding: "4px 12px",
+            width: "100%",
+            fontSize: "16px",
+        },
+    },
 }));
-
-const Description: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-    return (
-        <DescriptionBase className={CLASSES.SINGLE_TASK.DESCRIPTION}>
-            <span>{children}</span>
-        </DescriptionBase>
-    );
-};
-
-export default Description;

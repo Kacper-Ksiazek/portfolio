@@ -19,10 +19,12 @@
         "@material-ui/styles": "^4.11.5",
         "@mui/icons-material": "^5.8.4",
         "@mui/material": "^5.8.7",
+        "@mui/x-date-pickers": "^6.0.4",
         "@prisma/client": "^4.1.0",
         "@types/nodemailer": "^6.4.4",
         "@types/react-google-recaptcha": "^2.1.5",
         "axios": "^0.27.2",
+        "dayjs": "^1.11.7",
         "joi": "^17.6.0",
         "moment": "^2.29.4",
         "next": "12.2.0",
@@ -31,7 +33,7 @@
         "react-dom": "18.2.0",
         "react-google-recaptcha": "^2.1.0",
         "react-visibility-sensor": "^5.1.1",
-        "webpack": "5.74.0"
+        "webpack": "^5.78.0"
     },
     "devDependencies": {
         "@babel/core": "^7.19.1",

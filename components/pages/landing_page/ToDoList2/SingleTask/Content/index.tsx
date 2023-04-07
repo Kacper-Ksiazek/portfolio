@@ -1,29 +1,34 @@
 // Tools
-import { CLASSES } from "../../css_references";
+import { useEditModeContext } from "../hooks/useEditModeContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import Label from "./Label";
+import LabelsAndDueTime from "./LabelsAndDueTime";
 import Description from "./Description";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 
 interface ContentProps {
     description: string;
-    isUrget: boolean;
+    isUrgent: boolean;
     label: string;
 }
 
 const Content: FunctionComponent<ContentProps> = (props) => {
-    return (
-        <FlexBox column horizontal="start">
-            <Description>
-                <span>{props.description}</span>
-            </Description>
+    const editModeContext = useEditModeContext();
 
-            <FlexBox className={CLASSES.SINGLE_TASK.LABELS_WRAPPER}>
-                <Label indicateUrgency={props.isUrget} />
-                <Label label={props.label} />
-            </FlexBox>
+    return (
+        <FlexBox column horizontal="start" sx={{ width: "100%" }}>
+            <Description
+                description={props.description} //
+                isInEditMode={editModeContext.isOpened}
+                newValue={editModeContext.newState.description}
+                updateNewValue={(val) => editModeContext.updateNewState({ description: val })}
+            />
+
+            <LabelsAndDueTime
+                isUrgent={props.isUrgent} //
+                label={props.label}
+            />
         </FlexBox>
     );
 };

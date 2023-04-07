@@ -13,7 +13,7 @@ interface StyledButtonProps extends ButtonBaseProps {
 }
 
 export default styled(ButtonBase, {
-    shouldForwardProp: (prop: string) => !["color"].includes(prop),
+    shouldForwardProp: (prop: string) => !["color", "iconButton"].includes(prop),
 })<StyledButtonProps>(({ theme, ...props }) => {
     const possibleColor: Record<Color, { main: string; contrast: string }> = {
         error: {

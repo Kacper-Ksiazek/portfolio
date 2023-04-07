@@ -2,7 +2,7 @@ export interface Task {
     id: number;
     description: string;
     urgent: boolean;
-    dueDate: Date | null;
+    dueDate: string | null;
     label: string;
     isCompleted: boolean;
 }

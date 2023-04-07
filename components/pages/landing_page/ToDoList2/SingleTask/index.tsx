@@ -1,15 +1,16 @@
 // Tools
 import { SINGLE_TASK_STAGES } from "../css_references";
 import { useTaskRemover } from "./hooks/useTaskRemover";
-import { useEditMode } from "./hooks/useEditMode";
+import { useEditModeContext } from "./hooks/useEditModeContext";
 // Types
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import type { Task, TaskEditCallback } from "../@types";
 // Other components
 import Manage from "./Manage";
 import Content from "./Content";
 import Background from "./Background";
 import CompletionButton from "./CompletionButton";
+import EditModeContextProvider from "./context/editModeContext";
 // Styled components
 import SingleTaskBase from "./Base";
 
@@ -21,16 +22,9 @@ interface SingleTaskProps {
 
 const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
     const { data } = props;
-    const { isTaskBeingRemoved, remove } = useTaskRemover(props.remove);
 
-    const {
-        isOpened: isInEditMode, //
-        newState,
-        saveAndExit,
-        someChangesHaveBeenMade,
-        toggleIsOpened: toggleOpenMode,
-        updateNewState,
-    } = useEditMode(data, props.update);
+    const { isOpened: isInEditMode } = useEditModeContext();
+    const { isTaskBeingRemoved, remove } = useTaskRemover(props.remove);
 
     function toggleCompletion() {
         props.update((currentValue) => ({ isCompleted: !currentValue.isCompleted }));
@@ -58,25 +52,29 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
 
             <Content
                 description={data.description} //
-                isUrget={data.urgent}
+                isUrgent={data.urgent}
                 label={data.label}
             />
 
             <Manage
-                newState={newState} //
                 isUrgent={data.urgent}
                 isInEditMode={isInEditMode}
                 isCompleted={data.isCompleted}
                 isDeleting={isTaskBeingRemoved}
-                somethingHasChanged={someChangesHaveBeenMade}
                 //
                 remove={remove}
-                applyChanges={saveAndExit}
                 toggleUrgency={toggleUrgency}
-                updateNewState={updateNewState}
-                toggleOpenMode={toggleOpenMode}
             />
         </SingleTaskBase>
     );
 };
-export default SingleTask;
+
+const SingleTaskWithContext: FunctionComponent<SingleTaskProps> = (props) => {
+    return (
+        <EditModeContextProvider taskToBeEdited={props.data} applyChanges={props.update}>
+            <SingleTask {...props} />
+        </EditModeContextProvider>
+    );
+};
+
+export default SingleTaskWithContext;
