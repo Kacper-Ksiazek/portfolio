@@ -10,10 +10,13 @@ import Tooltip from "@mui/material/Tooltip";
 // Styled components
 const StyledIconButtonBase = styled(IconButton)(({ theme }) => ({
     ...theme.mixins.flex_center,
-    color: alpha("#fff", 0.6),
+    color: alpha("#fff", 0.8),
     transition: "color .3s",
     "&:hover": {
         color: "#fff",
+    },
+    "&.Mui-disabled": {
+        color: alpha("#fff", 0.2),
     },
     svg: {
         fontSize: "24px",

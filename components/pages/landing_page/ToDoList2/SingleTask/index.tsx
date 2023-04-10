@@ -40,6 +40,7 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
                 data.isCompleted ? SINGLE_TASK_STAGES.CHECKED : "", //
                 isTaskBeingRemoved ? SINGLE_TASK_STAGES.DELETING : "",
                 isInEditMode ? SINGLE_TASK_STAGES.IN_EDIT_MODE : "",
+                data.urgent ? SINGLE_TASK_STAGES.URGENT : "",
             ].join(" ")}
         >
             <Background isUrgent={data.urgent} isInEditMode={isInEditMode} />

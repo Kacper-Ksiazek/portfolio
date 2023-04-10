@@ -23,7 +23,12 @@ export default styled("span")(({ theme }) => ({
             opacity: 0,
             transition: "opacity .3s",
         },
+        "&:not(&.active)": {
+            border: "0px solid !important",
+        },
         "&.active": {
+            border: "2px solid",
+            borderColor: theme.palette.primary.main,
             transform: "scaleX(1)",
             width: "auto",
             marginRight: "8px",

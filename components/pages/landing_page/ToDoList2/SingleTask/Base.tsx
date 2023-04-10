@@ -17,6 +17,12 @@ const hideSingleTaskWrapper = keyframes({
     },
 });
 
+const ELEMENTS_INVOLVED_IN_ANIMATION: Selector = [
+    SELECTORS.SINGLE_TASK.DESCRIPTION, //
+    SELECTORS.SINGLE_TASK.LABELS_WRAPPER,
+    SELECTORS.SINGLE_TASK.CHECK_ICON,
+].join(", ");
+
 export default styled("div")(({ theme }) => ({
     background: theme.palette.background.default,
     width: "720px",
@@ -51,7 +57,7 @@ export default styled("div")(({ theme }) => ({
         [SELECTORS.SINGLE_TASK.LABEL]: {
             background: "none",
             color: alpha("#fff", 0.3),
-            border: "2px solid",
+            border: `2px solid ${alpha("#fff", 0.3)} !important`,
         },
         color: alpha("#fff", 0.3),
     },
@@ -61,11 +67,7 @@ export default styled("div")(({ theme }) => ({
             [scaleToLeft, 0.3, 0.5],
             [hideSingleTaskWrapper, 0.15, 0.1],
         ]),
-        [[
-            SELECTORS.SINGLE_TASK.DESCRIPTION, //
-            SELECTORS.SINGLE_TASK.LABELS_WRAPPER,
-            SELECTORS.SINGLE_TASK.CHECK_ICON,
-        ].join(", ")]: {
+        [ELEMENTS_INVOLVED_IN_ANIMATION]: {
             position: "relative",
             "&::after": {
                 content: "''",
@@ -77,8 +79,18 @@ export default styled("div")(({ theme }) => ({
                     [scaleToLeft, 0.2, 0.2],
                 ]),
             },
+
             "&>*": {
                 animation: `${fadeSimpleOUT} .001s .3s both`,
+            },
+        },
+
+        // Use different color when a task is urgent
+        [`&.${SINGLE_TASK_STAGES.URGENT}`]: {
+            [ELEMENTS_INVOLVED_IN_ANIMATION]: {
+                "&::after": {
+                    background: theme.palette.primary.main,
+                },
             },
         },
 

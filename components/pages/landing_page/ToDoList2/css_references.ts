@@ -11,6 +11,7 @@ interface CSSReferenceStructure<T extends CSSClassName | Selector> {
 export const SINGLE_TASK_STAGES = {
     CHECKED: "is-checked",
     DELETING: "is-deleting",
+    URGENT: "is-urgent",
     IN_EDIT_MODE: "is-in-edit-mode",
 };
 

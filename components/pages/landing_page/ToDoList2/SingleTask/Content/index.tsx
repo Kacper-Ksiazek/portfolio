@@ -17,7 +17,7 @@ const Content: FunctionComponent<ContentProps> = (props) => {
     const editModeContext = useEditModeContext();
 
     return (
-        <FlexBox column horizontal="start" sx={{ width: "100%" }}>
+        <FlexBox column horizontal="start" sx={{ width: "100%", marginRight: "16px" }}>
             <Description
                 description={props.description} //
                 isInEditMode={editModeContext.isOpened}
