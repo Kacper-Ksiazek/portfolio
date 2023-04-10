@@ -10,12 +10,12 @@ export default styled("span")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
     boxSizing: "border-box",
+    transition: "all .3s",
     "&.urgency": {
         marginRight: "0px",
         width: 0,
         padding: "2px 0",
         transform: "scaleX(0)",
-        transition: "all .3s",
         transformOrigin: "left",
         borderColor: "transparent",
         background: theme.palette.primary.main,

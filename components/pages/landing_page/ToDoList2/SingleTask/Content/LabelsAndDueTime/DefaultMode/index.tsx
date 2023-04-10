@@ -16,7 +16,7 @@ const DefaultMode: FunctionComponent<DefaultModeProps> = (props) => {
     return (
         <FlexBox className={CLASSES.SINGLE_TASK.LABELS_WRAPPER}>
             <Label indicateUrgency={props.isUrgent} />
-            <Label label={props.label} />
+            <Label label={props.label} isTaskUrgent={props.isUrgent} />
         </FlexBox>
     );
 };

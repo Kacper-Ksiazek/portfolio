@@ -8,6 +8,7 @@ import LabelBase from "./Base";
 
 interface PropsWithLabel {
     label: string;
+    isTaskUrgent: boolean;
 }
 interface PropsIndicatingUrgency {
     indicateUrgency: boolean;
@@ -30,13 +31,22 @@ const Label: FunctionComponent<PropsWithLabel | PropsIndicatingUrgency> = (props
     }
 
     const color = getCorrespondingColor(props.label);
+    const { isTaskUrgent } = props;
 
     return (
         <LabelBase
-            sx={{
-                color,
-                borderColor: color,
-            }}
+            sx={
+                isTaskUrgent
+                    ? {
+                          color: "#fff",
+                          background: color,
+                          borderColor: color,
+                      }
+                    : {
+                          color,
+                          borderColor: color,
+                      }
+            }
             className={className}
         >
             {props.label}
