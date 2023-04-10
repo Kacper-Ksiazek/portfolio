@@ -11,10 +11,11 @@ export const labelsContext = createContext<I_LabelsContext>({} as any);
 
 export const LabelsContextProvider: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
     const [labelsFromLocalStorage, setLabels] = useLocalStorage<Record<string, ColorInHEX>>("to-do-list-labels", {
-        University: "#ffadda",
+        University: "#FFADDA",
         Household: "#D7AF70",
         Career: "#17A398",
-        "Self-growth": "#89023E",
+        "Self-growth": "#EA1744",
+        "Family-and-friends": "#F96900",
     });
 
     function getCorrespondingColor(label: keyof typeof labelsFromLocalStorage): ColorInHEX {
