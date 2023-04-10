@@ -1,43 +1,18 @@
 // Tools
-import { styled } from "@mui/material";
-import { CLASSES } from "@/components/pages/landing_page/ToDoList2/css_references";
+import { useLabelsContext } from "../../../hooks";
 import { useEditModeContext } from "../../hooks/useEditModeContext";
+import { CLASSES } from "@/components/pages/landing_page/ToDoList2/css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
 import Label from "./Label";
+import UrgencySwitch from "./UrgencySwitch";
 import DueDatePicker from "./DueDatePicker";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import SmoothConditionalRender from "@/components/utils/SmoothConditionalRender";
 // Styled components
+import LabelsAndDueTimeBase from "./Wrapper";
 import StyledSelect from "@/components/atoms/forms/StyledSelect";
-import { useLabelsContext } from "../../../hooks";
-
-const LabelsAndDueTimeBase = styled("div")(({ theme }) => ({
-    height: "28px",
-    position: "relative",
-    width: "100%",
-    ".MuiSelect-select": {
-        width: "86px",
-        paddingTop: "4px !important",
-        paddingBottom: "4px !important",
-        fontSize: "14px",
-    },
-    ".due-date-picker": {
-        margin: "0 4px",
-        // display: "none",
-        ".MuiInputBase-input": {
-            width: "112px",
-            height: "32px",
-            paddingTop: "0px",
-            paddingBottom: "0px",
-            fontSize: "14px !important",
-        },
-        svg: {
-            fontSize: "20px",
-        },
-    },
-}));
 
 interface LabelsAndDueTimeProps {
     label: string;
@@ -59,6 +34,11 @@ const LabelsAndDueTime: FunctionComponent<LabelsAndDueTimeProps> = (props) => {
 
             <SmoothConditionalRender when={editModeContext.isOpened}>
                 <FlexBox>
+                    <UrgencySwitch
+                        value={editModeContext.newState.urgent}
+                        updateValue={(val) => editModeContext.updateNewState({ urgent: val })}
+                        //
+                    />
                     <StyledSelect
                         value={editModeContext.newState.label} //
                         options={availableLabels}

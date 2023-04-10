@@ -5,7 +5,7 @@ import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import type { FunctionComponent } from "react";
 import type { TaskWithoutID, TaskEditCallback } from "../../@types";
 
-export type UpdatedTask = Omit<TaskWithoutID, "urgent" | "isCompleted">;
+export type UpdatedTask = Omit<TaskWithoutID, "isCompleted">;
 
 interface I_EditModeContext {
     isOpened: boolean;
@@ -26,7 +26,7 @@ interface EditModeContexProviderProps {
 export const EditModeContext = createContext<I_EditModeContext>({} as any);
 
 const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = (props) => {
-    const { isCompleted: _, urgent: __, ...task } = props.taskToBeEdited;
+    const { isCompleted: _, ...task } = props.taskToBeEdited;
     //
     const [isOpened, setIsOpened] = useState<boolean>(false);
     const [newState, updateNewState] = useSimpleReducer<UpdatedTask>(task);
