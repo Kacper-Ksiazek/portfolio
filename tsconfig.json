@@ -16,7 +16,7 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["*"],
-            "@tests": ["./tests/"]
+            "landing_page/*": ["./components/pages/landing_page/*"]
         },
         "isolatedModules": true
     },
