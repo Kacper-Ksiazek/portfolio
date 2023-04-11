@@ -11,6 +11,7 @@ interface ContentProps {
     description: string;
     isUrgent: boolean;
     label: string;
+    dueDate: string | null;
 }
 
 const Content: FunctionComponent<ContentProps> = (props) => {
@@ -28,6 +29,7 @@ const Content: FunctionComponent<ContentProps> = (props) => {
             <LabelsAndDueTime
                 isUrgent={props.isUrgent} //
                 label={props.label}
+                dueDate={props.dueDate}
             />
         </FlexBox>
     );

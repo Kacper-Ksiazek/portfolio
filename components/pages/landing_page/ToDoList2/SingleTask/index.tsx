@@ -55,6 +55,7 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
                 description={data.description} //
                 isUrgent={data.urgent}
                 label={data.label}
+                dueDate={data.dueDate}
             />
 
             <Manage
@@ -72,7 +73,10 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
 
 const SingleTaskWithContext: FunctionComponent<SingleTaskProps> = (props) => {
     return (
-        <EditModeContextProvider taskToBeEdited={props.data} applyChanges={props.update}>
+        <EditModeContextProvider
+            taskToBeEdited={props.data} //
+            applyChanges={props.update}
+        >
             <SingleTask {...props} />
         </EditModeContextProvider>
     );

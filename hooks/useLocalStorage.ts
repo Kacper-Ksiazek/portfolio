@@ -5,7 +5,8 @@ import type { Dispatch, SetStateAction } from "react";
 
 type UseLocalStorageResult<T> = [
     T, //
-    Dispatch<SetStateAction<T>>
+    Dispatch<SetStateAction<T>>,
+    boolean
 ];
 
 interface UseLocalStorageOptions {
@@ -15,6 +16,8 @@ interface UseLocalStorageOptions {
 
 export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, options?: UseLocalStorageOptions): UseLocalStorageResult<T> => {
     const [value, setValue] = useState<T>(initialValue);
+    const [localStorageHasBeenLoaded, setLocalStorageHasBeenReached] = useState<boolean>(false);
+
     const originalValue = useRef<T | null>(null);
 
     useEffect(() => {
@@ -27,6 +30,8 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, opt
                 setValue(parsed);
                 originalValue.current = parsed;
             }
+
+            setLocalStorageHasBeenReached(true);
         }
 
         return () => {
@@ -55,5 +60,6 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, opt
     return [
         options && options.stickWithOriginalValue ? (originalValue.current as T) : value, //
         setValue,
+        localStorageHasBeenLoaded,
     ];
 };

@@ -17,7 +17,7 @@ const UrgencySwitch: FunctionComponent<UrgencySwitchProps> = (props) => {
                 height: "28px", //
                 ml: "-8px",
             }}
-            control={<Switch defaultChecked />} //
+            control={<Switch />} //
             label="Urgent"
             checked={props.value}
             onChange={(e) => {

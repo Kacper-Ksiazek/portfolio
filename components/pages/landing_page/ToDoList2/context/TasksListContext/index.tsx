@@ -19,7 +19,7 @@ export interface I_TasksListContext {
 export const taskListContext = createContext<I_TasksListContext>({} as any);
 
 export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-    const [tasks, setTasks] = useLocalStorage<Task[]>("to-do-list-tasks", DEFAULT_TASKS);
+    const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>("to-do-list-tasks", DEFAULT_TASKS);
 
     function remove(idToBeRemoved: ID) {
         setTasks((tasks) => tasks.filter((el) => el.id != idToBeRemoved));
@@ -53,6 +53,7 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
 
     return (
         <taskListContext.Provider
+            key={isLoaded ? "LOCAL_STORAGE_LOADED" : "LOADING"}
             value={{
                 tasks,
                 add,
