@@ -1,7 +1,7 @@
 // Tools
 import { styled, SxProps } from "@mui/material";
 // Types
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, ReactNode } from "react";
 // Material UI Components
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -33,9 +33,11 @@ type OnChangeEvent<T> = ChangeEvent<HTMLHtmlElement> & {
 interface StyledSelectProps<T> {
     value: T;
     options: (T | OptionWithAlias<T>)[];
-    onChange: (e: OnChangeEvent<T>) => void;
     className?: string;
     sx?: SxProps;
+    startAdornment?: ReactNode;
+
+    onChange: (e: OnChangeEvent<T>) => void;
 }
 
 export default function StyledSelect<T extends number | string | Record<any, any>>(props: StyledSelectProps<T>) {
@@ -55,6 +57,7 @@ export default function StyledSelect<T extends number | string | Record<any, any
                 },
             }}
             className={props.className}
+            startAdornment={props.startAdornment}
             sx={(theme) => (typeof props.sx === "function" ? props.sx(theme) : props.sx ?? new Object())}
         >
             {props.options.map((item, index) => {

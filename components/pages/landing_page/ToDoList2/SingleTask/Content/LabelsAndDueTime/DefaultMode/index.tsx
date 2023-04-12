@@ -8,11 +8,11 @@ import Label from "./Label";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 // Styled components
 const DueTo = styled("span")(({ theme }) => ({
-    marginLeft: "4px",
+    marginLeft: "6px",
     display: "flex",
     alignItems: "center",
     color: alpha(theme.palette.text.primary, 0.7),
-    fontSize: "14px",
+    fontSize: "16px",
     strong: {
         marginLeft: "4px",
     },
