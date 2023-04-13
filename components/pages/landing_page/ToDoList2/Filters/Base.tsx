@@ -2,10 +2,10 @@
 import { styled } from "@mui/material";
 
 export default styled("section")(({ theme }) => ({
-    width: "818px",
+    width: "820px",
     display: "flex",
     alignItems: "center",
-    marginBottom: "12px",
+    marginBottom: "24px",
     background: theme.palette.background.default,
     padding: "12px",
     boxSizing: "border-box",

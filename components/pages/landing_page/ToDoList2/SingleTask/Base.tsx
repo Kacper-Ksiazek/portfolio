@@ -25,7 +25,7 @@ const ELEMENTS_INVOLVED_IN_ANIMATION: Selector = [
 
 export default styled("div")(({ theme }) => ({
     background: theme.palette.background.default,
-    width: "800px",
+    width: "100%",
     display: "flex",
     alignItems: "center",
     boxSizing: "border-box",
