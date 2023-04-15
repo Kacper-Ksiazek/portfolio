@@ -5,7 +5,7 @@ import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import type { FunctionComponent } from "react";
 import type { TaskWithoutID, TaskEditCallback } from "../../@types";
 
-export type UpdatedTask = Omit<TaskWithoutID, "isCompleted">;
+export type UpdatedTask = Omit<TaskWithoutID, "isCompleted" | "createdAt">;
 
 interface I_EditModeContext {
     isOpened: boolean;

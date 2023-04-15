@@ -9,6 +9,7 @@ export const DEFAULT_TASKS: Task[] = [
         urgent: false,
         dueDate: null,
         isCompleted: true,
+        createdAt: 1681578091291,
     },
     {
         id: 2,
@@ -17,6 +18,7 @@ export const DEFAULT_TASKS: Task[] = [
         urgent: false,
         dueDate: null,
         isCompleted: false,
+        createdAt: 1681578091292,
     },
     {
         id: 3,
@@ -25,6 +27,7 @@ export const DEFAULT_TASKS: Task[] = [
         dueDate: "21/01/2024",
         urgent: true,
         isCompleted: false,
+        createdAt: 1681578091293,
     },
     {
         id: 4,
@@ -33,6 +36,7 @@ export const DEFAULT_TASKS: Task[] = [
         urgent: false,
         dueDate: null,
         isCompleted: true,
+        createdAt: 1681578091294,
     },
     {
         id: 5,
@@ -41,6 +45,7 @@ export const DEFAULT_TASKS: Task[] = [
         dueDate: "12/06/2023",
         urgent: false,
         isCompleted: false,
+        createdAt: 1681578091295,
     },
     {
         id: 6,
@@ -49,5 +54,6 @@ export const DEFAULT_TASKS: Task[] = [
         dueDate: null,
         urgent: true,
         isCompleted: false,
+        createdAt: 1681578091296,
     },
 ];

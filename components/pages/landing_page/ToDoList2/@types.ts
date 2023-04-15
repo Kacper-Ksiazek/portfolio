@@ -5,6 +5,8 @@ export interface Task {
     dueDate: string | null;
     label: string;
     isCompleted: boolean;
+    /** Simply Date.now() */
+    createdAt: number;
 }
 
 export interface Filters {

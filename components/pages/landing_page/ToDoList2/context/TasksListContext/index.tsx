@@ -19,7 +19,27 @@ export interface I_TasksListContext {
 export const taskListContext = createContext<I_TasksListContext>({} as any);
 
 export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-    const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>("to-do-list-tasks", DEFAULT_TASKS);
+    const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>("to-do-list-tasks", DEFAULT_TASKS, {
+        validate: (dataFromLocalStorage: unknown) => {
+            try {
+                const expectedKeys = Object.keys(DEFAULT_TASKS[0]);
+
+                for (const element of dataFromLocalStorage as unknown[]) {
+                    const actualKeys = Object.keys(element as any);
+
+                    if (actualKeys.length !== expectedKeys.length) throw new Error("The amount of keys of received object did not match the amount of keys of expected object.");
+                    expectedKeys.forEach((key) => {
+                        if (key in actualKeys === false) throw new Error(`Key ${key} is missing`);
+                    });
+                }
+                //
+                return true;
+            } catch (_) {
+                // When validation fails
+                return false;
+            }
+        },
+    });
 
     function remove(idToBeRemoved: ID) {
         setTasks((tasks) => tasks.filter((el) => el.id != idToBeRemoved));
@@ -27,12 +47,15 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
 
     function add(newTask: Omit<TaskWithoutID, "isCompleted">) {
         setTasks((tasks) => {
+            const now = Date.now();
+
             return [
                 ...tasks,
                 {
                     ...newTask,
-                    id: Date.now(),
+                    id: now,
                     isCompleted: false,
+                    createdAt: now,
                 },
             ];
         });

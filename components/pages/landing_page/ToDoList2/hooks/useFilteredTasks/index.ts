@@ -1,26 +1,11 @@
 // Tools
-import { Task } from "../@types";
 import { XOR } from "@/utils/XOR";
+import { FiltersApplier } from "./FiltersApplier";
 import { useState, useEffect, useRef } from "react";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 // Types
 import type { Dispatch } from "react";
-import type { Filters as I_Filters } from "../@types";
-
-function filterTasks(tasks: Task[], filters: I_Filters): Task[] {
-    const { withParticularLabel, completedOnly, urgencyFilter } = filters;
-
-    return tasks.filter((target) => {
-        // Apply particular label filter
-        if (withParticularLabel !== "_ALL" && withParticularLabel !== target.label) return false;
-        // Check completed only
-        if (completedOnly && target.isCompleted === false) return false;
-        // Check whether it is urgent only
-        if (urgencyFilter === "URGENT_ONLY" && target.urgent === false) return false;
-
-        return true;
-    });
-}
+import type { Task, Filters as I_Filters } from "../../@types";
 
 interface UseFilteredTasksResult {
     filters: I_Filters;
@@ -50,7 +35,9 @@ export function useFilteredTasks(tasks: Task[]): UseFilteredTasksResult {
     }
 
     useEffect(() => {
-        const filteredTasks = filterTasks(tasks, filters);
+        const Filter = new FiltersApplier({ filters, tasks });
+        const filteredTasks = Filter.result;
+
         let timeout: ReturnType<typeof setTimeout> | null = null;
 
         if (XOR(filteredTasks.length === 0, _amountOfTaskCurrentlyDisplaying.current === 0)) {
