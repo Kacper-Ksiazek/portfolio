@@ -9,9 +9,18 @@ type UseLocalStorageResult<T> = [
     boolean
 ];
 
+type Validator = (valueFromLocalStorage: unknown) => boolean;
+
 interface UseLocalStorageOptions {
+    /** Assure that value received from local storage is not obsolete */
+    validate?: Validator;
     /** Use default value over updated one */
     stickWithOriginalValue?: boolean;
+}
+
+/** Handles validate received from UseLocalStorageOptions */
+function hasValidatorBeenProvided(value: unknown): value is Validator {
+    return <boolean>(value && typeof value === "function");
 }
 
 export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, options?: UseLocalStorageOptions): UseLocalStorageResult<T> => {
@@ -27,8 +36,15 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, opt
             const valueFromLocalStorage = localStorage.getItem(localStorageKey);
             if (valueFromLocalStorage !== null && valueFromLocalStorage !== undefined) {
                 const parsed: T = JSON.parse(valueFromLocalStorage);
-                setValue(parsed);
-                originalValue.current = parsed;
+                const validatorHasBeenProvided = hasValidatorBeenProvided(options?.validate);
+
+                if (validatorHasBeenProvided && (options as any).validate(parsed)) {
+                    setValue(parsed);
+                    originalValue.current = parsed;
+                } else {
+                    if (validatorHasBeenProvided) localStorage.removeItem(localStorageKey);
+                    originalValue.current = initialValue;
+                }
             }
 
             setLocalStorageHasBeenReached(true);
@@ -37,7 +53,7 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, opt
         return () => {
             if (timeout !== null) clearTimeout(timeout);
         };
-    }, [localStorageKey]);
+    }, [initialValue, localStorageKey, options]);
 
     useEffect(() => {
         let timeout: ReturnType<typeof setTimeout> | null = null;
