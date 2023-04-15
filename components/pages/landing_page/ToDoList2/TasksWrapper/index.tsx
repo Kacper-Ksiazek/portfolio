@@ -63,20 +63,19 @@ const TasksWrapper: FunctionComponent<TasksWrapperProps> = (props) => {
     const hidingAnimation: SxProps | null = props.fadeContentOut ? { animation: `${fadeSimpleOUT} .24s linear both` } : null;
 
     return (
-        <TaskWrapperBase className="tasks-wrapper">
+        <TaskWrapperBase className="tasks-wrapper" sx={hidingAnimation as any}>
             {(() => {
                 if (props.amountOfTasks > 4) {
                     return (
                         <OverflowScrollDiv
                             maxHeight="406px" //
-                            sx={hidingAnimation as any}
                         >
                             {props.children}
                         </OverflowScrollDiv>
                     );
                 } else if (props.amountOfTasks === 0) {
                     return (
-                        <NoRecordWrapper sx={hidingAnimation as any}>
+                        <NoRecordWrapper>
                             <BlurOnRoundedIcon />
                             <h2>No tasks</h2>
                             <p>There are no tasks matching given filters</p>

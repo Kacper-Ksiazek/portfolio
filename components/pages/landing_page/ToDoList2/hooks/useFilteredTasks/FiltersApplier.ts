@@ -19,13 +19,14 @@ export class FiltersApplier {
     }
 
     private filter() {
-        const { withParticularLabel, completedOnly, urgencyFilter } = this.filters;
+        const { withParticularLabel, completion, urgencyFilter } = this.filters;
 
         this._result = this.tasks.filter((target) => {
             // Apply particular label filter
             if (withParticularLabel !== "_ALL" && withParticularLabel !== target.label) return false;
-            // Check completed only
-            if (completedOnly && target.isCompleted === false) return false;
+            // Check completion
+            if (completion !== "_ALL" && (completion === "INCOMPLETE_ONLY") === target.isCompleted) return false;
+
             // Check whether it is urgent only
             if (urgencyFilter === "URGENT_ONLY" && target.urgent === false) return false;
 
@@ -41,7 +42,6 @@ export class FiltersApplier {
         else result = result.sort((a, b) => b.createdAt - a.createdAt);
 
         if (urgencyFilter === "URGENT_FIRST") {
-            console.log("objecdasdat");
             result = result.sort((el) => (el.urgent ? -1 : 1));
         }
 

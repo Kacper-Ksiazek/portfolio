@@ -20,7 +20,7 @@ export function useFilteredTasks(tasks: Task[]): UseFilteredTasksResult {
     const [filters, updateFilters] = useSimpleReducer<I_Filters>({
         sort: "NEWEST",
         urgencyFilter: "_DEFAULT",
-        completedOnly: false,
+        completion: "_ALL",
         withParticularLabel: "_ALL",
     });
 

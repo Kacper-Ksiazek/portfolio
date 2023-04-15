@@ -10,9 +10,9 @@ export interface Task {
 }
 
 export interface Filters {
-    completedOnly: boolean;
     sort: "NEWEST" | "OLDEST";
     withParticularLabel: string | "_ALL";
+    completion: "_ALL" | "COMPLETED_ONLY" | "INCOMPLETE_ONLY";
     urgencyFilter: "URGENT_FIRST" | "URGENT_ONLY" | "_DEFAULT";
 }
 

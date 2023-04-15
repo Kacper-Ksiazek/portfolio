@@ -30,6 +30,7 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, opt
     const originalValue = useRef<T | null>(null);
 
     useEffect(() => {
+        if (localStorageHasBeenLoaded) return;
         let timeout: ReturnType<typeof setTimeout> | null = null;
 
         if (localStorage) {
@@ -42,7 +43,7 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, opt
                     setValue(parsed);
                     originalValue.current = parsed;
                 } else {
-                    if (validatorHasBeenProvided) localStorage.removeItem(localStorageKey);
+                    // if (validatorHasBeenProvided) localStorage.removeItem(localStorageKey);
                     originalValue.current = initialValue;
                 }
             }
@@ -53,7 +54,7 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, opt
         return () => {
             if (timeout !== null) clearTimeout(timeout);
         };
-    }, [initialValue, localStorageKey, options]);
+    }, [initialValue, localStorageHasBeenLoaded, localStorageKey, options]);
 
     useEffect(() => {
         let timeout: ReturnType<typeof setTimeout> | null = null;

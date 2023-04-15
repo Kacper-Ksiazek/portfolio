@@ -27,7 +27,11 @@ const ToDoList: FunctionComponent = () => {
             }}
             githubURL={"https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page"}
         >
-            <Filters filters={filters} updateFilters={updateFilters} />
+            <Filters
+                filters={filters} //
+                updateFilters={updateFilters}
+                disableSortingTools={filteredTasks.length <= 1 || fadeContentOut}
+            />
 
             <TasksWrapper amountOfTasks={filteredTasks.length} fadeContentOut={fadeContentOut}>
                 {filteredTasks.map((item, index) => {

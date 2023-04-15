@@ -36,6 +36,7 @@ interface StyledSelectProps<T> {
     className?: string;
     sx?: SxProps;
     startAdornment?: ReactNode;
+    disabled?: boolean;
 
     onChange: (e: OnChangeEvent<T>) => void;
 }
@@ -58,6 +59,7 @@ export default function StyledSelect<T extends number | string | Record<any, any
             }}
             className={props.className}
             startAdornment={props.startAdornment}
+            disabled={props.disabled}
             sx={(theme) => (typeof props.sx === "function" ? props.sx(theme) : props.sx ?? new Object())}
         >
             {props.options.map((item, index) => {

@@ -5,17 +5,17 @@ import type { Filters as I_Filters } from "../@types";
 import type { FunctionComponent, Dispatch } from "react";
 // Other components
 import StyledSelect from "@/components/atoms/forms/StyledSelect";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
 // Material UI Icons
 import CategoryRoundedIcon from "@mui/icons-material/CategoryRounded";
 import SortByAlphaRoundedIcon from "@mui/icons-material/SortByAlphaRounded";
 import PriorityHighRoundedIcon from "@mui/icons-material/PriorityHighRounded";
+import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 // Styled components
 import FiltersWrapper from "./Base";
 
 interface FiltersProps {
     filters: I_Filters;
+    disableSortingTools: boolean;
     updateFilters: Dispatch<Partial<I_Filters>>;
 }
 
@@ -43,6 +43,7 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
                 value={props.filters.urgencyFilter}
                 startAdornment={<PriorityHighRoundedIcon />}
                 onChange={(e) => props.updateFilters({ urgencyFilter: e.target.value })}
+                disabled={props.disableSortingTools}
                 options={[
                     {
                         alias: "Default",
@@ -64,6 +65,7 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
                 value={props.filters.sort}
                 startAdornment={<SortByAlphaRoundedIcon />}
                 onChange={(e) => props.updateFilters({ sort: e.target.value })}
+                disabled={props.disableSortingTools}
                 options={[
                     {
                         alias: "Oldest",
@@ -76,17 +78,25 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
                 ]}
             />
 
-            <FormControlLabel
-                sx={{
-                    height: "28px", //
-                    ml: "-10px",
-                }}
-                control={<Switch />} //
-                label="Only completed"
-                checked={props.filters.completedOnly}
-                onChange={(e) => {
-                    props.updateFilters({ completedOnly: (e.target as any).checked });
-                }}
+            <StyledSelect
+                className="filter-select-completion"
+                value={props.filters.completion}
+                startAdornment={<CheckCircleOutlineRoundedIcon />}
+                onChange={(e) => props.updateFilters({ completion: e.target.value })}
+                options={[
+                    {
+                        alias: "All",
+                        value: "_ALL",
+                    },
+                    {
+                        alias: "Complete",
+                        value: "COMPLETED_ONLY",
+                    },
+                    {
+                        alias: "Incomplete",
+                        value: "INCOMPLETE_ONLY",
+                    },
+                ]}
             />
         </FiltersWrapper>
     );

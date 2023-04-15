@@ -22,6 +22,9 @@ export default styled("section")(({ theme }) => ({
         "&.filter-select-sort": {
             width: "144px",
         },
+        "&.filter-select-completion": {
+            width: "172px",
+        },
         ".MuiSelect-select": {
             paddingLeft: "8px",
         },

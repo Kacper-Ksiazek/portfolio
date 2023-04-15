@@ -26,10 +26,9 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
 
                 for (const element of dataFromLocalStorage as unknown[]) {
                     const actualKeys = Object.keys(element as any);
-
                     if (actualKeys.length !== expectedKeys.length) throw new Error("The amount of keys of received object did not match the amount of keys of expected object.");
                     expectedKeys.forEach((key) => {
-                        if (key in actualKeys === false) throw new Error(`Key ${key} is missing`);
+                        if (!actualKeys.includes(key)) throw new Error(`Key ${key} is missing`);
                     });
                 }
                 //
