@@ -1,13 +1,15 @@
 // Tools
 import { alpha, styled } from "@mui/material";
+import { fadeSimple } from "@keyframes/intro/fade";
 import { renderNTimes } from "@/utils/client/renderNTimes";
-import { fadeSimple } from "../Projects/SingleProjectRow/intro_animations/_keyframes";
 // Types
+import type { SxProps } from "@/@types/MUI";
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import OverflowScrollDiv from "@/components/atoms/content_placement/OverflowScrollDiv";
 // Material UI Icons
 import BlurOnRoundedIcon from "@mui/icons-material/BlurOnRounded";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Styled components
 const TaskWrapperBase = styled("section")(({ theme }) => ({
     minHeight: "406px",
@@ -21,11 +23,9 @@ const GhostRecord = styled("div")(({ theme }) => ({
     background: alpha("#fff", 0.065),
     borderRadius: "5px",
 }));
-
 const NoRecordWrapper = styled("div")(({ theme }) => ({
     ...theme.mixins.flex_center,
     flexDirection: "column",
-    paddingTop: "32px",
     userSelect: "none",
     animation: `${fadeSimple} .3s`,
     svg: {
@@ -41,22 +41,42 @@ const NoRecordWrapper = styled("div")(({ theme }) => ({
         margin: 0,
         fontSize: "20px",
     },
+    paddingTop: "64px",
+    "@media (max-height:880px)": {
+        paddingTop: "32px",
+    },
+    "@media (max-height:800px)": {
+        paddingTop: "16px",
+    },
+    "@media (max-height:750px)": {
+        paddingTop: "0px",
+    },
 }));
 
 interface TasksWrapperProps {
     children: ReactNode;
     amountOfTasks: number;
+    fadeContentOut: boolean;
 }
 
 const TasksWrapper: FunctionComponent<TasksWrapperProps> = (props) => {
+    const hidingAnimation: SxProps | null = props.fadeContentOut ? { animation: `${fadeSimpleOUT} .24s linear both` } : null;
+
     return (
         <TaskWrapperBase className="tasks-wrapper">
             {(() => {
                 if (props.amountOfTasks > 4) {
-                    return <OverflowScrollDiv maxHeight="406px">{props.children}</OverflowScrollDiv>;
+                    return (
+                        <OverflowScrollDiv
+                            maxHeight="406px" //
+                            sx={hidingAnimation as any}
+                        >
+                            {props.children}
+                        </OverflowScrollDiv>
+                    );
                 } else if (props.amountOfTasks === 0) {
                     return (
-                        <NoRecordWrapper>
+                        <NoRecordWrapper sx={hidingAnimation as any}>
                             <BlurOnRoundedIcon />
                             <h2>No tasks</h2>
                             <p>There are no tasks matching given filters</p>

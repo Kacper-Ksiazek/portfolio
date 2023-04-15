@@ -16,7 +16,8 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["*"],
-            "landing_page/*": ["./components/pages/landing_page/*"]
+            "landing_page/*": ["./components/pages/landing_page/*"],
+            "@keyframes/*": ["./components/keyframes/*"]
         },
         "isolatedModules": true
     },
