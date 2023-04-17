@@ -2,14 +2,15 @@
 import { alpha, styled } from "@mui/material";
 import { fadeSimple } from "@keyframes/intro/fade";
 import { renderNTimes } from "@/utils/client/renderNTimes";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Types
 import type { SxProps } from "@/@types/MUI";
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
+import AmountOfTasks from "./AmountOfTasks";
 import OverflowScrollDiv from "@/components/atoms/content_placement/OverflowScrollDiv";
 // Material UI Icons
 import BlurOnRoundedIcon from "@mui/icons-material/BlurOnRounded";
-import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Styled components
 const TaskWrapperBase = styled("section")(({ theme }) => ({
     minHeight: "406px",
@@ -36,11 +37,6 @@ const NoRecordWrapper = styled("div")(({ theme }) => ({
         fontSize: "32px",
         margin: "0 0 8px 0",
     },
-    p: {
-        color: alpha("#fff", 0.8),
-        margin: 0,
-        fontSize: "20px",
-    },
     paddingTop: "64px",
     "@media (max-height:880px)": {
         paddingTop: "32px",
@@ -55,12 +51,21 @@ const NoRecordWrapper = styled("div")(({ theme }) => ({
 
 interface TasksWrapperProps {
     children: ReactNode;
+    progress: string;
     amountOfTasks: number;
     fadeContentOut: boolean;
 }
 
 const TasksWrapper: FunctionComponent<TasksWrapperProps> = (props) => {
+    const { amountOfTasks } = props;
     const hidingAnimation: SxProps | null = props.fadeContentOut ? { animation: `${fadeSimpleOUT} .24s linear both` } : null;
+
+    const childrenWithWrapper = (
+        <>
+            <AmountOfTasks quantity={props.amountOfTasks} />
+            {props.children}
+        </>
+    );
 
     return (
         <TaskWrapperBase className="tasks-wrapper" sx={hidingAnimation as any}>
@@ -70,7 +75,7 @@ const TasksWrapper: FunctionComponent<TasksWrapperProps> = (props) => {
                         <OverflowScrollDiv
                             maxHeight="406px" //
                         >
-                            {props.children}
+                            {childrenWithWrapper}
                         </OverflowScrollDiv>
                     );
                 } else if (props.amountOfTasks === 0) {
@@ -84,7 +89,7 @@ const TasksWrapper: FunctionComponent<TasksWrapperProps> = (props) => {
                 }
                 return (
                     <>
-                        {props.children}
+                        {childrenWithWrapper}
                         {renderNTimes({
                             n: 4 - props.amountOfTasks,
                             renderElement: (index) => <GhostRecord key={index} />,

@@ -33,7 +33,11 @@ const ToDoList: FunctionComponent = () => {
                 disableSortingTools={filteredTasks.length <= 1 || fadeContentOut}
             />
 
-            <TasksWrapper amountOfTasks={filteredTasks.length} fadeContentOut={fadeContentOut}>
+            <TasksWrapper
+                amountOfTasks={filteredTasks.length} //
+                fadeContentOut={fadeContentOut}
+                progress={((filteredTasks.filter((el) => el.isCompleted).length * 100) / filteredTasks.length).toFixed(2)}
+            >
                 {filteredTasks.map((item, index) => {
                     return (
                         <SingleTask
