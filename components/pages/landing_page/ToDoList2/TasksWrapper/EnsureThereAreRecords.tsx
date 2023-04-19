@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { alpha, styled } from "@mui/material";
 import { fadeSimple } from "@keyframes/intro/fade";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -10,6 +10,7 @@ const NoRecordWrapper = styled("div")(({ theme }) => ({
     ...theme.mixins.flex_center,
     flexDirection: "column",
     userSelect: "none",
+    paddingTop: "64px",
     animation: `${fadeSimple} .3s`,
     svg: {
         fontSize: "128px",
@@ -19,7 +20,12 @@ const NoRecordWrapper = styled("div")(({ theme }) => ({
         fontSize: "32px",
         margin: "0 0 8px 0",
     },
-    paddingTop: "64px",
+    p: {
+        margin: 0,
+        fontSize: "18px",
+        color: alpha("#fff", 0.8),
+    },
+
     "@media (max-height:880px)": {
         paddingTop: "32px",
     },

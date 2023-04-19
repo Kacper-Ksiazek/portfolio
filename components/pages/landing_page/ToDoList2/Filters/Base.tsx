@@ -2,7 +2,6 @@
 import { styled } from "@mui/material";
 
 export default styled("section")(({ theme }) => ({
-    width: "820px",
     display: "flex",
     alignItems: "center",
     marginBottom: "24px",

@@ -12,7 +12,7 @@ export interface Task {
 export interface Filters {
     sort: "NEWEST" | "OLDEST";
     withParticularLabel: string | "_ALL";
-    completion: "_ALL" | "COMPLETED_ONLY" | "INCOMPLETE_ONLY";
+    completion: "_ALL" | "COMPLETED_ONLY" | "NOT_COMPLETED_ONLY";
     urgencyFilter: "URGENT_FIRST" | "URGENT_ONLY" | "_DEFAULT";
 }
 

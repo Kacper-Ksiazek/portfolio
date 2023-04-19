@@ -25,7 +25,7 @@ export class FiltersApplier {
             // Apply particular label filter
             if (withParticularLabel !== "_ALL" && withParticularLabel !== target.label) return false;
             // Check completion
-            if (completion !== "_ALL" && (completion === "INCOMPLETE_ONLY") === target.isCompleted) return false;
+            if (completion !== "_ALL" && (completion === "NOT_COMPLETED_ONLY") === target.isCompleted) return false;
 
             // Check whether it is urgent only
             if (urgencyFilter === "URGENT_ONLY" && target.urgent === false) return false;

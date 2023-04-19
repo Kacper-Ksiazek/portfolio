@@ -1,4 +1,5 @@
 // Tools
+import { CLASSES } from "../css_references";
 import { useLabelsContext } from "../hooks/useLabelsContext";
 // Types
 import type { Filters as I_Filters } from "../@types";
@@ -16,6 +17,7 @@ import FiltersWrapper from "./Base";
 interface FiltersProps {
     filters: I_Filters;
     disableSortingTools: boolean;
+    disableFilteringByCompletion: boolean;
     updateFilters: Dispatch<Partial<I_Filters>>;
 }
 
@@ -23,7 +25,7 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
     const { labels } = useLabelsContext();
 
     return (
-        <FiltersWrapper className="filters">
+        <FiltersWrapper className={CLASSES.FILTERS_WRAPPER}>
             <StyledSelect
                 className="filter-select-label"
                 value={props.filters.withParticularLabel} //
@@ -35,7 +37,12 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
                     ...labels,
                 ]}
                 startAdornment={<CategoryRoundedIcon />}
-                onChange={(e) => props.updateFilters({ withParticularLabel: e.target.value })}
+                onChange={(e) =>
+                    props.updateFilters({
+                        withParticularLabel: e.target.value,
+                        completion: "_ALL",
+                    })
+                }
             />
 
             <StyledSelect
@@ -83,18 +90,19 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
                 value={props.filters.completion}
                 startAdornment={<CheckCircleOutlineRoundedIcon />}
                 onChange={(e) => props.updateFilters({ completion: e.target.value })}
+                disabled={props.disableFilteringByCompletion}
                 options={[
                     {
                         alias: "All",
                         value: "_ALL",
                     },
                     {
-                        alias: "Complete",
+                        alias: "Completed",
                         value: "COMPLETED_ONLY",
                     },
                     {
-                        alias: "Incomplete",
-                        value: "INCOMPLETE_ONLY",
+                        alias: "Not completed",
+                        value: "NOT_COMPLETED_ONLY",
                     },
                 ]}
             />

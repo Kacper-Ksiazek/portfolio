@@ -8,7 +8,7 @@ const GhostRecord = styled("div")(({ theme }) => ({
     width: "100%",
     height: "78px",
     marginTop: "24px",
-    background: alpha("#fff", 0.065),
+    background: alpha("#fff", 0.045),
     borderRadius: "5px",
 }));
 interface GhostRecordsProps {

@@ -41,11 +41,17 @@ export function useFilteredTasks(tasks: Task[]): UseFilteredTasksResult {
         let timeout: ReturnType<typeof setTimeout> | null = null;
 
         if (XOR(filteredTasks.length === 0, _amountOfTaskCurrentlyDisplaying.current === 0)) {
-            setFadeContentOut(true);
-            timeout = setTimeout(() => {
-                setFadeContentOut(false);
-                setTasksToBeDisplayed(filteredTasks);
-            }, DURATION_OF_FADING_OUT);
+            if (filters.completion === "_ALL") {
+                setFadeContentOut(true);
+                timeout = setTimeout(() => {
+                    setFadeContentOut(false);
+                    setTasksToBeDisplayed(filteredTasks);
+                }, DURATION_OF_FADING_OUT);
+            } else {
+                updateFilters({
+                    completion: "_ALL",
+                });
+            }
         } else {
             setTasksToBeDisplayed(filteredTasks);
         }
@@ -53,7 +59,7 @@ export function useFilteredTasks(tasks: Task[]): UseFilteredTasksResult {
         return () => {
             if (timeout !== null) clearTimeout(timeout);
         };
-    }, [tasks, filters]);
+    }, [tasks, filters, updateFilters]);
 
     return {
         filters,
