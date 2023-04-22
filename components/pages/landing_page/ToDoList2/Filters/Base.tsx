@@ -10,7 +10,9 @@ export default styled("section")(({ theme }) => ({
     boxSizing: "border-box",
     borderRadius: "5px",
     ".MuiOutlinedInput-root": {
-        marginRight: "12px",
+        "&:not(&:nth-of-type(1))": {
+            marginLeft: "12px",
+        },
         paddingLeft: "12px",
         "&.filter-select-label": {
             flexGrow: 1,

@@ -9,6 +9,7 @@ import Code from "@mui/icons-material/Code";
 // Other components
 import SingleTask from "./SingleTask";
 import AmountOfTasks from "./AmountOfTasks";
+import ProgressTracker from "./ProgressTracker";
 // Styled Components
 import Filters from "./Filters";
 import TasksWrapper from "./TasksWrapper";
@@ -51,7 +52,13 @@ const ToDoList: FunctionComponent = () => {
                     disableSortingTools={filteredTasks.length <= 1 || fadeContentOut}
                 />
 
-                <div>progress bar</div>
+                <ProgressTracker
+                    filteredTasks={filteredTasks} //
+                    amountOfAllTasks={{
+                        completed: tasks.filter((el) => el.isCompleted).length,
+                        inTotal: tasks.length,
+                    }}
+                />
 
                 <AmountOfTasks quantity={filteredTasks.length} />
 

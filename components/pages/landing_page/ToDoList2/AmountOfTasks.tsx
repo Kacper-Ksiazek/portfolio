@@ -1,5 +1,5 @@
 // Tools
-import { alpha, styled } from "@mui/material";
+import { styled } from "@mui/material";
 import { CLASSES } from "./css_references";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { fadeSimpleOUT } from "@keyframes/outro/fade";
@@ -7,9 +7,13 @@ import { fadeSimpleOUT } from "@keyframes/outro/fade";
 import type { FunctionComponent } from "react";
 // Styled components
 const AmountOfTasksBase = styled("p")(({ theme }) => ({
-    color: alpha("#fff", 0.8),
-    margin: "0 0 16px 0",
-    fontSize: "18px",
+    color: "#fff",
+    background: theme.palette.background.default,
+    padding: "12px",
+    boxSizing: "border-box",
+    borderRadius: "3px",
+    margin: "12px 0 16px 0",
+    fontSize: "16px",
     "&.hide": {
         animation: `${fadeSimpleOUT} .3s linear both`,
     },
