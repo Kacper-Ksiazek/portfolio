@@ -1,51 +1,52 @@
 // Tools
+import { useMemo } from "react";
+import { ratio } from "../../utils/ratio";
 import { useLabelsContext } from "../../../hooks";
 // Types
-import type { FunctionComponent, ReactNode } from "react";
-// Other components
-import LabelName from "../LabelName";
+import type { ReactNode, FunctionComponent } from "react";
 // Styled components
-import SingleLabelWrapper from "./Base";
 import { ProgressBar } from "../../styled_components/ProgressBar";
+import { CompletionTracker, LabelName, SingleLabelWrapper } from "./styled_components";
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 
-interface SingleLabelBase {
+interface SingleLabelProps {
+    label?: string;
     width: `${string}%`;
-    completion: `${string}%`;
+    progress: {
+        inTotal: number;
+        completed: number;
+        extensiveDescription?: boolean;
+        displayLabelNameInstead?: boolean;
+    };
 }
-
-interface SingleLabelPropsWithDescription extends SingleLabelBase {
-    description: ReactNode;
-}
-
-interface SingleLabelPropsWithLabel extends SingleLabelBase {
-    label: string;
-}
-
-function hasLabelWithAssociatedColor(val: unknown): val is SingleLabelPropsWithLabel {
-    return typeof val === "object" && val !== null && "label" in val;
-}
-
-type SingleLabelProps = SingleLabelPropsWithDescription | SingleLabelPropsWithLabel;
 
 const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
     const { getCorrespondingColor } = useLabelsContext();
 
-    const propsAreWithLabel = hasLabelWithAssociatedColor(props);
+    const backgroundColor = props.label ? getCorrespondingColor(props.label) : undefined;
 
-    const backgroundColor = propsAreWithLabel ? getCorrespondingColor(props.label) : undefined;
-    const content = hasLabelWithAssociatedColor(props) ? props.label : props.description;
+    const completion = useMemo<ReactNode>(() => {
+        const { completed, inTotal, extensiveDescription, displayLabelNameInstead } = props.progress;
+        if (displayLabelNameInstead === true) return props.label;
+
+        return extensiveDescription ? formatTextViaBolding(`*${completed}* out of *${inTotal}* have been completed so far`) : `${completed} / ${inTotal}`;
+    }, [props.progress, props.label]);
 
     return (
         <SingleLabelWrapper width={props.width}>
+            {props.label && props.progress.displayLabelNameInstead !== true && <LabelName>{props.label}</LabelName>}
+
             <ProgressBar
                 color={backgroundColor} //
-                completion={props.completion}
+                completion={ratio(props.progress.completed, props.progress.inTotal)}
             />
-            <LabelName
-                label={content} //
-                strikeThroughColor={backgroundColor}
-                isLabelCompleted={props.completion === "100.00%"}
-            />
+
+            <CompletionTracker
+                strikeThroughColor={backgroundColor} //
+                isCompleted={props.progress.completed === props.progress.inTotal}
+            >
+                {completion}
+            </CompletionTracker>
         </SingleLabelWrapper>
     );
 };

@@ -34,6 +34,7 @@ export default styled("div")(({ theme }) => ({
     position: "relative",
     paddingRight: "40px",
     zIndex: 1,
+    overflow: "hidden",
     backdropFilter: "blur(3px)",
     "&:not(&:nth-of-type(1))": {
         marginTop: "24px",

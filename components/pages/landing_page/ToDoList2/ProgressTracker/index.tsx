@@ -1,6 +1,3 @@
-// Tools
-import { ratio } from "./utils/ratio";
-import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { Task } from "../@types";
 import type { FunctionComponent } from "react";
@@ -24,12 +21,16 @@ const ProgressBars: FunctionComponent<ProgressBarsProps> = (props) => {
             <Paragraph>General completion</Paragraph>
             <FlexWrapper>
                 <SingleLabel
-                    completion={ratio(props.amountOfAllTasks.completed, props.amountOfAllTasks.inTotal)}
+                    progress={{
+                        ...props.amountOfAllTasks,
+                        extensiveDescription: true,
+                    }}
                     width="100%" //
-                    description={formatTextViaBolding(`*${props.amountOfAllTasks.completed}* out of *${props.amountOfAllTasks.inTotal}* have been completed so far`)}
                 />
             </FlexWrapper>
-            <Paragraph>Labels ratio</Paragraph>
+
+            <Paragraph sx={{ margin: "16px 0 0 0" }}>Labels ratio</Paragraph>
+
             <FlexWrapper>
                 <LabelsRatio
                     tasks={props.filteredTasks} //

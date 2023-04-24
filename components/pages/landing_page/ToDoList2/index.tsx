@@ -8,7 +8,6 @@ import type { FunctionComponent } from "react";
 import Code from "@mui/icons-material/Code";
 // Other components
 import SingleTask from "./SingleTask";
-import AmountOfTasks from "./AmountOfTasks";
 import ProgressTracker from "./ProgressTracker";
 // Styled Components
 import Filters from "./Filters";
@@ -33,6 +32,8 @@ const ToDoList: FunctionComponent = () => {
         return true;
     }, [filteredTasks, filters.completion]);
 
+    const amountOfFilteredTasks: number = filteredTasks.length;
+
     return (
         <DarkSectionWrapper
             shapesDirection="left"
@@ -47,6 +48,7 @@ const ToDoList: FunctionComponent = () => {
             <ContentWrapper>
                 <Filters
                     filters={filters} //
+                    amountOfTasks={amountOfFilteredTasks}
                     updateFilters={updateFilters}
                     disableFilteringByCompletion={disableFilteringByCompletion}
                     disableSortingTools={filteredTasks.length <= 1 || fadeContentOut}
@@ -60,10 +62,8 @@ const ToDoList: FunctionComponent = () => {
                     }}
                 />
 
-                <AmountOfTasks quantity={filteredTasks.length} />
-
                 <TasksWrapper
-                    amountOfTasks={filteredTasks.length} //
+                    amountOfTasks={amountOfFilteredTasks} //
                     fadeContentOut={fadeContentOut}
                     progress={((filteredTasks.filter((el) => el.isCompleted).length * 100) / filteredTasks.length).toFixed(2)}
                 >

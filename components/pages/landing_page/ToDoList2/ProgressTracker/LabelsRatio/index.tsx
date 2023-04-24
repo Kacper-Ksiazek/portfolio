@@ -1,11 +1,12 @@
 // Tools
 import { useMemo } from "react";
+import { ratio } from "../utils/ratio";
+import { filterTasks } from "./utils/filterTasks";
 // Types
 import type { Ratio } from "../@types";
+import type { Task } from "../../@types";
 import type { FunctionComponent } from "react";
-import { Task } from "../../@types";
-import { filterTasks } from "./utils/filterTasks";
-import { ratio } from "../utils/ratio";
+// Other components
 import SingleLabel from "./SingleLabel";
 import ThereAreNoRatios from "./ThereAreNoRatios";
 
@@ -49,7 +50,11 @@ const LabelsRatio: FunctionComponent<LabelsRatioProps> = (props) => {
                 key={label}
                 label={label}
                 width={ratio(tasksWithThisLabel.length, props.amountOfTasksInTotal)} //
-                completion={ratio(completedTasksWithThisLabel.length, tasksWithThisLabel.length)}
+                progress={{
+                    completed: completedTasksWithThisLabel.length,
+                    inTotal: tasksWithThisLabel.length,
+                    displayLabelNameInstead: true,
+                }}
             />
         );
     });

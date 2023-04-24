@@ -25,7 +25,7 @@ export default styled("div")(({ theme }) => ({
     h4: {
         fontSize: "20px",
         margin: 0,
-        fontWeight: "500",
+        fontWeight: "400",
     },
     ".MuiFormControl-root": {
         width: "calc(100% - 56px)",

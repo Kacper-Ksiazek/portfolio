@@ -13,7 +13,7 @@ export const FlexWrapper = styled("div")(({ theme }) => ({
 export const SectionWrapper = styled("div")(({ theme }) => ({
     background: theme.palette.background.default,
     borderRadius: "2px",
-    marginBottom: "12px",
+    margin: "12px 0 32px 0",
     padding: "12px",
     boxSizing: "border-box",
     width: "100%",
