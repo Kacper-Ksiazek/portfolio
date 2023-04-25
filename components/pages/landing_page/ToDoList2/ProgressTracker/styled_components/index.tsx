@@ -9,20 +9,3 @@ export const FlexWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     marginTop: "4px",
 }));
-
-export const SectionWrapper = styled("div")(({ theme }) => ({
-    background: theme.palette.background.default,
-    borderRadius: "2px",
-    margin: "12px 0 32px 0",
-    padding: "12px",
-    boxSizing: "border-box",
-    width: "100%",
-}));
-
-export const Paragraph = styled("p")(({ theme }) => ({
-    margin: 0,
-    fontSize: "18px",
-    "&:not(&:nth-of-type(1))": {
-        marginTop: "12px",
-    },
-}));

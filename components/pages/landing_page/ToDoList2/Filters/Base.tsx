@@ -1,11 +1,9 @@
 // Tools
 import { styled } from "@mui/material";
+// Styled components
+import SectionWrapper from "../atoms/SectionWrapper";
 
-export default styled("section")(({ theme }) => ({
-    background: theme.palette.background.default,
-    padding: "12px",
-    boxSizing: "border-box",
-    borderRadius: "5px",
+export default styled(SectionWrapper)(({ theme }) => ({
     ".MuiOutlinedInput-root": {
         "&:not(&:nth-of-type(1))": {
             marginLeft: "12px",

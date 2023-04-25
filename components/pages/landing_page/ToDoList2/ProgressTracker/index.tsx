@@ -5,7 +5,8 @@ import type { FunctionComponent } from "react";
 import LabelsRatio from "./LabelsRatio";
 import SingleLabel from "./LabelsRatio/SingleLabel";
 // Styled components
-import { Paragraph, FlexWrapper, SectionWrapper } from "./styled_components";
+import { FlexWrapper } from "./styled_components";
+import { SectionWrapper, Paragraph } from "../atoms";
 
 interface ProgressBarsProps {
     filteredTasks: Task[];

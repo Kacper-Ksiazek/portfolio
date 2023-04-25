@@ -7,7 +7,6 @@ import type { FunctionComponent } from "react";
 // Styled components
 const AmountOfTasksBase = styled("p")(({ theme }) => ({
     color: alpha("#fff", 0.8),
-    background: theme.palette.background.default,
     boxSizing: "border-box",
     borderRadius: "3px",
     margin: "8px 0 0 0",

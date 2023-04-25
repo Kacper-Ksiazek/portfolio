@@ -25,7 +25,11 @@ const TasksWrapper: FunctionComponent<TasksWrapperProps> = (props) => {
         <Box
             className={CLASSES.TASKS_WRAPPER} //
             component="section"
-            sx={hidingAnimation as any}
+            sx={{
+                ...(hidingAnimation as any),
+                mt: "32px",
+                mb: "16px",
+            }}
         >
             <EnsureThereAreRecords amountOfTasks={props.amountOfTasks}>
                 <WrapWithOverScrollDiv
