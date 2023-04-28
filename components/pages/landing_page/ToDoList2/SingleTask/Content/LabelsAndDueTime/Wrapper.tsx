@@ -12,16 +12,6 @@ export default styled("div")(({ theme }) => ({
         fontSize: "14px",
     },
     ".due-date-picker": {
-        margin: "0 4px",
-        ".MuiInputBase-input": {
-            width: "112px",
-            height: "32px",
-            paddingTop: "0px",
-            paddingBottom: "0px",
-            fontSize: "14px !important",
-        },
-        svg: {
-            fontSize: "20px",
-        },
+        marginLeft: "4px",
     },
 }));

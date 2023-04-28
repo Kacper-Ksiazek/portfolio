@@ -1,4 +1,3 @@
-// Tools
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Components
@@ -24,8 +23,6 @@ const UrgencySwitch: FunctionComponent<UrgencySwitchProps> = (props) => {
                 props.updateValue((e.target as any).checked);
             }}
         />
-
-        //
     );
 };
 

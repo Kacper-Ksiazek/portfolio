@@ -1,15 +1,18 @@
 // Tools
-import { createContext } from "react";
+import { useRef, createContext } from "react";
 import { DEFAULT_TASKS } from "./default_tasks";
+import { useSnackbar } from "@/hooks/useSnackbar";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { localStorageValidator, scrollToTheListsTop } from "./utils";
 // Types
+import type { FunctionComponent, ReactNode, MutableRefObject } from "react";
 import type { Task, TaskEditCallback, TaskWithoutID } from "../../@types";
-import type { FunctionComponent, ReactNode } from "react";
 
 type ID = Task["id"];
 
 export interface I_TasksListContext {
     tasks: Task[];
+    tasksWrapperRef: MutableRefObject<HTMLElement | null>;
 
     remove: (id: ID) => void;
     add: (val: TaskWithoutID) => void;
@@ -19,25 +22,11 @@ export interface I_TasksListContext {
 export const taskListContext = createContext<I_TasksListContext>({} as any);
 
 export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-    const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>("to-do-list-tasks", DEFAULT_TASKS, {
-        validate: (dataFromLocalStorage: unknown) => {
-            try {
-                const expectedKeys = Object.keys(DEFAULT_TASKS[0]);
+    const tasksWrapperRef = useRef<HTMLElement | null>(null);
 
-                for (const element of dataFromLocalStorage as unknown[]) {
-                    const actualKeys = Object.keys(element as any);
-                    if (actualKeys.length !== expectedKeys.length) throw new Error("The amount of keys of received object did not match the amount of keys of expected object.");
-                    expectedKeys.forEach((key) => {
-                        if (!actualKeys.includes(key)) throw new Error(`Key ${key} is missing`);
-                    });
-                }
-                //
-                return true;
-            } catch (_) {
-                // When validation fails
-                return false;
-            }
-        },
+    const { displaySnackbar } = useSnackbar();
+    const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>("to-do-list-tasks", DEFAULT_TASKS, {
+        validate: (dataFromLocalStorage) => localStorageValidator(dataFromLocalStorage, DEFAULT_TASKS[0]),
     });
 
     function remove(idToBeRemoved: ID) {
@@ -45,19 +34,27 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
     }
 
     function add(newTask: Omit<TaskWithoutID, "isCompleted">) {
-        setTasks((tasks) => {
-            const now = Date.now();
+        scrollToTheListsTop(tasksWrapperRef.current);
+        setTimeout(() => {
+            displaySnackbar({
+                msg: "Task has been created",
+                severity: "success",
+            });
 
-            return [
-                ...tasks,
-                {
-                    ...newTask,
-                    id: now,
-                    isCompleted: false,
-                    createdAt: now,
-                },
-            ];
-        });
+            setTasks((tasks) => {
+                const now = Date.now();
+
+                return [
+                    ...tasks,
+                    {
+                        ...newTask,
+                        id: now,
+                        isCompleted: false,
+                        createdAt: now,
+                    },
+                ];
+            });
+        }, 300);
     }
 
     function edit(idToBeEdited: ID, cb: TaskEditCallback) {
@@ -78,6 +75,8 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
             key={isLoaded ? "LOCAL_STORAGE_LOADED" : "LOADING"}
             value={{
                 tasks,
+                tasksWrapperRef,
+
                 add,
                 edit,
                 remove,

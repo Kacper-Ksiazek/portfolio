@@ -8,6 +8,7 @@ import type { FunctionComponent } from "react";
 import Code from "@mui/icons-material/Code";
 // Other components
 import SingleTask from "./SingleTask";
+import AddNewTask from "./AddNewTask";
 import ProgressTracker from "./ProgressTracker";
 // Styled Components
 import Filters from "./Filters";
@@ -16,7 +17,7 @@ import ContentWrapper from "./ContentWrapper";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 
 const ToDoList: FunctionComponent = () => {
-    const { tasks, edit, remove } = useTaskListContext();
+    const { tasks, edit, remove, add, tasksWrapperRef } = useTaskListContext();
     const { fadeContentOut, filteredTasks, filters, updateFilters } = useFilteredTasks(tasks);
 
     const disableFilteringByCompletion = useMemo<boolean>(() => {
@@ -46,20 +47,19 @@ const ToDoList: FunctionComponent = () => {
             githubURL={"https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page"}
         >
             <ContentWrapper>
-                <Filters
-                    filters={filters} //
-                    amountOfTasks={amountOfFilteredTasks}
-                    updateFilters={updateFilters}
-                    disableFilteringByCompletion={disableFilteringByCompletion}
-                    disableSortingTools={filteredTasks.length <= 1 || fadeContentOut}
-                />
-
                 <ProgressTracker
                     filteredTasks={filteredTasks} //
                     amountOfAllTasks={{
                         completed: tasks.filter((el) => el.isCompleted).length,
                         inTotal: tasks.length,
                     }}
+                />
+                <Filters
+                    filters={filters} //
+                    amountOfTasks={amountOfFilteredTasks}
+                    updateFilters={updateFilters}
+                    disableFilteringByCompletion={disableFilteringByCompletion}
+                    disableSortingTools={filteredTasks.length <= 1 || fadeContentOut}
                 />
 
                 <TasksWrapper
@@ -78,6 +78,8 @@ const ToDoList: FunctionComponent = () => {
                         );
                     })}
                 </TasksWrapper>
+
+                <AddNewTask addTask={add} />
             </ContentWrapper>
         </DarkSectionWrapper>
     );
