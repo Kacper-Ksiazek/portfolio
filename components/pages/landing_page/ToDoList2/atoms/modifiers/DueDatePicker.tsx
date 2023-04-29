@@ -20,7 +20,7 @@ interface DueDatePickerProps {
 }
 
 const DueDatePicker: FunctionComponent<DueDatePickerProps> = (props) => {
-    const size = props.small ? "32px" : "40px";
+    const size = props.small ? "32px" : "42px";
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -44,6 +44,9 @@ const DueDatePicker: FunctionComponent<DueDatePickerProps> = (props) => {
                         paddingTop: "0px",
                         paddingBottom: "0px",
                         fontSize: "14px !important",
+                    },
+                    input: {
+                        paddingLeft: "16px",
                     },
                     svg: {
                         fontSize: "20px",

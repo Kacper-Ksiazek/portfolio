@@ -1,23 +1,20 @@
 // Tools
 import { useMemo } from "react";
-import { useLabelsContext } from "../hooks";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
+import { useLabelsContext, useTasksListContext } from "landing_page/ToDoList2/hooks";
 // Types
-import type { TaskWithoutID } from "../@types";
 import type { FunctionComponent } from "react";
+import type { TaskWithoutID } from "landing_page/ToDoList2/@types";
 // Styled components
-import { SectionWrapper, Paragraph } from "../atoms";
 import StyledInput from "@/components/atoms/forms/StyledInput";
 import StyledButton from "@/components/atoms/forms/StyledButton";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
-import { DueDatePicker, LabelPicker, UrgencySwitch } from "../atoms/modifiers";
+import { DueDatePicker, LabelPicker, UrgencySwitch } from "landing_page/ToDoList2/atoms/modifiers";
 
-interface AddNewTaskProps {
-    addTask: (val: TaskWithoutID) => void;
-}
-
-const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
+const AddNewTask: FunctionComponent = () => {
     const { labels } = useLabelsContext();
+    const tasksListContext = useTasksListContext();
+
     const [newTaskBody, updateNewTaskBody] = useSimpleReducer<Omit<TaskWithoutID, "createdAt" | "isCompleted">>({
         description: "",
         dueDate: null,
@@ -28,7 +25,7 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
     function addTask() {
         if (disableAddButton) return;
 
-        props.addTask({
+        tasksListContext.add({
             ...newTaskBody,
             isCompleted: false,
             createdAt: Date.now(),
@@ -46,13 +43,20 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
     }, [labels, newTaskBody]);
 
     return (
-        <SectionWrapper>
-            <Paragraph>Add new task</Paragraph>
-            <FlexBox sx={{ flexWrap: "wrap", mt: "8px" }}>
+        <>
+            <FlexBox
+                sx={{
+                    flexWrap: "wrap", //
+                    mt: "8px",
+                }}
+            >
                 <StyledInput
                     placeholder="What do you have to do?"
                     sx={{
                         width: "100%", //
+                        ".MuiOutlinedInput-root": {
+                            height: "42px",
+                        },
                         input: { padding: "8px 12px" },
                     }}
                     value={newTaskBody.description}
@@ -76,9 +80,11 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
                     <DueDatePicker value={newTaskBody.dueDate} updateValue={(dueDate) => updateNewTaskBody({ dueDate })} />
                     <span style={{ flexGrow: 1 }} />
 
-                    <StyledButton sx={{ px: "24px" }}>Edit labels</StyledButton>
                     <StyledButton
-                        sx={{ px: "24px" }} //
+                        sx={{
+                            px: "24px", //
+                            height: "42px",
+                        }}
                         color="primary"
                         onClick={addTask}
                         disabled={disableAddButton}
@@ -87,7 +93,7 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
                     </StyledButton>
                 </FlexBox>
             </FlexBox>
-        </SectionWrapper>
+        </>
     );
 };
 

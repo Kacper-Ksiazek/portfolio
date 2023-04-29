@@ -1,1 +1,1 @@
-export type Section = string | { label: string; value: any };
+export type Section<T> = T | { label: string; value: T };

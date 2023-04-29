@@ -1,6 +1,6 @@
 // Tools
 import { CLASSES } from "../css_references";
-import { useTaskListContext } from "../hooks/useTaskListContext";
+import { useTasksListContext } from "../hooks/useTaskListContext";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Types
 import type { SxProps } from "@/@types/MUI";
@@ -21,7 +21,7 @@ interface TasksWrapperProps {
 
 const TasksWrapper: FunctionComponent<TasksWrapperProps> = (props) => {
     const hidingAnimation: SxProps | null = props.fadeContentOut ? { animation: `${fadeSimpleOUT} .24s linear both` } : null;
-    const { tasksWrapperRef } = useTaskListContext();
+    const { tasksWrapperRef } = useTasksListContext();
 
     return (
         <Box

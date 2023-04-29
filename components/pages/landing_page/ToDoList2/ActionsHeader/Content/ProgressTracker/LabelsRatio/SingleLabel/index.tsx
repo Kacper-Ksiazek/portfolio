@@ -1,13 +1,13 @@
 // Tools
 import { useMemo } from "react";
 import { ratio } from "../../utils/ratio";
-import { useLabelsContext } from "../../../hooks";
+import { useLabelsContext } from "landing_page/ToDoList2/hooks";
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { ReactNode, FunctionComponent } from "react";
 // Styled components
 import { ProgressBar } from "../../styled_components/ProgressBar";
 import { CompletionTracker, LabelName, SingleLabelWrapper } from "./styled_components";
-import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 
 interface SingleLabelProps {
     label?: string;
@@ -29,7 +29,7 @@ const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
         const { completed, inTotal, extensiveDescription, displayLabelNameInstead } = props.progress;
         if (displayLabelNameInstead === true) return props.label;
 
-        return extensiveDescription ? formatTextViaBolding(`*${completed}* out of *${inTotal}* have been completed so far`) : `${completed} / ${inTotal}`;
+        return extensiveDescription ? formatTextViaBolding(`*${completed}* out of *${inTotal}* tasks ${completed === 1 ? "has" : "have"} been completed so far`) : `${completed} / ${inTotal}`;
     }, [props.progress, props.label]);
 
     return (

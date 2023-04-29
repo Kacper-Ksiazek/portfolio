@@ -14,7 +14,7 @@ interface UrgencySwitchProps {
 
 const UrgencySwitch: FunctionComponent<UrgencySwitchProps> = (props) => {
     const { labels: availableLabels } = useLabelsContext();
-    const size = props.small ? "32px" : "40px";
+    const size = props.small ? "32px" : "42px";
 
     return (
         <StyledSelect
@@ -22,9 +22,11 @@ const UrgencySwitch: FunctionComponent<UrgencySwitchProps> = (props) => {
             options={availableLabels}
             onChange={(e) => props.updateValue(e.target.value)}
             sx={{
+                minWidth: "210px",
                 height: size,
                 ".MuiSelect-select": {
                     fontSize: "16px",
+                    width: "100%",
                     paddingBottom: "4px !important",
                     paddingTop: "4px !important",
                 },

@@ -3,26 +3,28 @@ import * as CSSClasses from "./CSSClasses";
 import { parseSection } from "./utils/parseSection";
 // Types
 import type { Section } from "./@types";
-import type { FunctionComponent } from "react";
+import type { Styles } from "@/@types/MUI";
 // Styled components
 import { Divider, SingleNavigationStep, NavigationBetweenSectionsBase } from "./styled_components";
 
-interface NavigationBetweenSectionsProps {
-    sections: Section[];
-    currentSection: string;
-    onChoose: (val: string) => void;
+interface NavigationBetweenSectionsProps<T> {
+    sections: Section<T>[];
+    currentSection: T;
+    onChoose: (val: T) => void;
+
+    sx?: Styles;
 }
 
-const NavigationBetweenSections: FunctionComponent<NavigationBetweenSectionsProps> = (props) => {
+const NavigationBetweenSections = <T extends string>(props: NavigationBetweenSectionsProps<T>) => {
     return (
-        <NavigationBetweenSectionsBase>
+        <NavigationBetweenSectionsBase sx={props.sx}>
             {props.sections.map((item, index) => {
-                const { label, value } = parseSection(item);
+                const { label, value } = parseSection<T>(item);
 
                 const onClick = () => props.onChoose(value);
 
                 return (
-                    <div key={value} className={CSSClasses.STEP_WRAPPER}>
+                    <div key={value as any} className={CSSClasses.STEP_WRAPPER}>
                         {index ? <Divider className={CSSClasses.DIVIDER} /> : <span />}
                         <SingleNavigationStep
                             className={[

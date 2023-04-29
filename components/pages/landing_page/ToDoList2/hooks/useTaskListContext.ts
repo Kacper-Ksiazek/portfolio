@@ -2,6 +2,6 @@
 import { useContext } from "react";
 import { taskListContext } from "../context/TasksListContext";
 
-export function useTaskListContext() {
+export function useTasksListContext() {
     return useContext(taskListContext);
 }

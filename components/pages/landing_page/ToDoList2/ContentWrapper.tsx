@@ -5,7 +5,7 @@ import { SELECTORS } from "./css_references";
 export default styled("section")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
-    width: "840px",
+    width: "1040px",
     [SELECTORS.TASKS_WRAPPER]: {
         minHeight: "406px",
     },

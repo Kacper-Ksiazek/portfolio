@@ -5,6 +5,7 @@ import SectionWrapper from "../atoms/SectionWrapper";
 
 export default styled(SectionWrapper)(({ theme }) => ({
     ".MuiOutlinedInput-root": {
+        height: "42px",
         "&:not(&:nth-of-type(1))": {
             marginLeft: "12px",
         },

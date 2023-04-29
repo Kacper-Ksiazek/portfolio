@@ -1,7 +1,7 @@
 // Types
 import type { Section } from "../@types";
 
-export function parseSection(section: Section): { value: string; label: string } {
+export function parseSection<T extends string>(section: Section<T>): { value: T; label: string } {
     if (section instanceof Object) return section;
 
     const label = section.replaceAll
@@ -11,5 +11,5 @@ export function parseSection(section: Section): { value: string; label: string }
               .map((char) => (char === "_" ? " " : char))
               .join("");
 
-    return { label, value: section };
+    return { label, value: section as T };
 }

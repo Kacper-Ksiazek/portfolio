@@ -1,6 +1,6 @@
 // Tools
 import { useMemo } from "react";
-import { useTasksListContext } from "../hooks/useTaskListContext";
+import { useTasksListContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -8,9 +8,9 @@ import LabelsRatio from "./LabelsRatio";
 import SingleLabel from "./LabelsRatio/SingleLabel";
 // Styled components
 import { FlexWrapper } from "./styled_components";
-import { SectionWrapper, Paragraph } from "../atoms";
+import { Paragraph } from "landing_page/ToDoList2/atoms";
 
-const ProgressBars: FunctionComponent = (props) => {
+const ProgressTracker: FunctionComponent = () => {
     const { tasks } = useTasksListContext();
 
     const amountOfAllTasks: number = tasks.length;
@@ -20,7 +20,7 @@ const ProgressBars: FunctionComponent = (props) => {
     }, [tasks]);
 
     return (
-        <SectionWrapper>
+        <>
             <Paragraph>General completion</Paragraph>
             <FlexWrapper>
                 <SingleLabel
@@ -39,8 +39,8 @@ const ProgressBars: FunctionComponent = (props) => {
                     amountOfTasksInTotal={tasks.length}
                 />
             </FlexWrapper>
-        </SectionWrapper>
+        </>
     );
 };
 
-export default ProgressBars;
+export default ProgressTracker;
