@@ -11,9 +11,9 @@ const EditMode: FunctionComponent = () => {
     return (
         <FlexBox>
             <UrgencySwitch
-                value={editModeContext.newState.urgent}
+                value={editModeContext.newState.urgent} //
                 updateValue={(val) => editModeContext.updateNewState({ urgent: val })}
-                //
+                small
             />
             <LabelPicker
                 value={editModeContext.newState.label} //
