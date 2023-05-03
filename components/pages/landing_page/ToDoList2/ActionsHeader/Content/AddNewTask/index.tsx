@@ -1,5 +1,6 @@
 // Tools
 import { useMemo } from "react";
+import { alpha } from "@mui/material";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useLabelsContext, useTasksListContext } from "landing_page/ToDoList2/hooks";
 // Types
@@ -11,15 +12,21 @@ import StyledButton from "@/components/atoms/forms/StyledButton";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import { DueDatePicker, LabelPicker, UrgencySwitch } from "landing_page/ToDoList2/atoms/modifiers";
 
+type NewTaskBody = Omit<TaskWithoutID, "createdAt" | "isCompleted">;
+
+const EMPTY_NEW_TASK_BODY: Omit<NewTaskBody, "label"> = {
+    description: "",
+    dueDate: null,
+    urgent: false,
+};
+
 const AddNewTask: FunctionComponent = () => {
     const { labels } = useLabelsContext();
     const tasksListContext = useTasksListContext();
 
-    const [newTaskBody, updateNewTaskBody] = useSimpleReducer<Omit<TaskWithoutID, "createdAt" | "isCompleted">>({
-        description: "",
-        dueDate: null,
+    const [newTaskBody, updateNewTaskBody] = useSimpleReducer<NewTaskBody>({
+        ...EMPTY_NEW_TASK_BODY,
         label: labels[0],
-        urgent: false,
     });
 
     function addTask() {
@@ -30,6 +37,8 @@ const AddNewTask: FunctionComponent = () => {
             isCompleted: false,
             createdAt: Date.now(),
         });
+
+        updateNewTaskBody(EMPTY_NEW_TASK_BODY);
     }
 
     const disableAddButton = useMemo<boolean>(() => {
@@ -43,57 +52,52 @@ const AddNewTask: FunctionComponent = () => {
     }, [labels, newTaskBody]);
 
     return (
-        <>
-            <FlexBox
+        <FlexBox
+            sx={{
+                flexWrap: "wrap", //
+            }}
+        >
+            <StyledInput
+                placeholder="What do you have to do?"
                 sx={{
-                    flexWrap: "wrap", //
-                    mt: "8px",
+                    width: "100%", //
+                    ".MuiOutlinedInput-root": {
+                        height: "42px",
+                    },
+                    input: { padding: "8px 12px" },
+                }}
+                value={newTaskBody.description}
+                onChange={(e) => updateNewTaskBody({ description: e.target.value })}
+            />
+
+            <FlexBox
+                vertical="center"
+                sx={{
+                    margin: "8px 0 16px 0",
+                    width: "100%",
+                    "&>*": {
+                        "&:not(&:nth-of-type(1))": {
+                            marginLeft: "8px",
+                        },
+                    },
                 }}
             >
-                <StyledInput
-                    placeholder="What do you have to do?"
-                    sx={{
-                        width: "100%", //
-                        ".MuiOutlinedInput-root": {
-                            height: "42px",
-                        },
-                        input: { padding: "8px 12px" },
-                    }}
-                    value={newTaskBody.description}
-                    onChange={(e) => updateNewTaskBody({ description: e.target.value })}
-                />
-
-                <FlexBox
-                    vertical="center"
-                    sx={{
-                        marginTop: "8px",
-                        width: "100%",
-                        "&>*": {
-                            "&:not(&:nth-of-type(1))": {
-                                marginLeft: "8px",
-                            },
-                        },
-                    }}
-                >
-                    <UrgencySwitch value={newTaskBody.urgent} updateValue={(val) => updateNewTaskBody({ urgent: val })} />
-                    <LabelPicker value={newTaskBody.label} updateValue={(label) => updateNewTaskBody({ label })} />
-                    <DueDatePicker value={newTaskBody.dueDate} updateValue={(dueDate) => updateNewTaskBody({ dueDate })} />
-                    <span style={{ flexGrow: 1 }} />
-
-                    <StyledButton
-                        sx={{
-                            px: "24px", //
-                            height: "42px",
-                        }}
-                        color="primary"
-                        onClick={addTask}
-                        disabled={disableAddButton}
-                    >
-                        Add
-                    </StyledButton>
-                </FlexBox>
+                <UrgencySwitch value={newTaskBody.urgent} updateValue={(val) => updateNewTaskBody({ urgent: val })} />
+                <DueDatePicker value={newTaskBody.dueDate} updateValue={(dueDate) => updateNewTaskBody({ dueDate })} />
+                <LabelPicker value={newTaskBody.label} updateValue={(label) => updateNewTaskBody({ label })} />
             </FlexBox>
-        </>
+            <StyledButton
+                sx={{
+                    px: "24px", //
+                    height: "42px",
+                }}
+                color="primary"
+                onClick={addTask}
+                disabled={disableAddButton}
+            >
+                Add
+            </StyledButton>
+        </FlexBox>
     );
 };
 
