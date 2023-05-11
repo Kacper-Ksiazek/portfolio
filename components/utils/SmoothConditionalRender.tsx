@@ -17,12 +17,18 @@ const SmoothConditionalRender: FunctionComponent<SmoothConditionalRenderProps> =
     const [stage, setStage] = useState<"RENDER" | "RENDER_WITH_OUTRO_ANIMATION" | "DO_NOT_RENDER">("DO_NOT_RENDER");
 
     useEffect(() => {
+        let timeout: ReturnType<typeof setTimeout> | null = null;
+
         if (props.when) {
             setStage("RENDER");
         } else {
             setStage("RENDER_WITH_OUTRO_ANIMATION");
-            setTimeout(() => setStage("DO_NOT_RENDER"), OUTRO_ANIMATION_DURATION);
+            timeout = setTimeout(() => setStage("DO_NOT_RENDER"), OUTRO_ANIMATION_DURATION);
         }
+
+        return () => {
+            if (timeout !== null) clearTimeout(timeout);
+        };
     }, [props.when]);
 
     if (stage === "DO_NOT_RENDER") return <></>;
@@ -30,6 +36,7 @@ const SmoothConditionalRender: FunctionComponent<SmoothConditionalRenderProps> =
     return (
         <Fade in={stage === "RENDER"}>
             <span
+                className="smooth-conditional-render-wrapper"
                 style={{
                     position: "absolute", //
                     ...(props.styles as any),
