@@ -35,15 +35,15 @@ export const useLocalStorage = <T>(localStorageKey: string, initialValue: T, opt
 
         if (localStorage) {
             const valueFromLocalStorage = localStorage.getItem(localStorageKey);
+
             if (valueFromLocalStorage !== null && valueFromLocalStorage !== undefined) {
                 const parsed: T = JSON.parse(valueFromLocalStorage);
                 const validatorHasBeenProvided = hasValidatorBeenProvided(options?.validate);
 
-                if (validatorHasBeenProvided && (options as any).validate(parsed)) {
+                if ((validatorHasBeenProvided && (options as any).validate(parsed)) || !validatorHasBeenProvided) {
                     setValue(parsed);
                     originalValue.current = parsed;
                 } else {
-                    // if (validatorHasBeenProvided) localStorage.removeItem(localStorageKey);
                     originalValue.current = initialValue;
                 }
             }
