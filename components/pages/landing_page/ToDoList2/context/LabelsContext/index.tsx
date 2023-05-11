@@ -30,6 +30,7 @@ export const LabelsContextProvider: FunctionComponent<{ children: ReactNode }> =
             value={{
                 getCorrespondingColor,
                 labels: Object.keys(labelsFromLocalStorage),
+                _colorsInUse: Object.values(labelsFromLocalStorage),
             }}
         >
             <LabelsUpdatersContextProvider setLabels={setLabels}>

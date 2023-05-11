@@ -3,6 +3,7 @@ export type LabelsCollection = Record<string, ColorInHEX>;
 
 export interface I_LabelsContext {
     labels: string[];
+    _colorsInUse: string[];
     getCorrespondingColor: (label: string) => ColorInHEX;
 }
 
