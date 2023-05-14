@@ -15,15 +15,14 @@ const EditMode: FunctionComponent = () => {
                 updateValue={(val) => editModeContext.updateNewState({ urgent: val })}
                 small
             />
-            <LabelPicker
-                value={editModeContext.newState.label} //
-                updateValue={(val) => editModeContext.updateNewState({ label: val })}
-                small
-            />
-
             <DueDatePicker
                 value={editModeContext.newState.dueDate} //
                 updateValue={(val) => editModeContext.updateNewState({ dueDate: val })}
+                small
+            />
+            <LabelPicker
+                value={editModeContext.newState.labelID} //
+                updateValue={(val) => editModeContext.updateNewState({ labelID: val })}
                 small
             />
         </FlexBox>

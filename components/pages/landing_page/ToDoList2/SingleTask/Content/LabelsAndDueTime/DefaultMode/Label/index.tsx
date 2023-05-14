@@ -3,11 +3,12 @@ import { useLabelsContext } from "@/components/pages/landing_page/ToDoList2/hook
 import { CLASSES } from "@/components/pages/landing_page/ToDoList2/css_references";
 // Types
 import type { FunctionComponent } from "react";
+import type { LabelID } from "landing_page/ToDoList2/context/LabelsContext/@types";
 // Styled components
 import LabelBase from "./Base";
 
 interface PropsWithLabel {
-    label: string;
+    labelID: LabelID;
     isTaskUrgent: boolean;
 }
 interface PropsIndicatingUrgency {
@@ -19,7 +20,7 @@ function isUrgencyIndicating(props: unknown): props is PropsIndicatingUrgency {
 }
 
 const Label: FunctionComponent<PropsWithLabel | PropsIndicatingUrgency> = (props) => {
-    const { getCorrespondingColor } = useLabelsContext();
+    const { getLabelWithID } = useLabelsContext();
     const className = CLASSES.SINGLE_TASK.LABEL;
 
     if (isUrgencyIndicating(props)) {
@@ -30,7 +31,7 @@ const Label: FunctionComponent<PropsWithLabel | PropsIndicatingUrgency> = (props
         );
     }
 
-    const color = getCorrespondingColor(props.label);
+    const label = getLabelWithID(props.labelID);
     const { isTaskUrgent } = props;
 
     return (
@@ -39,17 +40,17 @@ const Label: FunctionComponent<PropsWithLabel | PropsIndicatingUrgency> = (props
                 isTaskUrgent
                     ? {
                           color: "#fff",
-                          background: color,
-                          borderColor: color,
+                          background: label.color,
+                          borderColor: label.color,
                       }
                     : {
-                          color,
-                          borderColor: color,
+                          color: label.color,
+                          borderColor: label.color,
                       }
             }
             className={className}
         >
-            {props.label}
+            {label.name}
         </LabelBase>
     );
 };

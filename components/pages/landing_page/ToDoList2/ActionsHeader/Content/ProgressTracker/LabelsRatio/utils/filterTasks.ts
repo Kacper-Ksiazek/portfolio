@@ -1,5 +1,5 @@
 // Types
-import type { Task } from "../../../@types";
+import type { Task } from "landing_page/ToDoList2/@types";
 
 export function filterTasks(tasks: Task[], where: Partial<Task>): Task[] {
     const filteringRequirements = new Map(

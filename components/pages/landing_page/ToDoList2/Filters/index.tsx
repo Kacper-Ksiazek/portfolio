@@ -25,7 +25,7 @@ interface FiltersProps {
 }
 
 const Filters: FunctionComponent<FiltersProps> = (props) => {
-    const { labels } = useLabelsContext();
+    const labelsContext = useLabelsContext();
 
     return (
         <FiltersWrapper className={CLASSES.FILTERS_WRAPPER}>
@@ -38,7 +38,7 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
                             alias: "All",
                             value: "_ALL",
                         },
-                        ...labels,
+                        ...labelsContext._labelNamesInUse,
                     ]}
                     startAdornment={<CategoryRoundedIcon />}
                     onChange={(e) =>

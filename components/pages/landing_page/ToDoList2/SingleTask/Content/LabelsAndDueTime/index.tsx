@@ -2,6 +2,7 @@
 import { useEditModeContext } from "../../hooks/useEditModeContext";
 // Types
 import type { FunctionComponent } from "react";
+import type { LabelID } from "landing_page/ToDoList2/context/LabelsContext/@types";
 // Other components
 import SmoothConditionalRender from "@/components/utils/SmoothConditionalRender";
 // Styled components
@@ -10,7 +11,7 @@ import DefaultMode from "./DefaultMode";
 import LabelsAndDueTimeBase from "./Wrapper";
 
 interface LabelsAndDueTimeProps {
-    label: string;
+    labelID: LabelID;
     isUrgent: boolean;
     dueDate: string | null;
 }
@@ -22,7 +23,7 @@ const LabelsAndDueTime: FunctionComponent<LabelsAndDueTimeProps> = (props) => {
         <LabelsAndDueTimeBase>
             <SmoothConditionalRender when={!editModeContext.isOpened}>
                 <DefaultMode
-                    label={props.label} //
+                    labelID={props.labelID} //
                     dueDate={props.dueDate}
                     isUrgent={props.isUrgent}
                 />

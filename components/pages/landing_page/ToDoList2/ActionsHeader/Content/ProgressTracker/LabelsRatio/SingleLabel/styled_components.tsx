@@ -25,7 +25,7 @@ const _InformationAboutLabel = styled("span")(({ theme }) => ({
 }));
 
 interface CompletionTrackerProps {
-    strikeThroughColor?: string;
+    strikeThroughColor?: string | null;
     isCompleted: boolean;
 }
 function shouldForwardProp(prop: string): boolean {

@@ -21,7 +21,7 @@ interface CreateNewLabelModalProps {
 }
 
 const CreateNewLabelModal: FunctionComponent<CreateNewLabelModalProps> = (props) => {
-    const { add } = useLabelsUpdatersContext();
+    const labelsUpdatersContext = useLabelsUpdatersContext();
 
     const [shouldDisplayModal, closeModal] = useModalControl(props.onClose);
     const [newLabel, updateNewLabel] = useNewLabelReducer();
@@ -29,11 +29,12 @@ const CreateNewLabelModal: FunctionComponent<CreateNewLabelModalProps> = (props)
     const validationResult = useValidator(newLabel);
 
     function addLabel() {
-        add({
-            color: newLabel.color,
-            label: newLabel.name,
-        });
-        props.onAdd(newLabel.name);
+        props.onAdd(
+            labelsUpdatersContext.add({
+                color: newLabel.color,
+                name: newLabel.name,
+            })
+        );
     }
 
     return (

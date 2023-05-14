@@ -1,39 +1,57 @@
 // Tools
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
+import type { Label, LabelID } from "../../../context/LabelsContext/@types";
+import type { OptionWithAlias } from "components/atoms/forms/StyledSelect";
 // Other components
 import * as CreateNewLabel from "./CreateNewLabel";
 // Styled components
 import { Adornment, Select } from "./styled_components";
 
 interface UrgencySwitchProps {
-    value: string;
-    updateValue: (label: string) => void;
+    value: LabelID;
+    updateValue: (label: LabelID) => void;
 
     small?: boolean;
 }
 
-const UrgencySwitch: FunctionComponent<UrgencySwitchProps> = (props) => {
-    const { labels: availableLabels, getCorrespondingColor } = useLabelsContext();
-    const size = props.small ? "32px" : "42px";
+const LabelPicker: FunctionComponent<UrgencySwitchProps> = (props) => {
     const [modalIsOpened, setModalIsOpened] = useState<boolean>(false);
+    const { labels: availableLabels, getLabelWithID } = useLabelsContext();
+
+    const options = useMemo<OptionWithAlias<LabelID>[]>(() => {
+        const result: OptionWithAlias<LabelID>[] = [];
+
+        for (const key in availableLabels) {
+            result.push({
+                alias: availableLabels[key].name,
+                value: key,
+            });
+        }
+
+        return result;
+    }, [availableLabels]);
+
+    const size = props.small ? "32px" : "42px";
 
     function applyNewLabel(label: string) {
         props.updateValue(label);
         setModalIsOpened(false);
     }
 
+    if (props.value === undefined) return <></>;
+
     return (
         <>
             <Select
                 size={size}
                 value={props.value} //
-                options={availableLabels}
+                options={options}
                 onChange={(e) => props.updateValue(e.target.value as any)}
                 className="label-picker"
-                startAdornment={<Adornment background={getCorrespondingColor(props.value)} />}
+                startAdornment={<Adornment background={getLabelWithID(props.value).color} />}
             />
 
             <CreateNewLabel.ModalOpeningButton
@@ -57,4 +75,4 @@ const UrgencySwitch: FunctionComponent<UrgencySwitchProps> = (props) => {
     );
 };
 
-export default UrgencySwitch;
+export default LabelPicker;

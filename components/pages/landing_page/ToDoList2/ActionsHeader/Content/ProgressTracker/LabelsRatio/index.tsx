@@ -3,14 +3,14 @@ import { useMemo } from "react";
 import { ratio } from "../utils/ratio";
 import { filterTasks } from "./utils/filterTasks";
 // Types
-import type { Ratio } from "../@types";
-import type { Task } from "../../@types";
 import type { FunctionComponent } from "react";
+import type { Task } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "../../../../context/LabelsContext/@types";
 // Other components
 import SingleLabel from "./SingleLabel";
 import ThereAreNoRatios from "./ThereAreNoRatios";
 
-function distinguishLabelsRatio(array: string[]): Ratio {
+function countLabels(array: LabelID[]): Map<LabelID, number> {
     const result = new Map();
 
     for (const item of array) {
@@ -27,28 +27,24 @@ interface LabelsRatioProps {
 }
 
 const LabelsRatio: FunctionComponent<LabelsRatioProps> = (props) => {
-    const labelsRatio = useMemo<Ratio>(() => {
-        return distinguishLabelsRatio(props.tasks.map(({ label }) => label));
+    const countedLabels = useMemo<Map<LabelID, number>>(() => {
+        return countLabels(props.tasks.map(({ labelID }) => labelID));
     }, [props.tasks]);
 
-    if (labelsRatio.size === 0) return <ThereAreNoRatios />;
+    if (countedLabels.size === 0) return <ThereAreNoRatios />;
 
-    const sortedLabels = [...(labelsRatio.keys() as any)].sort((a, b) => {
-        return (labelsRatio.get(a) as number) > (labelsRatio.get(b) as number) ? -1 : 1;
+    const sortedLabels = [...(countedLabels.keys() as any)].sort((a, b) => {
+        return (countedLabels.get(a) as number) > (countedLabels.get(b) as number) ? -1 : 1;
     });
 
-    const Labels = Array.from(sortedLabels, (label, index) => {
-        const tasksWithThisLabel = filterTasks(props.tasks, {
-            label,
-        });
-        const completedTasksWithThisLabel = filterTasks(tasksWithThisLabel, {
-            isCompleted: true,
-        });
+    const Labels = Array.from(sortedLabels, (labelID, index) => {
+        const tasksWithThisLabel = filterTasks(props.tasks, { labelID });
+        const completedTasksWithThisLabel = filterTasks(tasksWithThisLabel, { isCompleted: true });
 
         return (
             <SingleLabel
-                key={label}
-                label={label}
+                key={labelID}
+                labelID={labelID}
                 width={ratio(tasksWithThisLabel.length, props.amountOfTasksInTotal)} //
                 progress={{
                     completed: completedTasksWithThisLabel.length,

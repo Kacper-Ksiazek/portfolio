@@ -1,6 +1,5 @@
 // Tools
 import { useMemo } from "react";
-import { alpha } from "@mui/material";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useLabelsContext, useTasksListContext } from "landing_page/ToDoList2/hooks";
 // Types
@@ -14,7 +13,7 @@ import { DueDatePicker, LabelPicker, UrgencySwitch } from "landing_page/ToDoList
 
 type NewTaskBody = Omit<TaskWithoutID, "createdAt" | "isCompleted">;
 
-const EMPTY_NEW_TASK_BODY: Omit<NewTaskBody, "label"> = {
+const EMPTY_NEW_TASK_BODY: Omit<NewTaskBody, "labelID"> = {
     description: "",
     dueDate: null,
     urgent: false,
@@ -26,7 +25,7 @@ const AddNewTask: FunctionComponent = () => {
 
     const [newTaskBody, updateNewTaskBody] = useSimpleReducer<NewTaskBody>({
         ...EMPTY_NEW_TASK_BODY,
-        label: labels[0],
+        labelID: Object.keys(labels)[0],
     });
 
     function addTask() {
@@ -42,11 +41,11 @@ const AddNewTask: FunctionComponent = () => {
     }
 
     const disableAddButton = useMemo<boolean>(() => {
-        const { description, dueDate, label } = newTaskBody;
+        const { description, dueDate, labelID } = newTaskBody;
 
         if (description.length < 3 || description.length > 64) return true;
         else if (dueDate !== null && typeof dueDate != "number") return true;
-        else if (labels.includes(label) === false) return true;
+        else if (Object.keys(labels).includes(labelID) === false) return true;
 
         return false;
     }, [labels, newTaskBody]);
@@ -84,7 +83,7 @@ const AddNewTask: FunctionComponent = () => {
             >
                 <UrgencySwitch value={newTaskBody.urgent} updateValue={(val) => updateNewTaskBody({ urgent: val })} />
                 <DueDatePicker value={newTaskBody.dueDate} updateValue={(dueDate) => updateNewTaskBody({ dueDate })} />
-                <LabelPicker value={newTaskBody.label} updateValue={(label) => updateNewTaskBody({ label })} />
+                <LabelPicker value={newTaskBody.labelID} updateValue={(labelID) => updateNewTaskBody({ labelID })} />
             </FlexBox>
             <StyledButton
                 sx={{

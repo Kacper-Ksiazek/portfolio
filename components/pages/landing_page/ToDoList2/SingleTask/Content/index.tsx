@@ -2,6 +2,7 @@
 import { useEditModeContext } from "../hooks/useEditModeContext";
 // Types
 import type { FunctionComponent } from "react";
+import type { LabelID } from "../../context/LabelsContext/@types";
 // Other components
 import LabelsAndDueTime from "./LabelsAndDueTime";
 import Description from "./Description";
@@ -10,7 +11,7 @@ import FlexBox from "@/components/atoms/content_placement/FlexBox";
 interface ContentProps {
     description: string;
     isUrgent: boolean;
-    label: string;
+    labelID: LabelID;
     dueDate: string | null;
 }
 
@@ -28,7 +29,7 @@ const Content: FunctionComponent<ContentProps> = (props) => {
 
             <LabelsAndDueTime
                 isUrgent={props.isUrgent} //
-                label={props.label}
+                labelID={props.labelID}
                 dueDate={props.dueDate}
             />
         </FlexBox>

@@ -1,9 +1,11 @@
+import type { LabelID } from "./context/LabelsContext/@types";
+
 export interface Task {
     id: number;
     description: string;
     urgent: boolean;
     dueDate: string | null;
-    label: string;
+    labelID: LabelID;
     isCompleted: boolean;
     /** Simply Date.now() */
     createdAt: number;

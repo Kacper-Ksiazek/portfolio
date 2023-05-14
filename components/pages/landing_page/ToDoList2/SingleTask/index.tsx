@@ -54,7 +54,7 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
             <Content
                 description={data.description} //
                 isUrgent={data.urgent}
-                label={data.label}
+                labelID={data.labelID}
                 dueDate={data.dueDate}
             />
 

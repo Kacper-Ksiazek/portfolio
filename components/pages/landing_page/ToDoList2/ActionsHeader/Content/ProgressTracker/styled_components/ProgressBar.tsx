@@ -2,16 +2,16 @@
 import { styled, alpha } from "@mui/material";
 
 interface ProgressBarProps {
-    color?: string;
+    labelColor: string | null;
     completion: `${string}%`;
 }
 
 function shouldForwardProp(prop: string): boolean {
-    return !(["color", "completion"] as (keyof ProgressBarProps)[]).includes(prop as any);
+    return !(["labelColor", "completion"] as (keyof ProgressBarProps)[]).includes(prop as any);
 }
 
 export const ProgressBar = styled("span", { shouldForwardProp })<ProgressBarProps>(({ theme, ...props }) => {
-    const background = props.color ?? theme.palette.primary.main;
+    const background = props.labelColor ?? theme.palette.primary.main;
 
     return {
         width: "100%",

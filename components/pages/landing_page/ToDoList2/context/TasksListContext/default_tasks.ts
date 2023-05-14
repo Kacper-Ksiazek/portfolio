@@ -4,7 +4,7 @@ import type { Task } from "../../@types";
 export const DEFAULT_TASKS: Task[] = [
     {
         id: 1,
-        label: "Household",
+        labelID: "1",
         description: "Do groceries for the rest of the week",
         urgent: false,
         dueDate: null,
@@ -13,7 +13,7 @@ export const DEFAULT_TASKS: Task[] = [
     },
     {
         id: 2,
-        label: "Career",
+        labelID: "3",
         description: "Add this long awaited feature to my portfolio",
         urgent: false,
         dueDate: null,
@@ -22,7 +22,7 @@ export const DEFAULT_TASKS: Task[] = [
     },
     {
         id: 3,
-        label: "Family-and-friends",
+        labelID: "5",
         description: "Call Grandma and wish her a Happy Grandma's Day",
         dueDate: "21/01/2024",
         urgent: true,
@@ -31,7 +31,7 @@ export const DEFAULT_TASKS: Task[] = [
     },
     {
         id: 4,
-        label: "University",
+        labelID: "1",
         description: "Complete linear algebra assigments",
         urgent: false,
         dueDate: null,
@@ -40,7 +40,7 @@ export const DEFAULT_TASKS: Task[] = [
     },
     {
         id: 5,
-        label: "University",
+        labelID: "1",
         description: "Hand in the fourth Procedural Programming project",
         dueDate: "12/06/2023",
         urgent: false,
@@ -49,7 +49,7 @@ export const DEFAULT_TASKS: Task[] = [
     },
     {
         id: 6,
-        label: "Self-growth",
+        labelID: "4",
         description: "Prepare notes on recently discovered vocabulary",
         dueDate: null,
         urgent: true,

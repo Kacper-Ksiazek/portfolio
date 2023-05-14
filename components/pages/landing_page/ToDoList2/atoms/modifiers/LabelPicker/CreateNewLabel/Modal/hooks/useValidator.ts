@@ -7,11 +7,11 @@ import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 
 /**  */
 export function useValidator(newColor: Color): ValidationResult {
-    const { labels: _labelsInUse, _colorsInUse } = useLabelsContext();
+    const { _labelNamesInUse, _colorsInUse } = useLabelsContext();
     const [response, updateResponse] = useSimpleReducer<ValidationResult>({ code: "NONE", field: null });
 
     useEffect(() => {
-        if (_labelsInUse.includes(newColor.name)) {
+        if (_labelNamesInUse.includes(newColor.name)) {
             updateResponse({
                 code: "UNAVAILABLE_LABEL_COLOR",
                 field: "color_picker",
@@ -37,7 +37,7 @@ export function useValidator(newColor: Color): ValidationResult {
                 field: null,
             });
         }
-    }, [_colorsInUse, _labelsInUse, newColor.color, newColor.name, updateResponse]);
+    }, [_colorsInUse, _labelNamesInUse, newColor.color, newColor.name, updateResponse]);
 
     return response;
 }
