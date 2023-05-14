@@ -29,7 +29,7 @@ const DueDatePicker: FunctionComponent<DueDatePickerProps> = (props) => {
                     onChange={(newValue) => {
                         props.updateValue(dayjs(newValue as any).format(DATE_FORMAT));
                     }}
-                    disableFuture
+                    disablePast
                     className="due-date-picker"
                     format={DATE_FORMAT}
                 />
