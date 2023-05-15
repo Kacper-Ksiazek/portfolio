@@ -15,11 +15,12 @@ const ErrorMessageWrapper = styled("div")(({ theme }) => ({
     animation: `${fadeSimple} .2s .1s linear both`,
 }));
 
-interface ErrorMessageProps {
-    validationResult: ValidationResult;
-}
+type EXCLUDED_CODE = Extract<ValidationResult["code"], "NAME_IS_EMPTY">;
+type CODE_WITH_ASSOCIATED_MESSAGE = Exclude<ValidationResult["code"], EXCLUDED_CODE>;
 
-const MESSAGES: Record<ValidationResult["code"], string> = {
+const CODES: CODE_WITH_ASSOCIATED_MESSAGE[] = ["NAME_TOO_LONG", "NAME_TOO_SHORT", "NONE", "UNAVAILABLE_LABEL_COLOR", "UNAVAILABLE_LABEL_NAME"];
+
+const MESSAGES: Record<CODE_WITH_ASSOCIATED_MESSAGE, string> = {
     NONE: "A new label can be created",
     UNAVAILABLE_LABEL_NAME: "This name is already in use",
     UNAVAILABLE_LABEL_COLOR: "This color is already in use",
@@ -27,13 +28,15 @@ const MESSAGES: Record<ValidationResult["code"], string> = {
     NAME_TOO_SHORT: "Label name has to be at least 3 characters long",
 };
 
-const CODES: readonly ValidationResult["code"][] = Object.keys(MESSAGES) as any;
+interface ErrorMessageProps {
+    validationResult: ValidationResult;
+}
 
 const ErrorMessage: FunctionComponent<ErrorMessageProps> = (props) => {
     return (
         <ErrorMessageWrapper>
             <MessagesSwitch
-                messages={CODES.map((CODE: ValidationResult["code"]) => {
+                messages={CODES.map((CODE: CODE_WITH_ASSOCIATED_MESSAGE) => {
                     return {
                         content: MESSAGES[CODE],
                         renderIf: props.validationResult.code === CODE,
