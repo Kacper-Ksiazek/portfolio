@@ -9,4 +9,9 @@ export default styled("div")(({ theme }) => ({
             marginLeft: "8px",
         },
     },
+    ".label-picker": {
+        ".label-picker-adornment": {
+            animationDelay: ".3s",
+        },
+    },
 }));

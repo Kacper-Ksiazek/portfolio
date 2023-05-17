@@ -15,17 +15,3 @@ export const Select = styled(StyledSelect, {
         paddingTop: "4px !important",
     },
 }));
-
-export const Adornment = styled("span", {
-    shouldForwardProp: (prop: string) => !["background"].includes(prop),
-})<{ background: string }>(({ theme, ...props }) => ({
-    width: "16px",
-    height: "16px",
-    background: props.background,
-    position: "absolute",
-    left: "8px",
-    top: "50%",
-    transform: "translateY(-50%)",
-    borderRadius: "10px",
-    transition: "background .3s",
-}));

@@ -17,7 +17,13 @@ const ActionsHeader: FunctionComponent<ActionsHeaderProps> = (props) => {
     const { value: stage, setValue: setStage, isChanging: isStageChanging } = useDelayedState<Stage>("PROGRESS_TRACKER", 160);
 
     return (
-        <SectionWrapper sx={{ minHeight: "232px" }}>
+        <SectionWrapper
+            sx={{
+                minHeight: "232px", //
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
             <Navigation
                 currentStage={stage} //
                 updateCurrentStage={setStage}

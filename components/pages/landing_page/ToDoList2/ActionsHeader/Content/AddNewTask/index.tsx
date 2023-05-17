@@ -38,6 +38,8 @@ const AddNewTask: FunctionComponent = () => {
                 <LabelPicker value={newTaskBody.labelID} updateValue={(labelID) => updateNewTaskBody({ labelID })} />
             </FormFieldsOrganizer>
 
+            <span style={{ flexGrow: 1 }} />
+
             <ConfirmationButton
                 newTaskBody={newTaskBody} //
                 resetNewTaskBody={() => updateNewTaskBody(EMPTY_NEW_TASK_BODY)}

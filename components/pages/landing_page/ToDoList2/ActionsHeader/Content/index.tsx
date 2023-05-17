@@ -10,6 +10,7 @@ import { fadeSimple } from "@/components/keyframes/intro";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
 
 const Wrapper = styled("div")(({ theme }) => ({
+    flexGrow: "1",
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",

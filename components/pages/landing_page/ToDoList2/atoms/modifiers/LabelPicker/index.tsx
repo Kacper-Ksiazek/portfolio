@@ -3,12 +3,13 @@ import { useMemo, useState } from "react";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
-import type { Label, LabelID } from "../../../context/LabelsContext/@types";
+import type { LabelID } from "../../../context/LabelsContext/@types";
 import type { OptionWithAlias } from "components/atoms/forms/StyledSelect";
 // Other components
+import Adornment from "./Adornment";
 import * as CreateNewLabel from "./CreateNewLabel";
 // Styled components
-import { Adornment, Select } from "./styled_components";
+import { Select } from "./styled_components";
 
 interface UrgencySwitchProps {
     value: LabelID;
