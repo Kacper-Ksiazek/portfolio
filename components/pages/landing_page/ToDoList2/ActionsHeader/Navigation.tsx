@@ -30,7 +30,7 @@ const ToDoListActionsNavigation: FunctionComponent<ToDoListActionsNavigationProp
             } //
             currentSection={props.currentStage}
             onChoose={props.updateCurrentStage}
-            sx={{ mb: "24px" }}
+            sx={{ mb: "16px" }}
         />
     );
 };

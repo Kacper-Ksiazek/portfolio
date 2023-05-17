@@ -39,17 +39,19 @@ const ConfirmationButton: FunctionComponent<ConfirmationButtonProps> = (props) =
     }
 
     return (
-        <StyledButton
-            sx={{
-                px: "24px", //
-                height: "42px",
-            }}
-            color="primary"
-            onClick={addTask}
-            disabled={disableAddButton}
-        >
-            Add
-        </StyledButton>
+        <div>
+            <StyledButton
+                sx={{
+                    px: "24px", //
+                    height: "42px",
+                }}
+                color="primary"
+                onClick={addTask}
+                disabled={disableAddButton}
+            >
+                Add
+            </StyledButton>
+        </div>
     );
 };
 

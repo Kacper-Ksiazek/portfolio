@@ -9,6 +9,7 @@ import SingleLabel from "./LabelsRatio/SingleLabel";
 // Styled components
 import { FlexWrapper } from "./styled_components";
 import { Paragraph } from "landing_page/ToDoList2/atoms";
+import FlexBox from "@/components/atoms/content_placement/FlexBox";
 
 const ProgressTracker: FunctionComponent = () => {
     const { tasks } = useTasksListContext();
@@ -21,24 +22,29 @@ const ProgressTracker: FunctionComponent = () => {
 
     return (
         <>
-            <Paragraph>General completion</Paragraph>
-            <FlexWrapper>
-                <SingleLabel
-                    progress={{
-                        completed: amountOfCompletedTasks,
-                        inTotal: amountOfAllTasks,
-                        extensiveDescription: true,
-                    }}
-                    width="100%" //
-                />
-            </FlexWrapper>
-            <Paragraph sx={{ margin: "16px 0 0 0" }}>Labels ratio</Paragraph>
-            <FlexWrapper>
-                <LabelsRatio
-                    tasks={tasks} //
-                    amountOfTasksInTotal={tasks.length}
-                />
-            </FlexWrapper>
+            <FlexBox column sx={{ width: "100%" }}>
+                <Paragraph>General completion</Paragraph>
+                <FlexWrapper>
+                    <SingleLabel
+                        progress={{
+                            completed: amountOfCompletedTasks,
+                            inTotal: amountOfAllTasks,
+                            extensiveDescription: true,
+                        }}
+                        width="100%" //
+                    />
+                </FlexWrapper>
+            </FlexBox>
+
+            <FlexBox column sx={{ width: "100%" }}>
+                <Paragraph>Labels ratio</Paragraph>
+                <FlexWrapper>
+                    <LabelsRatio
+                        tasks={tasks} //
+                        amountOfTasksInTotal={tasks.length}
+                    />
+                </FlexWrapper>
+            </FlexBox>
         </>
     );
 };

@@ -14,10 +14,10 @@ interface ActionsHeaderProps {
 }
 
 const ActionsHeader: FunctionComponent<ActionsHeaderProps> = (props) => {
-    const { value: stage, setValue: setStage, isChanging: isStageChanging } = useDelayedState<Stage>("PROGRESS_TRACKER", 300);
+    const { value: stage, setValue: setStage, isChanging: isStageChanging } = useDelayedState<Stage>("PROGRESS_TRACKER", 160);
 
     return (
-        <SectionWrapper sx={{ minHeight: "230px" }}>
+        <SectionWrapper sx={{ minHeight: "232px" }}>
             <Navigation
                 currentStage={stage} //
                 updateCurrentStage={setStage}

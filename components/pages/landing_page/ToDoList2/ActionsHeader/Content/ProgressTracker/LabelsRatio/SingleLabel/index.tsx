@@ -5,7 +5,7 @@ import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { useLabelWithParticularID } from "landing_page/ToDoList2/hooks/useLabelWithParticularID";
 // Types
 import type { ReactNode, FunctionComponent } from "react";
-import type { ColorInHEX, LabelID } from "@/components/pages/landing_page/ToDoList2/context/LabelsContext/@types";
+import type { LabelID } from "@/components/pages/landing_page/ToDoList2/context/LabelsContext/@types";
 // Styled components
 import { ProgressBar } from "../../styled_components/ProgressBar";
 import { CompletionTracker, LabelName, SingleLabelWrapper } from "./styled_components";
@@ -13,6 +13,7 @@ import { CompletionTracker, LabelName, SingleLabelWrapper } from "./styled_compo
 interface SingleLabelProps {
     labelID?: LabelID;
     width: `${string}%`;
+    className?: string;
     progress: {
         inTotal: number;
         completed: number;
@@ -32,7 +33,7 @@ const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
     }, [props.progress, labelName]);
 
     return (
-        <SingleLabelWrapper width={props.width}>
+        <SingleLabelWrapper width={props.width} className={props.className}>
             {labelName && props.progress.displayLabelNameInstead !== true && <LabelName>{labelName}</LabelName>}
 
             <ProgressBar
