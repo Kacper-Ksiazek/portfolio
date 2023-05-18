@@ -8,10 +8,10 @@ export interface Label {
 
 export type LabelID = string;
 
-export type LabelsLocalStorage = Record<LabelID, Label>;
+export type Labels = Record<LabelID, Label>;
 
 export interface I_LabelsContext {
-    labels: LabelsLocalStorage;
+    labels: Labels;
     _colorsInUse: Label["color"][];
     _labelNamesInUse: Label["name"][];
     _hasFullyLoaded: boolean;

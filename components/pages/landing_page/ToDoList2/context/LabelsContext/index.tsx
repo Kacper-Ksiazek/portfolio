@@ -3,14 +3,14 @@ import { createContext } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { I_LabelsContext, Label, LabelID, LabelsLocalStorage } from "./@types";
+import type { I_LabelsContext, Label, LabelID, Labels } from "./@types";
 // Other components
 import { LabelsUpdatersContextProvider } from "./Updaters";
 
 export const labelsContext = createContext<I_LabelsContext>({} as any);
 
 export const LabelsContextProvider: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-    const [labelsFromLocalStorage, setLabels, _hasFullyLoaded] = useLocalStorage<LabelsLocalStorage>("to-do-list-labels", {
+    const [labelsFromLocalStorage, setLabels, _hasFullyLoaded] = useLocalStorage<Labels>("to-do-list-labels", {
         "1": {
             color: "#FFADDA",
             name: "University",

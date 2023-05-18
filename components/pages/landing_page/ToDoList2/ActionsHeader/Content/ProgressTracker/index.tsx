@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { useTasksListContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
+import type { TasksCounter } from "landing_page/ToDoList2/ActionsHeader/@types";
 // Other components
 import LabelsRatio from "./LabelsRatio";
 import SingleLabel from "./LabelsRatio/SingleLabel";
@@ -11,7 +12,11 @@ import { FlexWrapper } from "./styled_components";
 import { Paragraph } from "landing_page/ToDoList2/atoms";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 
-const ProgressTracker: FunctionComponent = () => {
+interface ProgressTrackerProps {
+    counter: TasksCounter;
+}
+
+const ProgressTracker: FunctionComponent<ProgressTrackerProps> = (props) => {
     const { tasks } = useTasksListContext();
 
     const amountOfAllTasks: number = tasks.length;
@@ -40,7 +45,7 @@ const ProgressTracker: FunctionComponent = () => {
                 <Paragraph>Labels ratio</Paragraph>
                 <FlexWrapper>
                     <LabelsRatio
-                        tasks={tasks} //
+                        counter={props.counter} //
                         amountOfTasksInTotal={tasks.length}
                     />
                 </FlexWrapper>

@@ -2,13 +2,13 @@
 import { createContext } from "react";
 // Types
 import type { FunctionComponent, ReactNode, Dispatch, SetStateAction } from "react";
-import type { LabelsLocalStorage, I_LabelsUpdatersContext, Label, LabelID } from "./@types";
+import type { Labels, I_LabelsUpdatersContext, Label, LabelID } from "./@types";
 
 export const labelsUpdatersContext = createContext<I_LabelsUpdatersContext>({} as any);
 
 interface LabelsUpdatersContextProviderProps {
     children: ReactNode;
-    setLabels: Dispatch<SetStateAction<LabelsLocalStorage>>;
+    setLabels: Dispatch<SetStateAction<Labels>>;
 }
 
 type Expectation = "PRESENCE" | "NON_PRESENCE";
@@ -16,12 +16,12 @@ type Expectation = "PRESENCE" | "NON_PRESENCE";
 type EnsureLabelsNameProps =
     | {
           label: string;
-          dataset: LabelsLocalStorage;
+          dataset: Labels;
           expect: Expectation;
       }
     | {
           id: LabelID;
-          dataset: LabelsLocalStorage;
+          dataset: Labels;
           expect: Expectation;
       };
 
