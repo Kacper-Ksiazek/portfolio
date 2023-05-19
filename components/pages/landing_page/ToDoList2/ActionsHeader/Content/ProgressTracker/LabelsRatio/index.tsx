@@ -40,14 +40,12 @@ const LabelsRatio: FunctionComponent<LabelsRatioProps> = (props) => {
                 const width = ratio(inTotal, props.amountOfTasksInTotal);
 
                 return (
-                    <>
-                        <SingleLabel
-                            key={labelID} //
-                            labelID={labelID}
-                            width={width}
-                            progress={{ completed, inTotal, displayLabelNameInstead: true }}
-                        />
-                    </>
+                    <SingleLabel
+                        key={labelID} //
+                        labelID={labelID}
+                        width={width}
+                        progress={{ completed, inTotal, displayLabelNameInstead: true }}
+                    />
                 );
             })}
         </>
