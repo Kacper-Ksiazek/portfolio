@@ -2,6 +2,7 @@
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
 import { useModalControl, useNewLabelReducer, useValidator } from "./hooks";
 // Types
+import type { Color } from "./@types";
 import type { FunctionComponent } from "react";
 // Material UI Components
 import Modal from "@mui/material/Modal";
@@ -11,49 +12,27 @@ import ErrorMessage from "./ErrorMessage";
 import ModalContentWrapper from "./ModalContentWrapper";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import { StyledInput, StyledButton, StyledColorPicker } from "@/components/atoms/forms";
-import { useLabelsUpdatersContext } from "@/components/pages/landing_page/ToDoList2/hooks";
-import { useSnackbar } from "@/hooks/useSnackbar";
 
-interface CreateNewLabelModalProps {
+interface SingleLabelModifierModalProps {
     title: string;
     isOpen: boolean;
-    msgOnSuccess: string;
+    actionButtonPrompt: string;
 
-    onAdd: (newLabelID: string) => void;
+    handleAction: (color: Color) => void;
     onClose: () => void;
 }
 
-const CreateNewLabelModal: FunctionComponent<CreateNewLabelModalProps> = (props) => {
-    const { displaySnackbar } = useSnackbar();
-    const labelsUpdatersContext = useLabelsUpdatersContext();
-
+const SingleLabelModifierModal: FunctionComponent<SingleLabelModifierModalProps> = (props) => {
     const [shouldDisplayModal, closeModal] = useModalControl(props.onClose);
     const [newLabel, updateNewLabel] = useNewLabelReducer();
 
     const validationResult = useValidator(newLabel);
 
-    function addLabel() {
-        try {
-            props.onAdd(
-                labelsUpdatersContext.add({
-                    color: newLabel.color,
-                    name: newLabel.name,
-                })
-            );
-            closeModal();
+    function onActionButtonClick() {
+        if (validationResult.field !== null) return;
 
-            setTimeout(() => {
-                displaySnackbar({
-                    msg: props.msgOnSuccess,
-                    severity: "success",
-                });
-            }, 240);
-        } catch (e) {
-            displaySnackbar({
-                msg: "Something went wrong",
-                severity: "error",
-            });
-        }
+        props.handleAction(newLabel);
+        closeModal();
     }
 
     return (
@@ -92,10 +71,10 @@ const CreateNewLabelModal: FunctionComponent<CreateNewLabelModalProps> = (props)
                     </StyledButton>
                     <StyledButton
                         color="primary" //
-                        onClick={addLabel}
+                        onClick={onActionButtonClick}
                         disabled={validationResult.code !== "NONE"}
                     >
-                        Add
+                        {props.actionButtonPrompt}
                     </StyledButton>
                 </FlexBox>
             </ModalContentWrapper>
@@ -103,4 +82,4 @@ const CreateNewLabelModal: FunctionComponent<CreateNewLabelModalProps> = (props)
     );
 };
 
-export default CreateNewLabelModal;
+export default SingleLabelModifierModal;

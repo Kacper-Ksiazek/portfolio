@@ -1,5 +1,7 @@
 // Tools
 import { useState } from "react";
+import { useSafeSnackbarCallback } from "@/hooks/useSafeSnackbarCallback";
+import { useLabelsUpdatersContext } from "@/components/pages/landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
 import type { LabelID } from "landing_page/ToDoList2/context/LabelsContext/@types";
@@ -7,20 +9,27 @@ import type { LabelID } from "landing_page/ToDoList2/context/LabelsContext/@type
 import AddRounded from "@mui/icons-material/AddRounded";
 // Other components
 import { Modal, ModalOpeningButton } from "./__SingleLabelModifier";
+import { Color } from "./__SingleLabelModifier/Modal/@types";
 
 interface CreateNewLabelProps {
     small?: boolean;
     size: `${string}px`;
 
-    updateValue: (label: LabelID) => void;
+    onCreated: (label: LabelID) => void;
 }
 
 const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
+    const labelsUpdatersContext = useLabelsUpdatersContext();
     const [modalIsOpened, setModalIsOpened] = useState<boolean>(false);
 
-    function applyNewLabel(label: string) {
-        props.updateValue(label);
-    }
+    const addNewLabel = useSafeSnackbarCallback<Color>((newLabel) => {
+        const newLabelID = labelsUpdatersContext.add({
+            color: newLabel.color,
+            name: newLabel.name,
+        });
+
+        props.onCreated(newLabelID);
+    }, "Label has been created successfully");
 
     return (
         <>
@@ -36,11 +45,11 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
                     return (
                         <Modal
                             title="Create a new label"
+                            actionButtonPrompt="Add"
                             isOpen={modalIsOpened}
-                            msgOnSuccess="Label has been created successfully"
                             //
                             onClose={() => setModalIsOpened(false)}
-                            onAdd={applyNewLabel}
+                            handleAction={addNewLabel}
                         />
                     );
                 }

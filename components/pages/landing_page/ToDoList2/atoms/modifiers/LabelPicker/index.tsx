@@ -52,7 +52,7 @@ const LabelPicker: FunctionComponent<UrgencySwitchProps> = (props) => {
             <CreateNewLabel
                 size={size} //
                 small={props.small}
-                updateValue={props.updateValue}
+                onCreated={props.updateValue}
             />
         </>
     );
