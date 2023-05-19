@@ -3,7 +3,7 @@ import { scaleFromLeft } from "@/components/keyframes/intro";
 import { styled, alpha } from "@mui/material";
 
 interface ProgressBarProps {
-    labelColor: string | null;
+    labelColor?: string | null;
     completion: `${string}%`;
 }
 

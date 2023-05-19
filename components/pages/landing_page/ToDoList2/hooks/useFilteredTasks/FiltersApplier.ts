@@ -23,7 +23,7 @@ export class FiltersApplier {
 
         this._result = this.tasks.filter((target) => {
             // Apply particular label filter
-            if (withParticularLabel !== "_ALL" && withParticularLabel !== target.label) return false;
+            if (withParticularLabel !== "_ALL" && withParticularLabel !== target.labelID) return false;
             // Check completion
             if (completion !== "_ALL" && (completion === "NOT_COMPLETED_ONLY") === target.isCompleted) return false;
 

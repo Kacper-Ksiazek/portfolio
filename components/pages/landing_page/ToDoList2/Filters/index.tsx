@@ -1,9 +1,11 @@
 // Tools
+import { useMemo } from "react";
 import { CLASSES } from "../css_references";
 import { useLabelsContext } from "../hooks/useLabelsContext";
 // Types
 import type { Filters as I_Filters } from "../@types";
 import type { FunctionComponent, Dispatch } from "react";
+import type { OptionWithAlias } from "@/components/atoms/forms/StyledSelect";
 // Other components
 import AmountOfTasks from "./AmountOfTasks";
 import StyledSelect from "@/components/atoms/forms/StyledSelect";
@@ -15,6 +17,7 @@ import PriorityHighRoundedIcon from "@mui/icons-material/PriorityHighRounded";
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 // Styled components
 import FiltersWrapper from "./Base";
+import { LabelID } from "../context/LabelsContext/@types";
 
 interface FiltersProps {
     filters: I_Filters;
@@ -25,7 +28,16 @@ interface FiltersProps {
 }
 
 const Filters: FunctionComponent<FiltersProps> = (props) => {
-    const labelsContext = useLabelsContext();
+    const { labels } = useLabelsContext();
+
+    const labelsOptions = useMemo<OptionWithAlias<LabelID>[]>(() => {
+        return Object.keys(labels).map((labelID): OptionWithAlias<LabelID> => {
+            return {
+                alias: labels[labelID].name,
+                value: labelID,
+            };
+        });
+    }, [labels]);
 
     return (
         <FiltersWrapper className={CLASSES.FILTERS_WRAPPER}>
@@ -38,7 +50,7 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
                             alias: "All",
                             value: "_ALL",
                         },
-                        ...labelsContext._labelNamesInUse,
+                        ...labelsOptions,
                     ]}
                     startAdornment={<CategoryRoundedIcon />}
                     onChange={(e) =>
