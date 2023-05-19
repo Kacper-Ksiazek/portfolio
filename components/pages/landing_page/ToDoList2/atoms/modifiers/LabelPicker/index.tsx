@@ -1,5 +1,5 @@
 // Tools
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
@@ -7,7 +7,7 @@ import type { LabelID } from "../../../context/LabelsContext/@types";
 import type { OptionWithAlias } from "components/atoms/forms/StyledSelect";
 // Other components
 import Adornment from "./Adornment";
-import * as CreateNewLabel from "./CreateNewLabel";
+import CreateNewLabel from "../CreateNewLabel";
 // Styled components
 import { Select } from "./styled_components";
 
@@ -19,7 +19,6 @@ interface UrgencySwitchProps {
 }
 
 const LabelPicker: FunctionComponent<UrgencySwitchProps> = (props) => {
-    const [modalIsOpened, setModalIsOpened] = useState<boolean>(false);
     const { labels: availableLabels, getLabelWithID } = useLabelsContext();
 
     const options = useMemo<OptionWithAlias<LabelID>[]>(() => {
@@ -37,11 +36,6 @@ const LabelPicker: FunctionComponent<UrgencySwitchProps> = (props) => {
 
     const size = props.small ? "32px" : "42px";
 
-    function applyNewLabel(label: string) {
-        props.updateValue(label);
-        setModalIsOpened(false);
-    }
-
     if (props.value === undefined) return <></>;
 
     return (
@@ -55,23 +49,11 @@ const LabelPicker: FunctionComponent<UrgencySwitchProps> = (props) => {
                 startAdornment={<Adornment background={getLabelWithID(props.value).color} />}
             />
 
-            <CreateNewLabel.ModalOpeningButton
+            <CreateNewLabel
                 size={size} //
                 small={props.small}
-                openModal={() => setModalIsOpened(true)}
+                updateValue={props.updateValue}
             />
-
-            {(() => {
-                if (modalIsOpened === true) {
-                    return (
-                        <CreateNewLabel.Modal
-                            isOpen={modalIsOpened} //
-                            onClose={() => setModalIsOpened(false)}
-                            onAdd={applyNewLabel}
-                        />
-                    );
-                }
-            })()}
         </>
     );
 };

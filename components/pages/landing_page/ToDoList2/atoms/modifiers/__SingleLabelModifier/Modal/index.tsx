@@ -12,15 +12,19 @@ import ModalContentWrapper from "./ModalContentWrapper";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import { StyledInput, StyledButton, StyledColorPicker } from "@/components/atoms/forms";
 import { useLabelsUpdatersContext } from "@/components/pages/landing_page/ToDoList2/hooks";
+import { useSnackbar } from "@/hooks/useSnackbar";
 
 interface CreateNewLabelModalProps {
+    title: string;
     isOpen: boolean;
+    msgOnSuccess: string;
 
     onAdd: (newLabelID: string) => void;
     onClose: () => void;
 }
 
 const CreateNewLabelModal: FunctionComponent<CreateNewLabelModalProps> = (props) => {
+    const { displaySnackbar } = useSnackbar();
     const labelsUpdatersContext = useLabelsUpdatersContext();
 
     const [shouldDisplayModal, closeModal] = useModalControl(props.onClose);
@@ -29,12 +33,27 @@ const CreateNewLabelModal: FunctionComponent<CreateNewLabelModalProps> = (props)
     const validationResult = useValidator(newLabel);
 
     function addLabel() {
-        props.onAdd(
-            labelsUpdatersContext.add({
-                color: newLabel.color,
-                name: newLabel.name,
-            })
-        );
+        try {
+            props.onAdd(
+                labelsUpdatersContext.add({
+                    color: newLabel.color,
+                    name: newLabel.name,
+                })
+            );
+            closeModal();
+
+            setTimeout(() => {
+                displaySnackbar({
+                    msg: props.msgOnSuccess,
+                    severity: "success",
+                });
+            }, 240);
+        } catch (e) {
+            displaySnackbar({
+                msg: "Something went wrong",
+                severity: "error",
+            });
+        }
     }
 
     return (
@@ -48,7 +67,7 @@ const CreateNewLabelModal: FunctionComponent<CreateNewLabelModalProps> = (props)
             }}
         >
             <ModalContentWrapper>
-                <h3>Create a new label</h3>
+                <h3>{props.title}</h3>
 
                 <FlexBox>
                     <StyledInput

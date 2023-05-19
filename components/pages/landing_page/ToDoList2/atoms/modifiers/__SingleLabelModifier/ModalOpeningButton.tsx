@@ -1,7 +1,7 @@
 // Tools
 import { alpha } from "@mui/material/styles";
 // Types
-import type { FunctionComponent } from "react";
+import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";
 import ButtonBase from "@mui/material/ButtonBase";
@@ -9,6 +9,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 interface ModalOpeningButtonProps {
     small?: boolean;
     size: `${string}px`;
+    icon: ReactNode;
 
     openModal: () => void;
 }
@@ -29,7 +30,7 @@ const ModalOpeningButton: FunctionComponent<ModalOpeningButtonProps> = (props) =
                 className="alternative-font-family"
                 onClick={props.openModal}
             >
-                +
+                {props.icon}
             </ButtonBase>
         </Tooltip>
     );
