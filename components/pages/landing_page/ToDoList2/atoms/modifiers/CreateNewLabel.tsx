@@ -4,12 +4,12 @@ import { useSafeSnackbarCallback } from "@/hooks/useSafeSnackbarCallback";
 import { useLabelsUpdatersContext } from "@/components/pages/landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
+import type { Color } from "./__SingleLabelModifier/Modal/@types";
 import type { LabelID } from "landing_page/ToDoList2/context/LabelsContext/@types";
 // Material UI Icons
 import AddRounded from "@mui/icons-material/AddRounded";
 // Other components
 import { Modal, ModalOpeningButton } from "./__SingleLabelModifier";
-import { Color } from "./__SingleLabelModifier/Modal/@types";
 
 interface CreateNewLabelProps {
     small?: boolean;

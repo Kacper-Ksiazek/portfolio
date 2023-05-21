@@ -5,7 +5,7 @@ import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import type { Color } from "../@types";
 
 const DEFAULT_VALUE: Color = Object.seal({
-    color: '#ffffff',
+    color:"#26c8e8",
     name: ''
 })
 

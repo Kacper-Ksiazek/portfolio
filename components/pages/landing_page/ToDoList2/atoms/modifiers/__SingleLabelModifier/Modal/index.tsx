@@ -4,6 +4,7 @@ import { useNewLabelReducer, useValidator } from "./hooks";
 import type { Color } from "./@types";
 import type { FunctionComponent } from "react";
 // Other components
+import Preview from "./Preview";
 import ErrorMessage from "./ErrorMessage";
 import Modal from "@/components/atoms/content_placement/Modal";
 // Styled components
@@ -54,6 +55,8 @@ const SingleLabelModifierModal: FunctionComponent<SingleLabelModifierModalProps>
             </FormFieldsWrapper>
 
             <ErrorMessage validationResult={validationResult} />
+
+            <Preview color={newLabel.color} name={newLabel.name} />
         </Modal>
     );
 };

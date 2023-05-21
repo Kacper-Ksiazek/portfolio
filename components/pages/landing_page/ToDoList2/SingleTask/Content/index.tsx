@@ -4,8 +4,8 @@ import { useEditModeContext } from "../hooks/useEditModeContext";
 import type { FunctionComponent } from "react";
 import type { LabelID } from "../../context/LabelsContext/@types";
 // Other components
-import LabelsAndDueTime from "./LabelsAndDueTime";
 import Description from "./Description";
+import LabelsAndDueTime from "./LabelsAndDueTime";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 
 interface ContentProps {

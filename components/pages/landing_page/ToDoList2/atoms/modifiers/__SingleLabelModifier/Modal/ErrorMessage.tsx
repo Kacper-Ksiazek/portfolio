@@ -10,7 +10,7 @@ import MessagesSwitch from "@/components/atoms/MessagesSwitch";
 const ErrorMessageWrapper = styled("div")(({ theme }) => ({
     position: "relative",
     paddingTop: "4px",
-    height: "42px",
+    height: "32px",
     boxSizing: "border-box",
     animation: `${fadeSimple} .2s .1s linear both`,
 }));
