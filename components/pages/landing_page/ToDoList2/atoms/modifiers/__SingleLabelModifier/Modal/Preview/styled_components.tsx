@@ -27,4 +27,9 @@ export const PreviewWrapper = styled("div")(({ theme }) => ({
     border: `2px solid ${alpha("#fff", 0.2)}`,
     padding: "14px 0",
     borderRadius: "3px",
+    transition: "border-color .3s",
+    "&.error": {
+        borderColor: theme.palette.error.main,
+        transition: "border-color .3s .3s",
+    },
 }));

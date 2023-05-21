@@ -7,13 +7,14 @@ import { Divider, Label, PreviewWrapper } from "./styled_components";
 interface NewColorPreviewProps {
     name: string;
     color: ColorInHEX;
+    validationError: boolean;
 }
 
 const NewColorPreview: FunctionComponent<NewColorPreviewProps> = (props) => {
-    const labelNameToDisplay: string = props.name.length ? props.name : "your label";
+    const labelNameToDisplay: string = props.name.length ? props.name.slice(0, 16) : "your label";
 
     return (
-        <PreviewWrapper>
+        <PreviewWrapper className={props.validationError ? "error" : ""}>
             <Label
                 sx={{
                     color: props.color, //

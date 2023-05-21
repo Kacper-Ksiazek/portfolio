@@ -24,6 +24,8 @@ const SingleLabelModifierModal: FunctionComponent<SingleLabelModifierModalProps>
     const [newLabel, updateNewLabel] = useNewLabelReducer();
     const validationResult = useValidator(newLabel);
 
+    const newLabelNameHasBeenProvided: boolean = newLabel.name.length > 0;
+
     function onActionButtonClick() {
         props.handleAction(newLabel);
     }
@@ -44,7 +46,7 @@ const SingleLabelModifierModal: FunctionComponent<SingleLabelModifierModalProps>
                     value={newLabel.name} //
                     placeholder="Enter label's name..."
                     className="label-name"
-                    error={validationResult.field === "name_input" && newLabel.name.length > 0}
+                    error={validationResult.field === "name_input" && newLabelNameHasBeenProvided}
                     onChange={(e) => updateNewLabel({ name: e.target.value })}
                 />
                 <StyledColorPicker
@@ -56,7 +58,11 @@ const SingleLabelModifierModal: FunctionComponent<SingleLabelModifierModalProps>
 
             <ErrorMessage validationResult={validationResult} />
 
-            <Preview color={newLabel.color} name={newLabel.name} />
+            <Preview
+                color={newLabel.color} //
+                name={newLabel.name}
+                validationError={validationResult.code !== "NONE" && newLabelNameHasBeenProvided}
+            />
         </Modal>
     );
 };
