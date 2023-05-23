@@ -25,30 +25,19 @@ const Label: FunctionComponent<PropsWithLabel | PropsIndicatingUrgency> = (props
 
     if (isUrgencyIndicating(props)) {
         return (
-            <LabelBase className={`${className} urgency ${props.indicateUrgency ? "active" : ""}`}>
+            <LabelBase className={`${className} urgency ${props.indicateUrgency ? "active" : ""}`} isUrgent color="primary">
                 <span>URGENT</span>
             </LabelBase>
         );
     }
 
     const label = getLabelWithID(props.labelID);
-    const { isTaskUrgent } = props;
 
     return (
         <LabelBase
-            sx={
-                isTaskUrgent
-                    ? {
-                          color: "#fff",
-                          background: label.color,
-                          borderColor: label.color,
-                      }
-                    : {
-                          color: label.color,
-                          borderColor: label.color,
-                      }
-            }
+            color={label.color} //
             className={className}
+            isUrgent={props.isTaskUrgent}
         >
             {label.name}
         </LabelBase>

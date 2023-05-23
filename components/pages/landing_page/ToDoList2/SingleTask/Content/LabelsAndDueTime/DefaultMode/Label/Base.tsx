@@ -1,16 +1,9 @@
 // Tools
 import { styled } from "@mui/material";
+// Styled components
+import LabelBase from "landing_page/ToDoList2/atoms/LabelBase";
 
-export default styled("span")(({ theme }) => ({
-    border: "2px solid",
-    fontSize: "14px",
-    padding: "2px 6px",
-    borderRadius: "3px",
-    userSelect: "none",
-    display: "flex",
-    alignItems: "center",
-    boxSizing: "border-box",
-    transition: "all .3s",
+export default styled(LabelBase)(({ theme }) => ({
     "&.urgency": {
         marginRight: "0px",
         width: 0,

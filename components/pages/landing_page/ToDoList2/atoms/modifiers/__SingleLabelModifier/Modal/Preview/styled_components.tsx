@@ -1,18 +1,6 @@
 // Tools
 import { alpha, styled } from "@mui/material";
-
-export const Label = styled("span")(({ theme }) => ({
-    ...theme.mixins.flex_center,
-    border: "2px solid",
-    fontSize: "14px",
-    padding: "2px 6px",
-    borderRadius: "3px",
-    userSelect: "none",
-    boxSizing: "border-box",
-    transition: "all .3s",
-    height: "27px",
-    minWidth: "100px",
-}));
+// Styled components
 
 export const Divider = styled("span")(({ theme }) => ({
     margin: "0 16px",

@@ -2,7 +2,8 @@
 import type { FunctionComponent } from "react";
 import type { ColorInHEX } from "landing_page/ToDoList2/context/LabelsContext/@types";
 // Styled components
-import { Divider, Label, PreviewWrapper } from "./styled_components";
+import Label from "landing_page/ToDoList2/atoms/LabelBase";
+import { Divider, PreviewWrapper } from "./styled_components";
 
 interface NewColorPreviewProps {
     name: string;
@@ -15,24 +16,13 @@ const NewColorPreview: FunctionComponent<NewColorPreviewProps> = (props) => {
 
     return (
         <PreviewWrapper className={props.validationError ? "error" : ""}>
-            <Label
-                sx={{
-                    color: props.color, //
-                    borderColor: props.color,
-                }}
-            >
+            <Label color={props.color} sx={{ minWidth: "100px" }}>
                 {labelNameToDisplay}
             </Label>
 
             <Divider />
 
-            <Label
-                sx={{
-                    background: props.color, //
-                    borderColor: props.color,
-                    color: "#fff",
-                }}
-            >
+            <Label color={props.color} isUrgent sx={{ minWidth: "100px" }}>
                 {labelNameToDisplay}
             </Label>
         </PreviewWrapper>

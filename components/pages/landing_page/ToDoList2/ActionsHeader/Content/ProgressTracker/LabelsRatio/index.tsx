@@ -1,6 +1,6 @@
 // Tools
 import { useMemo } from "react";
-import { ratio } from "../utils/ratio";
+import { ratio } from "@/utils/ratio";
 // Types
 import type { FunctionComponent } from "react";
 import type { TasksCounter, MapEntranceTuple } from "landing_page/ToDoList2/ActionsHeader/@types";

@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import { ProgressBar } from "./ProgressBar";
+import { ProgressBar } from "../../../../atoms/ProgressBar";
 
 export { ProgressBar };
 
