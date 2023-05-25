@@ -19,9 +19,11 @@ const ActionsHeader: FunctionComponent<ActionsHeaderProps> = (props) => {
     return (
         <SectionWrapper
             sx={{
-                minHeight: "232px", //
+                height: stage === "EDIT_LABELS" ? "400px" : "232px", //
+                maxHeight: stage === "EDIT_LABELS" ? "400px" : "232px", //
                 display: "flex",
                 flexDirection: "column",
+                transition: "max-height .3s",
             }}
         >
             <Navigation
