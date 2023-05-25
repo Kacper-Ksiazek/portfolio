@@ -19,7 +19,7 @@ const ActionsHeader: FunctionComponent<ActionsHeaderProps> = (props) => {
     return (
         <SectionWrapper
             sx={{
-                height: stage === "EDIT_LABELS" ? "400px" : "232px", //
+                height: "400px",
                 maxHeight: stage === "EDIT_LABELS" ? "400px" : "232px", //
                 display: "flex",
                 flexDirection: "column",
