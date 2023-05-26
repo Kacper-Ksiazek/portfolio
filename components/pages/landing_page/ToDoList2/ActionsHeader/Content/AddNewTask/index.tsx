@@ -9,7 +9,8 @@ import TaskTitleInput from "./TaskTitleInput";
 import ConfirmationButton from "./ConfirmationButton";
 import FormFieldsOrganizer from "./FormFieldsOrganizer";
 // Styled components
-import { DueDatePicker, LabelPicker, UrgencySwitch } from "landing_page/ToDoList2/atoms/modifiers";
+import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
+import { DueDatePicker, LabelPicker } from "landing_page/ToDoList2/atoms/modifiers";
 
 const EMPTY_NEW_TASK_BODY: Omit<NewTaskBody, "labelID"> = {
     description: "",
@@ -33,7 +34,11 @@ const AddNewTask: FunctionComponent = () => {
             />
 
             <FormFieldsOrganizer>
-                <UrgencySwitch value={newTaskBody.urgent} updateValue={(val) => updateNewTaskBody({ urgent: val })} />
+                <StyledCheckbox
+                    label="Urgent" //
+                    value={newTaskBody.urgent}
+                    updateValue={(val) => updateNewTaskBody({ urgent: val })}
+                />
                 <DueDatePicker value={newTaskBody.dueDate} updateValue={(dueDate) => updateNewTaskBody({ dueDate })} />
                 <LabelPicker value={newTaskBody.labelID} updateValue={(labelID) => updateNewTaskBody({ labelID })} />
             </FormFieldsOrganizer>
