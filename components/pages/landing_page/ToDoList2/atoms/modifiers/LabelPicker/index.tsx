@@ -11,14 +11,14 @@ import CreateNewLabel from "../CreateNewLabel";
 // Styled components
 import { Select } from "./styled_components";
 
-interface UrgencySwitchProps {
+interface LabelPickerProps {
     value: LabelID;
     updateValue: (label: LabelID) => void;
 
     small?: boolean;
 }
 
-const LabelPicker: FunctionComponent<UrgencySwitchProps> = (props) => {
+const LabelPicker: FunctionComponent<LabelPickerProps> = (props) => {
     const { labels: availableLabels, getLabelWithID } = useLabelsContext();
 
     const options = useMemo<OptionWithAlias<LabelID>[]>(() => {

@@ -3,20 +3,21 @@ import type { FunctionComponent } from "react";
 // Material UI Components
 import Check from "@mui/icons-material/Check";
 // Styled components
-import { IconWrapper, UrgencySwitchWrapper } from "./styled_components";
+import { IconWrapper, StyledCheckboxWrapper } from "./styled_components";
 
-interface UrgencySwitchProps {
+interface StyledCheckboxProps {
+    label: string;
     value: boolean;
     updateValue: (val: boolean) => void;
 
     small?: boolean;
 }
 
-const UrgencySwitch: FunctionComponent<UrgencySwitchProps> = (props) => {
+const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
     const size = props.small ? "32px" : "42px";
 
     return (
-        <UrgencySwitchWrapper
+        <StyledCheckboxWrapper
             sx={{ height: size }} //
             tabIndex={0}
             role="button"
@@ -29,9 +30,9 @@ const UrgencySwitch: FunctionComponent<UrgencySwitchProps> = (props) => {
                 <Check />
             </IconWrapper>
 
-            <span>Urgent</span>
-        </UrgencySwitchWrapper>
+            <span>{props.label}</span>
+        </StyledCheckboxWrapper>
     );
 };
 
-export default UrgencySwitch;
+export default StyledCheckbox;

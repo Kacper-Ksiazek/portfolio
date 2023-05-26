@@ -1,7 +1,7 @@
 // Tools
 import { alpha, styled } from "@mui/material";
 
-export const UrgencySwitchWrapper = styled("div")(({ theme }) => ({
+export const StyledCheckboxWrapper = styled("div")(({ theme }) => ({
     background: alpha("#000", 0.2),
     display: "flex",
     alignItems: "center",

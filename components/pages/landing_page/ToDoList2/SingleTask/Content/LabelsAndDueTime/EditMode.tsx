@@ -3,15 +3,17 @@ import { useEditModeContext } from "../../hooks/useEditModeContext";
 import type { FunctionComponent } from "react";
 // Other components
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
-import { LabelPicker, DueDatePicker, UrgencySwitch } from "landing_page/ToDoList2/atoms/modifiers";
+import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
+import { LabelPicker, DueDatePicker } from "landing_page/ToDoList2/atoms/modifiers";
 
 const EditMode: FunctionComponent = () => {
     const editModeContext = useEditModeContext();
 
     return (
         <FlexBox>
-            <UrgencySwitch
-                value={editModeContext.newState.urgent} //
+            <StyledCheckbox
+                label="Urgent" //
+                value={editModeContext.newState.urgent}
                 updateValue={(val) => editModeContext.updateNewState({ urgent: val })}
                 small
             />
