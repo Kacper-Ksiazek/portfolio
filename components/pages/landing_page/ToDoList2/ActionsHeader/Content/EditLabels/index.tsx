@@ -1,11 +1,12 @@
 // Tools
 import { alpha, styled } from "@mui/material";
+import { useFilteredLabels } from "./hooks/useFilteredLabels";
 // Types
 import type { FunctionComponent } from "react";
 import type { TasksCounter } from "landing_page/ToDoList2/ActionsHeader/@types";
 // Other components
 import SingleLabel from "./SingleLabel";
-import FlexBox from "@/components/atoms/content_placement/FlexBox";
+import ManagementHeader from "./ManagementHeader";
 import OverflowScrollDiv from "@/components/atoms/content_placement/OverflowScrollDiv";
 
 const StyledTable = styled("div")(({ theme }) => ({
@@ -27,30 +28,26 @@ interface EditLabelsProps {
 }
 
 const EditLabels: FunctionComponent<EditLabelsProps> = (props) => {
+    const { updateFilters, filters, labels } = useFilteredLabels(props.counter);
+
     return (
         <>
-            <FlexBox>
-                <input type="checkbox" name="urgent_mode" />
-                <input type="checkbox" name="not_used_only" />
-                <select name="sort" id="">
-                    <option value="">Newest</option>
-                    <option value="">Oldest</option>
-                    <option value="">Frequently used</option>
-                    <option value="">Rarely used</option>
-                </select>
-                <button>Add new label</button>
-            </FlexBox>
+            <ManagementHeader
+                counter={props.counter}
+                filters={filters} //
+                updateFilters={updateFilters}
+            />
 
             <OverflowScrollDiv maxHeight="130px">
                 <StyledTable>
-                    {[...props.counter.entries()].map(([id, counts], index) => {
+                    {labels.map((item, index) => {
                         return (
                             <SingleLabel
                                 key={index} //
                                 index={index + 1}
-                                amountOfTasks={counts}
-                                labelID={id}
-                                urgentMode={false}
+                                amountOfTasks={item.amountOfTasks}
+                                labelID={item.id}
+                                urgentMode={filters.urgentModeAlternativeAppearance}
                             />
                         );
                     })}
