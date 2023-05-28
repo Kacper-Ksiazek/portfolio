@@ -7,7 +7,7 @@ import type { LabelID } from "../../../context/LabelsContext/@types";
 import type { OptionWithAlias } from "components/atoms/forms/StyledSelect";
 // Other components
 import Adornment from "./Adornment";
-import CreateNewLabel from "../CreateNewLabel";
+import CreateNewLabel from "../../modal_actions/CreateNewLabel";
 // Styled components
 import { Select } from "./styled_components";
 
