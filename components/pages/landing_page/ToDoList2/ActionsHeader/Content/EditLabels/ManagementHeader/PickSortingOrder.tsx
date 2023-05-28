@@ -2,6 +2,8 @@
 import type { LabelsFilters } from "../@types";
 import type { FunctionComponent } from "react";
 import type { OptionWithAlias } from "@/components/atoms/forms/StyledSelect";
+// Material UI Icons
+import SortByAlphaRoundedIcon from "@mui/icons-material/SortByAlphaRounded";
 // Other components
 import StyledSelect from "@/components/atoms/forms/StyledSelect";
 
@@ -25,8 +27,9 @@ const PickSortingOrder: FunctionComponent<PickSortingOrderProps> = (props) => {
             value={props.value} //
             onChange={(e) => props.updateValue(e.target.value)}
             options={OPTIONS}
+            startAdornment={<SortByAlphaRoundedIcon />}
             sx={{
-                width: "132px",
+                width: "180px",
                 height: "42px",
             }}
         />
