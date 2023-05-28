@@ -7,7 +7,7 @@ const LabelIndexBase = styled("span")(({ theme }) => ({
     ...theme.mixins.flex_center,
     position: "relative",
     padding: "0 !important",
-    width: "44px",
+    width: "60px",
     userSelect: "none",
 
     "&::after": {

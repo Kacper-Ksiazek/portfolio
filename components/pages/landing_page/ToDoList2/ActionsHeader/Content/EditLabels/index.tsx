@@ -11,7 +11,7 @@ import OverflowScrollDiv from "@/components/atoms/content_placement/OverflowScro
 
 const StyledTable = styled("div")(({ theme }) => ({
     display: "grid",
-    gridTemplateColumns: "auto 200px 1fr auto",
+    gridTemplateColumns: "auto 180px 1fr auto",
     gridTemplateRows: "repeat(4, 1fr)",
     width: "100%",
     alignItems: "stretch",
