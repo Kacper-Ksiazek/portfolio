@@ -8,7 +8,7 @@ interface LabelBaseProps {
 }
 
 function shouldForwardProp(prop: string): boolean {
-    return !(["color", "name"] as (keyof Label | string)[]).includes(prop);
+    return !(["color", "name", "isUrgent"] as (keyof Label | string)[]).includes(prop);
 }
 
 export default styled("span", { shouldForwardProp })<LabelBaseProps>(({ theme, ...props }) => {

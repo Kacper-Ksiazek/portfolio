@@ -2,19 +2,19 @@
 import { useEffect } from "react";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 // Types
-import type { Color } from "../@types";
+import type { Label} from "landing_page/ToDoList2/@types";
 
-const DEFAULT_VALUE: Color = Object.seal({
+const DEFAULT_VALUE: Label = Object.seal({
     color:"#26c8e8",
     name: ''
 })
 
-export function useNewLabelReducer(): ReturnType<typeof useSimpleReducer<Color>> {
-    const [newLabel, updateNewLabel] = useSimpleReducer<Color>(DEFAULT_VALUE);
+export function useNewLabelReducer(labelToUpdate: Label | null): ReturnType<typeof useSimpleReducer<Label>> {
+    const [newLabel, updateNewLabel] = useSimpleReducer<Label>(labelToUpdate?? DEFAULT_VALUE);
 
     useEffect(() => {
-        return () => updateNewLabel(DEFAULT_VALUE);
-    }, [updateNewLabel]);
+        return () => updateNewLabel((labelToUpdate?? DEFAULT_VALUE));
+    }, [labelToUpdate, updateNewLabel]);
 
     return [newLabel,updateNewLabel]
 }

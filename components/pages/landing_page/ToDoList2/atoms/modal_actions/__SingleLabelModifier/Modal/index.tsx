@@ -1,8 +1,9 @@
 // Tools
 import { useNewLabelReducer, useValidator } from "./hooks";
 // Types
-import type { Color } from "./@types";
+import type { Color, ValidationResult, ValidationResultCode } from "./@types";
 import type { FunctionComponent } from "react";
+import type { Label } from "landing_page/ToDoList2/context/LabelsContext/@types";
 // Other components
 import Preview from "./Preview";
 import ErrorMessage from "./ErrorMessage";
@@ -14,15 +15,17 @@ import { StyledInput, StyledColorPicker } from "@/components/atoms/forms";
 interface SingleLabelModifierModalProps {
     title: string;
     isOpen: boolean;
+    labelToBeEdited?: Label;
     actionButtonPrompt: string;
+    noErrorsMessage: string;
 
     handleAction: (color: Color) => void;
     onClose: () => void;
 }
 
 const SingleLabelModifierModal: FunctionComponent<SingleLabelModifierModalProps> = (props) => {
-    const [newLabel, updateNewLabel] = useNewLabelReducer();
-    const validationResult = useValidator(newLabel);
+    const [newLabel, updateNewLabel] = useNewLabelReducer(props.labelToBeEdited ?? null);
+    const validationResult = useValidator(newLabel, props.labelToBeEdited ?? null);
 
     const newLabelNameHasBeenProvided: boolean = newLabel.name.length > 0;
 
@@ -56,12 +59,15 @@ const SingleLabelModifierModal: FunctionComponent<SingleLabelModifierModalProps>
                 />
             </FormFieldsWrapper>
 
-            <ErrorMessage validationResult={validationResult} />
+            <ErrorMessage
+                validationResult={validationResult} //
+                noErrorsMessage={props.noErrorsMessage}
+            />
 
             <Preview
                 color={newLabel.color} //
                 name={newLabel.name}
-                validationError={validationResult.code !== "NONE" && newLabelNameHasBeenProvided}
+                validationError={!(["NONE", "NOTHNIG_TO_UPDATE"] as ValidationResultCode[]).includes(validationResult.code) && newLabelNameHasBeenProvided}
             />
         </Modal>
     );

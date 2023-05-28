@@ -5,32 +5,28 @@ import { useLabelsUpdatersContext } from "@/components/pages/landing_page/ToDoLi
 // Types
 import type { ReactNode, FunctionComponent } from "react";
 import type { Color } from "./__SingleLabelModifier/Modal/@types";
-import type { LabelID } from "landing_page/ToDoList2/context/LabelsContext/@types";
+import type { Label, LabelID } from "landing_page/ToDoList2/context/LabelsContext/@types";
 // Material UI Icons
 import AddRounded from "@mui/icons-material/AddRounded";
 // Other components
 import { Modal, ModalOpeningButton } from "./__SingleLabelModifier";
 
-interface CreateNewLabelProps {
+interface EditExistingLabelProps {
     small?: boolean;
     size: `${string}px`;
-    modalOpeningButtonPrompt?: ReactNode;
+    labelID: LabelID;
+    labelToBeEdited: Label;
 
-    onCreated: (label: LabelID) => void;
+    modalOpeningButtonPrompt?: ReactNode;
 }
 
-const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
+const EditExistingLabel: FunctionComponent<EditExistingLabelProps> = (props) => {
     const labelsUpdatersContext = useLabelsUpdatersContext();
     const [modalIsOpened, setModalIsOpened] = useState<boolean>(false);
 
-    const addNewLabel = useSafeSnackbarCallback<Color>((newLabel) => {
-        const newLabelID = labelsUpdatersContext.add({
-            color: newLabel.color,
-            name: newLabel.name,
-        });
-
-        props.onCreated(newLabelID);
-    }, "Label has been created successfully");
+    const updateLabel = useSafeSnackbarCallback<Color>((data) => {
+        labelsUpdatersContext.update(props.labelID, data);
+    }, "Label has been updated successfully");
 
     return (
         <>
@@ -39,21 +35,23 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
                 small={props.small}
                 openModal={() => setModalIsOpened(true)}
                 isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
-                tooltip="Create a new label"
+                tooltip="Modify this label"
             >
                 {props.modalOpeningButtonPrompt ? props.modalOpeningButtonPrompt : <AddRounded />}
             </ModalOpeningButton>
+
             {(() => {
                 if (modalIsOpened === true) {
                     return (
                         <Modal
-                            title="Create a new label"
-                            actionButtonPrompt="Add"
+                            title="Edit existing label"
+                            actionButtonPrompt="Edit"
                             isOpen={modalIsOpened}
-                            noErrorsMessage="A new label can be created"
+                            noErrorsMessage="Label can be updated"
                             //
+                            labelToBeEdited={props.labelToBeEdited}
                             onClose={() => setModalIsOpened(false)}
-                            handleAction={addNewLabel}
+                            handleAction={updateLabel}
                         />
                     );
                 }
@@ -62,4 +60,4 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
     );
 };
 
-export default CreateNewLabel;
+export default EditExistingLabel;

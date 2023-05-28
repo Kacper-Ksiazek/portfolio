@@ -1,5 +1,12 @@
 import type { LabelID } from "./context/LabelsContext/@types";
 
+export type ColorInHEX = `#${string & { length: 6 }}`;
+
+export interface Label {
+    name: string;
+    color: ColorInHEX;
+}
+
 export interface Task {
     id: number;
     description: string;

@@ -1,5 +1,4 @@
-export type ColorInHEX = `#${string}`;
-export type LabelsCollection = Record<string, ColorInHEX>;
+export type ColorInHEX = `#${string & { length: 6 }}`;
 
 export interface Label {
     name: string;

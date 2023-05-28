@@ -3,7 +3,9 @@ export interface Color {
     color: `#${string & { length: 6 }}`;
 }
 
+export type ValidationResultCode = "UNAVAILABLE_LABEL_NAME" | "UNAVAILABLE_LABEL_COLOR" | "NAME_IS_EMPTY" | "NOTHNIG_TO_UPDATE" | "NAME_TOO_SHORT" | "NAME_TOO_LONG" | "NONE";
+
 export interface ValidationResult {
-    code: "UNAVAILABLE_LABEL_NAME" | "UNAVAILABLE_LABEL_COLOR" | "NAME_IS_EMPTY" | "NAME_TOO_SHORT" | "NAME_TOO_LONG" | "NONE";
-    field: "name_input" | "color_picker" | null;
+    code: ValidationResultCode;
+    field: "name_input" | "color_picker" | "general" | null;
 }

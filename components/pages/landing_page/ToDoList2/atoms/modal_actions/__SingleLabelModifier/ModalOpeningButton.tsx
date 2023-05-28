@@ -9,28 +9,38 @@ import ButtonBase from "@mui/material/ButtonBase";
 interface ModalOpeningButtonProps {
     small?: boolean;
     size: `${string}px`;
-    icon: ReactNode;
+    children: ReactNode;
+    tooltip: string;
+    isIconButton: boolean;
 
     openModal: () => void;
 }
 
 const ModalOpeningButton: FunctionComponent<ModalOpeningButtonProps> = (props) => {
     return (
-        <Tooltip title="Create a new label" placement="top">
+        <Tooltip title={props.tooltip} placement="top">
             <ButtonBase
                 sx={{
-                    width: props.size,
                     height: props.size,
-                    fontSize: "28px",
                     background: alpha("#000", 0.2),
                     border: `1px solid  ${alpha("#fff", 0.23)}`,
                     borderRadius: "3px",
                     marginLeft: props.small ? "2px" : "4px",
+                    fontSize: "16px",
+                    ...(props.isIconButton
+                        ? {
+                              width: props.size,
+                              svg: {
+                                  fontSize: "28px",
+                              },
+                          }
+                        : {
+                              padding: "4px 10px",
+                          }),
                 }}
-                className="alternative-font-family"
                 onClick={props.openModal}
             >
-                {props.icon}
+                {props.children}
             </ButtonBase>
         </Tooltip>
     );

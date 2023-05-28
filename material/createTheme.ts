@@ -55,6 +55,13 @@ export function createTheme(props: CreateThemeParams): Theme {
             fontFamily: '"Noto Sans", sans-serif',
         },
         components: {
+            MuiButtonBase: {
+                styleOverrides: {
+                    root: {
+                        fontFamily: '"Noto Sans", sans-serif',
+                    },
+                },
+            },
             MuiTypography: {
                 styleOverrides: {
                     h3: {
