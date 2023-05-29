@@ -1,34 +1,32 @@
 // Tools
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { useTasksListContext, useLabelsContext } from "../../../hooks";
 // Types
-import { LabelID, Labels } from "../../../context/LabelsContext/@types";
-import type { TasksCounter, SingleTaskCounts, CountTasksWithLabel, MapEntranceTuple } from "../../@types";
+import type { LabelID, Labels, TaskCounts, TaskCountsCollection, TaskCountsCollectionEntranceTuple } from "landing_page/ToDoList2/@types";
 
-function TaskCounterFactory(labels: Labels): TasksCounter {
+function TaskCounterFactory(labels: Labels): TaskCountsCollection {
     const labelsIDs = Object.keys(labels);
 
-    return new Map<LabelID, SingleTaskCounts>(
-        labelsIDs.map((id): MapEntranceTuple => {
+    return new Map<LabelID, TaskCounts>(
+        labelsIDs.map((id): TaskCountsCollectionEntranceTuple => {
             return [id, { completed: 0, inTotal: 0 }];
         })
     );
 }
 
 interface UseTasksCounter {
-    counter: TasksCounter;
-    countTasksWithLabel: CountTasksWithLabel;
+    counter: TaskCountsCollection;
 }
 
 export function useTasksCounter(): UseTasksCounter {
     const { tasks } = useTasksListContext();
     const { labels } = useLabelsContext();
 
-    const counter = useMemo<TasksCounter>(() => {
+    const counter = useMemo<TaskCountsCollection>(() => {
         const counter = TaskCounterFactory(labels);
 
         tasks.forEach(({ labelID, isCompleted }) => {
-            const present = counter.get(labelID) as SingleTaskCounts;
+            const present = counter.get(labelID) as TaskCounts;
             counter.set(labelID, {
                 completed: present.completed + Number(isCompleted),
                 inTotal: present.inTotal + 1,
@@ -38,14 +36,5 @@ export function useTasksCounter(): UseTasksCounter {
         return counter;
     }, [labels, tasks]);
 
-    const countTasksWithLabel = useCallback<CountTasksWithLabel>(
-        (labelID: LabelID) => {
-            if (counter.has(labelID)) return counter.get(labelID) as SingleTaskCounts;
-
-            throw new Error(`Trying to get counts of non existing label with id equal to **${labelID}**`);
-        },
-        [counter]
-    );
-
-    return { counter, countTasksWithLabel };
+    return { counter };
 }

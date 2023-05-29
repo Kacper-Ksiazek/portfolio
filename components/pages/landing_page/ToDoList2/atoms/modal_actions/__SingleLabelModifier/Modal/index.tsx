@@ -1,9 +1,9 @@
 // Tools
 import { useNewLabelReducer, useValidator } from "./hooks";
 // Types
-import type { Color, ValidationResult, ValidationResultCode } from "./@types";
 import type { FunctionComponent } from "react";
-import type { Label } from "landing_page/ToDoList2/context/LabelsContext/@types";
+import type { ValidationResultCode } from "./@types";
+import type { Label } from "landing_page/ToDoList2/@types";
 // Other components
 import Preview from "./Preview";
 import ErrorMessage from "./ErrorMessage";
@@ -19,7 +19,7 @@ interface SingleLabelModifierModalProps {
     actionButtonPrompt: string;
     noErrorsMessage: string;
 
-    handleAction: (color: Color) => void;
+    handleAction: (label: Label) => void;
     onClose: () => void;
 }
 

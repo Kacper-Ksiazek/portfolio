@@ -1,9 +1,8 @@
 // Tools
-import { useLabelsContext, useLabelsUpdatersContext } from "landing_page/ToDoList2/hooks";
+import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
-import type { SingleTaskCounts } from "../../../@types";
-import type { LabelID } from "../../../../context/LabelsContext/@types";
+import type { LabelID, TaskCounts } from "landing_page/ToDoList2/@types";
 // Other components
 import Progress from "./Progress";
 import * as ActionsButtons from "./ActionsButtons";
@@ -16,7 +15,7 @@ import FlexBox from "@/components/atoms/content_placement/FlexBox";
 interface SingleLabelProps {
     index: number;
     labelID: LabelID;
-    amountOfTasks: SingleTaskCounts;
+    amountOfTasks: TaskCounts;
 
     urgentMode: boolean;
 }

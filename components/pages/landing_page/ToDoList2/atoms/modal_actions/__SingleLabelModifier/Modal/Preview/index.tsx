@@ -1,6 +1,6 @@
 // Types
 import type { FunctionComponent } from "react";
-import type { ColorInHEX } from "landing_page/ToDoList2/context/LabelsContext/@types";
+import type { ColorInHEX } from "landing_page/ToDoList2/@types";
 // Styled components
 import Label from "landing_page/ToDoList2/atoms/LabelBase";
 import { Divider, PreviewWrapper } from "./styled_components";

@@ -6,7 +6,7 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { localStorageValidator, scrollToTheListsTop } from "./utils";
 // Types
 import type { FunctionComponent, ReactNode, MutableRefObject } from "react";
-import type { Task, TaskEditCallback, TaskWithoutID } from "../../@types";
+import type { Task, TaskEditCallback, TaskWithoutID } from "landing_page/ToDoList2/@types";
 
 type ID = Task["id"];
 

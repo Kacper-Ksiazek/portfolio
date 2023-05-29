@@ -3,8 +3,7 @@ import { ratio } from "@/utils/ratio";
 import { alpha, styled } from "@mui/material";
 // Types
 import type { FunctionComponent } from "react";
-import type { SingleTaskCounts } from "../../../@types";
-import type { ColorInHEX } from "landing_page/ToDoList2/context/LabelsContext/@types";
+import type { TaskCounts, ColorInHEX } from "landing_page/ToDoList2/@types";
 // Other components
 import { ProgressBar } from "landing_page/ToDoList2/atoms/ProgressBar";
 // Material UI Icons
@@ -38,7 +37,7 @@ const ThereAreNoTasks = styled("span")(({ theme }) => ({
 
 interface ProgressProps {
     color: ColorInHEX;
-    amountOfTasks: SingleTaskCounts;
+    amountOfTasks: TaskCounts;
 }
 
 const Progress: FunctionComponent<ProgressProps> = (props) => {

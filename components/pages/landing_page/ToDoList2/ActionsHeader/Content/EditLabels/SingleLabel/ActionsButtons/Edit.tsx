@@ -1,6 +1,6 @@
 // Types
 import type { FunctionComponent } from "react";
-import type { Label, LabelID } from "@/components/pages/landing_page/ToDoList2/context/LabelsContext/@types";
+import type { Label, LabelID } from "landing_page/ToDoList2/@types";
 // Other components
 import EditExistingLabel from "@/components/pages/landing_page/ToDoList2/atoms/modal_actions/EditExistingLabel";
 

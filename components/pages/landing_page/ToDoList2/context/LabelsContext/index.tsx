@@ -3,7 +3,7 @@ import { createContext } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { I_LabelsContext, Label, LabelID, Labels } from "./@types";
+import type { LabelsContext as I_LabelsContext, Label, LabelID, Labels } from "landing_page/ToDoList2/@types";
 // Other components
 import { LabelsUpdatersContextProvider } from "./Updaters";
 

@@ -1,13 +1,13 @@
 // Types
-import type { LabelsFilters } from "../@types";
 import type { FunctionComponent } from "react";
+import type { EditLabelsFilters } from "landing_page/ToDoList2/@types";
 import type { OptionWithAlias } from "@/components/atoms/forms/StyledSelect";
 // Material UI Icons
 import SortByAlphaRoundedIcon from "@mui/icons-material/SortByAlphaRounded";
 // Other components
 import StyledSelect from "@/components/atoms/forms/StyledSelect";
 
-type Order = LabelsFilters["order"];
+type Order = EditLabelsFilters["order"];
 
 interface PickSortingOrderProps {
     value: Order;

@@ -3,17 +3,17 @@ import { useMemo } from "react";
 import { ratio } from "@/utils/ratio";
 // Types
 import type { FunctionComponent } from "react";
-import type { TasksCounter, MapEntranceTuple } from "landing_page/ToDoList2/ActionsHeader/@types";
+import type { TaskCountsCollection, TaskCountsCollectionEntranceTuple } from "landing_page/ToDoList2/@types";
 // Other components
 import SingleLabel from "./SingleLabel";
 import ThereAreNoRatios from "./ThereAreNoRatios";
 
 interface LabelsRatioProps {
-    counter: TasksCounter;
+    counter: TaskCountsCollection;
     amountOfTasksInTotal: number;
 }
 
-function removeEmptyLabelsFromCounter(counter: TasksCounter): MapEntranceTuple[] {
+function removeEmptyLabelsFromCounter(counter: TaskCountsCollection): TaskCountsCollectionEntranceTuple[] {
     return (
         [...counter.entries()]
             // Remove labels with no tasks
@@ -28,7 +28,7 @@ function removeEmptyLabelsFromCounter(counter: TasksCounter): MapEntranceTuple[]
 }
 
 const LabelsRatio: FunctionComponent<LabelsRatioProps> = (props) => {
-    const counterWithNoEmptyLabels = useMemo<MapEntranceTuple[]>(() => {
+    const counterWithNoEmptyLabels = useMemo<TaskCountsCollectionEntranceTuple[]>(() => {
         return removeEmptyLabelsFromCounter(props.counter);
     }, [props.counter]);
 

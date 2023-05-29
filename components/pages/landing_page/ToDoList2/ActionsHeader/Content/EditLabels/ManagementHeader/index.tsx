@@ -1,26 +1,21 @@
-// Tools
-import { alpha } from "@mui/material";
 // Types
-import type { FunctionComponent } from "react";
-import type { UpdateFilters, LabelsFilters } from "../@types";
+import type { FunctionComponent, Dispatch } from "react";
+import type { EditLabelsFilters, TaskCountsCollection } from "landing_page/ToDoList2/@types";
 // Other components
 import PickSortingOrder from "./PickSortingOrder";
 // Material UI Icons
 import AddRounded from "@mui/icons-material/AddRounded";
-import CleaningServicesRounded from "@mui/icons-material/CleaningServicesRounded";
 // Styled components
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import { StyledCheckbox, StyledButton } from "@/components/atoms/forms";
-import { TasksCounter } from "../../../@types";
 
 interface ManagementHeaderProps {
-    counter: TasksCounter;
-    filters: LabelsFilters;
-    updateFilters: UpdateFilters;
+    counter: TaskCountsCollection;
+    filters: EditLabelsFilters;
+    updateFilters: Dispatch<Partial<EditLabelsFilters>>;
 }
 
 const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
-    // Zrobic spradzamoe czu, w ogole mozna wykonac usuwanie nieuzywanych labelow
     return (
         <FlexBox
             sx={{

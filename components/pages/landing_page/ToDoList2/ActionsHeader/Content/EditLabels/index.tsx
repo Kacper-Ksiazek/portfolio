@@ -3,7 +3,7 @@ import { alpha, styled } from "@mui/material";
 import { useFilteredLabels } from "./hooks/useFilteredLabels";
 // Types
 import type { FunctionComponent } from "react";
-import type { TasksCounter } from "landing_page/ToDoList2/ActionsHeader/@types";
+import type { TaskCountsCollection } from "landing_page/ToDoList2/@types";
 // Other components
 import SingleLabel from "./SingleLabel";
 import ManagementHeader from "./ManagementHeader";
@@ -24,7 +24,7 @@ const StyledTable = styled("div")(({ theme }) => ({
 }));
 
 interface EditLabelsProps {
-    counter: TasksCounter;
+    counter: TaskCountsCollection;
 }
 
 const EditLabels: FunctionComponent<EditLabelsProps> = (props) => {

@@ -3,7 +3,7 @@ import { alpha, styled } from "@mui/material";
 import { CLASSES } from "landing_page/ToDoList2/css_references";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelID } from "landing_page/ToDoList2/context/LabelsContext/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types";
 // Other components
 import Label from "./Label";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";

@@ -1,20 +1,16 @@
 // Tools
 import { useDelayedState } from "@/hooks/useDelayedState";
 // Types
-import type { Stage } from "./@types";
 import type { FunctionComponent } from "react";
+import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
 // Other components
 import Content from "./Content";
 import Navigation from "./Navigation";
 // Styled components
 import { SectionWrapper } from "landing_page/ToDoList2/atoms";
 
-interface ActionsHeaderProps {
-    //
-}
-
-const ActionsHeader: FunctionComponent<ActionsHeaderProps> = (props) => {
-    const { value: stage, setValue: setStage, isChanging: isStageChanging } = useDelayedState<Stage>("PROGRESS_TRACKER", 160);
+const ActionsHeader: FunctionComponent = () => {
+    const { value: stage, setValue: setStage, isChanging: isStageChanging } = useDelayedState<ActionHeaderSection>("PROGRESS_TRACKER", 160);
 
     return (
         <SectionWrapper

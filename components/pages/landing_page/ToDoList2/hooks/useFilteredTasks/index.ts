@@ -5,19 +5,19 @@ import { useState, useEffect, useRef } from "react";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 // Types
 import type { Dispatch } from "react";
-import type { Task, Filters as I_Filters } from "../../@types";
+import type { Task, TasksFilters } from "../../@types";
 
 interface UseFilteredTasksResult {
-    filters: I_Filters;
+    filters: TasksFilters;
     filteredTasks: Task[];
     fadeContentOut: boolean;
-    updateFilters: Dispatch<Partial<I_Filters>>;
+    updateFilters: Dispatch<Partial<TasksFilters>>;
 }
 
 const DURATION_OF_FADING_OUT: TimeInMS = 240;
 
 export function useFilteredTasks(tasks: Task[]): UseFilteredTasksResult {
-    const [filters, updateFilters] = useSimpleReducer<I_Filters>({
+    const [filters, updateFilters] = useSimpleReducer<TasksFilters>({
         sort: "NEWEST",
         urgencyFilter: "_DEFAULT",
         completion: "_ALL",

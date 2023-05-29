@@ -4,8 +4,8 @@ import { useTasksCounter } from "./hooks/useTasksCounter";
 import { fadeSimple } from "@/components/keyframes/intro";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Types
-import type { Stage } from "../@types";
 import type { FunctionComponent } from "react";
+import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
 // Other components
 import EditLabels from "./EditLabels";
 import AddNewTask from "./AddNewTask";
@@ -27,12 +27,12 @@ const Wrapper = styled("div")(({ theme }) => ({
 }));
 
 interface ToDoListActionsContentProps {
-    currentStage: Stage;
+    currentStage: ActionHeaderSection;
     isStageChanging: boolean;
 }
 
 const ToDoListActionsContent: FunctionComponent<ToDoListActionsContentProps> = (props) => {
-    const { countTasksWithLabel, counter } = useTasksCounter();
+    const { counter } = useTasksCounter();
 
     return (
         <Wrapper className={props.isStageChanging ? "is-changing" : ""}>

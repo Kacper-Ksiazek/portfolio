@@ -3,8 +3,8 @@ import { useMemo } from "react";
 import { CLASSES } from "../css_references";
 import { useLabelsContext } from "../hooks/useLabelsContext";
 // Types
-import type { Filters as I_Filters } from "../@types";
 import type { FunctionComponent, Dispatch } from "react";
+import type { TasksFilters, LabelID } from "landing_page/ToDoList2/@types";
 import type { OptionWithAlias } from "@/components/atoms/forms/StyledSelect";
 // Other components
 import AmountOfTasks from "./AmountOfTasks";
@@ -17,14 +17,13 @@ import PriorityHighRoundedIcon from "@mui/icons-material/PriorityHighRounded";
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 // Styled components
 import FiltersWrapper from "./Base";
-import { LabelID } from "../context/LabelsContext/@types";
 
 interface FiltersProps {
-    filters: I_Filters;
+    filters: TasksFilters;
     amountOfTasks: number;
     disableSortingTools: boolean;
     disableFilteringByCompletion: boolean;
-    updateFilters: Dispatch<Partial<I_Filters>>;
+    updateFilters: Dispatch<Partial<TasksFilters>>;
 }
 
 const Filters: FunctionComponent<FiltersProps> = (props) => {

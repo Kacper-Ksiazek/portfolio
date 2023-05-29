@@ -2,7 +2,7 @@
 import { createContext } from "react";
 // Types
 import type { FunctionComponent, ReactNode, Dispatch, SetStateAction } from "react";
-import type { Labels, I_LabelsUpdatersContext, Label, LabelID } from "./@types";
+import type { Labels, LabelsUpdatersContext as I_LabelsUpdatersContext, Label, LabelID } from "landing_page/ToDoList2/@types";
 
 export const labelsUpdatersContext = createContext<I_LabelsUpdatersContext>({} as any);
 

@@ -2,7 +2,7 @@
 import { useEditModeContext } from "../../hooks/useEditModeContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelID } from "landing_page/ToDoList2/context/LabelsContext/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types";
 // Other components
 import SmoothConditionalRender from "@/components/utils/SmoothConditionalRender";
 // Styled components

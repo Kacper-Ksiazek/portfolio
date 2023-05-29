@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelID } from "../../../context/LabelsContext/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types";
 import type { OptionWithAlias } from "components/atoms/forms/StyledSelect";
 // Other components
 import Adornment from "./Adornment";

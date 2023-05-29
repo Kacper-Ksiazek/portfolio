@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import { ColorInHEX, Label } from "../context/LabelsContext/@types";
+import { ColorInHEX, Label } from "landing_page/ToDoList2/@types";
 // Styled components
 interface LabelBaseProps {
     color: "primary" | ColorInHEX;

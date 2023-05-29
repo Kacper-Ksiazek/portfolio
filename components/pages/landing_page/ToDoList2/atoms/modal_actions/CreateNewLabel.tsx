@@ -4,8 +4,7 @@ import { useSafeSnackbarCallback } from "@/hooks/useSafeSnackbarCallback";
 import { useLabelsUpdatersContext } from "@/components/pages/landing_page/ToDoList2/hooks";
 // Types
 import type { ReactNode, FunctionComponent } from "react";
-import type { Color } from "./__SingleLabelModifier/Modal/@types";
-import type { LabelID } from "landing_page/ToDoList2/context/LabelsContext/@types";
+import type { LabelID, Label } from "landing_page/ToDoList2/@types";
 // Material UI Icons
 import AddRounded from "@mui/icons-material/AddRounded";
 // Other components
@@ -23,7 +22,7 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
     const labelsUpdatersContext = useLabelsUpdatersContext();
     const [modalIsOpened, setModalIsOpened] = useState<boolean>(false);
 
-    const addNewLabel = useSafeSnackbarCallback<Color>((newLabel) => {
+    const addNewLabel = useSafeSnackbarCallback<Label>((newLabel) => {
         const newLabelID = labelsUpdatersContext.add({
             color: newLabel.color,
             name: newLabel.name,

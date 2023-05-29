@@ -1,12 +1,12 @@
 // Types
-import type { Task, Filters as I_Filters } from "../../@types";
+import type { Task, TasksFilters } from "../../@types";
 
 export class FiltersApplier {
-    private filters: I_Filters;
+    private filters: TasksFilters;
     private tasks: Task[];
     private _result: Task[] = [];
 
-    public constructor(params: { filters: I_Filters; tasks: Task[] }) {
+    public constructor(params: { filters: TasksFilters; tasks: Task[] }) {
         this.filters = params.filters;
         this.tasks = params.tasks;
     }

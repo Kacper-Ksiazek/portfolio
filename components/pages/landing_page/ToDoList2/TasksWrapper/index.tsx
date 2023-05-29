@@ -1,7 +1,7 @@
 // Tools
 import { CLASSES } from "../css_references";
-import { useTasksListContext } from "../hooks/useTaskListContext";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
+import { useTasksListContext } from "../hooks/useTaskListContext";
 // Types
 import type { SxProps } from "@/@types/MUI";
 import type { FunctionComponent, ReactNode } from "react";
@@ -10,7 +10,6 @@ import Box from "@mui/material/Box";
 // Other components
 import EnsureThereAreRecords from "./EnsureThereAreRecords";
 import WrapWithOverScrollDiv from "./WrapWithOverScrollDiv";
-// Styled components
 
 interface TasksWrapperProps {
     children: ReactNode;

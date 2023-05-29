@@ -2,8 +2,8 @@
 import { useMemo } from "react";
 import { useLabelsContext, useTasksListContext } from "landing_page/ToDoList2/hooks";
 // Types
-import type { NewTaskBody } from "./@types";
 import type { FunctionComponent } from "react";
+import type { NewTaskBody } from "landing_page/ToDoList2/@types";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 

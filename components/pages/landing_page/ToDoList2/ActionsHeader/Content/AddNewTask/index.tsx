@@ -2,8 +2,8 @@
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
-import type { NewTaskBody } from "./@types";
 import type { FunctionComponent } from "react";
+import type { NewTaskBody } from "landing_page/ToDoList2/@types";
 // Other components
 import TaskTitleInput from "./TaskTitleInput";
 import ConfirmationButton from "./ConfirmationButton";

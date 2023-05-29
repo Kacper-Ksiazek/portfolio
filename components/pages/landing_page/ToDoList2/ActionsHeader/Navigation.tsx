@@ -1,12 +1,12 @@
 // Types
-import type { Stage } from "./@types";
+import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
 import type { FunctionComponent, Dispatch, SetStateAction } from "react";
 // Other components
 import NavigationBetweenSections from "@/components/atoms/NavigationBetweenSections";
 
 interface ToDoListActionsNavigationProps {
-    currentStage: Stage;
-    updateCurrentStage: Dispatch<SetStateAction<Stage>>;
+    currentStage: ActionHeaderSection;
+    updateCurrentStage: Dispatch<SetStateAction<ActionHeaderSection>>;
 }
 
 const ToDoListActionsNavigation: FunctionComponent<ToDoListActionsNavigationProps> = (props) => {
@@ -26,7 +26,7 @@ const ToDoListActionsNavigation: FunctionComponent<ToDoListActionsNavigationProp
                         label: "Edit labels",
                         value: "EDIT_LABELS",
                     },
-                ] as { label: string; value: Stage }[]
+                ] as { label: string; value: ActionHeaderSection }[]
             } //
             currentSection={props.currentStage}
             onChoose={props.updateCurrentStage}
