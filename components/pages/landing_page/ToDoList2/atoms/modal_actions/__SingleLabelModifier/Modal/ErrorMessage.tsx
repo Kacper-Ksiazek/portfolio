@@ -18,7 +18,15 @@ const ErrorMessageWrapper = styled("div")(({ theme }) => ({
 type EXCLUDED_CODE = Extract<ValidationResult["code"], "NAME_IS_EMPTY">;
 type CODE_WITH_ASSOCIATED_MESSAGE = Exclude<ValidationResult["code"], EXCLUDED_CODE>;
 
-const CODES: CODE_WITH_ASSOCIATED_MESSAGE[] = ["NAME_TOO_LONG", "NAME_TOO_SHORT", "NONE", "UNAVAILABLE_LABEL_COLOR", "UNAVAILABLE_LABEL_NAME", "NOTHNIG_TO_UPDATE"];
+const CODES: CODE_WITH_ASSOCIATED_MESSAGE[] = [
+    "NAME_TOO_LONG",
+    "LABEL_NAME_CONTAINS_INVALID_CHARACTER",
+    "NAME_TOO_SHORT",
+    "NONE",
+    "UNAVAILABLE_LABEL_COLOR",
+    "UNAVAILABLE_LABEL_NAME",
+    "NOTHNIG_TO_UPDATE",
+];
 
 const MESSAGES: Record<CODE_WITH_ASSOCIATED_MESSAGE, string> = {
     NONE: "___", // message comes from props.noErrorsMessage
@@ -27,6 +35,7 @@ const MESSAGES: Record<CODE_WITH_ASSOCIATED_MESSAGE, string> = {
     NAME_TOO_LONG: "Label name can be up to 16 characters long",
     NAME_TOO_SHORT: "Label name has to be at least 3 characters long",
     NOTHNIG_TO_UPDATE: "There are no changes to implement",
+    LABEL_NAME_CONTAINS_INVALID_CHARACTER: "Label name contains invalid character",
 };
 
 interface ErrorMessageProps {

@@ -12,30 +12,39 @@ export function useValidator(newLabel: Label, labelToBeEdited: Label | null): Va
     const [response, updateResponse] = useSimpleReducer<ValidationResult>({ code: "NONE", field: null });
 
     useEffect(() => {
-        const nameHasChanged: boolean = labelToBeEdited !== null && labelToBeEdited.name !== newLabel.name;
-        const colorHasChanged: boolean = labelToBeEdited !== null && labelToBeEdited.color !== newLabel.color;
+        const REGEX = /^[A-Za-z\s]+$/;
 
-        if (nameHasChanged && _labelNamesInUse.includes(newLabel.name)) {
+        const trimmedLabelName: string = newLabel.name.trim();
+
+        const nameHasChanged: boolean = labelToBeEdited !== null ? labelToBeEdited.name !== newLabel.name : true;
+        const colorHasChanged: boolean = labelToBeEdited !== null ? labelToBeEdited.color !== newLabel.color : true;
+
+        if (nameHasChanged && _labelNamesInUse.includes(trimmedLabelName)) {
             updateResponse({
                 code: "UNAVAILABLE_LABEL_NAME",
-                field: "color_picker",
+                field: "name_input",
+            });
+        } else if (nameHasChanged && REGEX.test(trimmedLabelName) === false && trimmedLabelName.length > 0) {
+            updateResponse({
+                code: "LABEL_NAME_CONTAINS_INVALID_CHARACTER",
+                field: "name_input",
             });
         } else if (colorHasChanged && _colorsInUse.includes(newLabel.color)) {
             updateResponse({
                 code: "UNAVAILABLE_LABEL_COLOR",
-                field: "name_input",
+                field: "color_picker",
             });
-        } else if (newLabel.name.length === 0) {
+        } else if (trimmedLabelName.length === 0) {
             updateResponse({
                 code: "NAME_IS_EMPTY",
                 field: "name_input",
             });
-        } else if (newLabel.name.length < 3) {
+        } else if (trimmedLabelName.length < 3) {
             updateResponse({
                 code: "NAME_TOO_SHORT",
                 field: "name_input",
             });
-        } else if (newLabel.name.length > 16) {
+        } else if (trimmedLabelName.length > 16) {
             updateResponse({
                 code: "NAME_TOO_LONG",
                 field: "name_input",

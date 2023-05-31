@@ -8,6 +8,7 @@ export const labelsUpdatersContext = createContext<I_LabelsUpdatersContext>({} a
 
 interface LabelsUpdatersContextProviderProps {
     children: ReactNode;
+    labels: Labels;
     setLabels: Dispatch<SetStateAction<Labels>>;
 }
 
@@ -56,15 +57,15 @@ function ensureLabelsName(params: EnsureLabelsNameProps) {
 
 export const LabelsUpdatersContextProvider: FunctionComponent<LabelsUpdatersContextProviderProps> = (props) => {
     function add(newLabelData: Label): LabelID {
+        ensureLabelsName({
+            label: newLabelData.name,
+            dataset: props.labels,
+            expect: "NON_PRESENCE",
+        });
+
         const ID: LabelID = String(Date.now());
 
         props.setLabels((currentLabels) => {
-            ensureLabelsName({
-                label: newLabelData.name,
-                dataset: currentLabels,
-                expect: "NON_PRESENCE",
-            });
-
             return {
                 ...currentLabels,
                 [ID]: newLabelData,
@@ -75,12 +76,13 @@ export const LabelsUpdatersContextProvider: FunctionComponent<LabelsUpdatersCont
     }
 
     function update(id: LabelID, data: Partial<Label>) {
+        ensureLabelsName({
+            id,
+            dataset: props.labels,
+            expect: "PRESENCE",
+        });
+
         props.setLabels((currentLabels) => {
-            ensureLabelsName({
-                id,
-                dataset: currentLabels,
-                expect: "PRESENCE",
-            });
             return {
                 ...currentLabels,
                 [id]: {

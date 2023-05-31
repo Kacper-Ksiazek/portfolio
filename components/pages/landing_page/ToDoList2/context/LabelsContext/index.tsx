@@ -56,7 +56,7 @@ export const LabelsContextProvider: FunctionComponent<{ children: ReactNode }> =
                 _hasFullyLoaded,
             }}
         >
-            <LabelsUpdatersContextProvider setLabels={setLabels}>
+            <LabelsUpdatersContextProvider labels={labelsFromLocalStorage} setLabels={setLabels}>
                 {children}
                 {/*  */}
             </LabelsUpdatersContextProvider>
