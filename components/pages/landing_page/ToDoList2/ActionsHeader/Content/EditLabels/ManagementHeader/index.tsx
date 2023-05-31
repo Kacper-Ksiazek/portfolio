@@ -3,11 +3,12 @@ import type { FunctionComponent, Dispatch } from "react";
 import type { EditLabelsFilters, TaskCountsCollection } from "landing_page/ToDoList2/@types";
 // Other components
 import PickSortingOrder from "./PickSortingOrder";
+import CreateNewLabel from "landing_page/ToDoList2/atoms/modal_actions/CreateNewLabel";
 // Material UI Icons
 import AddRounded from "@mui/icons-material/AddRounded";
 // Styled components
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
-import { StyledCheckbox, StyledButton } from "@/components/atoms/forms";
+import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
 
 interface ManagementHeaderProps {
     counter: TaskCountsCollection;
@@ -55,9 +56,15 @@ const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
                 Delete 3 unused labels
             </StyledButton> */}
 
-            <StyledButton color="primary">
-                <AddRounded /> Add new label
-            </StyledButton>
+            <CreateNewLabel
+                primary
+                disableTooltip
+                modalOpeningButtonPrompt={
+                    <>
+                        <AddRounded sx={{ mr: "2px" }} /> Add new label
+                    </>
+                }
+            ></CreateNewLabel>
         </FlexBox>
     );
 };

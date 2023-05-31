@@ -12,10 +12,12 @@ import { Modal, ModalOpeningButton } from "./__SingleLabelModifier";
 
 interface CreateNewLabelProps {
     small?: boolean;
-    size: `${string}px`;
+    primary?: boolean;
+    size?: `${string}px`;
+    disableTooltip?: boolean;
     modalOpeningButtonPrompt?: ReactNode;
 
-    onCreated: (label: LabelID) => void;
+    onCreated?: (label: LabelID) => void;
 }
 
 const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
@@ -28,17 +30,18 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
             name: newLabel.name,
         });
 
-        props.onCreated(newLabelID);
+        if (typeof props.onCreated === "function") props.onCreated(newLabelID);
     }, "Label has been created successfully");
 
     return (
         <>
             <ModalOpeningButton
-                size={props.size} //
+                size={props.size as any} //
                 small={props.small}
                 openModal={() => setModalIsOpened(true)}
                 isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
-                tooltip="Create a new label"
+                tooltip={props.disableTooltip === false ? "Create a new label" : ""}
+                primary={props.primary}
             >
                 {props.modalOpeningButtonPrompt ? props.modalOpeningButtonPrompt : <AddRounded />}
             </ModalOpeningButton>
@@ -59,6 +62,11 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
             })()}
         </>
     );
+};
+
+CreateNewLabel.defaultProps = {
+    size: "42px",
+    disableTooltip: false,
 };
 
 export default CreateNewLabel;

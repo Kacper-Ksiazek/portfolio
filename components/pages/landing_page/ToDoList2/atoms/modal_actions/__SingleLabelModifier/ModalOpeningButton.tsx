@@ -12,6 +12,7 @@ interface ModalOpeningButtonProps {
     children: ReactNode;
     tooltip: string;
     isIconButton: boolean;
+    primary?: boolean;
 
     openModal: () => void;
 }
@@ -20,24 +21,37 @@ const ModalOpeningButton: FunctionComponent<ModalOpeningButtonProps> = (props) =
     return (
         <Tooltip title={props.tooltip} placement="top">
             <ButtonBase
-                sx={{
+                sx={(theme) => ({
                     height: props.size,
-                    background: alpha("#000", 0.2),
-                    border: `1px solid  ${alpha("#fff", 0.23)}`,
                     borderRadius: "3px",
                     marginLeft: props.small ? "2px" : "4px",
                     fontSize: "16px",
+                    border: "1px solid",
+                    svg: {
+                        fontSize: "28px",
+                    },
+                    ...(props.primary
+                        ? {
+                              background: theme.palette.primary.main,
+                              borderColor: theme.palette.primary.main,
+                              transition: "all .3s",
+                              "&:hover": {
+                                  background: "#fff",
+                                  color: theme.palette.primary.main,
+                              },
+                          }
+                        : {
+                              background: alpha("#000", 0.2),
+                              borderColor: alpha("#fff", 0.23),
+                          }),
                     ...(props.isIconButton
                         ? {
                               width: props.size,
-                              svg: {
-                                  fontSize: "28px",
-                              },
                           }
                         : {
                               padding: "4px 10px",
                           }),
-                }}
+                })}
                 onClick={props.openModal}
             >
                 {props.children}
