@@ -12,7 +12,7 @@ interface NewColorPreviewProps {
 }
 
 const NewColorPreview: FunctionComponent<NewColorPreviewProps> = (props) => {
-    const labelNameToDisplay: string = props.name.length ? props.name.slice(0, 16) : "your label";
+    const labelNameToDisplay: string = props.name.length ? props.name.trim().slice(0, 18) : "your label";
 
     return (
         <PreviewWrapper className={props.validationError ? "error" : ""}>

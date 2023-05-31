@@ -12,7 +12,7 @@ export function useValidator(newLabel: Label, labelToBeEdited: Label | null): Va
     const [response, updateResponse] = useSimpleReducer<ValidationResult>({ code: "NONE", field: null });
 
     useEffect(() => {
-        const REGEX = /^[A-Za-z\s]+$/;
+        const REGEX = /^[A-Za-z\s-_]+$/;
 
         const trimmedLabelName: string = newLabel.name.trim();
 
@@ -44,7 +44,7 @@ export function useValidator(newLabel: Label, labelToBeEdited: Label | null): Va
                 code: "NAME_TOO_SHORT",
                 field: "name_input",
             });
-        } else if (trimmedLabelName.length > 16) {
+        } else if (trimmedLabelName.length > 18) {
             updateResponse({
                 code: "NAME_TOO_LONG",
                 field: "name_input",
