@@ -14,6 +14,9 @@ interface ModalActionsProps {
 const ModalActions: FunctionComponent<ModalActionsProps> = (props) => {
     const { actionButton } = props;
 
+    // DOPISAC LOGIKE DO USUWANIA LABELOW
+    // BO WSZYSTKO WYGLADA ALE NIC NIE DZIALA
+
     function onActionButtonClick() {
         if (actionButton.disabled === true) return;
 
@@ -22,7 +25,7 @@ const ModalActions: FunctionComponent<ModalActionsProps> = (props) => {
     }
 
     return (
-        <FlexBox>
+        <FlexBox sx={{ mt: "24px" }}>
             <StyledButton color="error" onClick={props.closeModal}>
                 Cancel
             </StyledButton>

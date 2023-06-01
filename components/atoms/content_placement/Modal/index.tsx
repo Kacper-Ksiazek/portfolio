@@ -12,9 +12,9 @@ import ModalActions from "./ModalActions";
 // Styled components
 import ModalContentWrapper from "./ModalContentWrapper";
 
-interface StyledModalProps {
-    isOpen: boolean;
+export interface StyledModalProps {
     title: string;
+    isOpen: boolean;
     children: ReactNode;
 
     actionButton: ActionButtonProps;

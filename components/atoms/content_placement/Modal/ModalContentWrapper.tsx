@@ -14,9 +14,14 @@ export default styled("div")(({ theme }) => ({
     boxSizing: "border-box",
     borderRadius: "3px",
     outline: "none !important",
+    cursor: "default",
+    fontSize: "18px",
     animation: `${fadeSimple} .2s .1s both`,
     h3: {
         margin: "0 0 8px 0",
+    },
+    p: {
+        margin: "0 0 0px 0",
     },
     button: {
         height: "36px",
