@@ -1,3 +1,4 @@
 import Edit from "./Edit";
+import Delete from "./Delete";
 
-export { Edit };
+export { Edit, Delete };

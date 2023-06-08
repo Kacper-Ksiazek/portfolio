@@ -1,4 +1,5 @@
 // Tools
+import { useRef } from "react";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
@@ -9,7 +10,6 @@ import * as ActionsButtons from "./ActionsButtons";
 // Styled components
 import LabelIndex from "./LabelIndex";
 import Label from "landing_page/ToDoList2/atoms/LabelBase";
-import StyledButton from "@/components/atoms/forms/StyledButton";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 
 interface SingleLabelProps {
@@ -22,6 +22,7 @@ interface SingleLabelProps {
 
 const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
     const { getLabelWithID } = useLabelsContext();
+    const buttonRef = useRef<HTMLButtonElement | null>(null);
 
     const label = getLabelWithID(props.labelID);
 
@@ -47,7 +48,9 @@ const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
                     modalOpeningButtonPrompt="Edit"
                     //
                 />
-                <StyledButton>Delete</StyledButton>
+                <ActionsButtons.Delete
+                    label={label} //
+                />
             </FlexBox>
         </>
     );

@@ -11,7 +11,6 @@ export const Divider = styled("span")(({ theme }) => ({
 
 export const PreviewWrapper = styled("div")(({ theme }) => ({
     ...theme.mixins.flex_center,
-    marginBottom: "16px",
     border: `1px solid ${alpha("#fff", 0.2)}`,
     padding: "14px 0",
     borderRadius: "3px",

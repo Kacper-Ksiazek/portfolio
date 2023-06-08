@@ -61,7 +61,7 @@ const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
                 disableTooltip
                 modalOpeningButtonPrompt={
                     <>
-                        <AddRounded sx={{ mr: "2px" }} /> Add new label
+                        <AddRounded sx={{ mr: "2px", fontSize: "28px" }} /> Add new label
                     </>
                 }
             ></CreateNewLabel>

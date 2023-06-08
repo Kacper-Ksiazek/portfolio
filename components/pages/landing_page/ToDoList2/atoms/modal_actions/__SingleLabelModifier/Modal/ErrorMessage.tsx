@@ -11,6 +11,7 @@ const ErrorMessageWrapper = styled("div")(({ theme }) => ({
     position: "relative",
     paddingTop: "4px",
     height: "32px",
+    fontSize: "16px",
     boxSizing: "border-box",
     animation: `${fadeSimple} .2s .1s linear both`,
 }));
