@@ -3,6 +3,7 @@ import type { FunctionComponent, Dispatch } from "react";
 import type { EditLabelsFilters, TaskCountsCollection } from "landing_page/ToDoList2/@types";
 // Other components
 import PickSortingOrder from "./PickSortingOrder";
+import DeleteUnusedLabels from "./DeleteUnusedLabels";
 import CreateNewLabel from "landing_page/ToDoList2/atoms/modal_actions/CreateNewLabel";
 // Material UI Icons
 import AddRounded from "@mui/icons-material/AddRounded";
@@ -44,24 +45,14 @@ const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
 
             <span style={{ flexGrow: 1 }} />
 
-            {/* <StyledButton
-                sx={{
-                    background: alpha("#000", 0.2),
-                    borderColor: alpha("#fff", 0.23),
-                    // opacity: 0,
-                    transition: "opacity .3s",
-                }}
-            >
-                <CleaningServicesRounded sx={{ mr: "6px" }} />
-                Delete 3 unused labels
-            </StyledButton> */}
+            <DeleteUnusedLabels counter={props.counter} />
 
             <CreateNewLabel
                 primary
                 disableTooltip
                 modalOpeningButtonPrompt={
                     <>
-                        <AddRounded sx={{ mr: "2px", fontSize: "28px" }} /> Add new label
+                        <AddRounded sx={{ mr: "2px", fontSize: "24px !important" }} /> Add new label
                     </>
                 }
             ></CreateNewLabel>

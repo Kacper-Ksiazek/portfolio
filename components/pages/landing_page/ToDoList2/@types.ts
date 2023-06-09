@@ -1,4 +1,4 @@
-export type ColorInHEX = `#${string & { length: 6 }}`;
+export type ColorInHEX = `#${string}`;
 
 // Stages
 export type ActionHeaderSection = "PROGRESS_TRACKER" | "ADD_NEW_TASK" | "EDIT_LABELS";
@@ -9,6 +9,7 @@ export interface Label {
     name: string;
     color: ColorInHEX;
 }
+
 export type LabelID = string;
 
 export type Labels = Record<LabelID, Label>;
