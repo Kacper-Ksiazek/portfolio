@@ -1,3 +1,5 @@
+// Tools
+import { alpha } from "@mui/material";
 import { createTheme } from "./createTheme";
 
 declare module "@mui/material/styles/createPalette" {
@@ -33,6 +35,8 @@ export const lightTheme = createTheme({
         paper: "#3D2645",
         lightAnimationBar: "#F2E8EF",
         lightSectionBackground: "#fff",
+        MUIFormElementsBorder: alpha("#fff", 0.23),
+        MUIFormElementsBackground: alpha("#000", 0.2),
     },
 });
 
@@ -48,5 +52,7 @@ export const darkTheme = createTheme({
         paper: "#121212",
         lightAnimationBar: "#474748",
         lightSectionBackground: "#1D1D1F",
+        MUIFormElementsBorder: alpha("#fff", 0.23),
+        MUIFormElementsBackground: alpha("#000", 0.2),
     },
 });

@@ -5,7 +5,7 @@ import type { ButtonBaseProps } from "@mui/material/ButtonBase";
 // Material UI Components
 import ButtonBase from "@mui/material/ButtonBase";
 // Styled components
-export type Color = "text" | "primary" | "secondary" | "error" | "success";
+export type Color = "MUIFormElement" | "text" | "primary" | "secondary" | "error" | "success";
 
 interface StyledButtonProps extends ButtonBaseProps {
     color?: Color;
@@ -16,7 +16,12 @@ interface StyledButtonProps extends ButtonBaseProps {
 export default styled(ButtonBase, {
     shouldForwardProp: (prop: string) => !["color", "iconButton"].includes(prop),
 })<StyledButtonProps>(({ theme, ...props }) => {
-    const possibleColor: Record<Color, { main: string; contrast: string }> = {
+    const possibleColor: Record<Color, { main: string; contrast: string; border?: string }> = {
+        MUIFormElement: {
+            main: theme.palette.background.MUIFormElementsBackground,
+            border: theme.palette.background.MUIFormElementsBorder,
+            contrast: "#fff",
+        },
         error: {
             main: theme.palette.error.main,
             contrast: "#fff",
@@ -39,14 +44,20 @@ export default styled(ButtonBase, {
         },
     };
 
-    const { main: backgroundColor, contrast: fontColor } = possibleColor[props.color ?? "text"];
+    const { main: backgroundColor, contrast: fontColor, border: borderColor } = possibleColor[props.color ?? "text"];
+
+    const applySubtleHoverEffect = props.subtleHoverEffect === true || props.color === "MUIFormElement";
+
+    if (props.subtleHoverEffect === true && props.color === "MUIFormElement") {
+        console.warn("Redundant usage of **subtleHoverEffect** prop; Following effect had been already obtained due to the **MuiFormElement** color mode");
+    }
 
     return {
         background: backgroundColor,
         color: fontColor,
         borderRadius: "3px",
-        border: `1px solid ${backgroundColor}`,
-        transition: "all .3s",
+        border: `1px solid ${borderColor ?? backgroundColor}`,
+        transition: props.color === "MUIFormElement" ? "none" : "all .3s",
         fontSize: "16px",
         padding: "4px 10px",
         fontFamily: "Noto Sans",
@@ -56,14 +67,15 @@ export default styled(ButtonBase, {
         "&:not(&:nth-of-type(1))": {
             marginLeft: "10px",
         },
-        "&:hover, &:focus": !props.subtleHoverEffect
-            ? {
-                  color: backgroundColor,
-                  background: fontColor,
-              }
-            : {
-                  borderColor: fontColor,
-              },
+        "&:hover, &:focus":
+            applySubtleHoverEffect === false
+                ? {
+                      color: backgroundColor,
+                      background: fontColor,
+                  }
+                : {
+                      borderColor: fontColor,
+                  },
         "&.Mui-disabled": {
             border: `1px solid #000`,
             background:

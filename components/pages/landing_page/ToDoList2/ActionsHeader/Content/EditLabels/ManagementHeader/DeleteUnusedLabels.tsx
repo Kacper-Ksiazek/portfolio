@@ -1,6 +1,5 @@
 // Tools
 import { useMemo } from "react";
-import { alpha } from "@mui/material";
 // Types
 import type { FunctionComponent } from "react";
 import type { LabelID, TaskCountsCollection } from "landing_page/ToDoList2/@types";
@@ -29,15 +28,7 @@ const DeleteUnusedLabels: FunctionComponent<DeleteUnusedLabelsProps> = (props) =
     }
 
     return (
-        <StyledButton
-            subtleHoverEffect
-            sx={{
-                background: alpha("#000", 0.2),
-                borderColor: alpha("#fff", 0.23),
-                // opacity: 0,
-                transition: "opacity .3s",
-            }}
-        >
+        <StyledButton color="MUIFormElement" subtleHoverEffect>
             <CleaningServicesRounded sx={{ mr: "6px" }} />
             Delete {unusedLabels.length} unused labels
         </StyledButton>

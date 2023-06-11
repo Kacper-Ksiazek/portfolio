@@ -9,7 +9,7 @@ import type { FunctionComponent, ChangeEvent } from "react";
 const ColorPickerBase = styled("div")(({ theme }) => ({
     width: "42px",
     height: "42px",
-    background: alpha("#000", 0.2),
+    background: theme.palette.background.MUIFormElementsBackground,
     border: `1px solid ${alpha("#fff", 0.23)}`,
     borderRadius: "3px",
     boxSizing: "border-box",
