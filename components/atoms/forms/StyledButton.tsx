@@ -10,6 +10,7 @@ export type Color = "text" | "primary" | "secondary" | "error" | "success";
 interface StyledButtonProps extends ButtonBaseProps {
     color?: Color;
     iconButton?: boolean;
+    subtleHoverEffect?: boolean;
 }
 
 export default styled(ButtonBase, {
@@ -55,10 +56,14 @@ export default styled(ButtonBase, {
         "&:not(&:nth-of-type(1))": {
             marginLeft: "10px",
         },
-        "&:hover, &:focus": {
-            color: backgroundColor,
-            background: fontColor,
-        },
+        "&:hover, &:focus": !props.subtleHoverEffect
+            ? {
+                  color: backgroundColor,
+                  background: fontColor,
+              }
+            : {
+                  borderColor: fontColor,
+              },
         "&.Mui-disabled": {
             border: `1px solid #000`,
             background:

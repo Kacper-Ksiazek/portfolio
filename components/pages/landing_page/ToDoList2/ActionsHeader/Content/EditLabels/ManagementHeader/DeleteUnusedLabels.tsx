@@ -30,6 +30,7 @@ const DeleteUnusedLabels: FunctionComponent<DeleteUnusedLabelsProps> = (props) =
 
     return (
         <StyledButton
+            subtleHoverEffect
             sx={{
                 background: alpha("#000", 0.2),
                 borderColor: alpha("#fff", 0.23),
