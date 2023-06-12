@@ -22,7 +22,6 @@ interface SingleLabelProps {
 
 const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
     const { getLabelWithID } = useLabelsContext();
-    const buttonRef = useRef<HTMLButtonElement | null>(null);
 
     const label = getLabelWithID(props.labelID);
 
@@ -50,6 +49,8 @@ const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
                 />
                 <ActionsButtons.Delete
                     label={label} //
+                    labelID={props.labelID}
+                    disabled={props.amountOfTasks.inTotal !== 0}
                 />
             </FlexBox>
         </>

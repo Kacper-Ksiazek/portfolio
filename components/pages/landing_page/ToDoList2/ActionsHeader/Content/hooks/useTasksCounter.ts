@@ -34,7 +34,8 @@ export function useTasksCounter(): UseTasksCounter {
         });
 
         return counter;
-    }, [labels, tasks]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [labels, tasks, Object.keys(labels).length]);
 
     return { counter };
 }

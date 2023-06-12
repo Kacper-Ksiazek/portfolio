@@ -5,12 +5,21 @@ import { useSnackbar } from "./useSnackbar";
 type Callback<T> = (args: T) => void;
 
 /**
- * Functions takes 3 arguments:
+ * #### Hook takes 3 arguments:
  * 1. callback
  * 2. message to be displayed **on success**
- * 3. message to be displayed on failure
+ * 3. *OPTIONAL* message to be displayed on failure
+ *
+ * #### Usage:
+ * ```ts
+ * const handleDeletion = useSafeSnackbarCallback(() => {
+ *      if (unusedLabels.length === 0) return;
+ *      remove(unusedLabels);
+ *  }, "All labels have been removed successfully");
+ *
+ * ```
  */
-export function useSafeSnackbarCallback<T>(callback: Callback<T>, msgOnSuccess: string, msgOnFailure: string = "Something went wrong"): Callback<T> {
+export function useSafeSnackbarCallback<T extends void>(callback: Callback<T>, msgOnSuccess: string, msgOnFailure: string = "Something went wrong"): Callback<T> {
     const { displaySnackbar } = useSnackbar();
 
     return useCallback(

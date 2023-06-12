@@ -1,20 +1,15 @@
 // Tools
 import { forwardRef } from "react";
-import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
-import type { FunctionComponent } from "react";
 import type { Label } from "landing_page/ToDoList2/@types";
 // Other components
-import Progress from "../../Progress";
-import * as ActionsButtons from "../../ActionsButtons";
 import ConfirmationModal from "@/components/atoms/ConfirmationModal";
 // Styled components
-import LabelIndex from "../../LabelIndex";
 import LabelBase from "landing_page/ToDoList2/atoms/LabelBase";
-import FlexBox from "@/components/atoms/content_placement/FlexBox";
 
 interface DeleteLabelModalProps {
     label: Label;
+    handleDeletion: () => void;
 }
 
 const DeleteLabelModal = forwardRef<HTMLButtonElement, DeleteLabelModalProps>((props, buttonRef) => {
@@ -24,7 +19,7 @@ const DeleteLabelModal = forwardRef<HTMLButtonElement, DeleteLabelModalProps>((p
             title="Delete label"
             actionButton={{
                 disabled: false,
-                onClick: () => {},
+                onClick: props.handleDeletion,
                 prompt: "Delete",
             }}
         >

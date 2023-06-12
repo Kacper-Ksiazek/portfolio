@@ -2,7 +2,7 @@
 import type { FunctionComponent } from "react";
 import type { ActionButtonProps } from "./@types";
 // Styled components
-import { StyledButton } from "@/components/atoms/forms";
+import StyledButton from "@/components/atoms/forms/StyledButton";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 
 interface ModalActionsProps {
@@ -11,17 +11,19 @@ interface ModalActionsProps {
     closeModal: () => void;
 }
 
+const OUTRO_ANIMATION_DURATION: TimeInMS = 0;
+
 const ModalActions: FunctionComponent<ModalActionsProps> = (props) => {
     const { actionButton } = props;
-
-    // DOPISAC LOGIKE DO USUWANIA LABELOW
-    // BO WSZYSTKO WYGLADA ALE NIC NIE DZIALA
 
     function onActionButtonClick() {
         if (actionButton.disabled === true) return;
 
-        actionButton.onClick();
         props.closeModal();
+
+        setTimeout(() => {
+            actionButton.onClick();
+        }, OUTRO_ANIMATION_DURATION);
     }
 
     return (
