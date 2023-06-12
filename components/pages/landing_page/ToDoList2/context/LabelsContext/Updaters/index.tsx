@@ -8,8 +8,8 @@ import type { Labels, LabelsUpdatersContext as I_LabelsUpdatersContext, Label, L
 export const labelsUpdatersContext = createContext<I_LabelsUpdatersContext>({} as any);
 
 interface LabelsUpdatersContextProviderProps {
-    children: ReactNode;
     labels: Labels;
+    children: ReactNode;
     setLabels: Dispatch<SetStateAction<Labels>>;
 }
 
@@ -51,9 +51,18 @@ export const LabelsUpdatersContextProvider: FunctionComponent<LabelsUpdatersCont
         });
     }
 
-    function remove(labelToBeRemoved: string) {
+    function remove(labelToBeRemoved: LabelID | LabelID[]) {
         props.setLabels((labels) => {
-            delete labels[labelToBeRemoved];
+            // Handle an array of labels
+            if (labelToBeRemoved instanceof Array) {
+                labelToBeRemoved.forEach((id) => {
+                    delete labels[id];
+                });
+            }
+            // Handle a single id
+            else {
+                delete labels[labelToBeRemoved];
+            }
             return labels;
         });
     }

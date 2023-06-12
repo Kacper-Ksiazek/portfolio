@@ -36,7 +36,7 @@ export interface LabelsContext {
 export interface LabelsUpdatersContext {
     add: (params: Label) => LabelID;
     update: (id: LabelID, data: Partial<Label>) => void;
-    remove: (labelToBeRemoved: string) => void;
+    remove: (labelToBeRemoved: LabelID | LabelID[]) => void;
 }
 
 // Tasks
