@@ -10,28 +10,31 @@ interface ConfirmationModalProps extends Omit<StyledModalProps, "isOpen" | "onCl
 }
 
 const ConfirmationModal = forwardRef<HTMLButtonElement, ConfirmationModalProps>(({ children, ...props }, ref) => {
-    const [isClose, setIsClose] = useState<boolean>(false);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [key, setKey] = useState<number>(0);
 
     useEffect(() => {
         const element: HTMLElement | null = (ref as unknown as MutableRefObject<HTMLButtonElement | null>).current;
-        const isDOMNode: boolean = element instanceof HTMLElement;
-        function onClick() {
-            setIsClose(true);
+
+        function openModal() {
+            setIsModalOpen(true);
+            setKey((val) => val + 1);
         }
 
-        if (isDOMNode) {
-            element?.addEventListener("click", onClick);
+        if (element instanceof HTMLElement) {
+            element?.addEventListener("click", openModal);
 
             return () => {
-                element?.removeEventListener("click", onClick);
+                element?.removeEventListener("click", openModal);
             };
         }
     }, [ref]);
 
     return (
         <Modal
-            isOpen={isClose} //
-            onClose={() => setIsClose(false)}
+            isOpen={isModalOpen} //
+            key={key}
+            onClose={() => setIsModalOpen(false)}
             {...props}
         >
             {children}
