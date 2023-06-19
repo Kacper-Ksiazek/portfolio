@@ -1,3 +1,5 @@
+// Tools
+import { useState } from "react";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Components
@@ -16,12 +18,25 @@ interface StyledCheckboxProps {
 const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
     const size = props.small ? "32px" : "42px";
 
+    const [recentlyClicked, setRecentlyClicked] = useState<boolean>(false);
+
+    function onClick() {
+        setRecentlyClicked(true);
+        props.updateValue(!props.value);
+    }
+
+    function onBlur() {
+        setRecentlyClicked(false);
+    }
+
     return (
         <StyledCheckboxWrapper
             sx={{ height: size }} //
             tabIndex={0}
             role="button"
-            onClick={() => props.updateValue(!props.value)}
+            onClick={onClick}
+            onBlur={onBlur}
+            className={recentlyClicked ? "recently-clicked" : ""}
         >
             <IconWrapper
                 size={props.small ? "small" : "normal"} //

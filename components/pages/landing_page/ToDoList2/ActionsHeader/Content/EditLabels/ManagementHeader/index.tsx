@@ -33,11 +33,13 @@ const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
                 value={props.filters.urgentModeAlternativeAppearance}
                 updateValue={(val) => props.updateFilters({ urgentModeAlternativeAppearance: val })}
             />
+
             <StyledCheckbox
                 label="Not used only" //
                 value={props.filters.displayNotUsedLabelsOnly}
                 updateValue={(val) => props.updateFilters({ displayNotUsedLabelsOnly: val })}
             />
+
             <PickSortingOrder
                 value={props.filters.order} //
                 updateValue={(val) => props.updateFilters({ order: val })}

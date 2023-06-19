@@ -11,9 +11,11 @@ export const StyledCheckboxWrapper = styled("div")(({ theme }) => ({
     boxSizing: "border-box",
     cursor: "pointer",
     userSelect: "none",
-    "&:focus": {
-        outline: `1px solid ${theme.palette.primary.main} !important`,
-        border: `1px solid ${theme.palette.primary.main} !important`,
+    "&:not(&.recently-clicked)": {
+        "&:focus": {
+            outline: `1px solid ${theme.palette.primary.main} !important`,
+            border: `1px solid ${theme.palette.primary.main} !important`,
+        },
     },
     "&:hover": {
         borderColor: "#fff",
