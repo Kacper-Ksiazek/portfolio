@@ -19,7 +19,7 @@ type Callback<T> = (args: T) => void;
  *
  * ```
  */
-export function useSafeSnackbarCallback<T extends void>(callback: Callback<T>, msgOnSuccess: string, msgOnFailure: string = "Something went wrong"): Callback<T> {
+export function useSafeSnackbarCallback<T = void>(callback: Callback<T>, msgOnSuccess: string, msgOnFailure: string = "Something went wrong"): Callback<T> {
     const { displaySnackbar } = useSnackbar();
 
     return useCallback(
