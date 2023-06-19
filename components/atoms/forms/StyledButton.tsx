@@ -81,7 +81,7 @@ export default styled(ButtonBase, {
             background:
                 theme.palette.mode === "light" //
                     ? alpha(theme.palette.text.primary, 0.4)
-                    : theme.palette.background.lightAnimationBar,
+                    : alpha(theme.palette.background.lightAnimationBar, 0.7),
             color: alpha("#000", 0.8),
         },
         ...(props.iconButton && {

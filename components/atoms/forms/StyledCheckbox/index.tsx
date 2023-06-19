@@ -13,6 +13,7 @@ interface StyledCheckboxProps {
     updateValue: (val: boolean) => void;
 
     small?: boolean;
+    disabled?: boolean;
 }
 
 const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
@@ -21,6 +22,8 @@ const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
     const [recentlyClicked, setRecentlyClicked] = useState<boolean>(false);
 
     function onClick() {
+        if (props.disabled) return;
+
         setRecentlyClicked(true);
         props.updateValue(!props.value);
     }
@@ -32,11 +35,12 @@ const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
     return (
         <StyledCheckboxWrapper
             sx={{ height: size }} //
-            tabIndex={0}
             role="button"
             onClick={onClick}
             onBlur={onBlur}
-            className={recentlyClicked ? "recently-clicked" : ""}
+            recentlyClicked={recentlyClicked}
+            disabled={Boolean(props.disabled)}
+            tabIndex={props.disabled ? -1 : 0}
         >
             <IconWrapper
                 size={props.small ? "small" : "normal"} //

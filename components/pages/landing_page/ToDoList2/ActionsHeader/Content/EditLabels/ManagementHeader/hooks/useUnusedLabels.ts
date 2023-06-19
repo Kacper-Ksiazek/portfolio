@@ -7,7 +7,7 @@ function unusedLabelFilter(singleMapEntry: [any, TaskCounts]): boolean {
     return singleMapEntry[1].inTotal == 0;
 }
 
-export function useUnusedLabels(counter: TaskCountsCollection) {
+export function useUnusedLabels(counter: TaskCountsCollection): LabelID[] {
     return useMemo<LabelID[]>(() => {
         return [...counter.entries()]
             .filter(unusedLabelFilter) //

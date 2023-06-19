@@ -1,11 +1,10 @@
 // Tools
 import { useRef } from "react";
-import { useUnusedLabels } from "./hooks/useUnusedLabels";
 import { useSafeSnackbarCallback } from "@/hooks/useSafeSnackbarCallback";
 import { useLabelsUpdatersContext } from "landing_page/ToDoList2/hooks/useLabelsUpdatersContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelID, TaskCountsCollection } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types";
 // Other components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 import DeleteUnusedLabelsConfirmationModal from "./DeleteUnusedLabelsConfirmationModal";
@@ -13,14 +12,13 @@ import DeleteUnusedLabelsConfirmationModal from "./DeleteUnusedLabelsConfirmatio
 import CleaningServicesRounded from "@mui/icons-material/CleaningServicesRounded";
 
 interface DeleteUnusedLabelsProps {
-    counter: TaskCountsCollection;
+    unusedLabels: LabelID[];
 }
 
-const DeleteUnusedLabels: FunctionComponent<DeleteUnusedLabelsProps> = (props) => {
+const DeleteUnusedLabels: FunctionComponent<DeleteUnusedLabelsProps> = ({ unusedLabels }) => {
     const { remove } = useLabelsUpdatersContext();
 
     const modalOpeningButtonRef = useRef<HTMLButtonElement | null>(null);
-    const unusedLabels: LabelID[] = useUnusedLabels(props.counter);
 
     const amountOfRemovedLabels = useRef<number | null>(null);
 

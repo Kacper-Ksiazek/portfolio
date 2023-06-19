@@ -1,6 +1,8 @@
+// Tools
+import { useUnusedLabels } from "./hooks/useUnusedLabels";
 // Types
 import type { FunctionComponent, Dispatch } from "react";
-import type { EditLabelsFilters, TaskCountsCollection } from "landing_page/ToDoList2/@types";
+import type { EditLabelsFilters, LabelID, TaskCountsCollection } from "landing_page/ToDoList2/@types";
 // Other components
 import PickSortingOrder from "./PickSortingOrder";
 import DeleteUnusedLabels from "./DeleteUnusedLabels";
@@ -18,6 +20,8 @@ interface ManagementHeaderProps {
 }
 
 const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
+    const unusedLabels: LabelID[] = useUnusedLabels(props.counter);
+
     return (
         <FlexBox
             sx={{
@@ -36,6 +40,7 @@ const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
 
             <StyledCheckbox
                 label="Not used only" //
+                disabled={unusedLabels.length === 0}
                 value={props.filters.displayNotUsedLabelsOnly}
                 updateValue={(val) => props.updateFilters({ displayNotUsedLabelsOnly: val })}
             />
@@ -47,7 +52,7 @@ const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
 
             <span style={{ flexGrow: 1 }} />
 
-            <DeleteUnusedLabels counter={props.counter} />
+            <DeleteUnusedLabels unusedLabels={unusedLabels} />
 
             <CreateNewLabel
                 primary
