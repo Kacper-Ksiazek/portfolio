@@ -1,12 +1,15 @@
 // Types
 import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
-import type { FunctionComponent, Dispatch, SetStateAction } from "react";
+import type { FunctionComponent, Dispatch, SetStateAction, ReactNode } from "react";
 // Other components
 import NavigationBetweenSections from "@/components/atoms/NavigationBetweenSections";
 
 interface ToDoListActionsNavigationProps {
+    disableNavigation: boolean;
     currentStage: ActionHeaderSection;
     updateCurrentStage: Dispatch<SetStateAction<ActionHeaderSection>>;
+
+    children: ReactNode;
 }
 
 const ToDoListActionsNavigation: FunctionComponent<ToDoListActionsNavigationProps> = (props) => {
@@ -30,7 +33,10 @@ const ToDoListActionsNavigation: FunctionComponent<ToDoListActionsNavigationProp
             } //
             currentSection={props.currentStage}
             onChoose={props.updateCurrentStage}
-            sx={{ mb: "16px" }}
+            rightSideChildren={props.children}
+            disableNavigation={props.disableNavigation}
+            //
+            sx={{ mb: "8px" }}
         />
     );
 };

@@ -1,15 +1,22 @@
 // Tools
 import { styled } from "@mui/material";
 // Styled components
-export default styled("div")(({ theme, ...props }) => ({
+interface SingleNavigationStepProps {
+    selected: boolean;
+    preventFromBeingClick: boolean;
+}
+
+export default styled("div", {
+    shouldForwardProp: (prop: string) => !(["preventFromBeingClick", "selected"] as (keyof SingleNavigationStepProps)[]).includes(prop as any),
+})<SingleNavigationStepProps>(({ theme, ...props }) => ({
     fontWeight: 500,
     fontSize: "18px",
     position: "relative",
-    cursor: "pointer",
     overflow: "hidden",
     padding: "0 10px",
     transition: "background .2s",
     borderRadius: "3px",
+    cursor: "default",
     "&:before": {
         content: "''",
         position: "absolute",
@@ -36,15 +43,8 @@ export default styled("div")(({ theme, ...props }) => ({
         zIndex: 1,
         transition: "color .2s",
     },
-    "&:hover": {
-        "span.text": {
-            color: "#fff",
-        },
-        "&:before": {
-            transform: "translateY(0%)",
-        },
-    },
-    "&.selected": {
+
+    ...(props.selected && {
         background: theme.palette.primary.main,
         "span.text": {
             color: "#fff",
@@ -52,5 +52,17 @@ export default styled("div")(({ theme, ...props }) => ({
         "&:before": {
             background: theme.palette.primary.main,
         },
-    },
+    }),
+
+    ...(props.preventFromBeingClick === false && {
+        cursor: "pointer",
+        "&:hover": {
+            "span.text": {
+                color: "#fff",
+            },
+            "&:before": {
+                transform: "translateY(0%)",
+            },
+        },
+    }),
 }));

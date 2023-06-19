@@ -1,33 +1,51 @@
 // Tools
+import { useMemo } from "react";
 import { useDelayedState } from "@/hooks/useDelayedState";
+import { useContentVisibility } from "./hooks/useContentVisibility";
 // Types
 import type { FunctionComponent } from "react";
 import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
 // Other components
 import Content from "./Content";
 import Navigation from "./Navigation";
+import HideButton from "./HideButton";
 // Styled components
 import { SectionWrapper } from "landing_page/ToDoList2/atoms";
 
 const ActionsHeader: FunctionComponent = () => {
     const { value: stage, setValue: setStage, isChanging: isStageChanging } = useDelayedState<ActionHeaderSection>("PROGRESS_TRACKER", 160);
 
+    const { contentVisibility, toggleContentVisibility } = useContentVisibility();
+
+    const maxHeight: `${string}px` = useMemo<`${string}px`>(() => {
+        if (contentVisibility.contentIsHidden) return "64px";
+        else if (stage === "EDIT_LABELS") return "400px";
+        return "256px";
+    }, [contentVisibility.contentIsHidden, stage]);
+
     return (
         <SectionWrapper
             sx={{
                 height: "400px",
-                maxHeight: stage === "EDIT_LABELS" ? "400px" : "232px", //
+                maxHeight: maxHeight,
                 display: "flex",
                 flexDirection: "column",
                 transition: "max-height .3s",
+                overflow: "hidden",
             }}
         >
             <Navigation
                 currentStage={stage} //
                 updateCurrentStage={setStage}
-            />
+                disableNavigation={contentVisibility.contentIsHidden}
+            >
+                <HideButton
+                    {...contentVisibility} //
+                    toggleContentVisibility={toggleContentVisibility}
+                />
+            </Navigation>
 
-            <Content currentStage={stage} isStageChanging={isStageChanging} />
+            {contentVisibility.renderContent && <Content currentStage={stage} isStageChanging={isStageChanging} />}
         </SectionWrapper>
     );
 };
