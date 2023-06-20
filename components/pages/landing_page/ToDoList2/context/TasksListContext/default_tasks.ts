@@ -4,7 +4,7 @@ import type { Task } from "../../@types";
 export const DEFAULT_TASKS: Task[] = [
     {
         id: 1,
-        labelID: "1",
+        labelID: "2",
         description: "Do groceries for the rest of the week",
         urgent: false,
         dueDate: null,
