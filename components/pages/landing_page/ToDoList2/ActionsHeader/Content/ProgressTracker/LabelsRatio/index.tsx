@@ -1,6 +1,7 @@
 // Tools
 import { useMemo } from "react";
 import { ratio } from "@/utils/ratio";
+import { useTaskCounterContext } from "../../hooks/useTaskCounterContext";
 // Types
 import type { FunctionComponent } from "react";
 import type { TaskCountsCollection, TaskCountsCollectionEntranceTuple } from "landing_page/ToDoList2/@types";
@@ -9,7 +10,6 @@ import SingleLabel from "./SingleLabel";
 import ThereAreNoRatios from "./ThereAreNoRatios";
 
 interface LabelsRatioProps {
-    counter: TaskCountsCollection;
     amountOfTasksInTotal: number;
 }
 
@@ -28,9 +28,11 @@ function removeEmptyLabelsFromCounter(counter: TaskCountsCollection): TaskCounts
 }
 
 const LabelsRatio: FunctionComponent<LabelsRatioProps> = (props) => {
+    const { counter } = useTaskCounterContext();
+
     const counterWithNoEmptyLabels = useMemo<TaskCountsCollectionEntranceTuple[]>(() => {
-        return removeEmptyLabelsFromCounter(props.counter);
-    }, [props.counter]);
+        return removeEmptyLabelsFromCounter(counter);
+    }, [counter]);
 
     if (counterWithNoEmptyLabels.length === 0) return <ThereAreNoRatios />;
 

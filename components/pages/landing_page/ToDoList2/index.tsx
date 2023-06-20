@@ -16,7 +16,7 @@ import ContentWrapper from "./ContentWrapper";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 
 const ToDoList: FunctionComponent = () => {
-    const { tasks, edit, remove, add } = useTasksListContext();
+    const { tasks, edit, remove } = useTasksListContext();
     const { fadeContentOut, filteredTasks, filters, updateFilters } = useFilteredTasks(tasks);
 
     const disableFilteringByCompletion = useMemo<boolean>(() => {

@@ -1,13 +1,16 @@
 // Tools
 import { useMemo } from "react";
+import { useTaskCounterContext } from "../../../hooks/useTaskCounterContext";
 // Types
-import type { LabelID, TaskCountsCollection, TaskCounts } from "landing_page/ToDoList2/@types";
+import type { LabelID, TaskCounts } from "landing_page/ToDoList2/@types";
 
 function unusedLabelFilter(singleMapEntry: [any, TaskCounts]): boolean {
     return singleMapEntry[1].inTotal == 0;
 }
 
-export function useUnusedLabels(counter: TaskCountsCollection): LabelID[] {
+export function useUnusedLabels(): LabelID[] {
+    const { counter } = useTaskCounterContext();
+
     return useMemo<LabelID[]>(() => {
         return [...counter.entries()]
             .filter(unusedLabelFilter) //

@@ -14,11 +14,7 @@ function TaskCounterFactory(labels: Labels): TaskCountsCollection {
     );
 }
 
-interface UseTasksCounter {
-    counter: TaskCountsCollection;
-}
-
-export function useTasksCounter(): UseTasksCounter {
+export function useTasksCounter(): TaskCountsCollection {
     const { tasks } = useTasksListContext();
     const { labels } = useLabelsContext();
 
@@ -37,5 +33,5 @@ export function useTasksCounter(): UseTasksCounter {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [labels, tasks, Object.keys(labels).length]);
 
-    return { counter };
+    return counter;
 }

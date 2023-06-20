@@ -2,7 +2,7 @@
 import { useUnusedLabels } from "./hooks/useUnusedLabels";
 // Types
 import type { FunctionComponent, Dispatch } from "react";
-import type { EditLabelsFilters, LabelID, TaskCountsCollection } from "landing_page/ToDoList2/@types";
+import type { EditLabelsFilters, LabelID } from "landing_page/ToDoList2/@types";
 // Other components
 import PickSortingOrder from "./PickSortingOrder";
 import DeleteUnusedLabels from "./DeleteUnusedLabels";
@@ -14,13 +14,12 @@ import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
 
 interface ManagementHeaderProps {
-    counter: TaskCountsCollection;
     filters: EditLabelsFilters;
     updateFilters: Dispatch<Partial<EditLabelsFilters>>;
 }
 
 const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
-    const unusedLabels: LabelID[] = useUnusedLabels(props.counter);
+    const unusedLabels: LabelID[] = useUnusedLabels();
 
     return (
         <FlexBox

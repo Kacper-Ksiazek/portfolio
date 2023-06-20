@@ -23,17 +23,12 @@ const StyledTable = styled("div")(({ theme }) => ({
     },
 }));
 
-interface EditLabelsProps {
-    counter: TaskCountsCollection;
-}
-
-const EditLabels: FunctionComponent<EditLabelsProps> = (props) => {
-    const { updateFilters, filters, labels } = useFilteredLabels(props.counter);
+const EditLabels: FunctionComponent = (props) => {
+    const { updateFilters, filters, labels } = useFilteredLabels();
 
     return (
         <>
             <ManagementHeader
-                counter={props.counter}
                 filters={filters} //
                 updateFilters={updateFilters}
             />

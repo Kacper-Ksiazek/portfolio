@@ -1,6 +1,5 @@
 // Tools
 import { styled } from "@mui/material";
-import { useTasksCounter } from "./hooks/useTasksCounter";
 import { fadeSimple } from "@/components/keyframes/intro";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Types
@@ -10,6 +9,7 @@ import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
 import EditLabels from "./EditLabels";
 import AddNewTask from "./AddNewTask";
 import ProgressTracker from "./ProgressTracker";
+import { TasksCounterContextProvider } from "./context/TaskCounterContext";
 
 const Wrapper = styled("div")(({ theme }) => ({
     flexGrow: "1",
@@ -32,21 +32,21 @@ interface ToDoListActionsContentProps {
 }
 
 const ToDoListActionsContent: FunctionComponent<ToDoListActionsContentProps> = (props) => {
-    const { counter } = useTasksCounter();
-
     return (
-        <Wrapper className={props.isStageChanging ? "is-changing" : ""}>
-            {(() => {
-                switch (props.currentStage) {
-                    case "ADD_NEW_TASK":
-                        return <AddNewTask />;
-                    case "EDIT_LABELS":
-                        return <EditLabels counter={counter} />;
-                    case "PROGRESS_TRACKER":
-                        return <ProgressTracker counter={counter} />;
-                }
-            })()}
-        </Wrapper>
+        <TasksCounterContextProvider>
+            <Wrapper className={props.isStageChanging ? "is-changing" : ""}>
+                {(() => {
+                    switch (props.currentStage) {
+                        case "ADD_NEW_TASK":
+                            return <AddNewTask />;
+                        case "EDIT_LABELS":
+                            return <EditLabels />;
+                        case "PROGRESS_TRACKER":
+                            return <ProgressTracker />;
+                    }
+                })()}
+            </Wrapper>
+        </TasksCounterContextProvider>
     );
 };
 
