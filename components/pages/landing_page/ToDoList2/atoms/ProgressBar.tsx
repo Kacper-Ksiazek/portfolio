@@ -27,7 +27,6 @@ export const ProgressBar = styled("span", { shouldForwardProp })<ProgressBarProp
             ...theme.mixins.absolute_full,
             transition: "width .3s",
             width: props.completion,
-            animation: props.completion === "100.00%" ? "" : `${scaleFromLeft} .5s .2s both`,
         },
     };
 });
