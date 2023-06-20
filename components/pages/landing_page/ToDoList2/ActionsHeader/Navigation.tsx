@@ -5,11 +5,11 @@ import type { FunctionComponent, Dispatch, SetStateAction, ReactNode } from "rea
 import NavigationBetweenSections from "@/components/atoms/NavigationBetweenSections";
 
 interface ToDoListActionsNavigationProps {
-    disableNavigation: boolean;
+    children: ReactNode;
     currentStage: ActionHeaderSection;
     updateCurrentStage: Dispatch<SetStateAction<ActionHeaderSection>>;
 
-    children: ReactNode;
+    beforeOnClick?: () => Promise<void> | void;
 }
 
 const ToDoListActionsNavigation: FunctionComponent<ToDoListActionsNavigationProps> = (props) => {
@@ -34,7 +34,7 @@ const ToDoListActionsNavigation: FunctionComponent<ToDoListActionsNavigationProp
             currentSection={props.currentStage}
             onChoose={props.updateCurrentStage}
             rightSideChildren={props.children}
-            disableNavigation={props.disableNavigation}
+            beforeOnClick={props.beforeOnClick}
             //
             sx={{ mb: "8px" }}
         />

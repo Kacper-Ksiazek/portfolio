@@ -14,18 +14,18 @@ interface NavigationBetweenSectionsProps<T> {
     onChoose: (val: T) => void;
 
     sx?: Styles;
-    disableNavigation?: boolean;
     leftSideChildren?: ReactNode;
     rightSideChildren?: ReactNode;
+    beforeOnClick?: () => Promise<void> | void;
 }
 
 const NavigationBetweenSections = <T extends string>(props: NavigationBetweenSectionsProps<T>) => {
-    function handleOnClick(val: T) {
-        if (props.disableNavigation) return;
+    async function handleOnClick(val: T) {
+        if (typeof props.beforeOnClick === "function") await props.beforeOnClick();
+        if (props.currentSection === val) return;
+
         props.onChoose(val);
     }
-
-    const preventFromBeingClick: boolean = Boolean(props.disableNavigation);
 
     return (
         <NavigationBetweenSectionsBase sx={props.sx}>
@@ -48,7 +48,6 @@ const NavigationBetweenSections = <T extends string>(props: NavigationBetweenSec
                         <SingleNavigationStep
                             className={CSSClasses.STEP_BUTTON} //
                             selected={props.currentSection === value}
-                            preventFromBeingClick={preventFromBeingClick}
                             //
                             onClick={onClick}
                         >

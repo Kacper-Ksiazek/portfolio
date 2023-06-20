@@ -3,11 +3,10 @@ import { styled } from "@mui/material";
 // Styled components
 interface SingleNavigationStepProps {
     selected: boolean;
-    preventFromBeingClick: boolean;
 }
 
 export default styled("div", {
-    shouldForwardProp: (prop: string) => !(["preventFromBeingClick", "selected"] as (keyof SingleNavigationStepProps)[]).includes(prop as any),
+    shouldForwardProp: (prop: string) => !(["selected"] as (keyof SingleNavigationStepProps)[]).includes(prop as any),
 })<SingleNavigationStepProps>(({ theme, ...props }) => ({
     fontWeight: 500,
     fontSize: "18px",
@@ -16,7 +15,8 @@ export default styled("div", {
     padding: "0 10px",
     transition: "background .2s",
     borderRadius: "3px",
-    cursor: "default",
+    cursor: "pointer",
+    userSelect: "none",
     "&:before": {
         content: "''",
         position: "absolute",
@@ -53,16 +53,12 @@ export default styled("div", {
             background: theme.palette.primary.main,
         },
     }),
-
-    ...(props.preventFromBeingClick === false && {
-        cursor: "pointer",
-        "&:hover": {
-            "span.text": {
-                color: "#fff",
-            },
-            "&:before": {
-                transform: "translateY(0%)",
-            },
+    "&:hover": {
+        "span.text": {
+            color: "#fff",
         },
-    }),
+        "&:before": {
+            transform: "translateY(0%)",
+        },
+    },
 }));

@@ -23,6 +23,20 @@ const ActionsHeader: FunctionComponent = () => {
         return "256px";
     }, [contentVisibility.contentIsHidden, stage]);
 
+    async function onNavigationButtonClick() {
+        if (contentVisibility.contentIsHidden === true) {
+            if (contentVisibility.renderContent === true) return;
+
+            toggleContentVisibility();
+
+            await new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(1);
+                }, 180);
+            });
+        }
+    }
+
     return (
         <SectionWrapper
             sx={{
@@ -37,7 +51,7 @@ const ActionsHeader: FunctionComponent = () => {
             <Navigation
                 currentStage={stage} //
                 updateCurrentStage={setStage}
-                disableNavigation={contentVisibility.contentIsHidden}
+                beforeOnClick={onNavigationButtonClick}
             >
                 <HideButton
                     {...contentVisibility} //
