@@ -1,5 +1,4 @@
 // Tools
-import { scaleFromLeft } from "@/components/keyframes/intro";
 import { styled, alpha } from "@mui/material";
 
 interface ProgressBarProps {

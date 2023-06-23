@@ -15,6 +15,8 @@ import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
 
 interface ManagementHeaderProps {
     filters: EditLabelsFilters;
+    amountOfLabels: number;
+
     updateFilters: Dispatch<Partial<EditLabelsFilters>>;
 }
 
@@ -47,6 +49,7 @@ const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
             <PickSortingOrder
                 value={props.filters.order} //
                 updateValue={(val) => props.updateFilters({ order: val })}
+                disabled={props.amountOfLabels <= 1}
             />
 
             <span style={{ flexGrow: 1 }} />

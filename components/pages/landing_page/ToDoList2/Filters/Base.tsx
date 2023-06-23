@@ -20,7 +20,7 @@ export default styled(SectionWrapper)(({ theme }) => ({
             width: "144px",
         },
         "&.filter-select-completion": {
-            width: "172px",
+            width: "196px",
         },
         ".MuiSelect-select": {
             paddingLeft: "8px",

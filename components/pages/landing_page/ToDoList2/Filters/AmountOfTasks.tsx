@@ -11,6 +11,7 @@ const AmountOfTasksBase = styled("p")(({ theme }) => ({
     borderRadius: "3px",
     margin: "8px 0 0 0",
     fontSize: "16px",
+    userSelect: "none",
 }));
 
 interface AmountOfTasksProps {

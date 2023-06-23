@@ -12,8 +12,9 @@ const DueTo = styled("span")(({ theme }) => ({
     marginLeft: "6px",
     display: "flex",
     alignItems: "center",
-    color: alpha(theme.palette.text.primary, 0.7),
+    color: alpha("#fff", 0.7),
     fontSize: "16px",
+    transition: "opacity .3s",
     strong: {
         marginLeft: "4px",
     },
@@ -32,7 +33,7 @@ const DefaultMode: FunctionComponent<DefaultModeProps> = (props) => {
             <Label labelID={props.labelID} isTaskUrgent={props.isUrgent} />
 
             {props.dueDate !== null && (
-                <DueTo>
+                <DueTo className={CLASSES.SINGLE_TASK.DUE_DATE}>
                     Due to <strong>{props.dueDate}</strong>
                 </DueTo>
             )}

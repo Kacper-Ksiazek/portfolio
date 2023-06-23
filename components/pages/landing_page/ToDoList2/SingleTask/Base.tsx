@@ -24,7 +24,7 @@ const ELEMENTS_INVOLVED_IN_ANIMATION: Selector = [
 ].join(", ");
 
 export default styled("div")(({ theme }) => ({
-    background: theme.palette.background.default,
+    background: theme.palette.background.darkSectionBackground,
     width: "100%",
     display: "flex",
     alignItems: "center",
@@ -36,16 +36,21 @@ export default styled("div")(({ theme }) => ({
     zIndex: 1,
     overflow: "hidden",
     backdropFilter: "blur(3px)",
+    transition: "background .3s",
+
     "&:not(&:nth-of-type(1))": {
         marginTop: "24px",
     },
 
     [`&.${SINGLE_TASK_STAGES.CHECKED}`]: {
-        background: theme.palette.background.lightSectionBackground,
+        background: theme.palette.mode === "light" ? "#251C2B" : theme.palette.background.lightSectionBackground,
         [SELECTORS.SINGLE_TASK.CHECK_ICON]: {
             "svg.check-icon": {
                 opacity: 1,
             },
+        },
+        [SELECTORS.SINGLE_TASK.DUE_DATE]: {
+            opacity: 0.3,
         },
         [SELECTORS.SINGLE_TASK.DESCRIPTION]: {
             "&::before": {

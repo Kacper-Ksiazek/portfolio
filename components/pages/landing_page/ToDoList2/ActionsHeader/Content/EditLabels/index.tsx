@@ -3,7 +3,6 @@ import { alpha, styled } from "@mui/material";
 import { useFilteredLabels } from "./hooks/useFilteredLabels";
 // Types
 import type { FunctionComponent } from "react";
-import type { TaskCountsCollection } from "landing_page/ToDoList2/@types";
 // Other components
 import SingleLabel from "./SingleLabel";
 import ManagementHeader from "./ManagementHeader";
@@ -23,7 +22,7 @@ const StyledTable = styled("div")(({ theme }) => ({
     },
 }));
 
-const EditLabels: FunctionComponent = (props) => {
+const EditLabels: FunctionComponent = () => {
     const { updateFilters, filters, labels } = useFilteredLabels();
 
     return (
@@ -31,6 +30,7 @@ const EditLabels: FunctionComponent = (props) => {
             <ManagementHeader
                 filters={filters} //
                 updateFilters={updateFilters}
+                amountOfLabels={labels.length}
             />
 
             <OverflowScrollDiv maxHeight="130px">

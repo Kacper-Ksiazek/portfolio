@@ -20,7 +20,7 @@ export default styled(ButtonBase, {
         MUIFormElement: {
             main: theme.palette.background.MUIFormElementsBackground,
             border: theme.palette.background.MUIFormElementsBorder,
-            contrast: "#fff",
+            contrast: theme.palette.mode === "light" ? "#000" : "#fff",
         },
         error: {
             main: theme.palette.error.main,
@@ -78,11 +78,8 @@ export default styled(ButtonBase, {
                   },
         "&.Mui-disabled": {
             border: `1px solid #000`,
-            background:
-                theme.palette.mode === "light" //
-                    ? alpha(theme.palette.text.primary, 0.4)
-                    : alpha(theme.palette.background.lightAnimationBar, 0.7),
-            color: alpha("#000", 0.8),
+            background: theme.palette.background.disabledElementBackground,
+            color: theme.palette.text.disabled,
         },
         ...(props.iconButton && {
             padding: 0,

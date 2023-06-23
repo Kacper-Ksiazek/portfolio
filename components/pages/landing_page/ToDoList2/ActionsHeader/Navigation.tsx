@@ -1,3 +1,5 @@
+// Tools
+import { alpha } from "@mui/material";
 // Types
 import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
 import type { FunctionComponent, Dispatch, SetStateAction, ReactNode } from "react";
@@ -36,7 +38,12 @@ const ToDoListActionsNavigation: FunctionComponent<ToDoListActionsNavigationProp
             rightSideChildren={props.children}
             beforeOnClick={props.beforeOnClick}
             //
-            sx={{ mb: "8px" }}
+            sx={{
+                mb: "8px",
+                "span.navigation-between-sections-divider": {
+                    background: alpha("#fff", 0.8),
+                },
+            }}
         />
     );
 };

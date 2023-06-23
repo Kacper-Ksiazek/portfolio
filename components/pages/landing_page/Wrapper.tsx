@@ -23,7 +23,8 @@ const LandingPageWrapper: FunctionComponent<LandingPageServerSideProps> = (props
 
             <ToDoList />
             <Projects projects={props.projects} />
-        <Contact /> */}
+         */}
+            <Contact />
             <PicturesMatchingGame />
         </>
     );

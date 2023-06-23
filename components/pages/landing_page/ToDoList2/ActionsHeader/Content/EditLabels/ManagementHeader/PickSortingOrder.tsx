@@ -11,6 +11,8 @@ type Order = EditLabelsFilters["order"];
 
 interface PickSortingOrderProps {
     value: Order;
+    disabled: boolean;
+
     updateValue: (val: Order) => void;
 }
 
@@ -32,6 +34,7 @@ const PickSortingOrder: FunctionComponent<PickSortingOrderProps> = (props) => {
                 width: "180px",
                 height: "42px",
             }}
+            disabled={props.disabled}
         />
     );
 };

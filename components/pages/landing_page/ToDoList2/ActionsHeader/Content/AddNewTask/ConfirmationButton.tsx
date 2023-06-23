@@ -4,6 +4,8 @@ import { useLabelsContext, useTasksListContext } from "landing_page/ToDoList2/ho
 // Types
 import type { FunctionComponent } from "react";
 import type { NewTaskBody } from "landing_page/ToDoList2/@types";
+// Material UI Icons
+import AddRounded from "@mui/icons-material/AddRounded";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 
@@ -42,14 +44,15 @@ const ConfirmationButton: FunctionComponent<ConfirmationButtonProps> = (props) =
         <div>
             <StyledButton
                 sx={{
-                    px: "24px", //
+                    px: "18px", //
                     height: "42px",
                 }}
                 color="primary"
                 onClick={addTask}
                 disabled={disableAddButton}
             >
-                Add
+                <AddRounded />
+                Add new task
             </StyledButton>
         </div>
     );

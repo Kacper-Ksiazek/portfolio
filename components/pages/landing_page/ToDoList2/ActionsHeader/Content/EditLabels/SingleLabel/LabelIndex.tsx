@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { alpha, styled } from "@mui/material";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
@@ -13,7 +13,7 @@ const LabelIndexBase = styled("span")(({ theme }) => ({
     "&::after": {
         content: "''",
         ...theme.mixins.absolute_center,
-        background: theme.palette.background.lightAnimationBar,
+        background: theme.palette.mode == "light" ? alpha(theme.palette.background.MUIFormElementsBackground, 0.3) : theme.palette.background.MUIFormElementsBorder,
         width: "calc(100% - 16px)",
         height: "calc(100% - 16px)",
         borderRadius: "3px",

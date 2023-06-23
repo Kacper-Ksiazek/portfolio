@@ -35,5 +35,6 @@ export default styled(DatePicker, { shouldForwardProp })<{ size: `${string}px` }
     },
     svg: {
         fontSize: "20px",
+        color: theme.palette.text.primary,
     },
 }));

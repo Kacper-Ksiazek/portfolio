@@ -4,6 +4,7 @@ interface CSSReferenceStructure<T extends CSSClassName | Selector> {
     FILTERS_WRAPPER: T;
     SINGLE_TASK: {
         LABEL: T;
+        DUE_DATE: T;
         CHECK_ICON: T;
         BACKGROUND: T;
         DESCRIPTION: T;
@@ -24,8 +25,9 @@ export const CLASSES: CSSReferenceStructure<CSSClassName> = {
     FILTERS_WRAPPER: "filters-wrapper",
     SINGLE_TASK: {
         LABEL: "single-task-label",
-        CHECK_ICON: "single-task-check-icon",
+        DUE_DATE: "single-task-due-date",
         DESCRIPTION: "single-task-title",
+        CHECK_ICON: "single-task-check-icon",
         BACKGROUND: "single-task-background",
         LABELS_WRAPPER: "single-task-labels-wrapper",
     },
