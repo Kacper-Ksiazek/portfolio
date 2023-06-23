@@ -55,6 +55,7 @@ const AutocompleteCountry: FunctionComponent<AutocompleteProps> = (props) => {
                             ...params.inputProps,
                         }}
                         error={props.error}
+                        className="transparent-bg"
                         InputProps={{
                             ...params.InputProps,
                             ...{
