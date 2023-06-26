@@ -1,4 +1,5 @@
 // Tools
+import { useState } from "react";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
@@ -9,6 +10,7 @@ import TaskTitleInput from "./TaskTitleInput";
 import ConfirmationButton from "./ConfirmationButton";
 import FormFieldsOrganizer from "./FormFieldsOrganizer";
 // Styled components
+import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
 import { DueDatePicker, LabelPicker } from "landing_page/ToDoList2/atoms/modifiers";
 
@@ -18,8 +20,13 @@ const EMPTY_NEW_TASK_BODY: Omit<NewTaskBody, "labelID"> = {
     urgent: false,
 };
 
-const AddNewTask: FunctionComponent = () => {
+interface AddNewTaskProps {
+    foldActionsHeaderPanel: () => void;
+}
+
+const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
     const { labels } = useLabelsContext();
+    const [hideThisPanelAfterAdding, setHideThisPanelAfterAdding] = useState<boolean>(true);
 
     const [newTaskBody, updateNewTaskBody] = useSimpleReducer<NewTaskBody>({
         ...EMPTY_NEW_TASK_BODY,
@@ -45,10 +52,19 @@ const AddNewTask: FunctionComponent = () => {
 
             <span style={{ flexGrow: 1 }} />
 
-            <ConfirmationButton
-                newTaskBody={newTaskBody} //
-                resetNewTaskBody={() => updateNewTaskBody(EMPTY_NEW_TASK_BODY)}
-            />
+            <FlexBox>
+                <ConfirmationButton
+                    newTaskBody={newTaskBody} //
+                    foldActionsHeaderPanel={hideThisPanelAfterAdding ? props.foldActionsHeaderPanel : null}
+                    resetNewTaskBody={() => updateNewTaskBody(EMPTY_NEW_TASK_BODY)}
+                />
+
+                <StyledCheckbox
+                    label="Hide this panel" //
+                    value={hideThisPanelAfterAdding}
+                    updateValue={(val) => setHideThisPanelAfterAdding(val)}
+                />
+            </FlexBox>
         </>
     );
 };

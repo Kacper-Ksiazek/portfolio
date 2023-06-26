@@ -59,7 +59,13 @@ const ActionsHeader: FunctionComponent = () => {
                 />
             </Navigation>
 
-            {contentVisibility.renderContent && <Content currentStage={stage} isStageChanging={isStageChanging} />}
+            {contentVisibility.renderContent && (
+                <Content
+                    currentStage={stage} //
+                    isStageChanging={isStageChanging}
+                    foldActionsHeaderPanel={toggleContentVisibility}
+                />
+            )}
         </SectionWrapper>
     );
 };

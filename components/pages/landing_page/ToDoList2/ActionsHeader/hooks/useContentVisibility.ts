@@ -1,5 +1,4 @@
 // Tools
-import { useMemo, useState } from "react";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 
 const HIDING_ANIMATION_DURATION: TimeInMS = 300;

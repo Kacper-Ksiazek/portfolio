@@ -11,7 +11,9 @@ import StyledButton from "@/components/atoms/forms/StyledButton";
 
 interface ConfirmationButtonProps {
     newTaskBody: NewTaskBody;
+
     resetNewTaskBody: () => void;
+    foldActionsHeaderPanel: (() => void) | null;
 }
 
 const ConfirmationButton: FunctionComponent<ConfirmationButtonProps> = (props) => {
@@ -37,24 +39,43 @@ const ConfirmationButton: FunctionComponent<ConfirmationButtonProps> = (props) =
             createdAt: Date.now(),
         });
 
-        props.resetNewTaskBody();
+        if (typeof props.foldActionsHeaderPanel === "function") {
+            if (window) {
+                scrollTo({
+                    behavior: "smooth",
+                    left: 0,
+                    top: window.scrollY + 150,
+                });
+            }
+            props.foldActionsHeaderPanel();
+        } else {
+            if (window) {
+                scrollTo({
+                    behavior: "smooth",
+                    left: 0,
+                    top: window.scrollY + 350,
+                });
+            }
+        }
+        setTimeout(() => {
+            props.resetNewTaskBody();
+        }, 300);
     }
 
     return (
-        <div>
-            <StyledButton
-                sx={{
-                    px: "18px", //
-                    height: "42px",
-                }}
-                color="primary"
-                onClick={addTask}
-                disabled={disableAddButton}
-            >
-                <AddRounded />
-                Add new task
-            </StyledButton>
-        </div>
+        <StyledButton
+            sx={{
+                px: "18px", //
+                height: "42px",
+                mr: "8px",
+            }}
+            color="primary"
+            onClick={addTask}
+            disabled={disableAddButton}
+        >
+            <AddRounded />
+            Add new task
+        </StyledButton>
     );
 };
 

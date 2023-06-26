@@ -29,6 +29,8 @@ const Wrapper = styled("div")(({ theme }) => ({
 interface ToDoListActionsContentProps {
     currentStage: ActionHeaderSection;
     isStageChanging: boolean;
+
+    foldActionsHeaderPanel: () => void;
 }
 
 const ToDoListActionsContent: FunctionComponent<ToDoListActionsContentProps> = (props) => {
@@ -38,7 +40,7 @@ const ToDoListActionsContent: FunctionComponent<ToDoListActionsContentProps> = (
                 {(() => {
                     switch (props.currentStage) {
                         case "ADD_NEW_TASK":
-                            return <AddNewTask />;
+                            return <AddNewTask foldActionsHeaderPanel={props.foldActionsHeaderPanel} />;
                         case "EDIT_LABELS":
                             return <EditLabels />;
                         case "PROGRESS_TRACKER":
