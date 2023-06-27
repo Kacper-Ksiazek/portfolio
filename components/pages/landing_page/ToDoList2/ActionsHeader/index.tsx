@@ -1,27 +1,23 @@
 // Tools
-import { useMemo } from "react";
 import { useDelayedState } from "@/hooks/useDelayedState";
-import { useContentVisibility } from "./hooks/useContentVisibility";
+import { useContentVisibility, useResponsiveHeight } from "./hooks";
 // Types
 import type { FunctionComponent } from "react";
 import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
+import type { ResponsiveHeightCSSClass } from "./hooks/useResponsiveHeight";
 // Other components
 import Content from "./Content";
 import Navigation from "./Navigation";
 import HideButton from "./HideButton";
 // Styled components
-import { SectionWrapper } from "landing_page/ToDoList2/atoms";
+import ActionsHeaderBase from "./Base";
 
 const ActionsHeader: FunctionComponent = () => {
     const { value: stage, setValue: setStage, isChanging: isStageChanging } = useDelayedState<ActionHeaderSection>("PROGRESS_TRACKER", 160);
 
     const { contentVisibility, toggleContentVisibility } = useContentVisibility();
 
-    const maxHeight: `${string}px` = useMemo<`${string}px`>(() => {
-        if (contentVisibility.contentIsHidden) return "64px";
-        else if (stage === "EDIT_LABELS") return "400px";
-        return "256px";
-    }, [contentVisibility.contentIsHidden, stage]);
+    const responsiveHeightCSSClass: ResponsiveHeightCSSClass = useResponsiveHeight(stage, contentVisibility.contentIsHidden);
 
     async function onNavigationButtonClick() {
         if (contentVisibility.contentIsHidden === true) {
@@ -38,16 +34,7 @@ const ActionsHeader: FunctionComponent = () => {
     }
 
     return (
-        <SectionWrapper
-            sx={{
-                height: "400px",
-                maxHeight: maxHeight,
-                display: "flex",
-                flexDirection: "column",
-                transition: "max-height .3s",
-                overflow: "hidden",
-            }}
-        >
+        <ActionsHeaderBase className={responsiveHeightCSSClass}>
             <Navigation
                 currentStage={stage} //
                 updateCurrentStage={setStage}
@@ -66,7 +53,7 @@ const ActionsHeader: FunctionComponent = () => {
                     foldActionsHeaderPanel={toggleContentVisibility}
                 />
             )}
-        </SectionWrapper>
+        </ActionsHeaderBase>
     );
 };
 
