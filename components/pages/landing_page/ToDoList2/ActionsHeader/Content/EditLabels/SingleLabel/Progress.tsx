@@ -17,7 +17,7 @@ const ProgressWrapper = styled("div")(({ theme }) => ({
     },
     p: {
         textAlign: "right",
-        width: "170px",
+        width: "132px",
         margin: "0 0 0 12px",
         strong: {
             marginRight: "8px",
@@ -62,6 +62,10 @@ const Progress: FunctionComponent<ProgressProps> = (props) => {
                         <ProgressBar
                             completion={completion} //
                             labelColor={props.color}
+                            sx={{
+                                width: "auto",
+                                flexGrow: 1,
+                            }}
                         />
                         <p>
                             <strong>{`${amountOfTasks.completed} / ${amountOfTasks.inTotal}`}</strong>
