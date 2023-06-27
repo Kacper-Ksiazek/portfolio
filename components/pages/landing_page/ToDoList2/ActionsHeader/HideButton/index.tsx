@@ -1,10 +1,9 @@
-// Tools
 // Types
 import type { FunctionComponent } from "react";
-// Other components
-import StyledButton from "components/atoms/forms/StyledButton";
 // Material UI Icons
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+// Styled components
+import HideButtonBase from "./Base";
 
 interface HideButtonProps {
     renderContent: boolean;
@@ -21,16 +20,7 @@ const HideButton: FunctionComponent<HideButtonProps> = (props) => {
     }
 
     return (
-        <StyledButton
-            color="MUIFormElement"
-            onClick={onClick}
-            sx={{
-                padding: " 0px 0",
-                height: "42px",
-                width: "86px",
-                justifyContent: "flex-start",
-            }}
-        >
+        <HideButtonBase color="MUIFormElement" onClick={onClick}>
             <KeyboardArrowDownRoundedIcon
                 sx={{
                     transform: `rotate(${props.renderContent ? 180 : 0}deg)`, //
@@ -40,7 +30,7 @@ const HideButton: FunctionComponent<HideButtonProps> = (props) => {
             />
 
             <span>{props.renderContent ? "Hide" : "Show"}</span>
-        </StyledButton>
+        </HideButtonBase>
     );
 };
 
