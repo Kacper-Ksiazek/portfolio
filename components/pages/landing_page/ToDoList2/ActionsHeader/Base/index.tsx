@@ -12,15 +12,31 @@ export default styled(SectionWrapper)(({ theme }) => ({
     transition: "max-height .3s",
     overflow: "hidden",
 
-    [`&.${"DEFAULT_HEIGHT" as ResponsiveHeightCSSClass}`]: {
+    "@media (max-width:770px)": {
+        height: "620px",
+    },
+    [`&.${"PROGRESS_TRACKER" as ResponsiveHeightCSSClass}`]: {
+        maxHeight: "256px",
+        "@media (max-width:770px)": {
+            maxHeight: "440px",
+        },
+        "@media (max-width:660px)": {
+            maxHeight: "620px",
+        },
+    },
+
+    [`&.${"ADD_NEW_TASK" as ResponsiveHeightCSSClass}`]: {
         maxHeight: "256px",
     },
 
     [`&.${"HIDDEN" as ResponsiveHeightCSSClass}`]: {
         maxHeight: "64px",
+        "@media (max-width:770px)": {
+            maxHeight: "244px",
+        },
     },
 
-    [`&.${"EXTENDED_HEIGHT" as ResponsiveHeightCSSClass}`]: {
+    [`&.${"EDIT_LABELS" as ResponsiveHeightCSSClass}`]: {
         maxHeight: "400px",
     },
 }));
