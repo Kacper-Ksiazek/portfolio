@@ -45,7 +45,7 @@ const LabelPicker: FunctionComponent<LabelPickerProps> = (props) => {
                 value={props.value} //
                 options={options}
                 onChange={(e) => props.updateValue(e.target.value as any)}
-                className="label-picker"
+                className="label-picker-select"
                 startAdornment={<Adornment background={getLabelWithID(props.value).color} />}
             />
 

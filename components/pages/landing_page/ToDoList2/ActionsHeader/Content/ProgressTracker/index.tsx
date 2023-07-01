@@ -7,9 +7,9 @@ import type { FunctionComponent } from "react";
 import LabelsRatio from "./LabelsRatio";
 import SingleLabel from "./LabelsRatio/SingleLabel";
 // Styled components
-import { ProgressTrackerBase, StyledFlexWrapper } from "./styled_components";
 import { Paragraph } from "landing_page/ToDoList2/atoms";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
+import { ProgressTrackerBase, StyledFlexWrapper } from "./styled_components";
 
 const ProgressTracker: FunctionComponent = () => {
     const { tasks } = useTasksListContext();

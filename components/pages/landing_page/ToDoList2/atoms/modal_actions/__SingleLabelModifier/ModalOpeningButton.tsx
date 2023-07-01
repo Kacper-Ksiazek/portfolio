@@ -10,12 +10,15 @@ import ButtonBase from "@mui/material/ButtonBase";
 import StyledButton from "@/components/atoms/forms/StyledButton";
 
 interface ModalOpeningButtonProps {
-    small?: boolean;
     tooltip: string;
+    size: `${string}px`;
+
+    children: ReactNode;
+
+    small?: boolean;
     primary?: boolean;
     disabled?: boolean;
-    size: `${string}px`;
-    children: ReactNode;
+    className?: string;
     isIconButton?: boolean;
 
     openModal?: () => void;
@@ -40,6 +43,7 @@ const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps
                     })}
                     disabled={props.disabled ?? false}
                     onClick={props.openModal}
+                    className={props.className}
                 >
                     {props.children}
                 </StyledButton>

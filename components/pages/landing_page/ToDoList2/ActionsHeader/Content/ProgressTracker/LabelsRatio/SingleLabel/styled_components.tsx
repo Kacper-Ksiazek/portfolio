@@ -15,12 +15,16 @@ export const SingleLabelWrapper = styled("div", {
 
 const _InformationAboutLabel = styled("span")(({ theme }) => ({
     userSelect: "none",
-    fontSize: "16px",
     color: alpha("#fff", 0.8),
     position: "relative",
     transition: "color .3s",
+    // fontWeight: "300",
+    fontSize: "14px",
     strong: {
         transition: "color .2s",
+    },
+    "@media (max-width:700px)": {
+        fontSize: "16px",
     },
 }));
 

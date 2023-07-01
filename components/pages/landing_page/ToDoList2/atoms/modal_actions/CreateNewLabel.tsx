@@ -42,6 +42,7 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
                 isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
                 tooltip={props.disableTooltip === false ? "Create a new label" : ""}
                 primary={props.primary}
+                className="label-picker-add-new-label-btn"
             >
                 {props.modalOpeningButtonPrompt ? props.modalOpeningButtonPrompt : <AddRounded />}
             </ModalOpeningButton>

@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { SELECTORS } from "../css_references";
 // Types
 import type { ResponsiveHeightCSSClass } from "../hooks/useResponsiveHeight";
 // Styled components
@@ -26,7 +27,35 @@ export default styled(SectionWrapper)(({ theme }) => ({
     },
 
     [`&.${"ADD_NEW_TASK" as ResponsiveHeightCSSClass}`]: {
-        maxHeight: "256px",
+        maxHeight: "300px",
+        "@media (max-width:770px)": {
+            maxHeight: "540px",
+            [SELECTORS.LABEL_PICKER_SELECT]: {
+                flexGrow: 1,
+            },
+        },
+        "@media (max-width:700px)": {
+            [SELECTORS.FORM_FIELDS_WRAPPER]: {
+                flexWrap: "wrap",
+            },
+            // Row 1:
+            [SELECTORS.URGENCY_SWITCH]: {
+                width: "124px",
+            },
+            [SELECTORS.DUE_DATE_PICKER]: {
+                width: "calc(100% - 124px - 8px)",
+            },
+            // Row 2:
+            [SELECTORS.LABEL_PICKER_SELECT]: {
+                margin: "8px 0 0 0 !important",
+                width: "calc(100% - 8px - 42px)",
+            },
+
+            [SELECTORS.LABEL_PICKER_ADD_NEW_TASK_BUTTON]: {
+                margin: "8px 0 0 8px",
+                width: "42px",
+            },
+        },
     },
 
     [`&.${"HIDDEN" as ResponsiveHeightCSSClass}`]: {

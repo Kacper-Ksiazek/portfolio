@@ -48,7 +48,7 @@ const ToDoList: FunctionComponent = () => {
             <ContentWrapper>
                 <ActionsHeader />
 
-                <Filters
+                {/* <Filters
                     filters={filters} //
                     amountOfTasks={amountOfFilteredTasks}
                     updateFilters={updateFilters}
@@ -71,7 +71,7 @@ const ToDoList: FunctionComponent = () => {
                             />
                         );
                     })}
-                </TasksWrapper>
+                </TasksWrapper> */}
             </ContentWrapper>
         </DarkSectionWrapper>
     );

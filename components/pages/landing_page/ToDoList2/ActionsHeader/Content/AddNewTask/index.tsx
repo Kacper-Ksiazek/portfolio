@@ -1,5 +1,6 @@
 // Tools
 import { useState } from "react";
+import { CSS_CLASSES } from "../../css_references";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
@@ -10,6 +11,7 @@ import TaskTitleInput from "./TaskTitleInput";
 import ConfirmationButton from "./ConfirmationButton";
 import FormFieldsOrganizer from "./FormFieldsOrganizer";
 // Styled components
+import { Paragraph } from "landing_page/ToDoList2/atoms";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
 import { DueDatePicker, LabelPicker } from "landing_page/ToDoList2/atoms/modifiers";
@@ -35,16 +37,19 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
 
     return (
         <>
+            <Paragraph>Description</Paragraph>
             <TaskTitleInput
                 value={newTaskBody.description} //
                 setValue={(val) => updateNewTaskBody({ description: val })}
             />
 
-            <FormFieldsOrganizer>
+            <Paragraph>Details</Paragraph>
+            <FormFieldsOrganizer className={CSS_CLASSES.FORM_FIELDS_WRAPPER}>
                 <StyledCheckbox
                     label="Urgent" //
                     value={newTaskBody.urgent}
                     updateValue={(val) => updateNewTaskBody({ urgent: val })}
+                    className="urgency-swtich"
                 />
                 <DueDatePicker value={newTaskBody.dueDate} updateValue={(dueDate) => updateNewTaskBody({ dueDate })} />
                 <LabelPicker value={newTaskBody.labelID} updateValue={(labelID) => updateNewTaskBody({ labelID })} />

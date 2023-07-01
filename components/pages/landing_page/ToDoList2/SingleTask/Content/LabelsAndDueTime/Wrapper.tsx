@@ -11,7 +11,7 @@ export default styled("div")(({ theme }) => ({
         paddingBottom: "4px !important",
         fontSize: "14px",
     },
-    ".due-date-picker, .label-picker": {
+    ".due-date-picker, .label-picker-select": {
         marginLeft: "2px",
     },
 }));
