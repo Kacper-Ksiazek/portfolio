@@ -22,7 +22,7 @@ const DueDatePicker: FunctionComponent<DueDatePickerProps> = (props) => {
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <div style={{ position: "relative" }}>
+            <div style={{ position: "relative" }} className="due-date-picker">
                 <StyledDatePicker
                     size={size}
                     value={props.value ? dayjs(props.value, DATE_FORMAT) : null}
@@ -30,7 +30,6 @@ const DueDatePicker: FunctionComponent<DueDatePickerProps> = (props) => {
                         props.updateValue(dayjs(newValue as any).format(DATE_FORMAT));
                     }}
                     disablePast
-                    className="due-date-picker"
                     format={DATE_FORMAT}
                 />
 

@@ -9,9 +9,11 @@ function shouldForwardProp(prop: string) {
 
 export default styled(DatePicker, { shouldForwardProp })<{ size: `${string}px` }>(({ theme, ...props }) => ({
     height: props.size,
+    width: "100%",
     ".MuiOutlinedInput-root": {
         display: "flex",
         flexDirection: "row-reverse",
+        justifyContent: "flex-end",
         paddingRight: "36px",
         ".MuiIconButton-edgeEnd": {
             marginRight: "-16px",
