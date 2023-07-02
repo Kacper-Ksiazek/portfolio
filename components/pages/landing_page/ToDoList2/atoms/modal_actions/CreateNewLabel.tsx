@@ -13,6 +13,7 @@ import { Modal, ModalOpeningButton } from "./__SingleLabelModifier";
 interface CreateNewLabelProps {
     small?: boolean;
     primary?: boolean;
+    className?: string;
     size?: `${string}px`;
     disableTooltip?: boolean;
     modalOpeningButtonPrompt?: ReactNode;
@@ -42,7 +43,7 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
                 isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
                 tooltip={props.disableTooltip === false ? "Create a new label" : ""}
                 primary={props.primary}
-                className="label-picker-add-new-label-btn"
+                className={props.className}
             >
                 {props.modalOpeningButtonPrompt ? props.modalOpeningButtonPrompt : <AddRounded />}
             </ModalOpeningButton>

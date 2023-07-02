@@ -38,35 +38,47 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
     return (
         <>
             <Paragraph>Description</Paragraph>
+
             <TaskTitleInput
                 value={newTaskBody.description} //
                 setValue={(val) => updateNewTaskBody({ description: val })}
             />
 
             <Paragraph>Details</Paragraph>
-            <FormFieldsOrganizer className={CSS_CLASSES.FORM_FIELDS_WRAPPER}>
+
+            <FormFieldsOrganizer className={CSS_CLASSES.FORM_FIELDS.WRAPPER}>
                 <StyledCheckbox
                     label="Urgent" //
                     value={newTaskBody.urgent}
                     updateValue={(val) => updateNewTaskBody({ urgent: val })}
-                    className="urgency-swtich"
+                    className={CSS_CLASSES.FORM_FIELDS.URGENCY_SWITCH}
                 />
-                <DueDatePicker value={newTaskBody.dueDate} updateValue={(dueDate) => updateNewTaskBody({ dueDate })} />
-                <LabelPicker value={newTaskBody.labelID} updateValue={(labelID) => updateNewTaskBody({ labelID })} />
+                <DueDatePicker
+                    value={newTaskBody.dueDate} //
+                    updateValue={(dueDate) => updateNewTaskBody({ dueDate })}
+                />
+                <LabelPicker
+                    value={newTaskBody.labelID} //
+                    updateValue={(labelID) => updateNewTaskBody({ labelID })}
+                />
             </FormFieldsOrganizer>
 
             <span style={{ flexGrow: 1 }} />
 
-            <FlexBox>
+            <FlexBox sx={{ mb: "12px !important" }} className={CSS_CLASSES.BUTTONS.WRAPPER}>
                 <ConfirmationButton
                     newTaskBody={newTaskBody} //
+                    className={CSS_CLASSES.BUTTONS.ADD_NEW_TASK}
                     foldActionsHeaderPanel={hideThisPanelAfterAdding ? props.foldActionsHeaderPanel : null}
+                    //
                     resetNewTaskBody={() => updateNewTaskBody(EMPTY_NEW_TASK_BODY)}
                 />
 
                 <StyledCheckbox
                     label="Hide this panel" //
                     value={hideThisPanelAfterAdding}
+                    className={CSS_CLASSES.BUTTONS.HIDE_PANEL}
+                    //
                     updateValue={(val) => setHideThisPanelAfterAdding(val)}
                 />
             </FlexBox>

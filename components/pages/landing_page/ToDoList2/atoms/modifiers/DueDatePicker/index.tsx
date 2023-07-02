@@ -9,6 +9,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import StyledDatePicker from "./StyledDatePicker";
 import ClearButton from "./ClearButton";
 
+export const DUE_DATE_PICKER_CLASS_NAME: CSSClassName = "due-date-picker";
+
 const DATE_FORMAT = "DD/MM/YYYY";
 
 interface DueDatePickerProps {
@@ -22,7 +24,7 @@ const DueDatePicker: FunctionComponent<DueDatePickerProps> = (props) => {
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <div style={{ position: "relative" }} className="due-date-picker">
+            <div style={{ position: "relative" }} className={DUE_DATE_PICKER_CLASS_NAME}>
                 <StyledDatePicker
                     size={size}
                     value={props.value ? dayjs(props.value, DATE_FORMAT) : null}

@@ -11,6 +11,9 @@ import CreateNewLabel from "../../modal_actions/CreateNewLabel";
 // Styled components
 import { Select } from "./styled_components";
 
+export const LABEL_PICKER_SELECT_CLASS_NAME: CSSClassName = "label-picker-select";
+export const LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME: CSSClassName = "label-picker-add-new-label-btn";
+
 interface LabelPickerProps {
     value: LabelID;
     updateValue: (label: LabelID) => void;
@@ -44,14 +47,17 @@ const LabelPicker: FunctionComponent<LabelPickerProps> = (props) => {
                 size={size}
                 value={props.value} //
                 options={options}
-                onChange={(e) => props.updateValue(e.target.value as any)}
-                className="label-picker-select"
+                className={LABEL_PICKER_SELECT_CLASS_NAME}
                 startAdornment={<Adornment background={getLabelWithID(props.value).color} />}
+                //
+                onChange={(e) => props.updateValue(e.target.value as any)}
             />
 
             <CreateNewLabel
                 size={size} //
                 small={props.small}
+                className={LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME}
+                //
                 onCreated={props.updateValue}
             />
         </>

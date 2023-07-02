@@ -27,31 +27,31 @@ export default styled(SectionWrapper)(({ theme }) => ({
     },
 
     [`&.${"ADD_NEW_TASK" as ResponsiveHeightCSSClass}`]: {
-        maxHeight: "300px",
+        maxHeight: "312px",
         "@media (max-width:770px)": {
             maxHeight: "540px",
-            [SELECTORS.LABEL_PICKER_SELECT]: {
+            [SELECTORS.FORM_FIELDS.LABEL_PICKER.SELECT]: {
                 flexGrow: 1,
             },
         },
         "@media (max-width:700px)": {
-            [SELECTORS.FORM_FIELDS_WRAPPER]: {
+            [SELECTORS.FORM_FIELDS.WRAPPER]: {
                 flexWrap: "wrap",
             },
             // Row 1:
-            [SELECTORS.URGENCY_SWITCH]: {
+            [SELECTORS.FORM_FIELDS.URGENCY_SWITCH]: {
                 width: "124px",
             },
-            [SELECTORS.DUE_DATE_PICKER]: {
+            [SELECTORS.FORM_FIELDS.DUE_DATE_PICKER]: {
                 width: "calc(100% - 124px - 8px)",
             },
             // Row 2:
-            [SELECTORS.LABEL_PICKER_SELECT]: {
+            [SELECTORS.FORM_FIELDS.LABEL_PICKER.SELECT]: {
                 margin: "8px 0 0 0 !important",
                 width: "calc(100% - 8px - 42px)",
             },
 
-            [SELECTORS.LABEL_PICKER_ADD_NEW_TASK_BUTTON]: {
+            [SELECTORS.FORM_FIELDS.LABEL_PICKER.ADD_NEW_TASK_BUTTON]: {
                 margin: "8px 0 0 8px",
                 width: "42px",
             },
