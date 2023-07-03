@@ -8,6 +8,9 @@ export default styled("p")(({ theme }) => ({
     fontWeight: "500",
     // fontFamily: '"Montserrat Alternates", sans-serif',
     "&:not(&:nth-of-type(1))": {
-        marginTop: "12px",
+        marginTop: "12px !important",
+        "@media (max-width:770px)": {
+            marginTop: "22px !important",
+        },
     },
 }));

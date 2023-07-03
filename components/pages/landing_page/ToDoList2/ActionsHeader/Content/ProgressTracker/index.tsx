@@ -34,9 +34,7 @@ const ProgressTracker: FunctionComponent = () => {
                         width="100%" //
                     />
                 </StyledFlexWrapper>
-            </FlexBox>
 
-            <FlexBox column sx={{ width: "100%" }}>
                 <Paragraph>Labels ratio</Paragraph>
 
                 <ProgressTrackerBase>
