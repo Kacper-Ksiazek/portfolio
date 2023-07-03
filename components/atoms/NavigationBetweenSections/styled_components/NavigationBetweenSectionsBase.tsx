@@ -13,7 +13,7 @@ export default styled("div")(({ theme }) => ({
 
     ["@media (max-width:770px)"]: {
         flexDirection: "column",
-        marginBottom: "16px",
+        marginBottom: "8px",
         width: "100%",
 
         [`.${CSSClasses.DIVIDER}`]: {

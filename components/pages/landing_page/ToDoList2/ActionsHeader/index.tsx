@@ -1,4 +1,5 @@
 // Tools
+import useWindowsSizes from "@/hooks/useWindowSizes";
 import { useDelayedState } from "@/hooks/useDelayedState";
 import { useContentVisibility, useResponsiveHeight } from "./hooks";
 // Types
@@ -14,10 +15,13 @@ import ActionsHeaderBase from "./Base";
 
 const ActionsHeader: FunctionComponent = () => {
     const { value: stage, setValue: setStage, isChanging: isStageChanging } = useDelayedState<ActionHeaderSection>("PROGRESS_TRACKER", 160);
+    const { width } = useWindowsSizes();
 
     const { contentVisibility, toggleContentVisibility } = useContentVisibility();
 
     const responsiveHeightCSSClass: ResponsiveHeightCSSClass = useResponsiveHeight(stage, contentVisibility.contentIsHidden);
+
+    const alternativeHideButtonPosition: boolean = width < 770;
 
     async function onNavigationButtonClick() {
         if (contentVisibility.contentIsHidden === true) {
@@ -40,10 +44,12 @@ const ActionsHeader: FunctionComponent = () => {
                 updateCurrentStage={setStage}
                 beforeOnClick={onNavigationButtonClick}
             >
-                <HideButton
-                    {...contentVisibility} //
-                    toggleContentVisibility={toggleContentVisibility}
-                />
+                {alternativeHideButtonPosition === false && (
+                    <HideButton
+                        {...contentVisibility} //
+                        toggleContentVisibility={toggleContentVisibility}
+                    />
+                )}
             </Navigation>
 
             {contentVisibility.renderContent && (
@@ -51,6 +57,13 @@ const ActionsHeader: FunctionComponent = () => {
                     currentStage={stage} //
                     isStageChanging={isStageChanging}
                     foldActionsHeaderPanel={toggleContentVisibility}
+                />
+            )}
+
+            {alternativeHideButtonPosition === true && (
+                <HideButton
+                    {...contentVisibility} //
+                    toggleContentVisibility={toggleContentVisibility}
                 />
             )}
         </ActionsHeaderBase>

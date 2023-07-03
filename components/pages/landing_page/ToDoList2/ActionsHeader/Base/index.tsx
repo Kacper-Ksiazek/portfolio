@@ -29,13 +29,13 @@ export default styled(SectionWrapper)(({ theme }) => ({
     [`&.${"ADD_NEW_TASK" as ResponsiveHeightCSSClass}`]: {
         maxHeight: "312px",
         "@media (max-width:770px)": {
-            maxHeight: "540px",
+            maxHeight: "500px",
             [SELECTORS.FORM_FIELDS.LABEL_PICKER.SELECT]: {
                 flexGrow: 1,
             },
         },
         "@media (max-width:700px)": {
-            maxHeight: "564px",
+            maxHeight: "550px",
             [SELECTORS.FORM_FIELDS.WRAPPER]: {
                 flexWrap: "wrap",
 
@@ -60,7 +60,7 @@ export default styled(SectionWrapper)(({ theme }) => ({
 
             [SELECTORS.BUTTONS.WRAPPER]: {
                 width: "100%",
-                marginTop: "32px !important",
+                marginTop: "26px !important",
                 [SELECTORS.BUTTONS.ADD_NEW_TASK]: {
                     flexGrow: 1,
                 },

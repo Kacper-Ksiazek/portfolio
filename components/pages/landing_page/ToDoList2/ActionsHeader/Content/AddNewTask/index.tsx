@@ -63,8 +63,6 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
                 />
             </FormFieldsOrganizer>
 
-            <span style={{ flexGrow: 1 }} />
-
             <FlexBox sx={{ mb: "12px !important" }} className={CSS_CLASSES.BUTTONS.WRAPPER}>
                 <ConfirmationButton
                     newTaskBody={newTaskBody} //

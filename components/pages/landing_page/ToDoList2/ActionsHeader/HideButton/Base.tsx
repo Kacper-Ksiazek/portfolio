@@ -11,7 +11,7 @@ export default styled(StyledButton)(({ theme }) => ({
     "@media (max-width:770px)": {
         fontSize: "18px",
         width: "100%",
-        marginTop: "16px",
+        marginTop: "24px",
         svg: {
             fontSize: "26px",
         },

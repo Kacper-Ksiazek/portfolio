@@ -10,7 +10,7 @@ export default styled("p")(({ theme }) => ({
     "&:not(&:nth-of-type(1))": {
         marginTop: "12px !important",
         "@media (max-width:770px)": {
-            marginTop: "22px !important",
+            marginTop: "16px !important",
         },
     },
 }));
