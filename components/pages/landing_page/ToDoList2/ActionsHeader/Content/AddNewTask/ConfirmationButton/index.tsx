@@ -10,7 +10,7 @@ import StyledButton from "@/components/atoms/forms/StyledButton";
 
 interface ConfirmationButtonProps {
     newTaskBody: NewTaskBody;
-    className: string;
+    id: string;
 
     resetNewTaskBody: () => void;
     foldActionsHeaderPanel: (() => void) | null;
@@ -35,7 +35,7 @@ const ConfirmationButton: FunctionComponent<ConfirmationButtonProps> = (props) =
             color="primary"
             onClick={onClick}
             disabled={disableOnClick}
-            className={props.className}
+            id={props.id}
         >
             <AddRounded />
             Add new task

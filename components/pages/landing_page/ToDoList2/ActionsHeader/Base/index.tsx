@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import { SELECTORS } from "../css_references";
+import { SELECTORS } from "../Content/AddNewTask/css_references";
 // Types
 import type { ResponsiveHeightCSSClass } from "../hooks/useResponsiveHeight";
 // Styled components

@@ -1,6 +1,6 @@
 // Tools
 import { useState } from "react";
-import { CSS_CLASSES } from "../../css_references";
+import { CSS_REFERENCES } from "./css_references";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
@@ -46,12 +46,12 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
 
             <Paragraph>Details</Paragraph>
 
-            <FormFieldsOrganizer className={CSS_CLASSES.FORM_FIELDS.WRAPPER}>
+            <FormFieldsOrganizer id={CSS_REFERENCES.FORM_FIELDS.WRAPPER}>
                 <StyledCheckbox
                     label="Urgent" //
                     value={newTaskBody.urgent}
                     updateValue={(val) => updateNewTaskBody({ urgent: val })}
-                    className={CSS_CLASSES.FORM_FIELDS.URGENCY_SWITCH}
+                    id={CSS_REFERENCES.FORM_FIELDS.URGENCY_SWITCH}
                 />
                 <DueDatePicker
                     value={newTaskBody.dueDate} //
@@ -63,10 +63,10 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
                 />
             </FormFieldsOrganizer>
 
-            <FlexBox sx={{ mb: "12px !important" }} className={CSS_CLASSES.BUTTONS.WRAPPER}>
+            <FlexBox sx={{ mb: "12px !important" }} id={CSS_REFERENCES.BUTTONS.WRAPPER}>
                 <ConfirmationButton
                     newTaskBody={newTaskBody} //
-                    className={CSS_CLASSES.BUTTONS.ADD_NEW_TASK}
+                    id={CSS_REFERENCES.BUTTONS.ADD_NEW_TASK}
                     foldActionsHeaderPanel={hideThisPanelAfterAdding ? props.foldActionsHeaderPanel : null}
                     //
                     resetNewTaskBody={() => updateNewTaskBody(EMPTY_NEW_TASK_BODY)}
@@ -75,7 +75,7 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
                 <StyledCheckbox
                     label="Hide this panel" //
                     value={hideThisPanelAfterAdding}
-                    className={CSS_CLASSES.BUTTONS.HIDE_PANEL}
+                    id={CSS_REFERENCES.BUTTONS.HIDE_PANEL}
                     //
                     updateValue={(val) => setHideThisPanelAfterAdding(val)}
                 />
