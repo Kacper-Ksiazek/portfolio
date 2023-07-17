@@ -12,10 +12,11 @@ import DeleteUnusedLabelsConfirmationModal from "./DeleteUnusedLabelsConfirmatio
 import CleaningServicesRounded from "@mui/icons-material/CleaningServicesRounded";
 
 interface DeleteUnusedLabelsProps {
+    id: string;
     unusedLabels: LabelID[];
 }
 
-const DeleteUnusedLabels: FunctionComponent<DeleteUnusedLabelsProps> = ({ unusedLabels }) => {
+const DeleteUnusedLabels: FunctionComponent<DeleteUnusedLabelsProps> = ({ unusedLabels, ...props }) => {
     const { remove } = useLabelsUpdatersContext();
 
     const modalOpeningButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -38,6 +39,7 @@ const DeleteUnusedLabels: FunctionComponent<DeleteUnusedLabelsProps> = ({ unused
                     opacity: unusedLabels.length,
                     transition: "all .3s",
                 }}
+                id={props.id}
                 disabled={unusedLabels.length === 0}
             >
                 <CleaningServicesRounded sx={{ mr: "6px" }} />

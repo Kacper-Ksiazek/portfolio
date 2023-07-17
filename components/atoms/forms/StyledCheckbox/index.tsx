@@ -14,6 +14,8 @@ interface StyledCheckboxProps {
 
     small?: boolean;
     disabled?: boolean;
+
+    id?: string;
     className?: string;
 }
 
@@ -43,6 +45,7 @@ const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
             disabled={Boolean(props.disabled)}
             tabIndex={props.disabled ? -1 : 0}
             className={props.className}
+            id={props.id}
         >
             <IconWrapper
                 size={props.small ? "small" : "normal"} //

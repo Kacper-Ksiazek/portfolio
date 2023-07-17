@@ -1,7 +1,7 @@
 // Tools
 import { styled, SxProps } from "@mui/material";
 // Types
-import type { ChangeEvent, ReactNode } from "react";
+import type { ChangeEvent, HTMLAttributes, ReactNode } from "react";
 // Material UI Components
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -30,7 +30,7 @@ type OnChangeEvent<T> = ChangeEvent<HTMLHtmlElement> & {
     };
 };
 
-interface StyledSelectProps<T> {
+interface StyledSelectProps<T> extends Omit<HTMLAttributes<HTMLSelectElement>, "onChange"> {
     value: T;
     options: (T | OptionWithAlias<T>)[];
     className?: string;
@@ -42,10 +42,12 @@ interface StyledSelectProps<T> {
 }
 
 export default function StyledSelect<T extends number | string | Record<any, any>>(props: StyledSelectProps<T>) {
+    const { options, sx, id, ...propsToForward } = props;
+
     return (
         <StyledSelectBase
-            onChange={props.onChange as any} //
-            value={props.value}
+            {...(propsToForward as any)}
+            id="ESSA"
             MenuProps={{
                 sx: (theme) => {
                     return theme.palette.mode === "light"
@@ -57,12 +59,14 @@ export default function StyledSelect<T extends number | string | Record<any, any
                         : null;
                 },
             }}
-            className={props.className}
-            startAdornment={props.startAdornment}
-            disabled={props.disabled}
-            sx={(theme) => (typeof props.sx === "function" ? props.sx(theme) : props.sx ?? new Object())}
+            componentsProps={{
+                root: {
+                    id: id,
+                },
+            }}
+            sx={(theme) => (typeof sx === "function" ? sx(theme) : sx ?? new Object())}
         >
-            {props.options.map((item, index) => {
+            {options.map((item, index) => {
                 if (item instanceof Object) {
                     return (
                         <MenuItem value={item.value} key={index}>

@@ -16,4 +16,7 @@ export default styled(StyledButton)(({ theme }) => ({
             fontSize: "26px",
         },
     },
+    "@media (max-width:700px)": {
+        justifyContent: "center",
+    },
 }));
