@@ -12,8 +12,14 @@ interface HTMLStructure<T> {
 
 type HTMLStructureConstructor = HTMLStructure<Reference>;
 
-type OutputStructure<T extends HTMLStructure<Reference>> = {
-    [key in keyof T]: T[key] extends HTMLStructure<Reference> ? OutputStructure<T[key]> : string;
+type CSSReferencesStructure<T extends HTMLStructure<Reference>> = {
+    [key in keyof T]: T[key] extends HTMLStructure<Reference> ? CSSReferencesStructure<T[key]> : string;
+};
+
+type SelectorsStructure<T extends HTMLStructure<Reference>> = {
+    _EVERY: string;
+} & {
+    [key in keyof T]: T[key] extends HTMLStructure<Reference> ? SelectorsStructure<T[key]> : string;
 };
 
 function isHTMLStructureConstructor(a: Record<any, any>): a is HTMLStructureConstructor {
@@ -21,49 +27,49 @@ function isHTMLStructureConstructor(a: Record<any, any>): a is HTMLStructureCons
 }
 
 export class HTMLStructureOrganizer<T extends HTMLStructure<Reference>> {
-    public SELECTORS: OutputStructure<T> = {} as OutputStructure<T>;
-    public CSS_REFERENCES: OutputStructure<T> = {} as OutputStructure<T>;
+    public SELECTORS: SelectorsStructure<T> = {} as SelectorsStructure<T>;
+    public CSS_REFERENCES: CSSReferencesStructure<T> = {} as CSSReferencesStructure<T>;
 
     private readonly SELECTORS_ALIAS: string;
 
     public constructor(params: { alias: string; structure: T }) {
         this.SELECTORS_ALIAS = params.alias;
 
-        this.processHTMLStructure({
+        this.CSS_REFERENCES = this.processHTMLStructure({
             mode: "CSS_REFERENCES",
             structure: params.structure,
-            output: this.CSS_REFERENCES,
-        });
+        }) as CSSReferencesStructure<T>;
 
-        this.processHTMLStructure({
+        this.SELECTORS = this.processHTMLStructure({
             mode: "SELECTORS",
             structure: params.structure,
-            output: this.SELECTORS,
-        });
+        }) as SelectorsStructure<T>;
     }
 
     private processHTMLStructure(params: {
         structure: HTMLStructureConstructor; //
         mode: Mode | "SELECTORS";
-        //
-        output?: HTMLStructure<string>;
-    }): void {
+    }): HTMLStructure<string> {
         const { mode, structure } = params;
 
-        const result: HTMLStructure<string> = params.output ?? {};
+        const result: HTMLStructure<string> = {};
 
         Object.entries(structure).forEach(([key, value]) => {
             if (isHTMLStructureConstructor(value)) {
-                result[key] = {} as OutputStructure<typeof value>;
-                this.processHTMLStructure({
+                result[key] = this.processHTMLStructure({
                     mode,
                     structure: value,
-                    output: result[key] as HTMLStructure<string>,
                 });
             } else {
                 result[key] = this.formatAttributeValue(value, mode);
             }
         });
+
+        if (mode === "SELECTORS") {
+            result._EVERY = this.createOneSelectorToEveryItem(result as any);
+        }
+
+        return result;
     }
 
     private formatAttributeValue({ ref_type, ref_value }: Reference, mode: Mode): string {
@@ -74,5 +80,17 @@ export class HTMLStructureOrganizer<T extends HTMLStructure<Reference>> {
             const selector = ref_type === "CSS_CLASS" ? "." : "#";
             return selector + refValueWithAliast;
         }
+    }
+
+    private createOneSelectorToEveryItem(structure: SelectorsStructure<T>): string {
+        let result: string = "";
+        const appendToResult = (chunk: string) => (result += result === "" ? chunk : `, ${chunk}`);
+
+        Object.entries(structure).forEach(([key, value]) => {
+            if (typeof value === "object") appendToResult(value._EVERY);
+            else appendToResult(value);
+        });
+
+        return result;
     }
 }
