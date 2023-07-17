@@ -4,6 +4,7 @@ type Reference = {
     ref_value: string;
     /** ID by default */
     ref_type?: "ID" | "CSS_CLASS";
+    skipAlias?: boolean;
 };
 
 interface HTMLStructure<T> {
@@ -72,8 +73,8 @@ export class HTMLStructureOrganizer<T extends HTMLStructure<Reference>> {
         return result;
     }
 
-    private formatAttributeValue({ ref_type, ref_value }: Reference, mode: Mode): string {
-        const refValueWithAliast = `${this.SELECTORS_ALIAS}-${ref_value}`;
+    private formatAttributeValue({ ref_type, ref_value, skipAlias }: Reference, mode: Mode): string {
+        const refValueWithAliast = skipAlias === true ? ref_value : `${this.SELECTORS_ALIAS}-${ref_value}`;
 
         if (mode === "CSS_REFERENCES") return refValueWithAliast;
         else {
