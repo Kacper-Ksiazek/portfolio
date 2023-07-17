@@ -24,11 +24,12 @@ interface ModalOpeningButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>
 }
 
 const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps>((props, ref) => {
-    const { disabled, tooltip, primary, openModal, children, id, ...propsToForward } = props;
+    const { disabled, tooltip, primary, openModal, children, id, className, ...propsToForward } = props;
     return (
         <Tooltip title={!disabled ? tooltip : ""} placement="top">
             <span
                 id={id}
+                className={className}
                 style={{
                     marginLeft: props.small ? "4px" : "6px",
                 }}
