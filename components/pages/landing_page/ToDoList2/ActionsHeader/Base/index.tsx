@@ -1,10 +1,13 @@
 // Tools
 import { styled } from "@mui/material";
 import { SELECTORS } from "../Content/AddNewTask/css_references";
+import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
 // Types
 import type { ResponsiveHeightCSSClass } from "../hooks/useResponsiveHeight";
 // Styled components
 import SectionWrapper from "landing_page/ToDoList2/atoms/SectionWrapper";
+// Styles
+import { default as AddNewTaskRWD } from "../Content/AddNewTask/RWD";
 
 export default styled(SectionWrapper)(({ theme }) => ({
     height: "400px",
@@ -16,6 +19,7 @@ export default styled(SectionWrapper)(({ theme }) => ({
     "@media (max-width:770px)": {
         height: "620px",
     },
+
     [`&.${"PROGRESS_TRACKER" as ResponsiveHeightCSSClass}`]: {
         maxHeight: "256px",
         "@media (max-width:770px)": {
@@ -26,59 +30,27 @@ export default styled(SectionWrapper)(({ theme }) => ({
         },
     },
 
-    [`&.${"ADD_NEW_TASK" as ResponsiveHeightCSSClass}`]: {
-        maxHeight: "312px",
-        "@media (max-width:770px)": {
-            maxHeight: "500px",
-            [SELECTORS.FORM_FIELDS.LABEL_PICKER.SELECT]: {
-                flexGrow: 1,
+    [`&.${"ADD_NEW_TASK" as ResponsiveHeightCSSClass}`]: mergeSXObjects(
+        {
+            maxHeight: "312px",
+            "@media (max-width:770px)": {
+                maxHeight: "500px",
+            },
+            "@media (max-width:700px)": {
+                maxHeight: "550px",
+            },
+            "@media (max-width:500px)": {
+                maxHeight: "616px",
             },
         },
-        "@media (max-width:700px)": {
-            maxHeight: "550px",
-            [SELECTORS.FORM_FIELDS.WRAPPER]: {
-                flexWrap: "wrap",
+        AddNewTaskRWD
+    ),
 
-                // Row 1:
-                [SELECTORS.FORM_FIELDS.URGENCY_SWITCH]: {
-                    width: "124px",
-                },
-                [SELECTORS.FORM_FIELDS.DUE_DATE_PICKER]: {
-                    width: "calc(100% - 124px - 8px)",
-                },
-                // Row 2:
-                [SELECTORS.FORM_FIELDS.LABEL_PICKER.SELECT]: {
-                    margin: "8px 0 0 0 !important",
-                    width: "calc(100% - 8px - 42px)",
-                },
-
-                [SELECTORS.FORM_FIELDS.LABEL_PICKER.ADD_NEW_TASK_BUTTON]: {
-                    margin: "8px 0 0 8px",
-                    width: "42px",
-                },
-            },
-
-            [SELECTORS.BUTTONS.WRAPPER]: {
-                width: "100%",
-                marginTop: "26px !important",
-                [SELECTORS.BUTTONS.ADD_NEW_TASK]: {
-                    flexGrow: 1,
-                },
-            },
-        },
-
-        "@media (max-width:500px)": {
-            maxHeight: "616px",
-            [SELECTORS.BUTTONS.WRAPPER]: {
-                flexWrap: "wrap",
-                [SELECTORS.BUTTONS.ADD_NEW_TASK]: {
-                    width: "100%",
-                    margin: "0 0 8px 0",
-                },
-                [SELECTORS.BUTTONS.HIDE_PANEL]: {
-                    width: "100%",
-                },
-            },
+    [`&.${"EDIT_LABELS" as ResponsiveHeightCSSClass}`]: {
+        maxHeight: "400px",
+        "@media (max-width:1000px)": {
+            height: "520px",
+            maxHeight: "520px",
         },
     },
 
@@ -87,9 +59,5 @@ export default styled(SectionWrapper)(({ theme }) => ({
         "@media (max-width:770px)": {
             maxHeight: "244px",
         },
-    },
-
-    [`&.${"EDIT_LABELS" as ResponsiveHeightCSSClass}`]: {
-        maxHeight: "400px",
     },
 }));
