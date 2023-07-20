@@ -51,6 +51,18 @@ export default styled(SectionWrapper)(({ theme }) => ({
             height: "520px",
             maxHeight: "520px",
         },
+        "@media (max-width:770px)": {
+            height: "640px",
+            maxHeight: "640px",
+        },
+        "@media (max-width:590px)": {
+            height: "720px",
+            maxHeight: "720px",
+        },
+        "@media (max-width:400px)": {
+            height: "760px",
+            maxHeight: "760px",
+        },
     },
 
     [`&.${"HIDDEN" as ResponsiveHeightCSSClass}`]: {

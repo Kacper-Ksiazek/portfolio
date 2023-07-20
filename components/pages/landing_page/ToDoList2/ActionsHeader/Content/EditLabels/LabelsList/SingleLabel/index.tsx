@@ -26,7 +26,7 @@ const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
     const label = getLabelWithID(props.labelID);
 
     return (
-        <>
+        <FlexBox className={CSS_REFERENCES.TABLE.ROW_WRAPPER}>
             <LabelIndex index={props.index} className={CSS_REFERENCES.TABLE.INDEX} />
 
             <FlexBox center className={CSS_REFERENCES.TABLE.LABEL_NAME}>
@@ -56,7 +56,7 @@ const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
                     disabled={props.amountOfTasks.inTotal !== 0}
                 />
             </FlexBox>
-        </>
+        </FlexBox>
     );
 };
 

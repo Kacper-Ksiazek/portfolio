@@ -12,12 +12,14 @@ interface LabelsListWrapperProps {
 
 const LabelsListWrapper: FunctionComponent<LabelsListWrapperProps> = (props) => {
     return (
-        <OverflowScrollDiv
-            id={CSS_REFERENCES.LABELS_LIST.MAIN_WRAPPER} //
-            mimimumViewportWidthToKeepScrollability="0px"
-        >
-            <LabelsListBase>{props.children}</LabelsListBase>
-        </OverflowScrollDiv>
+        <LabelsListBase>
+            <OverflowScrollDiv
+                id={CSS_REFERENCES.LABELS_LIST.MAIN_WRAPPER} //
+                mimimumViewportWidthToKeepScrollability="0px"
+            >
+                {props.children}
+            </OverflowScrollDiv>
+        </LabelsListBase>
     );
 };
 

@@ -16,6 +16,10 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
             },
         },
         TABLE: {
+            ROW_WRAPPER: {
+                ref_value: "table-row-wrapper",
+                ref_type: "CSS_CLASS",
+            },
             INDEX: {
                 ref_value: "table-row-index",
                 ref_type: "CSS_CLASS",
