@@ -1,6 +1,5 @@
 // Tools
 import { styled } from "@mui/material";
-import { SELECTORS } from "../Content/AddNewTask/css_references";
 import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
 // Types
 import type { ResponsiveHeightCSSClass } from "../hooks/useResponsiveHeight";

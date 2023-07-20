@@ -1,7 +1,7 @@
 import { HTMLStructureOrganizer } from "@/utils/client/HTMLStructureOrganizer";
 
 export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
-    alias: "to-do-list--actions-header--management-header",
+    alias: "to-do-list--actions-header--edit-labels--management-header",
     structure: {
         WRAPPER: {
             ref_value: "wrapper",
