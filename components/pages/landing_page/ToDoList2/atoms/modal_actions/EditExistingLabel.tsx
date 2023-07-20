@@ -11,11 +11,12 @@ import AddRounded from "@mui/icons-material/AddRounded";
 import { Modal, ModalOpeningButton } from "./__SingleLabelModifier";
 
 interface EditExistingLabelProps {
-    small?: boolean;
     size: `${string}px`;
     labelID: LabelID;
     labelToBeEdited: Label;
 
+    small?: boolean;
+    className?: string;
     modalOpeningButtonPrompt?: ReactNode;
 }
 
@@ -35,6 +36,7 @@ const EditExistingLabel: FunctionComponent<EditExistingLabelProps> = (props) => 
                 openModal={() => setModalIsOpened(true)}
                 isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
                 tooltip="Modify this label"
+                className={props.className}
             >
                 {props.modalOpeningButtonPrompt ? props.modalOpeningButtonPrompt : <AddRounded />}
             </ModalOpeningButton>

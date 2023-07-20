@@ -1,3 +1,5 @@
+// Tools
+import { CSS_REFERENCES } from "../../css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { Label, LabelID } from "landing_page/ToDoList2/@types";
@@ -22,8 +24,11 @@ const Edit: FunctionComponent<EditProps> = (props) => {
                 labelToBeEdited={props.label}
                 modalOpeningButtonPrompt={
                     <>
-                        <Settings />
-                        {props.modalOpeningButtonPrompt}
+                        <Settings className={CSS_REFERENCES.TABLE.BUTTONS.SINGLE.ICON} />
+                        <span className={CSS_REFERENCES.TABLE.BUTTONS.SINGLE.TEXT}>
+                            {props.modalOpeningButtonPrompt}
+                            {/*  */}
+                        </span>
                     </>
                 }
             />

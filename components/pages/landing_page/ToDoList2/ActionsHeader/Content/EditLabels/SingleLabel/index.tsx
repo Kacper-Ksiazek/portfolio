@@ -1,5 +1,5 @@
 // Tools
-import { useRef } from "react";
+import { CSS_REFERENCES } from "../css_references";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
@@ -27,9 +27,9 @@ const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
 
     return (
         <>
-            <LabelIndex index={props.index} />
+            <LabelIndex index={props.index} className={CSS_REFERENCES.TABLE.INDEX} />
 
-            <FlexBox center>
+            <FlexBox center className={CSS_REFERENCES.TABLE.LABEL_NAME}>
                 <Label color={label.color} isUrgent={props.urgentMode}>
                     {label.name}
                 </Label>
@@ -38,9 +38,12 @@ const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
             <Progress
                 amountOfTasks={props.amountOfTasks} //
                 color={label.color}
+                wrapperProps={{
+                    className: CSS_REFERENCES.TABLE.PROGRESS_BAR,
+                }}
             />
 
-            <FlexBox>
+            <FlexBox className={CSS_REFERENCES.TABLE.BUTTONS.WRAPPER}>
                 <ActionsButtons.Edit
                     labelID={props.labelID}
                     label={label}

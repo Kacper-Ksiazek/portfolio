@@ -1,7 +1,7 @@
 // Tools
 import { alpha, styled } from "@mui/material";
 // Types
-import type { FunctionComponent } from "react";
+import type { FunctionComponent, HTMLAttributes } from "react";
 // Styled components
 const LabelIndexBase = styled("span")(({ theme }) => ({
     ...theme.mixins.flex_center,
@@ -23,13 +23,14 @@ const LabelIndexBase = styled("span")(({ theme }) => ({
         zIndex: 2,
     },
 }));
-interface LabelIndexProps {
+interface LabelIndexProps extends HTMLAttributes<HTMLSpanElement> {
     index: number;
 }
 
 const LabelIndex: FunctionComponent<LabelIndexProps> = (props) => {
+    const { index, ...propsToForward } = props;
     return (
-        <LabelIndexBase>
+        <LabelIndexBase {...propsToForward}>
             <span className="content">
                 {props.index}
                 {/*  */}

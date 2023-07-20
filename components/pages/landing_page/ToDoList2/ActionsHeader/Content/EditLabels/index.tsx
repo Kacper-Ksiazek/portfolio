@@ -1,5 +1,6 @@
 // Tools
 import { alpha, styled } from "@mui/material";
+import { CSS_REFERENCES } from "./css_references";
 import { useFilteredLabels } from "./hooks/useFilteredLabels";
 // Types
 import type { FunctionComponent } from "react";
@@ -33,7 +34,10 @@ const EditLabels: FunctionComponent = () => {
                 amountOfLabels={labels.length}
             />
 
-            <OverflowScrollDiv maxHeight="130px">
+            <OverflowScrollDiv
+                id={CSS_REFERENCES.LABELS_LIST.MAIN_WRAPPER} //
+                mimimumViewportWidthToKeepScrollability="0px"
+            >
                 <StyledTable>
                     {labels.map((item, index) => {
                         return (

@@ -24,7 +24,7 @@ interface ModalOpeningButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>
 }
 
 const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps>((props, ref) => {
-    const { disabled, tooltip, primary, openModal, children, id, className, ...propsToForward } = props;
+    const { disabled, tooltip, primary, openModal, children, id, className, isIconButton, ...propsToForward } = props;
     return (
         <Tooltip title={!disabled ? tooltip : ""} placement="top">
             <span
@@ -50,6 +50,7 @@ const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps
                     })}
                     disabled={disabled ?? false}
                     onClick={openModal}
+                    iconButton={isIconButton}
                 >
                     {children}
                 </StyledButton>

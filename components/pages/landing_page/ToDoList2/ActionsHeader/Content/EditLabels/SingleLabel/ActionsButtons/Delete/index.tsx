@@ -1,5 +1,6 @@
 // Tools
 import { useRef } from "react";
+import { CSS_REFERENCES } from "../../../css_references";
 import { useLabelsUpdatersContext } from "landing_page/ToDoList2/hooks";
 import { useSafeSnackbarCallback } from "@/hooks/useSafeSnackbarCallback";
 // Types
@@ -34,8 +35,8 @@ const DeleteLabel: FunctionComponent<DeleteLabelProps> = (props) => {
                 disabled={props.disabled}
             >
                 <>
-                    <DeleteOutlineOutlined />
-                    Delete
+                    <DeleteOutlineOutlined className={CSS_REFERENCES.TABLE.BUTTONS.SINGLE.ICON} />
+                    <span className={CSS_REFERENCES.TABLE.BUTTONS.SINGLE.TEXT}>Delete</span>
                 </>
             </ModalOpeningButton>
 
