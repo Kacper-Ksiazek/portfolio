@@ -10,6 +10,8 @@ interface HideButtonProps {
     preventOnClick: boolean;
     contentIsHidden: boolean;
 
+    wrapperID?: string;
+
     toggleContentVisibility: () => void;
 }
 
@@ -17,6 +19,22 @@ const HideButton: FunctionComponent<HideButtonProps> = (props) => {
     function onClick() {
         if (props.preventOnClick) return;
         props.toggleContentVisibility();
+
+        if (props.wrapperID) {
+            const wrapper = document.getElementById(props.wrapperID);
+            if (wrapper) {
+                wrapper.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                });
+                // const { height } = wrapper.getBoundingClientRect();
+                // scrollTo({
+                //     behavior: "smooth",
+                //     left: 0,
+                //     top: window.scrollY - height,
+                // });
+            }
+        }
     }
 
     return (

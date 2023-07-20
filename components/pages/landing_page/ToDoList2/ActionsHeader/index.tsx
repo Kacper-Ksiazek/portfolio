@@ -13,6 +13,8 @@ import HideButton from "./HideButton";
 // Styled components
 import ActionsHeaderBase from "./Base";
 
+const ACTIONS_HEADER_WRAPPER_ID: string = "to-do-list--actions-header";
+
 const ActionsHeader: FunctionComponent = () => {
     const { value: stage, setValue: setStage, isChanging: isStageChanging } = useDelayedState<ActionHeaderSection>("PROGRESS_TRACKER", 160);
     const { width } = useWindowsSizes();
@@ -38,7 +40,7 @@ const ActionsHeader: FunctionComponent = () => {
     }
 
     return (
-        <ActionsHeaderBase className={responsiveHeightCSSClass}>
+        <ActionsHeaderBase className={responsiveHeightCSSClass} id={ACTIONS_HEADER_WRAPPER_ID}>
             <Navigation
                 currentStage={stage} //
                 updateCurrentStage={setStage}
@@ -48,6 +50,7 @@ const ActionsHeader: FunctionComponent = () => {
                     <HideButton
                         {...contentVisibility} //
                         toggleContentVisibility={toggleContentVisibility}
+                        wrapperID={ACTIONS_HEADER_WRAPPER_ID}
                     />
                 )}
             </Navigation>
@@ -64,6 +67,7 @@ const ActionsHeader: FunctionComponent = () => {
                 <HideButton
                     {...contentVisibility} //
                     toggleContentVisibility={toggleContentVisibility}
+                    wrapperID={ACTIONS_HEADER_WRAPPER_ID}
                 />
             )}
         </ActionsHeaderBase>
