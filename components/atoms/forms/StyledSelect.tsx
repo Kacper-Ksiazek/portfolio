@@ -47,7 +47,6 @@ export default function StyledSelect<T extends number | string | Record<any, any
     return (
         <StyledSelectBase
             {...(propsToForward as any)}
-            id="ESSA"
             MenuProps={{
                 sx: (theme) => {
                     return theme.palette.mode === "light"
