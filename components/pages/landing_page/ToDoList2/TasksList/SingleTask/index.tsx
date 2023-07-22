@@ -4,7 +4,7 @@ import { useTaskRemover } from "./hooks/useTaskRemover";
 import { useEditModeContext } from "./hooks/useEditModeContext";
 // Types
 import { FunctionComponent } from "react";
-import type { Task, TaskEditCallback } from "../@types";
+import type { Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
 // Other components
 import Manage from "./Manage";
 import Content from "./Content";
@@ -16,8 +16,9 @@ import SingleTaskBase from "./Base";
 
 interface SingleTaskProps {
     data: Task;
-    update: (cb: TaskEditCallback) => void;
+
     remove: () => void;
+    update: (cb: TaskEditCallback) => void;
 }
 
 const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {

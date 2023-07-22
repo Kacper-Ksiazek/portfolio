@@ -1,5 +1,5 @@
 // Tools
-import { CLASSES } from "../../../css_references";
+import { CSS_REFERENCES } from "landing_page/ToDoList2/TasksList/css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -18,7 +18,7 @@ interface DescriptionProps {
 
 const Description: FunctionComponent<DescriptionProps> = (props) => {
     return (
-        <DescriptionWrapper className={CLASSES.SINGLE_TASK.DESCRIPTION}>
+        <DescriptionWrapper className={CSS_REFERENCES.SINGLE_TASK.DESCRIPTION}>
             <SmoothConditionalRender when={!props.isInEditMode}>
                 <h4>{props.description}</h4>
             </SmoothConditionalRender>

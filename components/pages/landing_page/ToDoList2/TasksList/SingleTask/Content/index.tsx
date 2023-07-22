@@ -21,17 +21,13 @@ const Content: FunctionComponent<ContentProps> = (props) => {
     return (
         <FlexBox column horizontal="start" sx={{ width: "100%", marginRight: "16px" }}>
             <Description
-                description={props.description} //
+                description={props.description}
                 isInEditMode={editModeContext.isOpened}
                 newValue={editModeContext.newState.description}
                 updateNewValue={(val) => editModeContext.updateNewState({ description: val })}
             />
 
-            <LabelsAndDueTime
-                isUrgent={props.isUrgent} //
-                labelID={props.labelID}
-                dueDate={props.dueDate}
-            />
+            <LabelsAndDueTime isUrgent={props.isUrgent} labelID={props.labelID} dueDate={props.dueDate} />
         </FlexBox>
     );
 };

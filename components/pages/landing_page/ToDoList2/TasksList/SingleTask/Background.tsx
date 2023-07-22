@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import { CLASSES } from "../css_references";
+import { CSS_REFERENCES } from "../css_references";
 // Types
 import type { FunctionComponent } from "react";
 
@@ -30,7 +30,7 @@ const Background: FunctionComponent<BackgroundProps> = (props) => {
             className={[
                 props.isUrgent ? "active" : "", //
                 props.isInEditMode ? "in-edit-mode" : "",
-                CLASSES.SINGLE_TASK.BACKGROUND,
+                CSS_REFERENCES.SINGLE_TASK.BACKGROUND,
             ].join(" ")}
         />
     );

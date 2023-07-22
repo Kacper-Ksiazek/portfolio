@@ -1,6 +1,6 @@
 // Tools
+import { CSS_REFERENCES } from "landing_page/ToDoList2/TasksList/css_references";
 import { useLabelsContext } from "@/components/pages/landing_page/ToDoList2/hooks";
-import { CLASSES } from "@/components/pages/landing_page/ToDoList2/css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { LabelID } from "landing_page/ToDoList2/@types";
@@ -21,7 +21,7 @@ function isUrgencyIndicating(props: unknown): props is PropsIndicatingUrgency {
 
 const Label: FunctionComponent<PropsWithLabel | PropsIndicatingUrgency> = (props) => {
     const { getLabelWithID } = useLabelsContext();
-    const className = CLASSES.SINGLE_TASK.LABEL;
+    const className = CSS_REFERENCES.SINGLE_TASK.LABEL;
 
     if (isUrgencyIndicating(props)) {
         return (
