@@ -6,9 +6,7 @@ export default styled("div")(({ theme }) => ({
     display: "flex",
     width: "100%",
     paddingBottom: "12px",
-    "&>*": {
-        marginRight: "6px",
-    },
+    gap: "6px",
 
     "@media (min-width:991px)": {
         flexWrap: "nowrap",
