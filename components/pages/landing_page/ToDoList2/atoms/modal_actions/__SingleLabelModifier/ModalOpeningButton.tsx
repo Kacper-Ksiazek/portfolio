@@ -7,52 +7,48 @@ import Tooltip from "@mui/material/Tooltip";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 
-interface ModalOpeningButtonProps extends Omit<HTMLAttributes<HTMLButtonElement>, "onClick"> {
+interface ModalOpeningButtonProps {
     tooltip: string;
     size: `${string}px`;
 
     children: ReactNode;
 
-    id?: string;
     small?: boolean;
     primary?: boolean;
     disabled?: boolean;
-    className?: string;
     isIconButton?: boolean;
+
+    wrapperProps?: Omit<HTMLAttributes<HTMLButtonElement>, "onClick">;
 
     openModal?: () => void;
 }
 
 const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps>((props, ref) => {
-    const { disabled, tooltip, primary, openModal, children, id, className, isIconButton, ...propsToForward } = props;
     return (
-        <Tooltip title={!disabled ? tooltip : ""} placement="top">
+        <Tooltip title={!props.disabled ? props.tooltip : ""} placement="top">
             <span
-                id={id}
-                className={className}
+                {...props.wrapperProps}
                 style={{
                     marginLeft: props.small ? "4px" : "6px",
                 }}
             >
                 <StyledButton
-                    {...propsToForward}
                     ref={ref}
-                    color={primary ? "primary" : "MUIFormElement"}
-                    sx={(theme) => ({
+                    color={props.primary ? "primary" : "MUIFormElement"}
+                    onClick={props.openModal}
+                    iconButton={props.isIconButton}
+                    disabled={props.disabled ?? false}
+                    sx={{
                         height: props.size,
                         borderRadius: "3px",
                         fontSize: "16px",
-                        width: "100%",
+                        width: props.isIconButton ? (props.small ? "32px" : "42px") : "100%",
                         svg: {
-                            fontSize: "20px",
-                            marginRight: "2px",
+                            fontSize: props.small ? "20px" : "24px",
                         },
-                    })}
-                    disabled={disabled ?? false}
-                    onClick={openModal}
-                    iconButton={isIconButton}
+                    }}
                 >
-                    {children}
+                    {props.children}
                 </StyledButton>
             </span>
         </Tooltip>

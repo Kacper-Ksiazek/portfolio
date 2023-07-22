@@ -34,7 +34,6 @@ export default styled("div")(({ theme }) => {
             },
             [SELECTORS.TABLE.PROGRESS_BAR]: {
                 width: "calc(100% - 60px - 220px - 180px - 3 * 4px)",
-                marginTop: "4px",
             },
             [SELECTORS.TABLE.INDEX]: {
                 width: "60px",

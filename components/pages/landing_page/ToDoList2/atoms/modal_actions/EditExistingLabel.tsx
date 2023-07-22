@@ -36,7 +36,9 @@ const EditExistingLabel: FunctionComponent<EditExistingLabelProps> = (props) => 
                 openModal={() => setModalIsOpened(true)}
                 isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
                 tooltip="Modify this label"
-                className={props.className}
+                wrapperProps={{
+                    className: props.className,
+                }}
             >
                 {props.modalOpeningButtonPrompt ? props.modalOpeningButtonPrompt : <AddRounded />}
             </ModalOpeningButton>
