@@ -13,11 +13,12 @@ const LabelIndexBase = styled("span")(({ theme }) => ({
     "&::after": {
         content: "''",
         ...theme.mixins.absolute_center,
-        background: theme.palette.mode == "light" ? alpha(theme.palette.background.MUIFormElementsBackground, 0.3) : theme.palette.background.MUIFormElementsBorder,
+        background: theme.palette.mode == "light" ? alpha(theme.palette.background.MUIFormElementsBorder, 0.3) : theme.palette.background.MUIFormElementsBorder,
         width: "calc(100% - 16px)",
         height: "calc(100% - 16px)",
         borderRadius: "3px",
     },
+
     "span.content": {
         position: "relative",
         zIndex: 2,

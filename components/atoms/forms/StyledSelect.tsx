@@ -8,15 +8,26 @@ import MenuItem from "@mui/material/MenuItem";
 // Styled components
 const StyledSelectBase = styled(Select)(({ theme }) => ({
     fontSize: "16px",
+    color: theme.palette.text.MUIFormElementText,
+    background: theme.palette.background.MUIFormElementsBackground,
+    fieldset: {
+        borderColor: theme.palette.background.MUIFormElementsBorder,
+        transition: "border-color .2s",
+    },
+    "&:hover": {
+        fieldset: {
+            borderColor: "#fff !important",
+        },
+    },
     "@media (max-width:500px)": {
         width: "100%",
     },
     ".MuiSelect-select": {
         padding: "14px 16px",
     },
-    ...(theme.palette.mode === "light" && {
-        background: theme.palette.background.default,
-    }),
+    svg: {
+        color: "inherit !important",
+    },
 }));
 
 export interface OptionWithAlias<T> {

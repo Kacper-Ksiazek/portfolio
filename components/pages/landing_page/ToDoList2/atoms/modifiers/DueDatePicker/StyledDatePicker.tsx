@@ -10,6 +10,15 @@ function shouldForwardProp(prop: string) {
 export default styled(DatePicker, { shouldForwardProp })<{ size: `${string}px` }>(({ theme, ...props }) => ({
     height: props.size,
     width: "100%",
+    fieldset: {
+        borderColor: theme.palette.background.MUIFormElementsBorder,
+        transition: "border-color .2s",
+    },
+    "&:hover": {
+        fieldset: {
+            borderColor: "#fff !important",
+        },
+    },
     ".MuiOutlinedInput-root": {
         display: "flex",
         flexDirection: "row-reverse",
@@ -26,17 +35,17 @@ export default styled(DatePicker, { shouldForwardProp })<{ size: `${string}px` }
         paddingTop: "6px !important",
     },
     ".MuiInputBase-input": {
-        width: "112px",
+        width: "128px",
         height: props.size,
         paddingTop: "0px",
         paddingBottom: "0px",
-        fontSize: "14px !important",
+        color: theme.palette.text.MUIFormElementText,
     },
     input: {
         paddingLeft: "16px",
     },
     svg: {
         fontSize: "20px",
-        color: theme.palette.text.primary,
+        color: theme.palette.text.MUIFormElementText,
     },
 }));

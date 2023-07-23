@@ -4,7 +4,8 @@ import { styled } from "@mui/material";
 
 export default styled("div")(({ theme }) => ({
     position: "relative",
-    background: theme.palette.background.lightSectionBackground,
+    background: theme.palette.mode === "light" ? theme.palette.background.darkSectionBackground : theme.palette.background.lightSectionBackground,
+    color: "#fff",
     width: "calc(100vw - 32px)",
     maxWidth: "480px",
     zIndex: 10,

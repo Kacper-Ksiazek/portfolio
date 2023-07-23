@@ -6,7 +6,7 @@ import type { SxProps } from "@/@types/MUI";
 import type { ActionButtonProps } from "./@types";
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
-import Modal from "@mui/material/Modal";
+import MUIModal from "@mui/material/Modal";
 // Other components
 import ModalActions from "./ModalActions";
 // Styled components
@@ -27,7 +27,7 @@ const StyledModal: FunctionComponent<StyledModalProps> = (props) => {
     const [shouldDisplayModal, closeModal] = useModalControl(props.onClose);
 
     return (
-        <Modal
+        <MUIModal
             open={props.isOpen} //
             sx={(theme) => {
                 return {
@@ -46,7 +46,7 @@ const StyledModal: FunctionComponent<StyledModalProps> = (props) => {
                     actionButton={props.actionButton}
                 />
             </ModalContentWrapper>
-        </Modal>
+        </MUIModal>
     );
 };
 

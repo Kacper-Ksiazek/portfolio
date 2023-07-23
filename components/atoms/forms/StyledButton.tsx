@@ -20,7 +20,7 @@ export default styled(ButtonBase, {
         MUIFormElement: {
             main: theme.palette.background.MUIFormElementsBackground,
             border: theme.palette.background.MUIFormElementsBorder,
-            contrast: theme.palette.mode === "light" ? "#000" : "#fff",
+            contrast: theme.palette.text.MUIFormElementText,
         },
         error: {
             main: theme.palette.error.main,

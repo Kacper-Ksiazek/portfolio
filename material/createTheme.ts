@@ -17,9 +17,9 @@ declare module "@mui/material/styles/createPalette" {
         disabledElementBackground: string;
     }
 
-    // interface TypeText {
-
-    // }
+    interface TypeText {
+        MUIFormElementText: string;
+    }
 }
 
 interface CreateThemeParams {
@@ -46,6 +46,7 @@ interface CreateThemeParams {
     text: {
         primary: string;
         secondary: string;
+        MUIFormElementText: string;
 
         disabled: string;
     };
