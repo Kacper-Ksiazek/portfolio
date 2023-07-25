@@ -16,6 +16,9 @@ export const IconWrapper = styled("div", {
         width: size,
         height: size,
         transition: "background .3s, border-color .3s",
+        "&>span": {
+            ...theme.mixins.flex_center,
+        },
         svg: {
             transition: "opacity .3s",
             opacity: 0,

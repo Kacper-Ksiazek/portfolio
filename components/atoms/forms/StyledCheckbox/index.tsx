@@ -1,10 +1,12 @@
 // Tools
 import { useState } from "react";
+import SmoothConditionalRender from "@/components/utils/SmoothConditionalRender";
 // Types
 import type { FunctionComponent } from "react";
 import type { ComponentThemeName } from "../_common_component_color_themes";
 // Material UI Components
 import Check from "@mui/icons-material/Check";
+import Close from "@mui/icons-material/Close";
 // Styled components
 import { IconWrapper } from "./IconWrapper";
 import { StyledCheckboxBase } from "./StyledCheckboxBase";
@@ -53,7 +55,13 @@ const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
                 size={props.small ? "small" : "normal"} //
                 className={`${props.value ? "selected" : ""} icon-wrapper`}
             >
-                <Check />
+                <SmoothConditionalRender when={props.disabled !== true}>
+                    <Check />
+                </SmoothConditionalRender>
+
+                <SmoothConditionalRender when={props.disabled === true}>
+                    <Close />
+                </SmoothConditionalRender>
             </IconWrapper>
 
             <span>{props.label}</span>

@@ -53,7 +53,8 @@ export const StyledCheckboxBase = styled("button", {
             ".icon-wrapper": {
                 borderColor: theme.palette.text.disabled,
                 svg: {
-                    opacity: 0.5,
+                    color: theme.palette.text.disabled,
+                    opacity: .5,
                 },
             },
         }),
