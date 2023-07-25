@@ -51,7 +51,7 @@ const Menu: FunctionComponent<{ introAnimationsWithExtraDelay: boolean }> = (pro
                 </StyledButton>
 
                 <StyledButton
-                    color="primary"
+                    componentThemeID="PRIMARY"
                     className="navigation" //
                     onClick={() => context.navigation.startNewGame(context.difficulty)}
                 >

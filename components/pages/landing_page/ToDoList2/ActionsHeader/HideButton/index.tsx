@@ -35,7 +35,11 @@ const HideButton: FunctionComponent<HideButtonProps> = (props) => {
     }
 
     return (
-        <HideButtonBase color="MUIFormElement" onClick={onClick as any}>
+        <HideButtonBase
+            componentThemeID="MUI" //
+            subtleHoverEffect
+            onClick={onClick as any}
+        >
             <KeyboardArrowDownRoundedIcon
                 sx={{
                     transform: `rotate(${props.renderContent ? 180 : 0}deg)`, //

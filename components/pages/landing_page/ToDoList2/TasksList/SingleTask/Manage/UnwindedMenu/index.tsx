@@ -55,7 +55,7 @@ const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
         <UnwindedMenuBase className={props.className} sx={props.sx}>
             <MenuActionButton
                 icon={props.isUrgent ? <ArrowDownwardOutlined /> : <ArrowUpwardOutlined />} //
-                label={props.isUrgent ? "Make-less-important" : "Make urgent"}
+                label={props.isUrgent ? "Make not urgent" : "Make urgent"}
                 onClick={handleOnClick(props.toggleUrgency)}
             />
             <MenuActionButton

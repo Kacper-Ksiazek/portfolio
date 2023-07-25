@@ -3,7 +3,7 @@ import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useState, useMemo, createContext, ReactNode } from "react";
 // Types
 import type { FunctionComponent } from "react";
-import type { TaskWithoutID, TaskEditCallback } from "../../@types";
+import type { TaskWithoutID, TaskEditCallback } from "landing_page/ToDoList2/@types";
 
 export type UpdatedTask = Omit<TaskWithoutID, "isCompleted" | "createdAt">;
 

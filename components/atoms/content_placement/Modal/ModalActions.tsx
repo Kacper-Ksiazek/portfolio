@@ -28,12 +28,12 @@ const ModalActions: FunctionComponent<ModalActionsProps> = (props) => {
 
     return (
         <FlexBox sx={{ mt: "24px" }}>
-            <StyledButton color="error" onClick={props.closeModal}>
+            <StyledButton componentThemeID="ERROR" onClick={props.closeModal}>
                 Cancel
             </StyledButton>
 
             <StyledButton
-                color="primary" //
+                componentThemeID="PRIMARY" //
                 onClick={onActionButtonClick}
                 disabled={actionButton.disabled}
             >

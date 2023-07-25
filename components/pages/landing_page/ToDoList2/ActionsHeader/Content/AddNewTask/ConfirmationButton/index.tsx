@@ -32,7 +32,7 @@ const ConfirmationButton: FunctionComponent<ConfirmationButtonProps> = (props) =
                 mr: "8px",
                 width: "240px",
             }}
-            color="primary"
+            componentThemeID="PRIMARY"
             onClick={onClick}
             disabled={disableOnClick}
             id={props.id}

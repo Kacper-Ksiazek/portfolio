@@ -34,10 +34,11 @@ const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps
             >
                 <StyledButton
                     ref={ref}
-                    color={props.primary ? "primary" : "MUIFormElement"}
                     onClick={props.openModal}
                     iconButton={props.isIconButton}
                     disabled={props.disabled ?? false}
+                    componentThemeID={props.primary ? "PRIMARY" : "MUI"}
+                    subtleHoverEffect={props.primary !== true}
                     sx={{
                         height: props.size,
                         borderRadius: "3px",

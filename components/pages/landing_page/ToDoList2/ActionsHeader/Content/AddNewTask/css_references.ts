@@ -1,6 +1,6 @@
 // Tools
 import { HTMLStructureOrganizer } from "@/utils/client/HTMLStructureOrganizer";
-import { DUE_DATE_PICKER_CLASS_NAME } from "../../../atoms/modifiers/DueDatePicker";
+import { DUE_DATE_PICKER_CLASS_NAME } from "../../../../../../atoms/forms/StyledDatePicker";
 import { LABEL_PICKER_SELECT_CLASS_NAME, LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME } from "../../../atoms/modifiers/LabelPicker";
 
 export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({

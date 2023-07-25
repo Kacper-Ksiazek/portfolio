@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 // Styled components
-import StyledButton from "components/atoms/forms/StyledButton";
+import StyledButton from "@/components/atoms/forms/StyledButton";
 
 export default styled(StyledButton)(({ theme }) => ({
     padding: 0,

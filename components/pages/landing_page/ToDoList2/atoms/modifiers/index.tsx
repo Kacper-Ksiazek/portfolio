@@ -1,4 +1,4 @@
 import LabelPicker from "./LabelPicker";
-import DueDatePicker from "./DueDatePicker";
+import DueDatePicker from "../../../../../atoms/forms/StyledDatePicker";
 
 export { DueDatePicker, LabelPicker };

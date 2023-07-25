@@ -33,7 +33,7 @@ const DeleteUnusedLabels: FunctionComponent<DeleteUnusedLabelsProps> = ({ unused
     return (
         <>
             <StyledButton
-                color="MUIFormElement" //
+                componentThemeID="MUI" //
                 ref={modalOpeningButtonRef}
                 sx={{
                     opacity: unusedLabels.length,
@@ -41,6 +41,7 @@ const DeleteUnusedLabels: FunctionComponent<DeleteUnusedLabelsProps> = ({ unused
                 }}
                 id={props.id}
                 disabled={unusedLabels.length === 0}
+                subtleHoverEffect
             >
                 <CleaningServicesRounded sx={{ mr: "6px" }} />
                 Delete {unusedLabels.length === 0 ? amountOfRemovedLabels.current : unusedLabels.length} unused labels

@@ -17,10 +17,7 @@ const ShowEmailButton: FunctionComponent<ShowEmailButtonProps> = (props) => {
     return (
         <Fade in={!props.showPhone}>
             <Tooltip title="Show email address" placement="top">
-                <WayToReachMeButton
-                    onClick={() => props.setShowPhone(true)} //
-                    color="text"
-                >
+                <WayToReachMeButton onClick={() => props.setShowPhone(true)}>
                     <Visibility />
                 </WayToReachMeButton>
             </Tooltip>

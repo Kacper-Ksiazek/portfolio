@@ -38,12 +38,12 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
     return (
         <>
             <ModalOpeningButton
-                size={props.size as any} //
-                small={props.small}
-                openModal={() => setModalIsOpened(true)}
-                isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
-                tooltip={props.disableTooltip === false ? "Create a new label" : ""}
+                small={props.small} //
                 primary={props.primary}
+                size={props.size as any}
+                openModal={() => setModalIsOpened(true)}
+                tooltip={props.disableTooltip === false ? "Create a new label" : ""}
+                isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
                 wrapperProps={{
                     className: props.className,
                     id: props.id,
@@ -51,6 +51,7 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
             >
                 {props.modalOpeningButtonPrompt ? props.modalOpeningButtonPrompt : <AddRounded />}
             </ModalOpeningButton>
+
             {(() => {
                 if (modalIsOpened === true) {
                     return (

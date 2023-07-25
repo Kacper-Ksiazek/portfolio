@@ -14,7 +14,7 @@ const InternalRedirection: FunctionComponent<RedirectionProps> = (props) => {
         <RedirectionWrapper tooltip={props.tooltip}>
             <Link href={props.url} passHref>
                 <RedirectBase
-                    color="primary" //
+                    componentThemeID="PRIMARY" //
                     className={[props.small ? "small" : "", "redirect", props.className].join(" ")}
                     sx={props.sx}
                 >

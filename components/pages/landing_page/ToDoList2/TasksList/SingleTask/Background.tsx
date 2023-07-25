@@ -10,7 +10,7 @@ const BackgroundBase = styled("span")(({ theme }) => ({
     transform: "scaleX(0)",
     transition: "transform .3s",
     transformOrigin: "left",
-    background: theme.palette.background.lightAnimationBar,
+    background: "#000",
     "&.active": {
         transform: "scaleX(1)",
         "&:not(&.in-edit-mode)": {

@@ -55,7 +55,7 @@ const SurrenderButton: FunctionComponent<SurrenderButtonProps> = (props) => {
     return (
         <>
             <StyledButton
-                color="error" //
+                componentThemeID="ERROR"
                 onClick={(e) => {
                     (e.target as any).blur();
                     setOpenDialog(true);
@@ -81,7 +81,7 @@ const SurrenderButton: FunctionComponent<SurrenderButtonProps> = (props) => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <DialogButton onClick={exit} color="primary">
+                    <DialogButton onClick={exit} componentThemeID="PRIMARY">
                         Yes
                     </DialogButton>
                     <DialogButton onClick={closeDialog}>No</DialogButton>

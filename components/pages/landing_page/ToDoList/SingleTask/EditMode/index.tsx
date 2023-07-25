@@ -50,7 +50,7 @@ const SingleTaskEditMode: FunctionComponent<SingleTaskEditModeProps> = (props) =
                 tooltip="Apply changes" //
                 icon={<Check />}
                 onClick={handleModification}
-                color="success"
+                componentThemeID="SUCCESS"
                 disabled={disableApplyChangesButton}
             />
 

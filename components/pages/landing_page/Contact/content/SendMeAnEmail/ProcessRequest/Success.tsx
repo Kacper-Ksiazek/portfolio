@@ -36,16 +36,16 @@ const SuccessResult: FunctionComponent<SuccessProps | FakedSuccessProps> = (prop
             {isStaged(props) && props.isStaged && (
                 <AbsoluteButtonsWrapper>
                     <ButtonWithTooltip
-                        tooltip="Send request again" //
-                        color="success"
+                        icon={<Refresh />} //
                         onClick={props.refresh}
-                        icon={<Refresh />}
+                        componentThemeID="SUCCESS"
+                        tooltip="Send request again"
                     />
                     <ButtonWithTooltip
-                        color="success" //
+                        icon={<ArrowBack />} //
+                        componentThemeID="SUCCESS"
                         tooltip="Return to the form"
                         onClick={props.goBackToTheForm}
-                        icon={<ArrowBack />}
                     />
                 </AbsoluteButtonsWrapper>
             )}

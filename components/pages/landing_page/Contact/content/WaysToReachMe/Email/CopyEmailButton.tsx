@@ -60,11 +60,7 @@ const CopyEmailButton: FunctionComponent<CopyEmailButtonProps> = (props) => {
         <>
             <Fade in={showButton}>
                 <Tooltip title="Copy email address to clipboard" placement="top">
-                    <WayToReachMeButton
-                        onClick={copyToClipboard} //
-                        color="text"
-                        ref={buttonElement}
-                    >
+                    <WayToReachMeButton onClick={copyToClipboard} ref={buttonElement}>
                         <ContentCopy />
                     </WayToReachMeButton>
                 </Tooltip>

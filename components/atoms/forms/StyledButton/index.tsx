@@ -1,5 +1,6 @@
 // Tools
-import { styled, alpha } from "@mui/material";
+import { styled } from "@mui/material";
+import {StyledButtonColorThemes,type StyledButtonThemeName} from './ComponentColorThemes'
 // Types
 import type { ButtonBaseProps } from "@mui/material/ButtonBase";
 // Material UI Components
@@ -8,43 +9,16 @@ import ButtonBase from "@mui/material/ButtonBase";
 export type Color = "MUIFormElement" | "text" | "primary" | "secondary" | "error" | "success";
 
 interface StyledButtonProps extends ButtonBaseProps {
-    color?: Color;
+    color?: never;
     iconButton?: boolean;
     subtleHoverEffect?: boolean;
+    componentThemeID?: StyledButtonThemeName;
 }
 
 export default styled(ButtonBase, {
-    shouldForwardProp: (prop: string) => !["color", "iconButton", "subtleHoverEffect"].includes(prop),
+    shouldForwardProp: (prop: string) => !["color", "iconButton", "subtleHoverEffect","componentThemeID"].includes(prop),
 })<StyledButtonProps>(({ theme, ...props }) => {
-    const possibleColor: Record<Color, { main: string; contrast: string; border?: string }> = {
-        MUIFormElement: {
-            main: theme.palette.background.MUIFormElementsBackground,
-            border: theme.palette.background.MUIFormElementsBorder,
-            contrast: theme.palette.text.MUIFormElementText,
-        },
-        error: {
-            main: theme.palette.error.main,
-            contrast: "#fff",
-        },
-        primary: {
-            main: theme.palette.primary.main,
-            contrast: "#fff",
-        },
-        success: {
-            main: theme.palette.success.main,
-            contrast: "#fff",
-        },
-        secondary: {
-            main: theme.palette.secondary.main,
-            contrast: "#fff",
-        },
-        text: {
-            main: theme.palette.mode == "light" ? theme.palette.text.primary : theme.palette.background.lightSectionBackground,
-            contrast: theme.palette.mode == "light" ? theme.palette.text.secondary : "#fff",
-        },
-    };
-
-    const { main: backgroundColor, contrast: fontColor, border: borderColor } = possibleColor[props.color ?? "text"];
+    const {background,borderColor,fontColor} = StyledButtonColorThemes.getTheme(props.componentThemeID ?? "TEXT",theme);
 
     const applySubtleHoverEffect = props.subtleHoverEffect === true || props.color === "MUIFormElement";
 
@@ -53,10 +27,10 @@ export default styled(ButtonBase, {
     }
 
     return {
-        background: backgroundColor,
+        background,
         color: fontColor,
         borderRadius: "3px",
-        border: `1px solid ${borderColor ?? backgroundColor}`,
+        border: `1px solid ${borderColor ??background}`,
         transition: props.color === "MUIFormElement" ? "none" : "all .3s",
         fontSize: "16px",
         padding: "4px 10px",
@@ -67,15 +41,18 @@ export default styled(ButtonBase, {
         "&:not(&:nth-of-type(1))": {
             marginLeft: "10px",
         },
-        "&:hover, &:focus":
+        "&:hover":
             applySubtleHoverEffect === false
                 ? {
-                      color: backgroundColor,
+                      color:background,
                       background: fontColor,
                   }
                 : {
                       borderColor: fontColor,
                   },
+        "&:focus":{
+            borderColor :`${theme.palette.primary.main} !important`
+        },
         "&.Mui-disabled": {
             border: `1px solid #000`,
             background: theme.palette.background.disabledElementBackground,

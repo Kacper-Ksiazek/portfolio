@@ -78,17 +78,6 @@ export function createTheme(props: CreateThemeParams): Theme {
             fontFamily: '"Noto Sans", sans-serif',
         },
         components: {
-            MuiTextField: {
-                styleOverrides: {
-                    root: {
-                        "&:not(&.transparent-bg)": {
-                            ".MuiInputBase-root": {
-                                background: props.background.MUIFormElementsBackground,
-                            },
-                        },
-                    },
-                },
-            },
             MuiInputBase: {
                 styleOverrides: {
                     root: {

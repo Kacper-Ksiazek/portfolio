@@ -58,7 +58,7 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
             </Tooltip>
 
             <ContinueButton
-                color="primary"
+                componentThemeID="PRIMARY"
                 onClick={props.writeToMe}
                 sx={{
                     mt: "32px", //

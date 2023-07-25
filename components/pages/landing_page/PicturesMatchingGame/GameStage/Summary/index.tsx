@@ -59,7 +59,7 @@ const Summary: FunctionComponent = (props) => {
 
             <ButtonsWrapper>
                 <StyledButton onClick={context.navigation.goBackToMenu}>Return</StyledButton>
-                <StyledButton onClick={keepPlaying} color="primary">
+                <StyledButton onClick={keepPlaying} componentThemeID="PRIMARY">
                     Keep playing
                 </StyledButton>
             </ButtonsWrapper>

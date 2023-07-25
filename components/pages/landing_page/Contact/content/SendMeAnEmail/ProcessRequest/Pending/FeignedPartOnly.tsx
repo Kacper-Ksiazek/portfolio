@@ -23,8 +23,8 @@ const PendingFeignedPart: FunctionComponent<PendingFeignedPartProps> = (props) =
             <Divider />
             <div>
                 <ButtonWithTooltip
-                    color="error" //
-                    icon={<CodeOff />}
+                    icon={<CodeOff />} //
+                    componentThemeID="ERROR"
                     tooltip="Fake rejected request"
                     onClick={() => updateRequest({ status: "staged_error" })}
                     sx={{
@@ -32,8 +32,8 @@ const PendingFeignedPart: FunctionComponent<PendingFeignedPartProps> = (props) =
                     }}
                 />
                 <ButtonWithTooltip
-                    color="success" //
-                    icon={<CodeOff />}
+                    icon={<CodeOff />} //
+                    componentThemeID="SUCCESS"
                     tooltip="Fake successful request"
                     onClick={() => updateRequest({ status: "staged_success" })}
                     sx={{
@@ -41,10 +41,10 @@ const PendingFeignedPart: FunctionComponent<PendingFeignedPartProps> = (props) =
                     }}
                 />
                 <ButtonWithTooltip
-                    tooltip="Return to the form" //
-                    color="error"
+                    icon={<ArrowBack />} //
+                    componentThemeID="ERROR"
+                    tooltip="Return to the form"
                     onClick={props.goBackToTheForm}
-                    icon={<ArrowBack />}
                     sx={{
                         animation: `${fadeSimple} .2s .3s linear both `,
                     }}

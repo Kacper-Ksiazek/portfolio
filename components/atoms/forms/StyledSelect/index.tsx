@@ -1,34 +1,11 @@
-// Tools
-import { styled, SxProps } from "@mui/material";
 // Types
+import type { SxProps } from "@mui/material";
 import type { ChangeEvent, HTMLAttributes, ReactNode } from "react";
+import type { ComponentThemeName } from "../_common_component_color_themes";
 // Material UI Components
-import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 // Styled components
-const StyledSelectBase = styled(Select)(({ theme }) => ({
-    fontSize: "16px",
-    color: theme.palette.text.MUIFormElementText,
-    background: theme.palette.background.MUIFormElementsBackground,
-    fieldset: {
-        borderColor: theme.palette.background.MUIFormElementsBorder,
-        transition: "border-color .2s",
-    },
-    "&:hover": {
-        fieldset: {
-            borderColor: "#fff !important",
-        },
-    },
-    "@media (max-width:500px)": {
-        width: "100%",
-    },
-    ".MuiSelect-select": {
-        padding: "14px 16px",
-    },
-    svg: {
-        color: "inherit !important",
-    },
-}));
+import StyledSelectBase from "./Base";
 
 export interface OptionWithAlias<T> {
     value: T;
@@ -44,12 +21,14 @@ type OnChangeEvent<T> = ChangeEvent<HTMLHtmlElement> & {
 interface StyledSelectProps<T> extends Omit<HTMLAttributes<HTMLSelectElement>, "onChange"> {
     value: T;
     options: (T | OptionWithAlias<T>)[];
-    className?: string;
-    sx?: SxProps;
-    startAdornment?: ReactNode;
-    disabled?: boolean;
 
     onChange: (e: OnChangeEvent<T>) => void;
+
+    sx?: SxProps;
+    disabled?: boolean;
+    className?: string;
+    startAdornment?: ReactNode;
+    componentThemeID?: ComponentThemeName;
 }
 
 export default function StyledSelect<T extends number | string | Record<any, any>>(props: StyledSelectProps<T>) {

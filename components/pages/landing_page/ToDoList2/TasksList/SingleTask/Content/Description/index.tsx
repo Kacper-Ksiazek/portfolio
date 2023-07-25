@@ -27,6 +27,7 @@ const Description: FunctionComponent<DescriptionProps> = (props) => {
                 <StyledInput
                     value={props.newValue} //
                     onChange={(e) => props.updateNewValue(e.target.value as string)}
+                    componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
                 />
             </SmoothConditionalRender>
         </DescriptionWrapper>

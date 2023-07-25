@@ -2,21 +2,23 @@
 import { useState } from "react";
 // Types
 import type { FunctionComponent } from "react";
+import type { ComponentThemeName } from "../_common_component_color_themes";
 // Material UI Components
 import Check from "@mui/icons-material/Check";
 // Styled components
-import { IconWrapper, StyledCheckboxWrapper } from "./styled_components";
+import { IconWrapper } from "./IconWrapper";
+import { StyledCheckboxBase } from "./StyledCheckboxBase";
 
 interface StyledCheckboxProps {
     label: string;
     value: boolean;
     updateValue: (val: boolean) => void;
 
+    id?: string;
     small?: boolean;
     disabled?: boolean;
-
-    id?: string;
     className?: string;
+    componentThemeID?: ComponentThemeName;
 }
 
 const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
@@ -36,7 +38,7 @@ const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
     }
 
     return (
-        <StyledCheckboxWrapper
+        <StyledCheckboxBase
             sx={{ height: size }} //
             role="button"
             onClick={onClick}
@@ -46,6 +48,7 @@ const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
             tabIndex={props.disabled ? -1 : 0}
             className={props.className}
             id={props.id}
+            componentThemeID={props.componentThemeID}
         >
             <IconWrapper
                 size={props.small ? "small" : "normal"} //
@@ -55,7 +58,7 @@ const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
             </IconWrapper>
 
             <span>{props.label}</span>
-        </StyledCheckboxWrapper>
+        </StyledCheckboxBase>
     );
 };
 
