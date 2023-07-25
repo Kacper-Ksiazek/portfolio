@@ -34,4 +34,12 @@ export default styled("button")(({ theme }) => ({
             transition: "opacity .3s .3s",
         },
     },
+    "&.checked": {
+        borderColor: theme.palette.success.main,
+        background: `${alpha(theme.palette.success.main, 0.12)} !important`,
+        "svg.check-icon": {
+            color: theme.palette.success.main,
+            opacity: "1 !important",
+        },
+    },
 }));
