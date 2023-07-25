@@ -29,14 +29,14 @@ const ToDoList: FunctionComponent = () => {
             githubURL={"https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page"}
         >
             <ContentWrapper>
-                <ActionsHeader />
+                {/* <ActionsHeader />
 
                 <Filters
                     filteredTasks={filteredTasks} //
                     fadeContentOut={fadeContentOut}
                     filters={filters}
                     updateFilters={updateFilters}
-                />
+                /> */}
 
                 <TasksList
                     fadeContentOut={fadeContentOut} //

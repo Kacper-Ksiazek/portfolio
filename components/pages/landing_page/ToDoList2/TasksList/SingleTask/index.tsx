@@ -1,5 +1,6 @@
 // Tools
-import { SINGLE_TASK_STAGES } from "../css_references";
+import useWindowSizes from "@/hooks/useWindowSizes";
+import { SINGLE_TASK_STAGES } from "./css_references";
 import { useTaskRemover } from "./hooks/useTaskRemover";
 import { useEditModeContext } from "./hooks/useEditModeContext";
 // Types
@@ -24,8 +25,11 @@ interface SingleTaskProps {
 const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
     const { data } = props;
 
+    const { width } = useWindowSizes();
     const { isOpened: isInEditMode } = useEditModeContext();
     const { isTaskBeingRemoved, remove } = useTaskRemover(props.remove);
+
+    const applyMobileDeviceLayout: boolean = width < 840;
 
     function toggleCompletion() {
         props.update((currentValue) => ({ isCompleted: !currentValue.isCompleted }));
@@ -37,12 +41,9 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
 
     return (
         <SingleTaskBase
-            className={[
-                data.isCompleted ? SINGLE_TASK_STAGES.CHECKED : "", //
-                isTaskBeingRemoved ? SINGLE_TASK_STAGES.DELETING : "",
-                isInEditMode ? SINGLE_TASK_STAGES.IN_EDIT_MODE : "",
-                data.urgent ? SINGLE_TASK_STAGES.URGENT : "",
-            ].join(" ")}
+            urgent={data.urgent} //
+            completed={data.isCompleted}
+            currentlyBeingRemoved={isTaskBeingRemoved}
         >
             <Background isUrgent={data.urgent} isInEditMode={isInEditMode} />
 

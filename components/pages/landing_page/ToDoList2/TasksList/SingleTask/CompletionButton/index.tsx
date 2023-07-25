@@ -1,6 +1,6 @@
 // Tools
 import { useMemo } from "react";
-import { CSS_REFERENCES } from "../../css_references";
+import { CSS_REFERENCES } from "../css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
@@ -27,7 +27,7 @@ const CompletionButton: FunctionComponent<CompletionButtonProps> = (props) => {
     }, [isCompleted, isInEditMode]);
 
     return (
-        <div className={CSS_REFERENCES.SINGLE_TASK.CHECK_ICON} style={{ marginRight: "12px" }}>
+        <div className={CSS_REFERENCES.CHECK_ICON} style={{ marginRight: "12px" }}>
             <Tooltip
                 placement="top" //
                 title={tooltipTitle}

@@ -14,7 +14,11 @@ interface WrapWithOverScrollDivProps {
 
 const WrapWithOverScrollDiv: FunctionComponent<WrapWithOverScrollDivProps> = (props) => {
     if (props.amountOfTasks > 4) {
-        return <OverflowScrollDiv maxHeight="406px">{props.children}</OverflowScrollDiv>;
+        return (
+            <OverflowScrollDiv maxHeight="406px" mimimumViewportWidthToKeepScrollability="0px">
+                {props.children}
+            </OverflowScrollDiv>
+        );
     }
 
     return (

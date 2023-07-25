@@ -7,7 +7,7 @@ export default styled("div")(({ theme }) => ({
     margin: "0 0 6px 0",
     position: "relative",
     transition: "color .3s",
-    height: "28px",
+    minHeight: "28px",
     width: "100%",
     display: "flex",
     "&::before": {

@@ -12,6 +12,7 @@ export default styled(LabelBase)(({ theme }) => ({
         transformOrigin: "left",
         borderColor: "transparent",
         background: theme.palette.primary.main,
+        overflow: "hidden",
         span: {
             opacity: 0,
             transition: "opacity .3s",

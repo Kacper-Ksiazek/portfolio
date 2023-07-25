@@ -1,6 +1,6 @@
 // Tools
 import { alpha, styled } from "@mui/material";
-import { CSS_REFERENCES } from "landing_page/ToDoList2/TasksList/css_references";
+import { CSS_REFERENCES } from "@/components/pages/landing_page/ToDoList2/TasksList/SingleTask/css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { LabelID } from "landing_page/ToDoList2/@types";
@@ -28,12 +28,12 @@ interface DefaultModeProps {
 
 const DefaultMode: FunctionComponent<DefaultModeProps> = (props) => {
     return (
-        <FlexBox className={CSS_REFERENCES.SINGLE_TASK.LABELS_WRAPPER}>
+        <FlexBox className={CSS_REFERENCES.LABELS_WRAPPER}>
             <Label indicateUrgency={props.isUrgent} />
             <Label labelID={props.labelID} isTaskUrgent={props.isUrgent} />
 
             {props.dueDate !== null && (
-                <DueTo className={CSS_REFERENCES.SINGLE_TASK.DUE_DATE}>
+                <DueTo className={CSS_REFERENCES.DUE_DATE}>
                     Due to <strong>{props.dueDate}</strong>
                 </DueTo>
             )}

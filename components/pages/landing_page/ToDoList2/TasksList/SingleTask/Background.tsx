@@ -1,22 +1,20 @@
 // Tools
 import { styled } from "@mui/material";
-import { CSS_REFERENCES } from "../css_references";
+import { CSS_REFERENCES } from "./css_references";
 // Types
 import type { FunctionComponent } from "react";
 
-const BackgroundBase = styled("span")(({ theme }) => ({
+const BackgroundBase = styled("span", {
+    shouldForwardProp: (prop: string): boolean => {
+        return !(["isInEditMode", "isUrgent"] as (keyof BackgroundProps)[]).includes(prop as any);
+    },
+})<BackgroundProps>(({ theme, ...props }) => ({
     ...theme.mixins.absolute_full,
     zIndex: -1,
-    transform: "scaleX(0)",
-    transition: "transform .3s",
+    transition: "transform .24s linear",
     transformOrigin: "left",
-    background: "#000",
-    "&.active": {
-        transform: "scaleX(1)",
-        "&:not(&.in-edit-mode)": {
-            background: theme.palette.secondary.main,
-        },
-    },
+    background: props.isInEditMode ? "#000" : theme.palette.secondary.main,
+    transform: `scaleX(${props.isUrgent || props.isInEditMode ? 1 : 0})`,
 }));
 
 interface BackgroundProps {
@@ -25,15 +23,7 @@ interface BackgroundProps {
 }
 
 const Background: FunctionComponent<BackgroundProps> = (props) => {
-    return (
-        <BackgroundBase
-            className={[
-                props.isUrgent ? "active" : "", //
-                props.isInEditMode ? "in-edit-mode" : "",
-                CSS_REFERENCES.SINGLE_TASK.BACKGROUND,
-            ].join(" ")}
-        />
-    );
+    return <BackgroundBase {...props} className={CSS_REFERENCES.BACKGROUND} />;
 };
 
 export default Background;
