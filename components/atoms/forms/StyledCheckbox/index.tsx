@@ -40,7 +40,6 @@ const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
     return (
         <StyledCheckboxBase
             sx={{ height: size }} //
-            role="button"
             onClick={onClick}
             onBlur={onBlur}
             recentlyClicked={recentlyClicked}

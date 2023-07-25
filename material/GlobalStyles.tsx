@@ -40,7 +40,9 @@ const GlobalStyles: FunctionComponent = (props) => {
                         color: theme.palette.text.primary,
                         width: "100vw",
                         overflowX: "hidden",
-
+                        button: {
+                            fontFamily: "inherit",
+                        },
                         "&::-webkit-scrollbar": {
                             width: "8px",
                             background: theme.palette.background.default,

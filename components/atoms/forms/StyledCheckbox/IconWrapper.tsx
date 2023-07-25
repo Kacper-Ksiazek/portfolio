@@ -18,13 +18,14 @@ export const IconWrapper = styled("div", {
         transition: "background .3s, border-color .3s",
         svg: {
             transition: "opacity .3s",
-            opacity: theme.palette.mode === "light" ? 1 : 0.23,
+            opacity: 0,
             fontSize: props.size === "small" ? "20px" : "24px",
         },
         "&.selected": {
             background: theme.palette.primary.main,
             color: "#fff",
-            ...(theme.palette.mode === "light" && { borderColor: theme.palette.primary.main }),
+            borderColor: `${theme.palette.primary.main} !important`,
+            outline: `none !important`,
             svg: {
                 opacity: 1,
             },

@@ -9,7 +9,7 @@ interface StyledCheckboxBaseProps {
     componentThemeID?: ComponentThemeName
 }
 
-export const StyledCheckboxBase = styled("div", {
+export const StyledCheckboxBase = styled("button", {
     shouldForwardProp: (prop: string) => {
         if ((["recentlyClicked","componentThemeID"] as (keyof StyledCheckboxBaseProps)[]).includes(prop as any)) {
             return false;
@@ -31,10 +31,17 @@ export const StyledCheckboxBase = styled("div", {
         userSelect: "none",
         color: fontColor,
         transition: "border-color .2s",
+        
+        span: {
+            fontSize: "16px",
+        },
 
         ...(!props.disabled && {
             "&:hover": {
                 borderColor: fontColor,
+                ".icon-wrapper": {
+                    borderColor: fontColor,
+                },
             },
         }),
 
@@ -56,6 +63,10 @@ export const StyledCheckboxBase = styled("div", {
             "&:focus": {
                 outline: `1px solid ${theme.palette.primary.main} !important`,
                 border: `1px solid ${theme.palette.primary.main} !important`,
+                ".icon-wrapper": {
+                    outline: `1px solid ${theme.palette.primary.main} !important`,
+                    borderColor: theme.palette.primary.main,
+                },
             },
         }),
     });
