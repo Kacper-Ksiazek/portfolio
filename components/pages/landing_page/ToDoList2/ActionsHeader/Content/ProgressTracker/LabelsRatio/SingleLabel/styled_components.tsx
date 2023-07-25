@@ -19,9 +19,12 @@ const _InformationAboutLabel = styled("span")(({ theme }) => ({
     position: "relative",
     transition: "color .3s",
     // fontWeight: "300",
-    fontSize: "14px",
+    fontSize: "16px",
     strong: {
         transition: "color .2s",
+    },
+    "@media (max-width:940px)": {
+        fontSize: "14px",
     },
     "@media (max-width:700px)": {
         fontSize: "16px",
