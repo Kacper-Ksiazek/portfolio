@@ -36,7 +36,6 @@ const DeleteUnusedLabels: FunctionComponent<DeleteUnusedLabelsProps> = ({ unused
                 componentThemeID="MUI" //
                 ref={modalOpeningButtonRef}
                 sx={{
-                    opacity: unusedLabels.length,
                     transition: "all .3s",
                 }}
                 id={props.id}
