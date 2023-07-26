@@ -1,10 +1,9 @@
 // Tools
-import useWindowSizes from "@/hooks/useWindowSizes";
-import { SINGLE_TASK_STAGES } from "./css_references";
 import { useTaskRemover } from "./hooks/useTaskRemover";
 import { useEditModeContext } from "./hooks/useEditModeContext";
 // Types
 import { FunctionComponent } from "react";
+import type { UpdatedTask } from "./context/editModeContext";
 import type { Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
 // Other components
 import Manage from "./Manage";
@@ -17,6 +16,7 @@ import SingleTaskBase from "./Base";
 
 interface SingleTaskProps {
     data: Task;
+    applyMobileDeviceLayout: boolean;
 
     remove: () => void;
     update: (cb: TaskEditCallback) => void;
@@ -25,18 +25,20 @@ interface SingleTaskProps {
 const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
     const { data } = props;
 
-    const { width } = useWindowSizes();
-    const { isOpened: isInEditMode } = useEditModeContext();
+    const { isOpened: isInEditMode, updateNewState } = useEditModeContext();
     const { isTaskBeingRemoved, remove } = useTaskRemover(props.remove);
-
-    const applyMobileDeviceLayout: boolean = width < 840;
 
     function toggleCompletion() {
         props.update((currentValue) => ({ isCompleted: !currentValue.isCompleted }));
     }
 
     function toggleUrgency() {
-        props.update((currentValue) => ({ urgent: !currentValue.urgent }));
+        props.update((currentValue) => {
+            const newValue: Partial<UpdatedTask> = { urgent: !currentValue.urgent };
+
+            updateNewState(newValue);
+            return newValue;
+        });
     }
 
     return (
