@@ -2,33 +2,26 @@
 import { useEditModeContext } from "../hooks/useEditModeContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelID } from "landing_page/ToDoList2/@types";
+import type { Task } from "landing_page/ToDoList2/@types";
 // Other components
-import Description from "./Description";
-import LabelsAndDueTime from "./LabelsAndDueTime";
-import FlexBox from "@/components/atoms/content_placement/FlexBox";
+import EditMode from "./EditMode";
+import ViewMode from "./ViewMode";
+// Styled components
+import Wrapper from "./Wrapper";
 
 interface ContentProps {
-    description: string;
-    isUrgent: boolean;
-    labelID: LabelID;
-    dueDate: string | null;
+    data: Task;
+    applyMobileDeviceLayout: boolean;
 }
 
 const Content: FunctionComponent<ContentProps> = (props) => {
     const editModeContext = useEditModeContext();
 
     return (
-        <FlexBox column horizontal="start" sx={{ width: "100%", marginRight: "16px" }}>
-            <Description
-                description={props.description}
-                isInEditMode={editModeContext.isOpened}
-                newValue={editModeContext.newState.description}
-                updateNewValue={(val) => editModeContext.updateNewState({ description: val })}
-            />
-
-            <LabelsAndDueTime isUrgent={props.isUrgent} labelID={props.labelID} dueDate={props.dueDate} />
-        </FlexBox>
+        <Wrapper editModeIsOpened={editModeContext.isOpened}>
+            {editModeContext.isOpened ? <EditMode /> : <ViewMode data={props.data} />}
+            {/*  */}
+        </Wrapper>
     );
 };
 

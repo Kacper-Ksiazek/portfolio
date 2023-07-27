@@ -11,28 +11,37 @@ export const SINGLE_TASK_STAGES = {
 export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
     alias: "to-do-list--tasks-list--single-task",
     structure: {
-        LABEL: {
-            ref_value: "label",
-            ref_type: "CSS_CLASS",
+        VIEW_MODE: {
+            ANIMATION_ELEMENT: {
+                ref_value: "animation-element",
+                ref_type: "CSS_CLASS",
+            },
+            LABEL: {
+                ref_value: "label",
+                ref_type: "CSS_CLASS",
+            },
+            INFORMATION_WITH_ICON: {
+                ref_value: "information-with-icon",
+                ref_type: "CSS_CLASS",
+            },
+            DESCRIPTION: {
+                ref_value: "description",
+                ref_type: "CSS_CLASS",
+            },
+            LABELS_WRAPPER: {
+                ref_value: "labels-wrapper",
+                ref_type: "CSS_CLASS",
+            },
         },
-        DUE_DATE: {
-            ref_value: "due-date",
-            ref_type: "CSS_CLASS",
-        },
-        DESCRIPTION: {
-            ref_value: "description",
-            ref_type: "CSS_CLASS",
-        },
-        CHECK_ICON: {
-            ref_value: "check-icon",
+        // EDIT_MODE:{
+
+        // },
+        COMPLETION_BUTTON: {
+            ref_value: "completion-btn",
             ref_type: "CSS_CLASS",
         },
         BACKGROUND: {
             ref_value: "background",
-            ref_type: "CSS_CLASS",
-        },
-        LABELS_WRAPPER: {
-            ref_value: "labels-wrapper",
             ref_type: "CSS_CLASS",
         },
     },

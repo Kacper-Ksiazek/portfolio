@@ -21,7 +21,7 @@ const EditMode: FunctionComponent = () => {
             <DueDatePicker
                 value={editModeContext.newState.dueDate} //
                 updateValue={(val) => editModeContext.updateNewState({ dueDate: val })}
-                // componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
+                componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
                 small
             />
             <LabelPicker

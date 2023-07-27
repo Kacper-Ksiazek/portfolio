@@ -8,12 +8,12 @@ import type { SxProps } from "@/@types/MUI";
 export const getStylesWhenCompleted = (theme: Theme): SxProps => {
     return {
         background: theme.palette.mode === "light" ? "#251C2B" : theme.palette.background.lightSectionBackground,
-        [SELECTORS.CHECK_ICON]: {
+        [SELECTORS.COMPLETION_BUTTON]: {
             "svg.check-icon": {
                 opacity: 1,
             },
         },
-        [SELECTORS.DUE_DATE]: {
+        [SELECTORS.INFORMATION_WITH_ICON]: {
             opacity: 0.3,
         },
         [SELECTORS.DESCRIPTION]: {

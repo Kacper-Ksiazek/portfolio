@@ -27,7 +27,7 @@ const CompletionButton: FunctionComponent<CompletionButtonProps> = (props) => {
     }, [isCompleted, isInEditMode]);
 
     return (
-        <div className={CSS_REFERENCES.CHECK_ICON} style={{ marginRight: "12px" }}>
+        <div className={CSS_REFERENCES.COMPLETION_BUTTON} style={{ marginRight: "12px" }}>
             <Tooltip
                 placement="top" //
                 title={tooltipTitle}

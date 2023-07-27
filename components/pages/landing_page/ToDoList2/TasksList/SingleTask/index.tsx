@@ -55,12 +55,7 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
                 toggleCompletion={toggleCompletion}
             />
 
-            <Content
-                description={data.description} //
-                isUrgent={data.urgent}
-                labelID={data.labelID}
-                dueDate={data.dueDate}
-            />
+            <Content data={data} applyMobileDeviceLayout={props.applyMobileDeviceLayout} />
 
             <Manage
                 isUrgent={data.urgent}
