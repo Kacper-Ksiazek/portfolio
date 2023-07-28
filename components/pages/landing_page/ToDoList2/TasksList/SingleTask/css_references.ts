@@ -12,10 +12,6 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
     alias: "to-do-list--tasks-list--single-task",
     structure: {
         VIEW_MODE: {
-            ANIMATION_ELEMENT: {
-                ref_value: "animation-element",
-                ref_type: "CSS_CLASS",
-            },
             LABEL: {
                 ref_value: "label",
                 ref_type: "CSS_CLASS",

@@ -1,12 +1,46 @@
 // Tools
 import { styled } from "@mui/material";
+import { CSS_REFERENCES } from "../../css_references";
+// Types
+import type { FunctionComponent } from "react";
 // Styled components
-export default styled("h4")(({ theme }) => ({
-    cursor: "default",
-    userSelect: "none",
-    transition: "color .3s",
-    minHeight: "28px",
-    fontSize: "20px",
-    fontWeight: "400",
-    margin: 0,
+export const TaskDescriptionBase = styled("div")(({ theme }) => ({
+    width: "100%",
+    display: "flex",
+    position: "relative",
+    h4: {
+        cursor: "default",
+        userSelect: "none",
+        transition: "color .3s",
+        minHeight: "28px",
+        fontSize: "20px",
+        fontWeight: "400",
+        margin: 0,
+    },
+    "&::before": {
+        content: "''",
+        transform: "scaleX(0)",
+        position: "absolute",
+        top: "50%",
+        width: "100%",
+        height: "3px",
+        background: theme.palette.primary.main,
+        left: 0,
+        transition: "transform .3s",
+        transformOrigin: "left",
+    },
 }));
+
+interface TaskDescriptionProps {
+    description: string;
+}
+
+const TaskDescription: FunctionComponent<TaskDescriptionProps> = (props) => {
+    return (
+        <TaskDescriptionBase className={CSS_REFERENCES.VIEW_MODE.DESCRIPTION}>
+            <h4>{props.description}</h4>
+        </TaskDescriptionBase>
+    );
+};
+
+export default TaskDescription;

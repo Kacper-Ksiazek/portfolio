@@ -1,5 +1,5 @@
 // Tools
-import { CSS_REFERENCES } from "../../css_references";
+import { CSS_REFERENCES as _CSS_REFERENCES } from "../../css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { Task } from "landing_page/ToDoList2/@types";
@@ -17,14 +17,14 @@ interface SingleTaskViewModeProps {
     data: Task;
 }
 
+const CSS_REFERENCES = _CSS_REFERENCES.VIEW_MODE;
+
 const SingleTaskViewMode: FunctionComponent<SingleTaskViewModeProps> = (props) => {
     const { data } = props;
 
     return (
         <>
-            <div style={{ width: "100%", display: "flex" }}>
-                <TaskDescription className={CSS_REFERENCES.DESCRIPTION + " " + CSS_REFERENCES.ANIMATION_ELEMENT}>{props.data.description}</TaskDescription>
-            </div>
+            <TaskDescription description={props.data.description} />
 
             <FlexBox className={CSS_REFERENCES.LABELS_WRAPPER}>
                 <Label indicateUrgency={data.urgent} />

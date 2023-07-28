@@ -31,7 +31,7 @@ const InformationWithIconBase = styled("span")(({ theme }) => ({
 
 const InformationWithIcon: FunctionComponent<InformationWithIconProps> = (props) => {
     return (
-        <InformationWithIconBase className={CSS_REFERENCES.INFORMATION_WITH_ICON}>
+        <InformationWithIconBase className={CSS_REFERENCES.VIEW_MODE.INFORMATION_WITH_ICON}>
             {props.icon}
             {props.children}
         </InformationWithIconBase>

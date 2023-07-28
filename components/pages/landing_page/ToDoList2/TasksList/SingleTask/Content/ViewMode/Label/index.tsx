@@ -21,7 +21,7 @@ function isUrgencyIndicating(props: unknown): props is PropsIndicatingUrgency {
 
 const Label: FunctionComponent<PropsWithLabel | PropsIndicatingUrgency> = (props) => {
     const { getLabelWithID } = useLabelsContext();
-    const className = CSS_REFERENCES.LABEL;
+    const className = CSS_REFERENCES.VIEW_MODE.LABEL;
 
     if (isUrgencyIndicating(props)) {
         return (

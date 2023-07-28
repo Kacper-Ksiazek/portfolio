@@ -13,10 +13,10 @@ export const getStylesWhenCompleted = (theme: Theme): SxProps => {
                 opacity: 1,
             },
         },
-        [SELECTORS.INFORMATION_WITH_ICON]: {
+        [SELECTORS.VIEW_MODE.INFORMATION_WITH_ICON]: {
             opacity: 0.3,
         },
-        [SELECTORS.DESCRIPTION]: {
+        [SELECTORS.VIEW_MODE.DESCRIPTION]: {
             "&::before": {
                 transform: "scaleX(1)",
             },
@@ -24,7 +24,7 @@ export const getStylesWhenCompleted = (theme: Theme): SxProps => {
         [SELECTORS.BACKGROUND]: {
             transform: "scaleX(0)",
         },
-        [SELECTORS.LABEL]: {
+        [SELECTORS.VIEW_MODE.LABEL]: {
             background: "none !important",
             color: alpha("#fff", 0.3),
             border: `2px solid ${alpha("#fff", 0.3)} !important`,
