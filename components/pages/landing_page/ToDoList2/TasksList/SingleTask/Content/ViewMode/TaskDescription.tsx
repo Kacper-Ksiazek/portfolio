@@ -7,8 +7,8 @@ import type { FunctionComponent } from "react";
 export const TaskDescriptionBase = styled("div")(({ theme }) => ({
     width: "100%",
     display: "flex",
-    position: "relative",
     h4: {
+        position: "relative",
         cursor: "default",
         userSelect: "none",
         transition: "color .3s",
@@ -16,18 +16,18 @@ export const TaskDescriptionBase = styled("div")(({ theme }) => ({
         fontSize: "20px",
         fontWeight: "400",
         margin: 0,
-    },
-    "&::before": {
-        content: "''",
-        transform: "scaleX(0)",
-        position: "absolute",
-        top: "50%",
-        width: "100%",
-        height: "3px",
-        background: theme.palette.primary.main,
-        left: 0,
-        transition: "transform .3s",
-        transformOrigin: "left",
+        "&::before": {
+            content: "''",
+            transform: "scaleX(0)",
+            position: "absolute",
+            top: "50%",
+            width: "100%",
+            height: "3px",
+            background: theme.palette.primary.main,
+            left: 0,
+            transition: "transform .3s",
+            transformOrigin: "left",
+        },
     },
 }));
 

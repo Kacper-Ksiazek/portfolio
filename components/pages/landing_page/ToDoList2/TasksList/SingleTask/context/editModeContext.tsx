@@ -1,4 +1,5 @@
 // Tools
+import { useDelayedState } from "@/hooks/useDelayedState";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useState, useMemo, createContext, ReactNode } from "react";
 // Types
@@ -28,12 +29,13 @@ export const EditModeContext = createContext<I_EditModeContext>({} as any);
 const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = (props) => {
     const { isCompleted: _, ...task } = props.taskToBeEdited;
     //
-    const [isOpened, setIsOpened] = useState<boolean>(false);
+    const isOpened = useDelayedState<boolean>(false, 300);
+    // const [isOpened, setIsOpened] = useState<boolean>(false);
     const [newState, updateNewState] = useSimpleReducer<UpdatedTask>(task);
 
     function saveAndExit() {
         props.applyChanges(() => newState);
-        setIsOpened(false);
+        isOpened.setValue(false);
     }
 
     const someChangesHaveBeenMade = useMemo<boolean>(() => {
@@ -47,13 +49,13 @@ const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = 
     return (
         <EditModeContext.Provider
             value={{
-                isOpened,
+                isOpened: isOpened.value,
                 newState,
                 someChangesHaveBeenMade,
                 //
                 saveAndExit,
                 updateNewState,
-                toggleIsOpened: () => setIsOpened((val) => !val),
+                toggleIsOpened: () => isOpened.setValue((val) => !val),
             }}
         >
             {props.children}

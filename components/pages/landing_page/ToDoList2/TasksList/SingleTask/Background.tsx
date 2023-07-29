@@ -11,9 +11,9 @@ const BackgroundBase = styled("span", {
 })<BackgroundProps>(({ theme, ...props }) => ({
     ...theme.mixins.absolute_full,
     zIndex: -1,
-    transition: "transform .24s linear",
+    transition: `transform .24s linear, background .3s`,
     transformOrigin: "left",
-    background: props.isInEditMode ? "#000" : theme.palette.secondary.main,
+    background: props.isUrgent && !props.isInEditMode ? theme.palette.secondary.main : "#000",
     transform: `scaleX(${props.isUrgent || props.isInEditMode ? 1 : 0})`,
 }));
 
