@@ -1,5 +1,6 @@
 // Tools
 import { useEditModeContext } from "../../hooks/useEditModeContext";
+import { CSS_REFERENCES } from "landing_page/ToDoList2/TasksList/SingleTask/css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -29,20 +30,24 @@ const EditMode: FunctionComponent<EditModeProps> = (props) => {
                     },
                 }}
             />
-            <FlexBox className="flex-wrapper">
-                <StyledCheckbox
-                    label="Urgent" //
-                    value={editModeContext.newState.urgent}
-                    updateValue={(val) => editModeContext.updateNewState({ urgent: val })}
-                    componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
-                    small
-                />
-                <DueDatePicker
-                    value={editModeContext.newState.dueDate} //
-                    updateValue={(val) => editModeContext.updateNewState({ dueDate: val })}
-                    componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
-                    small
-                />
+            <FlexBox className={CSS_REFERENCES.SMALL_CONTENT_WRAPPER}>
+                <span>
+                    <StyledCheckbox
+                        label="Urgent" //
+                        value={editModeContext.newState.urgent}
+                        updateValue={(val) => editModeContext.updateNewState({ urgent: val })}
+                        componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
+                        small
+                    />
+                </span>
+                <span>
+                    <DueDatePicker
+                        value={editModeContext.newState.dueDate} //
+                        updateValue={(val) => editModeContext.updateNewState({ dueDate: val })}
+                        componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
+                        small
+                    />
+                </span>
                 <span style={{ display: "flex" }}>
                     <LabelPicker
                         value={editModeContext.newState.labelID} //

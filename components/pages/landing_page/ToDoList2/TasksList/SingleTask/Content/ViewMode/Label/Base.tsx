@@ -1,9 +1,11 @@
 // Tools
 import { styled } from "@mui/material";
-// Styled components
-import LabelBase from "landing_page/ToDoList2/atoms/LabelBase";
+// Types
+import type { FunctionComponent, ReactNode } from "react";
 
-export default styled(LabelBase)(({ theme }) => ({
+import { default as _LabelBase , type LabelBaseProps} from "landing_page/ToDoList2/atoms/LabelBase";
+
+const LabelBaseWithUrgentStyles = styled(_LabelBase)(({ theme }) => ({
     "&.urgency": {
         marginRight: "0px",
         width: 0,
@@ -25,7 +27,7 @@ export default styled(LabelBase)(({ theme }) => ({
             borderColor: theme.palette.primary.main,
             transform: "scaleX(1)",
             width: "auto",
-            marginRight: "8px",
+            marginRight: "6px",
             padding: "2px 6px",
             transition: "all .3s",
             span: {
@@ -35,3 +37,13 @@ export default styled(LabelBase)(({ theme }) => ({
         },
     },
 }));
+
+const StyledLabelBase: FunctionComponent<{ children: ReactNode } & LabelBaseProps> = ({children, ...props}) => {
+    return (
+        <span>
+            <LabelBaseWithUrgentStyles {...props}>{children}</LabelBaseWithUrgentStyles>
+        </span>
+    );
+};
+
+export default StyledLabelBase;

@@ -11,10 +11,11 @@ interface InformationWithIconProps {
 
 const InformationWithIconBase = styled("span")(({ theme }) => ({
     display: "flex",
-    alignItems: "center",
     color: alpha("#fff", 0.7),
     fontSize: "16px",
     transition: "opacity .3s",
+    boxSizing: "border-box",
+    paddingTop: "2px",
     // border: "2px solid",
     // borderColor: theme.palette.error.main,
     // color: theme.palette.error.main,
@@ -23,7 +24,9 @@ const InformationWithIconBase = styled("span")(({ theme }) => ({
     strong: {
         marginLeft: "4px",
     },
-
+    "span.text": {
+        marginTop: "1px",
+    },
     svg: {
         marginRight: "2px",
     },
@@ -33,7 +36,7 @@ const InformationWithIcon: FunctionComponent<InformationWithIconProps> = (props)
     return (
         <InformationWithIconBase className={CSS_REFERENCES.VIEW_MODE.INFORMATION_WITH_ICON}>
             {props.icon}
-            {props.children}
+            <span className="text">{props.children}</span>
         </InformationWithIconBase>
     );
 };

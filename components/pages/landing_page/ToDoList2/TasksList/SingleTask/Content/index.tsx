@@ -11,14 +11,17 @@ import Wrapper from "./Wrapper";
 
 interface ContentProps {
     data: Task;
-    applyMobileDeviceLayout: boolean;
 }
 
 const Content: FunctionComponent<ContentProps> = (props) => {
     const editModeContext = useEditModeContext();
 
     return (
-        <Wrapper editModeIsOpened={editModeContext.isOpened}>
+        <Wrapper
+            isUrgent={props.data.urgent} //
+            isClosing={editModeContext.isClosing}
+            editModeIsOpened={editModeContext.isOpened}
+        >
             {editModeContext.isOpened ? <EditMode /> : <ViewMode data={props.data} />}
             {/*  */}
         </Wrapper>

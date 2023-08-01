@@ -25,7 +25,7 @@ interface SingleTaskProps {
 const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
     const { data } = props;
 
-    const { isOpened: isInEditMode, updateNewState } = useEditModeContext();
+    const { isOpened: isInEditMode, isClosing: isEditModeBeingClosed, updateNewState } = useEditModeContext();
     const { isTaskBeingRemoved, remove } = useTaskRemover(props.remove);
 
     function toggleCompletion() {
@@ -55,7 +55,7 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
                 toggleCompletion={toggleCompletion}
             />
 
-            <Content data={data} applyMobileDeviceLayout={props.applyMobileDeviceLayout} />
+            <Content data={data} />
 
             <Manage
                 isUrgent={data.urgent}

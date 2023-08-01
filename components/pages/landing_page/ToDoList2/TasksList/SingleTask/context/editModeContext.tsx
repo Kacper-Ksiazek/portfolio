@@ -10,6 +10,7 @@ export type UpdatedTask = Omit<TaskWithoutID, "isCompleted" | "createdAt">;
 
 interface I_EditModeContext {
     isOpened: boolean;
+    isClosing: boolean;
     newState: UpdatedTask;
     someChangesHaveBeenMade: boolean;
 
@@ -29,7 +30,7 @@ export const EditModeContext = createContext<I_EditModeContext>({} as any);
 const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = (props) => {
     const { isCompleted: _, ...task } = props.taskToBeEdited;
     //
-    const isOpened = useDelayedState<boolean>(false, 300);
+    const isOpened = useDelayedState<boolean>(false, 700);
     // const [isOpened, setIsOpened] = useState<boolean>(false);
     const [newState, updateNewState] = useSimpleReducer<UpdatedTask>(task);
 
@@ -50,6 +51,7 @@ const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = 
         <EditModeContext.Provider
             value={{
                 isOpened: isOpened.value,
+                isClosing: isOpened.isChanging,
                 newState,
                 someChangesHaveBeenMade,
                 //

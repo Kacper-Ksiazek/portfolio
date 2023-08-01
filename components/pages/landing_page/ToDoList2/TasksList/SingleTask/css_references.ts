@@ -32,6 +32,10 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
         // EDIT_MODE:{
 
         // },
+        SMALL_CONTENT_WRAPPER: {
+            ref_value: "small-content-wrapper",
+            ref_type: "CSS_CLASS",
+        },
         COMPLETION_BUTTON: {
             ref_value: "completion-btn",
             ref_type: "CSS_CLASS",

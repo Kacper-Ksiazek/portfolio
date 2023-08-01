@@ -1,8 +1,10 @@
 // Tools
 import { styled } from "@mui/material";
 import { ColorInHEX, Label } from "landing_page/ToDoList2/@types";
+// Types
+import type { HTMLAttributes } from "react";
 // Styled components
-interface LabelBaseProps {
+export interface LabelBaseProps extends HTMLAttributes<HTMLSpanElement> {
     color: "primary" | ColorInHEX;
     isUrgent?: boolean;
 }
