@@ -20,9 +20,10 @@ const hideSingleTaskWrapper = keyframes({
 });
 
 const ELEMENTS_INVOLVED_IN_ANIMATION: Selector = [
-    SELECTORS.DESCRIPTION, //
-    SELECTORS.LABELS_WRAPPER,
-    SELECTORS.CHECK_ICON,
+    SELECTORS.VIEW_MODE.DESCRIPTION + ">h4", //
+    SELECTORS.VIEW_MODE.LABELS_WRAPPER,
+    SELECTORS.COMPLETION_BUTTON,
+    SELECTORS.VIEW_MODE.INFORMATION_WITH_ICON,
 ].join(", ");
 
 export const getStylesDuringDeletion = (theme: Theme, isUrgent: boolean): SxProps => {
@@ -36,6 +37,7 @@ export const getStylesDuringDeletion = (theme: Theme, isUrgent: boolean): SxProp
             "&::after": {
                 content: "''",
                 ...theme.mixins.absolute_full,
+                height: "32px",
                 background: isUrgent ? theme.palette.primary.main : theme.palette.background.lightAnimationBar,
                 borderRadius: "3px",
                 animation: chainAnimations([
@@ -49,11 +51,11 @@ export const getStylesDuringDeletion = (theme: Theme, isUrgent: boolean): SxProp
             },
         },
 
-        [`${SELECTORS.DESCRIPTION}::before`]: {
+        [`${SELECTORS.VIEW_MODE.DESCRIPTION}>h4::before`]: {
             animation: `${fadeSimpleOUT} .001s .3s both`,
         },
 
-        [SELECTORS.CHECK_ICON]: {
+        [SELECTORS.COMPLETION_BUTTON]: {
             "&::after": {
                 width: "calc(100% + 4px)",
                 height: "calc(100% + 4px)",

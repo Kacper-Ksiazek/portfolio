@@ -4,18 +4,29 @@ import { CSS_REFERENCES } from "landing_page/ToDoList2/TasksList/SingleTask/css_
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Styled Components
-const LabelsWrapperBase = styled("div")(({ theme }) => ({
+const LabelsWrapperBase = styled("div", {
+    shouldForwardProp: (prop: string): boolean => prop !== "indicateUrgency",
+})<{ indicateUrgency: boolean }>(({ theme, ...props }) => ({
     display: "flex",
     gap: "0 !important",
+
+    "&>span:nth-of-type(1)": {
+        transition: "margin-right .3s",
+        marginRight: props.indicateUrgency ? "6px" : 0,
+    },
 }));
 
-const LabelsWrapper: FunctionComponent<{ children: ReactNode }> = (props) => {
+interface LabelsWrapperProps {
+    children: ReactNode;
+    indicateUrgency: boolean;
+}
+
+const LabelsWrapper: FunctionComponent<LabelsWrapperProps> = (props) => {
     const className: string = `${CSS_REFERENCES.VIEW_MODE.LABELS_WRAPPER} ${CSS_REFERENCES.SMALL_CONTENT_WRAPPER}`;
 
     return (
-        <LabelsWrapperBase className={className}>
+        <LabelsWrapperBase className={className} indicateUrgency={props.indicateUrgency}>
             {props.children}
-            {/*  */}
         </LabelsWrapperBase>
     );
 };

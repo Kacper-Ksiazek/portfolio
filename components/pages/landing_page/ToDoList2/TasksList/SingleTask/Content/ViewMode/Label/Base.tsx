@@ -7,7 +7,7 @@ import { default as _LabelBase , type LabelBaseProps} from "landing_page/ToDoLis
 
 const LabelBaseWithUrgentStyles = styled(_LabelBase)(({ theme }) => ({
     "&.urgency": {
-        marginRight: "0px",
+        marginRight: "0px !important",
         width: 0,
         padding: "2px 0",
         transform: "scaleX(0)",
@@ -27,7 +27,6 @@ const LabelBaseWithUrgentStyles = styled(_LabelBase)(({ theme }) => ({
             borderColor: theme.palette.primary.main,
             transform: "scaleX(1)",
             width: "auto",
-            marginRight: "6px",
             padding: "2px 6px",
             transition: "all .3s",
             span: {

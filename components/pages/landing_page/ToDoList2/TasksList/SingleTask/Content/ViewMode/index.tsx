@@ -17,13 +17,15 @@ interface SingleTaskViewModeProps {
 const SingleTaskViewMode: FunctionComponent<SingleTaskViewModeProps> = (props) => {
     const { data } = props;
 
+    const indicateUrgency: boolean = data.urgent;
+
     return (
         <>
             <TaskDescription description={props.data.description} />
 
-            <LabelsWrapper>
-                <Label indicateUrgency={data.urgent} />
-                <Label labelID={data.labelID} isTaskUrgent={data.urgent} />
+            <LabelsWrapper indicateUrgency={indicateUrgency}>
+                <Label indicateUrgency={indicateUrgency} />
+                <Label labelID={data.labelID} isTaskUrgent={indicateUrgency} />
             </LabelsWrapper>
 
             {data.dueDate && (
