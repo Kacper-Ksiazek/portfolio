@@ -38,7 +38,9 @@ interface TaskDescriptionProps {
 const TaskDescription: FunctionComponent<TaskDescriptionProps> = (props) => {
     return (
         <TaskDescriptionBase className={CSS_REFERENCES.VIEW_MODE.DESCRIPTION}>
-            <h4>{props.description}</h4>
+            <h4>
+                <span>{props.description}</span>
+            </h4>
         </TaskDescriptionBase>
     );
 };
