@@ -2,6 +2,7 @@
 import { forwardRef } from "react";
 // Types
 import type { HTMLAttributes, ReactNode } from "react";
+import type { StyledButtonThemeName } from "@/components/atoms/forms/StyledButton/ComponentColorThemes";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";
 // Styled components
@@ -14,10 +15,9 @@ interface ModalOpeningButtonProps {
     children: ReactNode;
 
     small?: boolean;
-    primary?: boolean;
     disabled?: boolean;
     isIconButton?: boolean;
-
+    componentThemeID?: StyledButtonThemeName;
     wrapperProps?: Omit<HTMLAttributes<HTMLButtonElement>, "onClick">;
 
     openModal?: () => void;
@@ -37,8 +37,8 @@ const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps
                     onClick={props.openModal}
                     iconButton={props.isIconButton}
                     disabled={props.disabled ?? false}
-                    componentThemeID={props.primary ? "PRIMARY" : "MUI"}
-                    subtleHoverEffect={props.primary !== true}
+                    componentThemeID={props.componentThemeID}
+                    subtleHoverEffect={props.componentThemeID !== "PRIMARY"}
                     sx={{
                         height: props.size,
                         borderRadius: "3px",

@@ -39,11 +39,11 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
         <>
             <ModalOpeningButton
                 small={props.small} //
-                primary={props.primary}
                 size={props.size as any}
                 openModal={() => setModalIsOpened(true)}
                 tooltip={props.disableTooltip === false ? "Create a new label" : ""}
                 isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
+                componentThemeID={props.primary ? "PRIMARY" : "TRANSPARENT_LIGHT_THEME_WHITE_FONT"}
                 wrapperProps={{
                     className: props.className,
                     id: props.id,
