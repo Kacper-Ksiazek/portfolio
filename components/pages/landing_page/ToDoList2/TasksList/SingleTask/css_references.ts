@@ -11,30 +11,32 @@ export const SINGLE_TASK_STAGES = {
 export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
     alias: "to-do-list--tasks-list--single-task",
     structure: {
-        VIEW_MODE: {
-            LABEL: {
-                ref_value: "label",
-                ref_type: "CSS_CLASS",
+        CONTENT: {
+            VIEW_MODE: {
+                LABEL: {
+                    ref_value: "label",
+                    ref_type: "CSS_CLASS",
+                },
+                INFORMATION_WITH_ICON: {
+                    ref_value: "information-with-icon",
+                    ref_type: "CSS_CLASS",
+                },
+                DESCRIPTION: {
+                    ref_value: "description",
+                    ref_type: "CSS_CLASS",
+                },
+                LABELS_WRAPPER: {
+                    ref_value: "labels-wrapper",
+                    ref_type: "CSS_CLASS",
+                },
             },
-            INFORMATION_WITH_ICON: {
-                ref_value: "information-with-icon",
-                ref_type: "CSS_CLASS",
-            },
-            DESCRIPTION: {
-                ref_value: "description",
-                ref_type: "CSS_CLASS",
-            },
-            LABELS_WRAPPER: {
-                ref_value: "labels-wrapper",
-                ref_type: "CSS_CLASS",
-            },
-        },
-        // EDIT_MODE:{
+            // EDIT_MODE:{
 
-        // },
-        SMALL_CONTENT_WRAPPER: {
-            ref_value: "small-content-wrapper",
-            ref_type: "CSS_CLASS",
+            // },
+            PIECE_OF_CONTENT_WRAPPER: {
+                ref_value: "small-content-wrapper",
+                ref_type: "CSS_CLASS",
+            },
         },
         COMPLETION_BUTTON: {
             ref_value: "completion-btn",
@@ -46,3 +48,6 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
         },
     },
 });
+
+export const VIEW_MODE_SELECTORS = SELECTORS.CONTENT.VIEW_MODE;
+export const VIEW_MODE_CSS_REFERENCES = CSS_REFERENCES.CONTENT.VIEW_MODE;

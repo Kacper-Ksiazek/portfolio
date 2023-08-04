@@ -1,7 +1,7 @@
 // Tools
 import { keyframes } from "@mui/material";
-import { SELECTORS } from "../../css_references";
 import { scaleFromBottom } from "@/components/keyframes/intro";
+import { SELECTORS, VIEW_MODE_SELECTORS } from "../../css_references";
 import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 import { fadeSimpleOUT, scaleToLeft } from "@/components/keyframes/outro";
 // Types
@@ -20,10 +20,10 @@ const hideSingleTaskWrapper = keyframes({
 });
 
 const ELEMENTS_INVOLVED_IN_ANIMATION: Selector = [
-    SELECTORS.VIEW_MODE.DESCRIPTION + ">h4", //
-    SELECTORS.VIEW_MODE.LABELS_WRAPPER,
+    VIEW_MODE_SELECTORS.DESCRIPTION + ">h4", //
+    VIEW_MODE_SELECTORS.LABELS_WRAPPER,
     SELECTORS.COMPLETION_BUTTON,
-    SELECTORS.VIEW_MODE.INFORMATION_WITH_ICON,
+    VIEW_MODE_SELECTORS.INFORMATION_WITH_ICON,
 ].join(", ");
 
 export const getStylesDuringDeletion = (theme: Theme, isUrgent: boolean): SxProps => {
@@ -51,7 +51,7 @@ export const getStylesDuringDeletion = (theme: Theme, isUrgent: boolean): SxProp
             },
         },
 
-        [`${SELECTORS.VIEW_MODE.DESCRIPTION}>h4::before`]: {
+        [`${VIEW_MODE_SELECTORS.DESCRIPTION}>h4::before`]: {
             animation: `${fadeSimpleOUT} .001s .3s both`,
         },
 

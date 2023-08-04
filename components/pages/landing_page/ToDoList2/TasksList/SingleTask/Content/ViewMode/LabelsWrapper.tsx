@@ -22,7 +22,7 @@ interface LabelsWrapperProps {
 }
 
 const LabelsWrapper: FunctionComponent<LabelsWrapperProps> = (props) => {
-    const className: string = `${CSS_REFERENCES.VIEW_MODE.LABELS_WRAPPER} ${CSS_REFERENCES.SMALL_CONTENT_WRAPPER}`;
+    const className: string = `${CSS_REFERENCES.CONTENT.VIEW_MODE.LABELS_WRAPPER} ${CSS_REFERENCES.CONTENT.PIECE_OF_CONTENT_WRAPPER}`;
 
     return (
         <LabelsWrapperBase className={className} indicateUrgency={props.indicateUrgency}>

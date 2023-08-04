@@ -46,14 +46,14 @@ export default styled("div", { shouldForwardProp })<SingleTaskContentWrapperProp
     gap: "4px",
     transition: "opacity .24s",
     marginRight: props.editModeIsOpened ? "64px" : "16px",
-    [SELECTORS.SMALL_CONTENT_WRAPPER]: {
+    [SELECTORS.CONTENT.PIECE_OF_CONTENT_WRAPPER]: {
         gap: "6px",
     },
     "&>*": {
         height: "32px",
 
         ...(props.modeHasRecentlyChanged && {
-            [`&:not(&${SELECTORS.SMALL_CONTENT_WRAPPER}), &${SELECTORS.SMALL_CONTENT_WRAPPER}>*`]: {
+            [`&:not(&${SELECTORS.CONTENT.PIECE_OF_CONTENT_WRAPPER}), &${SELECTORS.CONTENT.PIECE_OF_CONTENT_WRAPPER}>*`]: {
                 position: "relative",
                 "&::after": {
                     content: "''",

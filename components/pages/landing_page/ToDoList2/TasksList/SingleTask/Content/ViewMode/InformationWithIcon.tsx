@@ -1,8 +1,8 @@
 // Tools
 import { styled, alpha } from "@mui/material";
+import { VIEW_MODE_CSS_REFERENCES } from "../../css_references";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import { CSS_REFERENCES } from "../../css_references";
 
 interface InformationWithIconProps {
     icon: ReactNode;
@@ -34,7 +34,7 @@ const InformationWithIconBase = styled("span")(({ theme }) => ({
 
 const InformationWithIcon: FunctionComponent<InformationWithIconProps> = (props) => {
     return (
-        <InformationWithIconBase className={CSS_REFERENCES.VIEW_MODE.INFORMATION_WITH_ICON}>
+        <InformationWithIconBase className={VIEW_MODE_CSS_REFERENCES.INFORMATION_WITH_ICON}>
             {props.icon}
             <span className="text">{props.children}</span>
         </InformationWithIconBase>

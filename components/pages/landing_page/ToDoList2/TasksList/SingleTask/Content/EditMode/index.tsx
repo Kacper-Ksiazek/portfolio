@@ -30,7 +30,7 @@ const EditMode: FunctionComponent<EditModeProps> = (props) => {
                     },
                 }}
             />
-            <FlexBox className={CSS_REFERENCES.SMALL_CONTENT_WRAPPER}>
+            <FlexBox className={CSS_REFERENCES.CONTENT.PIECE_OF_CONTENT_WRAPPER}>
                 <span>
                     <StyledCheckbox
                         label="Urgent" //

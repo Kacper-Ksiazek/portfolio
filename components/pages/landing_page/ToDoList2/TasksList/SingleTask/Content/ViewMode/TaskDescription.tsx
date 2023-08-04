@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import { CSS_REFERENCES } from "../../css_references";
+import { VIEW_MODE_CSS_REFERENCES } from "../../css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
@@ -37,7 +37,7 @@ interface TaskDescriptionProps {
 
 const TaskDescription: FunctionComponent<TaskDescriptionProps> = (props) => {
     return (
-        <TaskDescriptionBase className={CSS_REFERENCES.VIEW_MODE.DESCRIPTION}>
+        <TaskDescriptionBase className={VIEW_MODE_CSS_REFERENCES.DESCRIPTION}>
             <h4>
                 <span>{props.description}</span>
             </h4>
