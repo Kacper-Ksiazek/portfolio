@@ -11,7 +11,7 @@ const MenuActionButtonBase = styled("button")(({ theme }) => ({
     width: "32px",
     height: "32px",
     fontSize: "14px",
-    background: theme.palette.background.lightSectionBackground,
+    background: "transparent",
     border: "none",
     color: alpha("#fff", 0.8),
     letterSpacing: "1px",
@@ -33,7 +33,7 @@ const MenuActionButtonBase = styled("button")(({ theme }) => ({
         ".label": {
             display: "block",
         },
-        width: "140px",
+        width: "186px",
         justifyContent: "flex-start",
         padding: "0 8px",
         svg: {

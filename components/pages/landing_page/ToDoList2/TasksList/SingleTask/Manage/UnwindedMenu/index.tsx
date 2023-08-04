@@ -23,7 +23,7 @@ const UnwindedMenuBase = styled("div")(({ theme }) => ({
         animation: `${fadeSimpleOUT} .3s linear both`,
     },
 
-    background: theme.palette.background.default,
+    background: theme.palette.mode === "light" ? theme.palette.background.MUIFormElementsBackground : theme.palette.background.default,
     listStyleType: "none",
     padding: "4px",
     display: "flex",
