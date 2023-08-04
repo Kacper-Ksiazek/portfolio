@@ -10,13 +10,11 @@ interface ComponentColorTheme {
     borderColor?: string;
 }
 
-interface ComponentColorThemeWithFixedBorder {
-    fontColor: string;
-    background: string;
+interface ComponentColorThemeWithFixedBorder extends Omit<ComponentColorTheme, "borderColor"> {
     borderColor: string;
 }
 
-type AvailableThemes<T extends string> = Record<T, AvailableThemesObjectProperty>;
+export type AvailableThemes<T extends string> = Record<T, AvailableThemesObjectProperty>;
 type AvailableThemesObjectProperty = ComponentColorTheme | ((theme: Theme) => ComponentColorTheme);
 
 export class ComponentColorThemesOrganizer<T extends string> {

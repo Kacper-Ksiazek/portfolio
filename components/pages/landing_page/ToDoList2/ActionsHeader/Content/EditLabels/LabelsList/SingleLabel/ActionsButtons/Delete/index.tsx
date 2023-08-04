@@ -33,7 +33,7 @@ const DeleteLabel: FunctionComponent<DeleteLabelProps> = (props) => {
                 tooltip="Remove this label"
                 ref={buttonRef}
                 disabled={props.disabled}
-                componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
+                componentThemeID="TRANSPARENT_WHITE"
             >
                 <>
                     <DeleteOutlineOutlined className={CSS_REFERENCES.TABLE.BUTTONS.SINGLE.ICON} />

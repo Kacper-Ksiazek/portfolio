@@ -39,7 +39,7 @@ const EditExistingLabel: FunctionComponent<EditExistingLabelProps> = (props) => 
                 wrapperProps={{
                     className: props.className,
                 }}
-                componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
+                componentThemeID="TRANSPARENT_WHITE"
             >
                 {props.modalOpeningButtonPrompt ? props.modalOpeningButtonPrompt : <AddRounded />}
             </ModalOpeningButton>

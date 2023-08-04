@@ -20,7 +20,7 @@ const EditMode: FunctionComponent<EditModeProps> = (props) => {
             <StyledInput
                 value={editModeContext.newState.description} //
                 onChange={(e) => editModeContext.updateNewState({ description: e.target.value as string })}
-                componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
+                componentThemeID="TRANSPARENT_WHITE"
                 sx={{
                     width: "100%",
                     input: {
@@ -36,7 +36,7 @@ const EditMode: FunctionComponent<EditModeProps> = (props) => {
                         label="Urgent" //
                         value={editModeContext.newState.urgent}
                         updateValue={(val) => editModeContext.updateNewState({ urgent: val })}
-                        componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
+                        componentThemeID="TRANSPARENT_WHITE"
                         small
                     />
                 </span>
@@ -44,7 +44,7 @@ const EditMode: FunctionComponent<EditModeProps> = (props) => {
                     <DueDatePicker
                         value={editModeContext.newState.dueDate} //
                         updateValue={(val) => editModeContext.updateNewState({ dueDate: val })}
-                        componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
+                        componentThemeID="TRANSPARENT_WHITE"
                         small
                     />
                 </span>
@@ -52,7 +52,7 @@ const EditMode: FunctionComponent<EditModeProps> = (props) => {
                     <LabelPicker
                         value={editModeContext.newState.labelID} //
                         updateValue={(val) => editModeContext.updateNewState({ labelID: val })}
-                        componentThemeID="TRANSPARENT_LIGHT_THEME_WHITE_FONT"
+                        componentThemeID="TRANSPARENT_WHITE"
                         small
                     />
                 </span>

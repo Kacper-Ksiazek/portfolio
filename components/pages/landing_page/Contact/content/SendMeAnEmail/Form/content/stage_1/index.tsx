@@ -25,7 +25,7 @@ const EmailFormSubsection1: FunctionComponent<{ color: "primary" | "secondary" }
                 value={form.author}
                 onChange={(e) => updateForm({ author: e.target.value })}
                 error={form.author !== "" && invalidFormFields.includes("author")}
-                componentThemeID="TRANSPARENT_LIGHT_THEME_BLACK_FONT"
+                componentThemeID="TEXT_PRIMARY"
             />
             <StyledInput
                 label="Subject" //
@@ -33,7 +33,7 @@ const EmailFormSubsection1: FunctionComponent<{ color: "primary" | "secondary" }
                 value={form.subject}
                 onChange={(e) => updateForm({ subject: e.target.value })}
                 error={form.subject !== "" && invalidFormFields.includes("subject")}
-                componentThemeID="TRANSPARENT_LIGHT_THEME_BLACK_FONT"
+                componentThemeID="TEXT_PRIMARY"
             />
             <StyledInput
                 label="Message" //
@@ -43,7 +43,7 @@ const EmailFormSubsection1: FunctionComponent<{ color: "primary" | "secondary" }
                 value={form.message}
                 onChange={(e) => updateForm({ message: e.target.value })}
                 error={form.message !== "" && invalidFormFields.includes("message")}
-                componentThemeID="TRANSPARENT_LIGHT_THEME_BLACK_FONT"
+                componentThemeID="TEXT_PRIMARY"
             />
             <LengthNotification>{form.message.length} / 500</LengthNotification>
         </>
