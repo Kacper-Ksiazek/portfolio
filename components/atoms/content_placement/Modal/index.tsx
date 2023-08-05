@@ -1,4 +1,5 @@
 // Tools
+import { CSS_REFERENCES } from "./css_references";
 import { useModalControl } from "./hooks/useModalControl";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Types
@@ -37,7 +38,7 @@ const StyledModal: FunctionComponent<StyledModalProps> = (props) => {
             }}
         >
             <ModalContentWrapper sx={props.sx}>
-                <h3>{props.title}</h3>
+                <h3 className={CSS_REFERENCES.HEADER}>{props.title}</h3>
 
                 {props.children}
 

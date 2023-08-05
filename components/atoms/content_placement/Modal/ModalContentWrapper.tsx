@@ -1,6 +1,7 @@
 // Tools
-import { fadeSimple } from "@/components/keyframes/intro";
 import { styled } from "@mui/material";
+import { SELECTORS } from "./css_references";
+import { fadeSimple } from "@/components/keyframes/intro";
 
 export default styled("div")(({ theme }) => ({
     position: "relative",
@@ -18,13 +19,13 @@ export default styled("div")(({ theme }) => ({
     cursor: "default",
     fontSize: "18px",
     animation: `${fadeSimple} .2s .1s both`,
-    h3: {
+    [SELECTORS.HEADER]: {
         margin: "0 0 8px 0",
     },
     p: {
-        margin: "0 0 0px 0",
+        margin: "0",
     },
-    button: {
+    [SELECTORS.BUTTON]: {
         height: "36px",
         padding: "0 24px",
     },

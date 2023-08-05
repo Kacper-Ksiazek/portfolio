@@ -1,3 +1,5 @@
+// Tools
+import { CSS_REFERENCES } from "./css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { ActionButtonProps } from "./@types";
@@ -28,7 +30,11 @@ const ModalActions: FunctionComponent<ModalActionsProps> = (props) => {
 
     return (
         <FlexBox sx={{ mt: "24px" }}>
-            <StyledButton componentThemeID="ERROR" onClick={props.closeModal}>
+            <StyledButton
+                componentThemeID="ERROR"
+                onClick={props.closeModal} //
+                className={CSS_REFERENCES.BUTTON}
+            >
                 Cancel
             </StyledButton>
 
@@ -36,6 +42,7 @@ const ModalActions: FunctionComponent<ModalActionsProps> = (props) => {
                 componentThemeID="PRIMARY" //
                 onClick={onActionButtonClick}
                 disabled={actionButton.disabled}
+                className={CSS_REFERENCES.BUTTON}
             >
                 {actionButton.prompt}
             </StyledButton>
