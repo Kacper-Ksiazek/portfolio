@@ -25,7 +25,7 @@ interface SingleTaskProps {
 const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
     const { data } = props;
 
-    const { isOpened: isInEditMode, isClosing: isEditModeBeingClosed, updateNewState } = useEditModeContext();
+    const { isOpened: isInEditMode, isChanging: isEditModeBeingClosed, updateNewState } = useEditModeContext();
     const { isTaskBeingRemoved, remove } = useTaskRemover(props.remove);
 
     function toggleCompletion() {

@@ -1,17 +1,19 @@
 // Tools
+import { useMemo, createContext } from "react";
+import { useMobileEditMode } from "./useMobileEditMode";
 import { useDelayedState } from "@/hooks/useDelayedState";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
-import { useState, useMemo, createContext, ReactNode } from "react";
 // Types
-import type { FunctionComponent } from "react";
+import type { FunctionComponent, ReactNode } from "react";
 import type { TaskWithoutID, TaskEditCallback } from "landing_page/ToDoList2/@types";
 
 export type UpdatedTask = Omit<TaskWithoutID, "isCompleted" | "createdAt">;
 
 interface I_EditModeContext {
     isOpened: boolean;
-    isClosing: boolean;
+    isChanging: boolean;
     newState: UpdatedTask;
+    applyMobileEditMode: boolean;
     someChangesHaveBeenMade: boolean;
 
     saveAndExit: () => void;
@@ -22,6 +24,7 @@ interface I_EditModeContext {
 interface EditModeContexProviderProps {
     children: ReactNode;
     taskToBeEdited: TaskWithoutID;
+
     applyChanges: (cb: TaskEditCallback) => void;
 }
 
@@ -30,8 +33,8 @@ export const EditModeContext = createContext<I_EditModeContext>({} as any);
 const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = (props) => {
     const { isCompleted: _, ...task } = props.taskToBeEdited;
     //
-    const isOpened = useDelayedState<boolean>(false, 700);
-    // const [isOpened, setIsOpened] = useState<boolean>(false);
+    const applyMobileEditMode = useMobileEditMode();
+    const isOpened = useDelayedState<boolean>(false, applyMobileEditMode ? 0 : 700);
     const [newState, updateNewState] = useSimpleReducer<UpdatedTask>(task);
 
     function saveAndExit() {
@@ -51,8 +54,9 @@ const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = 
         <EditModeContext.Provider
             value={{
                 isOpened: isOpened.value,
-                isClosing: isOpened.isChanging,
+                isChanging: isOpened.isChanging,
                 newState,
+                applyMobileEditMode,
                 someChangesHaveBeenMade,
                 //
                 saveAndExit,

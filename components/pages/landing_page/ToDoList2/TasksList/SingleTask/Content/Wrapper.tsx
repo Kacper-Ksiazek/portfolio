@@ -6,7 +6,7 @@ import { fadeSimple, scaleFromBottom, scaleFromLeft } from "@/components/keyfram
 import { fadeSimpleOUT, scaleToBottom, scaleToLeft } from "@/components/keyframes/outro";
 // Styled components
 interface SingleTaskContentWrapperProps {
-    isClosing: boolean;
+    isChanging: boolean;
     isUrgent: boolean;
     editModeIsOpened: boolean;
     modeHasRecentlyChanged: boolean;
@@ -15,7 +15,7 @@ interface SingleTaskContentWrapperProps {
 function shouldForwardProp(prop: string): boolean {
     return ![
         "editModeIsOpened", //
-        "isClosing",
+        "isChanging",
         "isUrgent",
         "modeHasRecentlyChanged",
     ].includes(prop);
@@ -60,7 +60,7 @@ export default styled("div", { shouldForwardProp })<SingleTaskContentWrapperProp
                     ...theme.mixins.absolute_full,
                     background: getAnimationBarColor(theme, props),
                     borderRadius: "3px",
-                    animation: props.isClosing
+                    animation: props.isChanging
                         ? chainAnimations([
                               [scaleFromBottom, 0.25, 0.1],
                               [scaleToLeft, 0.25, 0.1],
@@ -71,7 +71,7 @@ export default styled("div", { shouldForwardProp })<SingleTaskContentWrapperProp
                           ]),
                 },
                 "&>*": {
-                    animation: `${props.isClosing ? fadeSimpleOUT : fadeSimple} .0001s .4s both`,
+                    animation: `${props.isChanging ? fadeSimpleOUT : fadeSimple} .0001s .4s both`,
                 },
             },
         }),
