@@ -2,6 +2,7 @@
 import { styled } from "@mui/material";
 import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
 // Styles
+import RWD from "./RWD";
 import { getStylesWhenCompleted } from "./task_stages_styles/completed";
 import { getStylesDuringDeletion } from "./task_stages_styles/duringDeletion";
 // Types
@@ -46,6 +47,7 @@ export default styled("div", { shouldForwardProp })<SingleTaskBaseProps>(({ them
             },
         },
         stylesWhenCompleted,
-        stylesWhenBeingRemoved
+        stylesWhenBeingRemoved,
+        RWD
     );
 });

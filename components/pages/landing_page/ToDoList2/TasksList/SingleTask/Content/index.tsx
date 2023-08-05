@@ -1,6 +1,7 @@
 // Tools
 import { useEffect, useState } from "react";
 import { useEditModeContext } from "../hooks/useEditModeContext";
+import { CSS_REFERENCES } from "landing_page/ToDoList2/TasksList/SingleTask/css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { Task } from "landing_page/ToDoList2/@types";
@@ -37,6 +38,7 @@ const Content: FunctionComponent<ContentProps> = (props) => {
             isClosing={editModeContext.isClosing}
             editModeIsOpened={editModeContext.isOpened}
             modeHasRecentlyChanged={modeHasRecentlyChanged}
+            className={CSS_REFERENCES.CONTENT.MAIN_CONTENT_WRAPPER}
         >
             {editModeContext.isOpened ? <EditMode /> : <ViewMode data={props.data} />}
             {/*  */}
