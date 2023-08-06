@@ -30,9 +30,6 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
                     ref_type: "CSS_CLASS",
                 },
             },
-            // EDIT_MODE:{
-
-            // },
             MAIN_CONTENT_WRAPPER: {
                 ref_value: "content-wrapper",
                 ref_type: "CSS_CLASS",
