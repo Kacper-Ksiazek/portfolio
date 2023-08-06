@@ -10,6 +10,7 @@ import Close from "@mui/icons-material/Close";
 // Styled components
 import { IconWrapper } from "./IconWrapper";
 import { StyledCheckboxBase } from "./StyledCheckboxBase";
+import { SxProps } from "@/@types/MUI";
 
 interface StyledCheckboxProps {
     label: string;
@@ -17,6 +18,7 @@ interface StyledCheckboxProps {
     updateValue: (val: boolean) => void;
 
     id?: string;
+    sx?: SxProps;
     small?: boolean;
     disabled?: boolean;
     className?: string;
@@ -41,7 +43,7 @@ const StyledCheckbox: FunctionComponent<StyledCheckboxProps> = (props) => {
 
     return (
         <StyledCheckboxBase
-            sx={{ height: size }} //
+            sx={{ height: size, ...props.sx }} //
             onClick={onClick}
             onBlur={onBlur}
             recentlyClicked={recentlyClicked}
