@@ -20,7 +20,8 @@ export default styled("div")(({ theme }) => ({
     fontSize: "18px",
     animation: `${fadeSimple} .2s .1s both`,
     [SELECTORS.HEADER]: {
-        margin: "0 0 8px 0",
+        fontSize: "24px",
+        margin: "0 0 24px 0",
     },
     p: {
         margin: "0",

@@ -29,7 +29,7 @@ const ModalActions: FunctionComponent<ModalActionsProps> = (props) => {
     }
 
     return (
-        <FlexBox sx={{ mt: "24px" }}>
+        <FlexBox sx={{ mt: "24px", width: "100%" }}>
             <StyledButton
                 componentThemeID="ERROR"
                 onClick={props.closeModal} //

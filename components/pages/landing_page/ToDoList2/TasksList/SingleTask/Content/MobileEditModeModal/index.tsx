@@ -25,12 +25,6 @@ const MobileEditModeModal: FunctionComponent = () => {
                     },
                 }}
             />
-            <DueDatePicker
-                value={editModeContext.newState.dueDate} //
-                className={CSS_REFERENCES.DATE_PICKER}
-                updateValue={(val) => editModeContext.updateNewState({ dueDate: val })}
-                componentThemeID="TRANSPARENT_WHITE"
-            />
             <StyledCheckbox
                 label="Urgent" //
                 value={editModeContext.newState.urgent}
@@ -42,6 +36,13 @@ const MobileEditModeModal: FunctionComponent = () => {
             <LabelPicker
                 value={editModeContext.newState.labelID} //
                 updateValue={(val) => editModeContext.updateNewState({ labelID: val })}
+                componentThemeID="TRANSPARENT_WHITE"
+            />
+
+            <DueDatePicker
+                value={editModeContext.newState.dueDate} //
+                className={CSS_REFERENCES.DATE_PICKER}
+                updateValue={(val) => editModeContext.updateNewState({ dueDate: val })}
                 componentThemeID="TRANSPARENT_WHITE"
             />
         </MobileEditModeModalWrapper>
