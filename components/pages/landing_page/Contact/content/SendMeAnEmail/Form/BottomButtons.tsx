@@ -65,7 +65,7 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
                 disabled={invalidFormFields.length !== 0} //
                 onClick={props.onContinueButtonClick}
                 className="continue"
-                color="primary"
+                componentThemeID="PRIMARY"
             >
                 <span className="text">{props.continueButtonMsg}</span>
             </ContinueButton>
@@ -75,17 +75,17 @@ const BottomButtons: FunctionComponent<BottomButtonsProps> = (props) => {
                     return (
                         <div className="flex">
                             <ButtonWithTooltip
-                                color="error" //
+                                icon={<CodeOff />} //
+                                componentThemeID="ERROR"
                                 tooltip="Fake invalid request"
                                 onClick={feignInvalidRequest}
-                                icon={<CodeOff />}
                                 className="fake-invalid-request"
                             />
                             <ButtonWithTooltip
-                                color="success" //
+                                icon={<CodeOff />} //
+                                componentThemeID="SUCCESS"
                                 tooltip="Fake successful request"
                                 onClick={feignSucceededRequest}
-                                icon={<CodeOff />}
                                 className="fake-valid-request"
                             />
                         </div>

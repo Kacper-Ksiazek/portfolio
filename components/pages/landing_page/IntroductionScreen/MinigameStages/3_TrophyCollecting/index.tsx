@@ -52,7 +52,7 @@ const Trophy: FunctionComponent<{ rendering: WayOfRendering }> = (props) => {
             <p className="message-to-winner">{formatTextViaBolding(`Here is your deserved trophy ${winnerTitle}!`, true)}</p>
             <StyledButton
                 className="go-back" //
-                color="primary"
+                componentThemeID="PRIMARY"
                 onClick={goBack}
             >
                 <ArrowBack />

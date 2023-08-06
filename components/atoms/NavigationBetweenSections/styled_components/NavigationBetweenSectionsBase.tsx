@@ -13,7 +13,7 @@ export default styled("div")(({ theme }) => ({
 
     ["@media (max-width:770px)"]: {
         flexDirection: "column",
-        marginBottom: "16px",
+        marginBottom: "8px",
         width: "100%",
 
         [`.${CSSClasses.DIVIDER}`]: {
@@ -22,7 +22,9 @@ export default styled("div")(({ theme }) => ({
 
         [`.${CSSClasses.STEP_WRAPPER}`]: {
             width: "100%",
-            marginTop: "8px",
+            "&:not(&:nth-of-type(1))": {
+                marginTop: "8px",
+            },
 
             [`.${CSSClasses.STEP_BUTTON}`]: {
                 border: `1px solid ${theme.palette.secondary.main}`,

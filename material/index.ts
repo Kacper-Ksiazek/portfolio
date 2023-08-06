@@ -22,6 +22,8 @@ export const lightTheme = createTheme({
     text: {
         primary: "#000",
         secondary: "#fff",
+        MUIFormElementText: "#fff",
+        //
         disabled: alpha("#000", 0.8),
     },
     background: {
@@ -32,8 +34,8 @@ export const lightTheme = createTheme({
         lightSectionBackground: "#fff",
         darkSectionBackground: "#34203B",
 
-        MUIFormElementsBackground: "#F0EFF4",
-        MUIFormElementsBorder: alpha("#000", 0.23),
+        MUIFormElementsBackground: "#2C1B33",
+        MUIFormElementsBorder: alpha("#fff", 0.6),
 
         disabledElementBackground: "#999999",
     },
@@ -45,6 +47,8 @@ export const darkTheme = createTheme({
     text: {
         primary: "#fff",
         secondary: "#000",
+        MUIFormElementText: "#fff",
+
         disabled: alpha("#000", 0.8),
     },
     background: {

@@ -33,7 +33,10 @@ const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
     }, [props.progress, labelName]);
 
     return (
-        <SingleLabelWrapper width={props.width} className={props.className}>
+        <SingleLabelWrapper
+            width={props.width} //
+            className={`${props.className} progress-tracker-single-label`}
+        >
             {labelName && props.progress.displayLabelNameInstead !== true && <LabelName>{labelName}</LabelName>}
 
             <ProgressBar

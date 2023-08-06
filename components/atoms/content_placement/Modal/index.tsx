@@ -1,4 +1,5 @@
 // Tools
+import { CSS_REFERENCES } from "./css_references";
 import { useModalControl } from "./hooks/useModalControl";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Types
@@ -6,7 +7,7 @@ import type { SxProps } from "@/@types/MUI";
 import type { ActionButtonProps } from "./@types";
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
-import Modal from "@mui/material/Modal";
+import MUIModal from "@mui/material/Modal";
 // Other components
 import ModalActions from "./ModalActions";
 // Styled components
@@ -27,7 +28,7 @@ const StyledModal: FunctionComponent<StyledModalProps> = (props) => {
     const [shouldDisplayModal, closeModal] = useModalControl(props.onClose);
 
     return (
-        <Modal
+        <MUIModal
             open={props.isOpen} //
             sx={(theme) => {
                 return {
@@ -37,7 +38,7 @@ const StyledModal: FunctionComponent<StyledModalProps> = (props) => {
             }}
         >
             <ModalContentWrapper sx={props.sx}>
-                <h3>{props.title}</h3>
+                <h3 className={CSS_REFERENCES.HEADER}>{props.title}</h3>
 
                 {props.children}
 
@@ -46,7 +47,7 @@ const StyledModal: FunctionComponent<StyledModalProps> = (props) => {
                     actionButton={props.actionButton}
                 />
             </ModalContentWrapper>
-        </Modal>
+        </MUIModal>
     );
 };
 

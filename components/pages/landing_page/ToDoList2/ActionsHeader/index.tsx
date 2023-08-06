@@ -1,27 +1,29 @@
 // Tools
-import { useMemo } from "react";
+import useWindowsSizes from "@/hooks/useWindowSizes";
 import { useDelayedState } from "@/hooks/useDelayedState";
-import { useContentVisibility } from "./hooks/useContentVisibility";
+import { useContentVisibility, useResponsiveHeight } from "./hooks";
 // Types
 import type { FunctionComponent } from "react";
 import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
+import type { ResponsiveHeightCSSClass } from "./hooks/useResponsiveHeight";
 // Other components
 import Content from "./Content";
 import Navigation from "./Navigation";
 import HideButton from "./HideButton";
 // Styled components
-import { SectionWrapper } from "landing_page/ToDoList2/atoms";
+import ActionsHeaderBase from "./Base";
+
+const ACTIONS_HEADER_WRAPPER_ID: string = "to-do-list--actions-header";
 
 const ActionsHeader: FunctionComponent = () => {
     const { value: stage, setValue: setStage, isChanging: isStageChanging } = useDelayedState<ActionHeaderSection>("PROGRESS_TRACKER", 160);
+    const { width } = useWindowsSizes();
 
     const { contentVisibility, toggleContentVisibility } = useContentVisibility();
 
-    const maxHeight: `${string}px` = useMemo<`${string}px`>(() => {
-        if (contentVisibility.contentIsHidden) return "64px";
-        else if (stage === "EDIT_LABELS") return "400px";
-        return "256px";
-    }, [contentVisibility.contentIsHidden, stage]);
+    const responsiveHeightCSSClass: ResponsiveHeightCSSClass = useResponsiveHeight(stage, contentVisibility.contentIsHidden);
+
+    const alternativeHideButtonPosition: boolean = width < 770;
 
     async function onNavigationButtonClick() {
         if (contentVisibility.contentIsHidden === true) {
@@ -38,25 +40,19 @@ const ActionsHeader: FunctionComponent = () => {
     }
 
     return (
-        <SectionWrapper
-            sx={{
-                height: "400px",
-                maxHeight: maxHeight,
-                display: "flex",
-                flexDirection: "column",
-                transition: "max-height .3s",
-                overflow: "hidden",
-            }}
-        >
+        <ActionsHeaderBase className={responsiveHeightCSSClass} id={ACTIONS_HEADER_WRAPPER_ID}>
             <Navigation
                 currentStage={stage} //
                 updateCurrentStage={setStage}
                 beforeOnClick={onNavigationButtonClick}
             >
-                <HideButton
-                    {...contentVisibility} //
-                    toggleContentVisibility={toggleContentVisibility}
-                />
+                {alternativeHideButtonPosition === false && (
+                    <HideButton
+                        {...contentVisibility} //
+                        toggleContentVisibility={toggleContentVisibility}
+                        wrapperID={ACTIONS_HEADER_WRAPPER_ID}
+                    />
+                )}
             </Navigation>
 
             {contentVisibility.renderContent && (
@@ -66,7 +62,15 @@ const ActionsHeader: FunctionComponent = () => {
                     foldActionsHeaderPanel={toggleContentVisibility}
                 />
             )}
-        </SectionWrapper>
+
+            {alternativeHideButtonPosition === true && (
+                <HideButton
+                    {...contentVisibility} //
+                    toggleContentVisibility={toggleContentVisibility}
+                    wrapperID={ACTIONS_HEADER_WRAPPER_ID}
+                />
+            )}
+        </ActionsHeaderBase>
     );
 };
 

@@ -47,11 +47,11 @@ const ShowMore: FunctionComponent<ShowMoreProps> = (props) => {
 
     return (
         <ShowMoreButton
-            color="primary" //
-            onClick={onClick}
-            ref={buttonRef}
-            className={props.allFeaturesAreShown ? "all-features-are-displayed" : ""}
+            ref={buttonRef} //
+            componentThemeID="PRIMARY"
             id="features-display-toggler"
+            className={props.allFeaturesAreShown ? "all-features-are-displayed" : ""}
+            onClick={onClick}
         >
             <span className="text">{props.allFeaturesAreShown ? "Show less" : "Show more"}</span>
             <KeyboardArrowDown />

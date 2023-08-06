@@ -23,7 +23,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
 
                 <ButtonsWrapper>
                     <Link href="/" passHref>
-                        <StyledButton color="primary">Main page</StyledButton>
+                        <StyledButton componentThemeID="PRIMARY">Main page</StyledButton>
                     </Link>
 
                     <Link href="/projects/ABU_DHABI" passHref>

@@ -1,22 +1,24 @@
 // Tools
 import { forwardRef } from "react";
-import { alpha } from "@mui/material/styles";
 // Types
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
+import type { StyledButtonThemeName } from "@/components/atoms/forms/StyledButton/ComponentColorThemes";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";
-import ButtonBase from "@mui/material/ButtonBase";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 
 interface ModalOpeningButtonProps {
-    small?: boolean;
     tooltip: string;
-    primary?: boolean;
-    disabled?: boolean;
     size: `${string}px`;
+
     children: ReactNode;
+
+    small?: boolean;
+    disabled?: boolean;
     isIconButton?: boolean;
+    componentThemeID?: StyledButtonThemeName;
+    wrapperProps?: Omit<HTMLAttributes<HTMLButtonElement>, "onClick">;
 
     openModal?: () => void;
 }
@@ -24,22 +26,28 @@ interface ModalOpeningButtonProps {
 const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps>((props, ref) => {
     return (
         <Tooltip title={!props.disabled ? props.tooltip : ""} placement="top">
-            <span>
+            <span
+                {...props.wrapperProps}
+                style={{
+                    marginLeft: props.small ? "4px" : "6px",
+                }}
+            >
                 <StyledButton
                     ref={ref}
-                    color={props.primary ? "primary" : "MUIFormElement"}
-                    sx={(theme) => ({
+                    onClick={props.openModal}
+                    iconButton={props.isIconButton}
+                    disabled={props.disabled ?? false}
+                    componentThemeID={props.componentThemeID}
+                    subtleHoverEffect={props.componentThemeID !== "PRIMARY"}
+                    sx={{
                         height: props.size,
                         borderRadius: "3px",
-                        marginLeft: props.small ? "4px" : "6px",
                         fontSize: "16px",
+                        width: props.isIconButton ? (props.small ? "32px" : "42px") : "100%",
                         svg: {
-                            fontSize: "20px",
-                            marginRight: "2px",
+                            fontSize: props.small ? "20px" : "24px",
                         },
-                    })}
-                    disabled={props.disabled ?? false}
-                    onClick={props.openModal}
+                    }}
                 >
                     {props.children}
                 </StyledButton>

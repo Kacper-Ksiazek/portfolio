@@ -32,7 +32,7 @@ const GenderPicking: FunctionComponent<{ rendering: WayOfRendering }> = (props) 
             </div>
 
             <StyledButton
-                color="secondary" //
+                componentThemeID="SECONDARY" //
                 className="prefer-not-to-answer"
                 onClick={() => selectGender("OTHER")}
             >{`I prefer not to answer`}</StyledButton>

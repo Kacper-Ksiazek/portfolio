@@ -35,7 +35,7 @@ const EmailFormSubsection1: FunctionComponent<{ color: "primary" | "secondary" }
                 value={form.email}
                 onChange={(e) => updateForm({ email: e.target.value })}
                 error={form.email !== "" && invalidFormFields.includes("email")}
-                className="transparent-bg"
+                componentThemeID="TEXT_PRIMARY"
             />
             <StyledInput
                 label="LinkedIn*" //
@@ -43,7 +43,7 @@ const EmailFormSubsection1: FunctionComponent<{ color: "primary" | "secondary" }
                 value={form.linkedIn}
                 onChange={(e) => updateForm({ linkedIn: e.target.value })}
                 error={invalidFormFields.includes("linkedIn")}
-                className="transparent-bg"
+                componentThemeID="TEXT_PRIMARY"
             />
             <StyledInput
                 label="Website*" //
@@ -51,7 +51,7 @@ const EmailFormSubsection1: FunctionComponent<{ color: "primary" | "secondary" }
                 value={form.website}
                 onChange={(e) => updateForm({ website: e.target.value })}
                 error={invalidFormFields.includes("website")}
-                className="transparent-bg"
+                componentThemeID="TEXT_PRIMARY"
             />
             <InformationAboutOptionality>* Optional</InformationAboutOptionality>
         </>

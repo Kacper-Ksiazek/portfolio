@@ -36,7 +36,7 @@ interface ReadMoreProps {
 const ReadMore: FunctionComponent<ReadMoreProps> = (props) => {
     return (
         <Link href={`/projects/${props.id}`} passHref>
-            <ReadMoreButton color="primary" className="read-more">
+            <ReadMoreButton componentThemeID="PRIMARY" className="read-more">
                 <span>Read more</span>
                 <ChevronRight />
             </ReadMoreButton>

@@ -1,5 +1,6 @@
 // Types
-import type { FunctionComponent } from "react";
+import type { FunctionComponent, HTMLAttributes } from "react";
+// import type { StandardProps } from "@mui/types";
 import type { EditLabelsFilters } from "landing_page/ToDoList2/@types";
 import type { OptionWithAlias } from "@/components/atoms/forms/StyledSelect";
 // Material UI Icons
@@ -9,7 +10,7 @@ import StyledSelect from "@/components/atoms/forms/StyledSelect";
 
 type Order = EditLabelsFilters["order"];
 
-interface PickSortingOrderProps {
+interface PickSortingOrderProps extends HTMLAttributes<HTMLSelectElement> {
     value: Order;
     disabled: boolean;
 
@@ -24,9 +25,11 @@ const OPTIONS: OptionWithAlias<Order>[] = [
 ];
 
 const PickSortingOrder: FunctionComponent<PickSortingOrderProps> = (props) => {
+    const { updateValue, ...propsToForward } = props;
+
     return (
         <StyledSelect
-            value={props.value} //
+            {...propsToForward}
             onChange={(e) => props.updateValue(e.target.value)}
             options={OPTIONS}
             startAdornment={<SortByAlphaRoundedIcon />}
@@ -34,7 +37,6 @@ const PickSortingOrder: FunctionComponent<PickSortingOrderProps> = (props) => {
                 width: "180px",
                 height: "42px",
             }}
-            disabled={props.disabled}
         />
     );
 };

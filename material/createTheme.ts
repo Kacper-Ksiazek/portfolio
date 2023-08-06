@@ -17,9 +17,9 @@ declare module "@mui/material/styles/createPalette" {
         disabledElementBackground: string;
     }
 
-    // interface TypeText {
-
-    // }
+    interface TypeText {
+        MUIFormElementText: string;
+    }
 }
 
 interface CreateThemeParams {
@@ -46,6 +46,7 @@ interface CreateThemeParams {
     text: {
         primary: string;
         secondary: string;
+        MUIFormElementText: string;
 
         disabled: string;
     };
@@ -77,17 +78,6 @@ export function createTheme(props: CreateThemeParams): Theme {
             fontFamily: '"Noto Sans", sans-serif',
         },
         components: {
-            MuiTextField: {
-                styleOverrides: {
-                    root: {
-                        "&:not(&.transparent-bg)": {
-                            ".MuiInputBase-root": {
-                                background: props.background.MUIFormElementsBackground,
-                            },
-                        },
-                    },
-                },
-            },
             MuiInputBase: {
                 styleOverrides: {
                     root: {

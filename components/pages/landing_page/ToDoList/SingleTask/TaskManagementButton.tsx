@@ -2,7 +2,7 @@
 import { styled } from "@mui/material";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { Color } from "@/components/atoms/forms/StyledButton";
+import type { StyledButtonThemeName } from "@/components/atoms/forms/StyledButton/ComponentColorThemes";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";
 // Styled components
@@ -15,14 +15,15 @@ const TaskManagementButtonBase = styled(StyledButton)(({ theme }) => ({
 }));
 
 interface TaskManagementButtonProps {
-    tooltip: string;
     icon: ReactNode;
-    color?: Color;
+    tooltip: string;
+
+    onClick: () => void;
+
     disabled?: boolean;
     tabIndex?: number;
     className?: string;
-
-    onClick: () => void;
+    componentThemeID?: StyledButtonThemeName;
 }
 
 const TaskManagementButton: FunctionComponent<TaskManagementButtonProps> = (props) => {
@@ -35,9 +36,9 @@ const TaskManagementButton: FunctionComponent<TaskManagementButtonProps> = (prop
                 <TaskManagementButtonBase
                     onClick={props.onClick} //
                     className={props.className}
-                    color={props.color}
                     tabIndex={props.tabIndex}
                     disabled={props.disabled}
+                    componentThemeID={props.componentThemeID}
                 >
                     {props.icon}
                 </TaskManagementButtonBase>

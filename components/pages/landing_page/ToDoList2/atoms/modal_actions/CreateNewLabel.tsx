@@ -11,8 +11,10 @@ import AddRounded from "@mui/icons-material/AddRounded";
 import { Modal, ModalOpeningButton } from "./__SingleLabelModifier";
 
 interface CreateNewLabelProps {
+    id?: string;
     small?: boolean;
     primary?: boolean;
+    className?: string;
     size?: `${string}px`;
     disableTooltip?: boolean;
     modalOpeningButtonPrompt?: ReactNode;
@@ -36,15 +38,20 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
     return (
         <>
             <ModalOpeningButton
-                size={props.size as any} //
-                small={props.small}
+                small={props.small} //
+                size={props.size as any}
                 openModal={() => setModalIsOpened(true)}
-                isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
                 tooltip={props.disableTooltip === false ? "Create a new label" : ""}
-                primary={props.primary}
+                isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
+                componentThemeID={props.primary ? "PRIMARY" : "TRANSPARENT_WHITE"}
+                wrapperProps={{
+                    className: props.className,
+                    id: props.id,
+                }}
             >
                 {props.modalOpeningButtonPrompt ? props.modalOpeningButtonPrompt : <AddRounded />}
             </ModalOpeningButton>
+
             {(() => {
                 if (modalIsOpened === true) {
                     return (

@@ -9,7 +9,7 @@ export default {
     title: "Atoms/Forms/StyledButton",
     component: StyledButton,
     argTypes: {
-        color: {
+        componentThemeID: {
             control: { type: "select" },
             options: ["primary", "success", "error", "secondary", "text"],
             description: "Color of button's background corresponding to `material theme`",
@@ -37,30 +37,30 @@ const IconTemplate: ComponentStoryFn<typeof StyledButton> = (args) => {
 
 export const IconButton = IconTemplate.bind({});
 IconTemplate.args = {
-    color: "text",
+    componentThemeID: "TEXT",
 };
 
 export const PrimaryButton = Template.bind({});
 PrimaryButton.args = {
-    color: "primary",
+    componentThemeID: "PRIMARY",
 };
 
 export const ErrorButton = Template.bind({});
 ErrorButton.args = {
-    color: "error",
+    componentThemeID: "ERROR",
 };
 
 export const SuccessButton = Template.bind({});
 SuccessButton.args = {
-    color: "success",
+    componentThemeID: "SUCCESS",
 };
 
 export const SecondaryButton = Template.bind({});
 SecondaryButton.args = {
-    color: "secondary",
+    componentThemeID: "SECONDARY",
 };
 
 export const TextButton = Template.bind({});
 TextButton.args = {
-    color: "text",
+    componentThemeID: "TEXT",
 };

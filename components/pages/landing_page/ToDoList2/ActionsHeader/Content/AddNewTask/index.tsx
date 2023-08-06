@@ -1,5 +1,6 @@
 // Tools
 import { useState } from "react";
+import { CSS_REFERENCES } from "./css_references";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
@@ -10,6 +11,7 @@ import TaskTitleInput from "./TaskTitleInput";
 import ConfirmationButton from "./ConfirmationButton";
 import FormFieldsOrganizer from "./FormFieldsOrganizer";
 // Styled components
+import { Paragraph } from "landing_page/ToDoList2/atoms";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
 import { DueDatePicker, LabelPicker } from "landing_page/ToDoList2/atoms/modifiers";
@@ -35,33 +37,46 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
 
     return (
         <>
+            <Paragraph>Description</Paragraph>
+
             <TaskTitleInput
                 value={newTaskBody.description} //
                 setValue={(val) => updateNewTaskBody({ description: val })}
             />
 
-            <FormFieldsOrganizer>
+            <Paragraph>Details</Paragraph>
+
+            <FormFieldsOrganizer id={CSS_REFERENCES.FORM_FIELDS.WRAPPER}>
                 <StyledCheckbox
                     label="Urgent" //
                     value={newTaskBody.urgent}
                     updateValue={(val) => updateNewTaskBody({ urgent: val })}
+                    id={CSS_REFERENCES.FORM_FIELDS.URGENCY_SWITCH}
                 />
-                <DueDatePicker value={newTaskBody.dueDate} updateValue={(dueDate) => updateNewTaskBody({ dueDate })} />
-                <LabelPicker value={newTaskBody.labelID} updateValue={(labelID) => updateNewTaskBody({ labelID })} />
+                <DueDatePicker
+                    value={newTaskBody.dueDate} //
+                    updateValue={(dueDate) => updateNewTaskBody({ dueDate })}
+                />
+                <LabelPicker
+                    value={newTaskBody.labelID} //
+                    updateValue={(labelID) => updateNewTaskBody({ labelID })}
+                />
             </FormFieldsOrganizer>
 
-            <span style={{ flexGrow: 1 }} />
-
-            <FlexBox>
+            <FlexBox sx={{ mb: "12px !important" }} id={CSS_REFERENCES.BUTTONS.WRAPPER}>
                 <ConfirmationButton
                     newTaskBody={newTaskBody} //
+                    id={CSS_REFERENCES.BUTTONS.ADD_NEW_TASK}
                     foldActionsHeaderPanel={hideThisPanelAfterAdding ? props.foldActionsHeaderPanel : null}
+                    //
                     resetNewTaskBody={() => updateNewTaskBody(EMPTY_NEW_TASK_BODY)}
                 />
 
                 <StyledCheckbox
                     label="Hide this panel" //
                     value={hideThisPanelAfterAdding}
+                    id={CSS_REFERENCES.BUTTONS.HIDE_PANEL}
+                    //
                     updateValue={(val) => setHideThisPanelAfterAdding(val)}
                 />
             </FlexBox>

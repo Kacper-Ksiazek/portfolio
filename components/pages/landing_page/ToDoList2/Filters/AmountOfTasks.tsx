@@ -1,5 +1,4 @@
 // Tools
-import { CLASSES } from "../css_references";
 import { alpha, styled } from "@mui/material";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
@@ -9,18 +8,19 @@ const AmountOfTasksBase = styled("p")(({ theme }) => ({
     color: alpha("#fff", 0.8),
     boxSizing: "border-box",
     borderRadius: "3px",
-    margin: "8px 0 0 0",
+    margin: "4px 0 0 0",
     fontSize: "16px",
     userSelect: "none",
 }));
 
 interface AmountOfTasksProps {
+    id: string;
     quantity: number;
 }
 
-const AmountOfTasks: FunctionComponent<AmountOfTasksProps> = ({ quantity }) => {
+const AmountOfTasks: FunctionComponent<AmountOfTasksProps> = ({ quantity, ...props }) => {
     return (
-        <AmountOfTasksBase className={CLASSES.AMOUNT_OF_TASKS}>
+        <AmountOfTasksBase id={props.id}>
             {/*  */}
             {formatTextViaBolding(`There ${quantity === 1 ? "is" : "are"} currenty *${quantity}* task${quantity === 1 ? "" : "s"} to be shown`)}
         </AmountOfTasksBase>

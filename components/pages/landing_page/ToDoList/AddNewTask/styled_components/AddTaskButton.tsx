@@ -8,7 +8,7 @@ export default styled(ButtonBase)(({ theme }) => ({
     border: `1px solid ${theme.palette.primary.main}`,
     borderRadius: "3px",
     boxSizing: "border-box",
-    fontSize: "16px",
+    fontSize: "18px",
     transition: "all .3s",
     background: "#fff",
     color: "#000",

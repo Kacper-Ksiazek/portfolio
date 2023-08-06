@@ -1,4 +1,6 @@
 // Tools
+import { CSS_REFERENCES } from "./css_references";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import { useUnusedLabels } from "./hooks/useUnusedLabels";
 // Types
 import type { FunctionComponent, Dispatch } from "react";
@@ -10,7 +12,7 @@ import CreateNewLabel from "landing_page/ToDoList2/atoms/modal_actions/CreateNew
 // Material UI Icons
 import AddRounded from "@mui/icons-material/AddRounded";
 // Styled components
-import FlexBox from "@/components/atoms/content_placement/FlexBox";
+import ManagementHeaderBase from "./Base";
 import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
 
 interface ManagementHeaderProps {
@@ -21,42 +23,44 @@ interface ManagementHeaderProps {
 }
 
 const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
+    const { width } = useWindowSizes();
     const unusedLabels: LabelID[] = useUnusedLabels();
 
     return (
-        <FlexBox
-            sx={{
-                width: "100%",
-                paddingBottom: "12px",
-                "&>*": {
-                    marginRight: "6px",
-                },
-            }}
-        >
+        <ManagementHeaderBase id={CSS_REFERENCES.WRAPPER}>
             <StyledCheckbox
+                id={CSS_REFERENCES.FILTERS.URGENCY_SWITCH}
                 label="Urgent mode" //
                 value={props.filters.urgentModeAlternativeAppearance}
                 updateValue={(val) => props.updateFilters({ urgentModeAlternativeAppearance: val })}
             />
 
             <StyledCheckbox
-                label="Not used only" //
+                id={CSS_REFERENCES.FILTERS.NOT_USED_ONLY_SWITCH}
+                label={width < 400 ? "Not used" : "Not used only"} //
                 disabled={unusedLabels.length === 0}
                 value={props.filters.displayNotUsedLabelsOnly}
                 updateValue={(val) => props.updateFilters({ displayNotUsedLabelsOnly: val })}
             />
 
             <PickSortingOrder
+                id={CSS_REFERENCES.FILTERS.PICK_SORTING_ORDER}
                 value={props.filters.order} //
                 updateValue={(val) => props.updateFilters({ order: val })}
                 disabled={props.amountOfLabels <= 1}
             />
 
-            <span style={{ flexGrow: 1 }} />
+            <span
+                id={CSS_REFERENCES.EMPTY_SPACE_FILLER} //
+            />
 
-            <DeleteUnusedLabels unusedLabels={unusedLabels} />
+            <DeleteUnusedLabels
+                id={CSS_REFERENCES.BUTTONS.DELETE_UNUSED_LABELS_BUTTON} //
+                unusedLabels={unusedLabels}
+            />
 
             <CreateNewLabel
+                id={CSS_REFERENCES.BUTTONS.ADD_NEW_LABEL_BUTTON}
                 primary
                 disableTooltip
                 modalOpeningButtonPrompt={
@@ -65,7 +69,7 @@ const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
                     </>
                 }
             ></CreateNewLabel>
-        </FlexBox>
+        </ManagementHeaderBase>
     );
 };
 
