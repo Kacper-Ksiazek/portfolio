@@ -33,6 +33,12 @@ export default styled(Select, {shouldForwardProp})< SelectProps>(({ theme, ...pr
         svg: {
             color: "inherit !important",
         },
+        
+        "&.Mui-disabled":{
+            fieldset:{
+                border: '1px solid #000 !important'
+            }
+        }
     });
 
 });

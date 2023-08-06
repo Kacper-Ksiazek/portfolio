@@ -15,6 +15,9 @@ export const ProgressWrapper = styled("div")(({ theme }) => ({
             marginRight: "8px",
         },
     },
+    "@media (max-width:670px)": {
+        marginTop: "4px",
+    },
 }));
 
 export const ThereAreNoTasks = styled("span")(({ theme }) => ({
