@@ -22,9 +22,10 @@ interface DefaultActionButtonProps {
 
 const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonProps>((props, ref) => {
     const editModeContext = useEditModeContext();
+
     return (
         <>
-            <SmoothConditionalRender when={props.showUnwindButton}>
+            <SmoothConditionalRender when={props.showUnwindButton || editModeContext.applyMobileEditMode === true}>
                 <StyledIconButton
                     ref={ref} //
                     onClick={props.unwindMenuList}
@@ -43,7 +44,7 @@ const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonPro
                 </StyledIconButton>
             </SmoothConditionalRender>
 
-            <SmoothConditionalRender when={editModeContext.isOpened}>
+            <SmoothConditionalRender when={editModeContext.isOpened && editModeContext.applyMobileEditMode === false}>
                 <FlexBox horizontal="end">
                     <StyledIconButton
                         onClick={editModeContext.saveAndExit} //
