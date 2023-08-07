@@ -6,7 +6,7 @@ import type { FunctionComponent, ReactNode } from "react";
 
 interface InformationWithIconProps {
     icon: ReactNode;
-    children: ReactNode;
+    info: string | null;
 }
 
 const InformationWithIconBase = styled("span")(({ theme }) => ({
@@ -16,6 +16,7 @@ const InformationWithIconBase = styled("span")(({ theme }) => ({
     transition: "opacity .3s",
     boxSizing: "border-box",
     paddingTop: "2px",
+    userSelect: "none",
     // border: "2px solid",
     // borderColor: theme.palette.error.main,
     // color: theme.palette.error.main,
@@ -33,10 +34,12 @@ const InformationWithIconBase = styled("span")(({ theme }) => ({
 }));
 
 const InformationWithIcon: FunctionComponent<InformationWithIconProps> = (props) => {
+    if (props.info === null) return <></>;
+
     return (
         <InformationWithIconBase className={VIEW_MODE_CSS_REFERENCES.INFORMATION_WITH_ICON}>
             {props.icon}
-            <span className="text">{props.children}</span>
+            <span className="text">{props.info}</span>
         </InformationWithIconBase>
     );
 };

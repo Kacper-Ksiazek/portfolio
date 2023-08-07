@@ -5,7 +5,7 @@ import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
-import type { NewTaskBody } from "landing_page/ToDoList2/@types";
+import type { NewTaskBody, Task } from "landing_page/ToDoList2/@types";
 // Other components
 import TaskTitleInput from "./TaskTitleInput";
 import ConfirmationButton from "./ConfirmationButton";
@@ -17,9 +17,14 @@ import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
 import { DueDatePicker, LabelPicker } from "landing_page/ToDoList2/atoms/modifiers";
 
 const EMPTY_NEW_TASK_BODY: Omit<NewTaskBody, "labelID"> = {
-    description: "",
-    dueDate: null,
+    title: "",
     urgent: false,
+    additionalInformation: {
+        description: null,
+        dueDate: null,
+        dueTime: null,
+        localization: null,
+    },
 };
 
 interface AddNewTaskProps {
@@ -35,13 +40,21 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
         labelID: Object.keys(labels)[0],
     });
 
+    function updateOptionalProperty(property: keyof Task["additionalInformation"], value: Task["additionalInformation"][typeof property]) {
+        updateNewTaskBody({
+            additionalInformation: {
+                ...newTaskBody.additionalInformation,
+                [property]: value,
+            },
+        });
+    }
     return (
         <>
             <Paragraph>Description</Paragraph>
 
             <TaskTitleInput
-                value={newTaskBody.description} //
-                setValue={(val) => updateNewTaskBody({ description: val })}
+                value={newTaskBody.title} //
+                setValue={(val) => updateNewTaskBody({ title: val })}
             />
 
             <Paragraph>Details</Paragraph>
@@ -54,8 +67,8 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
                     id={CSS_REFERENCES.FORM_FIELDS.URGENCY_SWITCH}
                 />
                 <DueDatePicker
-                    value={newTaskBody.dueDate} //
-                    updateValue={(dueDate) => updateNewTaskBody({ dueDate })}
+                    value={newTaskBody.additionalInformation.dueDate} //
+                    updateValue={(dueDate) => updateOptionalProperty("dueDate", dueDate)}
                 />
                 <LabelPicker
                     value={newTaskBody.labelID} //

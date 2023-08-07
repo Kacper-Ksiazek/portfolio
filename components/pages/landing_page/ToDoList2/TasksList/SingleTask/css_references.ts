@@ -21,7 +21,7 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
                     ref_value: "information-with-icon",
                     ref_type: "CSS_CLASS",
                 },
-                DESCRIPTION: {
+                TITLE: {
                     ref_value: "description",
                     ref_type: "CSS_CLASS",
                 },

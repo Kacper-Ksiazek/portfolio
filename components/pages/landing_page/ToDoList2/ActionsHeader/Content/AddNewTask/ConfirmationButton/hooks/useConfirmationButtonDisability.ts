@@ -8,9 +8,10 @@ export function useConfirmationButtonDisability(newTaskBody: NewTaskBody): boole
     const { labels } = useLabelsContext();
 
     return useMemo<boolean>(() => {
-        const { description, dueDate, labelID } = newTaskBody;
+        const { title, additionalInformation, labelID } = newTaskBody;
+        const { dueDate } = additionalInformation;
 
-        if (description.length < 3 || description.length > 64) return true;
+        if (title.length < 3 || title.length > 64) return true;
         else if (dueDate !== null && typeof dueDate != "string") return true;
         else if (Object.keys(labels).includes(labelID) === false) return true;
 

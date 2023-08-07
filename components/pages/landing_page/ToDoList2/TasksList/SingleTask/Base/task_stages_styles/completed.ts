@@ -18,7 +18,7 @@ export const getStylesWhenCompleted = (theme: Theme): SxProps => {
         [VIEW_MODE_SELECTORS.INFORMATION_WITH_ICON]: {
             opacity: 0.3,
         },
-        [VIEW_MODE_SELECTORS.DESCRIPTION]: {
+        [VIEW_MODE_SELECTORS.TITLE]: {
             "h4::before": {
                 transform: "scaleX(1)",
             },

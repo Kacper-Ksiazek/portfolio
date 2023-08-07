@@ -20,7 +20,7 @@ const hideSingleTaskWrapper = keyframes({
 });
 
 const ELEMENTS_INVOLVED_IN_ANIMATION: Selector = [
-    VIEW_MODE_SELECTORS.DESCRIPTION + ">h4", //
+    VIEW_MODE_SELECTORS.TITLE + ">h4", //
     VIEW_MODE_SELECTORS.LABELS_WRAPPER,
     SELECTORS.COMPLETION_BUTTON,
     VIEW_MODE_SELECTORS.INFORMATION_WITH_ICON,
@@ -51,7 +51,7 @@ export const getStylesDuringDeletion = (theme: Theme, isUrgent: boolean): SxProp
             },
         },
 
-        [`${VIEW_MODE_SELECTORS.DESCRIPTION}>h4::before`]: {
+        [`${VIEW_MODE_SELECTORS.TITLE}>h4::before`]: {
             animation: `${fadeSimpleOUT} .001s .3s both`,
         },
 
