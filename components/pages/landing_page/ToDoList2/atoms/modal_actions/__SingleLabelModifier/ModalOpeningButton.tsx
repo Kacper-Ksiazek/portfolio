@@ -26,12 +26,7 @@ interface ModalOpeningButtonProps {
 const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps>((props, ref) => {
     return (
         <Tooltip title={!props.disabled ? props.tooltip : ""} placement="top">
-            <span
-                {...props.wrapperProps}
-                style={{
-                    marginLeft: props.small ? "4px" : "6px",
-                }}
-            >
+            <span {...props.wrapperProps} style={{ transform: "translateX(-1px)" }}>
                 <StyledButton
                     ref={ref}
                     onClick={props.openModal}
@@ -43,9 +38,16 @@ const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps
                         height: props.size,
                         borderRadius: "3px",
                         fontSize: "16px",
+                        borderLeftColor: "transparent",
+                        borderTopLeftRadius: 0,
+                        borderBottomLeftRadius: 0,
                         width: props.isIconButton ? (props.small ? "32px" : "42px") : "100%",
                         svg: {
                             fontSize: props.small ? "20px" : "24px",
+                        },
+                        "&:hover": {
+                            borderTopLeftRadius: "3px",
+                            borderBottomLeftRadius: "3px",
                         },
                     }}
                 >
@@ -56,5 +58,5 @@ const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps
     );
 });
 
-ModalOpeningButton.displayName = "ModalOpeningButton ";
+ModalOpeningButton.displayName = "ModalOpeningButton";
 export default ModalOpeningButton;
