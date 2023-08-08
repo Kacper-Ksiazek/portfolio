@@ -4,18 +4,20 @@ import ClearButton from "../_ClearButton";
 // Types
 import type { FunctionComponent } from "react";
 import type { ComponentThemeName } from "../_common_component_color_themes";
+// Material UI Components
+import IconButton from "@mui/material/IconButton";
 // Material UI Icons
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 // Styled components
 import StyledTimePickerBase from "./Base";
-import IconButton from "@mui/material/IconButton";
+import OptionalPropertIndicator from "../OptionalPropertyIndicator";
 
 export const TIME_PICKER_CLASS_NAME: CSSClassName = "time-picker";
 
 interface StyledDatePickerProps {
     value: string | null;
 
-    setValue: (val: string | null) => void;
+    updateValue: (val: string | null) => void;
 
     disabled?: boolean;
     componentThemeID?: ComponentThemeName;
@@ -31,11 +33,13 @@ const StyledDatePicker: FunctionComponent<StyledDatePickerProps> = (props) => {
 
     return (
         <div style={{ position: "relative", height: "42px", minWidth: "148px" }}>
+            <OptionalPropertIndicator />
+
             <input
                 type="time" //
                 style={{ visibility: "hidden" }}
                 ref={timeInputRef}
-                onChange={(e) => props.setValue(e.target.value)}
+                onChange={(e) => props.updateValue(e.target.value)}
                 value={props.value ?? undefined}
             />
 
@@ -53,7 +57,7 @@ const StyledDatePicker: FunctionComponent<StyledDatePickerProps> = (props) => {
 
             <ClearButton
                 disabled={props.value === null} //
-                clear={() => props.setValue(null)}
+                clear={() => props.updateValue(null)}
             />
         </div>
     );

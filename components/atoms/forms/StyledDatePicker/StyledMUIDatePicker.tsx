@@ -32,6 +32,7 @@ export default styled(DatePicker, { shouldForwardProp })<StyledDatePickerBasePro
             },
         },
         ".MuiOutlinedInput-root": {
+            paddingLeft: '4px',
             display: "flex",
             flexDirection: "row-reverse",
             justifyContent: "flex-end",

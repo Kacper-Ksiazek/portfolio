@@ -23,6 +23,7 @@ export default styled("button", {shouldForwardProp})< SelectProps>(({ theme, ...
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
+        paddingLeft: '6px',
         fontSize: '16px',
         
         "span.value":{
