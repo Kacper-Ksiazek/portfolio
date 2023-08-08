@@ -23,6 +23,7 @@ export default styled(DatePicker, { shouldForwardProp })<StyledDatePickerBasePro
         background,
         fieldset: {
             borderColor,
+            borderRadius: '3px',
             transition: "border-color .2s",
         },
         "&:hover": {

@@ -13,6 +13,7 @@ const ClearButtonWrapper = styled("span")(({ theme }) => ({
     right: "8px",
     top: "50%",
     transform: "translateY(-50%)",
+    zIndex: "10",
     ".MuiButtonBase-root": {
         border: "none",
         "&.Mui-disabled": {
