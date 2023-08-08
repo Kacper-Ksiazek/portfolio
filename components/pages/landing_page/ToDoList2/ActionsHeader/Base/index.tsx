@@ -31,7 +31,7 @@ export default styled(SectionWrapper)(({ theme }) => ({
 
     [`&.${"ADD_NEW_TASK" as ResponsiveHeightCSSClass}`]: mergeSXObjects(
         {
-            maxHeight: "312px",
+            maxHeight: "364px",
             "@media (max-width:770px)": {
                 maxHeight: "500px",
             },

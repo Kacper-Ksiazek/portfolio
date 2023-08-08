@@ -6,6 +6,24 @@ import { SELECTORS } from "./css_references";
 import type { SxProps } from "@mui/material";
 
 export default {
+    ".MuiTextField-root": {
+        width: "100%",
+        ".MuiOutlinedInput-root": {
+            height: "42px",
+        },
+        input: { padding: "8px 12px" },
+    },
+
+    [SELECTORS.TITLE_INPUT]: {
+        width: "calc(100% - 128px - 6px)",
+    },
+    [SELECTORS.URGENCY_SWITCH]: {
+        width: "128px",
+    },
+    [SELECTORS.DESCRIPTION]: {
+        width: "100%",
+    },
+
     "@media (max-width:770px)": {
         [SELECTORS.FORM_FIELDS.LABEL_PICKER.SELECT]: {
             flexGrow: 1,

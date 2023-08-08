@@ -29,7 +29,6 @@ const ConfirmationButton: FunctionComponent<ConfirmationButtonProps> = (props) =
             sx={{
                 px: "18px", //
                 height: "42px",
-                mr: "8px",
                 width: "240px",
             }}
             componentThemeID="PRIMARY"

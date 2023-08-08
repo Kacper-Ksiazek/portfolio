@@ -6,6 +6,15 @@ import { LABEL_PICKER_SELECT_CLASS_NAME, LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAM
 export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
     alias: "to-do-list--actions-header--add-new-task",
     structure: {
+        URGENCY_SWITCH: {
+            ref_value: "urgency-switch",
+        },
+        TITLE_INPUT: {
+            ref_value: "title-input",
+        },
+        DESCRIPTION: {
+            ref_value: "description",
+        },
         FORM_FIELDS: {
             WRAPPER: {
                 ref_value: "fields-wrapper",
