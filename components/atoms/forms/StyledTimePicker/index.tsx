@@ -19,6 +19,7 @@ interface StyledDatePickerProps {
 
     updateValue: (val: string | null) => void;
 
+    id?: string;
     disabled?: boolean;
     componentThemeID?: ComponentThemeName;
 }
@@ -32,7 +33,7 @@ const StyledDatePicker: FunctionComponent<StyledDatePickerProps> = (props) => {
     }
 
     return (
-        <div style={{ position: "relative", height: "42px", minWidth: "148px" }}>
+        <div id={props.id} style={{ position: "relative", height: "42px", minWidth: "148px" }}>
             <OptionalPropertIndicator />
 
             <input

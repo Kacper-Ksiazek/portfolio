@@ -32,20 +32,20 @@ const SingleTaskViewMode: FunctionComponent<SingleTaskViewModeProps> = (props) =
 
             <InformationWithIcon
                 icon={<CalendarMonthRoundedIcon />} //
-                info={data.additionalInformation.dueDate}
+                info={data.dueDate}
             />
 
             <InformationWithIcon
                 icon={<AccessTimeRoundedIcon />} //
-                info={data.additionalInformation.dueTime}
+                info={data.dueTime}
             />
 
             <InformationWithIcon
                 icon={<PlaceIcon />} //
-                info={data.additionalInformation.localization}
+                info={data.localization}
             />
 
-            <Description description={data.additionalInformation.description} />
+            <Description description={data.description} />
         </>
     );
 };

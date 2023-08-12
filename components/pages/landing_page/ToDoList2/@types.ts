@@ -48,12 +48,11 @@ export interface Task {
     labelID: LabelID;
     isCompleted: boolean;
 
-    additionalInformation: {
-        dueDate: string | null;
-        dueTime: string | null;
-        description: string | null;
-        localization: string | null;
-    };
+    // Additional information
+    dueDate: string | null;
+    dueTime: string | null;
+    description: string | null;
+    localization: string | null;
 
     /** Simply Date.now() */
     createdAt: number;

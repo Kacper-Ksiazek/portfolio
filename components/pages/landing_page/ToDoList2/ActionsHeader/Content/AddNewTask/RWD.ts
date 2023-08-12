@@ -20,33 +20,33 @@ export default {
     [SELECTORS.URGENCY_SWITCH]: {
         width: "128px",
     },
-    [SELECTORS.DESCRIPTION]: {
+    [SELECTORS.DESCRIPTION_INPUT]: {
         width: "100%",
     },
 
     "@media (max-width:770px)": {
-        [SELECTORS.FORM_FIELDS.LABEL_PICKER.SELECT]: {
+        [SELECTORS.LABEL_PICKER.SELECT]: {
             flexGrow: 1,
         },
     },
 
     "@media (max-width:700px)": {
-        [SELECTORS.FORM_FIELDS.WRAPPER]: {
+        [SELECTORS.ADDITIONAL_INFORMATION_WRAPPER]: {
             flexWrap: "wrap",
             // Row 1:
-            [SELECTORS.FORM_FIELDS.URGENCY_SWITCH]: {
+            [SELECTORS.URGENCY_SWITCH]: {
                 width: "124px",
             },
-            [SELECTORS.FORM_FIELDS.DUE_DATE_PICKER]: {
+            [SELECTORS.DUE_DATE_PICKER]: {
                 width: "calc(100% - 124px - 8px)",
             },
             // Row 2:
-            [SELECTORS.FORM_FIELDS.LABEL_PICKER.SELECT]: {
+            [SELECTORS.LABEL_PICKER.SELECT]: {
                 margin: "8px 0 0 0 !important",
                 width: "calc(100% - 8px - 42px)",
             },
 
-            [SELECTORS.FORM_FIELDS.LABEL_PICKER.ADD_NEW_TASK_BUTTON]: {
+            [SELECTORS.LABEL_PICKER.ADD_NEW_TASK_BUTTON]: {
                 margin: "8px 0 0 8px",
                 width: "42px",
             },

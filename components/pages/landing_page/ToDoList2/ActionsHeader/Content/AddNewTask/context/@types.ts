@@ -1,18 +1,13 @@
 // Types
-import type { NewTaskBody, Task } from "landing_page/ToDoList2/@types";
+import type { NewTaskBody } from "landing_page/ToDoList2/@types";
 
 export interface I_AddNewTaskContext {
     newTaskBody: NewTaskBody;
-    updateProperty: UpdatePropertyFunction;
+    hideThisPanelAfterAdding: boolean;
+
+    resetNewTaskBody: () => void;
+    updateNewTaskBody: UpdateNewTaskBodyFn;
+    setHideThisPanelAfterAdding: (val: boolean) => void;
 }
 
-export type RequiredProperty = keyof Omit<NewTaskBody, "additionalInformation">;
-export type OptionalProperty = keyof NewTaskBody["additionalInformation"];
-
-export type UpdatePropertyFunction = <
-    P extends RequiredProperty | OptionalProperty,
-    V extends P extends RequiredProperty ? NewTaskBody[P] : P extends OptionalProperty ? NewTaskBody["additionalInformation"][P] : never
->(
-    property: P,
-    val: V
-) => void;
+export type UpdateNewTaskBodyFn = <T extends keyof NewTaskBody>(property: T, value: NewTaskBody[T]) => void;

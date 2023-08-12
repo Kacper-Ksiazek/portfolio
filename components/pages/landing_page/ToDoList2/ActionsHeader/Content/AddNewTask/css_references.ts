@@ -1,6 +1,5 @@
 // Tools
 import { HTMLStructureOrganizer } from "@/utils/client/HTMLStructureOrganizer";
-import { DUE_DATE_PICKER_CLASS_NAME } from "../../../../../../atoms/forms/StyledDatePicker";
 import { LABEL_PICKER_SELECT_CLASS_NAME, LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME } from "../../../atoms/modifiers/LabelPicker";
 
 export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
@@ -12,35 +11,33 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
         TITLE_INPUT: {
             ref_value: "title-input",
         },
-        DESCRIPTION: {
+        DESCRIPTION_INPUT: {
             ref_value: "description",
         },
-        FORM_FIELDS: {
-            WRAPPER: {
-                ref_value: "fields-wrapper",
-            },
-
-            URGENCY_SWITCH: {
-                ref_value: "urgency-swtich",
-            },
-            DUE_DATE_PICKER: {
+        DUE_DATE_PICKER: {
+            ref_value: "due-date-picker",
+        },
+        DUE_TIME_PICKER: {
+            ref_value: "due-time-picker",
+        },
+        LOCALIZATION_INPUT: {
+            ref_value: "localization-input",
+        },
+        LABEL_PICKER: {
+            SELECT: {
                 ref_type: "CSS_CLASS",
                 skipAlias: true,
-                ref_value: DUE_DATE_PICKER_CLASS_NAME,
+                ref_value: LABEL_PICKER_SELECT_CLASS_NAME,
             },
+            ADD_NEW_TASK_BUTTON: {
+                ref_type: "CSS_CLASS",
+                skipAlias: true,
+                ref_value: LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME,
+            },
+        },
 
-            LABEL_PICKER: {
-                SELECT: {
-                    ref_type: "CSS_CLASS",
-                    skipAlias: true,
-                    ref_value: LABEL_PICKER_SELECT_CLASS_NAME,
-                },
-                ADD_NEW_TASK_BUTTON: {
-                    ref_type: "CSS_CLASS",
-                    skipAlias: true,
-                    ref_value: LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME,
-                },
-            },
+        ADDITIONAL_INFORMATION_WRAPPER: {
+            ref_value: "additional-information-wrapper",
         },
 
         BUTTONS: {
