@@ -7,10 +7,9 @@ import * as NewTaskData from "./NewTaskData";
 import HidePanelCheckbox from "./HidePanelCheckbox";
 import { AddNewTaskContextProvider } from "./context";
 import ConfirmationButton from "./ConfirmationButton";
-import FormFieldsOrganizer from "./FormFieldsOrganizer";
+import { AdditionalInformationWrapper, FooterActionsWrapper, TitleAndUrgencySwitchWrapper } from "./Wrappers";
 // Styled components
 import { Paragraph } from "landing_page/ToDoList2/atoms";
-import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
 
 interface AddNewTaskProps {
@@ -22,23 +21,23 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
         <AddNewTaskContextProvider>
             <Paragraph>Title</Paragraph>
 
-            <FlexBox sx={{ gap: "6px", flexWrap: "wrap", width: "100%" }}>
+            <TitleAndUrgencySwitchWrapper>
                 <NewTaskData.TaskTitleInput id={CSS_REFERENCES.TITLE_INPUT} />
                 <NewTaskData.UrgencySwitch id={CSS_REFERENCES.URGENCY_SWITCH} />
-            </FlexBox>
+            </TitleAndUrgencySwitchWrapper>
 
             <Paragraph>Details</Paragraph>
 
             <NewTaskData.TaskDescriptionInput id={CSS_REFERENCES.DESCRIPTION_INPUT} />
 
-            <FormFieldsOrganizer id={CSS_REFERENCES.ADDITIONAL_INFORMATION_WRAPPER}>
+            <AdditionalInformationWrapper id={CSS_REFERENCES.ADDITIONAL_INFORMATION_WRAPPER}>
                 <NewTaskData.LabelPicker />
                 <NewTaskData.DueDatePicker id={CSS_REFERENCES.DUE_DATE_PICKER} />
                 <NewTaskData.DueTimePicker id={CSS_REFERENCES.DUE_TIME_PICKER} />
                 <NewTaskData.LocalizationInput id={CSS_REFERENCES.LOCALIZATION_INPUT} />
-            </FormFieldsOrganizer>
+            </AdditionalInformationWrapper>
 
-            <FlexBox sx={{ mb: "12px !important", gap: "6px", mt: "24px !important", width: "100%" }} id={CSS_REFERENCES.BUTTONS.WRAPPER}>
+            <FooterActionsWrapper>
                 <ConfirmationButton
                     id={CSS_REFERENCES.BUTTONS.ADD_NEW_TASK} //
                     foldActionsHeaderPanel={props.foldActionsHeaderPanel}
@@ -60,7 +59,7 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
                     <OptionalPropertIndicator sx={{ top: "50%", transform: "translateY(-50%)" }} />
                     <span style={{ opacity: 0.8 }}>- Optional property</span>
                 </span>
-            </FlexBox>
+            </FooterActionsWrapper>
         </AddNewTaskContextProvider>
     );
 };
