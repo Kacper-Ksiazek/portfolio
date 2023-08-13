@@ -1,6 +1,6 @@
 // Tools
 import { HTMLStructureOrganizer } from "@/utils/client/HTMLStructureOrganizer";
-import { LABEL_PICKER_SELECT_CLASS_NAME, LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME } from "../../../atoms/modifiers/LabelPicker";
+import { LABEL_PICKER_SELECT_CLASS_NAME, LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME } from "../../../atoms/modifiers/LabelPicker/css_references";
 
 export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
     alias: "to-do-list--actions-header--add-new-task",

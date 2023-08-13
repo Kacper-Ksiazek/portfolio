@@ -1,6 +1,7 @@
 // Tools
 import { useMemo } from "react";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
+import { LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME, LABEL_PICKER_SELECT_CLASS_NAME } from "./css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { LabelID } from "landing_page/ToDoList2/@types";
@@ -11,9 +12,6 @@ import Adornment from "./Adornment";
 import CreateNewLabel from "../../modal_actions/CreateNewLabel";
 // Styled components
 import { Select } from "./styled_components";
-
-export const LABEL_PICKER_SELECT_CLASS_NAME: CSSClassName = "label-picker-select";
-export const LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME: CSSClassName = "label-picker-add-new-label-btn";
 
 interface LabelPickerProps {
     value: LabelID;

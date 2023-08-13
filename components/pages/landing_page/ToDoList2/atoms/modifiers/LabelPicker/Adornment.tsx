@@ -1,5 +1,6 @@
 // Tools
 import { styled, keyframes } from "@mui/material";
+import { LABEL_PICKER_ADORNMENT_CLASS_NAME } from "./css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
@@ -31,7 +32,7 @@ interface AdornmentProps {
 const Adornment: FunctionComponent<AdornmentProps> = (props) => {
     return (
         <AdornmentBase
-            className="label-picker-adornment" //
+            className={LABEL_PICKER_ADORNMENT_CLASS_NAME} //
             sx={{
                 background: props.background,
             }}
