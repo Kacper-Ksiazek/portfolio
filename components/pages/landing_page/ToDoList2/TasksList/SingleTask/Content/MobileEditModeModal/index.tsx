@@ -3,7 +3,6 @@ import { CSS_REFERENCES } from "./css_references";
 import { useEditModeContext } from "../../hooks/useEditModeContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { Task } from "landing_page/ToDoList2/@types";
 // Other components
 import { StyledInput, StyledCheckbox } from "@/components/atoms/forms";
 import { LabelPicker, DueDatePicker } from "landing_page/ToDoList2/atoms/modifiers";
@@ -12,15 +11,6 @@ import MobileEditModeModalWrapper from "./Wrapper";
 
 const MobileEditModeModal: FunctionComponent = () => {
     const editModeContext = useEditModeContext();
-
-    function updateOptionalProperty(property: keyof Task["additionalInformation"], value: Task["additionalInformation"][typeof property]) {
-        editModeContext.updateNewState({
-            additionalInformation: {
-                ...editModeContext.newState.additionalInformation,
-                [property]: value,
-            },
-        });
-    }
 
     return (
         <MobileEditModeModalWrapper>
@@ -50,9 +40,9 @@ const MobileEditModeModal: FunctionComponent = () => {
             />
 
             <DueDatePicker
-                value={editModeContext.newState.additionalInformation.dueDate} //
+                value={editModeContext.newState.dueDate} //
                 className={CSS_REFERENCES.DATE_PICKER}
-                updateValue={(val) => updateOptionalProperty("dueDate", val)}
+                updateValue={(dueDate) => editModeContext.updateNewState({ dueDate })}
                 componentThemeID="TRANSPARENT_WHITE"
             />
         </MobileEditModeModalWrapper>
