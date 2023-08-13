@@ -3,7 +3,7 @@ import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import WrapperWithWitdthIndicator from "./WrapperWithLengthIndicator";
+import WrapperWithWitdthIndicator from "./_WrapperWithLengthIndicator";
 import LocalizationInput from "landing_page/ToDoList2/atoms/modifiers/LocalizationInput";
 
 const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
@@ -19,7 +19,7 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
             lengthIndicator={{
                 currentLength: newTaskBody.localization?.length ?? 0, //
                 max: 32,
-                width: "46px",
+                width: "58px",
             }}
         >
             <LocalizationInput

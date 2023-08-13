@@ -4,7 +4,7 @@ import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
 import type { FunctionComponent } from "react";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
-import WrapperWithWitdthIndicator from "./WrapperWithLengthIndicator";
+import WrapperWithWitdthIndicator from "./_WrapperWithLengthIndicator";
 import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
 
 const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {

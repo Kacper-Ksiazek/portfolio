@@ -24,16 +24,7 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
             ref_value: "localization-input",
         },
         LABEL_PICKER: {
-            SELECT: {
-                ref_type: "CSS_CLASS",
-                skipAlias: true,
-                ref_value: LABEL_PICKER_SELECT_CLASS_NAME,
-            },
-            ADD_NEW_TASK_BUTTON: {
-                ref_type: "CSS_CLASS",
-                skipAlias: true,
-                ref_value: LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME,
-            },
+            ref_value: "label-picker",
         },
 
         ADDITIONAL_INFORMATION_WRAPPER: {

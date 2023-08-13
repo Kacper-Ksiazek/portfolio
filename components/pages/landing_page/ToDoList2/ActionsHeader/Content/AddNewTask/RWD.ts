@@ -23,11 +23,8 @@ export default {
     [SELECTORS.DESCRIPTION_INPUT]: {
         width: "100%",
     },
-
-    "@media (max-width:770px)": {
-        [SELECTORS.LABEL_PICKER.SELECT]: {
-            flexGrow: 1,
-        },
+    [SELECTORS.LABEL_PICKER]: {
+        flexGrow: 1,
     },
 
     "@media (max-width:700px)": {
@@ -39,16 +36,6 @@ export default {
             },
             [SELECTORS.DUE_DATE_PICKER]: {
                 width: "calc(100% - 124px - 8px)",
-            },
-            // Row 2:
-            [SELECTORS.LABEL_PICKER.SELECT]: {
-                margin: "8px 0 0 0 !important",
-                width: "calc(100% - 8px - 42px)",
-            },
-
-            [SELECTORS.LABEL_PICKER.ADD_NEW_TASK_BUTTON]: {
-                margin: "8px 0 0 8px",
-                width: "42px",
             },
         },
 

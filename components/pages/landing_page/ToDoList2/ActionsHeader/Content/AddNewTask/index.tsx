@@ -31,7 +31,7 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
             <NewTaskData.TaskDescriptionInput id={CSS_REFERENCES.DESCRIPTION_INPUT} />
 
             <AdditionalInformationWrapper id={CSS_REFERENCES.ADDITIONAL_INFORMATION_WRAPPER}>
-                <NewTaskData.LabelPicker />
+                <NewTaskData.LabelPicker id={CSS_REFERENCES.LABEL_PICKER} />
                 <NewTaskData.DueDatePicker id={CSS_REFERENCES.DUE_DATE_PICKER} />
                 <NewTaskData.DueTimePicker id={CSS_REFERENCES.DUE_TIME_PICKER} />
                 <NewTaskData.LocalizationInput id={CSS_REFERENCES.LOCALIZATION_INPUT} />

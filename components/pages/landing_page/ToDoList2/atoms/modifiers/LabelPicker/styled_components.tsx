@@ -10,6 +10,7 @@ export const Select = styled(StyledSelect, {
     height: props.size,
     borderTopRightRadius: "1px",
     borderBottomRightRadius: "1px",
+    flexGrow: 1,
     ".MuiSelect-select": {
         fontSize: "16px",
         width: "100%",
