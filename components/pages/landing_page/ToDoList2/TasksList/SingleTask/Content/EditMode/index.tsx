@@ -16,15 +16,6 @@ interface EditModeProps {
 const EditMode: FunctionComponent<EditModeProps> = (props) => {
     const editModeContext = useEditModeContext();
 
-    function updateOptionalProperty(property: keyof Task["additionalInformation"], value: Task["additionalInformation"][typeof property]) {
-        editModeContext.updateNewState({
-            additionalInformation: {
-                ...editModeContext.newState.additionalInformation,
-                [property]: value,
-            },
-        });
-    }
-
     return (
         <>
             <StyledInput
@@ -52,8 +43,8 @@ const EditMode: FunctionComponent<EditModeProps> = (props) => {
                 </span>
                 <span>
                     <DueDatePicker
-                        value={editModeContext.newState.additionalInformation.dueDate} //
-                        updateValue={(val) => updateOptionalProperty("dueDate", val)}
+                        value={editModeContext.newState.dueDate} //
+                        updateValue={(dueDate) => editModeContext.updateNewState({ dueDate })}
                         componentThemeID="TRANSPARENT_WHITE"
                         small
                     />
