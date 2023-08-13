@@ -61,7 +61,6 @@ const LengthIndicator: FunctionComponent<LengthIndicatorProps> = (props) => {
                     </SmoothConditionalRender>
                 </span>
             )}
-            {/*  */}
         </LengthIndicatorBase>
     );
 };

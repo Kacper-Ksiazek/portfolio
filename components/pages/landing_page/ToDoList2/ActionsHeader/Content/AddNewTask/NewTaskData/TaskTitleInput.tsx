@@ -4,6 +4,7 @@ import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
 import type { FunctionComponent } from "react";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
+import WrapperWithWitdthIndicator from "./WrapperWithLengthIndicator";
 
 const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
@@ -13,13 +14,20 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
     }
 
     return (
-        <span id={id}>
+        <WrapperWithWitdthIndicator
+            id={id} //
+            lengthIndicator={{
+                currentLength: newTaskBody.title.length, //
+                max: 64,
+                width: "46px",
+            }}
+        >
             <StyledInput
                 placeholder="What do you have to do?" //
                 value={newTaskBody.title}
                 onChange={(e) => updateTitle(e.target.value)}
             />
-        </span>
+        </WrapperWithWitdthIndicator>
     );
 };
 

@@ -4,6 +4,7 @@ import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
 import type { FunctionComponent } from "react";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
+import WrapperWithWitdthIndicator from "./WrapperWithLengthIndicator";
 import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
 
 const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
@@ -14,11 +15,18 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
     }
 
     return (
-        <span id={id} style={{ position: "relative" }}>
+        <WrapperWithWitdthIndicator
+            id={id}
+            lengthIndicator={{
+                currentLength: newTaskBody.description?.length ?? 0, //
+                max: 256,
+                width: "62px",
+            }}
+        >
             <OptionalPropertIndicator />
 
             <StyledInput
-                placeholder="Emphasize relevant details in order not to forget them later on" //
+                placeholder="Provide more context or instructions for this task" //
                 value={newTaskBody.description}
                 onChange={(e) => updateDescription(e.target.value)}
                 sx={{
@@ -27,7 +35,7 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
                     },
                 }}
             />
-        </span>
+        </WrapperWithWitdthIndicator>
     );
 };
 
