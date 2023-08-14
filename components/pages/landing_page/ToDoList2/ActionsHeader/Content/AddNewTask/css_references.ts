@@ -1,6 +1,5 @@
 // Tools
 import { HTMLStructureOrganizer } from "@/utils/client/HTMLStructureOrganizer";
-import { LABEL_PICKER_SELECT_CLASS_NAME, LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME } from "../../../atoms/modifiers/LabelPicker/css_references";
 
 export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
     alias: "to-do-list--actions-header--add-new-task",
@@ -26,7 +25,9 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
         LABEL_PICKER: {
             ref_value: "label-picker",
         },
-
+        OPTIONAL_PROPERTY_EXPLANATION: {
+            ref_value: "optional-property-explanation",
+        },
         ADDITIONAL_INFORMATION_WRAPPER: {
             ref_value: "additional-information-wrapper",
         },

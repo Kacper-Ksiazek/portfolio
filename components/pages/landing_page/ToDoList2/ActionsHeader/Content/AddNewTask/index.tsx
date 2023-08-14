@@ -7,10 +7,10 @@ import * as NewTaskData from "./NewTaskData";
 import HidePanelCheckbox from "./HidePanelCheckbox";
 import { AddNewTaskContextProvider } from "./context";
 import ConfirmationButton from "./ConfirmationButton";
+import OptionalPropertyExplanation from "./OptionalPropertyExplanation";
 import { AdditionalInformationWrapper, FooterActionsWrapper, TitleAndUrgencySwitchWrapper } from "./Wrappers";
 // Styled components
-import { Paragraph } from "landing_page/ToDoList2/atoms";
-import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
+import Paragraph from "landing_page/ToDoList2/atoms/Paragraph";
 
 interface AddNewTaskProps {
     foldActionsHeaderPanel: () => void;
@@ -45,20 +45,7 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
 
                 <HidePanelCheckbox id={CSS_REFERENCES.BUTTONS.HIDE_PANEL} />
 
-                <span style={{ flexGrow: 1 }}></span>
-
-                <span
-                    style={{
-                        position: "relative", //
-                        display: "flex",
-                        alignItems: "center",
-                        paddingLeft: "18px",
-                        userSelect: "none",
-                    }}
-                >
-                    <OptionalPropertIndicator sx={{ top: "50%", transform: "translateY(-50%)" }} />
-                    <span style={{ opacity: 0.8 }}>- Optional property</span>
-                </span>
+                <OptionalPropertyExplanation id={CSS_REFERENCES.OPTIONAL_PROPERTY_EXPLANATION} />
             </FooterActionsWrapper>
         </AddNewTaskContextProvider>
     );
