@@ -31,7 +31,7 @@ const Localization: FunctionComponent<LocalizationProps> = (props) => {
     }
 
     return (
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", flexGrow: 1 }}>
             <OptionalPropertIndicator />
 
             <PlaceIcon

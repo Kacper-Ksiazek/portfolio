@@ -15,6 +15,10 @@ export default styled(SectionWrapper)(({ theme }) => ({
     transition: "max-height .3s",
     overflow: "hidden",
 
+    "@media (max-width:1000px)": {
+        height: "420px",
+    },
+
     "@media (max-width:770px)": {
         height: "620px",
     },
@@ -32,14 +36,17 @@ export default styled(SectionWrapper)(({ theme }) => ({
     [`&.${"ADD_NEW_TASK" as ResponsiveHeightCSSClass}`]: mergeSXObjects(
         {
             maxHeight: "364px",
+            "@media (max-width:1000px)": {
+                maxHeight: "420px",
+            },
             "@media (max-width:770px)": {
-                maxHeight: "500px",
+                maxHeight: "520px",
             },
             "@media (max-width:700px)": {
-                maxHeight: "550px",
+                maxHeight: "570px",
             },
-            "@media (max-width:500px)": {
-                maxHeight: "616px",
+            "@media (max-width:670px)": {
+                maxHeight: "600px",
             },
         },
         AddNewTaskRWD

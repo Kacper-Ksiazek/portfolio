@@ -1,5 +1,6 @@
 // Tools
 import { CSS_REFERENCES } from "./css_references";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import { useNewTaskValidator } from "./hooks/useNewTaskValidator";
 // Types
 import type { FunctionComponent } from "react";
@@ -18,9 +19,12 @@ interface AddNewTaskProps {
 }
 
 const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
+    const { width } = useWindowSizes();
     const { descriptionIsNotValid, labelIDIsNotValid, localizationIsNotValid, titleIsNotValid } = useNewTaskValidator();
 
     const disableAddNewTaskButton: boolean = descriptionIsNotValid || labelIDIsNotValid || localizationIsNotValid || titleIsNotValid;
+
+    const alternativeUrgencySwitchPlacement: boolean = width <= 1000;
 
     return (
         <>
@@ -28,7 +32,7 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
 
             <TitleAndUrgencySwitchWrapper>
                 <NewTaskData.TaskTitleInput id={CSS_REFERENCES.TITLE_INPUT} isInvalid={titleIsNotValid} />
-                <NewTaskData.UrgencySwitch id={CSS_REFERENCES.URGENCY_SWITCH} />
+                {alternativeUrgencySwitchPlacement === false && <NewTaskData.UrgencySwitch id={CSS_REFERENCES.URGENCY_SWITCH} />}
             </TitleAndUrgencySwitchWrapper>
 
             <Paragraph>Details</Paragraph>
@@ -36,6 +40,8 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
             <NewTaskData.TaskDescriptionInput id={CSS_REFERENCES.DESCRIPTION_INPUT} isInvalid={descriptionIsNotValid} />
 
             <AdditionalInformationWrapper id={CSS_REFERENCES.ADDITIONAL_INFORMATION_WRAPPER}>
+                {alternativeUrgencySwitchPlacement === true && <NewTaskData.UrgencySwitch id={CSS_REFERENCES.URGENCY_SWITCH} />}
+
                 <NewTaskData.LabelPicker id={CSS_REFERENCES.LABEL_PICKER} />
                 <NewTaskData.DueDatePicker id={CSS_REFERENCES.DUE_DATE_PICKER} />
                 <NewTaskData.DueTimePicker id={CSS_REFERENCES.DUE_TIME_PICKER} />
