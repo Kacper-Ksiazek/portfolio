@@ -49,9 +49,9 @@ const StyledDatePicker: FunctionComponent<StyledDatePickerProps> = (props) => {
                 disabled={props.disabled}
                 componentThemeID={props.componentThemeID}
             >
-                <IconButton disabled={props.disabled}>
+                <div className="icon-wrapper">
                     <AccessTimeRoundedIcon />
-                </IconButton>
+                </div>
 
                 <span className={`value ${props.value === null ? "empty" : ""}`}>{props.value ?? "00:00"}</span>
             </StyledTimePickerBase>

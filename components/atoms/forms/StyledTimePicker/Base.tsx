@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { alpha, styled } from "@mui/material";
 import { ComponentThemes ,shouldForwardProp, type ComponentThemeName} from "../_common_component_color_themes";
 // Styled components
 interface SelectProps{
@@ -25,6 +25,17 @@ export default styled("button", {shouldForwardProp})< SelectProps>(({ theme, ...
         alignItems: 'center',
         paddingLeft: '6px',
         fontSize: '16px',
+        "div.icon-wrapper":{
+            width: '36px',
+            height: '36px',
+            ...theme.mixins.flex_center,
+            borderRadius: '100%',
+            background: 'transparent',
+            transition: 'background .2s',
+            "&:hover":{
+                background: alpha("#fff",.08),
+            }
+        },
         
         "span.value":{
             transition: 'opacity .3s',

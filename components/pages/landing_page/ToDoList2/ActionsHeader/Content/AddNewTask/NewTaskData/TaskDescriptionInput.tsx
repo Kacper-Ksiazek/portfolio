@@ -29,7 +29,7 @@ const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boole
 
             <StyledInput
                 placeholder="Provide more context or instructions for this task" //
-                value={newTaskBody.description}
+                value={newTaskBody.description ?? ""}
                 onChange={(e) => updateDescription(e.target.value)}
                 sx={{
                     input: {
