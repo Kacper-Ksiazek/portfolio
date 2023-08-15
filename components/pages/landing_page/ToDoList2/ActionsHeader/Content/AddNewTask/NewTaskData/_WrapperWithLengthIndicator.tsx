@@ -18,6 +18,7 @@ interface WrapperWithWitdthIndicatorProps {
     lengthIndicator: {
         currentLength: number;
         max: number;
+        min: number;
         width: `${number}px`;
     };
 }
@@ -30,6 +31,7 @@ const WrapperWithWitdthIndicator: FunctionComponent<WrapperWithWitdthIndicatorPr
             <LengthIndicator
                 currentLength={props.lengthIndicator.currentLength} //
                 max={props.lengthIndicator.max}
+                min={props.lengthIndicator.min}
                 sx={{ width: props.lengthIndicator.width }}
                 disableErrorMessages
             />

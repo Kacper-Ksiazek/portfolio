@@ -16,6 +16,7 @@ type LocalizationProps = Exclude<TextFieldProps, "onChange" | "onInput"> & {
 
     updateValue: (val: string | null) => void;
 
+    error?: boolean;
     componentThemeID?: ComponentThemeName;
 };
 
@@ -53,6 +54,7 @@ const Localization: FunctionComponent<LocalizationProps> = (props) => {
                     },
                 }}
                 inputRef={inputRef}
+                error={props.error}
             />
 
             <ClearButton

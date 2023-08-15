@@ -1,12 +1,13 @@
 // Tools
 import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
+import { LOCALIZATION_RESTRICTIONS } from "../validators/length_restrictions";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
 import WrapperWithWitdthIndicator from "./_WrapperWithLengthIndicator";
 import LocalizationInput from "landing_page/ToDoList2/atoms/modifiers/LocalizationInput";
 
-const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
+const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
 
     function updateLocalization(val: string | null) {
@@ -15,10 +16,11 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
 
     return (
         <WrapperWithWitdthIndicator
-            id={id}
+            id={props.id}
             lengthIndicator={{
                 currentLength: newTaskBody.localization?.length ?? 0, //
-                max: 32,
+                max: LOCALIZATION_RESTRICTIONS.max,
+                min: LOCALIZATION_RESTRICTIONS.min,
                 width: "58px",
             }}
         >
@@ -26,6 +28,7 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
                 value={newTaskBody.localization} //
                 placeholder="Localization"
                 updateValue={(val) => updateLocalization(val)}
+                error={props.isInvalid}
             />
         </WrapperWithWitdthIndicator>
     );

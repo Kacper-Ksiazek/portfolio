@@ -1,6 +1,6 @@
 // Tools
 import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
-import { useConfirmationButtonDisability, useAddTaskButtonOnClick } from "./hooks";
+import { useAddTaskButtonOnClick } from "./hooks/useAddTaskButtonOnClick";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
@@ -10,15 +10,15 @@ import StyledButton from "@/components/atoms/forms/StyledButton";
 
 interface ConfirmationButtonProps {
     id: string;
+    disabled: boolean;
     foldActionsHeaderPanel: (() => void) | null;
 }
 
 const ConfirmationButton: FunctionComponent<ConfirmationButtonProps> = (props) => {
     const { hideThisPanelAfterAdding, newTaskBody, resetNewTaskBody } = useAddNewTaskContext();
-    const disableOnClick: boolean = useConfirmationButtonDisability(newTaskBody);
 
     const onClick: () => void = useAddTaskButtonOnClick({
-        disableOnClick,
+        disableOnClick: props.disabled,
         newTaskBody,
         resetNewTaskBody,
         foldActionsHeaderPanel: hideThisPanelAfterAdding ? props.foldActionsHeaderPanel : null,
@@ -33,7 +33,7 @@ const ConfirmationButton: FunctionComponent<ConfirmationButtonProps> = (props) =
             }}
             componentThemeID="PRIMARY"
             onClick={onClick}
-            disabled={disableOnClick}
+            disabled={props.disabled}
             id={props.id}
         >
             <AddRounded />

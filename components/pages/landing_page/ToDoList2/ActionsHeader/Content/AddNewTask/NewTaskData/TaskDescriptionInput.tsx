@@ -1,4 +1,5 @@
 // Tools
+import { DESCRIPTION_RESTRICTIONS } from "../validators/length_restrictions";
 import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -7,7 +8,7 @@ import StyledInput from "@/components/atoms/forms/StyledInput";
 import WrapperWithWitdthIndicator from "./_WrapperWithLengthIndicator";
 import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
 
-const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
+const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
 
     function updateDescription(val: string) {
@@ -16,10 +17,11 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
 
     return (
         <WrapperWithWitdthIndicator
-            id={id}
+            id={props.id}
             lengthIndicator={{
                 currentLength: newTaskBody.description?.length ?? 0, //
-                max: 256,
+                max: DESCRIPTION_RESTRICTIONS.max,
+                min: DESCRIPTION_RESTRICTIONS.min,
                 width: "62px",
             }}
         >
@@ -34,6 +36,7 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
                         paddingLeft: "16px !important",
                     },
                 }}
+                error={props.isInvalid}
             />
         </WrapperWithWitdthIndicator>
     );

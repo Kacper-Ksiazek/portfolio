@@ -1,4 +1,5 @@
 // Tools
+import { TITLE_RESTRICTIONS } from "../validators/length_restrictions";
 import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -6,8 +7,10 @@ import type { FunctionComponent } from "react";
 import StyledInput from "@/components/atoms/forms/StyledInput";
 import WrapperWithWitdthIndicator from "./_WrapperWithLengthIndicator";
 
-const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
+const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
+
+    const titleLength: number = newTaskBody.title.length;
 
     function updateTitle(val: string) {
         updateNewTaskBody("title", val);
@@ -15,17 +18,19 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
 
     return (
         <WrapperWithWitdthIndicator
-            id={id} //
+            id={props.id} //
             lengthIndicator={{
-                currentLength: newTaskBody.title.length, //
-                max: 64,
-                width: "46px",
+                currentLength: titleLength, //
+                min: TITLE_RESTRICTIONS.min,
+                max: TITLE_RESTRICTIONS.max,
+                width: "50px",
             }}
         >
             <StyledInput
                 placeholder="What do you have to do?" //
                 value={newTaskBody.title}
                 onChange={(e) => updateTitle(e.target.value)}
+                error={titleLength > 1 && props.isInvalid}
             />
         </WrapperWithWitdthIndicator>
     );
