@@ -7,7 +7,7 @@ import type { FunctionComponent } from "react";
 import WrapperWithWitdthIndicator from "./_WrapperWithLengthIndicator";
 import LocalizationInput from "landing_page/ToDoList2/atoms/modifiers/LocalizationInput";
 
-const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
+const TaskLocalizationInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
 
     function updateLocalization(val: string | null) {
@@ -34,4 +34,4 @@ const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (p
     );
 };
 
-export default TaskTitleInput;
+export default TaskLocalizationInput;

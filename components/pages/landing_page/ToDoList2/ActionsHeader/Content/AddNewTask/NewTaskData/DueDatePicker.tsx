@@ -5,7 +5,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import DueDatePicker from "@/components/atoms/forms/StyledDatePicker";
 
-const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
+const TaskDueDatePicker: FunctionComponent<{ id: string }> = ({ id }) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
 
     function updateDueDate(val: string | null) {
@@ -21,4 +21,4 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
     );
 };
 
-export default TaskTitleInput;
+export default TaskDueDatePicker;

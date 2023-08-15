@@ -5,7 +5,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import LabelPicker from "landing_page/ToDoList2/atoms/modifiers/LabelPicker";
 
-const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
+const TaskLabelPicker: FunctionComponent<{ id: string }> = ({ id }) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
 
     function updateLabelID(val: string) {
@@ -22,4 +22,4 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
     );
 };
 
-export default TaskTitleInput;
+export default TaskLabelPicker;

@@ -5,7 +5,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import StyledTimePicker from "@/components/atoms/forms/StyledTimePicker";
 
-const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
+const TaskDueTimePicker: FunctionComponent<{ id: string }> = ({ id }) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
 
     function updateDueTime(val: string | null) {
@@ -21,4 +21,4 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
     );
 };
 
-export default TaskTitleInput;
+export default TaskDueTimePicker;

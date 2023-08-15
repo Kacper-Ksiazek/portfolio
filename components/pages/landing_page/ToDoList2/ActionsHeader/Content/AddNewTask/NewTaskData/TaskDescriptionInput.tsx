@@ -8,7 +8,7 @@ import StyledInput from "@/components/atoms/forms/StyledInput";
 import WrapperWithWitdthIndicator from "./_WrapperWithLengthIndicator";
 import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
 
-const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
+const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
 
     function updateDescription(val: string) {
@@ -42,4 +42,4 @@ const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (p
     );
 };
 
-export default TaskTitleInput;
+export default TaskTaskDescriptionInput;

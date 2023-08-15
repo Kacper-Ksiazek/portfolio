@@ -5,7 +5,7 @@ import type { FunctionComponent } from "react";
 // Styled components
 import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
 
-const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
+const TaskUrgencySwitch: FunctionComponent<{ id: string }> = ({ id }) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
 
     function updateUrgency(val: boolean) {
@@ -22,4 +22,4 @@ const TaskTitleInput: FunctionComponent<{ id: string }> = ({ id }) => {
     );
 };
 
-export default TaskTitleInput;
+export default TaskUrgencySwitch;
