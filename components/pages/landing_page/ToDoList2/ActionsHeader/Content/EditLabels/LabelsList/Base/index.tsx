@@ -27,13 +27,13 @@ export default styled("div")(({ theme }) => {
             },
 
             [SELECTORS.TABLE.LABEL_NAME]: {
-                width: "180px",
+                width: "194px",
             },
             [SELECTORS.TABLE.BUTTONS.WRAPPER]: {
                 width: "220px",
             },
             [SELECTORS.TABLE.PROGRESS_BAR]: {
-                width: "calc(100% - 60px - 220px - 180px - 3 * 4px)",
+                width: "calc(100% - 60px - 220px - 194px - 3 * 4px)",
             },
             [SELECTORS.TABLE.INDEX]: {
                 width: "60px",
