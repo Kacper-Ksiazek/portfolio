@@ -1,5 +1,6 @@
 // Tools
 import { createContext } from "react";
+import { DEFAULT_LABELS } from "./default_labels";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -10,28 +11,7 @@ import { LabelsUpdatersContextProvider } from "./Updaters";
 export const labelsContext = createContext<I_LabelsContext>({} as any);
 
 export const LabelsContextProvider: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-    const [labelsFromLocalStorage, setLabels, _hasFullyLoaded] = useLocalStorage<Labels>("to-do-list-labels", {
-        "1": {
-            color: "#FFADDA",
-            name: "University",
-        },
-        "2": {
-            color: "#D7AF70",
-            name: "Household",
-        },
-        "3": {
-            color: "#17A398",
-            name: "Career",
-        },
-        "4": {
-            color: "#EA1744",
-            name: "Self-growth",
-        },
-        "5": {
-            color: "#F96900",
-            name: "Family-and-friends",
-        },
-    });
+    const [labelsFromLocalStorage, setLabels, _hasFullyLoaded] = useLocalStorage<Labels>("to-do-list-labels", DEFAULT_LABELS);
 
     function getLabelWithID(id: LabelID): Label {
         const result: Label | undefined = labelsFromLocalStorage[id];
