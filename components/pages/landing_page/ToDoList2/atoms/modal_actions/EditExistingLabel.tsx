@@ -49,7 +49,7 @@ const EditExistingLabel: FunctionComponent<EditExistingLabelProps> = (props) => 
                     return (
                         <Modal
                             title="Edit existing label"
-                            actionButtonPrompt="Edit"
+                            actionButtonPrompt="Save changes"
                             isOpen={modalIsOpened}
                             noErrorsMessage="Label can be updated"
                             //
