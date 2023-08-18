@@ -9,9 +9,21 @@ export default {
     ".MuiTextField-root": {
         width: "100%",
         ".MuiOutlinedInput-root": {
-            height: "42px",
+            "&:not(&.MuiInputBase-multiline)": {
+                height: "42px",
+                input: {
+                    padding: "8px 16px",
+                },
+            },
+            "&.MuiInputBase-multiline": {
+                height: "82px",
+                padding: "8px 8px 8px 16px",
+                textarea: {
+                    height: "100% !important",
+                    overflowY: "scroll !important",
+                },
+            },
         },
-        input: { padding: "8px 12px" },
     },
 
     [SELECTORS.URGENCY_SWITCH]: {
@@ -32,7 +44,7 @@ export default {
 
     "@media (max-width:1000px)": {
         [SELECTORS.TITLE_INPUT]: {
-            width: "calc(100% - 10px)", // calc is used in order to allign title and description inputs widths
+            width: "calc(100% - 14px)", // calc is used in order to allign title and description inputs widths
         },
         [SELECTORS.ADDITIONAL_INFORMATION_WRAPPER]: {
             flexWrap: "wrap",
@@ -59,7 +71,7 @@ export default {
                 width: "calc(50% - 3px)",
             },
             [SELECTORS.LOCALIZATION_INPUT]: {
-                width: "100%", // calc is used in order to allign title and description inputs widths
+                width: "100%",
                 "span.length-indicator": {
                     width: "55px !important",
                 },
@@ -96,7 +108,7 @@ export default {
             width: "124px",
         },
         [SELECTORS.LOCALIZATION_INPUT]: {
-            width: "calc(100% - 124px - 6px) !important",
+            width: "calc(100% - 124px - 10px) !important",
         },
     },
 } as SxProps;

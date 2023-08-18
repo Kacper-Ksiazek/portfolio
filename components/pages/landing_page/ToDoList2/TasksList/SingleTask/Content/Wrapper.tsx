@@ -50,7 +50,7 @@ export default styled("div", { shouldForwardProp })<SingleTaskContentWrapperProp
         gap: "6px",
     },
     "&>*": {
-        height: "32px",
+        minHeight: "32px",
 
         ...(props.modeHasRecentlyChanged && {
             [`&:not(&${SELECTORS.CONTENT.PIECE_OF_CONTENT_WRAPPER}), &${SELECTORS.CONTENT.PIECE_OF_CONTENT_WRAPPER}>*`]: {

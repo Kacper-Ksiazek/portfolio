@@ -21,7 +21,7 @@ const TaskLocalizationInput: FunctionComponent<{ id: string; isInvalid: boolean 
                 currentLength: newTaskBody.localization?.length ?? 0, //
                 max: LOCALIZATION_RESTRICTIONS.max,
                 min: LOCALIZATION_RESTRICTIONS.min,
-                width: "58px",
+                width: "62px",
             }}
         >
             <LocalizationInput

@@ -22,7 +22,7 @@ const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boole
                 currentLength: newTaskBody.description?.length ?? 0, //
                 max: DESCRIPTION_RESTRICTIONS.max,
                 min: DESCRIPTION_RESTRICTIONS.min,
-                width: "62px",
+                width: "66px",
             }}
         >
             <OptionalPropertIndicator />
@@ -31,11 +31,7 @@ const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boole
                 placeholder="Provide more context or instructions for this task" //
                 value={newTaskBody.description ?? ""}
                 onChange={(e) => updateDescription(e.target.value)}
-                sx={{
-                    input: {
-                        paddingLeft: "16px !important",
-                    },
-                }}
+                multiline
                 error={props.isInvalid}
             />
         </WrapperWithWitdthIndicator>
