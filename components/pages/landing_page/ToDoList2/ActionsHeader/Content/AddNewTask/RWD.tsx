@@ -11,17 +11,9 @@ export default {
         ".MuiOutlinedInput-root": {
             "&:not(&.MuiInputBase-multiline)": {
                 height: "42px",
-                input: {
-                    padding: "8px 16px",
-                },
             },
             "&.MuiInputBase-multiline": {
                 height: "82px",
-                padding: "8px 8px 8px 16px",
-                textarea: {
-                    height: "100% !important",
-                    overflowY: "scroll !important",
-                },
             },
         },
     },

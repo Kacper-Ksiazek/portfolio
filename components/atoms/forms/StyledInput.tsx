@@ -18,6 +18,13 @@ export default styled(TextField, {shouldForwardProp})<{
                 borderColor,
                 transition: "border-color .2s",
             },
+            "&.MuiInputBase-multiline": {
+                padding: "8px 8px 8px 12px",
+                textarea: {
+                    height: "100% !important",
+                    overflowY: "scroll !important",
+                },
+            },
         },
         textarea: {
             "&::-webkit-scrollbar": { width: "8px" },

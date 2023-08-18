@@ -16,6 +16,7 @@ type LocalizationProps = Exclude<TextFieldProps, "onChange" | "onInput"> & {
 
     updateValue: (val: string | null) => void;
 
+    small?: boolean;
     error?: boolean;
     componentThemeID?: ComponentThemeName;
 };
@@ -50,7 +51,8 @@ const Localization: FunctionComponent<LocalizationProps> = (props) => {
                 sx={{
                     ...receivedSxProps,
                     input: {
-                        paddingLeft: "42px !important",
+                        padding: "0 0 0 38px !important",
+                        height: "32px",
                     },
                 }}
                 inputRef={inputRef}

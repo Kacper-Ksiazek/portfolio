@@ -11,7 +11,7 @@ import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyI
 const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
 
-    function updateDescription(val: string) {
+    function updateDescription(val: string | null) {
         updateNewTaskBody("description", val);
     }
 
@@ -30,9 +30,14 @@ const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boole
             <StyledInput
                 placeholder="Provide more context or instructions for this task" //
                 value={newTaskBody.description ?? ""}
-                onChange={(e) => updateDescription(e.target.value)}
+                onChange={(e) => updateDescription(e.target.value === "" ? null : e.target.value)}
                 multiline
                 error={props.isInvalid}
+                sx={{
+                    ".MuiInputBase-multiline": {
+                        padding: "8px 16px !important",
+                    },
+                }}
             />
         </WrapperWithWitdthIndicator>
     );

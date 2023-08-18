@@ -27,7 +27,7 @@ const TaskLocalizationInput: FunctionComponent<{ id: string; isInvalid: boolean 
             <LocalizationInput
                 value={newTaskBody.localization ?? ""} //
                 placeholder="Localization"
-                updateValue={(val) => updateLocalization(val)}
+                updateValue={(val) => updateLocalization(val === "" ? null : val)}
                 error={props.isInvalid}
             />
         </WrapperWithWitdthIndicator>

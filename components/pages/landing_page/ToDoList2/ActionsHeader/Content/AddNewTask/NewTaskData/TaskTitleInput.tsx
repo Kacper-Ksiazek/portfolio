@@ -31,6 +31,11 @@ const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (p
                 value={newTaskBody.title}
                 onChange={(e) => updateTitle(e.target.value)}
                 error={titleLength > 1 && props.isInvalid}
+                sx={{
+                    input: {
+                        padding: "8px 16px",
+                    },
+                }}
             />
         </WrapperWithWitdthIndicator>
     );

@@ -4,8 +4,6 @@ import ClearButton from "../_ClearButton";
 // Types
 import type { FunctionComponent } from "react";
 import type { ComponentThemeName } from "../_common_component_color_themes";
-// Material UI Components
-import IconButton from "@mui/material/IconButton";
 // Material UI Icons
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 // Styled components
@@ -20,6 +18,7 @@ interface StyledDatePickerProps {
     updateValue: (val: string | null) => void;
 
     id?: string;
+    small?: boolean;
     disabled?: boolean;
     componentThemeID?: ComponentThemeName;
 }
@@ -33,7 +32,14 @@ const StyledDatePicker: FunctionComponent<StyledDatePickerProps> = (props) => {
     }
 
     return (
-        <div id={props.id} style={{ position: "relative", height: "42px", minWidth: "148px" }}>
+        <div
+            id={props.id}
+            style={{
+                position: "relative", //
+                height: props.small ? "32px" : "42px",
+                minWidth: "148px",
+            }}
+        >
             <OptionalPropertIndicator />
 
             <input
@@ -48,6 +54,7 @@ const StyledDatePicker: FunctionComponent<StyledDatePickerProps> = (props) => {
                 onClick={open} //
                 disabled={props.disabled}
                 componentThemeID={props.componentThemeID}
+                small={props.small}
             >
                 <div className="icon-wrapper">
                     <AccessTimeRoundedIcon />
