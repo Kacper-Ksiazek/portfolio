@@ -13,7 +13,11 @@ const TaskDescriptionBase = styled("p")(({ theme }) => ({
 const TaskDescription: FunctionComponent<{ description: string | null }> = (props) => {
     if (props.description === null) return <></>;
 
-    return <TaskDescriptionBase>{props.description}</TaskDescriptionBase>;
+    return (
+        <TaskDescriptionBase>
+            <span>{props.description}</span>
+        </TaskDescriptionBase>
+    );
 };
 
 export default TaskDescription;
