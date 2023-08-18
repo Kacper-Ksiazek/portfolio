@@ -5,7 +5,7 @@ import type { FunctionComponent } from "react";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
 
-const EditTaskDescriptionInput: FunctionComponent<{ id?: string; isInvalid?: boolean }> = ({ id, isInvalid }) => {
+const EditTaskDescriptionInput: FunctionComponent<{ className?: string; isInvalid?: boolean }> = (props) => {
     const editModeContext = useEditModeContext();
 
     function updateDescription(val: string | null) {
@@ -17,8 +17,9 @@ const EditTaskDescriptionInput: FunctionComponent<{ id?: string; isInvalid?: boo
             value={editModeContext.newState.description} //
             onChange={(e) => updateDescription(e.target.value === "" ? null : (e.target.value as string))}
             placeholder="Provide more context or instructions for this task"
-            error={isInvalid}
+            error={props.isInvalid}
             componentThemeID="TRANSPARENT_WHITE"
+            className={props.className}
             multiline
             sx={{
                 width: "100%",

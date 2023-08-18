@@ -5,7 +5,7 @@ import type { FunctionComponent } from "react";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
 
-const EditTaskTitleInput: FunctionComponent<{ id?: string }> = ({ id }) => {
+const EditTaskTitleInput: FunctionComponent<{ className?: string; isInvalid?: boolean }> = (props) => {
     const editModeContext = useEditModeContext();
 
     function updateTitle(val: string) {
@@ -14,6 +14,7 @@ const EditTaskTitleInput: FunctionComponent<{ id?: string }> = ({ id }) => {
 
     return (
         <StyledInput
+            className={props.className}
             value={editModeContext.newState.title} //
             onChange={(e) => updateTitle(e.target.value as string)}
             componentThemeID="TRANSPARENT_WHITE"

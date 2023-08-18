@@ -5,11 +5,11 @@ import type { FunctionComponent } from "react";
 // Styled components
 import StyledTimePicker from "@/components/atoms/forms/StyledTimePicker";
 
-const EditTaskDueTimePickerInput: FunctionComponent<{ id?: string }> = ({ id }) => {
+const EditTaskDueTimePickerInput: FunctionComponent<{ className?: string }> = ({ className }) => {
     const editModeContext = useEditModeContext();
 
     return (
-        <span>
+        <span className={className}>
             <StyledTimePicker
                 value={editModeContext.newState.dueTime} //
                 updateValue={(val) => editModeContext.updateNewState({ dueTime: val })}

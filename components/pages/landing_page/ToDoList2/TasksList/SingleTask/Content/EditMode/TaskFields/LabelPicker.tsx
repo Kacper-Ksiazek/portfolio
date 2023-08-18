@@ -5,11 +5,11 @@ import type { FunctionComponent } from "react";
 // Other components
 import LabelPicker from "@/components/pages/landing_page/ToDoList2/atoms/modifiers/LabelPicker";
 
-const EditTaskLabelPickerInput: FunctionComponent<{ id?: string }> = ({ id }) => {
+const EditTaskLabelPickerInput: FunctionComponent<{ className?: string }> = (props) => {
     const editModeContext = useEditModeContext();
 
     return (
-        <span style={{ display: "flex" }}>
+        <span style={{ display: "flex" }} className={props.className}>
             <LabelPicker
                 value={editModeContext.newState.labelID} //
                 updateValue={(val) => editModeContext.updateNewState({ labelID: val })}

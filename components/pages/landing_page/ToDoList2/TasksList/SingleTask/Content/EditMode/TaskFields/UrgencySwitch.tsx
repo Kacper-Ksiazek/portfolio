@@ -5,11 +5,11 @@ import type { FunctionComponent } from "react";
 // Styled components
 import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
 
-const EditTaskUrgencySwitchInput: FunctionComponent<{ id?: string }> = ({ id }) => {
+const EditTaskUrgencySwitchInput: FunctionComponent<{ className?: string }> = (props) => {
     const editModeContext = useEditModeContext();
 
     return (
-        <span>
+        <span className={props.className}>
             <StyledCheckbox
                 label="Urgent" //
                 value={editModeContext.newState.urgent}

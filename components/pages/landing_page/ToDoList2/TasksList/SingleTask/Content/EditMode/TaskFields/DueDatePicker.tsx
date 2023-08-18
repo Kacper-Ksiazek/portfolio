@@ -5,11 +5,11 @@ import type { FunctionComponent } from "react";
 // Styled components
 import DueDatePicker from "@/components/atoms/forms/StyledDatePicker";
 
-const EditTaskDueDatePickerInput: FunctionComponent<{ id?: string }> = ({ id }) => {
+const EditTaskDueDatePickerInput: FunctionComponent<{ className?: string }> = ({ className }) => {
     const editModeContext = useEditModeContext();
 
     return (
-        <span>
+        <span className={className}>
             <DueDatePicker
                 value={editModeContext.newState.dueDate} //
                 updateValue={(dueDate) => editModeContext.updateNewState({ dueDate })}

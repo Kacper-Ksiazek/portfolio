@@ -5,15 +5,16 @@ import type { FunctionComponent } from "react";
 // Styled components
 import LocalizationInput from "landing_page/ToDoList2/atoms/modifiers/LocalizationInput";
 
-const EditTaskDueTimePickerInput: FunctionComponent<{ id?: string; isInvalid?: boolean }> = ({ id, isInvalid }) => {
+const EditTaskDueTimePickerInput: FunctionComponent<{ className?: string; isInvalid?: boolean }> = (props) => {
     const editModeContext = useEditModeContext();
 
     return (
-        <span>
+        <span className={props.className}>
             <LocalizationInput
                 value={editModeContext.newState.localization ?? ""} //
                 placeholder="Localization"
                 updateValue={(val) => editModeContext.updateNewState(val === "" ? null : (val as any))}
+                error={props.isInvalid}
                 small
             />
         </span>
