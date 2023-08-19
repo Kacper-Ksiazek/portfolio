@@ -8,6 +8,7 @@ const TaskDescriptionBase = styled("p")(({ theme }) => ({
     opacity: 0.8,
     cursor: "default",
     transition: "color .3s",
+    width: "100%",
 }));
 
 const TaskDescription: FunctionComponent<{ description: string | null }> = (props) => {
