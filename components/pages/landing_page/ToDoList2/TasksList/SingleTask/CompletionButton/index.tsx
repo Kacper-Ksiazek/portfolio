@@ -10,16 +10,19 @@ import ModeEditOutlineOutlined from "@mui/icons-material/ModeEditOutlineOutlined
 import Tooltip from "@mui/material/Tooltip";
 // Styled components
 import CompletionButtonBase from "./Base";
+import FancyShape from "./FancyShape";
 
 interface CompletionButtonProps {
+    isUrgent: boolean;
     isCompleted: boolean;
     isInEditMode: boolean;
+    hasDescription: boolean;
 
     toggleCompletion: () => void;
 }
 
 const CompletionButton: FunctionComponent<CompletionButtonProps> = (props) => {
-    const { isCompleted, isInEditMode } = props;
+    const { isCompleted, isInEditMode, isUrgent, hasDescription } = props;
 
     const tooltipTitle = useMemo<string>(() => {
         if (isInEditMode) return "Edit mode is active";
@@ -27,7 +30,22 @@ const CompletionButton: FunctionComponent<CompletionButtonProps> = (props) => {
     }, [isCompleted, isInEditMode]);
 
     return (
-        <div className={CSS_REFERENCES.COMPLETION_BUTTON} style={{ marginRight: "12px" }}>
+        <div
+            className={CSS_REFERENCES.COMPLETION_BUTTON}
+            style={{
+                marginRight: "12px", //
+                alignSelf: "flex-start",
+                marginTop: "4px",
+            }}
+        >
+            {(hasDescription || isInEditMode) && (
+                <FancyShape
+                    urgent={isUrgent} //
+                    completed={isCompleted}
+                    inEditMode={isInEditMode}
+                />
+            )}
+
             <Tooltip
                 placement="top" //
                 title={tooltipTitle}

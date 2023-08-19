@@ -50,6 +50,8 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
             <Background isUrgent={data.urgent} isInEditMode={isInEditMode} />
 
             <CompletionButton
+                isUrgent={data.urgent}
+                hasDescription={data.description !== null}
                 isCompleted={data.isCompleted} //
                 isInEditMode={isInEditMode}
                 toggleCompletion={toggleCompletion}
