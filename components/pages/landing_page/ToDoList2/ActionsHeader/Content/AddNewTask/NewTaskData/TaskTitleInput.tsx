@@ -1,6 +1,6 @@
 // Tools
-import { TITLE_RESTRICTIONS } from "../validators/length_restrictions";
 import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
+import { TITLE_RESTRICTIONS } from "landing_page/ToDoList2/validators/length_restrictions";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components

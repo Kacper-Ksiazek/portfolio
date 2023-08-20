@@ -1,7 +1,8 @@
 // Tools
 import { CSS_REFERENCES } from "./css_references";
 import useWindowSizes from "@/hooks/useWindowSizes";
-import { useNewTaskValidator } from "./hooks/useNewTaskValidator";
+import { useAddNewTaskContext } from "./hooks/useAddNewTaskContext";
+import { useTaskValidator } from "landing_page/ToDoList2/validators/useTaskValidator";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -20,9 +21,9 @@ interface AddNewTaskProps {
 
 const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
     const { width } = useWindowSizes();
-    const { descriptionIsNotValid, labelIDIsNotValid, localizationIsNotValid, titleIsNotValid } = useNewTaskValidator();
 
-    const disableAddNewTaskButton: boolean = descriptionIsNotValid || labelIDIsNotValid || localizationIsNotValid || titleIsNotValid;
+    const { newTaskBody } = useAddNewTaskContext();
+    const validationResult = useTaskValidator(newTaskBody);
 
     const alternativeUrgencySwitchPlacement: boolean = width <= 1000;
 
@@ -31,27 +32,27 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
             <Paragraph>Title</Paragraph>
 
             <TitleAndUrgencySwitchWrapper>
-                <NewTaskData.TaskTitleInput id={CSS_REFERENCES.TITLE_INPUT} isInvalid={titleIsNotValid} />
+                <NewTaskData.TaskTitleInput id={CSS_REFERENCES.TITLE_INPUT} isInvalid={validationResult.titleIsInvalid} />
                 {alternativeUrgencySwitchPlacement === false && <NewTaskData.UrgencySwitch id={CSS_REFERENCES.URGENCY_SWITCH} />}
             </TitleAndUrgencySwitchWrapper>
 
             <Paragraph>Details</Paragraph>
 
-            <NewTaskData.TaskDescriptionInput id={CSS_REFERENCES.DESCRIPTION_INPUT} isInvalid={descriptionIsNotValid} />
+            <NewTaskData.TaskDescriptionInput id={CSS_REFERENCES.DESCRIPTION_INPUT} isInvalid={validationResult.descriptionIsInvalid} />
 
             <AdditionalInformationWrapper id={CSS_REFERENCES.ADDITIONAL_INFORMATION_WRAPPER}>
                 {alternativeUrgencySwitchPlacement === true && <NewTaskData.UrgencySwitch id={CSS_REFERENCES.URGENCY_SWITCH} />}
 
-                <NewTaskData.LabelPicker id={CSS_REFERENCES.LABEL_PICKER} />
+                <NewTaskData.LabelPicker id={CSS_REFERENCES.LABEL_PICKER} isInvalid={validationResult.labelIDIsInvalid} />
                 <NewTaskData.DueDatePicker id={CSS_REFERENCES.DUE_DATE_PICKER} />
                 <NewTaskData.DueTimePicker id={CSS_REFERENCES.DUE_TIME_PICKER} />
-                <NewTaskData.LocalizationInput id={CSS_REFERENCES.LOCALIZATION_INPUT} isInvalid={localizationIsNotValid} />
+                <NewTaskData.LocalizationInput id={CSS_REFERENCES.LOCALIZATION_INPUT} isInvalid={validationResult.localizationIsInvalid} />
             </AdditionalInformationWrapper>
 
             <FooterActionsWrapper>
                 <ConfirmationButton
                     id={CSS_REFERENCES.BUTTONS.ADD_NEW_TASK} //
-                    disabled={disableAddNewTaskButton}
+                    disabled={validationResult.everythingIsValid === false}
                     foldActionsHeaderPanel={props.foldActionsHeaderPanel}
                 />
 
