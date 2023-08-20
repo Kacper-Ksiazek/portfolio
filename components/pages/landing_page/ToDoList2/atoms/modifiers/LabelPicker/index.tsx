@@ -18,6 +18,7 @@ interface LabelPickerProps {
     updateValue: (label: LabelID) => void;
 
     small?: boolean;
+    error?: boolean;
     componentThemeID?: ComponentThemeName;
 }
 
@@ -49,13 +50,14 @@ const LabelPicker: FunctionComponent<LabelPickerProps> = (props) => {
                 options={options}
                 className={LABEL_PICKER_SELECT_CLASS_NAME}
                 startAdornment={<Adornment background={getLabelWithID(props.value).color} />}
-                componentThemeID={props.componentThemeID}
+                componentThemeID={props.error ? "ERROR" : props.componentThemeID}
                 //
                 onChange={(e) => props.updateValue(e.target.value as any)}
             />
 
             <CreateNewLabel
                 size={size} //
+                error={props.error}
                 small={props.small}
                 className={LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME}
                 //
