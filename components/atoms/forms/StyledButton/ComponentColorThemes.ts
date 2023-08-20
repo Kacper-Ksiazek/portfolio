@@ -2,7 +2,7 @@
 import { ComponentColorThemesOrganizer } from "@/utils/client/styled/ComponentColorThemesOrganizer";
 import {_common_component_color_themes, type  ComponentThemeName as CommonComponentThemeName } from "../_common_component_color_themes";
 
-export type StyledButtonThemeName = CommonComponentThemeName | "PRIMARY" | "ERROR" | "SUCCESS" | "SECONDARY" | "TEXT";
+export type StyledButtonThemeName = CommonComponentThemeName | "PRIMARY" | "ERROR" | "SUCCESS" | "SECONDARY" | "TEXT" | "ERROR_OUTLINED";
 
 export const StyledButtonColorThemes = new ComponentColorThemesOrganizer<StyledButtonThemeName>({
     ..._common_component_color_themes,
@@ -14,6 +14,11 @@ export const StyledButtonColorThemes = new ComponentColorThemesOrganizer<StyledB
     ERROR: (theme) => ({
         background: theme.palette.error.main,
         fontColor: "#fff",
+    }),
+    ERROR_OUTLINED: (theme) => ({
+        background: "transparent",
+        borderColor: theme.palette.error.main,
+        fontColor: theme.palette.error.main,
     }),
     PRIMARY: (theme) => ({
         background: theme.palette.primary.main,
