@@ -2,7 +2,7 @@
 import { alpha } from "@mui/material";
 import { ComponentColorThemesOrganizer ,type AvailableThemes} from "@/utils/client/styled/ComponentColorThemesOrganizer";
 
-export type ComponentThemeName = "MUI" | "TRANSPARENT_WHITE" | "TRANSPARENT_BLACK" | "TEXT_PRIMARY" | "TEXT_SECONDARY";
+export type ComponentThemeName = "MUI" | "TRANSPARENT_WHITE" | "TRANSPARENT_BLACK" | "TEXT_PRIMARY" | "TEXT_SECONDARY" | "ERROR";
 
 export function shouldForwardProp(propName: string): boolean {
     return propName !== "componentThemeID";
@@ -13,6 +13,11 @@ export const _common_component_color_themes: AvailableThemes<ComponentThemeName>
         background: theme.palette.background.MUIFormElementsBackground,
         borderColor: theme.palette.background.MUIFormElementsBorder,
         fontColor: theme.palette.text.MUIFormElementText,
+    }),
+    ERROR: (theme) => ({
+        background: "transparent",
+        borderColor: theme.palette.error.main,
+        fontColor: theme.palette.error.main,
     }),
     TRANSPARENT_WHITE: {
         background: "transparent",
