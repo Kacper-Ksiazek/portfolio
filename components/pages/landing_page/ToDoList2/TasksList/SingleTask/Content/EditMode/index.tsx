@@ -3,6 +3,7 @@ import { CSS_REFERENCES } from "./edit_mode_css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
+import * as Actions from "./Actions";
 import * as TaskFields from "./TaskFields";
 // Styled components
 
@@ -18,6 +19,9 @@ const EditMode: FunctionComponent = () => {
             <TaskFields.LocalizationInput className={CSS_REFERENCES.LOCALIZATION} />
 
             <TaskFields.Description className={CSS_REFERENCES.DESCRIPTION} />
+
+            <Actions.SaveChanges />
+            <Actions.Discard />
         </>
     );
 };

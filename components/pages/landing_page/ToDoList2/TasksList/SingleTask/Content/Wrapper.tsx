@@ -45,7 +45,7 @@ export default styled("div", { shouldForwardProp })<SingleTaskContentWrapperProp
     minHeight: "70px",
     gap: "4px",
     transition: "opacity .24s",
-    marginRight: props.editModeIsOpened ? "64px" : "16px",
+    marginRight: props.editModeIsOpened ? "56px" : "16px",
     [SELECTORS.CONTENT.PIECE_OF_CONTENT_WRAPPER]: {
         gap: "6px",
     },

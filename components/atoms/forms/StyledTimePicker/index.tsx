@@ -18,6 +18,7 @@ interface StyledDatePickerProps {
     updateValue: (val: string | null) => void;
 
     id?: string;
+    className?: string;
     small?: boolean;
     disabled?: boolean;
     componentThemeID?: ComponentThemeName;
@@ -34,6 +35,7 @@ const StyledDatePicker: FunctionComponent<StyledDatePickerProps> = (props) => {
     return (
         <div
             id={props.id}
+            className={props.className}
             style={{
                 position: "relative", //
                 height: props.small ? "32px" : "42px",
