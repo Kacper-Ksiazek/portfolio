@@ -1,6 +1,6 @@
 // Tools
 import { forwardRef } from "react";
-import { useEditModeContext } from "../../hooks/useEditModeContext";
+import { useEditModeContext, useValidationResultContext } from "../../hooks";
 // Material UI Icons
 import CheckRounded from "@mui/icons-material/CheckRounded";
 import CloseRounded from "@mui/icons-material/CloseRounded";
@@ -14,7 +14,6 @@ import SmoothConditionalRender from "@/components/utils/SmoothConditionalRender"
 interface DefaultActionButtonProps {
     showUnwindButton: boolean;
     showDeleteButton: boolean;
-    /** Edit mode related property, indicates whether any changes has been applied */
 
     remove: () => void;
     unwindMenuList: () => void;
@@ -22,6 +21,7 @@ interface DefaultActionButtonProps {
 
 const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonProps>((props, ref) => {
     const editModeContext = useEditModeContext();
+    const validationResultContext = useValidationResultContext();
 
     return (
         <>
@@ -49,7 +49,7 @@ const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonPro
                     <StyledIconButton
                         onClick={editModeContext.saveAndExit} //
                         tooltip="Apply changes"
-                        disabled={!editModeContext.someChangesHaveBeenMade}
+                        disabled={!validationResultContext.someChangesHaveBeenMade || !validationResultContext.everythingIsValid}
                     >
                         <CheckRounded />
                     </StyledIconButton>

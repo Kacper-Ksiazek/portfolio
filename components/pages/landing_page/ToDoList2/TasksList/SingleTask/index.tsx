@@ -10,7 +10,7 @@ import Manage from "./Manage";
 import Content from "./Content";
 import Background from "./Background";
 import CompletionButton from "./CompletionButton";
-import EditModeContextProvider from "./context/editModeContext";
+import * as ContextProvider from "./context/Providers";
 // Styled components
 import SingleTaskBase from "./Base";
 
@@ -74,12 +74,14 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
 
 const SingleTaskWithContext: FunctionComponent<SingleTaskProps> = (props) => {
     return (
-        <EditModeContextProvider
+        <ContextProvider.EditModeContext
             taskToBeEdited={props.data} //
             applyChanges={props.update}
         >
-            <SingleTask {...props} />
-        </EditModeContextProvider>
+            <ContextProvider.ValidationResultContext taskToBeEdited={props.data}>
+                <SingleTask {...props} />
+            </ContextProvider.ValidationResultContext>
+        </ContextProvider.EditModeContext>
     );
 };
 

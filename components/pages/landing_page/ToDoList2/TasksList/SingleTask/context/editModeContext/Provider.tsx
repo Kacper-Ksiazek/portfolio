@@ -1,25 +1,13 @@
 // Tools
-import { useMemo, createContext } from "react";
-import { useMobileEditMode } from "./useMobileEditMode";
+import { editModeContext } from ".";
 import { useDelayedState } from "@/hooks/useDelayedState";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
+import { useMobileEditMode } from "./_hooks/useMobileEditMode";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 import type { TaskWithoutID, TaskEditCallback } from "landing_page/ToDoList2/@types";
 
 export type UpdatedTask = Omit<TaskWithoutID, "isCompleted" | "createdAt">;
-
-interface I_EditModeContext {
-    isOpened: boolean;
-    isChanging: boolean;
-    newState: UpdatedTask;
-    applyMobileEditMode: boolean;
-    someChangesHaveBeenMade: boolean;
-
-    saveAndExit: () => void;
-    toggleIsOpened: () => void;
-    updateNewState: (val: Partial<UpdatedTask>) => void;
-}
 
 interface EditModeContexProviderProps {
     children: ReactNode;
@@ -27,8 +15,6 @@ interface EditModeContexProviderProps {
 
     applyChanges: (cb: TaskEditCallback) => void;
 }
-
-export const EditModeContext = createContext<I_EditModeContext>({} as any);
 
 const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = (props) => {
     const { isCompleted: _, ...task } = props.taskToBeEdited;
@@ -42,22 +28,13 @@ const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = 
         isOpened.setValue(false);
     }
 
-    const someChangesHaveBeenMade = useMemo<boolean>(() => {
-        for (const key in newState) {
-            if (newState[key as keyof typeof newState] !== task[key as keyof typeof task]) return true;
-        }
-
-        return false;
-    }, [newState, task]);
-
     return (
-        <EditModeContext.Provider
+        <editModeContext.Provider
             value={{
                 isOpened: isOpened.value,
                 isChanging: isOpened.isChanging,
                 newState,
                 applyMobileEditMode,
-                someChangesHaveBeenMade,
                 //
                 saveAndExit,
                 updateNewState,
@@ -65,7 +42,7 @@ const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = 
             }}
         >
             {props.children}
-        </EditModeContext.Provider>
+        </editModeContext.Provider>
     );
 };
 

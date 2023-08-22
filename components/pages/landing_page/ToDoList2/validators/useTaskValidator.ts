@@ -13,7 +13,7 @@ function _validateString(val: string | null, { min, max }: Restriction): boolean
     return length < max && length > min;
 }
 
-interface UseTaskValidatorOutput {
+export interface UseTaskValidatorOutput {
     titleIsInvalid: boolean;
     labelIDIsInvalid: boolean;
     descriptionIsInvalid: boolean;
