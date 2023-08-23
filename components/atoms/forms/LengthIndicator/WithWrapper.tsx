@@ -6,16 +6,28 @@ import type { FunctionComponent, HTMLAttributes, ReactNode } from "react";
 // Other components
 import LengthIndicator from "@/components/atoms/forms/LengthIndicator";
 // Styled components
-const WrapperWithLengthIndicatorBase = styled("span")(({ theme }) => ({
+function shouldForwardProp(prop: string) {
+    return prop !== "column";
+}
+
+const WrapperWithLengthIndicatorBase = styled("span", { shouldForwardProp })<{ column: boolean }>(({ theme, ...props }) => ({
     position: "relative", //
     display: "flex",
-    alignItems: "flex-end",
-    gap: "6px",
+    flexDirection: props.column === true ? "column" : "row",
+    ...(props.column === false
+        ? {
+              gap: "6px",
+              alignItems: "flex-end",
+          }
+        : {
+              flexDirection: "column",
+          }),
 }));
 
 interface WrapperWithWitdthIndicatorProps {
     children: ReactNode;
 
+    column?: boolean;
     wrapperProps?: { sx?: SxProps } & HTMLAttributes<HTMLSpanElement>;
     lengthIndicator: {
         currentLength: number;
@@ -27,7 +39,7 @@ interface WrapperWithWitdthIndicatorProps {
 
 const WrapperWithWitdthIndicator: FunctionComponent<WrapperWithWitdthIndicatorProps> = (props) => {
     return (
-        <WrapperWithLengthIndicatorBase {...props.wrapperProps}>
+        <WrapperWithLengthIndicatorBase column={props.column ?? false} {...props.wrapperProps}>
             {props.children}
 
             <LengthIndicator
