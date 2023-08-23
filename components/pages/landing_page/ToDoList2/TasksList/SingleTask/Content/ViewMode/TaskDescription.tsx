@@ -6,6 +6,7 @@ import type { FunctionComponent } from "react";
 const TaskDescriptionBase = styled("p")(({ theme }) => ({
     margin: "0", //
     opacity: 0.8,
+    order: 1,
     cursor: "default",
     transition: "color .3s",
     width: "100%",
