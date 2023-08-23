@@ -6,10 +6,15 @@ import type { FunctionComponent } from "react";
 import * as Actions from "./Actions";
 import { Title, UrgencySwitch, LabelPicker, Description, DueDatePicker, DueTimePicker, LocalizationInput } from "./TaskFields";
 // Styled components
+import { TaskTitleBase } from "../ViewMode/TaskTitle";
 
 const EditMode: FunctionComponent = () => {
     return (
         <>
+            <TaskTitleBase sx={{ mb: "4px" }}>
+                <h4>Edit mode</h4>
+            </TaskTitleBase>
+
             <Title />
 
             <UrgencySwitch />
