@@ -8,7 +8,13 @@ import WrapperWithWitdthIndicator from "components/atoms/forms/LengthIndicator/W
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
 
-const EditTaskDescriptionInput: FunctionComponent<{ className?: string; isInvalid?: boolean }> = (props) => {
+interface EditTaskDescriptionInputProps {
+    className?: string;
+    isInvalid?: boolean;
+    small?: boolean;
+}
+
+const EditTaskDescriptionInput: FunctionComponent<EditTaskDescriptionInputProps> = (props) => {
     const editModeContext = useEditModeContext();
 
     function updateDescription(val: string | null) {
@@ -17,6 +23,7 @@ const EditTaskDescriptionInput: FunctionComponent<{ className?: string; isInvali
 
     return (
         <WrapperWithWitdthIndicator
+            column={props.small !== true}
             lengthIndicator={{
                 currentLength: editModeContext.newState.description?.length ?? 0,
                 max: DESCRIPTION_RESTRICTIONS.max,

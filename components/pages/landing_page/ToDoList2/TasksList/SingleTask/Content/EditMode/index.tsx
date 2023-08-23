@@ -22,7 +22,7 @@ const EditMode: FunctionComponent = () => {
 
             <LocalizationInput />
 
-            <Description />
+            <Description small />
 
             <Actions.SaveChanges />
             <Actions.Discard />

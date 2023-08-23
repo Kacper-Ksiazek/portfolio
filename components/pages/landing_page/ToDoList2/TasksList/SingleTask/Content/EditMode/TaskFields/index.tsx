@@ -1,4 +1,4 @@
-import Description from "./Description";
+import Description from "../../_common_for_both_edit_modes/Description";
 import LocalizationInput from "./LocalizationInput";
 import Title from "../../_common_for_both_edit_modes/Title";
 import LabelPicker from "../../_common_for_both_edit_modes/LabelPicker";
