@@ -61,7 +61,7 @@ const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
 
             <CreateNewLabel
                 id={CSS_REFERENCES.BUTTONS.ADD_NEW_LABEL_BUTTON}
-                primary
+                componentThemeID="PRIMARY"
                 disableTooltip
                 modalOpeningButtonPrompt={
                     <>

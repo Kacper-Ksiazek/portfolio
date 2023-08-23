@@ -5,6 +5,7 @@ import { useLabelsUpdatersContext } from "@/components/pages/landing_page/ToDoLi
 // Types
 import type { ReactNode, FunctionComponent } from "react";
 import type { LabelID, Label } from "landing_page/ToDoList2/@types";
+import type { StyledButtonThemeName } from "@/components/atoms/forms/StyledButton/ComponentColorThemes";
 // Material UI Icons
 import AddRounded from "@mui/icons-material/AddRounded";
 // Other components
@@ -15,10 +16,9 @@ interface CreateNewLabelProps {
     className?: string;
 
     small?: boolean;
-    error?: boolean;
-    primary?: boolean;
     size?: `${string}px`;
     disableTooltip?: boolean;
+    componentThemeID?: StyledButtonThemeName;
     modalOpeningButtonPrompt?: ReactNode;
 
     onCreated?: (label: LabelID) => void;
@@ -45,7 +45,7 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
                 openModal={() => setModalIsOpened(true)}
                 tooltip={props.disableTooltip === false ? "Create a new label" : ""}
                 isIconButton={typeof props.modalOpeningButtonPrompt === "undefined"}
-                componentThemeID={props.error ? "ERROR_OUTLINED" : props.primary ? "PRIMARY" : "MUI"}
+                componentThemeID={props.componentThemeID ?? "MUI"}
                 wrapperProps={{
                     className: props.className,
                     id: props.id,

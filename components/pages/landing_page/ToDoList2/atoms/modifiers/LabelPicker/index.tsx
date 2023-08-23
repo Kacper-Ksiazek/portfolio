@@ -57,9 +57,9 @@ const LabelPicker: FunctionComponent<LabelPickerProps> = (props) => {
 
             <CreateNewLabel
                 size={size} //
-                error={props.error}
                 small={props.small}
                 className={LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME}
+                componentThemeID={props.error ? "ERROR" : props.componentThemeID}
                 //
                 onCreated={props.updateValue}
             />

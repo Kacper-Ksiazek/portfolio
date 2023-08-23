@@ -33,11 +33,13 @@ const MobileEditModeModal: FunctionComponent = () => {
                 componentThemeID="TRANSPARENT_WHITE"
             />
 
-            <LabelPicker
-                value={editModeContext.newState.labelID} //
-                updateValue={(val) => editModeContext.updateNewState({ labelID: val })}
-                componentThemeID="TRANSPARENT_WHITE"
-            />
+            <span style={{ display: "flex" }}>
+                <LabelPicker
+                    value={editModeContext.newState.labelID} //
+                    updateValue={(val) => editModeContext.updateNewState({ labelID: val })}
+                    componentThemeID="TRANSPARENT_WHITE"
+                />
+            </span>
 
             <DueDatePicker
                 value={editModeContext.newState.dueDate} //
