@@ -8,7 +8,13 @@ import WrapperWithWitdthIndicator from "components/atoms/forms/LengthIndicator/W
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
 
-const EditTaskTitleInput: FunctionComponent<{ className?: string; isInvalid?: boolean }> = (props) => {
+interface EditTaskTitleInputProps {
+    className?: string;
+    isInvalid?: boolean;
+    small?: boolean;
+}
+
+const EditTaskTitleInput: FunctionComponent<EditTaskTitleInputProps> = (props) => {
     const editModeContext = useEditModeContext();
 
     function updateTitle(val: string) {
@@ -37,7 +43,7 @@ const EditTaskTitleInput: FunctionComponent<{ className?: string; isInvalid?: bo
                 sx={{
                     width: "100%",
                     input: {
-                        padding: "4px 12px",
+                        padding: props.small ? "4px 12px" : "10px 12px",
                         width: "100%",
                         fontSize: "16px",
                     },

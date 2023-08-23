@@ -5,7 +5,12 @@ import type { FunctionComponent } from "react";
 // Styled components
 import StyledTimePicker from "@/components/atoms/forms/StyledTimePicker";
 
-const EditTaskDueTimePickerInput: FunctionComponent<{ className?: string }> = ({ className }) => {
+interface EditTaskDueTimePickerInputProps {
+    className?: string;
+    small?: boolean;
+}
+
+const EditTaskDueTimePickerInput: FunctionComponent<EditTaskDueTimePickerInputProps> = (props) => {
     const editModeContext = useEditModeContext();
 
     return (
@@ -13,8 +18,8 @@ const EditTaskDueTimePickerInput: FunctionComponent<{ className?: string }> = ({
             value={editModeContext.newState.dueTime} //
             updateValue={(val) => editModeContext.updateNewState({ dueTime: val })}
             componentThemeID="TRANSPARENT_WHITE"
-            className={className}
-            small
+            className={props.className}
+            small={props.small}
         />
     );
 };

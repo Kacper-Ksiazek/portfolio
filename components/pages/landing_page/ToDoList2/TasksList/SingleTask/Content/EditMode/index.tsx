@@ -1,5 +1,3 @@
-// Tools
-// --
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -15,12 +13,12 @@ const EditMode: FunctionComponent = () => {
                 <h4>Edit mode</h4>
             </TaskTitleBase>
 
-            <Title />
+            <Title small />
 
-            <UrgencySwitch />
-            <LabelPicker />
-            <DueDatePicker />
-            <DueTimePicker />
+            <UrgencySwitch small />
+            <LabelPicker small />
+            <DueDatePicker small />
+            <DueTimePicker small />
 
             <LocalizationInput />
 
