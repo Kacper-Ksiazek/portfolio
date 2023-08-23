@@ -31,6 +31,7 @@ const EditTaskTitleInput: FunctionComponent<{ className?: string; isInvalid?: bo
         >
             <StyledInput
                 value={editModeContext.newState.title} //
+                placeholder="Task title"
                 onChange={(e) => updateTitle(e.target.value as string)}
                 componentThemeID="TRANSPARENT_WHITE"
                 sx={{
