@@ -5,8 +5,8 @@ import { DESCRIPTION_RESTRICTIONS } from "landing_page/ToDoList2/validators/leng
 import type { FunctionComponent } from "react";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
-import WrapperWithWitdthIndicator from "./_WrapperWithLengthIndicator";
 import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
+import WrapperWithWitdthIndicator from "components/atoms/forms/LengthIndicator/WithWrapper";
 
 const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
@@ -17,7 +17,9 @@ const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boole
 
     return (
         <WrapperWithWitdthIndicator
-            id={props.id}
+            wrapperProps={{
+                id: props.id,
+            }}
             lengthIndicator={{
                 currentLength: newTaskBody.description?.length ?? 0, //
                 max: DESCRIPTION_RESTRICTIONS.max,

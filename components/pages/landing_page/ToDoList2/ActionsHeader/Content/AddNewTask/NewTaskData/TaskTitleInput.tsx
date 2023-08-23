@@ -5,7 +5,7 @@ import { TITLE_RESTRICTIONS } from "landing_page/ToDoList2/validators/length_res
 import type { FunctionComponent } from "react";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
-import WrapperWithWitdthIndicator from "./_WrapperWithLengthIndicator";
+import WrapperWithWitdthIndicator from "components/atoms/forms/LengthIndicator/WithWrapper";
 
 const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
@@ -18,7 +18,9 @@ const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (p
 
     return (
         <WrapperWithWitdthIndicator
-            id={props.id} //
+            wrapperProps={{
+                id: props.id,
+            }}
             lengthIndicator={{
                 currentLength: titleLength, //
                 min: TITLE_RESTRICTIONS.min,

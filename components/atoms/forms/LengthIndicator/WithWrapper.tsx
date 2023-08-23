@@ -1,7 +1,8 @@
 // Tools
 import { styled } from "@mui/material";
 // Types
-import type { FunctionComponent, ReactNode } from "react";
+import type { SxProps } from "@/@types/MUI";
+import type { FunctionComponent, HTMLAttributes, ReactNode } from "react";
 // Other components
 import LengthIndicator from "@/components/atoms/forms/LengthIndicator";
 // Styled components
@@ -13,8 +14,9 @@ const WrapperWithLengthIndicatorBase = styled("span")(({ theme }) => ({
 }));
 
 interface WrapperWithWitdthIndicatorProps {
-    id: string;
     children: ReactNode;
+
+    wrapperProps?: { sx?: SxProps } & HTMLAttributes<HTMLSpanElement>;
     lengthIndicator: {
         currentLength: number;
         max: number;
@@ -25,7 +27,7 @@ interface WrapperWithWitdthIndicatorProps {
 
 const WrapperWithWitdthIndicator: FunctionComponent<WrapperWithWitdthIndicatorProps> = (props) => {
     return (
-        <WrapperWithLengthIndicatorBase id={props.id}>
+        <WrapperWithLengthIndicatorBase {...props.wrapperProps}>
             {props.children}
 
             <LengthIndicator
