@@ -23,6 +23,7 @@ const EditTaskTitleInput: FunctionComponent<EditTaskTitleInputProps> = (props) =
 
     return (
         <WrapperWithWitdthIndicator
+            // column={props.small !== true}
             lengthIndicator={{
                 currentLength: editModeContext.newState.title.length,
                 max: TITLE_RESTRICTIONS.max,

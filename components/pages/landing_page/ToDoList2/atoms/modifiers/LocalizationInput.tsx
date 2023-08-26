@@ -52,11 +52,12 @@ const Localization: FunctionComponent<LocalizationProps> = (props) => {
                     ...receivedSxProps,
                     input: {
                         padding: "0 0 0 38px !important",
-                        height: "32px",
+                        height: props.small ? "32px" : "42px",
                     },
                 }}
                 inputRef={inputRef}
                 error={props.error}
+                componentThemeID={props.small ? "MUI" : "TRANSPARENT_WHITE"}
             />
 
             <ClearButton

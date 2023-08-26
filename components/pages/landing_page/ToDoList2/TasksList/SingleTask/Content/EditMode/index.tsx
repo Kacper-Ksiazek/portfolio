@@ -2,7 +2,7 @@
 import type { FunctionComponent } from "react";
 // Other components
 import * as Actions from "./Actions";
-import { Title, UrgencySwitch, LabelPicker, Description, DueDatePicker, DueTimePicker, LocalizationInput } from "./TaskFields";
+import { Title, UrgencySwitch, LabelPicker, Description, DueDatePicker, DueTimePicker, LocalizationInput } from "../_common_for_both_edit_modes";
 // Styled components
 import { TaskTitleBase } from "../ViewMode/TaskTitle";
 
@@ -20,7 +20,7 @@ const EditMode: FunctionComponent = () => {
             <DueDatePicker small />
             <DueTimePicker small />
 
-            <LocalizationInput />
+            <LocalizationInput small />
 
             <Description small />
 

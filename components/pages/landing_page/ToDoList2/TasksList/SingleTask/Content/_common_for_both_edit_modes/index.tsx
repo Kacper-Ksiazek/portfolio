@@ -4,6 +4,6 @@ import DueDatePicker from "./DueDatePicker";
 import DueTimePicker from "./DueTimePicker";
 import LabelPicker from "./LabelPicker";
 import UrgencySwitch from "./UrgencySwitch";
-// import LocalizationInput from "./LocalizationInput";
+import LocalizationInput from "./LocalizationInput";
 
-export { Title, Description, DueDatePicker, DueTimePicker, LabelPicker, UrgencySwitch };
+export { Title, Description, DueDatePicker, DueTimePicker, LabelPicker, UrgencySwitch, LocalizationInput };

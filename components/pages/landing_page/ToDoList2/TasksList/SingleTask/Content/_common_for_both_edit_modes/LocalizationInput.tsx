@@ -8,7 +8,13 @@ import WrapperWithWitdthIndicator from "components/atoms/forms/LengthIndicator/W
 // Styled components
 import LocalizationInput from "landing_page/ToDoList2/atoms/modifiers/LocalizationInput";
 
-const EditTaskDueTimePickerInput: FunctionComponent<{ className?: string; isInvalid?: boolean }> = (props) => {
+interface LocalizationInputProps {
+    small?: boolean;
+    className?: string;
+    isInvalid?: boolean;
+}
+
+const EditTaskDueTimePickerInput: FunctionComponent<LocalizationInputProps> = (props) => {
     const editModeContext = useEditModeContext();
 
     function updateLocalization(val: string | null) {
@@ -27,7 +33,6 @@ const EditTaskDueTimePickerInput: FunctionComponent<{ className?: string; isInva
                 className: props.className,
                 sx: {
                     justifyContent: "flex-start",
-                    width: "100%",
                     "&>div": {
                         flexGrow: `0 !important`,
                     },
@@ -39,7 +44,7 @@ const EditTaskDueTimePickerInput: FunctionComponent<{ className?: string; isInva
                 placeholder="Localization"
                 updateValue={(val) => updateLocalization(val === "" ? null : val)}
                 error={props.isInvalid}
-                small
+                small={props.small}
             />
         </WrapperWithWitdthIndicator>
     );
