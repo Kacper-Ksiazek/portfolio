@@ -14,13 +14,14 @@ const EditTaskDueTimePickerInput: FunctionComponent<EditTaskDueTimePickerInputPr
     const editModeContext = useEditModeContext();
 
     return (
-        <StyledTimePicker
-            value={editModeContext.newState.dueTime} //
-            updateValue={(val) => editModeContext.updateNewState({ dueTime: val })}
-            componentThemeID="TRANSPARENT_WHITE"
-            className={props.className}
-            small={props.small}
-        />
+        <span className={props.className}>
+            <StyledTimePicker
+                value={editModeContext.newState.dueTime} //
+                updateValue={(val) => editModeContext.updateNewState({ dueTime: val })}
+                componentThemeID="TRANSPARENT_WHITE"
+                small={props.small}
+            />
+        </span>
     );
 };
 
