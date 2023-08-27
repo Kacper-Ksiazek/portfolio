@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import useWindowSize from "@/hooks/useWindowSizes";
 // Types
 import type { SxProps } from "@/@types/MUI";
 import type { FunctionComponent, HTMLAttributes, ReactNode } from "react";
@@ -38,8 +39,12 @@ interface WrapperWithWitdthIndicatorProps {
 }
 
 const WrapperWithWitdthIndicator: FunctionComponent<WrapperWithWitdthIndicatorProps> = (props) => {
+    const { width: viewportWidth } = useWindowSize();
+
+    const applyColumnLayout: boolean = props.column ? true : viewportWidth < 500;
+
     return (
-        <WrapperWithLengthIndicatorBase column={props.column ?? false} {...props.wrapperProps}>
+        <WrapperWithLengthIndicatorBase column={applyColumnLayout} {...props.wrapperProps}>
             {props.children}
 
             <LengthIndicator
