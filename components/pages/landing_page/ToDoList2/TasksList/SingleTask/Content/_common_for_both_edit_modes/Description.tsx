@@ -31,6 +31,7 @@ const EditTaskDescriptionInput: FunctionComponent<EditTaskDescriptionInputProps>
                 width: "66px",
             }}
             wrapperProps={{
+                className: props.className,
                 style: {
                     width: "100%",
                     marginBottom: "8px",
@@ -43,7 +44,6 @@ const EditTaskDescriptionInput: FunctionComponent<EditTaskDescriptionInputProps>
                 placeholder="Provide more context or instructions for this task"
                 error={props.isInvalid}
                 componentThemeID="TRANSPARENT_WHITE"
-                className={props.className}
                 multiline
                 sx={{
                     width: "100%",
