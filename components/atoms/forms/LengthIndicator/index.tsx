@@ -10,7 +10,6 @@ const LengthIndicatorBase = styled("span", {
 })<{
     invalid: boolean;
 }>(({ theme, ...props }) => ({
-    // border: "1px solid red",
     fontSize: "14px",
     opacity: 0.6,
     display: "flex",
@@ -27,19 +26,20 @@ const LengthIndicatorBase = styled("span", {
 
 export const LENGTH_INDICATOR_CSS_NAME: CSSClassName = "length-indicator";
 
-interface LengthIndicatorProps {
+export interface LengthIndicatorProps {
     currentLength: number;
     max: number;
+    min: number;
+    optional?: boolean;
 
-    min?: number;
     sx?: SxProps;
     disableErrorMessages?: boolean;
 }
 
 const LengthIndicator: FunctionComponent<LengthIndicatorProps> = (props) => {
-    const { currentLength, max, min } = props;
+    const { currentLength, max, min, optional } = props;
 
-    const valueIsTooShort: boolean = min ? currentLength > 0 && currentLength < min : false;
+    const valueIsTooShort: boolean = currentLength === 0 && optional === true ? false : currentLength < min;
     const valueIsTooLong: boolean = currentLength > max;
 
     return (

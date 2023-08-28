@@ -24,6 +24,7 @@ const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boole
                 currentLength: newTaskBody.description?.length ?? 0, //
                 max: DESCRIPTION_RESTRICTIONS.max,
                 min: DESCRIPTION_RESTRICTIONS.min,
+                optional: true,
                 width: "66px",
             }}
         >

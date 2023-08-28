@@ -25,6 +25,7 @@ const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (p
                 currentLength: titleLength, //
                 min: TITLE_RESTRICTIONS.min,
                 max: TITLE_RESTRICTIONS.max,
+                optional: true,
                 width: "50px",
             }}
         >

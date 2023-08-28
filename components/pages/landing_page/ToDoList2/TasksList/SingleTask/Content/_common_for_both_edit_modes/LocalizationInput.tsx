@@ -27,6 +27,7 @@ const EditTaskDueTimePickerInput: FunctionComponent<LocalizationInputProps> = (p
                 currentLength: editModeContext.newState.localization?.length ?? 0,
                 max: LOCALIZATION_RESTRICTIONS.max,
                 min: LOCALIZATION_RESTRICTIONS.min,
+                optional: true,
                 width: "60px",
             }}
             wrapperProps={{

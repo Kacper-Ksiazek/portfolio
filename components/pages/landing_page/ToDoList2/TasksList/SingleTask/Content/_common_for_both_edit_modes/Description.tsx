@@ -28,6 +28,7 @@ const EditTaskDescriptionInput: FunctionComponent<EditTaskDescriptionInputProps>
                 currentLength: editModeContext.newState.description?.length ?? 0,
                 max: DESCRIPTION_RESTRICTIONS.max,
                 min: DESCRIPTION_RESTRICTIONS.min,
+                optional: true,
                 width: "66px",
             }}
             wrapperProps={{
