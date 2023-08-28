@@ -14,7 +14,7 @@ const EditTaskLabelPickerInput: FunctionComponent<EditTaskLabelPickerInputProps>
     const editModeContext = useEditModeContext();
 
     return (
-        <span style={{ display: "flex", width: "264px" }} className={props.className}>
+        <span style={{ display: "flex", minWidth: "264px" }} className={props.className}>
             <LabelPicker
                 value={editModeContext.newState.labelID} //
                 updateValue={(val) => editModeContext.updateNewState({ labelID: val })}

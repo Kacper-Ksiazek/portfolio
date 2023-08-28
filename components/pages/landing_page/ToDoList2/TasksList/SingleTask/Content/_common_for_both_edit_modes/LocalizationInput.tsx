@@ -27,15 +27,12 @@ const EditTaskDueTimePickerInput: FunctionComponent<LocalizationInputProps> = (p
                 currentLength: editModeContext.newState.localization?.length ?? 0,
                 max: LOCALIZATION_RESTRICTIONS.max,
                 min: LOCALIZATION_RESTRICTIONS.min,
-                width: "62px",
+                width: "60px",
             }}
             wrapperProps={{
                 className: props.className,
                 sx: {
                     justifyContent: "flex-start",
-                    "&>div": {
-                        flexGrow: `0 !important`,
-                    },
                 },
             }}
         >

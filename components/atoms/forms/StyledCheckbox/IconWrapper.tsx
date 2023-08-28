@@ -13,7 +13,7 @@ export const IconWrapper = styled("div", {
         border: `1px solid ${theme.palette.background.MUIFormElementsBorder}`,
         marginRight: props.size === "small" ? "6px" : "8px",
         borderRadius: "3px",
-        width: size,
+        width: size + " !important",
         height: size,
         transition: "background .3s, border-color .3s",
         "&>span": {

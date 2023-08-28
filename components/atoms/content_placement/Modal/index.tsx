@@ -32,6 +32,7 @@ const StyledModal: FunctionComponent<StyledModalProps> = (props) => {
             open={props.isOpen} //
             sx={(theme) => {
                 return {
+                    width: "100vw",
                     ...theme.mixins.flex_center,
                     ...(shouldDisplayModal === false ? { animation: `${fadeSimpleOUT} .24s linear both` } : {}),
                 };

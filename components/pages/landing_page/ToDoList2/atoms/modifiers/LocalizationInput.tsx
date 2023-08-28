@@ -50,8 +50,9 @@ const Localization: FunctionComponent<LocalizationProps> = (props) => {
                 onChange={(e) => updateValue(e.target.value)}
                 sx={{
                     ...receivedSxProps,
+                    width: "100%",
                     input: {
-                        padding: "0 0 0 38px !important",
+                        padding: "0 36px 0 38px !important",
                         height: props.small ? "32px" : "42px",
                     },
                 }}
