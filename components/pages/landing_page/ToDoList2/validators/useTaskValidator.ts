@@ -10,7 +10,7 @@ function _validateString(val: string | null, { min, max }: Restriction): boolean
     if (val === null) return true; // The absence of value implies its optionality
 
     const { length } = val;
-    return length < max && length > min;
+    return length <= max && length >= min;
 }
 
 export interface UseTaskValidatorOutput {
