@@ -1,6 +1,6 @@
 // Tools
 import { TITLE_RESTRICTIONS } from "landing_page/ToDoList2/validators/length_restrictions";
-import { useEditModeContext } from "landing_page/ToDoList2/TasksList/SingleTask/hooks/useEditModeContext";
+import { useEditModeContext, useValidationResultContext } from "landing_page/ToDoList2/TasksList/SingleTask/hooks";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -10,12 +10,12 @@ import StyledInput from "@/components/atoms/forms/StyledInput";
 
 interface EditTaskTitleInputProps {
     className?: string;
-    isInvalid?: boolean;
     small?: boolean;
 }
 
 const EditTaskTitleInput: FunctionComponent<EditTaskTitleInputProps> = (props) => {
     const editModeContext = useEditModeContext();
+    const { titleIsInvalid } = useValidationResultContext();
 
     function updateTitle(val: string) {
         editModeContext.updateNewState({ title: val });
@@ -40,7 +40,8 @@ const EditTaskTitleInput: FunctionComponent<EditTaskTitleInputProps> = (props) =
                 value={editModeContext.newState.title} //
                 placeholder="Task title"
                 onChange={(e) => updateTitle(e.target.value as string)}
-                componentThemeID="TRANSPARENT_WHITE"
+                componentThemeID={titleIsInvalid ? "ERROR" : "TRANSPARENT_WHITE"}
+                error={titleIsInvalid}
                 sx={{
                     width: "100%",
                     input: {

@@ -1,6 +1,6 @@
 // Tools
 import { LOCALIZATION_RESTRICTIONS } from "landing_page/ToDoList2/validators/length_restrictions";
-import { useEditModeContext } from "landing_page/ToDoList2/TasksList/SingleTask/hooks/useEditModeContext";
+import { useEditModeContext, useValidationResultContext } from "landing_page/ToDoList2/TasksList/SingleTask/hooks";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -11,11 +11,11 @@ import LocalizationInput from "landing_page/ToDoList2/atoms/modifiers/Localizati
 interface LocalizationInputProps {
     small?: boolean;
     className?: string;
-    isInvalid?: boolean;
 }
 
 const EditTaskDueTimePickerInput: FunctionComponent<LocalizationInputProps> = (props) => {
     const editModeContext = useEditModeContext();
+    const { localizationIsInvalid } = useValidationResultContext();
 
     function updateLocalization(val: string | null) {
         editModeContext.updateNewState({ localization: val });
@@ -41,7 +41,7 @@ const EditTaskDueTimePickerInput: FunctionComponent<LocalizationInputProps> = (p
                 value={editModeContext.newState.localization ?? ""} //
                 placeholder="Localization"
                 updateValue={(val) => updateLocalization(val === "" ? null : val)}
-                error={props.isInvalid}
+                error={localizationIsInvalid}
                 small={props.small}
             />
         </WrapperWithWitdthIndicator>

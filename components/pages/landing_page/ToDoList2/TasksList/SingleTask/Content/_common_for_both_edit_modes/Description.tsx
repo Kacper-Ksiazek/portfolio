@@ -1,6 +1,6 @@
 // Tools
 import { DESCRIPTION_RESTRICTIONS } from "landing_page/ToDoList2/validators/length_restrictions";
-import { useEditModeContext } from "landing_page/ToDoList2/TasksList/SingleTask/hooks/useEditModeContext";
+import { useEditModeContext, useValidationResultContext } from "landing_page/ToDoList2/TasksList/SingleTask/hooks";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -10,12 +10,12 @@ import StyledInput from "@/components/atoms/forms/StyledInput";
 
 interface EditTaskDescriptionInputProps {
     className?: string;
-    isInvalid?: boolean;
     small?: boolean;
 }
 
 const EditTaskDescriptionInput: FunctionComponent<EditTaskDescriptionInputProps> = (props) => {
     const editModeContext = useEditModeContext();
+    const { descriptionIsInvalid } = useValidationResultContext();
 
     function updateDescription(val: string | null) {
         editModeContext.updateNewState({ description: val });
@@ -43,8 +43,8 @@ const EditTaskDescriptionInput: FunctionComponent<EditTaskDescriptionInputProps>
                 value={editModeContext.newState.description} //
                 onChange={(e) => updateDescription(e.target.value === "" ? null : (e.target.value as string))}
                 placeholder="Provide more context or instructions for this task"
-                error={props.isInvalid}
-                componentThemeID="TRANSPARENT_WHITE"
+                error={descriptionIsInvalid}
+                componentThemeID={descriptionIsInvalid ? "ERROR" : "TRANSPARENT_WHITE"}
                 multiline
                 sx={{
                     width: "100%",
