@@ -45,6 +45,7 @@ const Localization: FunctionComponent<LocalizationProps> = (props) => {
                     left: "12px",
                     top: "50%",
                     transform: "translateY(-50%)",
+                    zIndex: 1,
                 }}
             />
 
