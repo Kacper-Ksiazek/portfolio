@@ -39,7 +39,7 @@ const EditTaskDueTimePickerInput: FunctionComponent<LocalizationInputProps> = (p
         >
             <LocalizationInput
                 value={editModeContext.newState.localization ?? ""} //
-                placeholder="Localization"
+                placeholder="Localization (optional)"
                 updateValue={(val) => updateLocalization(val === "" ? null : val)}
                 error={localizationIsInvalid}
                 small={props.small}

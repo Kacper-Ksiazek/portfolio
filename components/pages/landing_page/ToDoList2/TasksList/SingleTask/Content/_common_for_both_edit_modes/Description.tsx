@@ -7,6 +7,7 @@ import type { FunctionComponent } from "react";
 import WrapperWithWitdthIndicator from "components/atoms/forms/LengthIndicator/WithWrapper";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
+import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
 
 interface EditTaskDescriptionInputProps {
     className?: string;
@@ -39,10 +40,12 @@ const EditTaskDescriptionInput: FunctionComponent<EditTaskDescriptionInputProps>
                 },
             }}
         >
+            <OptionalPropertIndicator />
+
             <StyledInput
                 value={editModeContext.newState.description} //
                 onChange={(e) => updateDescription(e.target.value === "" ? null : (e.target.value as string))}
-                placeholder="Provide more context or instructions for this task"
+                placeholder="Provide more context or instructions for this task (optional)"
                 error={descriptionIsInvalid}
                 componentThemeID={descriptionIsInvalid ? "ERROR" : "TRANSPARENT_WHITE"}
                 multiline

@@ -31,7 +31,7 @@ const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boole
             <OptionalPropertIndicator />
 
             <StyledInput
-                placeholder="Provide more context or instructions for this task" //
+                placeholder="Provide more context or instructions for this task (optional)" //
                 value={newTaskBody.description ?? ""}
                 onChange={(e) => updateDescription(e.target.value === "" ? null : e.target.value)}
                 multiline
