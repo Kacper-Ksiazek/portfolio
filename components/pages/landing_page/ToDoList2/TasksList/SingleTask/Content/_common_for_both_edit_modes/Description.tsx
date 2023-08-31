@@ -53,7 +53,7 @@ const EditTaskDescriptionInput: FunctionComponent<EditTaskDescriptionInputProps>
                     width: "100%",
                     height: "64px",
                     ".MuiOutlinedInput-root": {
-                        padding: "4px 12px",
+                        padding: "4px 8px 4px 16px !important",
                     },
                     textarea: {
                         padding: "0",

@@ -45,7 +45,7 @@ const EditTaskTitleInput: FunctionComponent<EditTaskTitleInputProps> = (props) =
                 sx={{
                     width: "100%",
                     input: {
-                        padding: props.small ? "4px 12px" : "10px 12px",
+                        padding: props.small ? "4px 16px" : "10px 16px",
                         width: "100%",
                         fontSize: "16px",
                     },
