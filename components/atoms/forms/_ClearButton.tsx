@@ -16,6 +16,7 @@ const ClearButtonWrapper = styled("span")(({ theme }) => ({
     zIndex: "10",
     ".MuiButtonBase-root": {
         border: "none",
+        transition: "color 0.2s ease-in-out",
         "&.Mui-disabled": {
             color: alpha("#fff", 0.1),
         },

@@ -25,7 +25,11 @@ const Localization: FunctionComponent<LocalizationProps> = (props) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const { sx: receivedSxProps, value, updateValue, ...propsToForward } = props;
 
+    const disableClearButton: boolean = value === null || value === "";
+
     function clear() {
+        if (disableClearButton) return;
+
         props.updateValue(null);
 
         if (inputRef.current) inputRef.current.value = "";
@@ -62,7 +66,7 @@ const Localization: FunctionComponent<LocalizationProps> = (props) => {
             />
 
             <ClearButton
-                disabled={value === null} //
+                disabled={disableClearButton} //
                 clear={clear}
             />
         </div>
