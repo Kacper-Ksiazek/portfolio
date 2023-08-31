@@ -28,6 +28,15 @@ const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = 
         isOpened.setValue(false);
     }
 
+    function discardChanges() {
+        updateNewState(task);
+        isOpened.setValue(false);
+    }
+
+    function openEditMode() {
+        isOpened.setValue(true);
+    }
+
     return (
         <editModeContext.Provider
             value={{
@@ -37,8 +46,9 @@ const EditModeContextProvider: FunctionComponent<EditModeContexProviderProps> = 
                 applyMobileEditMode,
                 //
                 saveAndExit,
+                openEditMode,
+                discardChanges,
                 updateNewState,
-                toggleIsOpened: () => isOpened.setValue((val) => !val),
             }}
         >
             {props.children}

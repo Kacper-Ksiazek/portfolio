@@ -12,7 +12,9 @@ interface I_EditModeContext {
     applyMobileEditMode: boolean;
 
     saveAndExit: () => void;
-    toggleIsOpened: () => void;
+    openEditMode: () => void;
+    discardChanges: () => void;
+
     updateNewState: (val: Partial<UpdatedTask>) => void;
 }
 

@@ -54,7 +54,7 @@ const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonPro
                         <CheckRounded />
                     </StyledIconButton>
                     <StyledIconButton
-                        onClick={editModeContext.toggleIsOpened} //
+                        onClick={editModeContext.discardChanges} //
                         tooltip="Discard changes"
                     >
                         <CloseRounded />

@@ -18,7 +18,7 @@ const ModalWrapper: FunctionComponent<ModalWrapperProps> = (props) => {
     return (
         <Modal
             isOpen={editModeContext.isOpened}
-            onClose={editModeContext.toggleIsOpened}
+            onClose={editModeContext.discardChanges}
             title="Edit task"
             actionButton={{
                 prompt: "Save",

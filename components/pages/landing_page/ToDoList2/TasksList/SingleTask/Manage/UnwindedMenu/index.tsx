@@ -61,7 +61,7 @@ const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
             <MenuActionButton
                 icon={<ModeEditOutlineOutlined />} //
                 label="Edit"
-                onClick={handleOnClick(editModeContext.toggleIsOpened)}
+                onClick={handleOnClick(editModeContext.openEditMode)}
             />
             <MenuActionButton
                 icon={<DeleteOutlineOutlined />} //
