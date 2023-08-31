@@ -62,7 +62,7 @@ const Localization: FunctionComponent<LocalizationProps> = (props) => {
                 }}
                 inputRef={inputRef}
                 error={props.error}
-                componentThemeID={props.error ? "ERROR" : props.small ? "MUI" : "TRANSPARENT_WHITE"}
+                componentThemeID={props.error ? "ERROR" : props.componentThemeID}
             />
 
             <ClearButton

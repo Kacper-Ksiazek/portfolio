@@ -43,6 +43,7 @@ const EditTaskDueTimePickerInput: FunctionComponent<LocalizationInputProps> = (p
                 updateValue={(val) => updateLocalization(val === "" ? null : val)}
                 error={localizationIsInvalid}
                 small={props.small}
+                componentThemeID={props.small ? "MUI" : "TRANSPARENT_WHITE"}
             />
         </WrapperWithWitdthIndicator>
     );
