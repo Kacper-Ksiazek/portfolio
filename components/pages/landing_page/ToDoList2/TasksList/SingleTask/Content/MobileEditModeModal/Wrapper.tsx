@@ -53,6 +53,17 @@ const ModalWrapper: FunctionComponent<ModalWrapperProps> = (props) => {
                         width: "calc(100% - 148px - 6px)",
                     },
 
+                    // Row 3
+                    [SELECTORS.DESCRIPTION_INPUT]: {
+                        width: "100%",
+                        ".MuiFormControl-root": {
+                            height: "80px",
+                            ".MuiOutlinedInput-root": {
+                                height: "100%",
+                            },
+                        },
+                    },
+
                     "@media (max-width:720px)": {
                         // Row 1
                         [SELECTORS.LABEL_PICKER]: {
@@ -70,16 +81,6 @@ const ModalWrapper: FunctionComponent<ModalWrapperProps> = (props) => {
                         // Row 3
                         [SELECTORS.LOCALIZATION_PICKER]: {
                             width: "100%",
-                        },
-
-                        // Row 4
-                        [SELECTORS.DESCRIPTION_INPUT]: {
-                            ".MuiFormControl-root": {
-                                height: "86px",
-                                ".MuiOutlinedInput-root": {
-                                    height: "100%",
-                                },
-                            },
                         },
                     },
 
@@ -110,6 +111,9 @@ const ModalWrapper: FunctionComponent<ModalWrapperProps> = (props) => {
 
                         [SELECTORS.DESCRIPTION_INPUT]: {
                             order: 1,
+                            ".MuiFormControl-root": {
+                                height: "102px",
+                            },
                         },
                     },
                 },
