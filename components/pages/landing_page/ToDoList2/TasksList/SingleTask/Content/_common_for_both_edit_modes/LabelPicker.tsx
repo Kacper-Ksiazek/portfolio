@@ -18,7 +18,6 @@ const EditTaskLabelPickerInput: FunctionComponent<EditTaskLabelPickerInputProps>
             <LabelPicker
                 value={editModeContext.newState.labelID} //
                 updateValue={(val) => editModeContext.updateNewState({ labelID: val })}
-                componentThemeID="TRANSPARENT_WHITE"
                 small={props.small}
             />
         </span>

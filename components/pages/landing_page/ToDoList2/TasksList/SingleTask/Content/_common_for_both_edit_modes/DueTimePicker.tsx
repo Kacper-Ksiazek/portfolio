@@ -18,7 +18,6 @@ const EditTaskDueTimePickerInput: FunctionComponent<EditTaskDueTimePickerInputPr
             <StyledTimePicker
                 value={editModeContext.newState.dueTime} //
                 updateValue={(val) => editModeContext.updateNewState({ dueTime: val })}
-                componentThemeID="TRANSPARENT_WHITE"
                 small={props.small}
             />
         </span>

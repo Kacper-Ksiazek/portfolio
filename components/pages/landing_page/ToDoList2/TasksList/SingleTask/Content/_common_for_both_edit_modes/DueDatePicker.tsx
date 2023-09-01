@@ -18,7 +18,6 @@ const EditTaskDueDatePickerInput: FunctionComponent<EditTaskDueDatePickerInputPr
             <DueDatePicker
                 value={editModeContext.newState.dueDate} //
                 updateValue={(dueDate) => editModeContext.updateNewState({ dueDate })}
-                componentThemeID="TRANSPARENT_WHITE"
                 small={props.small}
             />
         </span>

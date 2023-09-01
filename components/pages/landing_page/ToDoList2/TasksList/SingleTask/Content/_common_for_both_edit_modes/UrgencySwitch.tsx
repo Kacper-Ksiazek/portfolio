@@ -19,7 +19,6 @@ const EditTaskUrgencySwitchInput: FunctionComponent<EditTaskUrgencySwitchInputPr
                 label="Urgent" //
                 value={editModeContext.newState.urgent}
                 updateValue={(val) => editModeContext.updateNewState({ urgent: val })}
-                componentThemeID="TRANSPARENT_WHITE"
                 small={props.small}
             />
         </span>

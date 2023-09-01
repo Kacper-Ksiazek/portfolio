@@ -47,7 +47,7 @@ const EditTaskDescriptionInput: FunctionComponent<EditTaskDescriptionInputProps>
                 onChange={(e) => updateDescription(e.target.value === "" ? null : (e.target.value as string))}
                 placeholder="Provide more context or instructions for this task (optional)"
                 error={descriptionIsInvalid}
-                componentThemeID={descriptionIsInvalid ? "ERROR" : "TRANSPARENT_WHITE"}
+                componentThemeID={descriptionIsInvalid ? "ERROR" : "MUI"}
                 multiline
                 sx={{
                     width: "100%",

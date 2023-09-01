@@ -40,7 +40,7 @@ const EditTaskTitleInput: FunctionComponent<EditTaskTitleInputProps> = (props) =
                 value={editModeContext.newState.title} //
                 placeholder="Task title"
                 onChange={(e) => updateTitle(e.target.value as string)}
-                componentThemeID={titleIsInvalid ? "ERROR" : "TRANSPARENT_WHITE"}
+                componentThemeID={titleIsInvalid ? "ERROR" : "MUI"}
                 error={titleIsInvalid}
                 sx={{
                     width: "100%",
