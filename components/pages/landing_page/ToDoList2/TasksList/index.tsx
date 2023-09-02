@@ -1,5 +1,4 @@
 // Tools
-import useWindowSizes from "@/hooks/useWindowSizes";
 import { useTasksListContext } from "landing_page/ToDoList2/hooks/useTaskListContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -18,12 +17,9 @@ interface TasksListProps {
 const TasksList: FunctionComponent<TasksListProps> = (props) => {
     const { filteredTasks } = props;
 
-    const { width } = useWindowSizes();
     const { edit: editTaskWithID, remove: deleteTaskWithID, tasksWrapperRef } = useTasksListContext();
 
     const progress: string = ((filteredTasks.filter((el) => el.isCompleted).length * 100) / filteredTasks.length).toFixed(2);
-
-    const applyMobileDeviceLayout: boolean = width < 840;
 
     return (
         <TaskListBase fadeContentOut={props.fadeContentOut} ref={tasksWrapperRef}>
@@ -37,9 +33,8 @@ const TasksList: FunctionComponent<TasksListProps> = (props) => {
                         <SingleTask
                             key={item.id} //
                             data={item}
-                            applyMobileDeviceLayout={applyMobileDeviceLayout}
                             remove={() => deleteTaskWithID(item.id)}
-                            update={(val) => editTaskWithID(item.id, val)}
+                            updateOriginalTask={(val) => editTaskWithID(item.id, val)}
                         />
                     );
                 })}

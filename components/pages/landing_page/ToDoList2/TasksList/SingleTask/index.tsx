@@ -16,10 +16,9 @@ import SingleTaskBase from "./Base";
 
 interface SingleTaskProps {
     data: Task;
-    applyMobileDeviceLayout: boolean;
 
     remove: () => void;
-    update: (cb: TaskEditCallback) => void;
+    updateOriginalTask: (cb: TaskEditCallback) => void;
 }
 
 const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
@@ -29,11 +28,11 @@ const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
     const { isTaskBeingRemoved, remove } = useTaskRemover(props.remove);
 
     function toggleCompletion() {
-        props.update((currentValue) => ({ isCompleted: !currentValue.isCompleted }));
+        props.updateOriginalTask((currentValue) => ({ isCompleted: !currentValue.isCompleted }));
     }
 
     function toggleUrgency() {
-        props.update((currentValue) => {
+        props.updateOriginalTask((currentValue) => {
             const newValue: Partial<UpdatedTask> = { urgent: !currentValue.urgent };
 
             updateNewState(newValue);
@@ -76,7 +75,7 @@ const SingleTaskWithContext: FunctionComponent<SingleTaskProps> = (props) => {
     return (
         <ContextProvider.EditModeContext
             taskToBeEdited={props.data} //
-            applyChanges={props.update}
+            applyChanges={props.updateOriginalTask}
         >
             <ContextProvider.ValidationResultContext taskToBeEdited={props.data}>
                 <SingleTask {...props} />
