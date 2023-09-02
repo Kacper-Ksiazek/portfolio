@@ -1,5 +1,4 @@
 // Tools
-import { CSS_REFERENCES } from "../../css_references";
 import { useTaskDataContext, useEditModeContext } from "landing_page/ToDoList2/TasksList/SingleTask/hooks";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -12,8 +11,8 @@ interface CompletionButtonWrapperProps {
 }
 
 const CompletionButtonWrapper: FunctionComponent<CompletionButtonWrapperProps> = (props) => {
-    const { originalTask } = useTaskDataContext();
     const { isOpened: isEditModeOpened } = useEditModeContext();
+    const { originalTask, taskIsBeingRemoved } = useTaskDataContext();
 
     const isUrgent: boolean = originalTask.urgent;
     const isCompleted: boolean = originalTask.isCompleted;
@@ -21,7 +20,6 @@ const CompletionButtonWrapper: FunctionComponent<CompletionButtonWrapperProps> =
 
     return (
         <div
-            className={CSS_REFERENCES.COMPLETION_BUTTON}
             style={{
                 marginRight: "12px",
                 alignSelf: "flex-start",
@@ -33,6 +31,7 @@ const CompletionButtonWrapper: FunctionComponent<CompletionButtonWrapperProps> =
                     urgent={isUrgent} //
                     completed={isCompleted}
                     inEditMode={isEditModeOpened}
+                    taskIsBeingRemoved={taskIsBeingRemoved}
                 />
             )}
 

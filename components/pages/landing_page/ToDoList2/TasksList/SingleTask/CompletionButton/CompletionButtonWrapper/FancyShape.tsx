@@ -2,11 +2,13 @@
 import { alpha, styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro/fade";
 import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
+import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Styled components
 interface FancyShapeProps {
     urgent: boolean;
     completed: boolean;
     inEditMode: boolean;
+    taskIsBeingRemoved: boolean;
 }
 
 function shouldForwardProp(prop: string | keyof FancyShapeProps): boolean {
@@ -14,6 +16,7 @@ function shouldForwardProp(prop: string | keyof FancyShapeProps): boolean {
         "completed", //
         "inEditMode",
         "urgent",
+        "taskIsBeingRemoved",
     ].includes(prop as any);
 }
 
@@ -80,6 +83,11 @@ export default styled("span", { shouldForwardProp })<FancyShapeProps>(({ theme, 
                       top: "12px",
                       height: "60%",
                   },
+              }
+            : {},
+        props.taskIsBeingRemoved
+            ? {
+                  animation: `${fadeSimpleOUT} .3s ease-in-out both`,
               }
             : {}
     )

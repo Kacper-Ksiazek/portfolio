@@ -8,7 +8,7 @@ import ModeEditOutlineOutlined from "@mui/icons-material/ModeEditOutlineOutlined
 // Styled components
 import CompletionButtonBase from "./Base";
 
-const ActualCompletionButton: FunctionComponent = (props) => {
+const ActualCompletionButton: FunctionComponent = () => {
     const { isOpened: isInEditMode } = useEditModeContext();
     const { originalTask, updateTask } = useTaskDataContext();
 
