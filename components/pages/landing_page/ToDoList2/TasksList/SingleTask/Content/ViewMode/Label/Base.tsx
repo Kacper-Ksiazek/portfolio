@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { VIEW_MODE_CSS_REFERENCES } from "@/components/pages/landing_page/ToDoList2/TasksList/SingleTask/css_references";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 
@@ -38,8 +39,10 @@ const LabelBaseWithUrgentStyles = styled(_LabelBase)(({ theme }) => ({
 }));
 
 const StyledLabelBase: FunctionComponent<{ children: ReactNode } & LabelBaseProps> = ({children, ...props}) => {
+
+    
     return (
-        <span>
+        <span className={VIEW_MODE_CSS_REFERENCES.LABEL}>
             <LabelBaseWithUrgentStyles {...props}>{children}</LabelBaseWithUrgentStyles>
         </span>
     );

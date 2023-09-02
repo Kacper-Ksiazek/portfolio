@@ -27,9 +27,11 @@ export const getStylesWhenCompleted = (theme: Theme): SxProps => {
             transform: "scaleX(0)",
         },
         [VIEW_MODE_SELECTORS.LABEL]: {
-            background: "none !important",
-            color: alpha("#fff", 0.3),
-            border: `2px solid ${alpha("#fff", 0.3)} !important`,
+            "&>span": {
+                background: "none !important",
+                color: alpha("#fff", 0.3),
+                border: `2px solid ${alpha("#fff", 0.3)} !important`,
+            },
         },
     };
 };

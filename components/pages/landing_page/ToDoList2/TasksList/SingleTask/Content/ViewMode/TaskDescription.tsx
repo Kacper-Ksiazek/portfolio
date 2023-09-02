@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { VIEW_MODE_CSS_REFERENCES } from "landing_page/ToDoList2/TasksList/SingleTask/css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
@@ -16,7 +17,7 @@ const TaskDescription: FunctionComponent<{ description: string | null }> = (prop
     if (props.description === null) return <></>;
 
     return (
-        <TaskDescriptionBase>
+        <TaskDescriptionBase className={VIEW_MODE_CSS_REFERENCES.DESCRIPTION}>
             <span>{props.description}</span>
         </TaskDescriptionBase>
     );
