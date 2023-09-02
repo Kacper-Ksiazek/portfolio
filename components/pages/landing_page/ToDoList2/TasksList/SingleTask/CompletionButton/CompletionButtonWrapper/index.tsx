@@ -1,22 +1,23 @@
 // Tools
 import { CSS_REFERENCES } from "../../css_references";
+import { useTaskDataContext, useEditModeContext } from "landing_page/ToDoList2/TasksList/SingleTask/hooks";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import FancyShape from "./FancyShape";
 
 interface CompletionButtonWrapperProps {
-    isUrgent: boolean;
-    isCompleted: boolean;
-    isInEditMode: boolean;
-    hasDescription: boolean;
-
     /** Slot for **ActulatCompletionButton** */
     children: ReactNode;
 }
 
 const CompletionButtonWrapper: FunctionComponent<CompletionButtonWrapperProps> = (props) => {
-    const { isCompleted, isInEditMode, isUrgent, hasDescription } = props;
+    const { originalTask } = useTaskDataContext();
+    const { isOpened: isEditModeOpened } = useEditModeContext();
+
+    const isUrgent: boolean = originalTask.urgent;
+    const isCompleted: boolean = originalTask.isCompleted;
+    const hasDescription: boolean = originalTask.description !== null;
 
     return (
         <div
@@ -27,11 +28,11 @@ const CompletionButtonWrapper: FunctionComponent<CompletionButtonWrapperProps> =
                 marginTop: "4px",
             }}
         >
-            {(hasDescription || isInEditMode) && (
+            {(hasDescription || isEditModeOpened) && (
                 <FancyShape
                     urgent={isUrgent} //
                     completed={isCompleted}
-                    inEditMode={isInEditMode}
+                    inEditMode={isEditModeOpened}
                 />
             )}
 

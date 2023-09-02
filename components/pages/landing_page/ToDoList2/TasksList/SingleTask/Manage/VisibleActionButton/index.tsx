@@ -1,6 +1,6 @@
 // Tools
 import { forwardRef } from "react";
-import { useEditModeContext, useValidationResultContext } from "../../hooks";
+import { useEditModeContext, useValidationResultContext, useTaskDataContext } from "../../hooks";
 // Material UI Icons
 import CheckRounded from "@mui/icons-material/CheckRounded";
 import CloseRounded from "@mui/icons-material/CloseRounded";
@@ -15,12 +15,12 @@ interface DefaultActionButtonProps {
     showUnwindButton: boolean;
     showDeleteButton: boolean;
 
-    remove: () => void;
     unwindMenuList: () => void;
 }
 
 const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonProps>((props, ref) => {
     const editModeContext = useEditModeContext();
+    const taskDataContext = useTaskDataContext();
     const validationResultContext = useValidationResultContext();
 
     return (
@@ -37,7 +37,7 @@ const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonPro
 
             <SmoothConditionalRender when={props.showDeleteButton}>
                 <StyledIconButton
-                    onClick={props.remove} //
+                    onClick={taskDataContext.removeTask} //
                     tooltip="Delete"
                 >
                     <DeleteOutlineOutlined />

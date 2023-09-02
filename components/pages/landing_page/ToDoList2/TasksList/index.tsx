@@ -34,7 +34,7 @@ const TasksList: FunctionComponent<TasksListProps> = (props) => {
                             key={item.id} //
                             data={item}
                             remove={() => deleteTaskWithID(item.id)}
-                            updateOriginalTask={(val) => editTaskWithID(item.id, val)}
+                            update={(val) => editTaskWithID(item.id, val)}
                         />
                     );
                 })}

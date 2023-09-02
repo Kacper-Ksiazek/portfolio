@@ -1,71 +1,47 @@
 // Tools
-import { styled } from "@mui/material";
-import { useDelayedState } from "@/hooks/useDelayedState";
-import { useModalControl } from "./hooks/useModalControl";
+import { useModalControl, useMenuVisibility } from "./hooks/";
+import { useEditModeContext, useTaskDataContext } from "../hooks";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
 import UnwindedMenu from "./UnwindedMenu";
 import VisibleActionButton from "./VisibleActionButton";
 // Styled components
+import ManageWrapper from "./Base";
 import ModalWrapper from "./ModalWrapper";
 
-const ManageWrapper = styled("div")(({ theme }) => ({
-    position: "absolute",
-    top: "50%",
-    right: "8px",
-    width: "80px",
-    height: "46px",
-    transform: "translateY(-50%)",
-    color: "#fff",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-}));
+const Manage: FunctionComponent = () => {
+    const { isOpened: isInEditMode } = useEditModeContext();
+    const { originalTask, taskIsBeingRemoved } = useTaskDataContext();
 
-interface ManageProps {
-    isUrgent: boolean;
-    isDeleting: boolean;
-    isCompleted: boolean;
-    isInEditMode: boolean;
+    const taskIsCompleted: boolean = originalTask.isCompleted === true;
 
-    remove: () => void;
-    toggleUrgency: () => void;
-}
+    const { menuIsVisible, applyOutroAnimation, setMenuVisibility } = useMenuVisibility();
 
-const Manage: FunctionComponent<ManageProps> = (props) => {
-    const { value: unwindMenu, isChanging, setValue: setUnwindMenu } = useDelayedState<boolean>(false, 500);
+    const modalControl = useModalControl(menuIsVisible, setMenuVisibility);
 
-    const renderUnwindedMenu: boolean = unwindMenu || (!unwindMenu && isChanging);
-
-    const { buttonElementRef, close, open, position } = useModalControl(renderUnwindedMenu, setUnwindMenu);
     return (
         <ManageWrapper>
             <VisibleActionButton
-                ref={buttonElementRef}
+                ref={modalControl.buttonElementRef}
                 //
-                showUnwindButton={!props.isInEditMode && !props.isCompleted}
-                showDeleteButton={!props.isInEditMode && props.isCompleted && !props.isDeleting}
+                showUnwindButton={isInEditMode === false && taskIsCompleted === false}
+                showDeleteButton={isInEditMode === false && taskIsCompleted === true && taskIsBeingRemoved === false}
                 //
-                unwindMenuList={open}
-                remove={props.remove}
+                unwindMenuList={modalControl.open}
             />
 
             <ModalWrapper
-                close={close} //
-                isOpen={renderUnwindedMenu}
+                close={modalControl.close} //
+                isOpen={menuIsVisible}
             >
                 <UnwindedMenu
-                    className={unwindMenu && isChanging ? "outro" : ""}
-                    isUrgent={props.isUrgent}
+                    className={applyOutroAnimation ? "outro" : ""}
                     sx={{
-                        top: `${position.top}px`,
-                        left: `${position.left}px`,
+                        top: `${modalControl.position.top}px`,
+                        left: `${modalControl.position.left}px`,
                     }}
-                    closeMenu={close}
-                    remove={props.remove}
-                    toggleUrgency={props.toggleUrgency}
+                    closeMenu={modalControl.close}
                 />
             </ModalWrapper>
         </ManageWrapper>

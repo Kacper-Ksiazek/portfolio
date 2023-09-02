@@ -4,24 +4,10 @@ import type { FunctionComponent } from "react";
 import ActualCompletionButton from "./ActualCompletionButton";
 import CompletionButtonWrapper from "./CompletionButtonWrapper";
 
-interface CompletionButtonProps {
-    isUrgent: boolean;
-    isCompleted: boolean;
-    isInEditMode: boolean;
-    hasDescription: boolean;
-
-    toggleCompletion: () => void;
-}
-
-const CompletionButton: FunctionComponent<CompletionButtonProps> = (props) => {
-    const { toggleCompletion, ...propsToForward } = props;
-
+const CompletionButton: FunctionComponent = () => {
     return (
-        <CompletionButtonWrapper {...propsToForward}>
-            <ActualCompletionButton
-                isCompleted={props.isCompleted} //
-                toggleCompletion={props.toggleCompletion}
-            />
+        <CompletionButtonWrapper>
+            <ActualCompletionButton />
         </CompletionButtonWrapper>
     );
 };

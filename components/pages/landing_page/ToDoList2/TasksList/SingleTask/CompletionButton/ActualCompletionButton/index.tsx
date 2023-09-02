@@ -1,5 +1,5 @@
 // Tools
-import { useEditModeContext } from "landing_page/ToDoList2/TasksList/SingleTask/hooks/useEditModeContext";
+import { useEditModeContext, useTaskDataContext } from "landing_page/ToDoList2/TasksList/SingleTask/hooks";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Icons
@@ -8,22 +8,26 @@ import ModeEditOutlineOutlined from "@mui/icons-material/ModeEditOutlineOutlined
 // Styled components
 import CompletionButtonBase from "./Base";
 
-interface ActualCompletionButtonProps {
-    isCompleted: boolean;
-    toggleCompletion: () => void;
-}
-
-const ActualCompletionButton: FunctionComponent<ActualCompletionButtonProps> = (props) => {
+const ActualCompletionButton: FunctionComponent = (props) => {
     const { isOpened: isInEditMode } = useEditModeContext();
+    const { originalTask, updateTask } = useTaskDataContext();
 
     const classNames: string = [
-        props.isCompleted ? "checked" : "", //
+        originalTask.isCompleted ? "checked" : "", //
         isInEditMode ? "in-edit-mode" : "",
     ].join(" ");
 
+    /**
+     * Actived when the user clicks on the completion button.
+     * It toggles the completion state of the task.
+     */
+    function toggleCompletion() {
+        updateTask((currentValue) => ({ isCompleted: !currentValue.isCompleted }));
+    }
+
     return (
         <CompletionButtonBase
-            onClick={props.toggleCompletion} //
+            onClick={toggleCompletion} //
             className={classNames}
             disabled={isInEditMode}
         >

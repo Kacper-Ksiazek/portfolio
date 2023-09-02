@@ -1,9 +1,7 @@
 // Tools
-import { useTaskRemover } from "./hooks/useTaskRemover";
-import { useEditModeContext } from "./hooks/useEditModeContext";
+import { useEditModeContext, useTaskDataContext } from "./hooks";
 // Types
 import { FunctionComponent } from "react";
-import type { UpdatedTask } from "./context/editModeContext";
 import type { Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
 // Other components
 import Manage from "./Manage";
@@ -14,74 +12,50 @@ import * as ContextProvider from "./context/Providers";
 // Styled components
 import SingleTaskBase from "./Base";
 
-interface SingleTaskProps {
+interface SingleTaskWithContextProps {
     data: Task;
 
     remove: () => void;
-    updateOriginalTask: (cb: TaskEditCallback) => void;
+    update: (cb: TaskEditCallback) => void;
 }
 
-const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
-    const { data } = props;
-
-    const { isOpened: isInEditMode, updateNewState } = useEditModeContext();
-    const { isTaskBeingRemoved, remove } = useTaskRemover(props.remove);
-
-    function toggleCompletion() {
-        props.updateOriginalTask((currentValue) => ({ isCompleted: !currentValue.isCompleted }));
-    }
-
-    function toggleUrgency() {
-        props.updateOriginalTask((currentValue) => {
-            const newValue: Partial<UpdatedTask> = { urgent: !currentValue.urgent };
-
-            updateNewState(newValue);
-            return newValue;
-        });
-    }
-
+const SingleTaskWithContext: FunctionComponent<SingleTaskWithContextProps> = (props) => {
     return (
-        <SingleTaskBase
-            urgent={data.urgent} //
-            completed={data.isCompleted}
-            currentlyBeingRemoved={isTaskBeingRemoved}
+        <ContextProvider.TaskDataContext
+            data={props.data} //
+            remove={props.remove}
+            update={props.update}
         >
-            <Background isUrgent={data.urgent} isInEditMode={isInEditMode} />
-
-            <CompletionButton
-                isUrgent={data.urgent}
-                hasDescription={data.description !== null}
-                isCompleted={data.isCompleted} //
-                isInEditMode={isInEditMode}
-                toggleCompletion={toggleCompletion}
-            />
-
-            <Content data={data} />
-
-            <Manage
-                isUrgent={data.urgent}
-                isInEditMode={isInEditMode}
-                isCompleted={data.isCompleted}
-                isDeleting={isTaskBeingRemoved}
-                //
-                remove={remove}
-                toggleUrgency={toggleUrgency}
-            />
-        </SingleTaskBase>
-    );
-};
-
-const SingleTaskWithContext: FunctionComponent<SingleTaskProps> = (props) => {
-    return (
-        <ContextProvider.EditModeContext
-            taskToBeEdited={props.data} //
-            applyChanges={props.updateOriginalTask}
-        >
-            <ContextProvider.ValidationResultContext taskToBeEdited={props.data}>
-                <SingleTask {...props} />
-            </ContextProvider.ValidationResultContext>
-        </ContextProvider.EditModeContext>
+            <ContextProvider.EditModeContext>
+                <ContextProvider.ValidationResultContext>
+                    {/*  */}
+                    <SingleTask />
+                    {/*  */}
+                </ContextProvider.ValidationResultContext>
+            </ContextProvider.EditModeContext>
+        </ContextProvider.TaskDataContext>
     );
 };
 
 export default SingleTaskWithContext;
+
+const SingleTask: FunctionComponent = () => {
+    const { taskIsBeingRemoved, originalTask } = useTaskDataContext();
+    const { isOpened: isInEditMode } = useEditModeContext();
+
+    return (
+        <SingleTaskBase
+            urgent={originalTask.urgent} //
+            completed={originalTask.isCompleted}
+            currentlyBeingRemoved={taskIsBeingRemoved}
+        >
+            <Background isUrgent={originalTask.urgent} isInEditMode={isInEditMode} />
+
+            <CompletionButton />
+
+            <Content data={originalTask} />
+
+            <Manage />
+        </SingleTaskBase>
+    );
+};

@@ -1,19 +1,18 @@
 // Tools
 import { useMemo } from "react";
+import { useTaskDataContext } from "../../hooks";
 import { validationResultContext } from "./index";
 import { useTaskValidator } from "landing_page/ToDoList2/validators/useTaskValidator";
 import { useEditModeContext } from "landing_page/ToDoList2/TasksList/SingleTask/hooks/useEditModeContext";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { TaskWithoutID } from "landing_page/ToDoList2/@types";
 
 type ValidationResultContextProviderProps = {
     children: ReactNode;
-    taskToBeEdited: TaskWithoutID;
 };
 
 const ValidationResultContextProvider: FunctionComponent<ValidationResultContextProviderProps> = (props) => {
-    const { taskToBeEdited: originalTask } = props;
+    const { originalTask } = useTaskDataContext();
 
     const { newState } = useEditModeContext();
     const propiertiesValidationResult = useTaskValidator(newState);
