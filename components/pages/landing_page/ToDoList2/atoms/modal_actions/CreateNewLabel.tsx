@@ -49,6 +49,14 @@ const CreateNewLabel: FunctionComponent<CreateNewLabelProps> = (props) => {
                 wrapperProps={{
                     className: props.className,
                     id: props.id,
+                    sx: {
+                        transform: "translateX(-1px)",
+                        button: {
+                            borderLeftColor: "transparent",
+                            borderTopLeftRadius: 0,
+                            borderBottomLeftRadius: 0,
+                        },
+                    },
                 }}
             >
                 {props.modalOpeningButtonPrompt ? props.modalOpeningButtonPrompt : <AddRounded />}

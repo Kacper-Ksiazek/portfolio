@@ -43,7 +43,7 @@ const SingleLabel: FunctionComponent<SingleLabelProps> = (props) => {
                 }}
             />
 
-            <FlexBox className={CSS_REFERENCES.TABLE.BUTTONS.WRAPPER}>
+            <FlexBox className={CSS_REFERENCES.TABLE.BUTTONS.WRAPPER} sx={{ gap: "4px" }}>
                 <ActionsButtons.Edit
                     labelID={props.labelID}
                     label={label}

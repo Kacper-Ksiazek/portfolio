@@ -1,9 +1,11 @@
 // Tools
 import { forwardRef } from "react";
 // Types
-import type { HTMLAttributes, ReactNode } from "react";
+import type { ReactNode } from "react";
+import type { BoxProps } from "@mui/material/Box";
 import type { StyledButtonThemeName } from "@/components/atoms/forms/StyledButton/ComponentColorThemes";
 // Material UI Components
+import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
@@ -18,7 +20,7 @@ interface ModalOpeningButtonProps {
     disabled?: boolean;
     isIconButton?: boolean;
     componentThemeID?: StyledButtonThemeName;
-    wrapperProps?: Omit<HTMLAttributes<HTMLButtonElement>, "onClick">;
+    wrapperProps?: Omit<BoxProps, "onClick" | "component">;
 
     openModal?: () => void;
 }
@@ -26,7 +28,7 @@ interface ModalOpeningButtonProps {
 const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps>((props, ref) => {
     return (
         <Tooltip title={!props.disabled ? props.tooltip : ""} placement="top">
-            <span {...props.wrapperProps} style={{ transform: "translateX(-1px)" }}>
+            <Box {...props.wrapperProps} component="span">
                 <StyledButton
                     ref={ref}
                     onClick={props.openModal}
@@ -38,9 +40,6 @@ const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps
                         height: props.size,
                         borderRadius: "3px",
                         fontSize: "16px",
-                        borderLeftColor: "transparent",
-                        borderTopLeftRadius: 0,
-                        borderBottomLeftRadius: 0,
                         width: props.isIconButton ? (props.small ? "32px" : "42px") : "100%",
                         svg: {
                             fontSize: props.small ? "20px" : "24px",
@@ -53,7 +52,7 @@ const ModalOpeningButton = forwardRef<HTMLButtonElement, ModalOpeningButtonProps
                 >
                     {props.children}
                 </StyledButton>
-            </span>
+            </Box>
         </Tooltip>
     );
 });
