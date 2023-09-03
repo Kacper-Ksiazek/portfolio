@@ -35,7 +35,7 @@ export const TaskTitleBase = styled("div")(({ theme }) => ({
         alignItems: "center",
         marginBottom: "4px",
         h4: {
-            width: "calc(100% - 50px)",
+            width: "calc(100% - 50px - 52px)",
         },
         button: {
             width: "50px",

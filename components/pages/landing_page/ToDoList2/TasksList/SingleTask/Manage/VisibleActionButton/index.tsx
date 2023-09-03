@@ -25,7 +25,7 @@ const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonPro
 
     return (
         <>
-            <SmoothConditionalRender when={props.showUnwindButton || editModeContext.applyMobileEditMode === true}>
+            <SmoothConditionalRender when={props.showUnwindButton}>
                 <StyledIconButton
                     ref={ref} //
                     onClick={props.unwindMenuList}
