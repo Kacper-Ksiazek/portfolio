@@ -1,12 +1,14 @@
 // Tools
 import { styled } from "@mui/material";
+import { MOBILE_LAYOUT_APPLIANCE_BREAKPOINT } from "../..";
 import { VIEW_MODE_CSS_REFERENCES } from "../../css_references";
 // Types
-import type { FunctionComponent } from "react";
+import type { FunctionComponent, ReactNode } from "react";
 // Styled components
 export const TaskTitleBase = styled("div")(({ theme }) => ({
     width: "100%",
     display: "flex",
+    gap: "6px",
     h4: {
         position: "relative",
         cursor: "default",
@@ -29,15 +31,29 @@ export const TaskTitleBase = styled("div")(({ theme }) => ({
             transformOrigin: "left",
         },
     },
+    [`@media (max-width:${MOBILE_LAYOUT_APPLIANCE_BREAKPOINT}px)`]: {
+        alignItems: "center",
+        marginBottom: "4px",
+        h4: {
+            width: "calc(100% - 50px)",
+        },
+        button: {
+            width: "50px",
+            height: "50px",
+        },
+    },
 }));
 
 interface TaskTitleProps {
     title: string;
+    children: ReactNode;
 }
 
 const TaskTitle: FunctionComponent<TaskTitleProps> = (props) => {
     return (
         <TaskTitleBase className={VIEW_MODE_CSS_REFERENCES.TITLE}>
+            {props.children}
+
             <h4>
                 <span>{props.title}</span>
             </h4>

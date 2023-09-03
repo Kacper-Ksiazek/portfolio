@@ -14,6 +14,7 @@ import Wrapper from "./Wrapper";
 
 interface ContentProps {
     data: Task;
+    applyMobileLayout: boolean;
 }
 
 const Content: FunctionComponent<ContentProps> = (props) => {
@@ -34,7 +35,12 @@ const Content: FunctionComponent<ContentProps> = (props) => {
             modeHasRecentlyChanged={modeHasRecentlyChanged}
             className={CSS_REFERENCES.CONTENT.MAIN_CONTENT_WRAPPER}
         >
-            {renderViewMode && <ViewMode data={props.data} />}
+            {renderViewMode && (
+                <ViewMode
+                    data={props.data} //
+                    applyMobileLayout={props.applyMobileLayout}
+                />
+            )}
             {renderEditMode && <EditMode />}
             {renderMobileEditMode && <MobileEditModeModal />}
         </Wrapper>

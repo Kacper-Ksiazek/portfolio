@@ -7,6 +7,7 @@ import Title from "./TaskTitle";
 import Description from "./TaskDescription";
 import LabelsWrapper from "./LabelsWrapper";
 import InformationWithIcon from "./InformationWithIcon";
+import ActualCompletionButton from "../../CompletionButton/ActualCompletionButton";
 // Material UI Icons
 import PlaceIcon from "@mui/icons-material/Place";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
@@ -14,6 +15,7 @@ import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 
 interface SingleTaskViewModeProps {
     data: Task;
+    applyMobileLayout: boolean;
 }
 
 const SingleTaskViewMode: FunctionComponent<SingleTaskViewModeProps> = (props) => {
@@ -23,7 +25,10 @@ const SingleTaskViewMode: FunctionComponent<SingleTaskViewModeProps> = (props) =
 
     return (
         <>
-            <Title title={props.data.title} />
+            <Title title={props.data.title}>
+                {props.applyMobileLayout ? <ActualCompletionButton /> : <></>}
+                {/*  */}
+            </Title>
 
             <LabelsWrapper indicateUrgency={indicateUrgency}>
                 <Label indicateUrgency={indicateUrgency} />

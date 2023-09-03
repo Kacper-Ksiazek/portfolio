@@ -1,4 +1,5 @@
 // Tools
+import useWindowSizes from "@/hooks/useWindowSizes";
 import { useEditModeContext, useTaskDataContext } from "./hooks";
 // Types
 import { FunctionComponent } from "react";
@@ -39,9 +40,15 @@ const SingleTaskWithContext: FunctionComponent<SingleTaskWithContextProps> = (pr
 
 export default SingleTaskWithContext;
 
+export const MOBILE_LAYOUT_APPLIANCE_BREAKPOINT: number = 620;
+
 const SingleTask: FunctionComponent = () => {
     const { taskIsBeingRemoved, originalTask } = useTaskDataContext();
     const { isOpened: isInEditMode } = useEditModeContext();
+
+    const { width } = useWindowSizes();
+
+    const applyMobileLayout: boolean = width < MOBILE_LAYOUT_APPLIANCE_BREAKPOINT;
 
     return (
         <SingleTaskBase
@@ -51,9 +58,12 @@ const SingleTask: FunctionComponent = () => {
         >
             <Background isUrgent={originalTask.urgent} isInEditMode={isInEditMode} />
 
-            <CompletionButton />
+            {applyMobileLayout === false && <CompletionButton />}
 
-            <Content data={originalTask} />
+            <Content
+                data={originalTask} //
+                applyMobileLayout={applyMobileLayout}
+            />
 
             <Manage />
         </SingleTaskBase>
