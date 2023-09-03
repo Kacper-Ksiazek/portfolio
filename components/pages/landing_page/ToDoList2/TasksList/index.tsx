@@ -6,8 +6,6 @@ import type { Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
 // Other components
 import SingleTask from "./SingleTask";
 import TasksWrapper from "./TasksWrapper";
-// Styled components
-import TaskListBase from "./Base";
 
 interface TasksListProps {
     filteredTasks: Task[];
@@ -28,27 +26,22 @@ const TasksList: FunctionComponent<TasksListProps> = (props) => {
     }
 
     return (
-        <TaskListBase
-            fadeContentOut={props.fadeContentOut} //
-            ref={taskListContext.tasksWrapperRef}
+        <TasksWrapper
+            amountOfTasks={filteredTasks.length} //
+            fadeContentOut={props.fadeContentOut}
         >
-            <TasksWrapper
-                amountOfTasks={filteredTasks.length} //
-                fadeContentOut={props.fadeContentOut}
-            >
-                {filteredTasks.map((task) => {
-                    const { id } = task;
-                    return (
-                        <SingleTask
-                            key={id} //
-                            data={task}
-                            remove={deleteTaskWithID(id)}
-                            update={editTaskWithID(id)}
-                        />
-                    );
-                })}
-            </TasksWrapper>
-        </TaskListBase>
+            {filteredTasks.map((task) => {
+                const { id } = task;
+                return (
+                    <SingleTask
+                        key={id} //
+                        data={task}
+                        remove={deleteTaskWithID(id)}
+                        update={editTaskWithID(id)}
+                    />
+                );
+            })}
+        </TasksWrapper>
     );
 };
 
