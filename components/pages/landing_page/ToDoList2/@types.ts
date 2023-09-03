@@ -43,11 +43,17 @@ export interface LabelsUpdatersContext {
 
 export interface Task {
     id: number;
-    description: string;
+    title: string;
     urgent: boolean;
-    dueDate: string | null;
     labelID: LabelID;
     isCompleted: boolean;
+
+    // Additional information
+    dueDate: string | null;
+    dueTime: string | null;
+    description: string | null;
+    localization: string | null;
+
     /** Simply Date.now() */
     createdAt: number;
 }

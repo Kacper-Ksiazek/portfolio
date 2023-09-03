@@ -1,50 +1,24 @@
 // Tools
 import { CSS_REFERENCES } from "./css_references";
-import { useEditModeContext } from "../../hooks/useEditModeContext";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import { StyledInput, StyledCheckbox } from "@/components/atoms/forms";
-import { LabelPicker, DueDatePicker } from "landing_page/ToDoList2/atoms/modifiers";
-// Other components
 import MobileEditModeModalWrapper from "./Wrapper";
+import { Title, Description, DueDatePicker, DueTimePicker, LabelPicker, UrgencySwitch, LocalizationInput } from "../_common_for_both_edit_modes";
 
 const MobileEditModeModal: FunctionComponent = () => {
-    const editModeContext = useEditModeContext();
-
     return (
         <MobileEditModeModalWrapper>
-            <StyledInput
-                value={editModeContext.newState.description} //
-                onChange={(e) => editModeContext.updateNewState({ description: e.target.value as string })}
-                componentThemeID="TRANSPARENT_WHITE"
-                className={CSS_REFERENCES.DESCRIPTION_INPUT}
-                sx={{
-                    input: {
-                        padding: "10px 12px",
-                    },
-                }}
-            />
-            <StyledCheckbox
-                label="Urgent" //
-                value={editModeContext.newState.urgent}
-                className={CSS_REFERENCES.URGENCY_SWITCH}
-                updateValue={(val) => editModeContext.updateNewState({ urgent: val })}
-                componentThemeID="TRANSPARENT_WHITE"
-            />
+            <Title className={CSS_REFERENCES.TITLE_INPUT} />
 
-            <LabelPicker
-                value={editModeContext.newState.labelID} //
-                updateValue={(val) => editModeContext.updateNewState({ labelID: val })}
-                componentThemeID="TRANSPARENT_WHITE"
-            />
+            <UrgencySwitch className={CSS_REFERENCES.URGENCY_SWITCH} />
+            <LabelPicker className={CSS_REFERENCES.LABEL_PICKER} />
+            <DueDatePicker className={CSS_REFERENCES.DATE_PICKER} />
 
-            <DueDatePicker
-                value={editModeContext.newState.dueDate} //
-                className={CSS_REFERENCES.DATE_PICKER}
-                updateValue={(val) => editModeContext.updateNewState({ dueDate: val })}
-                componentThemeID="TRANSPARENT_WHITE"
-            />
+            <DueTimePicker className={CSS_REFERENCES.DUE_TIME_PICKER} />
+            <LocalizationInput className={CSS_REFERENCES.LOCALIZATION_PICKER} />
+
+            <Description className={CSS_REFERENCES.DESCRIPTION_INPUT} />
         </MobileEditModeModalWrapper>
     );
 };

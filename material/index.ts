@@ -35,7 +35,7 @@ export const lightTheme = createTheme({
         darkSectionBackground: "#34203B",
 
         MUIFormElementsBackground: "#2C1B33",
-        MUIFormElementsBorder: alpha("#fff", 0.6),
+        MUIFormElementsBorder: alpha("#fff", 0.4),
 
         disabledElementBackground: "#999999",
     },

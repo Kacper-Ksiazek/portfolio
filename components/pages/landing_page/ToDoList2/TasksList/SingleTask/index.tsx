@@ -1,84 +1,71 @@
 // Tools
-import { useTaskRemover } from "./hooks/useTaskRemover";
-import { useEditModeContext } from "./hooks/useEditModeContext";
+import useWindowSizes from "@/hooks/useWindowSizes";
+import { useEditModeContext, useTaskDataContext } from "./hooks";
 // Types
 import { FunctionComponent } from "react";
-import type { UpdatedTask } from "./context/editModeContext";
 import type { Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
 // Other components
 import Manage from "./Manage";
 import Content from "./Content";
 import Background from "./Background";
 import CompletionButton from "./CompletionButton";
-import EditModeContextProvider from "./context/editModeContext";
+import * as ContextProvider from "./context/Providers";
 // Styled components
 import SingleTaskBase from "./Base";
 
-interface SingleTaskProps {
+interface SingleTaskWithContextProps {
     data: Task;
-    applyMobileDeviceLayout: boolean;
 
     remove: () => void;
     update: (cb: TaskEditCallback) => void;
 }
 
-const SingleTask: FunctionComponent<SingleTaskProps> = (props) => {
-    const { data } = props;
-
-    const { isOpened: isInEditMode, isChanging: isEditModeBeingClosed, updateNewState } = useEditModeContext();
-    const { isTaskBeingRemoved, remove } = useTaskRemover(props.remove);
-
-    function toggleCompletion() {
-        props.update((currentValue) => ({ isCompleted: !currentValue.isCompleted }));
-    }
-
-    function toggleUrgency() {
-        props.update((currentValue) => {
-            const newValue: Partial<UpdatedTask> = { urgent: !currentValue.urgent };
-
-            updateNewState(newValue);
-            return newValue;
-        });
-    }
-
+const SingleTaskWithContext: FunctionComponent<SingleTaskWithContextProps> = (props) => {
     return (
-        <SingleTaskBase
-            urgent={data.urgent} //
-            completed={data.isCompleted}
-            currentlyBeingRemoved={isTaskBeingRemoved}
+        <ContextProvider.TaskDataContext
+            data={props.data} //
+            remove={props.remove}
+            update={props.update}
         >
-            <Background isUrgent={data.urgent} isInEditMode={isInEditMode} />
-
-            <CompletionButton
-                isCompleted={data.isCompleted} //
-                isInEditMode={isInEditMode}
-                toggleCompletion={toggleCompletion}
-            />
-
-            <Content data={data} />
-
-            <Manage
-                isUrgent={data.urgent}
-                isInEditMode={isInEditMode}
-                isCompleted={data.isCompleted}
-                isDeleting={isTaskBeingRemoved}
-                //
-                remove={remove}
-                toggleUrgency={toggleUrgency}
-            />
-        </SingleTaskBase>
-    );
-};
-
-const SingleTaskWithContext: FunctionComponent<SingleTaskProps> = (props) => {
-    return (
-        <EditModeContextProvider
-            taskToBeEdited={props.data} //
-            applyChanges={props.update}
-        >
-            <SingleTask {...props} />
-        </EditModeContextProvider>
+            <ContextProvider.EditModeContext>
+                <ContextProvider.ValidationResultContext>
+                    {/*  */}
+                    <SingleTask />
+                    {/*  */}
+                </ContextProvider.ValidationResultContext>
+            </ContextProvider.EditModeContext>
+        </ContextProvider.TaskDataContext>
     );
 };
 
 export default SingleTaskWithContext;
+
+export const MOBILE_LAYOUT_APPLIANCE_BREAKPOINT: number = 620;
+
+const SingleTask: FunctionComponent = () => {
+    const { taskIsBeingRemoved, originalTask } = useTaskDataContext();
+    const { isOpened: isInEditMode } = useEditModeContext();
+
+    const { width } = useWindowSizes();
+
+    const applyMobileLayout: boolean = width < MOBILE_LAYOUT_APPLIANCE_BREAKPOINT;
+
+    return (
+        <SingleTaskBase
+            urgent={originalTask.urgent} //
+            completed={originalTask.isCompleted}
+            currentlyBeingRemoved={taskIsBeingRemoved}
+        >
+            <Background isUrgent={originalTask.urgent} isInEditMode={isInEditMode} />
+
+            {applyMobileLayout === false && <CompletionButton />}
+
+            <Content
+                data={originalTask} //
+                applyMobileLayout={applyMobileLayout}
+            />
+
+            <Manage />
+        </SingleTaskBase>
+    );
+};

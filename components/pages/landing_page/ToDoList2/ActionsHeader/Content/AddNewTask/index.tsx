@@ -1,87 +1,75 @@
 // Tools
-import { useState } from "react";
 import { CSS_REFERENCES } from "./css_references";
-import { useSimpleReducer } from "@/hooks/useSimpleReducer";
-import { useLabelsContext } from "landing_page/ToDoList2/hooks";
+import useWindowSizes from "@/hooks/useWindowSizes";
+import { useAddNewTaskContext } from "./hooks/useAddNewTaskContext";
+import { useTaskValidator } from "landing_page/ToDoList2/validators/useTaskValidator";
 // Types
 import type { FunctionComponent } from "react";
-import type { NewTaskBody } from "landing_page/ToDoList2/@types";
 // Other components
-import TaskTitleInput from "./TaskTitleInput";
+import * as NewTaskData from "./NewTaskData";
+import HidePanelCheckbox from "./HidePanelCheckbox";
+import { AddNewTaskContextProvider } from "./context";
 import ConfirmationButton from "./ConfirmationButton";
-import FormFieldsOrganizer from "./FormFieldsOrganizer";
+import OptionalPropertyExplanation from "./OptionalPropertyExplanation";
+import { AdditionalInformationWrapper, FooterActionsWrapper, TitleAndUrgencySwitchWrapper } from "./Wrappers";
 // Styled components
-import { Paragraph } from "landing_page/ToDoList2/atoms";
-import FlexBox from "@/components/atoms/content_placement/FlexBox";
-import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
-import { DueDatePicker, LabelPicker } from "landing_page/ToDoList2/atoms/modifiers";
-
-const EMPTY_NEW_TASK_BODY: Omit<NewTaskBody, "labelID"> = {
-    description: "",
-    dueDate: null,
-    urgent: false,
-};
+import Paragraph from "landing_page/ToDoList2/atoms/Paragraph";
 
 interface AddNewTaskProps {
     foldActionsHeaderPanel: () => void;
 }
 
 const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
-    const { labels } = useLabelsContext();
-    const [hideThisPanelAfterAdding, setHideThisPanelAfterAdding] = useState<boolean>(true);
+    const { width } = useWindowSizes();
 
-    const [newTaskBody, updateNewTaskBody] = useSimpleReducer<NewTaskBody>({
-        ...EMPTY_NEW_TASK_BODY,
-        labelID: Object.keys(labels)[0],
-    });
+    const { newTaskBody } = useAddNewTaskContext();
+    const validationResult = useTaskValidator(newTaskBody);
+
+    const alternativeUrgencySwitchPlacement: boolean = width <= 1000;
 
     return (
         <>
-            <Paragraph>Description</Paragraph>
+            <Paragraph>Title</Paragraph>
 
-            <TaskTitleInput
-                value={newTaskBody.description} //
-                setValue={(val) => updateNewTaskBody({ description: val })}
-            />
+            <TitleAndUrgencySwitchWrapper>
+                <NewTaskData.TaskTitleInput id={CSS_REFERENCES.TITLE_INPUT} isInvalid={validationResult.titleIsInvalid} />
+                {alternativeUrgencySwitchPlacement === false && <NewTaskData.UrgencySwitch id={CSS_REFERENCES.URGENCY_SWITCH} />}
+            </TitleAndUrgencySwitchWrapper>
 
             <Paragraph>Details</Paragraph>
 
-            <FormFieldsOrganizer id={CSS_REFERENCES.FORM_FIELDS.WRAPPER}>
-                <StyledCheckbox
-                    label="Urgent" //
-                    value={newTaskBody.urgent}
-                    updateValue={(val) => updateNewTaskBody({ urgent: val })}
-                    id={CSS_REFERENCES.FORM_FIELDS.URGENCY_SWITCH}
-                />
-                <DueDatePicker
-                    value={newTaskBody.dueDate} //
-                    updateValue={(dueDate) => updateNewTaskBody({ dueDate })}
-                />
-                <LabelPicker
-                    value={newTaskBody.labelID} //
-                    updateValue={(labelID) => updateNewTaskBody({ labelID })}
-                />
-            </FormFieldsOrganizer>
+            <NewTaskData.TaskDescriptionInput id={CSS_REFERENCES.DESCRIPTION_INPUT} isInvalid={validationResult.descriptionIsInvalid} />
 
-            <FlexBox sx={{ mb: "12px !important" }} id={CSS_REFERENCES.BUTTONS.WRAPPER}>
+            <AdditionalInformationWrapper id={CSS_REFERENCES.ADDITIONAL_INFORMATION_WRAPPER}>
+                {alternativeUrgencySwitchPlacement === true && <NewTaskData.UrgencySwitch id={CSS_REFERENCES.URGENCY_SWITCH} />}
+
+                <NewTaskData.LabelPicker id={CSS_REFERENCES.LABEL_PICKER} isInvalid={validationResult.labelIDIsInvalid} />
+                <NewTaskData.DueDatePicker id={CSS_REFERENCES.DUE_DATE_PICKER} />
+                <NewTaskData.DueTimePicker id={CSS_REFERENCES.DUE_TIME_PICKER} />
+                <NewTaskData.LocalizationInput id={CSS_REFERENCES.LOCALIZATION_INPUT} isInvalid={validationResult.localizationIsInvalid} />
+            </AdditionalInformationWrapper>
+
+            <FooterActionsWrapper>
                 <ConfirmationButton
-                    newTaskBody={newTaskBody} //
-                    id={CSS_REFERENCES.BUTTONS.ADD_NEW_TASK}
-                    foldActionsHeaderPanel={hideThisPanelAfterAdding ? props.foldActionsHeaderPanel : null}
-                    //
-                    resetNewTaskBody={() => updateNewTaskBody(EMPTY_NEW_TASK_BODY)}
+                    id={CSS_REFERENCES.BUTTONS.ADD_NEW_TASK} //
+                    disabled={validationResult.everythingIsValid === false}
+                    foldActionsHeaderPanel={props.foldActionsHeaderPanel}
                 />
 
-                <StyledCheckbox
-                    label="Hide this panel" //
-                    value={hideThisPanelAfterAdding}
-                    id={CSS_REFERENCES.BUTTONS.HIDE_PANEL}
-                    //
-                    updateValue={(val) => setHideThisPanelAfterAdding(val)}
-                />
-            </FlexBox>
+                <HidePanelCheckbox id={CSS_REFERENCES.BUTTONS.HIDE_PANEL} />
+
+                <OptionalPropertyExplanation id={CSS_REFERENCES.OPTIONAL_PROPERTY_EXPLANATION} />
+            </FooterActionsWrapper>
         </>
     );
 };
 
-export default AddNewTask;
+const AddNewTaskWithContext: FunctionComponent<AddNewTaskProps> = (props) => {
+    return (
+        <AddNewTaskContextProvider>
+            <AddNewTask {...props} />
+        </AddNewTaskContextProvider>
+    );
+};
+
+export default AddNewTaskWithContext;

@@ -2,7 +2,14 @@
 import { styled } from "@mui/material";
 import { CSS_REFERENCES } from "./css_references";
 // Types
+import type { Theme } from "@mui/material";
 import type { FunctionComponent } from "react";
+
+function getBackgroundColor(isUrgent: boolean, isInEditMode: boolean, theme: Theme): string {
+    if (isUrgent && !isInEditMode) return theme.palette.secondary.main;
+    else if (theme.palette.mode === "dark") return "#000"; // If the theme is dark, the background should be black
+    return theme.palette.background.MUIFormElementsBackground; // If the theme is light, the background should be corresponding to MUI elements
+}
 
 const BackgroundBase = styled("span", {
     shouldForwardProp: (prop: string): boolean => {
@@ -13,7 +20,7 @@ const BackgroundBase = styled("span", {
     zIndex: -1,
     transition: `transform .24s linear, background .3s`,
     transformOrigin: "left",
-    background: props.isUrgent && !props.isInEditMode ? theme.palette.secondary.main : "#000",
+    background: getBackgroundColor(props.isUrgent, props.isInEditMode, theme),
     transform: `scaleX(${props.isUrgent || props.isInEditMode ? 1 : 0})`,
 }));
 

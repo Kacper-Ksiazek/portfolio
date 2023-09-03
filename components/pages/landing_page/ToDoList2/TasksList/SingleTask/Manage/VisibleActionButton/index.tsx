@@ -1,6 +1,6 @@
 // Tools
 import { forwardRef } from "react";
-import { useEditModeContext } from "../../hooks/useEditModeContext";
+import { useEditModeContext, useValidationResultContext, useTaskDataContext } from "../../hooks";
 // Material UI Icons
 import CheckRounded from "@mui/icons-material/CheckRounded";
 import CloseRounded from "@mui/icons-material/CloseRounded";
@@ -14,18 +14,18 @@ import SmoothConditionalRender from "@/components/utils/SmoothConditionalRender"
 interface DefaultActionButtonProps {
     showUnwindButton: boolean;
     showDeleteButton: boolean;
-    /** Edit mode related property, indicates whether any changes has been applied */
 
-    remove: () => void;
     unwindMenuList: () => void;
 }
 
 const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonProps>((props, ref) => {
     const editModeContext = useEditModeContext();
+    const taskDataContext = useTaskDataContext();
+    const validationResultContext = useValidationResultContext();
 
     return (
         <>
-            <SmoothConditionalRender when={props.showUnwindButton || editModeContext.applyMobileEditMode === true}>
+            <SmoothConditionalRender when={props.showUnwindButton}>
                 <StyledIconButton
                     ref={ref} //
                     onClick={props.unwindMenuList}
@@ -37,7 +37,7 @@ const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonPro
 
             <SmoothConditionalRender when={props.showDeleteButton}>
                 <StyledIconButton
-                    onClick={props.remove} //
+                    onClick={taskDataContext.removeTask} //
                     tooltip="Delete"
                 >
                     <DeleteOutlineOutlined />
@@ -49,12 +49,12 @@ const DefaultActionButton = forwardRef<HTMLButtonElement, DefaultActionButtonPro
                     <StyledIconButton
                         onClick={editModeContext.saveAndExit} //
                         tooltip="Apply changes"
-                        disabled={!editModeContext.someChangesHaveBeenMade}
+                        disabled={!validationResultContext.someChangesHaveBeenMade || !validationResultContext.everythingIsValid}
                     >
                         <CheckRounded />
                     </StyledIconButton>
                     <StyledIconButton
-                        onClick={editModeContext.toggleIsOpened} //
+                        onClick={editModeContext.discardChanges} //
                         tooltip="Discard changes"
                     >
                         <CloseRounded />

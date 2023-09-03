@@ -1,6 +1,7 @@
 // Tools
 import { useMemo } from "react";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
+import { LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME, LABEL_PICKER_SELECT_CLASS_NAME } from "./css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { LabelID } from "landing_page/ToDoList2/@types";
@@ -12,14 +13,12 @@ import CreateNewLabel from "../../modal_actions/CreateNewLabel";
 // Styled components
 import { Select } from "./styled_components";
 
-export const LABEL_PICKER_SELECT_CLASS_NAME: CSSClassName = "label-picker-select";
-export const LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME: CSSClassName = "label-picker-add-new-label-btn";
-
 interface LabelPickerProps {
     value: LabelID;
     updateValue: (label: LabelID) => void;
 
     small?: boolean;
+    error?: boolean;
     componentThemeID?: ComponentThemeName;
 }
 
@@ -51,7 +50,7 @@ const LabelPicker: FunctionComponent<LabelPickerProps> = (props) => {
                 options={options}
                 className={LABEL_PICKER_SELECT_CLASS_NAME}
                 startAdornment={<Adornment background={getLabelWithID(props.value).color} />}
-                componentThemeID={props.componentThemeID}
+                componentThemeID={props.error ? "ERROR" : props.componentThemeID}
                 //
                 onChange={(e) => props.updateValue(e.target.value as any)}
             />
@@ -60,6 +59,7 @@ const LabelPicker: FunctionComponent<LabelPickerProps> = (props) => {
                 size={size} //
                 small={props.small}
                 className={LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME}
+                componentThemeID={props.error ? "ERROR" : props.componentThemeID}
                 //
                 onCreated={props.updateValue}
             />

@@ -18,7 +18,7 @@ const ModalWrapper: FunctionComponent<ModalWrapperProps> = (props) => {
     return (
         <Modal
             isOpen={editModeContext.isOpened}
-            onClose={editModeContext.toggleIsOpened}
+            onClose={editModeContext.discardChanges}
             title="Edit task"
             actionButton={{
                 prompt: "Save",
@@ -31,42 +31,89 @@ const ModalWrapper: FunctionComponent<ModalWrapperProps> = (props) => {
                     gap: "6px",
                     flexWrap: "wrap",
 
-                    "&>*": {
-                        height: "42px !important",
+                    // Row 1
+                    [SELECTORS.LABEL_PICKER]: {
+                        width: "calc(100% - 210px - 6px - 128px - 6px)",
                     },
-
-                    [SELECTORS.DESCRIPTION_INPUT]: {
-                        width: "100%",
+                    [SELECTORS.DATE_PICKER]: {
+                        width: "210px",
                     },
                     [SELECTORS.URGENCY_SWITCH]: {
                         width: "128px",
+                        button: {
+                            width: "100%",
+                        },
                     },
-                    [SELECTORS.LABEL_PICKER_SELECT]: {
-                        width: "calc(100% - 128px - 12px - 42px)",
+
+                    // Row 2
+                    [SELECTORS.DUE_TIME_PICKER]: {
+                        width: "148px",
                     },
-                    [SELECTORS.LABEL_PICKER_ADD_LABEL_BTN]: {
-                        marginLeft: "0 !important",
+                    [SELECTORS.LOCALIZATION_PICKER]: {
+                        width: "calc(100% - 148px - 6px)",
+                    },
+
+                    // Row 3
+                    [SELECTORS.DESCRIPTION_INPUT]: {
+                        width: "100%",
+                        ".MuiFormControl-root": {
+                            height: "80px",
+                            ".MuiOutlinedInput-root": {
+                                height: "100%",
+                            },
+                        },
+                    },
+
+                    "@media (max-width:720px)": {
+                        // Row 1
+                        [SELECTORS.LABEL_PICKER]: {
+                            width: "calc(100% - 128px - 6px)",
+                        },
+
+                        // Row 2
+                        [SELECTORS.DATE_PICKER]: {
+                            width: "calc(50% - 3px)",
+                        },
+                        [SELECTORS.DUE_TIME_PICKER]: {
+                            width: "calc(50% - 3px)",
+                        },
+
+                        // Row 3
+                        [SELECTORS.LOCALIZATION_PICKER]: {
+                            width: "100%",
+                        },
                     },
 
                     "@media (max-width:500px)": {
-                        [SELECTORS.LABEL_PICKER_SELECT]: {
-                            width: "calc(100% - 6px - 42px)",
+                        // Row 1
+                        [SELECTORS.LABEL_PICKER]: {
+                            width: "100%",
                         },
-                        [SELECTORS.URGENCY_SWITCH]: {
-                            order: "1",
-                        },
-                        [SELECTORS.DATE_PICKER]: {
-                            order: "2",
-                            width: "calc(100% - 128px - 6px)",
-                        },
-                    },
 
-                    "@media (max-width:430px)": {
-                        [SELECTORS.URGENCY_SWITCH]: {
-                            width: "100%",
-                        },
+                        // Row 2
                         [SELECTORS.DATE_PICKER]: {
-                            width: "100%",
+                            width: "calc(100% - 6px - 148px)",
+                        },
+                        [SELECTORS.DUE_TIME_PICKER]: {
+                            width: "144px",
+                        },
+
+                        // Row 3
+                        [SELECTORS.URGENCY_SWITCH]: {
+                            width: "128px",
+                            order: 2,
+                        },
+                        [SELECTORS.LOCALIZATION_PICKER]: {
+                            width: "calc(100% - 6px - 128px)",
+                            order: 2,
+                        },
+                        //
+
+                        [SELECTORS.DESCRIPTION_INPUT]: {
+                            order: 1,
+                            ".MuiFormControl-root": {
+                                height: "102px",
+                            },
                         },
                     },
                 },

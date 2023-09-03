@@ -7,7 +7,7 @@ export default styled("button")(({ theme }) => ({
     height: "46px",
     ...theme.mixins.flex_center,
     borderRadius: "5px",
-    background: alpha("#000", 0.4),
+    background: alpha("#000", theme.palette.mode === "dark" ? 0.4 : 0.16),
     color: alpha("#fff", 0.4),
     position: "relative",
     transition: "all .3s",

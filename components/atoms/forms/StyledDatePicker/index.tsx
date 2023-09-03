@@ -8,8 +8,9 @@ import type { ComponentThemeName } from "../_common_component_color_themes";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 // Styled components
-import ClearButton from "./ClearButton";
+import ClearButton from "../_ClearButton";
 import StyledMUIDatePicker from "./StyledMUIDatePicker";
+import OptionalPropertIndicator from "../OptionalPropertyIndicator";
 
 export const DUE_DATE_PICKER_CLASS_NAME: CSSClassName = "due-date-picker";
 
@@ -57,6 +58,8 @@ const DueDatePicker: FunctionComponent<DueDatePickerProps> = (props) => {
                 style={{ position: "relative" }}
                 className={DUE_DATE_PICKER_CLASS_NAME + " " + props.className}
             >
+                <OptionalPropertIndicator />
+
                 <StyledMUIDatePicker
                     // Styled Component props
                     size={size}

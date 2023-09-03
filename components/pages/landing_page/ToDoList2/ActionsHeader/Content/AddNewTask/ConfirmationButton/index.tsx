@@ -1,27 +1,27 @@
 // Tools
-import { useConfirmationButtonDisability, useAddTaskButtonOnClick } from "./hooks";
+import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
+import { useAddTaskButtonOnClick } from "./hooks/useAddTaskButtonOnClick";
 // Types
 import type { FunctionComponent } from "react";
-import type { NewTaskBody } from "landing_page/ToDoList2/@types";
 // Material UI Icons
 import AddRounded from "@mui/icons-material/AddRounded";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 
 interface ConfirmationButtonProps {
-    newTaskBody: NewTaskBody;
     id: string;
-
-    resetNewTaskBody: () => void;
+    disabled: boolean;
     foldActionsHeaderPanel: (() => void) | null;
 }
 
 const ConfirmationButton: FunctionComponent<ConfirmationButtonProps> = (props) => {
-    const disableOnClick: boolean = useConfirmationButtonDisability(props.newTaskBody);
+    const { hideThisPanelAfterAdding, newTaskBody, resetNewTaskBody } = useAddNewTaskContext();
 
     const onClick: () => void = useAddTaskButtonOnClick({
-        disableOnClick,
-        ...props,
+        disableOnClick: props.disabled,
+        newTaskBody,
+        resetNewTaskBody,
+        foldActionsHeaderPanel: hideThisPanelAfterAdding ? props.foldActionsHeaderPanel : null,
     });
 
     return (
@@ -29,12 +29,11 @@ const ConfirmationButton: FunctionComponent<ConfirmationButtonProps> = (props) =
             sx={{
                 px: "18px", //
                 height: "42px",
-                mr: "8px",
                 width: "240px",
             }}
             componentThemeID="PRIMARY"
             onClick={onClick}
-            disabled={disableOnClick}
+            disabled={props.disabled}
             id={props.id}
         >
             <AddRounded />

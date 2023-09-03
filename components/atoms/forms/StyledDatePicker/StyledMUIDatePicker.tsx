@@ -23,6 +23,7 @@ export default styled(DatePicker, { shouldForwardProp })<StyledDatePickerBasePro
         background,
         fieldset: {
             borderColor,
+            borderRadius: '3px',
             transition: "border-color .2s",
         },
         "&:hover": {
@@ -31,6 +32,7 @@ export default styled(DatePicker, { shouldForwardProp })<StyledDatePickerBasePro
             },
         },
         ".MuiOutlinedInput-root": {
+            paddingLeft: '4px',
             display: "flex",
             flexDirection: "row-reverse",
             justifyContent: "flex-end",

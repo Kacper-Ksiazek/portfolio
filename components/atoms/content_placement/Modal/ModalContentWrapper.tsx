@@ -8,7 +8,6 @@ export default styled("div")(({ theme }) => ({
     background: theme.palette.mode === "light" ? theme.palette.background.darkSectionBackground : theme.palette.background.lightSectionBackground,
     color: "#fff",
     width: "calc(100vw - 32px)",
-    maxWidth: "480px",
     zIndex: 10,
     display: "flex",
     flexDirection: "column",
@@ -29,5 +28,13 @@ export default styled("div")(({ theme }) => ({
     [SELECTORS.BUTTON]: {
         height: "36px",
         padding: "0 24px",
+    },
+    "@media (max-width:568px)": {
+        padding: "24px 16px",
+        width: "calc(100vw - 24px)",
+    },
+    "@media (max-width:420px)": {
+        padding: "24px 12px",
+        width: "calc(100vw - 16px)",
     },
 }));

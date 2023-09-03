@@ -1,8 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
-import { fadeSimple } from "@/components/keyframes/intro";
-import { fadeSimpleOUT } from "@/components/keyframes/outro";
-import { useEditModeContext } from "../../hooks/useEditModeContext";
+import { useEditModeContext, useTaskDataContext } from "../../hooks";
 // Types
 import type { SxProps } from "@/@types/MUI";
 import type { FunctionComponent } from "react";
@@ -14,35 +11,20 @@ import DeleteOutlineOutlined from "@mui/icons-material/DeleteOutlineOutlined";
 import ArrowDownwardOutlined from "@mui/icons-material/ArrowDownwardOutlined";
 import ModeEditOutlineOutlined from "@mui/icons-material/ModeEditOutlineOutlined";
 // Styled Components
-const UnwindedMenuBase = styled("div")(({ theme }) => ({
-    position: "absolute",
-    zIndex: 20,
-    transform: "translate(calc(-100% + 40px), 40px)",
-    animation: `${fadeSimple} .3s linear both`,
-    "&.outro": {
-        animation: `${fadeSimpleOUT} .3s linear both`,
-    },
-
-    background: theme.palette.mode === "light" ? theme.palette.background.MUIFormElementsBackground : theme.palette.background.default,
-    listStyleType: "none",
-    padding: "4px",
-    display: "flex",
-    flexDirection: "column",
-    borderRadius: "3px",
-}));
+import UnwindedMenuBase from "./Base";
 
 interface UnwindedMenuProps {
-    isUrgent: boolean;
     className: string;
     sx: SxProps;
 
-    remove: () => void;
-    toggleUrgency: () => void;
     closeMenu: () => Promise<void>;
 }
 
 const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
     const editModeContext = useEditModeContext();
+    const taskDataContext = useTaskDataContext();
+
+    const isUrgent: boolean = taskDataContext.originalTask.urgent === true;
 
     function handleOnClick(cb: () => void): () => void {
         return () => {
@@ -51,23 +33,32 @@ const UnwindedMenu: FunctionComponent<UnwindedMenuProps> = (props) => {
         };
     }
 
+    function toggleUrgency() {
+        taskDataContext.updateTask((currentValue) => {
+            const newValue: Partial<typeof currentValue> = { urgent: !currentValue.urgent };
+
+            editModeContext.updateNewState(newValue);
+            return newValue;
+        });
+    }
+
     return (
         <UnwindedMenuBase className={props.className} sx={props.sx}>
             <MenuActionButton
-                icon={props.isUrgent ? <ArrowDownwardOutlined /> : <ArrowUpwardOutlined />} //
-                label={props.isUrgent ? "Make not urgent" : "Make urgent"}
-                onClick={handleOnClick(props.toggleUrgency)}
+                icon={isUrgent ? <ArrowDownwardOutlined /> : <ArrowUpwardOutlined />} //
+                label={isUrgent ? "Make not urgent" : "Make urgent"}
+                onClick={handleOnClick(toggleUrgency)}
             />
             <MenuActionButton
                 icon={<ModeEditOutlineOutlined />} //
                 label="Edit"
-                onClick={handleOnClick(editModeContext.toggleIsOpened)}
+                onClick={handleOnClick(editModeContext.openEditMode)}
             />
             <MenuActionButton
                 icon={<DeleteOutlineOutlined />} //
                 label="Delete"
                 color="error"
-                onClick={handleOnClick(props.remove)}
+                onClick={handleOnClick(taskDataContext.removeTask)}
             />
         </UnwindedMenuBase>
     );

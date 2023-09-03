@@ -2,6 +2,7 @@
 import { useState } from "react";
 import SmoothConditionalRender from "@/components/utils/SmoothConditionalRender";
 // Types
+import type { SxProps } from "@/@types/MUI";
 import type { FunctionComponent } from "react";
 import type { ComponentThemeName } from "../_common_component_color_themes";
 // Material UI Components
@@ -10,7 +11,6 @@ import Close from "@mui/icons-material/Close";
 // Styled components
 import { IconWrapper } from "./IconWrapper";
 import { StyledCheckboxBase } from "./StyledCheckboxBase";
-import { SxProps } from "@/@types/MUI";
 
 interface StyledCheckboxProps {
     label: string;

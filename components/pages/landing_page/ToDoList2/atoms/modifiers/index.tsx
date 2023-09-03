@@ -1,4 +1,5 @@
 import LabelPicker from "./LabelPicker";
-import DueDatePicker from "../../../../../atoms/forms/StyledDatePicker";
+import LocalizationInput from "./LocalizationInput";
+import DueDatePicker from "@/components/atoms/forms/StyledDatePicker";
 
-export { DueDatePicker, LabelPicker };
+export { DueDatePicker, LabelPicker, LocalizationInput };

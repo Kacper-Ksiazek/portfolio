@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { MOBILE_LAYOUT_APPLIANCE_BREAKPOINT } from "..";
 import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
 // Styles
 import RWD from "./RWD";
@@ -44,6 +45,9 @@ export default styled("div", { shouldForwardProp })<SingleTaskBaseProps>(({ them
 
             "&:not(&:nth-of-type(1))": {
                 marginTop: "24px",
+            },
+            [`@media (max-width:${MOBILE_LAYOUT_APPLIANCE_BREAKPOINT}px)`]: {
+                paddingRight: "0",
             },
         },
         stylesWhenCompleted,

@@ -1,11 +1,24 @@
 // Tools
+import { styled } from "@mui/material";
 import { CSS_REFERENCES } from "./css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { ActionButtonProps } from "./@types";
 // Styled components
 import StyledButton from "@/components/atoms/forms/StyledButton";
-import FlexBox from "@/components/atoms/content_placement/FlexBox";
+
+const ModalActionsWrapepr = styled("div")(({ theme }) => ({
+    display: "flex",
+    marginTop: "24px",
+    width: "100%",
+    gap: "6px",
+    "&>button": {
+        margin: "0 !important",
+        "@media (max-width:500px)": {
+            width: "50%",
+        },
+    },
+}));
 
 interface ModalActionsProps {
     actionButton: ActionButtonProps;
@@ -29,7 +42,7 @@ const ModalActions: FunctionComponent<ModalActionsProps> = (props) => {
     }
 
     return (
-        <FlexBox sx={{ mt: "24px", width: "100%" }}>
+        <ModalActionsWrapepr>
             <StyledButton
                 componentThemeID="ERROR"
                 onClick={props.closeModal} //
@@ -46,7 +59,7 @@ const ModalActions: FunctionComponent<ModalActionsProps> = (props) => {
             >
                 {actionButton.prompt}
             </StyledButton>
-        </FlexBox>
+        </ModalActionsWrapepr>
     );
 };
 
