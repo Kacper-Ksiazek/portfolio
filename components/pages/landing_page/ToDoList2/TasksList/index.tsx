@@ -2,7 +2,7 @@
 import { useTasksListContext } from "landing_page/ToDoList2/hooks/useTaskListContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { Task } from "landing_page/ToDoList2/@types";
+import type { Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
 // Other components
 import SingleTask from "./SingleTask";
 import TasksWrapper from "./TasksWrapper";
@@ -17,24 +17,33 @@ interface TasksListProps {
 const TasksList: FunctionComponent<TasksListProps> = (props) => {
     const { filteredTasks } = props;
 
-    const { edit: editTaskWithID, remove: deleteTaskWithID, tasksWrapperRef } = useTasksListContext();
+    const taskListContext = useTasksListContext();
 
-    const progress: string = ((filteredTasks.filter((el) => el.isCompleted).length * 100) / filteredTasks.length).toFixed(2);
+    function deleteTaskWithID(id: Task["id"]): () => void {
+        return () => taskListContext.remove(id);
+    }
+
+    function editTaskWithID(id: Task["id"]): (cb: TaskEditCallback) => void {
+        return (cb) => taskListContext.edit(id, cb);
+    }
 
     return (
-        <TaskListBase fadeContentOut={props.fadeContentOut} ref={tasksWrapperRef}>
+        <TaskListBase
+            fadeContentOut={props.fadeContentOut} //
+            ref={taskListContext.tasksWrapperRef}
+        >
             <TasksWrapper
                 amountOfTasks={filteredTasks.length} //
                 fadeContentOut={props.fadeContentOut}
-                progress={progress}
             >
-                {filteredTasks.map((item, index) => {
+                {filteredTasks.map((task) => {
+                    const { id } = task;
                     return (
                         <SingleTask
-                            key={item.id} //
-                            data={item}
-                            remove={() => deleteTaskWithID(item.id)}
-                            update={(val) => editTaskWithID(item.id, val)}
+                            key={id} //
+                            data={task}
+                            remove={deleteTaskWithID(id)}
+                            update={editTaskWithID(id)}
                         />
                     );
                 })}

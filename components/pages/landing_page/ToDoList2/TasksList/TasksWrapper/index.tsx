@@ -6,7 +6,6 @@ import WrapWithOverScrollDiv from "./WrapWithOverScrollDiv";
 
 interface TasksWrapperProps {
     children: ReactNode;
-    progress: string;
     amountOfTasks: number;
     fadeContentOut: boolean;
 }
