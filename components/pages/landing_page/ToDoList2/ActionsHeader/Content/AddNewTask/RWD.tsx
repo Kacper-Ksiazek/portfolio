@@ -3,7 +3,7 @@
 // Tools
 import { SELECTORS } from "./css_references";
 // Types
-import type { SxProps } from "@mui/material";
+import type { SxProps } from "@/@types/MUI";
 
 export default {
     ".MuiTextField-root": {
