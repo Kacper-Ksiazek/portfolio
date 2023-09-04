@@ -1,8 +1,8 @@
 // Tools
-import { useTasksListContext } from "landing_page/ToDoList2/hooks/useTaskListContext";
+import { useSingleTasksActions } from "./hooks/useSingleTasksActions";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelFilter, Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
+import type { LabelFilter, Task } from "landing_page/ToDoList2/@types";
 // Other components
 import SingleTask from "./SingleTask";
 import TasksWrapper from "./TasksWrapper";
@@ -16,15 +16,7 @@ interface TasksListProps {
 const TasksList: FunctionComponent<TasksListProps> = (props) => {
     const { filteredTasks } = props;
 
-    const taskListContext = useTasksListContext();
-
-    function deleteTaskWithID(id: Task["id"]): () => void {
-        return () => taskListContext.remove(id);
-    }
-
-    function editTaskWithID(id: Task["id"]): (cb: TaskEditCallback) => void {
-        return (cb) => taskListContext.edit(id, cb);
-    }
+    const { deleteTaskWithID, editTaskWithID } = useSingleTasksActions();
 
     return (
         <TasksWrapper
