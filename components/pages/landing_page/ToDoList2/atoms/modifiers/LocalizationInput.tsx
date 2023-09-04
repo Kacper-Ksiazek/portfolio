@@ -23,7 +23,7 @@ type LocalizationProps = Exclude<TextFieldProps, "onChange" | "onInput"> & {
 
 const Localization: FunctionComponent<LocalizationProps> = (props) => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const { sx: receivedSxProps, value, updateValue, ...propsToForward } = props;
+    const { sx: receivedSxProps, value, updateValue, small, ...propsToForward } = props;
 
     const disableClearButton: boolean = value === null || value === "";
 
