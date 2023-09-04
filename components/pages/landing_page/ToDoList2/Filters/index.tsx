@@ -1,6 +1,6 @@
 // Tools
 import { CSS_REFERENCES } from "./css_references";
-import { useFiltersDisability, useLabelsOptions } from "./hooks";
+import { useFiltersDisability, useLabelsOptions, useUrgencyFilterDisability } from "./hooks";
 // Types
 import type { FunctionComponent, Dispatch } from "react";
 import type { OptionWithAlias } from "@/components/atoms/forms/StyledSelect";
@@ -24,12 +24,14 @@ interface FiltersProps {
 }
 
 const Filters: FunctionComponent<FiltersProps> = (props) => {
-    const { filteredTasks, filters } = props;
+    const { filteredTasks, filters, fadeContentOut, updateFilters } = props;
 
     const labelsOptions: OptionWithAlias<LabelID>[] = useLabelsOptions();
-    const disableFilteringByCompletion: boolean = useFiltersDisability(filteredTasks, filters.completion);
 
+    const disableFilteringByCompletion: boolean = useFiltersDisability(filteredTasks, filters.completion);
     const disableSortingTools: boolean = filteredTasks.length <= 1 || props.fadeContentOut;
+
+    const disableUrgencyFilter: boolean = useUrgencyFilterDisability({ fadeContentOut, filteredTasks, filters, updateFilters });
 
     return (
         <FiltersWrapper>
@@ -56,7 +58,7 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
                 value={filters.urgencyFilter}
                 startAdornment={<PriorityHighRoundedIcon />}
                 onChange={(e) => props.updateFilters({ urgencyFilter: e.target.value })}
-                disabled={disableSortingTools}
+                disabled={disableUrgencyFilter}
                 options={[
                     {
                         alias: "Default",

@@ -47,7 +47,9 @@ export function useFilteredTasks(tasks: Task[]): UseFilteredTasksResult {
                     setFadeContentOut(false);
                     setTasksToBeDisplayed(filteredTasks);
                 }, DURATION_OF_FADING_OUT);
-            } else {
+            }
+            //
+            else {
                 updateFilters({
                     completion: "_ALL",
                 });
@@ -57,7 +59,10 @@ export function useFilteredTasks(tasks: Task[]): UseFilteredTasksResult {
         }
 
         return () => {
-            if (timeout !== null) clearTimeout(timeout);
+            if (timeout !== null) {
+                clearTimeout(timeout);
+                setFadeContentOut(false);
+            }
         };
     }, [tasks, filters, updateFilters]);
 
