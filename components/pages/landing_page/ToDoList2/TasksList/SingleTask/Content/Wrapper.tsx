@@ -8,7 +8,6 @@ interface SingleTaskContentWrapperProps {
     isChanging: boolean;
     isUrgent: boolean;
     editModeIsOpened: boolean;
-    modeHasRecentlyChanged: boolean;
 }
 
 function shouldForwardProp(prop: string): boolean {
@@ -16,7 +15,6 @@ function shouldForwardProp(prop: string): boolean {
         "editModeIsOpened", //
         "isChanging",
         "isUrgent",
-        "modeHasRecentlyChanged",
     ].includes(prop);
 }
 
@@ -49,26 +47,25 @@ export default styled("div", { shouldForwardProp })<SingleTaskContentWrapperProp
     "&>*": {
         minHeight: "32px",
 
-        ...(props.modeHasRecentlyChanged && {
-            position: "relative",
-            "&::after": {
-                content: "''",
-                ...theme.mixins.absolute_full,
-                background: getAnimationBarColor(theme, props),
-                borderRadius: "3px",
-                animation: props.isChanging
-                    ? chainAnimations([
-                          [scaleFromBottom, 0.25, 0.1],
-                          [scaleToLeft, 0.25, 0.1],
-                      ])
-                    : chainAnimations([
-                          [scaleFromLeft, 0.25, 0.1],
-                          [scaleToBottom, 0.25, 0.1],
-                      ]),
-            },
-            "&>*": {
-                animation: `${props.isChanging ? fadeSimpleOUT : fadeSimple} .0001s .4s both`,
-            },
-        }),
+        position: "relative",
+        "&::after": {
+            content: "''",
+            ...theme.mixins.absolute_full,
+            zIndex: 10,
+            background: getAnimationBarColor(theme, props),
+            borderRadius: "3px",
+            animation: props.isChanging
+                ? chainAnimations([
+                      [scaleFromBottom, 0.25, 0.1],
+                      [scaleToLeft, 0.25, 0.1],
+                  ])
+                : chainAnimations([
+                      [scaleFromLeft, 0.25, 0.1],
+                      [scaleToBottom, 0.25, 0.1],
+                  ]),
+        },
+        "&>*": {
+            animation: `${props.isChanging ? fadeSimpleOUT : fadeSimple} .0001s .5s both`,
+        },
     },
 }));

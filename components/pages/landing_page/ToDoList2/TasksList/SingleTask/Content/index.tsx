@@ -1,6 +1,5 @@
 // Tools
 import { useEditModeContext } from "../hooks/useEditModeContext";
-import { useModeHasRecentlyChanged } from "./hooks/useModeHasRecentlyChanged";
 import { CSS_REFERENCES } from "landing_page/ToDoList2/TasksList/SingleTask/css_references";
 // Types
 import type { FunctionComponent } from "react";
@@ -20,8 +19,6 @@ interface ContentProps {
 const Content: FunctionComponent<ContentProps> = (props) => {
     const { isOpened: editModeIsOpened, isChanging: editModeIsChanging, applyMobileEditMode } = useEditModeContext();
 
-    const modeHasRecentlyChanged: boolean = useModeHasRecentlyChanged(editModeIsChanging, applyMobileEditMode);
-
     // Render's conditions:
     const renderViewMode: boolean = applyMobileEditMode === true || editModeIsOpened === false;
     const renderEditMode: boolean = applyMobileEditMode === false && editModeIsOpened === true;
@@ -32,7 +29,6 @@ const Content: FunctionComponent<ContentProps> = (props) => {
             isUrgent={props.data.urgent} //
             isChanging={editModeIsChanging && applyMobileEditMode === false}
             editModeIsOpened={editModeIsOpened && applyMobileEditMode === false}
-            modeHasRecentlyChanged={modeHasRecentlyChanged}
             className={CSS_REFERENCES.CONTENT.MAIN_CONTENT_WRAPPER}
         >
             {renderViewMode && (
