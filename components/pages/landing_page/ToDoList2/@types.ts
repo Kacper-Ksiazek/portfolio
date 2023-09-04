@@ -72,9 +72,11 @@ export type TaskCountsCollection = Map<LabelID, TaskCounts>;
 
 export type TaskCountsCollectionEntranceTuple = [LabelID, TaskCounts];
 
+export type LabelFilter = LabelID | "_ALL";
+
 export interface TasksFilters {
     sort: "NEWEST" | "OLDEST";
-    withParticularLabel: LabelID | "_ALL";
+    withParticularLabel: LabelFilter;
     completion: "_ALL" | "COMPLETED_ONLY" | "NOT_COMPLETED_ONLY";
     urgencyFilter: "URGENT_FIRST" | "URGENT_ONLY" | "_DEFAULT";
 }

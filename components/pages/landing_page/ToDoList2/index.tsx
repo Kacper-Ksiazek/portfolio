@@ -41,6 +41,7 @@ const ToDoList: FunctionComponent = () => {
                 <TasksList
                     fadeContentOut={fadeContentOut} //
                     filteredTasks={filteredTasks}
+                    labelFilter={filters.withParticularLabel}
                 />
             </ContentWrapper>
         </DarkSectionWrapper>

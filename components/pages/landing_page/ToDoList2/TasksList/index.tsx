@@ -2,13 +2,14 @@
 import { useTasksListContext } from "landing_page/ToDoList2/hooks/useTaskListContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
+import type { LabelFilter, Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
 // Other components
 import SingleTask from "./SingleTask";
 import TasksWrapper from "./TasksWrapper";
 
 interface TasksListProps {
     filteredTasks: Task[];
+    labelFilter: LabelFilter;
     fadeContentOut: boolean;
 }
 
@@ -28,6 +29,7 @@ const TasksList: FunctionComponent<TasksListProps> = (props) => {
     return (
         <TasksWrapper
             amountOfTasks={filteredTasks.length} //
+            labelFilter={props.labelFilter}
             fadeContentOut={props.fadeContentOut}
         >
             {filteredTasks.map((task) => {

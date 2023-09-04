@@ -9,6 +9,8 @@ export default styled("div")(({ theme }) => ({
     userSelect: "none",
     paddingTop: "64px",
     animation: `${fadeSimple} .3s`,
+    color: alpha("#fff", 0.8),
+    fontSize: "18px",
     svg: {
         fontSize: "128px",
         marginBottom: "12px",
@@ -16,11 +18,10 @@ export default styled("div")(({ theme }) => ({
     h2: {
         fontSize: "36px",
         margin: "0 0 0px 0",
+        color: "#fff",
     },
     p: {
         margin: 0,
-        fontSize: "18px",
-        color: alpha("#fff", 0.8),
     },
 
     "@media (max-height:880px)": {

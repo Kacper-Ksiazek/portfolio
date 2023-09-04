@@ -2,6 +2,7 @@
 import { useTasksListContext } from "landing_page/ToDoList2/hooks/useTaskListContext";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
+import type { LabelFilter } from "landing_page/ToDoList2/@types";
 // Other components
 import TasksWrapperBase from "./Base";
 import EnsureThereAreRecords from "./EnsureThereAreRecords";
@@ -11,6 +12,7 @@ interface TasksWrapperProps {
     children: ReactNode;
     amountOfTasks: number;
     fadeContentOut: boolean;
+    labelFilter: LabelFilter;
 }
 
 const TasksWrapper: FunctionComponent<TasksWrapperProps> = (props) => {
@@ -21,7 +23,10 @@ const TasksWrapper: FunctionComponent<TasksWrapperProps> = (props) => {
             fadeContentOut={props.fadeContentOut} //
             ref={taskListContext.tasksWrapperRef}
         >
-            <EnsureThereAreRecords amountOfTasks={props.amountOfTasks}>
+            <EnsureThereAreRecords
+                amountOfTasks={props.amountOfTasks} //
+                labelFilter={props.labelFilter}
+            >
                 <WrapWithOverScrollDiv
                     amountOfTasks={props.amountOfTasks} //
                 >
