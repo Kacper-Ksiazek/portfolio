@@ -48,7 +48,7 @@ const SingleTask: FunctionComponent = () => {
 
     const { width } = useWindowSizes();
 
-    const applyMobileLayout: boolean = width < MOBILE_LAYOUT_APPLIANCE_BREAKPOINT;
+    const applyMobileLayout: boolean = width !== 0 && width < MOBILE_LAYOUT_APPLIANCE_BREAKPOINT;
 
     return (
         <SingleTaskBase
