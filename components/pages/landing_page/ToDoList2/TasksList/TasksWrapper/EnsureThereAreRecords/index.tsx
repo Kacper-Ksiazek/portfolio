@@ -16,6 +16,8 @@ interface EnsureThereAreRecordsProps {
 }
 
 const EnsureThereAreRecords: FunctionComponent<EnsureThereAreRecordsProps> = (props) => {
+    const thereAreNoTasksAtAll = props.labelFilter === "_ALL" && props.amountOfTasks === 0;
+
     if (props.amountOfTasks === 0) {
         return (
             <NoRecordWrapper>
@@ -23,7 +25,7 @@ const EnsureThereAreRecords: FunctionComponent<EnsureThereAreRecordsProps> = (pr
                     <AssignmentRounded />
                 </IconWrapper>
                 <h2>No tasks</h2>
-                <p>There are no tasks matching given filters</p>
+                <p>There are no tasks {thereAreNoTasksAtAll ? <strong>at all</strong> : "matching given filters"}</p>
 
                 {props.labelFilter !== "_ALL" && <DistinguishSelectedLabel labelFilter={props.labelFilter} />}
             </NoRecordWrapper>

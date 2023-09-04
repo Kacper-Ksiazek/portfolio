@@ -1,4 +1,5 @@
 // Tools
+import { useEffect } from "react";
 import useWindowsSizes from "@/hooks/useWindowSizes";
 import { useDelayedState } from "@/hooks/useDelayedState";
 import { useContentVisibility, useResponsiveHeight } from "./hooks";
@@ -15,7 +16,11 @@ import ActionsHeaderBase from "./Base";
 
 const ACTIONS_HEADER_WRAPPER_ID: string = "to-do-list--actions-header";
 
-const ActionsHeader: FunctionComponent = () => {
+type ActionsHeaderProps = {
+    tasksInTotal: number;
+};
+
+const ActionsHeader: FunctionComponent<ActionsHeaderProps> = (props) => {
     const { value: stage, setValue: setStage, isChanging: isStageChanging } = useDelayedState<ActionHeaderSection>("PROGRESS_TRACKER", 160);
     const { width } = useWindowsSizes();
 
@@ -39,10 +44,17 @@ const ActionsHeader: FunctionComponent = () => {
         }
     }
 
+    useEffect(() => {
+        if (props.tasksInTotal === 0 && stage === "PROGRESS_TRACKER") {
+            setStage("ADD_NEW_TASK");
+        }
+    }, [props.tasksInTotal, stage, setStage]);
+
     return (
         <ActionsHeaderBase className={responsiveHeightCSSClass} id={ACTIONS_HEADER_WRAPPER_ID}>
             <Navigation
                 currentStage={stage} //
+                tasksInTotal={props.tasksInTotal}
                 updateCurrentStage={setStage}
                 beforeOnClick={onNavigationButtonClick}
             >

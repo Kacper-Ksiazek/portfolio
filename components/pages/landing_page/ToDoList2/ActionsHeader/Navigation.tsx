@@ -3,11 +3,13 @@ import { alpha } from "@mui/material";
 // Types
 import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
 import type { FunctionComponent, Dispatch, SetStateAction, ReactNode } from "react";
+import type { SectionElement } from "@/components/atoms/NavigationBetweenSections/@types";
 // Other components
 import NavigationBetweenSections from "@/components/atoms/NavigationBetweenSections";
 
 interface ToDoListActionsNavigationProps {
     children: ReactNode;
+    tasksInTotal: number;
     currentStage: ActionHeaderSection;
     updateCurrentStage: Dispatch<SetStateAction<ActionHeaderSection>>;
 
@@ -22,6 +24,7 @@ const ToDoListActionsNavigation: FunctionComponent<ToDoListActionsNavigationProp
                     {
                         label: "Progress Tracker", //
                         value: "PROGRESS_TRACKER",
+                        disabled: props.tasksInTotal === 0,
                     },
                     {
                         label: "Add new task",
@@ -31,7 +34,7 @@ const ToDoListActionsNavigation: FunctionComponent<ToDoListActionsNavigationProp
                         label: "Edit labels",
                         value: "EDIT_LABELS",
                     },
-                ] as { label: string; value: ActionHeaderSection }[]
+                ] as SectionElement<ActionHeaderSection>[]
             } //
             currentSection={props.currentStage}
             onChoose={props.updateCurrentStage}

@@ -29,7 +29,7 @@ const ToDoList: FunctionComponent = () => {
             githubURL={"https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page"}
         >
             <ContentWrapper>
-                <ActionsHeader />
+                <ActionsHeader tasksInTotal={tasks.length} />
 
                 <Filters
                     filteredTasks={filteredTasks} //

@@ -3,10 +3,15 @@ import { styled } from "@mui/material";
 // Styled components
 interface SingleNavigationStepProps {
     selected: boolean;
+    disabled?: boolean;
+}
+
+function shouldForwardProp(prop: string) {
+    return !(["selected", "disabled"] as (keyof SingleNavigationStepProps)[]).includes(prop as any);
 }
 
 export default styled("div", {
-    shouldForwardProp: (prop: string) => !(["selected"] as (keyof SingleNavigationStepProps)[]).includes(prop as any),
+    shouldForwardProp,
 })<SingleNavigationStepProps>(({ theme, ...props }) => ({
     fontWeight: 500,
     fontSize: "18px",
@@ -53,6 +58,7 @@ export default styled("div", {
             background: theme.palette.primary.main,
         },
     }),
+
     "&:hover": {
         "span.text": {
             color: "#fff",
@@ -61,4 +67,10 @@ export default styled("div", {
             transform: "translateY(0%)",
         },
     },
+
+    ...(props.disabled && {
+        opacity: 0.5,
+        cursor: "default",
+        "&:hover": {},
+    }),
 }));

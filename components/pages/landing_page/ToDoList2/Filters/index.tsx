@@ -29,9 +29,10 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
     const labelsOptions: OptionWithAlias<LabelID>[] = useLabelsOptions();
 
     const disableFilteringByCompletion: boolean = useFiltersDisability(filteredTasks, filters.completion);
-    const disableSortingTools: boolean = filteredTasks.length <= 1 || props.fadeContentOut;
-
     const disableUrgencyFilter: boolean = useUrgencyFilterDisability({ fadeContentOut, filteredTasks, filters, updateFilters });
+
+    const disableSortingTools: boolean = filteredTasks.length <= 1 || props.fadeContentOut;
+    const disableFilterByLabel: boolean = props.filters.withParticularLabel === "_ALL" && props.filteredTasks.length === 0;
 
     return (
         <FiltersWrapper>
@@ -45,6 +46,7 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
                     },
                     ...labelsOptions,
                 ]}
+                disabled={disableFilterByLabel}
                 startAdornment={<CategoryRoundedIcon />}
                 onChange={(e) =>
                     props.updateFilters({

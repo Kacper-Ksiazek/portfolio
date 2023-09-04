@@ -3,13 +3,13 @@ import * as CSSClasses from "./CSSClasses";
 import { parseSection } from "./utils/parseSection";
 // Types
 import type { ReactNode } from "react";
-import type { Section } from "./@types";
+import type { UnparsedSectionElement } from "./@types";
 import type { Styles } from "@/@types/MUI";
 // Styled components
 import { Divider, SingleNavigationStep, NavigationBetweenSectionsBase } from "./styled_components";
 
 interface NavigationBetweenSectionsProps<T> {
-    sections: Section<T>[];
+    sections: UnparsedSectionElement<T>[];
     currentSection: T;
     onChoose: (val: T) => void;
 
@@ -37,9 +37,11 @@ const NavigationBetweenSections = <T extends string>(props: NavigationBetweenSec
             )}
 
             {props.sections.map((item, index) => {
-                const { label, value } = parseSection<T>(item);
+                const { label, value, disabled } = parseSection<T>(item);
 
-                const onClick = () => handleOnClick(value);
+                function onClick() {
+                    if (disabled !== true) handleOnClick(value);
+                }
 
                 return (
                     <div key={value as any} className={CSSClasses.STEP_WRAPPER}>
@@ -48,6 +50,7 @@ const NavigationBetweenSections = <T extends string>(props: NavigationBetweenSec
                         <SingleNavigationStep
                             className={CSSClasses.STEP_BUTTON} //
                             selected={props.currentSection === value}
+                            disabled={disabled}
                             //
                             onClick={onClick}
                         >

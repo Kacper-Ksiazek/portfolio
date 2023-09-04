@@ -1,5 +1,6 @@
 // Tools
 import { alpha, styled } from "@mui/material";
+import { fadeSimple } from "@/components/keyframes/intro";
 import { renderNTimes } from "@/utils/client/renderNTimes";
 // Types
 import type { FunctionComponent } from "react";
@@ -10,6 +11,7 @@ const GhostRecord = styled("div")(({ theme }) => ({
     marginTop: "24px",
     background: alpha("#fff", 0.045),
     borderRadius: "5px",
+    animation: `${fadeSimple} .5s .1s both ease-in-out`,
 }));
 interface GhostRecordsProps {
     amountOfTasks: number;

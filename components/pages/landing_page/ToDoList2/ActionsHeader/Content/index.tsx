@@ -17,6 +17,7 @@ const Wrapper = styled("div")(({ theme }) => ({
     flexDirection: "column",
     alignItems: "flex-start",
     animation: `${fadeSimple} .16s both linear`,
+    width: "100%",
     "&>*": {
         position: "relative",
         margin: "8px 0 0 0 !important",
