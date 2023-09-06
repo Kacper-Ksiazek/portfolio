@@ -1,3 +1,6 @@
+// Types
+import type { MutableRefObject } from "react";
+
 export type ColorInHEX = `#${string}`;
 
 // Stages
@@ -34,9 +37,14 @@ export interface LabelsContext {
 }
 
 export interface LabelsUpdatersContext {
+    /** Add one new label */
     add: (params: Label) => LabelID;
+    /** Update one particular, already existing label*/
     update: (id: LabelID, data: Partial<Label>) => void;
+    /** Remove either one or many labels */
     remove: (labelToBeRemoved: LabelID | LabelID[]) => void;
+
+    resetToDefault: () => void;
 }
 
 // Tasks
@@ -57,6 +65,28 @@ export interface Task {
     /** Simply Date.now() */
     createdAt: number;
 }
+
+export interface I_TasksListContext {
+    tasks: Task[];
+    tasksWrapperRef: MutableRefObject<HTMLElement | null>;
+    /**
+     * Remove task with a given ID
+     */
+    remove: (id: Task["id"]) => void;
+    /**
+     *  Add a new task
+     */
+    add: (val: TaskWithoutID) => void;
+    /**
+     * Edit a task with a given ID
+     * @param id Id of a task to be edited
+     * @param val Callback that returns a new value of a task
+     */
+    edit: (id: Task["id"], val: TaskEditCallback) => void;
+
+    resetToDefault: () => void;
+}
+
 export type TaskWithoutID = Omit<Task, "id">;
 
 export type NewTaskBody = Omit<TaskWithoutID, "createdAt" | "isCompleted">;

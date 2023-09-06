@@ -5,19 +5,8 @@ import { useSnackbar } from "@/hooks/useSnackbar";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { localStorageValidator, scrollToTheListsTop } from "./utils";
 // Types
-import type { FunctionComponent, ReactNode, MutableRefObject } from "react";
-import type { Task, TaskEditCallback, TaskWithoutID } from "landing_page/ToDoList2/@types";
-
-type ID = Task["id"];
-
-export interface I_TasksListContext {
-    tasks: Task[];
-    tasksWrapperRef: MutableRefObject<HTMLElement | null>;
-
-    remove: (id: ID) => void;
-    add: (val: TaskWithoutID) => void;
-    edit: (id: ID, val: TaskEditCallback) => void;
-}
+import type { FunctionComponent, ReactNode } from "react";
+import type { I_TasksListContext, Task, TaskEditCallback, TaskWithoutID } from "landing_page/ToDoList2/@types";
 
 export const taskListContext = createContext<I_TasksListContext>({} as any);
 
@@ -29,7 +18,7 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
         validate: (dataFromLocalStorage) => localStorageValidator(dataFromLocalStorage, DEFAULT_TASKS[0]),
     });
 
-    function remove(idToBeRemoved: ID) {
+    function remove(idToBeRemoved: Task["id"]) {
         setTasks((tasks) => tasks.filter((el) => el.id != idToBeRemoved));
     }
 
@@ -57,7 +46,7 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
         }, 300);
     }
 
-    function edit(idToBeEdited: ID, cb: TaskEditCallback) {
+    function edit(idToBeEdited: Task["id"], cb: TaskEditCallback) {
         setTasks((tasks) =>
             tasks.map((currentValue) => {
                 if (currentValue.id === idToBeEdited)
@@ -70,6 +59,10 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
         );
     }
 
+    function resetToDefault() {
+        setTasks(DEFAULT_TASKS);
+    }
+
     return (
         <taskListContext.Provider
             key={isLoaded ? "LOCAL_STORAGE_LOADED" : "LOADING"}
@@ -80,6 +73,7 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
                 add,
                 edit,
                 remove,
+                resetToDefault,
             }}
         >
             {children}

@@ -1,5 +1,6 @@
 // Tools
 import { createContext } from "react";
+import { DEFAULT_LABELS } from "../default_labels";
 import { ensureLabelsName } from "./utils/ensureLabelsName";
 // Types
 import type { FunctionComponent, ReactNode, Dispatch, SetStateAction } from "react";
@@ -67,12 +68,17 @@ export const LabelsUpdatersContextProvider: FunctionComponent<LabelsUpdatersCont
         });
     }
 
+    function resetToDefault() {
+        props.setLabels(DEFAULT_LABELS);
+    }
+
     return (
         <labelsUpdatersContext.Provider
             value={{
                 add,
                 update,
                 remove,
+                resetToDefault,
             }}
         >
             {props.children}

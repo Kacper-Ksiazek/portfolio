@@ -8,6 +8,7 @@ import Code from "@mui/icons-material/Code";
 // Other components
 import Filters from "./Filters";
 import ActionsHeader from "./ActionsHeader";
+import ResetTasksAndLabelsToDefault from "./ResetTasksAndLabelsToDefault";
 // Styled Components
 import ContentWrapper from "./ContentWrapper";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
@@ -43,6 +44,8 @@ const ToDoList: FunctionComponent = () => {
                     filteredTasks={filteredTasks}
                     labelFilter={filters.withParticularLabel}
                 />
+
+                <ResetTasksAndLabelsToDefault />
             </ContentWrapper>
         </DarkSectionWrapper>
     );
