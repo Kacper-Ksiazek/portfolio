@@ -9,7 +9,7 @@ interface TaskDataProviderContext {
     data: Task;
 
     remove: () => void;
-    update: (cb: TaskEditCallback) => void;
+    update: (cb: TaskEditCallback, skipSnackbar?: boolean) => void;
 
     children: ReactNode;
 }

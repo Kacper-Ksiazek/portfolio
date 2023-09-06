@@ -9,7 +9,7 @@ export interface I_TaskDataContext {
     taskIsBeingRemoved: boolean;
 
     removeTask: () => void;
-    updateTask: (cb: TaskEditCallback) => void;
+    updateTask: (cb: TaskEditCallback, skipSnackbar?: boolean) => void;
 }
 
 export const taskDataContext = createContext<I_TaskDataContext>({} as any);

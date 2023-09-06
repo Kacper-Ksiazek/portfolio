@@ -17,7 +17,7 @@ interface SingleTaskWithContextProps {
     data: Task;
 
     remove: () => void;
-    update: (cb: TaskEditCallback) => void;
+    update: (cb: TaskEditCallback, skipSnackbar?: boolean) => void;
 }
 
 const SingleTaskWithContext: FunctionComponent<SingleTaskWithContextProps> = (props) => {

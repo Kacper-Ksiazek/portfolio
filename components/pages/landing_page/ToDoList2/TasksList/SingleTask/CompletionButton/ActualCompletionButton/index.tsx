@@ -22,7 +22,7 @@ const ActualCompletionButton: FunctionComponent = () => {
      * It toggles the completion state of the task.
      */
     function toggleCompletion() {
-        updateTask((currentValue) => ({ isCompleted: !currentValue.isCompleted }));
+        updateTask((currentValue) => ({ isCompleted: !currentValue.isCompleted }), true);
     }
 
     return (

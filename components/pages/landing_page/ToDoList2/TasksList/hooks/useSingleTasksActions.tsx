@@ -5,8 +5,8 @@ import { useTasksListContext } from "landing_page/ToDoList2/hooks/useTaskListCon
 import type { Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
 
 interface UseSingleTasksActionsResult {
-    editTaskWithID: (id: Task["id"]) => (cb: TaskEditCallback) => void;
     deleteTaskWithID: (id: Task["id"]) => () => void;
+    editTaskWithID: (id: Task["id"]) => (cb: TaskEditCallback, skipSnackbar?: boolean) => void;
 }
 
 export function useSingleTasksActions(): UseSingleTasksActionsResult {
@@ -31,20 +31,24 @@ export function useSingleTasksActions(): UseSingleTasksActionsResult {
         };
     }
 
-    function editTaskWithID(id: Task["id"]): (cb: TaskEditCallback) => void {
-        return (cb) => {
+    function editTaskWithID(id: Task["id"]): (cb: TaskEditCallback, skipSnackbar?: boolean) => void {
+        return (cb, skipSnackbar = false) => {
             try {
                 taskListContext.edit(id, cb);
 
-                displaySnackbar({
-                    msg: "Task has been edited successfully",
-                    severity: "success",
-                });
+                if (skipSnackbar === false) {
+                    displaySnackbar({
+                        msg: "Task has been edited successfully",
+                        severity: "success",
+                    });
+                }
             } catch (err) {
-                displaySnackbar({
-                    msg: "Task couldn't have been edited",
-                    severity: "error",
-                });
+                if (skipSnackbar === false) {
+                    displaySnackbar({
+                        msg: "Task couldn't have been edited",
+                        severity: "error",
+                    });
+                }
             }
         };
     }
