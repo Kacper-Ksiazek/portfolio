@@ -1,22 +1,21 @@
 // Tools
-import { useRef } from "react";
+import { useRef, forwardRef } from "react";
 import { useSnackbar } from "@/hooks/useSnackbar";
+import { allignViewport } from "./utils/alignViewport";
 import { useLabelsVaryFromDefault, useTasksVaryFromDefault } from "./hooks";
 import { useTasksListContext, useLabelsContext, useLabelsUpdatersContext } from "../hooks";
-// Types
-import type { FunctionComponent } from "react";
 // Other components
 import ModalOpeningButton from "./ModalOpeningButton";
 import ResetAffirmationModal from "./ResetAffirmationModal";
 
-const ResetTasksAndLabelsToDefault: FunctionComponent = () => {
+const ResetTasksAndLabelsToDefault = forwardRef<HTMLDivElement>((_, ref) => {
     const { displaySnackbar } = useSnackbar();
 
     const resetTasksButtonRef = useRef<HTMLButtonElement>(null);
 
     const { labels } = useLabelsContext();
     const { resetToDefault: resetLabels } = useLabelsUpdatersContext();
-    const { resetToDefault: resetTasks, tasks } = useTasksListContext();
+    const { resetToDefault: resetTasks, tasks, tasksWrapperRef } = useTasksListContext();
 
     const tasksVaryFromDefault: boolean = useTasksVaryFromDefault(tasks);
     const labelsVaryFromDefault: boolean = useLabelsVaryFromDefault(labels);
@@ -25,7 +24,8 @@ const ResetTasksAndLabelsToDefault: FunctionComponent = () => {
 
     function handleReset() {
         try {
-            // If there is nothing to reset, do nothing
+            allignViewport(tasksWrapperRef as any);
+            //  If there is nothing to reset, do nothing
             if (resetIsPossible) {
                 resetTasks();
                 resetLabels();
@@ -57,6 +57,8 @@ const ResetTasksAndLabelsToDefault: FunctionComponent = () => {
             />
         </>
     );
-};
+});
+
+ResetTasksAndLabelsToDefault.displayName = "ResetTasksAndLabelsToDefault";
 
 export default ResetTasksAndLabelsToDefault;

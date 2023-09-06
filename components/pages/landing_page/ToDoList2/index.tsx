@@ -1,4 +1,5 @@
 // Tools
+import { useRef } from "react";
 import { useFilteredTasks, useTasksListContext } from "./hooks";
 import { LabelsContextProvider, TaskListContextProvider } from "./context";
 // Types
@@ -18,6 +19,8 @@ const ToDoList: FunctionComponent = () => {
     const { tasks } = useTasksListContext();
     const { fadeContentOut, filteredTasks, filters, updateFilters } = useFilteredTasks(tasks);
 
+    const contentWrapperRef = useRef<HTMLDivElement>(null);
+
     return (
         <DarkSectionWrapper
             shapesDirection="left"
@@ -29,7 +32,7 @@ const ToDoList: FunctionComponent = () => {
             }}
             githubURL={"https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page"}
         >
-            <ContentWrapper>
+            <ContentWrapper ref={contentWrapperRef}>
                 <ActionsHeader tasksInTotal={tasks.length} />
 
                 <Filters
@@ -45,7 +48,7 @@ const ToDoList: FunctionComponent = () => {
                     labelFilter={filters.withParticularLabel}
                 />
 
-                <ResetTasksAndLabelsToDefault />
+                <ResetTasksAndLabelsToDefault ref={contentWrapperRef} />
             </ContentWrapper>
         </DarkSectionWrapper>
     );
