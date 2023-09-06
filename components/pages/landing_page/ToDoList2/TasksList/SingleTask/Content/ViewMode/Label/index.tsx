@@ -2,7 +2,7 @@
 import { useLabelsContext } from "@/components/pages/landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelID } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
 // Styled components
 import LabelBase from "./Base";
 

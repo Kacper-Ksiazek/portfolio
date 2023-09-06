@@ -2,11 +2,11 @@
 import { useSnackbar } from "@/hooks/useSnackbar";
 import { useTasksListContext } from "landing_page/ToDoList2/hooks/useTaskListContext";
 // Types
-import type { Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
+import type { Task, EditTask } from "landing_page/ToDoList2/@types/Tasks";
 
 interface UseSingleTasksActionsResult {
     deleteTaskWithID: (id: Task["id"]) => () => void;
-    editTaskWithID: (id: Task["id"]) => (cb: TaskEditCallback, skipSnackbar?: boolean) => void;
+    editTaskWithID: (id: Task["id"]) => EditTask;
 }
 
 export function useSingleTasksActions(): UseSingleTasksActionsResult {
@@ -31,7 +31,7 @@ export function useSingleTasksActions(): UseSingleTasksActionsResult {
         };
     }
 
-    function editTaskWithID(id: Task["id"]): (cb: TaskEditCallback, skipSnackbar?: boolean) => void {
+    function editTaskWithID(id: Task["id"]): EditTask {
         return (cb, skipSnackbar = false) => {
             try {
                 taskListContext.edit(id, cb);

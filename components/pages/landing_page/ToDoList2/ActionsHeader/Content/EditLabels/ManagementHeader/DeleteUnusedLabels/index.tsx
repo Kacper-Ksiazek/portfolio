@@ -4,7 +4,7 @@ import { useSafeSnackbarCallback } from "@/hooks/useSafeSnackbarCallback";
 import { useLabelsUpdatersContext } from "landing_page/ToDoList2/hooks/useLabelsUpdatersContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelID } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
 // Other components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 import DeleteUnusedLabelsConfirmationModal from "./DeleteUnusedLabelsConfirmationModal";

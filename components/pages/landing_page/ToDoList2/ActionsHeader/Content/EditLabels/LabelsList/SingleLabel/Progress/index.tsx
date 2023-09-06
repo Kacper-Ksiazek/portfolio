@@ -3,7 +3,7 @@ import { ratio } from "@/utils/ratio";
 import { CSS_REFERENCES } from "./css_references";
 // Types
 import type { FunctionComponent, HTMLAttributes } from "react";
-import type { TaskCounts, ColorInHEX } from "landing_page/ToDoList2/@types";
+import type { TaskCounts } from "landing_page/ToDoList2/@types/Counters";
 // Other components
 import { ProgressBar } from "landing_page/ToDoList2/atoms/ProgressBar";
 // Material UI Icons

@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { DEFAULT_TASKS } from "../../context/TasksListContext/default_tasks";
 // Types
-import type { Task } from "landing_page/ToDoList2/@types";
+import type { Task } from "landing_page/ToDoList2/@types/Tasks";
 
 const PROPERTIES_TO_CHECK: (keyof Omit<Task, "createdAt" | "id" | "isCompleted">)[] = [
     "title", //

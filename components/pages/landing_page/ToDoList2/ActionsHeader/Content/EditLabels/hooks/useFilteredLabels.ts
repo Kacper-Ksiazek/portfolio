@@ -3,19 +3,19 @@ import { useMemo } from "react";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useTaskCounterContext } from "../../hooks/useTaskCounterContext";
 // Types
-import type { Dispatch } from "react";
-import type { LabelWithAssociatedCounts, EditLabelsFilters } from "landing_page/ToDoList2/@types";
+import type { LabelsFilters, UpdateEditLabelsFilters } from "../@types";
+import type { LabelWithAssociatedCounts } from "landing_page/ToDoList2/@types/Counters";
 
 interface UseFilteredLabels {
     labels: LabelWithAssociatedCounts[];
-    filters: EditLabelsFilters;
-    updateFilters: Dispatch<Partial<EditLabelsFilters>>;
+    filters: LabelsFilters;
+    updateFilters: UpdateEditLabelsFilters;
 }
 
 export function useFilteredLabels(): UseFilteredLabels {
     const { counter } = useTaskCounterContext();
 
-    const [filters, updateFilters] = useSimpleReducer<EditLabelsFilters>({
+    const [filters, updateFilters] = useSimpleReducer<LabelsFilters>({
         displayNotUsedLabelsOnly: false,
         order: "NEWEST",
         urgentModeAlternativeAppearance: false,

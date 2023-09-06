@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks/useLabelsContext";
 // Types
-import type { LabelID } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
 import type { OptionWithAlias } from "@/components/atoms/forms/StyledSelect";
 
 export function useLabelsOptions(): OptionWithAlias<LabelID>[] {

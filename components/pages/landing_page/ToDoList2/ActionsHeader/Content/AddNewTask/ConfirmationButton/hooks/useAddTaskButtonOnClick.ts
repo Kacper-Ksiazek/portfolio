@@ -2,7 +2,7 @@
 import { useCallback } from "react";
 import { useTasksListContext } from "landing_page/ToDoList2/hooks";
 // Types
-import type { NewTaskBody } from "landing_page/ToDoList2/@types";
+import type { NewTaskBody } from "landing_page/ToDoList2/@types/Tasks";
 
 interface UseAddTaskButtonOnClickProps {
     disableOnClick: boolean;

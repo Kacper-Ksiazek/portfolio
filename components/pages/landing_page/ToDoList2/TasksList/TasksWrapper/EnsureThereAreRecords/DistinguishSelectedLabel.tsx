@@ -3,7 +3,7 @@ import { styled } from "@mui/material";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks/useLabelsContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelFilter } from "landing_page/ToDoList2/@types";
+import type { SpecificLabelOnlyFilter } from "landing_page/ToDoList2/@types/Filters";
 // Styled components
 const DistinguishSelectedLabelBase = styled("span")(({ theme }) => ({
     marginTop: "4px",
@@ -16,7 +16,7 @@ const DistinguishSelectedLabelBase = styled("span")(({ theme }) => ({
 }));
 
 interface DistinguishSelectedLabelProps {
-    labelFilter: LabelFilter;
+    labelFilter: SpecificLabelOnlyFilter;
 }
 
 const DistinguishSelectedLabel: FunctionComponent<DistinguishSelectedLabelProps> = (props) => {

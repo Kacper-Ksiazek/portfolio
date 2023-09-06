@@ -4,7 +4,7 @@ import { ratio } from "@/utils/ratio";
 import { useTaskCounterContext } from "../../hooks/useTaskCounterContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { TaskCountsCollection, TaskCountsCollectionEntranceTuple } from "landing_page/ToDoList2/@types";
+import type { TaskCountsCollection, TaskCountsCollectionEntranceTuple } from "landing_page/ToDoList2/@types/Counters";
 // Other components
 import SingleLabel from "./SingleLabel";
 import ThereAreNoRatios from "./ThereAreNoRatios";

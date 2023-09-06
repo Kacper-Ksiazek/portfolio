@@ -3,7 +3,7 @@ import { useEditModeContext } from "../hooks/useEditModeContext";
 import { CSS_REFERENCES } from "landing_page/ToDoList2/TasksList/SingleTask/css_references";
 // Types
 import type { FunctionComponent } from "react";
-import type { Task } from "landing_page/ToDoList2/@types";
+import type { Task } from "landing_page/ToDoList2/@types/Tasks";
 // Other components
 import EditMode from "./EditMode";
 import ViewMode from "./ViewMode";

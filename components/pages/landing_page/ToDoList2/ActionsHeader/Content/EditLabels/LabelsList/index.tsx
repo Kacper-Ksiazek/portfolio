@@ -1,8 +1,6 @@
-// Tools
-
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelWithAssociatedCounts } from "landing_page/ToDoList2/@types";
+import type { LabelWithAssociatedCounts } from "landing_page/ToDoList2/@types/Counters";
 // Other components
 import SingleLabel from "./SingleLabel";
 import LabelsListWrapper from "./Wrapper";

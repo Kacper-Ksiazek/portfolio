@@ -1,5 +1,5 @@
 // Types
-import type { NewTaskBody } from "landing_page/ToDoList2/@types";
+import type { NewTaskBody } from "landing_page/ToDoList2/@types/Tasks";
 
 export const EMPTY_NEW_TASK_BODY: Omit<NewTaskBody, "labelID"> = {
     title: "",

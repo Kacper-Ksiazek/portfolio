@@ -5,7 +5,7 @@ import { useDelayedState } from "@/hooks/useDelayedState";
 import { useContentVisibility, useResponsiveHeight } from "./hooks";
 // Types
 import type { FunctionComponent } from "react";
-import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
+import type { ActionHeaderSection } from "landing_page/ToDoList2/ActionsHeader/@types";
 import type { ResponsiveHeightCSSClass } from "./hooks/useResponsiveHeight";
 // Other components
 import Content from "./Content";

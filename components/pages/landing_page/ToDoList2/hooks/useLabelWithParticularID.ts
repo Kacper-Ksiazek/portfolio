@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { useLabelsContext } from "./useLabelsContext";
 // Types
-import type { LabelID } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
 
 interface UseLabelResult {
     labelName: string | null;

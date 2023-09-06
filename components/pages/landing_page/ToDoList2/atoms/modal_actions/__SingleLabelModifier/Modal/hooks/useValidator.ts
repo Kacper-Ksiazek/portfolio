@@ -4,7 +4,7 @@ import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { ValidationResult } from "../@types";
-import type { Label } from "landing_page/ToDoList2/@types";
+import type { Label } from "landing_page/ToDoList2/@types/Labels";
 
 /**  */
 export function useValidator(newLabel: Label, labelToBeEdited: Label | null): ValidationResult {

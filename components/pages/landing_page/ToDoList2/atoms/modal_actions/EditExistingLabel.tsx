@@ -4,7 +4,7 @@ import { useSafeSnackbarCallback } from "@/hooks/useSafeSnackbarCallback";
 import { useLabelsUpdatersContext } from "@/components/pages/landing_page/ToDoList2/hooks";
 // Types
 import type { ReactNode, FunctionComponent } from "react";
-import type { Label, LabelID } from "landing_page/ToDoList2/@types";
+import type { Label, LabelID } from "landing_page/ToDoList2/@types/Labels";
 // Material UI Icons
 import AddRounded from "@mui/icons-material/AddRounded";
 // Other components

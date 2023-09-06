@@ -1,5 +1,6 @@
 // Types
-import type { Task, TasksFilters } from "../../@types";
+import type { Task } from "landing_page/ToDoList2/@types/Tasks";
+import type { TasksFilters } from "landing_page/ToDoList2/@types/Filters";
 
 export class FiltersApplier {
     private filters: TasksFilters;

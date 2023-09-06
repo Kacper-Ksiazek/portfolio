@@ -2,7 +2,7 @@
 import { useTasksListContext } from "landing_page/ToDoList2/hooks/useTaskListContext";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { LabelFilter } from "landing_page/ToDoList2/@types";
+import type { SpecificLabelOnlyFilter } from "landing_page/ToDoList2/@types/Filters";
 // Other components
 import TasksWrapperBase from "./Base";
 import EnsureThereAreRecords from "./EnsureThereAreRecords";
@@ -12,7 +12,7 @@ interface TasksWrapperProps {
     children: ReactNode;
     amountOfTasks: number;
     fadeContentOut: boolean;
-    labelFilter: LabelFilter;
+    labelFilter: SpecificLabelOnlyFilter;
 }
 
 const TasksWrapper: FunctionComponent<TasksWrapperProps> = (props) => {

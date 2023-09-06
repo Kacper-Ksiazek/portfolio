@@ -4,7 +4,7 @@ import { fadeSimple } from "@/components/keyframes/intro";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Types
 import type { FunctionComponent } from "react";
-import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
+import type { ActionHeaderSection } from "landing_page/ToDoList2/ActionsHeader/@types";
 // Other components
 import EditLabels from "./EditLabels";
 import AddNewTask from "./AddNewTask";

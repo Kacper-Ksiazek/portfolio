@@ -3,10 +3,9 @@ import { forwardRef } from "react";
 import { alpha, styled } from "@mui/material";
 // Types
 import type { ReactNode } from "react";
-import IconButton from "@mui/material/IconButton";
 // Material UI Components
 import Tooltip from "@mui/material/Tooltip";
-// Material UI Icons
+import IconButton from "@mui/material/IconButton";
 // Styled components
 const StyledIconButtonBase = styled(IconButton)(({ theme }) => ({
     ...theme.mixins.flex_center,

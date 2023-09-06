@@ -2,9 +2,11 @@
 import { CSS_REFERENCES } from "./css_references";
 import { useFiltersDisability, useLabelsOptions, useUrgencyFilterDisability } from "./hooks";
 // Types
-import type { FunctionComponent, Dispatch } from "react";
+import type { FunctionComponent } from "react";
+import type { Task } from "landing_page/ToDoList2/@types/Tasks";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
 import type { OptionWithAlias } from "@/components/atoms/forms/StyledSelect";
-import type { TasksFilters, LabelID, Task } from "landing_page/ToDoList2/@types";
+import type { TasksFilters, UpdateTasksFilters } from "landing_page/ToDoList2/@types/Filters";
 // Other components
 import AmountOfTasks from "./AmountOfTasks";
 import StyledSelect from "@/components/atoms/forms/StyledSelect";
@@ -20,7 +22,7 @@ interface FiltersProps {
     filters: TasksFilters;
     filteredTasks: Task[];
     fadeContentOut: boolean;
-    updateFilters: Dispatch<Partial<TasksFilters>>;
+    updateFilters: UpdateTasksFilters;
 }
 
 const Filters: FunctionComponent<FiltersProps> = (props) => {

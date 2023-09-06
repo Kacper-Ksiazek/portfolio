@@ -1,6 +1,6 @@
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { LabelFilter } from "landing_page/ToDoList2/@types";
+import type { SpecificLabelOnlyFilter } from "landing_page/ToDoList2/@types/Filters";
 // Material UI Icons
 import AssignmentRounded from "@mui/icons-material/AssignmentRounded";
 // Other components
@@ -12,7 +12,7 @@ import IconWrapper from "./IconWrapper";
 interface EnsureThereAreRecordsProps {
     children: ReactNode;
     amountOfTasks: number;
-    labelFilter: LabelFilter;
+    labelFilter: SpecificLabelOnlyFilter;
 }
 
 const EnsureThereAreRecords: FunctionComponent<EnsureThereAreRecordsProps> = (props) => {

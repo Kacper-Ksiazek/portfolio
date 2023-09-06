@@ -3,7 +3,7 @@ import { useNewLabelReducer, useValidator } from "./hooks";
 // Types
 import type { FunctionComponent } from "react";
 import type { ValidationResultCode } from "./@types";
-import type { Label } from "landing_page/ToDoList2/@types";
+import type { Label } from "landing_page/ToDoList2/@types/Labels";
 // Other components
 import Preview from "./Preview";
 import ErrorMessage from "./ErrorMessage";

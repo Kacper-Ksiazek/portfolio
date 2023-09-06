@@ -1,7 +1,7 @@
 // Types
-import type { Labels } from "landing_page/ToDoList2/@types";
+import type { LabelsCollection } from "landing_page/ToDoList2/@types/Labels";
 
-export const DEFAULT_LABELS: Labels = {
+export const DEFAULT_LABELS: LabelsCollection = {
     "1": {
         color: "#FFADDA",
         name: "University",

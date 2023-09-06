@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { DEFAULT_LABELS } from "../../context/LabelsContext/default_labels";
 // Types
-import type { Label, Labels, LabelID } from "landing_page/ToDoList2/@types";
+import type { Label, LabelsCollection, LabelID } from "landing_page/ToDoList2/@types/Labels";
 
 const PROPERTIES_TO_CHECK: (keyof Omit<Label, "id">)[] = ["name", "color"];
 
@@ -15,7 +15,7 @@ function _findLabelWithGivenIDInDefaults(id: LabelID): Label | null {
     return id in DEFAULT_LABELS ? DEFAULT_LABELS[id] : null;
 }
 
-export function useLabelsVaryFromDefault(labels: Labels) {
+export function useLabelsVaryFromDefault(labels: LabelsCollection) {
     return useMemo<boolean>(() => {
         // If the number of labels is different than the number of default labels, then the labels vary from default
         if (Object.keys(labels).length !== Object.keys(DEFAULT_LABELS).length) return true;

@@ -5,7 +5,7 @@ import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { useLabelWithParticularID } from "landing_page/ToDoList2/hooks/useLabelWithParticularID";
 // Types
 import type { ReactNode, FunctionComponent } from "react";
-import type { LabelID } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
 // Styled components
 import { ProgressBar } from "landing_page/ToDoList2/atoms/ProgressBar";
 import { CompletionTracker, LabelName, SingleLabelWrapper } from "./styled_components";

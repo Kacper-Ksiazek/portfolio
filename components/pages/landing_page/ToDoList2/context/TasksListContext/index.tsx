@@ -6,7 +6,8 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { localStorageValidator, scrollToTheListsTop } from "./utils";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { I_TasksListContext, Task, TaskEditCallback, TaskWithoutID } from "landing_page/ToDoList2/@types";
+import type { Task, TaskEditCallback, TaskWithoutID } from "landing_page/ToDoList2/@types/Tasks";
+import type { TasksListContext as I_TasksListContext } from "landing_page/ToDoList2/@types/Contexts";
 
 export const taskListContext = createContext<I_TasksListContext>({} as any);
 

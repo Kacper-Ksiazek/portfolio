@@ -1,5 +1,5 @@
 // Types
-import type { NewTaskBody } from "landing_page/ToDoList2/@types";
+import type { NewTaskBody } from "landing_page/ToDoList2/@types/Tasks";
 
 export interface I_AddNewTaskContext {
     newTaskBody: NewTaskBody;

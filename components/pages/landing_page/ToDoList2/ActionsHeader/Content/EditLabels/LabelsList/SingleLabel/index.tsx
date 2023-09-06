@@ -3,7 +3,8 @@ import { CSS_REFERENCES } from "../css_references";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelID, TaskCounts } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
+import type { TaskCounts } from "landing_page/ToDoList2/@types/Counters";
 // Other components
 import Progress from "./Progress";
 import * as ActionsButtons from "./ActionsButtons";

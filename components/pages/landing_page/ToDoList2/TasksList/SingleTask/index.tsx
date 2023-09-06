@@ -2,8 +2,8 @@
 import useWindowSizes from "@/hooks/useWindowSizes";
 import { useEditModeContext, useTaskDataContext } from "./hooks";
 // Types
-import { FunctionComponent } from "react";
-import type { Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
+import type { FunctionComponent } from "react";
+import type { EditTask, Task } from "landing_page/ToDoList2/@types/Tasks";
 // Other components
 import Manage from "./Manage";
 import Content from "./Content";
@@ -16,8 +16,8 @@ import SingleTaskBase from "./Base";
 interface SingleTaskWithContextProps {
     data: Task;
 
+    update: EditTask;
     remove: () => void;
-    update: (cb: TaskEditCallback, skipSnackbar?: boolean) => void;
 }
 
 const SingleTaskWithContext: FunctionComponent<SingleTaskWithContextProps> = (props) => {

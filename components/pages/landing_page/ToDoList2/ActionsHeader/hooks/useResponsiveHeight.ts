@@ -1,7 +1,7 @@
 // Tools
 import { useMemo } from "react";
 // Types
-import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
+import type { ActionHeaderSection } from "landing_page/ToDoList2/ActionsHeader/@types";
 
 export type ResponsiveHeightCSSClass = ActionHeaderSection | "HIDDEN";
 

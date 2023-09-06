@@ -2,7 +2,7 @@
 import { CSS_REFERENCES } from "../../css_references";
 // Types
 import type { FunctionComponent } from "react";
-import type { Label, LabelID } from "landing_page/ToDoList2/@types";
+import type { Label, LabelID } from "landing_page/ToDoList2/@types/Labels";
 // Other components
 import EditExistingLabel from "@/components/pages/landing_page/ToDoList2/atoms/modal_actions/EditExistingLabel";
 // Material UI Icons

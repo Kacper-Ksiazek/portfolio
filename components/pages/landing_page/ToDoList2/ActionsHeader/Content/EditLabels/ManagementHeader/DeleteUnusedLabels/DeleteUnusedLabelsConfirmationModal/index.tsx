@@ -1,7 +1,7 @@
 // Tools
 import { forwardRef } from "react";
 // Types
-import type { LabelID } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
 // Other components
 import Communique from "./Communique";
 import LabelsToDeleteList from "./ListOfLabelsToDelete";

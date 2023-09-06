@@ -4,14 +4,15 @@ import { DEFAULT_LABELS } from "../default_labels";
 import { ensureLabelsName } from "./utils/ensureLabelsName";
 // Types
 import type { FunctionComponent, ReactNode, Dispatch, SetStateAction } from "react";
-import type { Labels, LabelsUpdatersContext as I_LabelsUpdatersContext, Label, LabelID } from "landing_page/ToDoList2/@types";
+import type { Label, LabelID, LabelsCollection } from "landing_page/ToDoList2/@types/Labels";
+import type { LabelsUpdatersContext as I_LabelsUpdatersContext } from "landing_page/ToDoList2/@types/Contexts";
 
 export const labelsUpdatersContext = createContext<I_LabelsUpdatersContext>({} as any);
 
 interface LabelsUpdatersContextProviderProps {
-    labels: Labels;
+    labels: LabelsCollection;
     children: ReactNode;
-    setLabels: Dispatch<SetStateAction<Labels>>;
+    setLabels: Dispatch<SetStateAction<LabelsCollection>>;
 }
 
 export const LabelsUpdatersContextProvider: FunctionComponent<LabelsUpdatersContextProviderProps> = (props) => {

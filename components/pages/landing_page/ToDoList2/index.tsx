@@ -8,12 +8,12 @@ import type { FunctionComponent } from "react";
 import Code from "@mui/icons-material/Code";
 // Other components
 import Filters from "./Filters";
+import TasksList from "./TasksList";
 import ActionsHeader from "./ActionsHeader";
 import ResetTasksAndLabelsToDefault from "./ResetTasksAndLabelsToDefault";
 // Styled Components
 import ContentWrapper from "./ContentWrapper";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
-import TasksList from "./TasksList";
 
 const ToDoList: FunctionComponent = () => {
     const { tasks } = useTasksListContext();

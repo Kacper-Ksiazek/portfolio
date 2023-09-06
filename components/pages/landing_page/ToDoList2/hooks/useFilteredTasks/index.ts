@@ -4,14 +4,14 @@ import { FiltersApplier } from "./FiltersApplier";
 import { useState, useEffect, useRef } from "react";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 // Types
-import type { Dispatch } from "react";
-import type { Task, TasksFilters } from "../../@types";
+import type { Task } from "landing_page/ToDoList2/@types/Tasks";
+import type { TasksFilters, UpdateTasksFilters } from "landing_page/ToDoList2/@types/Filters";
 
 interface UseFilteredTasksResult {
     filters: TasksFilters;
     filteredTasks: Task[];
     fadeContentOut: boolean;
-    updateFilters: Dispatch<Partial<TasksFilters>>;
+    updateFilters: UpdateTasksFilters;
 }
 
 const DURATION_OF_FADING_OUT: TimeInMS = 240;

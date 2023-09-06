@@ -1,16 +1,16 @@
 // Types
-import type { Labels, LabelID } from "landing_page/ToDoList2/@types";
+import type { LabelsCollection, LabelID } from "landing_page/ToDoList2/@types/Labels";
 
 export type Expectation = "PRESENCE" | "NON_PRESENCE";
 
 export type EnsureLabelsNameProps =
     | {
           label: string;
-          dataset: Labels;
+          dataset: LabelsCollection;
           expect: Expectation;
       }
     | {
           id: LabelID;
-          dataset: Labels;
+          dataset: LabelsCollection;
           expect: Expectation;
       };

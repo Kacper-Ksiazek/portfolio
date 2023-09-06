@@ -1,7 +1,7 @@
 // Tools
 import { createContext } from "react";
 // Types
-import type { TaskWithoutID } from "landing_page/ToDoList2/@types";
+import type { TaskWithoutID } from "landing_page/ToDoList2/@types/Tasks";
 
 export type UpdatedTask = Omit<TaskWithoutID, "isCompleted" | "createdAt">;
 

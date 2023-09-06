@@ -1,6 +1,6 @@
 // Types
 import type { Expectation } from "./@types";
-import type { LabelID } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
 
 export class LabelEnsuranceError extends Error {
     public constructor(private expectation: Expectation, private details: { label: string; id?: undefined } | { label?: undefined; id: LabelID }) {

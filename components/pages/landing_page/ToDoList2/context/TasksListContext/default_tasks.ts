@@ -1,5 +1,5 @@
 // Types
-import type { Task } from "../../@types";
+import type { Task } from "../../@types/Tasks";
 
 export const DEFAULT_TASKS: Task[] = [
     {

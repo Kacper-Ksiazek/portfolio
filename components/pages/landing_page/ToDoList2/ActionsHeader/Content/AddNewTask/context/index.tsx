@@ -5,7 +5,7 @@ import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { NewTaskBody } from "landing_page/ToDoList2/@types";
+import type { NewTaskBody } from "landing_page/ToDoList2/@types/Tasks";
 import type { I_AddNewTaskContext, UpdateNewTaskBodyFn } from "./@types";
 
 export const addNewTaskContext = createContext<I_AddNewTaskContext>({} as any);

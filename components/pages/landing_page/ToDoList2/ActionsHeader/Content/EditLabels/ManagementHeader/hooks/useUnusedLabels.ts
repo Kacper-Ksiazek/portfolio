@@ -2,7 +2,8 @@
 import { useMemo } from "react";
 import { useTaskCounterContext } from "../../../hooks/useTaskCounterContext";
 // Types
-import type { LabelID, TaskCounts } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
+import type { TaskCounts } from "landing_page/ToDoList2/@types/Counters";
 
 function unusedLabelFilter(singleMapEntry: [any, TaskCounts]): boolean {
     return singleMapEntry[1].inTotal == 0;

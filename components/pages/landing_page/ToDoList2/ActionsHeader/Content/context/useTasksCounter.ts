@@ -2,9 +2,10 @@
 import { useMemo } from "react";
 import { useTasksListContext, useLabelsContext } from "../../../hooks";
 // Types
-import type { LabelID, Labels, TaskCounts, TaskCountsCollection, TaskCountsCollectionEntranceTuple } from "landing_page/ToDoList2/@types";
+import type { LabelID, LabelsCollection } from "landing_page/ToDoList2/@types/Labels";
+import type { TaskCounts, TaskCountsCollection, TaskCountsCollectionEntranceTuple } from "landing_page/ToDoList2/@types/Counters";
 
-function TaskCounterFactory(labels: Labels): TaskCountsCollection {
+function TaskCounterFactory(labels: LabelsCollection): TaskCountsCollection {
     const labelsIDs = Object.keys(labels);
 
     return new Map<LabelID, TaskCounts>(

@@ -1,7 +1,8 @@
 // Tools
 import { useMemo } from "react";
 // Types
-import type { Task, TasksFilters } from "landing_page/ToDoList2/@types";
+import type { Task } from "landing_page/ToDoList2/@types/Tasks";
+import type { TasksFilters } from "landing_page/ToDoList2/@types/Filters";
 
 export function useFiltersDisability(filteredTasks: Task[], completionFilter: TasksFilters["completion"]): boolean {
     return useMemo<boolean>(() => {

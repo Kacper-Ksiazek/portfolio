@@ -1,8 +1,8 @@
 // Tools
 import { useEffect } from "react";
 // Types
-import type { Dispatch } from "react";
-import type { TasksFilters, Task } from "landing_page/ToDoList2/@types";
+import type { Task } from "landing_page/ToDoList2/@types/Tasks";
+import type { TasksFilters, UpdateTasksFilters } from "landing_page/ToDoList2/@types/Filters";
 
 /**
  * @param taskList a list of tasks to be checked for urgency
@@ -20,7 +20,7 @@ interface UseUrgencyFilterDisabilityParams {
     filteredTasks: Task[]; //
     filters: TasksFilters;
     fadeContentOut: boolean;
-    updateFilters: Dispatch<Partial<TasksFilters>>;
+    updateFilters: UpdateTasksFilters;
 }
 
 /**

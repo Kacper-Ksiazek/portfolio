@@ -1,14 +1,13 @@
 // Types
 import type { FunctionComponent, HTMLAttributes } from "react";
-// import type { StandardProps } from "@mui/types";
-import type { EditLabelsFilters } from "landing_page/ToDoList2/@types";
 import type { OptionWithAlias } from "@/components/atoms/forms/StyledSelect";
+import type { LabelsFilters } from "landing_page/ToDoList2/ActionsHeader/Content/EditLabels/@types";
 // Material UI Icons
 import SortByAlphaRoundedIcon from "@mui/icons-material/SortByAlphaRounded";
 // Other components
 import StyledSelect from "@/components/atoms/forms/StyledSelect";
 
-type Order = EditLabelsFilters["order"];
+type Order = LabelsFilters["order"];
 
 interface PickSortingOrderProps extends HTMLAttributes<HTMLSelectElement> {
     value: Order;

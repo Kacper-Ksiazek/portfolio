@@ -1,7 +1,7 @@
 // Tools
 import { alpha } from "@mui/material";
 // Types
-import type { ActionHeaderSection } from "landing_page/ToDoList2/@types";
+import type { ActionHeaderSection } from "landing_page/ToDoList2/ActionsHeader/@types";
 import type { FunctionComponent, Dispatch, SetStateAction, ReactNode } from "react";
 import type { SectionElement } from "@/components/atoms/NavigationBetweenSections/@types";
 // Other components

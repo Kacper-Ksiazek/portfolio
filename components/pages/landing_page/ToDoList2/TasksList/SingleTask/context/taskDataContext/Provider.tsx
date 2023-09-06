@@ -3,13 +3,13 @@ import { taskDataContext } from ".";
 import { useTaskRemover } from "./hooks/useTaskRemover";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { Task, TaskEditCallback } from "landing_page/ToDoList2/@types";
+import type { Task, EditTask, RemoveTask } from "landing_page/ToDoList2/@types/Tasks";
 
 interface TaskDataProviderContext {
     data: Task;
 
-    remove: () => void;
-    update: (cb: TaskEditCallback, skipSnackbar?: boolean) => void;
+    update: EditTask;
+    remove: RemoveTask;
 
     children: ReactNode;
 }

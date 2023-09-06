@@ -2,15 +2,16 @@
 import { useSingleTasksActions } from "./hooks/useSingleTasksActions";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelFilter, Task } from "landing_page/ToDoList2/@types";
+import type { Task } from "landing_page/ToDoList2/@types/Tasks";
+import type { SpecificLabelOnlyFilter } from "landing_page/ToDoList2/@types/Filters";
 // Other components
 import SingleTask from "./SingleTask";
 import TasksWrapper from "./TasksWrapper";
 
 interface TasksListProps {
     filteredTasks: Task[];
-    labelFilter: LabelFilter;
     fadeContentOut: boolean;
+    labelFilter: SpecificLabelOnlyFilter;
 }
 
 const TasksList: FunctionComponent<TasksListProps> = (props) => {

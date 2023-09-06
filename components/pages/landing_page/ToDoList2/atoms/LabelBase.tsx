@@ -1,6 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
-import { ColorInHEX, Label } from "landing_page/ToDoList2/@types";
+import { Label } from "landing_page/ToDoList2/@types/Labels";
 // Types
 import type { HTMLAttributes } from "react";
 // Styled components

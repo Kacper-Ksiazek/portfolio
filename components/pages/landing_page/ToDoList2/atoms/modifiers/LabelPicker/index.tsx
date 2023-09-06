@@ -4,7 +4,7 @@ import { useLabelsContext } from "landing_page/ToDoList2/hooks";
 import { LABEL_PICKER_ADD_LABEL_BUTTON_CLASS_NAME, LABEL_PICKER_SELECT_CLASS_NAME } from "./css_references";
 // Types
 import type { FunctionComponent } from "react";
-import type { LabelID } from "landing_page/ToDoList2/@types";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
 import type { OptionWithAlias } from "@/components/atoms/forms/StyledSelect";
 import type { ComponentThemeName } from "components/atoms/forms/_common_component_color_themes";
 // Other components

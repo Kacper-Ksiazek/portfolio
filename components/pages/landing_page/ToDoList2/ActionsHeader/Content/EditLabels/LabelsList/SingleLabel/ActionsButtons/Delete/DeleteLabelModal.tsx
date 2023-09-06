@@ -1,7 +1,7 @@
 // Tools
 import { forwardRef } from "react";
 // Types
-import type { Label } from "landing_page/ToDoList2/@types";
+import type { Label } from "landing_page/ToDoList2/@types/Labels";
 // Other components
 import ConfirmationModal from "@/components/atoms/ConfirmationModal";
 // Styled components

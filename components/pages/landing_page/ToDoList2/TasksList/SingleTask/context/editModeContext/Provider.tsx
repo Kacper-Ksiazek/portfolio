@@ -6,7 +6,7 @@ import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { useMobileEditMode } from "./_hooks/useMobileEditMode";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { TaskWithoutID } from "landing_page/ToDoList2/@types";
+import type { TaskWithoutID } from "landing_page/ToDoList2/@types/Tasks";
 
 export type UpdatedTask = Omit<TaskWithoutID, "isCompleted" | "createdAt">;
 

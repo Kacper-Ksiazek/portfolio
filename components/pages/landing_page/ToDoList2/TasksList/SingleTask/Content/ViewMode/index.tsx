@@ -1,6 +1,6 @@
 // Tools
 import type { FunctionComponent } from "react";
-import type { Task } from "landing_page/ToDoList2/@types";
+import type { Task } from "landing_page/ToDoList2/@types/Tasks";
 // Other components
 import Label from "./Label";
 import Title from "./TaskTitle";

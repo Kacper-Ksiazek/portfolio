@@ -5,7 +5,7 @@ import { useLabelsUpdatersContext } from "landing_page/ToDoList2/hooks";
 import { useSafeSnackbarCallback } from "@/hooks/useSafeSnackbarCallback";
 // Types
 import type { FunctionComponent } from "react";
-import type { Label, LabelID } from "landing_page/ToDoList2/@types";
+import type { Label, LabelID } from "landing_page/ToDoList2/@types/Labels";
 // Other components
 import DeleteLabelModal from "./DeleteLabelModal";
 import ModalOpeningButton from "landing_page/ToDoList2/atoms/modal_actions/__SingleLabelModifier/ModalOpeningButton";

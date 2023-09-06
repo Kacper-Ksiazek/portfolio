@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 // Types
-import type { Label} from "landing_page/ToDoList2/@types";
+import type { Label} from "landing_page/ToDoList2/@types/Labels";
 
 const DEFAULT_VALUE: Label = Object.seal({
     color:"#26c8e8",

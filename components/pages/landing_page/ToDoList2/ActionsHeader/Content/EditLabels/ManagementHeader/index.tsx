@@ -3,8 +3,9 @@ import { CSS_REFERENCES } from "./css_references";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import { useUnusedLabels } from "./hooks/useUnusedLabels";
 // Types
-import type { FunctionComponent, Dispatch } from "react";
-import type { EditLabelsFilters, LabelID } from "landing_page/ToDoList2/@types";
+import type { FunctionComponent } from "react";
+import type { LabelID } from "landing_page/ToDoList2/@types/Labels";
+import type { LabelsFilters, UpdateEditLabelsFilters } from "../@types";
 // Other components
 import PickSortingOrder from "./PickSortingOrder";
 import DeleteUnusedLabels from "./DeleteUnusedLabels";
@@ -16,10 +17,10 @@ import ManagementHeaderBase from "./Base";
 import StyledCheckbox from "@/components/atoms/forms/StyledCheckbox";
 
 interface ManagementHeaderProps {
-    filters: EditLabelsFilters;
+    filters: LabelsFilters;
     amountOfLabels: number;
 
-    updateFilters: Dispatch<Partial<EditLabelsFilters>>;
+    updateFilters: UpdateEditLabelsFilters;
 }
 
 const ManagementHeader: FunctionComponent<ManagementHeaderProps> = (props) => {
