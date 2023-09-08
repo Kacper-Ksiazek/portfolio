@@ -4,7 +4,6 @@ import { useArray } from "@/hooks/useArray";
 import { useSnackbar } from "@/hooks/useSnackbar";
 import { repeat } from "@/utils/client/styled/repeat";
 import { scaleToLeft } from "@/components/keyframes/outro";
-import { toDoListIntroAnimations } from "./introAnimations";
 import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 import { fadeSimple, scaleFromRight } from "@/components/keyframes/intro";
 // Types
@@ -98,12 +97,6 @@ const ToDoList: FunctionComponent = () => {
                 hideAfter: 5000,
             });
         }
-    };
-
-    const onVisible = () => {
-        setTimeout(() => {
-            setShowIntroAnimation(false);
-        }, 3000);
     };
 
     return (
