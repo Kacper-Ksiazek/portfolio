@@ -1,8 +1,9 @@
 // Tools
 import { useRef } from "react";
 import dynamic from "next/dynamic";
-import { useDelayedState } from "@/hooks/useDelayedState";
+import { useReleases } from "./hooks/useReleases";
 // Types
+import type { Release } from "./@types";
 import type { FunctionComponent, MutableRefObject } from "react";
 // Material UI Icons
 import Code from "@mui/icons-material/Code";
@@ -14,46 +15,36 @@ import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrap
 
 const Legacy = dynamic(() => import("./Legacy"));
 
-/**
- * Scrolls the view to the top of the component.
- */
-function alignViewToTop({ current }: MutableRefObject<HTMLDivElement | null>) {
-    if (current === null) return;
-    current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-    });
-}
+const DESCRIPTIONS: Record<Release, string> = {
+    legacy: `To do list project is undoubtedly a *part and parcel* of everyone's frontend developer portfolio, because this at the first glance unassuming piece of software is actually a *very accurate and reliable gauge of somebody's competencies*.`,
+    //
+    "2023": `I rebuilt it from scratch, as a hobby, *alongside my first year at university*. It's a *customizable* and complex app, but not overly intricate. I poured *a lot of effort* into this seemingly simple app, introducing *many interesting features*.`,
+};
 
 const ToDoList: FunctionComponent = () => {
     const mainWrapperRef = useRef<HTMLDivElement | null>(null);
 
-    const releaseToDisplay = useDelayedState<"legacy" | "2023">("2023", 300);
-
-    function toggleReleases() {
-        releaseToDisplay.setValue(releaseToDisplay.value === "2023" ? "legacy" : "2023");
-        alignViewToTop(mainWrapperRef);
-    }
+    const { currentRelease, releaseIsChanging, toggleReleases } = useReleases(mainWrapperRef);
 
     return (
         <DarkSectionWrapper
             ref={mainWrapperRef}
             shapesDirection="left"
             header={{
-                main: "React to do list",
+                main: "React to do list- 2023",
                 index: 1,
                 icon: <Code />,
-                description: `To do list project is undoubtedly a *part and parcel* of everyone's frontend developer portfolio, because this at the first glance unassuming piece of software is actually a *very accurate and reliable gauge of somebody's competencies*.`,
+                description: DESCRIPTIONS[currentRelease],
             }}
             githubURL={"https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page"}
         >
             <Box
                 sx={{
-                    opacity: releaseToDisplay.isChanging ? 0 : 1,
+                    opacity: releaseIsChanging ? 0 : 1,
                     transition: "opacity 0.3s ease-in-out",
                 }}
             >
-                {releaseToDisplay.value === "2023" ? <Release2023 /> : <Legacy />}
+                {currentRelease === "2023" ? <Release2023 /> : <Legacy />}
             </Box>
 
             <button onClick={toggleReleases}>mvp</button>
