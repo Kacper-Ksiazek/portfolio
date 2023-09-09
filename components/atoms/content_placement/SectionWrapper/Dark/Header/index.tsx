@@ -38,7 +38,12 @@ const DarkSectionHeader: FunctionComponent<DarkSectionHeaderProps> = (props) => 
                 </h4>
 
                 <Description className={CSS_REFERENCES.DESCRIPTION}>
-                    <span>{formatTextViaBolding(props.description)}</span>
+                    {(() => {
+                        if (typeof props.description === "string") {
+                            return <span>{formatTextViaBolding(props.description)}</span>;
+                        } //
+                        else return <>{props.description}</>;
+                    })()}
                 </Description>
 
                 <Divider className={CSS_REFERENCES.DIVIDER} />

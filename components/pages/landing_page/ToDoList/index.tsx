@@ -3,23 +3,17 @@ import { useRef } from "react";
 import dynamic from "next/dynamic";
 import { useReleases } from "./hooks/useReleases";
 // Types
-import type { Release } from "./@types";
-import type { FunctionComponent, MutableRefObject } from "react";
+import type { FunctionComponent } from "react";
 // Material UI Icons
 import Code from "@mui/icons-material/Code";
 // Material UI Components
 import Box from "@mui/material/Box";
 // Other components
+import * as HeaderElements from "./HeaderElements";
 import Release2023 from "./2023";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 
 const Legacy = dynamic(() => import("./Legacy"));
-
-const DESCRIPTIONS: Record<Release, string> = {
-    legacy: `To do list project is undoubtedly a *part and parcel* of everyone's frontend developer portfolio, because this at the first glance unassuming piece of software is actually a *very accurate and reliable gauge of somebody's competencies*.`,
-    //
-    "2023": `I rebuilt it from scratch, as a hobby, *alongside my first year at university*. It's a *customizable* and complex app, but not overly intricate. I poured *a lot of effort* into this seemingly simple app, introducing *many interesting features*.`,
-};
 
 const ToDoList: FunctionComponent = () => {
     const mainWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -31,10 +25,10 @@ const ToDoList: FunctionComponent = () => {
             ref={mainWrapperRef}
             shapesDirection="left"
             header={{
-                main: "React to do list- 2023",
+                main: <HeaderElements.Title currentRelease={currentRelease} isChanging={releaseIsChanging} />,
                 index: 1,
                 icon: <Code />,
-                description: DESCRIPTIONS[currentRelease],
+                description: <HeaderElements.Description currentRelease={currentRelease} isChanging={releaseIsChanging} />,
             }}
             githubURL={"https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page"}
         >
