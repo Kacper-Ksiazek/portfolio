@@ -22,13 +22,14 @@ const ConfirmationModal = forwardRef<HTMLButtonElement, ConfirmationModalProps>(
         }
 
         if (element instanceof HTMLElement) {
-            element?.addEventListener("click", openModal);
+            element.addEventListener("click", openModal);
 
             return () => {
-                element?.removeEventListener("click", openModal);
+                element.removeEventListener("click", openModal);
             };
         }
-    }, [ref]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ref, (ref as any).current]);
 
     return (
         <Modal
