@@ -8,6 +8,7 @@ import Code from "@mui/icons-material/Code";
 // Material UI Components
 import Box from "@mui/material/Box";
 // Other components
+import ReleasesToggler from "./ReleaseToggler";
 import * as HeaderElements from "./HeaderElements";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 
@@ -43,7 +44,7 @@ const ToDoListLayout = forwardRef<HTMLDivElement, ToDoListLayoutProps>((props, r
                 {props.children}
             </Box>
 
-            <button onClick={toggleReleases}>mvp</button>
+            <ReleasesToggler currentRelease={currentRelease} toggleReleases={toggleReleases} />
         </DarkSectionWrapper>
     );
 });

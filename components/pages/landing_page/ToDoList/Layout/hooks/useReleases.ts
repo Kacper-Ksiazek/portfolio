@@ -26,9 +26,12 @@ export function useReleases(mainWrapperRef: MutableRefObject<HTMLDivElement | nu
 
     function toggleReleases() {
         alignViewToTop(mainWrapperRef);
-        setTimeout(() => {
-            releaseToDisplay.setValue(releaseToDisplay.value === "2023" ? "legacy" : "2023");
-        }, 100);
+        setTimeout(
+            () => {
+                releaseToDisplay.setValue(releaseToDisplay.value === "2023" ? "legacy" : "2023");
+            },
+            releaseToDisplay.value === "legacy" ? 50 : 350
+        );
     }
 
     return {
