@@ -5,8 +5,8 @@ import { allignViewport } from "./utils/alignViewport";
 import { useLabelsVaryFromDefault, useTasksVaryFromDefault } from "./hooks";
 import { useTasksListContext, useLabelsContext, useLabelsUpdatersContext } from "../hooks";
 // Other components
-import ModalOpeningButton from "./ModalOpeningButton";
 import ResetAffirmationModal from "./ResetAffirmationModal";
+import ModalOpeningButton from "landing_page/ToDoList/Layout/_ResetButton";
 
 const ResetTasksAndLabelsToDefault = forwardRef<HTMLDivElement>((_, ref) => {
     const { displaySnackbar } = useSnackbar();

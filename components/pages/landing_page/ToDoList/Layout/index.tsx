@@ -12,6 +12,8 @@ import ReleasesToggler from "./ReleaseToggler";
 import * as HeaderElements from "./HeaderElements";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
 
+export const RESET_BUTTON_WRAPPER_ID: string = "to-do-list-reset-button-wrapper";
+
 interface ToDoListLayoutProps {
     currentRelease: Release;
     releaseIsChanging: boolean;
@@ -44,7 +46,20 @@ const ToDoListLayout = forwardRef<HTMLDivElement, ToDoListLayoutProps>((props, r
                 {props.children}
             </Box>
 
-            <ReleasesToggler currentRelease={currentRelease} toggleReleases={toggleReleases} />
+            <Box
+                component="footer"
+                sx={{
+                    marginTop: "32px",
+                    display: "flex",
+                    width: "100%",
+                    maxWidth: "1040px",
+                    justifyContent: "space-between",
+                }}
+            >
+                <div id={RESET_BUTTON_WRAPPER_ID}></div>
+
+                <ReleasesToggler currentRelease={currentRelease} toggleReleases={toggleReleases} />
+            </Box>
         </DarkSectionWrapper>
     );
 });
