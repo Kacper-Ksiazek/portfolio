@@ -28,7 +28,6 @@ const StyledDatePicker: FunctionComponent<StyledDatePickerProps> = (props) => {
     const timeInputRef = useRef<HTMLInputElement>(null);
 
     function open() {
-        console.log(timeInputRef.current);
         if (timeInputRef.current) timeInputRef.current.showPicker();
     }
 
