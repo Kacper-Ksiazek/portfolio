@@ -1,7 +1,7 @@
 // Tools
-import { useState, useRef } from "react";
 import { useArray } from "@/hooks/useArray";
 import { useSnackbar } from "@/hooks/useSnackbar";
+import { useState, useRef, useMemo } from "react";
 import { repeat } from "@/utils/client/styled/repeat";
 import { scaleToLeft } from "@/components/keyframes/outro";
 import { chainAnimations } from "@/utils/client/styled/chainAnimations";
@@ -12,16 +12,19 @@ import type { FunctionComponent } from "react";
 // Other components
 import AddNewTask from "./AddNewTask";
 import SingleTask from "./SingleTask";
+import ResetButton from "landing_page/ToDoList/Layout/_ResetButton";
 // Other components
 import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Styled Components
 import NoResults from "./NoResults";
 import OverflowScrollDiv from "@/components/atoms/content_placement/OverflowScrollDiv";
 
+const DEFAULT_TASKS: string[] = ["Go and help mum with laundry", "Mow the lawn for my grandparents", "Show everyone around how to make exquisite software"];
+
 const ToDoList: FunctionComponent = () => {
     const { displaySnackbar } = useSnackbar();
 
-    const tasksArray = useArray<string>(["Go and help mum with laundry", "Mow the lawn for my grandparents", "Show everyone around how to make exquisite software"]);
+    const tasksArray = useArray<string>(DEFAULT_TASKS);
     const [freshlyCreatedTaskIndex, setFreshlyCreatedTaskIndex] = useState<number>(-1);
     const [showIntroAnimation, setShowIntroAnimation] = useState<boolean>(true);
     const taskWrapperElement = useRef<HTMLDivElement | null>(null);
@@ -96,9 +99,27 @@ const ToDoList: FunctionComponent = () => {
         }
     };
 
+    function resetTasksList() {
+        tasksArray.clear();
+
+        for (const task of DEFAULT_TASKS) {
+            tasksArray.push(task);
+        }
+    }
+
+    const disableResetButton: boolean = useMemo<boolean>(() => {
+        if (tasksArray.entries.length !== DEFAULT_TASKS.length) return false;
+
+        for (const [index, task] of tasksArray.entries.entries()) {
+            if (task !== DEFAULT_TASKS[index]) return false;
+        }
+
+        return true;
+    }, [tasksArray.entries]);
+
     return (
         <TransformWhenVisible
-            sx={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }} //
+            sx={{ width: "100vw", display: "flex", flexDirection: "column", alignItems: "center" }} //
             to={(theme): Styles => ({
                 ".single-task-wrapper": {
                     width: "100%",
@@ -166,6 +187,8 @@ const ToDoList: FunctionComponent = () => {
                 ref={inputElement} //
                 saveNewTask={addNewTask}
             />
+
+            <ResetButton disabled={disableResetButton} onClick={resetTasksList} />
         </TransformWhenVisible>
     );
 };
