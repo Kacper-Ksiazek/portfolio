@@ -16,7 +16,7 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
 
     const { displaySnackbar } = useSnackbar();
     const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>("to-do-list-tasks", DEFAULT_TASKS, {
-        validate: (dataFromLocalStorage) => localStorageValidator(dataFromLocalStorage, DEFAULT_TASKS[0]),
+        validator: localStorageValidator,
     });
 
     function remove(idToBeRemoved: Task["id"]) {
