@@ -35,7 +35,7 @@ const ToDoList: FunctionComponent = () => {
                 labelFilter={filters.withParticularLabel}
             />
 
-            <ResetTasksAndLabelsToDefault ref={contentWrapperRef} />
+            <ResetTasksAndLabelsToDefault />
         </ContentWrapper>
     );
 };

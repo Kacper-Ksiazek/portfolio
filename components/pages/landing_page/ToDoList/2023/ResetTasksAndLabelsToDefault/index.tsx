@@ -1,17 +1,15 @@
 // Tools
-import { useRef, forwardRef } from "react";
 import { useSnackbar } from "@/hooks/useSnackbar";
 import { allignViewport } from "./utils/alignViewport";
 import { useLabelsVaryFromDefault, useTasksVaryFromDefault } from "./hooks";
 import { useTasksListContext, useLabelsContext, useLabelsUpdatersContext } from "../hooks";
+// Types
+import type { FunctionComponent } from "react";
 // Other components
-import ResetAffirmationModal from "./ResetAffirmationModal";
-import ModalOpeningButton from "landing_page/ToDoList/Layout/_ResetButton";
+import ResetButton from "landing_page/ToDoList/Layout/_ResetButton";
 
-const ResetTasksAndLabelsToDefault = forwardRef<HTMLDivElement>((_, ref) => {
+const ResetTasksAndLabelsToDefault: FunctionComponent = () => {
     const { displaySnackbar } = useSnackbar();
-
-    const resetTasksButtonRef = useRef<HTMLButtonElement>(null);
 
     const { labels } = useLabelsContext();
     const { resetToDefault: resetLabels } = useLabelsUpdatersContext();
@@ -45,20 +43,11 @@ const ResetTasksAndLabelsToDefault = forwardRef<HTMLDivElement>((_, ref) => {
     }
 
     return (
-        <>
-            <ModalOpeningButton
-                ref={resetTasksButtonRef} //
-                disabled={resetIsPossible === false}
-            />
-
-            <ResetAffirmationModal
-                ref={resetTasksButtonRef} //
-                performReset={handleReset}
-            />
-        </>
+        <ResetButton
+            disabled={!resetIsPossible} //
+            handleReset={handleReset}
+        />
     );
-});
-
-ResetTasksAndLabelsToDefault.displayName = "ResetTasksAndLabelsToDefault";
+};
 
 export default ResetTasksAndLabelsToDefault;

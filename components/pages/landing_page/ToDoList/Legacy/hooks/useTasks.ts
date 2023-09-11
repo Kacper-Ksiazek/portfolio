@@ -98,10 +98,20 @@ export function useTasks(params: UseTasksParams): UseTasksResult {
     }
 
     function resetTasksList() {
-        tasksArray.clear();
-
-        for (const task of DEFAULT_TASKS) {
-            tasksArray.push(task);
+        try {
+            tasksArray.clear();
+            for (const task of DEFAULT_TASKS) {
+                tasksArray.push(task);
+            }
+            displaySnackbar({
+                msg: "Tasks list has been reset successfully",
+                severity: "success",
+            });
+        } catch (e) {
+            displaySnackbar({
+                msg: "Something went wrong while resetting the tasks list",
+                severity: "error",
+            });
         }
     }
 

@@ -74,7 +74,7 @@ const ToDoList: FunctionComponent = () => {
                 saveNewTask={addTask}
             />
 
-            <ResetButton disabled={disableResetButton} onClick={resetTasksList} />
+            <ResetButton disabled={disableResetButton} handleReset={resetTasksList} />
         </TransformWhenVisible>
     );
 };
