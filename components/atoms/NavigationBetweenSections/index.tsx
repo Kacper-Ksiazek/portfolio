@@ -1,5 +1,5 @@
 // Tools
-import * as CSSClasses from "./CSSClasses";
+import { CSS_REFERENCES } from "./css_references";
 import { parseSection } from "./utils/parseSection";
 // Types
 import type { ReactNode } from "react";
@@ -44,11 +44,11 @@ const NavigationBetweenSections = <T extends string>(props: NavigationBetweenSec
                 }
 
                 return (
-                    <div key={value as any} className={CSSClasses.STEP_WRAPPER}>
-                        {index ? <Divider className={CSSClasses.DIVIDER} /> : <span />}
+                    <div key={value as any} className={CSS_REFERENCES.STEP_WRAPPER}>
+                        {index ? <Divider className={CSS_REFERENCES.DIVIDER} /> : <span />}
 
                         <SingleNavigationStep
-                            className={CSSClasses.STEP_BUTTON} //
+                            className={CSS_REFERENCES.STEP_BUTTON} //
                             selected={props.currentSection === value}
                             disabled={disabled}
                             //

@@ -1,12 +1,12 @@
 // Tools
 import { styled } from "@mui/material";
-import * as CSSClasses from "../CSSClasses";
+import { CSS_REFERENCES } from "../css_references";
 // Styled components
 export default styled("div")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
 
-    [`.${CSSClasses.STEP_WRAPPER}`]: {
+    [`.${CSS_REFERENCES.STEP_WRAPPER}`]: {
         display: "flex",
         alignItems: "center",
     },
@@ -16,17 +16,17 @@ export default styled("div")(({ theme }) => ({
         marginBottom: "8px",
         width: "100%",
 
-        [`.${CSSClasses.DIVIDER}`]: {
+        [`.${CSS_REFERENCES.DIVIDER}`]: {
             display: "none",
         },
 
-        [`.${CSSClasses.STEP_WRAPPER}`]: {
+        [`.${CSS_REFERENCES.STEP_WRAPPER}`]: {
             width: "100%",
             "&:not(&:nth-of-type(1))": {
                 marginTop: "8px",
             },
 
-            [`.${CSSClasses.STEP_BUTTON}`]: {
+            [`.${CSS_REFERENCES.STEP_BUTTON}`]: {
                 border: `1px solid ${theme.palette.secondary.main}`,
                 width: "100%",
                 padding: "8px 12px",
