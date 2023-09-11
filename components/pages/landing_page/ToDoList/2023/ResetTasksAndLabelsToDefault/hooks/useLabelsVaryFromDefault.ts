@@ -28,7 +28,9 @@ export function useLabelsVaryFromDefault(labels: LabelsCollection) {
 
             // If any of the properties of the label is different than the corresponding default label, then the labels vary from default
             for (const property of PROPERTIES_TO_CHECK) {
-                if (labels[labelID][property] !== correspondingDefaultLabel[property]) return true;
+                if (labels[labelID][property] !== correspondingDefaultLabel[property]) {
+                    return true;
+                }
             }
         }
         return false;

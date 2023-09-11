@@ -44,7 +44,7 @@ const ResetTasksAndLabelsToDefault: FunctionComponent = () => {
 
     return (
         <ResetButton
-            disabled={!resetIsPossible} //
+            disabled={resetIsPossible === false} //
             handleReset={handleReset}
         />
     );
