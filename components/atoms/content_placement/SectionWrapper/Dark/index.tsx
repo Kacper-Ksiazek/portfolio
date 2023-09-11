@@ -1,7 +1,6 @@
 // Tools
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 // Types
-import type { FunctionComponent } from "react";
 import type { DarkSectionWrapperProps } from "./@types";
 // Other components
 import Header from "./Header";
@@ -10,13 +9,14 @@ import GitHubRedirection from "./GitHubRedirection";
 // Styled components
 import { DarkWrapperBase, StyledContentWrapper } from "./styled_components";
 
-const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) => {
+const DarkSectionWrapper = forwardRef<HTMLDivElement, DarkSectionWrapperProps>((props, ref) => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
     return (
         <DarkWrapperBase
+            ref={ref} //
             id={props.id}
-            sx={props.sx} ///
+            sx={props.sx}
             className={props.className}
         >
             <Background direction={props.shapesDirection} />
@@ -31,7 +31,9 @@ const DarkSectionWrapper: FunctionComponent<DarkSectionWrapperProps> = (props) =
             </StyledContentWrapper>
         </DarkWrapperBase>
     );
-};
+});
+
+DarkSectionWrapper.displayName = "DarkSectionWrapper";
 
 DarkSectionWrapper.defaultProps = {
     shapesDirection: "left",

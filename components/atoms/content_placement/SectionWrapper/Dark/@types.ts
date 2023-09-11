@@ -4,8 +4,8 @@ import type { SxProps } from "@mui/material";
 
 export interface HeaderProps {
     index: number;
-    main: string;
-    description: string;
+    main: string | ReactNode;
+    description: string | ReactNode;
     icon: ReactNode;
 
     render?: boolean;

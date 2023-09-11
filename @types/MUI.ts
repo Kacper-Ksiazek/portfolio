@@ -5,7 +5,9 @@ export { Theme };
 
 export type Styles = SystemStyleObject<Theme>;
 
-export type SxProps = Styles | ((theme: Theme) => Styles);
+export type SxPropsFn = (theme: Theme) => Styles;
+
+export type SxProps = Styles | SxPropsFn;
 
 export type MUI_Color = "primary" | "secondary" | "error" | "success" | "warning";
 
