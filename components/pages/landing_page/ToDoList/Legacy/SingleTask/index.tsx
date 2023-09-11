@@ -18,8 +18,8 @@ interface SingleTaskProps {
     task: string;
     index: number;
     freshlyCreated: boolean;
+
     deleteThisTask: () => void;
-    showIntroAnimation: boolean;
     modifyThisTask: (value: string) => void;
 }
 
