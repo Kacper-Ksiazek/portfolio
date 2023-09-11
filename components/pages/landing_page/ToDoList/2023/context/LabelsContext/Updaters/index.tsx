@@ -1,6 +1,6 @@
 // Tools
 import { createContext } from "react";
-import { DEFAULT_LABELS } from "../default_labels";
+import { getDefaultLabels } from "../default_labels";
 import { ensureLabelsName } from "./utils/ensureLabelsName";
 // Types
 import type { FunctionComponent, ReactNode, Dispatch, SetStateAction } from "react";
@@ -65,12 +65,13 @@ export const LabelsUpdatersContextProvider: FunctionComponent<LabelsUpdatersCont
             else {
                 delete labels[labelToBeRemoved];
             }
-            return labels;
+
+            return JSON.parse(JSON.stringify(labels));
         });
     }
 
     function resetToDefault() {
-        props.setLabels(DEFAULT_LABELS);
+        props.setLabels(getDefaultLabels());
     }
 
     return (

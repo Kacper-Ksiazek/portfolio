@@ -39,3 +39,7 @@ export const DEFAULT_LABELS: LabelsCollection = {
         name: "Family",
     },
 };
+
+export function getDefaultLabels(): LabelsCollection {
+    return JSON.parse(JSON.stringify(DEFAULT_LABELS));
+}

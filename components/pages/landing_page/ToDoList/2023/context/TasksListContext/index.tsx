@@ -1,6 +1,6 @@
 // Tools
 import { useRef, createContext } from "react";
-import { DEFAULT_TASKS } from "./default_tasks";
+import { getDefaultTasks } from "./default_tasks";
 import { useSnackbar } from "@/hooks/useSnackbar";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { localStorageValidator, scrollToTheListsTop } from "./utils";
@@ -8,6 +8,7 @@ import { localStorageValidator, scrollToTheListsTop } from "./utils";
 import type { FunctionComponent, ReactNode } from "react";
 import type { Task, TaskEditCallback, TaskWithoutID } from "landing_page/ToDoList/2023/@types/Tasks";
 import type { TasksListContext as I_TasksListContext } from "landing_page/ToDoList/2023/@types/Contexts";
+import { get } from "http";
 
 export const taskListContext = createContext<I_TasksListContext>({} as any);
 
@@ -15,7 +16,7 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
     const tasksWrapperRef = useRef<HTMLElement | null>(null);
 
     const { displaySnackbar } = useSnackbar();
-    const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>("to-do-list-tasks", DEFAULT_TASKS, {
+    const [tasks, setTasks, isLoaded] = useLocalStorage<Task[]>("to-do-list-tasks", getDefaultTasks(), {
         validator: localStorageValidator,
     });
 
@@ -61,7 +62,7 @@ export const TaskListContextProvider: FunctionComponent<{ children: ReactNode }>
     }
 
     function resetToDefault() {
-        setTasks(DEFAULT_TASKS);
+        setTasks(getDefaultTasks());
     }
 
     return (

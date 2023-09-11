@@ -111,3 +111,7 @@ export const DEFAULT_TASKS: Task[] = [
         createdAt: 1681578091298,
     },
 ];
+
+export function getDefaultTasks(): Task[] {
+    return JSON.parse(JSON.stringify(DEFAULT_TASKS));
+}

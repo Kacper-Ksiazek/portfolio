@@ -1,6 +1,7 @@
 // Tools
 import { createContext } from "react";
-import { DEFAULT_LABELS } from "./default_labels";
+import { getDefaultLabels } from "./default_labels";
+import { validator } from "./localStorageEntryValidator";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -12,7 +13,11 @@ import { LabelsUpdatersContextProvider } from "./Updaters";
 export const labelsContext = createContext<I_LabelsContext>({} as any);
 
 export const LabelsContextProvider: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-    const [labelsFromLocalStorage, setLabels, _hasFullyLoaded] = useLocalStorage<LabelsCollection>("to-do-list-labels", DEFAULT_LABELS);
+    const [labelsFromLocalStorage, setLabels, _hasFullyLoaded] = useLocalStorage<LabelsCollection>(
+        "to-do-list-labels", //
+        getDefaultLabels(),
+        { validator }
+    );
 
     function getLabelWithID(id: LabelID): Label {
         const result: Label | undefined = labelsFromLocalStorage[id];
@@ -37,7 +42,10 @@ export const LabelsContextProvider: FunctionComponent<{ children: ReactNode }> =
                 _hasFullyLoaded,
             }}
         >
-            <LabelsUpdatersContextProvider labels={labelsFromLocalStorage} setLabels={setLabels}>
+            <LabelsUpdatersContextProvider
+                labels={labelsFromLocalStorage} //
+                setLabels={setLabels}
+            >
                 {children}
                 {/*  */}
             </LabelsUpdatersContextProvider>
