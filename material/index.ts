@@ -31,6 +31,8 @@ export const lightTheme = createTheme({
         paper: "#3D2645",
 
         lightAnimationBar: "#F2E8EF",
+        darkAnimationBar: "#452B4F",
+
         lightSectionBackground: "#fff",
         darkSectionBackground: "#34203B",
 
@@ -55,9 +57,11 @@ export const darkTheme = createTheme({
         default: "#161619",
         paper: "#121212",
 
+        darkAnimationBar: "#303030",
         lightAnimationBar: "#474748",
-        lightSectionBackground: "#1D1D1F",
+
         darkSectionBackground: "#161619",
+        lightSectionBackground: "#1D1D1F",
 
         MUIFormElementsBorder: alpha("#fff", 0.23),
         MUIFormElementsBackground: alpha("#000", 0.2),

@@ -69,7 +69,7 @@ export const stylesWhenVisible: SxPropsFn = function (theme) {
                     content: "''",
                     ...theme.mixins.absolute_full,
                     zIndex: 1,
-                    background: theme.palette.background.lightAnimationBar,
+                    background: theme.palette.background.darkAnimationBar,
                 },
             },
             //
@@ -82,7 +82,7 @@ export const stylesWhenVisible: SxPropsFn = function (theme) {
                         content: "''",
                         ...theme.mixins.absolute_full,
                         zIndex: 1,
-                        background: theme.palette.background.lightAnimationBar,
+                        background: theme.palette.background.darkAnimationBar,
                     },
                     "&>*": {
                         animation: `${fadeSimple} .00001s 1.2s both`,

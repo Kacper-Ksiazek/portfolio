@@ -20,7 +20,7 @@ export const stylesWhenVisible: SxPropsFn = function (theme) {
                 "&::after": {
                     content: "''",
                     ...theme.mixins.absolute_full,
-                    background: theme.palette.background.lightAnimationBar,
+                    background: theme.palette.background.darkAnimationBar,
                     borderRadius: "3px",
                 },
                 ...repeat(4, (index) => {

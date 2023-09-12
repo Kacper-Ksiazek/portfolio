@@ -7,8 +7,9 @@ import type { Theme } from "@mui/material/styles";
 declare module "@mui/material/styles/createPalette" {
     interface TypeBackground {
         lightAnimationBar: string;
-        lightSectionBackground: string;
+        darkAnimationBar: string;
 
+        lightSectionBackground: string;
         darkSectionBackground: string;
 
         MUIFormElementsBorder: string;
@@ -33,9 +34,10 @@ interface CreateThemeParams {
         default: string;
         paper: string;
 
-        darkSectionBackground: string;
-
+        darkAnimationBar: string;
         lightAnimationBar: string;
+
+        darkSectionBackground: string;
         lightSectionBackground: string;
 
         MUIFormElementsBorder: string;
