@@ -2,14 +2,15 @@
 import { keyframes } from "@mui/material";
 import { repeat } from "@/utils/client/styled/repeat";
 import { chainAnimations } from "@/utils/client/styled/chainAnimations";
+// Keyframes
 import { fadeSimple, scaleFromBottom, scaleFromLeft, scaleFromTop } from "@/components/keyframes/intro";
+import { scaleToBottom, scaleToLeft, scaleToRight } from "@/components/keyframes/outro";
 // Selectors
 import { SELECTORS as ACTIONS_HEADER } from "./css_references";
 import { SELECTORS as PROGRESS_TRACKER } from "./Content/ProgressTracker/css_references";
 import { SELECTORS as NAVIGATION } from "components/atoms/NavigationBetweenSections/css_references";
 // Types
 import { SxPropsFn } from "@/@types/MUI";
-import { scaleToBottom, scaleToLeft, scaleToRight } from "@/components/keyframes/outro";
 
 const fadeSimple2 = keyframes({
     from: {
@@ -35,7 +36,7 @@ export const stylesWhenVisible: SxPropsFn = function (theme) {
         // 1. ACTIONS_HEADER
         //
         [ACTIONS_HEADER.ACTIONS_HEADER_WRAPPER]: {
-            animation: `${scaleFromLeft} .3s .1s both linear`,
+            animation: `${scaleFromLeft} .4s .1s both linear`,
             //
             // 1.1 NAVIGATION:
             // This panel: Progress Tracker / Add new task / Edit Labels --- Hide
@@ -102,8 +103,5 @@ export const stylesWhenVisible: SxPropsFn = function (theme) {
                 },
             },
         },
-        //
-        // 2. FILTERS
-        //
     };
 };

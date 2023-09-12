@@ -8,4 +8,5 @@ export default styled(FullWithSectionWithResponsiveMargin)(({ theme }) => ({
     flexDirection: "column",
     maxWidth: "1040px",
     margin: 0,
+    gap: "16px",
 }));

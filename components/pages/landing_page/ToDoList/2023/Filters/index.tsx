@@ -1,5 +1,6 @@
 // Tools
 import { CSS_REFERENCES } from "./css_references";
+import { stylesWhenVisible } from "./styles_when_visible";
 import { useFiltersDisability, useLabelsOptions, useUrgencyFilterDisability } from "./hooks";
 // Types
 import type { FunctionComponent } from "react";
@@ -10,6 +11,7 @@ import type { TasksFilters, UpdateTasksFilters } from "landing_page/ToDoList/202
 // Other components
 import AmountOfTasks from "./AmountOfTasks";
 import StyledSelect from "@/components/atoms/forms/StyledSelect";
+import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Material UI Icons
 import CategoryRoundedIcon from "@mui/icons-material/CategoryRounded";
 import SortByAlphaRoundedIcon from "@mui/icons-material/SortByAlphaRounded";
@@ -37,91 +39,100 @@ const Filters: FunctionComponent<FiltersProps> = (props) => {
     const disableFilterByLabel: boolean = props.filters.withParticularLabel === "_ALL" && props.filteredTasks.length === 0;
 
     return (
-        <FiltersWrapper>
-            <StyledSelect
-                id={CSS_REFERENCES.SELECT.LABEL}
-                value={props.filters.withParticularLabel} //
-                options={[
-                    {
-                        alias: "All",
-                        value: "_ALL",
-                    },
-                    ...labelsOptions,
-                ]}
-                disabled={disableFilterByLabel}
-                startAdornment={<CategoryRoundedIcon />}
-                onChange={(e) =>
-                    props.updateFilters({
-                        withParticularLabel: e.target.value,
-                        completion: "_ALL",
-                    })
-                }
-            />
-            <StyledSelect
-                id={CSS_REFERENCES.SELECT.URGENCY_FILTER}
-                value={filters.urgencyFilter}
-                startAdornment={<PriorityHighRoundedIcon />}
-                onChange={(e) => props.updateFilters({ urgencyFilter: e.target.value })}
-                disabled={disableUrgencyFilter}
-                options={[
-                    {
-                        alias: "Default",
-                        value: "_DEFAULT",
-                    },
-                    {
-                        alias: "Urgent first",
-                        value: "URGENT_FIRST",
-                    },
-                    {
-                        alias: "Urgent only",
-                        value: "URGENT_ONLY",
-                    },
-                ]}
-            />
-            <StyledSelect
-                id={CSS_REFERENCES.SELECT.ORDER}
-                value={props.filters.sort}
-                startAdornment={<SortByAlphaRoundedIcon />}
-                onChange={(e) => props.updateFilters({ sort: e.target.value })}
-                disabled={disableSortingTools}
-                options={[
-                    {
-                        alias: "Oldest",
-                        value: "OLDEST",
-                    },
-                    {
-                        alias: "Newest",
-                        value: "NEWEST",
-                    },
-                ]}
-            />
-            <StyledSelect
-                id={CSS_REFERENCES.SELECT.COMPLETION_FILTER}
-                value={props.filters.completion}
-                startAdornment={<CheckCircleOutlineRoundedIcon />}
-                onChange={(e) => props.updateFilters({ completion: e.target.value })}
-                disabled={disableFilteringByCompletion}
-                options={[
-                    {
-                        alias: "All",
-                        value: "_ALL",
-                    },
-                    {
-                        alias: "Completed",
-                        value: "COMPLETED_ONLY",
-                    },
-                    {
-                        alias: "Not completed",
-                        value: "NOT_COMPLETED_ONLY",
-                    },
-                ]}
-            />
+        <TransformWhenVisible to={stylesWhenVisible}>
+            <FiltersWrapper id={CSS_REFERENCES.MAIN_WRAPPER}>
+                <div id={CSS_REFERENCES.SELECT.LABEL} className={CSS_REFERENCES.INTRO_ANIMATION_ELEMENT}>
+                    <StyledSelect
+                        value={props.filters.withParticularLabel} //
+                        options={[
+                            {
+                                alias: "All",
+                                value: "_ALL",
+                            },
+                            ...labelsOptions,
+                        ]}
+                        disabled={disableFilterByLabel}
+                        startAdornment={<CategoryRoundedIcon />}
+                        onChange={(e) =>
+                            props.updateFilters({
+                                withParticularLabel: e.target.value,
+                                completion: "_ALL",
+                            })
+                        }
+                    />
+                </div>
 
-            <AmountOfTasks
-                id={CSS_REFERENCES.AMOUNT_OF_TASKS} //
-                quantity={filteredTasks.length}
-            />
-        </FiltersWrapper>
+                <div id={CSS_REFERENCES.SELECT.URGENCY_FILTER} className={CSS_REFERENCES.INTRO_ANIMATION_ELEMENT}>
+                    <StyledSelect
+                        value={filters.urgencyFilter}
+                        startAdornment={<PriorityHighRoundedIcon />}
+                        onChange={(e) => props.updateFilters({ urgencyFilter: e.target.value })}
+                        disabled={disableUrgencyFilter}
+                        options={[
+                            {
+                                alias: "Default",
+                                value: "_DEFAULT",
+                            },
+                            {
+                                alias: "Urgent first",
+                                value: "URGENT_FIRST",
+                            },
+                            {
+                                alias: "Urgent only",
+                                value: "URGENT_ONLY",
+                            },
+                        ]}
+                    />
+                </div>
+
+                <div id={CSS_REFERENCES.SELECT.ORDER} className={CSS_REFERENCES.INTRO_ANIMATION_ELEMENT}>
+                    <StyledSelect
+                        value={props.filters.sort}
+                        startAdornment={<SortByAlphaRoundedIcon />}
+                        onChange={(e) => props.updateFilters({ sort: e.target.value })}
+                        disabled={disableSortingTools}
+                        options={[
+                            {
+                                alias: "Oldest",
+                                value: "OLDEST",
+                            },
+                            {
+                                alias: "Newest",
+                                value: "NEWEST",
+                            },
+                        ]}
+                    />
+                </div>
+
+                <div id={CSS_REFERENCES.SELECT.COMPLETION_FILTER} className={CSS_REFERENCES.INTRO_ANIMATION_ELEMENT}>
+                    <StyledSelect
+                        value={props.filters.completion}
+                        startAdornment={<CheckCircleOutlineRoundedIcon />}
+                        onChange={(e) => props.updateFilters({ completion: e.target.value })}
+                        disabled={disableFilteringByCompletion}
+                        options={[
+                            {
+                                alias: "All",
+                                value: "_ALL",
+                            },
+                            {
+                                alias: "Completed",
+                                value: "COMPLETED_ONLY",
+                            },
+                            {
+                                alias: "Not completed",
+                                value: "NOT_COMPLETED_ONLY",
+                            },
+                        ]}
+                    />
+                </div>
+
+                <AmountOfTasks
+                    id={CSS_REFERENCES.AMOUNT_OF_TASKS} //
+                    quantity={filteredTasks.length}
+                />
+            </FiltersWrapper>
+        </TransformWhenVisible>
     );
 };
 

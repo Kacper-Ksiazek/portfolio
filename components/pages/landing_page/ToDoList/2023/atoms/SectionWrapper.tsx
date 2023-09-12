@@ -7,7 +7,4 @@ export default styled("div")(({ theme }) => ({
     padding: "12px",
     boxSizing: "border-box",
     width: "100%",
-    "&:not(&:nth-of-type(1))": {
-        marginTop: "12px",
-    },
 }));

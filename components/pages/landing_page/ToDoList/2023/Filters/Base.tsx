@@ -7,6 +7,12 @@ import SectionWrapper from "../atoms/SectionWrapper";
 export default styled(SectionWrapper)(({ theme }) => ({
     gap: "8px",
 
+    [SELECTORS.INTRO_ANIMATION_ELEMENT]: {
+        "&>*": {
+            width: "100%",
+        },
+    },
+
     ".MuiOutlinedInput-root": {
         height: "42px",
     },
