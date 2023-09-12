@@ -11,8 +11,16 @@ export const SINGLE_TASK_STAGES = {
 export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
     alias: "to-do-list--tasks-list--single-task",
     structure: {
+        SINGLE_TASK_WRAPPER: {
+            ref_value: "single-task-wrapper",
+            ref_type: "CSS_CLASS",
+        },
         CONTENT: {
             VIEW_MODE: {
+                LABELS_WRAPPER: {
+                    ref_value: "labels-wrapper",
+                    ref_type: "CSS_CLASS",
+                },
                 LABEL: {
                     ref_value: "label",
                     ref_type: "CSS_CLASS",
@@ -37,6 +45,14 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
         },
         COMPLETION_BUTTON: {
             ref_value: "completion-btn",
+            ref_type: "CSS_CLASS",
+        },
+        COMPLETION_BUTTON_FANCY_SHAPES: {
+            ref_value: "completion-btn-fancy-shapes",
+            ref_type: "CSS_CLASS",
+        },
+        MANAGE_BUTTONS_WRAPPER: {
+            ref_value: "manage-btns-wrapper",
             ref_type: "CSS_CLASS",
         },
         BACKGROUND: {

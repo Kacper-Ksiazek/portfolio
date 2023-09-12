@@ -1,4 +1,5 @@
 // Tools
+import { CSS_REFERENCES } from "../css_references";
 import { useModalControl, useMenuVisibility } from "./hooks/";
 import { useEditModeContext, useTaskDataContext } from "../hooks";
 // Types
@@ -21,7 +22,7 @@ const Manage: FunctionComponent = () => {
     const modalControl = useModalControl(menuIsVisible, setMenuVisibility);
 
     return (
-        <ManageWrapper>
+        <ManageWrapper className={CSS_REFERENCES.MANAGE_BUTTONS_WRAPPER}>
             <VisibleActionButton
                 ref={modalControl.buttonElementRef}
                 //

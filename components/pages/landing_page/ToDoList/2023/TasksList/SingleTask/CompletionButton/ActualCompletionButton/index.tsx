@@ -8,12 +8,12 @@ import ModeEditOutlineOutlined from "@mui/icons-material/ModeEditOutlineOutlined
 // Styled components
 import CompletionButtonBase from "./Base";
 
-const ActualCompletionButton: FunctionComponent = () => {
+const ActualCompletionButton: FunctionComponent<{ introAnimationsHaveEnded?: boolean }> = (props) => {
     const { isOpened: isInEditMode } = useEditModeContext();
     const { originalTask, updateTask } = useTaskDataContext();
 
     const classNames: string = [
-        originalTask.isCompleted ? "checked" : "", //
+        props.introAnimationsHaveEnded && originalTask.isCompleted ? "checked" : "", //
         isInEditMode ? "in-edit-mode" : "",
     ].join(" ");
 
@@ -35,6 +35,10 @@ const ActualCompletionButton: FunctionComponent = () => {
             <ModeEditOutlineOutlined className="edit-mode-icon" />
         </CompletionButtonBase>
     );
+};
+
+ActualCompletionButton.defaultProps = {
+    introAnimationsHaveEnded: true,
 };
 
 export default ActualCompletionButton;

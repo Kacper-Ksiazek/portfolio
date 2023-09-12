@@ -1,4 +1,4 @@
-// Tools
+// Types
 import type { FunctionComponent } from "react";
 import type { Task } from "landing_page/ToDoList/2023/@types/Tasks";
 // Other components
