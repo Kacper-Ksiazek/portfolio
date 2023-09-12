@@ -1,4 +1,4 @@
-import Paragraph from "./Paragraph";
+import Header from "./Header";
 import SectionWrapper from "./SectionWrapper";
 
-export { Paragraph, SectionWrapper };
+export { Header, SectionWrapper };

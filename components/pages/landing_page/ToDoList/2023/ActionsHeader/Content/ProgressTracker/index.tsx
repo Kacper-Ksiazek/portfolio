@@ -7,9 +7,9 @@ import type { FunctionComponent } from "react";
 import LabelsRatio from "./LabelsRatio";
 import SingleLabel from "./LabelsRatio/SingleLabel";
 // Styled components
-import { Paragraph } from "landing_page/ToDoList/2023/atoms";
 import FlexBox from "@/components/atoms/content_placement/FlexBox";
 import { ProgressTrackerBase, StyledFlexWrapper } from "./styled_components";
+import Header from "@/components/pages/landing_page/ToDoList/2023/atoms/Header";
 
 const ProgressTracker: FunctionComponent = () => {
     const { tasks } = useTasksListContext();
@@ -23,7 +23,7 @@ const ProgressTracker: FunctionComponent = () => {
     return (
         <>
             <FlexBox column sx={{ width: "100%" }}>
-                <Paragraph>General completion</Paragraph>
+                <Header>General completion</Header>
                 <StyledFlexWrapper>
                     <SingleLabel
                         progress={{
@@ -35,7 +35,7 @@ const ProgressTracker: FunctionComponent = () => {
                     />
                 </StyledFlexWrapper>
 
-                <Paragraph>Labels ratio</Paragraph>
+                <Header>Labels ratio</Header>
 
                 <ProgressTrackerBase>
                     <LabelsRatio amountOfTasksInTotal={tasks.length} />
