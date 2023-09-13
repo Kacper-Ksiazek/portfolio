@@ -69,7 +69,7 @@ export default styled("div", { shouldForwardProp })<SingleTaskContentWrapperProp
                             ]),
                   },
                   "&>*": {
-                      animation: `${props.isChanging ? fadeSimpleOUT : fadeSimple} .0001s .4s both`,
+                      animation: `${props.isChanging ? fadeSimpleOUT : fadeSimple} .0001s .5s both`,
                   },
               }
             : {}),
