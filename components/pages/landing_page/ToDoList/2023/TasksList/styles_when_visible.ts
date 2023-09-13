@@ -1,10 +1,9 @@
 // Tools
-import { keyframes } from "@mui/material";
 import { repeat } from "@/utils/client/styled/repeat";
 import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 // Keyframes
-import { scaleToBottom, scaleToTop } from "@/components/keyframes/outro";
-import { fadeFromBottom, fadeSimple, scaleFromLeft, scaleFromRight, scaleFromTop } from "@/components/keyframes/intro";
+import { scaleToBottom } from "@/components/keyframes/outro";
+import { fadeFromBottom, fadeSimple, scaleFromLeft } from "@/components/keyframes/intro";
 // Selectors
 import { SELECTORS as TASKS_LIST } from "./css_references";
 import { SELECTORS as SINGLE_TASK } from "./SingleTask/css_references";

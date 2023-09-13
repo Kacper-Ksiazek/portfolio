@@ -46,8 +46,7 @@ export default styled("div", {
                 borderRadius: "0px 3px 3px 0",
             },
         },
-        "&::after": {
-            content: "''",
+        "span.choice-indicator": {
             position: "absolute",
             top: 0,
             right: 0,

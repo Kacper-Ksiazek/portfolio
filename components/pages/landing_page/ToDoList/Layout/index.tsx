@@ -1,5 +1,6 @@
 // Tools
 import { forwardRef } from "react";
+import { CSS_REFERENCES } from "./css_references";
 // Types
 import type { Release } from "./@types";
 import type { ReactNode } from "react";
@@ -8,11 +9,10 @@ import Code from "@mui/icons-material/Code";
 // Material UI Components
 import Box from "@mui/material/Box";
 // Other components
+import Footer from "./Footer";
 import ReleasesToggler from "./ReleaseToggler";
 import * as HeaderElements from "./HeaderElements";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
-
-export const RESET_BUTTON_WRAPPER_ID: string = "to-do-list-reset-button-wrapper";
 
 interface ToDoListLayoutProps {
     currentRelease: Release;
@@ -46,20 +46,14 @@ const ToDoListLayout = forwardRef<HTMLDivElement, ToDoListLayoutProps>((props, r
                 {props.children}
             </Box>
 
-            <Box
-                component="footer"
-                sx={{
-                    marginTop: "32px",
-                    display: "flex",
-                    width: "100%",
-                    maxWidth: "1040px",
-                    justifyContent: "space-between",
-                }}
-            >
-                <div id={RESET_BUTTON_WRAPPER_ID}></div>
-
-                <ReleasesToggler currentRelease={currentRelease} toggleReleases={toggleReleases} />
-            </Box>
+            <Footer>
+                <div id={CSS_REFERENCES.RESET_BUTTON}></div>
+                <ReleasesToggler
+                    id={CSS_REFERENCES.RELEASES_TOGGLER} //
+                    currentRelease={currentRelease}
+                    toggleReleases={toggleReleases}
+                />
+            </Footer>
         </DarkSectionWrapper>
     );
 });
