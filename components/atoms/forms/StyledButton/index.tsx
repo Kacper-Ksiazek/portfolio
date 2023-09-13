@@ -53,7 +53,7 @@ export default styled(ButtonBase, {
             borderColor :`${theme.palette.primary.main} !important`
         },
         "&.Mui-disabled": {
-            border: `1px solid #000`,
+            border: `1px solid ${theme.palette.background.disabledElementBackground}`,
             background: theme.palette.background.disabledElementBackground,
             color: theme.palette.text.disabled,
         },

@@ -1,6 +1,6 @@
 // Tools
 import { forwardRef } from "react";
-import { SELECTORS } from "../css_references";
+import { SELECTORS } from "../Footer/css_references";
 // Material UI Icons
 import RestartAltRounded from "@mui/icons-material/RestartAltRounded";
 // Other components

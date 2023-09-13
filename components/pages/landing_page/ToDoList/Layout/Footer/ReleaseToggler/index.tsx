@@ -1,5 +1,7 @@
+// Tools
+import { CSS_REFERENCES } from "./css_references";
 // Types
-import type { Release } from "../@types";
+import type { Release } from "../../@types";
 import type { FunctionComponent } from "react";
 // Other components
 import SingleRelease from "./SingleRelease";
@@ -16,7 +18,7 @@ const ReleasesToggler: FunctionComponent<ReleasesTogglerProps> = (props) => {
     return (
         <span id={props.id}>
             <ReleasesTogglerBase transform={props.currentRelease === "legacy" ? 1 : 0}>
-                <span className="label">Release: </span>
+                <span id={CSS_REFERENCES.LABEL}>Release: </span>
                 <SingleRelease
                     tooltip="See how it used to look like" //
                     disabled={props.currentRelease === "legacy"}
@@ -31,7 +33,8 @@ const ReleasesToggler: FunctionComponent<ReleasesTogglerProps> = (props) => {
                 >
                     2023
                 </SingleRelease>
-                <span className="choice-indicator" />
+
+                <span id={CSS_REFERENCES.CHOICE_INDICATOR} />
             </ReleasesTogglerBase>
         </span>
     );

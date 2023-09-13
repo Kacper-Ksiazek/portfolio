@@ -4,7 +4,7 @@ import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 import { fadeSimple, scaleFromTop } from "@/components/keyframes/intro";
 import { scaleToRight, scaleToLeft } from "@/components/keyframes/outro";
 // Selectors
-import { SELECTORS } from "../css_references";
+import { SELECTORS } from "./css_references";
 // Types
 import { SxPropsFn } from "@/@types/MUI";
 

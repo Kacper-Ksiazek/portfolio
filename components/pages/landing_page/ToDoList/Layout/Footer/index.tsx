@@ -1,29 +1,30 @@
 // Tools
-import { styled } from "@mui/material";
+import { CSS_REFERENCES } from "./css_references";
 import { stylesWhenVisible } from "./styles_when_visible";
 // Types
-import type { FunctionComponent, ReactNode } from "react";
+import type { Release } from "../@types";
+import type { FunctionComponent } from "react";
 // Other components
+import ReleasesToggler from "./ReleaseToggler";
 import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Styled components
-const FooterBase = styled("footer")(({ theme }) => ({
-    margin: "32px auto 0 auto",
-    display: "flex",
-    width: "100%",
-    maxWidth: "1040px",
-    justifyContent: "space-between",
-}));
+import FooterBase from "./Base";
 
 interface ToDoListFooterProps {
-    children: ReactNode;
+    currentRelease: Release;
+    toggleReleases: () => void;
 }
 
 const ToDoListFooter: FunctionComponent<ToDoListFooterProps> = (props) => {
     return (
-        <TransformWhenVisible to={stylesWhenVisible} sx={{ width: "100%" }}>
+        <TransformWhenVisible to={stylesWhenVisible} sx={{ width: "calc(100vw - 20px)" }}>
             <FooterBase>
-                {props.children}
-                {/*  */}
+                <div id={CSS_REFERENCES.RESET_BUTTON}></div>
+                <ReleasesToggler
+                    id={CSS_REFERENCES.RELEASES_TOGGLER} //
+                    currentRelease={props.currentRelease}
+                    toggleReleases={props.toggleReleases}
+                />
             </FooterBase>
         </TransformWhenVisible>
     );
