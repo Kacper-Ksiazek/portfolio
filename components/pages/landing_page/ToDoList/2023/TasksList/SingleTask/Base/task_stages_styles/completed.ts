@@ -16,7 +16,7 @@ export const getStylesWhenCompleted = (theme: Theme): SxProps => {
             },
         },
         [VIEW_MODE_SELECTORS.INFORMATION_WITH_ICON]: {
-            opacity: 0.3,
+            color: alpha("#fff", 0.24),
         },
         [VIEW_MODE_SELECTORS.TITLE]: {
             "h4::before": {
