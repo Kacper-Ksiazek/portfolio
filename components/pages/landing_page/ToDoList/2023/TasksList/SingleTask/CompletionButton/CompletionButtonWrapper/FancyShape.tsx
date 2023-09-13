@@ -29,7 +29,6 @@ export default styled("span", { shouldForwardProp })<FancyShapeProps>(({ theme, 
             width: "28px",
             height: "calc(100% - 64px - 12px)",
             borderRadius: "2px",
-            animation: `${fadeSimple} .3s .1s ease-in-out both`,
             "&::before, &::after": {
                 opacity: props.urgent ? 0.6 : 0.24,
                 content: "''",

@@ -1,4 +1,5 @@
 // Tools
+import { CSS_REFERENCES } from "../../css_references";
 import { useTaskDataContext, useEditModeContext } from "landing_page/ToDoList/2023/TasksList/SingleTask/hooks";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -28,6 +29,7 @@ const CompletionButtonWrapper: FunctionComponent<CompletionButtonWrapperProps> =
         >
             {(hasDescription || isEditModeOpened) && (
                 <FancyShape
+                    className={CSS_REFERENCES.COMPLETION_BUTTON_FANCY_SHAPES}
                     urgent={isUrgent} //
                     completed={isCompleted}
                     inEditMode={isEditModeOpened}

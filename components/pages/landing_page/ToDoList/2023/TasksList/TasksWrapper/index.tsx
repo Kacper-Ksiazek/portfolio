@@ -1,4 +1,5 @@
 // Tools
+import { CSS_REFERENCES } from "../css_references";
 import { useTasksListContext } from "landing_page/ToDoList/2023/hooks/useTaskListContext";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -20,6 +21,7 @@ const TasksWrapper: FunctionComponent<TasksWrapperProps> = (props) => {
 
     return (
         <TasksWrapperBase
+            id={CSS_REFERENCES.WRAPPER}
             fadeContentOut={props.fadeContentOut} //
             ref={taskListContext.tasksWrapperRef}
         >

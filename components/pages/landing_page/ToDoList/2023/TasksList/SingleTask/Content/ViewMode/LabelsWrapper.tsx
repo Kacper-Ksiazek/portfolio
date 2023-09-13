@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { CSS_REFERENCES } from "../../css_references";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Styled Components
@@ -21,7 +22,14 @@ interface LabelsWrapperProps {
 }
 
 const LabelsWrapper: FunctionComponent<LabelsWrapperProps> = (props) => {
-    return <LabelsWrapperBase indicateUrgency={props.indicateUrgency}>{props.children}</LabelsWrapperBase>;
+    return (
+        <LabelsWrapperBase
+            className={CSS_REFERENCES.CONTENT.VIEW_MODE.LABELS_WRAPPER} //
+            indicateUrgency={props.indicateUrgency}
+        >
+            {props.children}
+        </LabelsWrapperBase>
+    );
 };
 
 export default LabelsWrapper;

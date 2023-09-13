@@ -13,7 +13,7 @@ import ConfirmationButton from "./ConfirmationButton";
 import OptionalPropertyExplanation from "./OptionalPropertyExplanation";
 import { AdditionalInformationWrapper, FooterActionsWrapper, TitleAndUrgencySwitchWrapper } from "./Wrappers";
 // Styled components
-import Paragraph from "landing_page/ToDoList/2023/atoms/Paragraph";
+import Header from "@/components/pages/landing_page/ToDoList/2023/atoms/Header";
 
 interface AddNewTaskProps {
     foldActionsHeaderPanel: () => void;
@@ -29,14 +29,14 @@ const AddNewTask: FunctionComponent<AddNewTaskProps> = (props) => {
 
     return (
         <>
-            <Paragraph>Title</Paragraph>
+            <Header>Title</Header>
 
             <TitleAndUrgencySwitchWrapper>
                 <NewTaskData.TaskTitleInput id={CSS_REFERENCES.TITLE_INPUT} isInvalid={validationResult.titleIsInvalid} />
                 {alternativeUrgencySwitchPlacement === false && <NewTaskData.UrgencySwitch id={CSS_REFERENCES.URGENCY_SWITCH} />}
             </TitleAndUrgencySwitchWrapper>
 
-            <Paragraph>Details</Paragraph>
+            <Header>Details</Header>
 
             <NewTaskData.TaskDescriptionInput id={CSS_REFERENCES.DESCRIPTION_INPUT} isInvalid={validationResult.descriptionIsInvalid} />
 

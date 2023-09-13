@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 
-export default styled("p")(({ theme }) => ({
+export default styled("h4")(({ theme }) => ({
     margin: "0 0 8px 0",
     userSelect: "none",
     fontSize: "20px",

@@ -14,6 +14,7 @@ import Wrapper from "./Wrapper";
 interface ContentProps {
     data: Task;
     applyMobileLayout: boolean;
+    introAnimationsHaveEnded: boolean;
 }
 
 const Content: FunctionComponent<ContentProps> = (props) => {
@@ -29,6 +30,7 @@ const Content: FunctionComponent<ContentProps> = (props) => {
             isUrgent={props.data.urgent} //
             isChanging={editModeIsChanging && applyMobileEditMode === false}
             editModeIsOpened={editModeIsOpened && applyMobileEditMode === false}
+            disableModesSwitchingAnimations={props.introAnimationsHaveEnded === false}
             className={CSS_REFERENCES.CONTENT.MAIN_CONTENT_WRAPPER}
         >
             {renderViewMode && (

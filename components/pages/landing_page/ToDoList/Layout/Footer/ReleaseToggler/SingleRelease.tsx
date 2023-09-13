@@ -1,3 +1,5 @@
+// Toolc
+import { CSS_REFERENCES } from "./css_references";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
@@ -16,7 +18,7 @@ const SingleRelease: FunctionComponent<SingleReleaseProps> = (props) => {
 
     return (
         <Tooltip title={tooltip} placement="top">
-            <span>
+            <span className={CSS_REFERENCES.SINGLE_RELEASE_BUTTON}>
                 <button onClick={props.onClick} disabled={props.disabled}>
                     {props.children}
                 </button>

@@ -5,7 +5,7 @@ import Tooltip from "./Tooltip";
 import ActualCompletionButton from "./ActualCompletionButton";
 import CompletionButtonWrapper from "./CompletionButtonWrapper";
 
-const CompletionButton: FunctionComponent = () => {
+const CompletionButton: FunctionComponent<{ introAnimationsHaveEnded: boolean }> = () => {
     return (
         <CompletionButtonWrapper>
             <Tooltip>

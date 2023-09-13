@@ -1,8 +1,10 @@
 // Tools
 import { useEffect } from "react";
+import { CSS_REFERENCES } from "./css_references";
 import useWindowsSizes from "@/hooks/useWindowSizes";
 import { useDelayedState } from "@/hooks/useDelayedState";
 import { useContentVisibility, useResponsiveHeight } from "./hooks";
+import { stylesWhenVisible } from "./styles_when_visible";
 // Types
 import type { FunctionComponent } from "react";
 import type { ActionHeaderSection } from "landing_page/ToDoList/2023/ActionsHeader/@types";
@@ -11,10 +13,9 @@ import type { ResponsiveHeightCSSClass } from "./hooks/useResponsiveHeight";
 import Content from "./Content";
 import Navigation from "./Navigation";
 import HideButton from "./HideButton";
+import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Styled components
 import ActionsHeaderBase from "./Base";
-
-const ACTIONS_HEADER_WRAPPER_ID: string = "to-do-list--actions-header";
 
 type ActionsHeaderProps = {
     tasksInTotal: number;
@@ -51,38 +52,36 @@ const ActionsHeader: FunctionComponent<ActionsHeaderProps> = (props) => {
     }, [props.tasksInTotal, stage, setStage]);
 
     return (
-        <ActionsHeaderBase className={responsiveHeightCSSClass} id={ACTIONS_HEADER_WRAPPER_ID}>
-            <Navigation
-                currentStage={stage} //
-                tasksInTotal={props.tasksInTotal}
-                updateCurrentStage={setStage}
-                beforeOnClick={onNavigationButtonClick}
-            >
-                {alternativeHideButtonPosition === false && (
+        <TransformWhenVisible to={stylesWhenVisible}>
+            <ActionsHeaderBase className={responsiveHeightCSSClass} id={CSS_REFERENCES.ACTIONS_HEADER_WRAPPER}>
+                <Navigation
+                    currentStage={stage} //
+                    tasksInTotal={props.tasksInTotal}
+                    updateCurrentStage={setStage}
+                    beforeOnClick={onNavigationButtonClick}
+                >
+                    {alternativeHideButtonPosition === false && (
+                        <HideButton
+                            {...contentVisibility} //
+                            toggleContentVisibility={toggleContentVisibility}
+                        />
+                    )}
+                </Navigation>
+                {contentVisibility.renderContent && (
+                    <Content
+                        currentStage={stage} //
+                        isStageChanging={isStageChanging}
+                        foldActionsHeaderPanel={toggleContentVisibility}
+                    />
+                )}
+                {alternativeHideButtonPosition === true && (
                     <HideButton
                         {...contentVisibility} //
                         toggleContentVisibility={toggleContentVisibility}
-                        wrapperID={ACTIONS_HEADER_WRAPPER_ID}
                     />
                 )}
-            </Navigation>
-
-            {contentVisibility.renderContent && (
-                <Content
-                    currentStage={stage} //
-                    isStageChanging={isStageChanging}
-                    foldActionsHeaderPanel={toggleContentVisibility}
-                />
-            )}
-
-            {alternativeHideButtonPosition === true && (
-                <HideButton
-                    {...contentVisibility} //
-                    toggleContentVisibility={toggleContentVisibility}
-                    wrapperID={ACTIONS_HEADER_WRAPPER_ID}
-                />
-            )}
-        </ActionsHeaderBase>
+            </ActionsHeaderBase>
+        </TransformWhenVisible>
     );
 };
 

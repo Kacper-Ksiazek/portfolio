@@ -1,11 +1,11 @@
 // Tools
+import { RWD } from "./RWD";
 import { styled } from "@mui/material";
+import { SELECTORS } from "../css_references";
 
 export default styled("div", {
     shouldForwardProp: (prop) => prop !== "translate",
 })<{ transform: number }>(({ theme, ...props }) => {
-    const buttonWidth: string = "96px";
-
     return {
         height: "42px",
         display: "flex",
@@ -16,47 +16,49 @@ export default styled("div", {
         position: "relative",
         borderRadius: "3px",
         fontSize: "18px",
-        "span.label": {
+
+        [SELECTORS.LABEL]: {
             padding: "0 32px",
         },
+
         "&::before": {
             content: "''",
             ...theme.mixins.absolute_full,
             background: theme.palette.background.paper,
             zIndex: -1,
         },
-        button: {
+
+        [SELECTORS.SINGLE_RELEASE_BUTTON]: {
             position: "relative",
-            background: "transparent",
-            border: "none",
-            width: buttonWidth,
-            color: "#fff",
             zIndex: 1,
             height: "100%",
-            fontSize: "inherit",
-            fontWeight: 500,
-            transition: "background .3s, transform .15s",
-            "&:not(&:disabled)": {
-                cursor: "pointer",
-            },
-            "&:nth-of-type(1)": {
-                borderRadius: "3px 0 0 3px",
-            },
-            "&:nth-of-type(2)": {
-                borderRadius: "0px 3px 3px 0",
+            width: "96px",
+            button: {
+                background: "transparent",
+                border: "none",
+                width: "100%",
+                height: "100%",
+                color: "#fff",
+                fontSize: "inherit",
+                fontWeight: 500,
+                "&:not(&:disabled)": {
+                    cursor: "pointer",
+                },
             },
         },
-        "&::after": {
-            content: "''",
+
+        [SELECTORS.CHOICE_INDICATOR]: {
             position: "absolute",
             top: 0,
             right: 0,
-            width: buttonWidth,
+            width: "96px",
             height: "100%",
             background: theme.palette.primary.main,
             borderRadius: "3px",
             transition: "transform .3s",
-            transform: `translateX(calc(${props.transform * -1} * ${buttonWidth}))`,
+            transform: `translateX(calc(${props.transform * -100}%))`,
         },
+
+        ...(RWD as any),
     };
 });

@@ -39,7 +39,7 @@ export const getStylesDuringDeletion = (theme: Theme, isUrgent: boolean): SxProp
                 content: "''",
                 ...theme.mixins.absolute_full,
                 minHeight: "32px",
-                background: isUrgent ? theme.palette.primary.main : theme.palette.background.lightAnimationBar,
+                background: isUrgent ? theme.palette.primary.main : theme.palette.background.darkAnimationBar,
                 borderRadius: "3px",
                 animation: chainAnimations([
                     [scaleFromBottom, 0.2],

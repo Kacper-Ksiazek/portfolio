@@ -18,7 +18,7 @@ export const stylesWhenVisible: SxPropsFn = function (theme) {
                 content: "''",
                 position: "absolute",
                 ...theme.mixins.absolute_full,
-                background: theme.palette.background.lightAnimationBar,
+                background: theme.palette.background.darkAnimationBar,
             },
             ...repeat(4, (index) => {
                 const diff = index * 0.1;

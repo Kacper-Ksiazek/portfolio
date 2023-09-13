@@ -1,6 +1,6 @@
 // Tools
 import { forwardRef } from "react";
-import { RESET_BUTTON_WRAPPER_ID } from "..";
+import { SELECTORS } from "../Footer/css_references";
 // Material UI Icons
 import RestartAltRounded from "@mui/icons-material/RestartAltRounded";
 // Other components
@@ -14,7 +14,7 @@ interface ResetButtonProps {
 
 const ResetButton = forwardRef<HTMLButtonElement, ResetButtonProps>((props, ref) => {
     return (
-        <Portal selector={`#${RESET_BUTTON_WRAPPER_ID}`}>
+        <Portal selector={SELECTORS.RESET_BUTTON}>
             <StyledButton
                 componentThemeID="PRIMARY" //
                 ref={ref}

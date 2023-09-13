@@ -1,4 +1,6 @@
 // Types
+import { CSS_REFERENCES } from "../css_references";
+// Types
 import type { FunctionComponent, MouseEvent } from "react";
 // Material UI Icons
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
@@ -11,8 +13,6 @@ interface HideButtonProps {
     preventOnClick: boolean;
     contentIsHidden: boolean;
 
-    wrapperID?: string;
-
     toggleContentVisibility: () => void;
 }
 
@@ -23,14 +23,13 @@ const HideButton: FunctionComponent<HideButtonProps> = (props) => {
         if (props.preventOnClick) return;
         props.toggleContentVisibility();
 
-        if (props.wrapperID) {
-            const wrapper = document.getElementById(props.wrapperID);
-            if (wrapper) {
-                wrapper.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                });
-            }
+        const wrapper = document.getElementById(CSS_REFERENCES.ACTIONS_HEADER_WRAPPER);
+
+        if (wrapper) {
+            wrapper.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
         }
     }
 
@@ -39,6 +38,7 @@ const HideButton: FunctionComponent<HideButtonProps> = (props) => {
             componentThemeID="MUI" //
             subtleHoverEffect
             onClick={onClick as any}
+            id={CSS_REFERENCES.HIDE_BUTTON}
         >
             <KeyboardArrowDownRoundedIcon
                 sx={{
