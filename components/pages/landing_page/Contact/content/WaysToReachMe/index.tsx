@@ -9,7 +9,6 @@ import Tooltip from "@mui/material/Tooltip";
 import Email from "./Email";
 import Phone from "./Phone";
 import SingleWayToReachMe from "./SingleWayToReachMe";
-import StyledButton from "@/components/atoms/forms/StyledButton";
 // Material UI Icons
 import GitHub from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
@@ -59,7 +58,7 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
             </Tooltip>
 
             <ContinueButton
-                color="primary"
+                componentThemeID="PRIMARY"
                 onClick={props.writeToMe}
                 sx={{
                     mt: "32px", //

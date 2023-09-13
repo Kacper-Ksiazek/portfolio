@@ -1,15 +1,27 @@
 // Tools
 import { styled } from "@mui/material";
 // Styled components
-export default styled("div")(({ theme, ...props }) => ({
+interface SingleNavigationStepProps {
+    selected: boolean;
+    disabled?: boolean;
+}
+
+function shouldForwardProp(prop: string) {
+    return !(["selected", "disabled"] as (keyof SingleNavigationStepProps)[]).includes(prop as any);
+}
+
+export default styled("div", {
+    shouldForwardProp,
+})<SingleNavigationStepProps>(({ theme, ...props }) => ({
     fontWeight: 500,
     fontSize: "18px",
     position: "relative",
-    cursor: "pointer",
     overflow: "hidden",
     padding: "0 10px",
     transition: "background .2s",
     borderRadius: "3px",
+    cursor: "pointer",
+    userSelect: "none",
     "&:before": {
         content: "''",
         position: "absolute",
@@ -36,6 +48,17 @@ export default styled("div")(({ theme, ...props }) => ({
         zIndex: 1,
         transition: "color .2s",
     },
+
+    ...(props.selected && {
+        background: theme.palette.primary.main,
+        "span.text": {
+            color: "#fff",
+        },
+        "&:before": {
+            background: theme.palette.primary.main,
+        },
+    }),
+
     "&:hover": {
         "span.text": {
             color: "#fff",
@@ -44,13 +67,10 @@ export default styled("div")(({ theme, ...props }) => ({
             transform: "translateY(0%)",
         },
     },
-    "&.selected": {
-        background: theme.palette.primary.main,
-        "span.text": {
-            color: "#fff",
-        },
-        "&:before": {
-            background: theme.palette.primary.main,
-        },
-    },
+
+    ...(props.disabled && {
+        opacity: 0.5,
+        cursor: "default",
+        "&:hover": {},
+    }),
 }));

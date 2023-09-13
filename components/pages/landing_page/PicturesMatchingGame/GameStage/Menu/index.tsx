@@ -1,12 +1,13 @@
 // Tools
 import { styled } from "@mui/material";
+import { options } from "./difficulty_options";
 import { usePicturesMatchingGameContext } from "@/components/pages/landing_page/PicturesMatchingGame/hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Components
 import Box from "@mui/material/Box";
 // Other components
-import PickADifficulty from "./PickADifficulty";
+import StyledSelect from "@/components/atoms/forms/StyledSelect";
 import StyledButton from "@/components/atoms/forms/StyledButton";
 import { SmoothlyAppearingSection, SectionHeader } from "../atoms";
 // Material UI Icons
@@ -32,7 +33,13 @@ const Menu: FunctionComponent<{ introAnimationsWithExtraDelay: boolean }> = (pro
         <SmoothlyAppearingSection className={props.introAnimationsWithExtraDelay ? "extra-delay" : ""}>
             <SectionHeader>Pick a difficulty and start a game</SectionHeader>
 
-            <PickADifficulty difficulty={context.difficulty} setDifficulty={context.methods.setDifficulty} />
+            <StyledSelect
+                value={context.difficulty} //
+                onChange={(e) => context.methods.setDifficulty(e.target.value)}
+                className="delay-1"
+                options={options}
+                sx={{ width: "240px" }}
+            />
 
             <ButtonsWrapper className="bottom-buttons-wrapper">
                 <StyledButton
@@ -44,7 +51,7 @@ const Menu: FunctionComponent<{ introAnimationsWithExtraDelay: boolean }> = (pro
                 </StyledButton>
 
                 <StyledButton
-                    color="primary"
+                    componentThemeID="PRIMARY"
                     className="navigation" //
                     onClick={() => context.navigation.startNewGame(context.difficulty)}
                 >

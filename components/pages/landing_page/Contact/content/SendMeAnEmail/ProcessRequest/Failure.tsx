@@ -41,14 +41,14 @@ const FailureStatus: FunctionComponent<FailureStatusProps> = (props) => {
                 <AbsoluteButtonsWrapper>
                     <ButtonWithTooltip
                         tooltip="Send request again" //
-                        color="error"
+                        componentThemeID="ERROR"
                         onClick={props.refresh}
                         icon={<Refresh />}
                     />
 
                     <ButtonWithTooltip
                         tooltip="Return to the form" //
-                        color="error"
+                        componentThemeID="ERROR"
                         onClick={props.goBackToTheForm}
                         icon={<ArrowBack />}
                     />

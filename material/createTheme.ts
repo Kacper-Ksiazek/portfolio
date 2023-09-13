@@ -7,6 +7,19 @@ import type { Theme } from "@mui/material/styles";
 declare module "@mui/material/styles/createPalette" {
     interface TypeBackground {
         lightAnimationBar: string;
+        darkAnimationBar: string;
+
+        lightSectionBackground: string;
+        darkSectionBackground: string;
+
+        MUIFormElementsBorder: string;
+        MUIFormElementsBackground: string;
+
+        disabledElementBackground: string;
+    }
+
+    interface TypeText {
+        MUIFormElementText: string;
     }
 }
 
@@ -20,12 +33,24 @@ interface CreateThemeParams {
     background: {
         default: string;
         paper: string;
+
+        darkAnimationBar: string;
         lightAnimationBar: string;
+
+        darkSectionBackground: string;
         lightSectionBackground: string;
+
+        MUIFormElementsBorder: string;
+        MUIFormElementsBackground: string;
+
+        disabledElementBackground: string;
     };
     text: {
         primary: string;
         secondary: string;
+        MUIFormElementText: string;
+
+        disabled: string;
     };
 }
 
@@ -55,6 +80,24 @@ export function createTheme(props: CreateThemeParams): Theme {
             fontFamily: '"Noto Sans", sans-serif',
         },
         components: {
+            MuiInputBase: {
+                styleOverrides: {
+                    root: {
+                        transition: "background .3s, color .3s",
+                        "&.Mui-disabled": {
+                            background: props.background.disabledElementBackground,
+                            color: props.text.disabled,
+                        },
+                    },
+                },
+            },
+            MuiButtonBase: {
+                styleOverrides: {
+                    root: {
+                        fontFamily: '"Noto Sans", sans-serif',
+                    },
+                },
+            },
             MuiTypography: {
                 styleOverrides: {
                     h3: {

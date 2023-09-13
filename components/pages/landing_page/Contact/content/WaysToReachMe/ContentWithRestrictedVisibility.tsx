@@ -28,10 +28,7 @@ const VisibilityControlButton: FunctionComponent<VisibilityControlButtonProps> =
         <>
             <Fade in={!showContent}>
                 <Tooltip title={props.tooltip} placement="top">
-                    <WayToReachMeButton
-                        onClick={changeVisibility} //
-                        color="text"
-                    >
+                    <WayToReachMeButton onClick={changeVisibility} componentThemeID="TEXT">
                         <Visibility />
                     </WayToReachMeButton>
                 </Tooltip>

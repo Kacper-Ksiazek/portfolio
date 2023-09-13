@@ -7,6 +7,11 @@ import type { Styles } from "@/@types/MUI";
  * The first parameter specifies the amount of *nth-of-type* elements, the second
  * is a callback with one parameter - the element's index and returning styles
  * which will be further applied
+ * ```css
+ * &:nth-of-type(from 1 to n) {
+ *    styles comming from cb parameter
+ * }
+ * ```
  */
 export function repeat(n: number, cb: (index: number) => Styles): Styles {
     const result: Record<string, Styles> = {};

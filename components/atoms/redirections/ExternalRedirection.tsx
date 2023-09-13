@@ -21,11 +21,11 @@ const ExternalRedirection: FunctionComponent<RedirectionProps> = (props) => {
         <RedirectionWrapper tooltip={props.tooltip}>
             <a href={props.url} target="_blank" rel="noreferrer">
                 <RedirectBase
-                    color="primary" //
-                    className={[props.small ? "small" : "", "redirect", props.className].join(" ")}
-                    sx={props.sx}
+                    sx={props.sx} //
                     onClick={onClick}
+                    componentThemeID="PRIMARY"
                     ref={ExternalRedirectionRef}
+                    className={[props.small ? "small" : "", "redirect", props.className].join(" ")}
                 >
                     {props.children}
                     <KeyboardArrowRight className="right-arrow" />

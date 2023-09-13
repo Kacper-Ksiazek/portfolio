@@ -3,7 +3,7 @@ import { styled } from "@mui/material";
 // Styled components
 export default styled("span")(({ theme }) => ({
     position: `absolute !important` as any,
-    top: "-32%",
+    top: "-36%",
     zIndex: -1,
     color:
         theme.palette.mode === "light" //

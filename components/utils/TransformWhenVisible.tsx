@@ -24,10 +24,45 @@ interface TransformWhenVisibleProps {
     children: ReactNode;
 }
 
+interface GetTransformationStylesParams {
+    alreadyHasBeenVisible: boolean;
+    elementIsVisible: boolean;
+    stylesWhenVisible: Styles;
+    stylesWhenNOTVisible: Styles;
+}
+
+function getTransformationStyles(params: GetTransformationStylesParams): Styles {
+    const { alreadyHasBeenVisible, elementIsVisible, stylesWhenVisible, stylesWhenNOTVisible } = params;
+    if (alreadyHasBeenVisible === true) return {};
+
+    return elementIsVisible ? stylesWhenVisible : stylesWhenNOTVisible;
+}
+
 const TransformWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (props) => {
     const theme = useTheme();
+
     const ref = useRef<Element>(null);
-    const elementIsVisible = useElementVisibility(ref, props.onVisible, props.rootMargin);
+    const alreadyHasBeenVisible = useRef<boolean>(false);
+
+    function onVisible() {
+        if (props.onVisible) props.onVisible();
+
+        setTimeout(() => {
+            alreadyHasBeenVisible.current = true;
+        }, 100);
+    }
+
+    const elementIsVisible = useElementVisibility(ref, onVisible, props.rootMargin);
+
+    const stylesWhenVisible: Styles = applySxProps(props.to, theme);
+    const stylesWhenNOTVisible: Styles = props.from ?? {};
+
+    const transformationStyles: Styles = getTransformationStyles({
+        alreadyHasBeenVisible: alreadyHasBeenVisible.current,
+        elementIsVisible,
+        stylesWhenVisible,
+        stylesWhenNOTVisible,
+    });
 
     return (
         <Box
@@ -36,7 +71,7 @@ const TransformWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (prop
             sx={{
                 visibility: elementIsVisible ? "visible" : "hidden",
                 ...applySxProps(props.sx, theme),
-                ...(elementIsVisible ? applySxProps(props.to, theme) : props.from ?? {}),
+                ...transformationStyles,
             }}
         >
             {props.children}

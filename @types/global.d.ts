@@ -1,8 +1,13 @@
 export {};
 
 declare global {
+    type ColorInHEX = `#${string}`;
+
     /** Sugar syntax type */
     type CSSClassName = string;
+
+    /** Sugar syntax type */
+    type HTML_ID = string;
 
     /** Sugar syntax type */
     type Selector = string;

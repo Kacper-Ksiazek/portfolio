@@ -30,7 +30,7 @@ class PrismaSeeder extends ConsolePrettier {
     protected prisma = new PrismaClient({
         datasources: {
             db: {
-                url: process.env.DATABASE_URL_ORIGINAL,
+                url: process.env.POSTGRES_URL,
             },
         },
     });

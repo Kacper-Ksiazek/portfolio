@@ -13,10 +13,12 @@
         "resolveJsonModule": true,
         "jsx": "preserve",
         "incremental": true,
+        "downlevelIteration": true,
         "baseUrl": ".",
         "paths": {
             "@/*": ["*"],
-            "@tests": ["./tests/"]
+            "landing_page/*": ["./components/pages/landing_page/*"],
+            "@keyframes/*": ["./components/keyframes/*"]
         },
         "isolatedModules": true
     },

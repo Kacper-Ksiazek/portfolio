@@ -49,7 +49,7 @@ const PaginationItem: FunctionComponent<PaginationItemProps> = (props) => {
     else {
         return (
             <PaginationStep
-                color={item.page === state.currentPage ? "primary" : "text"}
+                componentThemeID={item.page === state.currentPage ? "PRIMARY" : "TEXT"}
                 className={item.page === state.currentPage ? "unclickable" : ""}
                 disabled={item.page === state.currentPage}
                 onClick={() => {
