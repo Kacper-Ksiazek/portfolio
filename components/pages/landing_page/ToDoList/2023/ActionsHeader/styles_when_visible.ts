@@ -12,12 +12,21 @@ import { SELECTORS as NAVIGATION } from "components/atoms/NavigationBetweenSecti
 // Types
 import { SxPropsFn } from "@/@types/MUI";
 
-const fadeSimple2 = keyframes({
+const dividerIntro = keyframes({
     from: {
         transform: "rotate(10deg) scaleX(0)",
     },
     to: {
         transform: "rotate(10deg) scaleX(1)",
+    },
+});
+
+const borderKeptTransparent = keyframes({
+    from: {
+        borderColor: "transparent",
+    },
+    to: {
+        borderColor: "transparent",
     },
 });
 
@@ -42,23 +51,27 @@ export const stylesWhenVisible: SxPropsFn = function (theme) {
             // This panel: Progress Tracker / Add new task / Edit Labels --- Hide
             //
             [NAVIGATION.STEP_WRAPPER]: {
-                ...repeat(3, (index) => ({
-                    [`${NAVIGATION.DIVIDER}`]: {
-                        animation: `${fadeSimple2} .3s ${1.5 + index * 0.2}s both linear !important`,
-                    },
-                    [`${NAVIGATION.STEP_BUTTON}`]: {
-                        animation: `${backgroundKeptTreansparent} ${0.9 + index * 0.2}s linear`,
-                        "&::after": {
-                            animation: chainAnimations([
-                                [scaleFromLeft, 0.2, 0.6 + index * 0.3],
-                                [scaleToBottom, 0.3, 0.3],
-                            ]),
+                ...repeat(3, (index) => {
+                    const deltaTime: number = 0.2 * index;
+
+                    return {
+                        [`${NAVIGATION.DIVIDER}`]: {
+                            animation: `${dividerIntro} .3s ${1.5 + deltaTime}s both linear !important`,
                         },
-                        "&>*": {
-                            animation: `${fadeSimple} .00001s ${1 + index * 0.2}s both`,
+                        [`${NAVIGATION.STEP_BUTTON}`]: {
+                            animation: `${backgroundKeptTreansparent} ${1 + deltaTime}s linear, ${borderKeptTransparent} ${1.6 + deltaTime}s linear`,
+                            "&::after": {
+                                animation: chainAnimations([
+                                    [scaleFromLeft, 0.2, 0.6 + deltaTime],
+                                    [scaleToBottom, 0.3, 0.3],
+                                ]),
+                            },
+                            "&>*": {
+                                animation: `${fadeSimple} .00001s ${1 + deltaTime}s both`,
+                            },
                         },
-                    },
-                })),
+                    };
+                }),
             },
             [ACTIONS_HEADER.HIDE_BUTTON]: {
                 animation: `${fadeSimple} .3s 1.5s both linear`,
