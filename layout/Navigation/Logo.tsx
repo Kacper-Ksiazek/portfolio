@@ -9,21 +9,19 @@ import Image from "next/image";
 const Header = styled("h3")(({ theme }) => ({
     margin: "0",
     userSelect: "none",
-    marginLeft: "20px",
+    marginLeft: "12px",
     fontSize: "32px",
     fontWeight: 700,
     fontFamily: "Montserrat Alternates",
     "@media (max-width:1100px)": {
-        marginLeft: "8px",
+        marginLeft: "10px",
         fontSize: "30px",
     },
     "@media (max-width:500px)": {
         fontSize: "28px",
-        marginLeft: "16px",
     },
     "@media (max-width:340px)": {
         fontSize: "24px",
-        marginLeft: "12px",
     },
 }));
 
@@ -37,15 +35,10 @@ const SingleFlexWrapper = styled("div")(({ theme }) => ({
 
 const ImageWrapper = styled("div")(({ theme }) => ({
     position: "relative",
-    width: "60px",
-    height: "40px",
-    "@media (max-width:1100px)": {
-        height: "36px",
-        width: "54px",
-    },
-    ["@media (max-width:500px)"]: {
-        width: "48px",
-        height: "32px",
+    height: "54px",
+    aspectRatio: "1.552",
+    "@media (max-width:500px)": {
+        height: "42px",
     },
 }));
 
@@ -76,7 +69,7 @@ const Logo: FunctionComponent<LogoProps> = (props) => {
         <SingleFlexWrapper onClick={redirectToMainPage}>
             <ImageWrapper id="portfolio-logo-image">
                 <Image
-                    src={"/logo.png"} //
+                    src="/main-page-logo/xs.png" //
                     alt="page-logo"
                     layout="fill"
                 />
