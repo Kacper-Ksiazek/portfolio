@@ -1,5 +1,6 @@
 // Tools
 import { fadeSimple } from "@/components/keyframes/intro";
+import { SOCIAL_MEDIA_LINKS } from "@/data/social_media_links";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
@@ -29,15 +30,15 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
             </Paragraph>
 
             <Label animationDelay={0.4}>Reach me via</Label>
-            <Email emailToCopy="kacper.b.ksiazek@gmail.com" />
-            <Phone phone="690 001 548" />
+            <Email emailToCopy={SOCIAL_MEDIA_LINKS.EMAIL} />
+            <Phone phone={SOCIAL_MEDIA_LINKS.PHONE} />
 
             <Label animationDelay={0.4}>Social media</Label>
             <Tooltip title="See me on Github" placement="top-start">
                 <SingleWayToReachMe
                     icon={<GitHub />} //
                     redirectAfterClick
-                    url="https://github.com/Kacper-Ksiazek"
+                    url={SOCIAL_MEDIA_LINKS.GITHUB}
                 />
             </Tooltip>
 
@@ -45,7 +46,7 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
                 <SingleWayToReachMe
                     icon={<LinkedIn />} //
                     redirectAfterClick
-                    url="https://www.linkedin.com/in/kacper-b-książek"
+                    url={SOCIAL_MEDIA_LINKS.LINKEDIN}
                 />
             </Tooltip>
 
@@ -53,7 +54,7 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
                 <SingleWayToReachMe
                     icon={<Facebook />} //
                     redirectAfterClick
-                    url="https://www.facebook.com/kacper.b.ksiazek"
+                    url={SOCIAL_MEDIA_LINKS.FACEBOOK}
                 />
             </Tooltip>
 
