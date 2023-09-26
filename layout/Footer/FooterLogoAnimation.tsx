@@ -87,7 +87,8 @@ const FooterLogoAnimation: FunctionComponent = () => {
                 },
             }}
         >
-            <span className="animation-key">{key}</span>
+            {key !== 1 && <span className="animation-key">{key}</span>}
+
             {renderNTimes({
                 n: 11,
                 startWith: 1,
