@@ -4,7 +4,7 @@ import { styled, alpha } from "@mui/material";
 import type { FunctionComponent } from "react";
 // Styled Components
 const AuthorHeaderBase = styled("div")(({ theme }) => ({
-    marginTop: "16px",
+    marginTop: "4px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -29,7 +29,7 @@ const AuthorHeaderBase = styled("div")(({ theme }) => ({
     },
 }));
 
-const AuthorHeader: FunctionComponent = (props) => {
+const AuthorHeader: FunctionComponent = () => {
     return (
         <AuthorHeaderBase>
             <h4 className="author">Created by: Kacper Książek</h4>
