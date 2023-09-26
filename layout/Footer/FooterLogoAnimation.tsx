@@ -1,13 +1,14 @@
 // Tools
 import { useState } from "react";
-import { styled } from "@mui/material";
+import { alpha, styled } from "@mui/material";
 import { renderNTimes } from "@/utils/client/renderNTimes";
 // Keyframes
-import { fadeFromLeft, fadeFromRight, fadeSimple } from "@/components/keyframes/intro";
+import { fadeFromBottom, fadeFromLeft, fadeFromRight, fadeFromTop, fadeSimple } from "@/components/keyframes/intro";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
 import RenderWhenVisible from "@/components/utils/RenderWhenVisible";
+import { fadeSimpleOUT } from "@/components/keyframes/outro/fade";
 // Styled components
 const AnimationStep = styled("span", {
     shouldForwardProp: (prop) => prop !== "step",
@@ -32,28 +33,28 @@ const AnimationStep = styled("span", {
         animation: `${fadeSimple} .24s .7s both`,
     },
     "&.step-4": {
-        animation: `${fadeFromRight} .24s 1.2s both`,
+        animation: `${fadeFromRight} .3s 1.1s both`,
     },
     "&.step-5": {
-        animation: `${fadeFromLeft} .24s 1.2s both`,
+        animation: `${fadeFromLeft} .3s 1.1s both`,
     },
     "&.step-6": {
-        animation: `${fadeSimple} .5s .9s both`,
+        animation: `${fadeFromTop} 1s .9s both`,
     },
     "&.step-7": {
-        animation: `${fadeSimple} 1s 2.3s both`,
+        animation: `${fadeFromBottom} 1s 1.2s both`,
     },
     "&.step-8": {
-        animation: `${fadeSimple} .2s 1.2s both`,
+        animation: `${fadeFromRight} 1s 1.24s both`,
     },
     "&.step-9": {
-        animation: `${fadeSimple} .2s 1.2s both`,
+        animation: `${fadeFromLeft} 1s 1.24s both`,
     },
     "&.step-10": {
-        animation: `${fadeSimple} .2s 1.9s both`,
+        animation: `${fadeFromRight} .2s .9s both`,
     },
     "&.step-11": {
-        animation: `${fadeSimple} .2s 1.9s both`,
+        animation: `${fadeFromLeft} .2s .9s both`,
     },
 }));
 
@@ -74,8 +75,19 @@ const FooterLogoAnimation: FunctionComponent = () => {
                 width: "504px",
                 position: "relative",
                 cursor: "pointer",
+                "span.animation-key": {
+                    position: "absolute",
+                    top: "50%",
+                    left: "48%",
+                    transform: "translate(-50%, -50%)",
+                    fontSize: "64px",
+                    color: alpha("#fff", 0.2),
+                    fontWeight: 700,
+                    animation: `${fadeSimpleOUT} .5s .1s both`,
+                },
             }}
         >
+            <span className="animation-key">{key}</span>
             {renderNTimes({
                 n: 11,
                 startWith: 1,
