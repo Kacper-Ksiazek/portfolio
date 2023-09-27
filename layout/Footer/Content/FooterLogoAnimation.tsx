@@ -71,9 +71,8 @@ const FooterLogoAnimation: FunctionComponent = () => {
             key={key + pathname}
             onClick={incrementKey}
             sx={{
-                height: "300px",
-                width: "504px",
-                position: "relative",
+                width: "100%",
+                height: "100%",
                 cursor: "pointer",
                 "span.animation-key": {
                     position: "absolute",

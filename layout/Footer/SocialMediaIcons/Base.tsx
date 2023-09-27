@@ -13,7 +13,7 @@ export default styled("div")(({ theme }) => ({
         opacity: 0.8,
         color: "#fff",
         transition: "all .3s",
-        "&:hover": {
+        "&:hover, &.active": {
             opacity: 1,
             cursor: "pointer",
             color: theme.palette.primary.main,

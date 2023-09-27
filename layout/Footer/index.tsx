@@ -1,21 +1,23 @@
-// Tools
-import dynamic from "next/dynamic";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
 import Author from "./Author";
+import FooterContent from "./Content";
 import SocialMediasIcons from "./SocialMediaIcons";
-const FooterLogoAnimation = dynamic(() => import("./FooterLogoAnimation"), { ssr: false });
+import FooterContextProvider from "./context/Provider";
 // Styled components
 import FooterBase from "./Base";
 
 const Footer: FunctionComponent = () => {
     return (
-        <FooterBase>
-            <FooterLogoAnimation />
-            <SocialMediasIcons />
-            <Author />
-        </FooterBase>
+        <FooterContextProvider>
+            <FooterBase>
+                <FooterContent />
+
+                <SocialMediasIcons />
+                <Author />
+            </FooterBase>
+        </FooterContextProvider>
     );
 };
 
