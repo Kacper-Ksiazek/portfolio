@@ -17,11 +17,14 @@ const Email: FunctionComponent = () => {
 
     return (
         <Tooltip title="Reveal my email address" placement="top">
-            <span className={CSS_REFERENCES.SOCIAL_MEDIA_ICON}>
-                <EmailIcon
-                    onClick={seeEmailAdress} //
-                    className={contentToDisplay === "EMAIL" ? "active" : ""}
-                />
+            <span
+                onClick={seeEmailAdress} //
+                className={[
+                    CSS_REFERENCES.SOCIAL_MEDIA_ICON, //
+                    contentToDisplay === "EMAIL" ? CSS_REFERENCES.ACTIVE_SOCIAL_MEDIA_ICON : "",
+                ].join(" ")}
+            >
+                <EmailIcon />
             </span>
         </Tooltip>
     );

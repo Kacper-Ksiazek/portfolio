@@ -12,16 +12,19 @@ const PhoneNumber: FunctionComponent = () => {
     const { contentToDisplay, setContentToDisplay } = useFooterContext();
 
     function seePhoneNumberAdress() {
-        setContentToDisplay((val) => (val === "EMAIL" ? "LOGO" : "EMAIL"));
+        setContentToDisplay((val) => (val === "PHONE_NUMBER" ? "LOGO" : "PHONE_NUMBER"));
     }
 
     return (
         <Tooltip title="Reveal my phone number" placement="top">
-            <span className={CSS_REFERENCES.SOCIAL_MEDIA_ICON}>
-                <PhoneIcon
-                    onClick={seePhoneNumberAdress} //
-                    className={contentToDisplay === "PHONE_NUMBER" ? "active" : ""}
-                />
+            <span
+                onClick={seePhoneNumberAdress} //
+                className={[
+                    CSS_REFERENCES.SOCIAL_MEDIA_ICON, //
+                    contentToDisplay === "PHONE_NUMBER" ? CSS_REFERENCES.ACTIVE_SOCIAL_MEDIA_ICON : "",
+                ].join(" ")}
+            >
+                <PhoneIcon />
             </span>
         </Tooltip>
     );
