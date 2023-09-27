@@ -6,7 +6,10 @@ import { useFooterContext } from "../hooks/useFooterContext";
 import type { FunctionComponent } from "react";
 // Other components
 import SmoothConditionalRender from "@/components/utils/SmoothConditionalRender";
+const CopyMyEmail = dynamic(() => import("./CopyMyEmail"));
+const CopyMyPhoneNumber = dynamic(() => import("./CopyMyPhoneNumber"));
 const FooterLogoAnimation = dynamic(() => import("./FooterLogoAnimation"), { ssr: false });
+
 // Styled components
 const FooterContentWrapper = styled("div")(({ theme }) => ({
     height: "300px",
@@ -29,11 +32,11 @@ const FooterContent: FunctionComponent = () => {
             </SmoothConditionalRender>
 
             <SmoothConditionalRender when={contentToDisplay === "PHONE_NUMBER"}>
-                <span>phone</span>
+                <CopyMyPhoneNumber />
             </SmoothConditionalRender>
 
             <SmoothConditionalRender when={contentToDisplay === "EMAIL"}>
-                <span>email</span>
+                <CopyMyEmail />
             </SmoothConditionalRender>
         </FooterContentWrapper>
     );
