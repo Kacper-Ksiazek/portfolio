@@ -1,4 +1,5 @@
 // Tools
+import { SELECTORS } from "landing_page/css_references";
 import { useBreakTheIceContentContext } from "@/components/pages/landing_page/BreakTheIce/hooks/useBreakTheIceContentContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -22,7 +23,7 @@ const MobileBottomNavigation: FunctionComponent = () => {
     const nextStage: IceBreakingStage = stages[context.currentIceBreakingStage];
 
     const changeStage = () => {
-        const el = document.getElementById("about-me");
+        const el = document.getElementById(SELECTORS.ABOUT_ME);
         if (el) {
             scrollTo({
                 top: el.getBoundingClientRect().top + window.pageYOffset - 80,

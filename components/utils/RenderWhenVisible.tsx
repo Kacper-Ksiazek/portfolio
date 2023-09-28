@@ -16,7 +16,7 @@ interface TransformWhenVisibleProps {
 
     rootMargin?: number;
 
-    onClick: () => void;
+    onClick?: () => void;
     onVisible?: () => void;
 }
 

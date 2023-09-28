@@ -1,6 +1,7 @@
 // Tools
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { CSS_REFERENCES } from "landing_page/css_references";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
 import { useKeepContrastFontColor, useMobileMenuHandlers, useStylesOnScoll, useStylesBasedOnURL } from "./hooks";
 // Types
@@ -57,21 +58,21 @@ const Navigation: FunctionComponent = () => {
 
                 <RoutesWrapper className={mobileMenuStatus ?? ""}>
                     <SingleNavigationRoute
-                        idOfElementToScroll="about-me" //
+                        idOfElementToScroll={CSS_REFERENCES.ABOUT_ME} //
                         mobileMenuIsOpened={mobileMenuIsOpened}
                         closeMobileMenu={toogleVisibility}
                     >
                         About me
                     </SingleNavigationRoute>
                     <SingleNavigationRoute
-                        idOfElementToScroll="projects" //
+                        idOfElementToScroll={CSS_REFERENCES.PROJECTS} //
                         mobileMenuIsOpened={mobileMenuIsOpened}
                         closeMobileMenu={toogleVisibility}
                     >
                         Projects
                     </SingleNavigationRoute>
                     <SingleNavigationRoute
-                        idOfElementToScroll="contact" //
+                        idOfElementToScroll={CSS_REFERENCES.CONTACT_ME} //
                         mobileMenuIsOpened={mobileMenuIsOpened}
                         closeMobileMenu={toogleVisibility}
                     >

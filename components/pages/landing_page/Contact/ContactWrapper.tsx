@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { useState, useMemo } from "react";
 import { useMapContext } from "./hooks/useMapContext";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
+import { CSS_REFERENCES } from "landing_page/css_references";
 import { useContactNavigation } from "./hooks/useContactNavigation";
 import { generateFadeSimpleAnimations } from "@/components/atoms/NavigationBetweenSections/helpers/generateFadeSimpleAnimations";
 // Types
@@ -73,7 +74,7 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
             }}
             backgroundLetter="R"
             round="left"
-            id="contact"
+            id={CSS_REFERENCES.CONTACT_ME}
             backgroundLetterSx={backgroundLetterSx}
             childrenOutsideContentWrapper={
                 renderMap ? (

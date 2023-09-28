@@ -1,3 +1,6 @@
+// Tools
+import { SELECTORS } from "landing_page/css_references";
+
 type ReleventHTMLElement =
     | "SVG_BACKGROUND" //
     | "MAIN_WRAPPER"
@@ -7,8 +10,8 @@ type ReleventHTMLElement =
     | "BODY_OF_GAMES_HISTORY_TABLE";
 
 const selectors: Record<ReleventHTMLElement, string> = Object.seal({
-    SVG_BACKGROUND: "#picture-matching-game-main-wrapper .dark-section-wrapper-background-svg",
-    MAIN_WRAPPER: "#picture-matching-game-main-wrapper",
+    SVG_BACKGROUND: `${SELECTORS.PICTURES_MATCHING_GAME} .dark-section-wrapper-background-svg`,
+    MAIN_WRAPPER: SELECTORS.PICTURES_MATCHING_GAME,
     PICTURES_WRAPPER: "#picture-matching-game-pictures-wrapper",
     PICTURES_WRAPPER_SCROLL_ANCHOR: "#picture-matching-game-pictures-wrapper-user-scroll-anchor",
     USER_CHOICE_ANIMATION_BASE: "#user-choice-animaiton-base",

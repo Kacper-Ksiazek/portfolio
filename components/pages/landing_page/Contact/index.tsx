@@ -1,6 +1,7 @@
 // Tools
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
+import { SELECTORS } from "landing_page/css_references";
 import { useContactNavigation, useFormContext } from "./hooks";
 // Types
 import type { FunctionComponent } from "react";
@@ -17,7 +18,7 @@ const Contact: FunctionComponent = () => {
     const { validSections } = useFormContext();
 
     function writeToMe() {
-        const el = document.getElementById("contact");
+        const el = document.getElementById(SELECTORS.CONTACT_ME);
         if (el) el.scrollIntoView({ behavior: "smooth" });
         navigationContext.updaters.setCurrentGeneralSection("SEND_EMAIL_FORM");
     }

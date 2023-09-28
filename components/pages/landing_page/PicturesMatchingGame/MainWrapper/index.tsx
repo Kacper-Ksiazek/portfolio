@@ -1,5 +1,6 @@
 // Tools
 import { useTheme } from "@mui/material/styles";
+import { CSS_REFERENCES } from "landing_page/css_references";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Icons
@@ -19,7 +20,7 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
 
     return (
         <DarkSectionWrapper
-            id="picture-matching-game-main-wrapper"
+            id={CSS_REFERENCES.PICTURES_MATCHING_GAME}
             shapesDirection="right"
             header={{
                 main: "React image matching game",

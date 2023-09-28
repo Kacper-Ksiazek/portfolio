@@ -1,4 +1,5 @@
 // Tools
+import { CSS_REFERENCES } from "landing_page/css_references";
 import { useBackgroundLetter } from "./hooks/useBackgroundLetter";
 import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
 import { generateFadeSimpleAnimations } from "@/components/atoms/NavigationBetweenSections/helpers/generateFadeSimpleAnimations";
@@ -47,7 +48,7 @@ const BreakTheIce: FunctionComponent = () => {
                 },
             }}
             backgroundLetter={letter}
-            id="about-me"
+            id={CSS_REFERENCES.ABOUT_ME}
             contentWrapperSx={{ display: "flex" }}
         >
             <RenderWhenVisible
