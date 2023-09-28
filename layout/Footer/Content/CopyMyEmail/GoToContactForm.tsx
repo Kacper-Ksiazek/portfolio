@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { fadeSimple } from "@/components/keyframes/intro";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -12,6 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 const RedirectionButton = styled(StyledButton)(({ theme }) => ({
     height: "42px",
     padding: "0 36px",
+    animation: `${fadeSimple} .3s .5s both linear`,
 }));
 
 const GoToContactForm: FunctionComponent = () => {

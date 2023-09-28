@@ -1,5 +1,6 @@
 // Tools
-import { styled } from "@mui/material";
+import { alpha, styled } from "@mui/material";
+import { fadeSimple, scaleFromLeft } from "@/components/keyframes/intro";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
@@ -11,19 +12,24 @@ import ContentCopy from "@mui/icons-material/ContentCopy";
 // Styled components
 const ContentToCopyBase = styled("div")(({ theme }) => ({
     cursor: "pointer",
-    display: "block",
-    background: theme.palette.background.MUIFormElementsBackground,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: theme.palette.primary.main,
     width: "100%",
     padding: "8px 0 ",
-    textAlign: "center",
     borderRadius: "3px",
-    border: `1px solid ${theme.palette.background.MUIFormElementsBorder}`,
     margin: "12px 0 24px 0",
+    animation: `${scaleFromLeft} .24s .2s both linear`,
+
+    "&>*": {
+        animation: `${fadeSimple} .2s .5s both linear`,
+    },
 
     "span.content": {
-        opacity: 0.8,
-        fontsize: "18px",
-        letterspacing: "1px",
+        color: alpha("#fff", 0.8),
+        fontSize: "20px",
+        fontWeight: 500,
         transition: "transform .3s, opacity .3s",
     },
 
@@ -31,13 +37,8 @@ const ContentToCopyBase = styled("div")(({ theme }) => ({
         marginLeft: "2px",
         transition: "transform .3s",
         svg: {
+            color: "#fff",
             fontSize: "24px",
-            transition: "color .3s",
-        },
-        "&:hover": {
-            svg: {
-                color: theme.palette.primary.main,
-            },
         },
     },
 
@@ -65,12 +66,27 @@ interface ContentToCopyProps {
 const ContentToCopy: FunctionComponent<ContentToCopyProps> = (props) => {
     return (
         <>
-            <Typography variant="h5">{props.header}</Typography>
+            <Typography
+                variant="h5"
+                sx={{
+                    color: "#fff",
+                    animation: `${fadeSimple} .24s .4s both linear`,
+                }}
+            >
+                {props.header}
+            </Typography>
 
             <Tooltip title={props.tooltip} placement="top">
                 <ContentToCopyBase onClick={props.onClick}>
+                    {props.startAdornment ?? <></>}
+
                     <span className="content">{props.content}</span>
-                    <IconButton>
+
+                    <IconButton
+                        sx={{
+                            animation: `${fadeSimple} .24s .5s both linear`,
+                        }}
+                    >
                         <ContentCopy />
                     </IconButton>
                 </ContentToCopyBase>
