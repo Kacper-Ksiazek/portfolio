@@ -96,7 +96,13 @@ const FooterLogoAnimation: FunctionComponent = () => {
             {renderNTimes({
                 n: 11,
                 startWith: 1,
-                renderElement: (i) => <AnimationStep step={i} className={`step-${i}`} />,
+                renderElement: (i) => (
+                    <AnimationStep
+                        key={i} //
+                        step={i}
+                        className={`step-${i}`}
+                    />
+                ),
             })}
         </RenderWhenVisible>
     );

@@ -1,7 +1,8 @@
 // Tools
 import { styled } from "@mui/material";
-import { SELECTORS } from "landing_page/css_references";
+import { useRouter } from "next/router";
 import { fadeSimple } from "@/components/keyframes/intro";
+import { SELECTORS, CSS_REFERENCES } from "landing_page/css_references";
 // Types
 import type { MouseEvent, FunctionComponent } from "react";
 // Other components
@@ -18,6 +19,8 @@ const RedirectionButton = styled(StyledButton)(({ theme }) => ({
 }));
 
 const GoToContactForm: FunctionComponent = () => {
+    const router = useRouter();
+
     function redirectToContactForm(e: MouseEvent<HTMLButtonElement>) {
         if (!window) return;
         (e.target as HTMLButtonElement).blur();
@@ -36,7 +39,16 @@ const GoToContactForm: FunctionComponent = () => {
                 }, 200);
             }
         }
-        //
+        // If the user is in another page, redirect to the home page and scroll to the contact form
+        else {
+            router.push({
+                pathname: "/",
+                query: {
+                    skipIntroductionAnimationEvenThoughItsCool: "1",
+                    scrollToElement: CSS_REFERENCES.CONTACT_ME_OPEN_EMAIL_FORM_BUTTON,
+                },
+            });
+        }
     }
 
     return (
