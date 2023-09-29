@@ -22,5 +22,8 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
         CONTACT_ME: {
             ref_value: "contact-me",
         },
+        CONTACT_ME_OPEN_EMAIL_FORM_BUTTON: {
+            ref_value: "contact-me-open-form-button",
+        },
     },
 });

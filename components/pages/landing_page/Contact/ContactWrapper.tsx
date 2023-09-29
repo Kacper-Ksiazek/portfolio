@@ -10,6 +10,7 @@ import { generateFadeSimpleAnimations } from "@/components/atoms/NavigationBetwe
 import type { Styles } from "@/@types/MUI";
 import type { GeneralContactSection } from "./@types";
 import type { FunctionComponent, ReactNode } from "react";
+import type { SectionElement } from "@/components/atoms/NavigationBetweenSections/@types";
 // Other components
 const Map = dynamic(() => import("./Map"));
 import RenderWhenVisible from "@/components/utils/RenderWhenVisible";
@@ -60,8 +61,11 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                                     {
                                         label: "Send me an email",
                                         value: "SEND_EMAIL_FORM",
+                                        props: {
+                                            id: CSS_REFERENCES.CONTACT_ME_OPEN_EMAIL_FORM_BUTTON,
+                                        },
                                     },
-                                ] as { label: string; value: GeneralContactSection }[]
+                                ] as SectionElement<GeneralContactSection>[]
                             } //
                             currentSection={generalSection}
                             onChoose={(val: string) => navigationContext.updaters.setCurrentGeneralSection(val as any)}
