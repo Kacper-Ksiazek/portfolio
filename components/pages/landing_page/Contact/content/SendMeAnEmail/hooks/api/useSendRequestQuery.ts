@@ -5,7 +5,7 @@ import { useFormContext } from "@/components/pages/landing_page/Contact/hooks/us
 // Types
 import type { SetStateAction, Dispatch } from "react";
 
-const API_ADDRESS = "./api/send_email";
+const API_ADDRESS = "/api/send_email";
 
 export const useSendRequestQuery = (setAlreadySentEmail: Dispatch<SetStateAction<string | null>>): (() => Promise<void>) => {
     const { updateRequest } = useRequestContext();
@@ -18,7 +18,7 @@ export const useSendRequestQuery = (setAlreadySentEmail: Dispatch<SetStateAction
 
         await axios
             .post(
-                API_ADDRESS,
+                window.location.href + API_ADDRESS,
                 {
                     author,
                     subject,
