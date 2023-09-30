@@ -10,7 +10,7 @@ interface SEOProps {
 }
 
 const SEO: FunctionComponent<SEOProps> = (props) => {
-    const OPEN_GRAPH_THUMBNAIL: string = "https://i.imgur.com/CyWV8QI.png";
+    const OPEN_GRAPH_THUMBNAIL: string = "https://i.imgur.com/oV1MqpF.png";
 
     const urlRoot: string = process.env.NEXT_PUBLIC_ROOT_URL;
     const appName: string = process.env.NEXT_PUBLIC_APP_NAME;
