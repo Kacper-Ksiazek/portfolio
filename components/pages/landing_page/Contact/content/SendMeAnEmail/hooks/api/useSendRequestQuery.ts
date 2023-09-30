@@ -17,17 +17,25 @@ export const useSendRequestQuery = (setAlreadySentEmail: Dispatch<SetStateAction
         updateRequest({ status: "pending" });
 
         await axios
-            .post(API_ADDRESS, {
-                author,
-                subject,
-                message,
-                contact: {
-                    email,
-                    country: country ? country?.label : "",
-                    ...(linkedIn.length ? { linkedIn } : null),
-                    ...(website.length ? { website } : null),
+            .post(
+                API_ADDRESS,
+                {
+                    author,
+                    subject,
+                    message,
+                    contact: {
+                        email,
+                        country: country ? country?.label : "",
+                        ...(linkedIn.length ? { linkedIn } : null),
+                        ...(website.length ? { website } : null),
+                    },
                 },
-            })
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             .then(() => {
                 updateRequest({ status: "success" });
                 setAlreadySentEmail(new Date().toLocaleDateString());
