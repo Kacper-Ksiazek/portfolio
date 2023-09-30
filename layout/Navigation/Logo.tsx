@@ -69,7 +69,7 @@ const Logo: FunctionComponent<LogoProps> = (props) => {
         <SingleFlexWrapper onClick={redirectToMainPage}>
             <ImageWrapper id="portfolio-logo-image">
                 <Image
-                    src="/main-page-logo/xs.png" //
+                    src="/main-page-logo/XS.png" //
                     alt="page-logo"
                     layout="fill"
                 />
