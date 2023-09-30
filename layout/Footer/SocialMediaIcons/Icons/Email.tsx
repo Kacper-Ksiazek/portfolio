@@ -19,6 +19,7 @@ const Email: FunctionComponent = () => {
         <Tooltip title="Reveal my email address" placement="top">
             <span
                 onClick={seeEmailAdress} //
+                role="button"
                 className={[
                     CSS_REFERENCES.SOCIAL_MEDIA_ICON, //
                     contentToDisplay === "EMAIL" ? CSS_REFERENCES.ACTIVE_SOCIAL_MEDIA_ICON : "",

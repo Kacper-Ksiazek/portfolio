@@ -1,22 +1,12 @@
 // Tools
-import { styled } from "@mui/material";
 import { useRouter } from "next/router";
-import { fadeSimple } from "@/components/keyframes/intro";
 import { SELECTORS, CSS_REFERENCES } from "landing_page/css_references";
 // Types
 import type { MouseEvent, FunctionComponent } from "react";
 // Other components
-import StyledButton from "@/components/atoms/forms/StyledButton";
+import AdditionalActionButton from "../common/AdditionalActionButton";
 // Material UI Icons
 import MailOutline from "@mui/icons-material/MailOutline";
-// Styled components
-import Tooltip from "@mui/material/Tooltip";
-
-const RedirectionButton = styled(StyledButton)(({ theme }) => ({
-    height: "42px",
-    padding: "0 36px",
-    animation: `${fadeSimple} .3s .5s both linear`,
-}));
 
 const GoToContactForm: FunctionComponent = () => {
     const router = useRouter();
@@ -52,16 +42,12 @@ const GoToContactForm: FunctionComponent = () => {
     }
 
     return (
-        <Tooltip title="Go to the contact panel of my portfolio" placement="top">
-            <RedirectionButton
-                onClick={redirectToContactForm} //
-                componentThemeID="MUI"
-                subtleHoverEffect
-            >
-                <MailOutline sx={{ mr: "6px" }} />
-                {"Use portfolio's contact form"}
-            </RedirectionButton>
-        </Tooltip>
+        <AdditionalActionButton
+            tooltip="Go to the contact panel of my portfolio" //
+            buttonMsg="Use portfolio's contact form"
+            icon={<MailOutline />}
+            onClick={redirectToContactForm}
+        />
     );
 };
 

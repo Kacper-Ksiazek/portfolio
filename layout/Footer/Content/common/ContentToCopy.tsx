@@ -1,5 +1,6 @@
 // Tools
 import { alpha, styled } from "@mui/material";
+import { useSnackbar } from "@/hooks/useSnackbar";
 import { fadeSimple, scaleFromLeft } from "@/components/keyframes/intro";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -21,14 +22,14 @@ const ContentToCopyBase = styled("div")(({ theme }) => ({
     borderRadius: "3px",
     margin: "12px 0 24px 0",
     animation: `${scaleFromLeft} .24s .2s both linear`,
+    color: "#fff",
+    fontSize: "20px",
 
     "&>*": {
         animation: `${fadeSimple} .2s .5s both linear`,
     },
 
     "span.content": {
-        color: alpha("#fff", 0.8),
-        fontSize: "20px",
         fontWeight: 500,
         transition: "transform .3s, opacity .3s",
     },
@@ -43,10 +44,6 @@ const ContentToCopyBase = styled("div")(({ theme }) => ({
     },
 
     "&:hover": {
-        "span.content": {
-            opacity: 1,
-        },
-
         button: {
             transform: "scale(1.1)",
         },
@@ -56,14 +53,29 @@ const ContentToCopyBase = styled("div")(({ theme }) => ({
 interface ContentToCopyProps {
     tooltip: string;
     header: string;
-    content: string;
-
     startAdornment?: ReactNode;
 
-    onClick: () => void;
+    contentToCopy: {
+        value: string;
+        snackbarMsg: string;
+    };
 }
 
 const ContentToCopy: FunctionComponent<ContentToCopyProps> = (props) => {
+    const { displaySnackbar } = useSnackbar();
+
+    function copyToClipboard() {
+        if (!navigator) return;
+
+        navigator.clipboard.writeText(props.contentToCopy.value);
+
+        displaySnackbar({
+            msg: props.contentToCopy.snackbarMsg,
+            severity: "info",
+            hideAfter: 5000,
+        });
+    }
+
     return (
         <>
             <Typography
@@ -77,10 +89,10 @@ const ContentToCopy: FunctionComponent<ContentToCopyProps> = (props) => {
             </Typography>
 
             <Tooltip title={props.tooltip} placement="top">
-                <ContentToCopyBase onClick={props.onClick}>
+                <ContentToCopyBase onClick={copyToClipboard}>
                     {props.startAdornment ?? <></>}
 
-                    <span className="content">{props.content}</span>
+                    <span className="content">{props.contentToCopy.value}</span>
 
                     <IconButton
                         sx={{

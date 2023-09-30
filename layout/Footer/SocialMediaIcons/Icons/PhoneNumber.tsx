@@ -19,6 +19,7 @@ const PhoneNumber: FunctionComponent = () => {
         <Tooltip title="Reveal my phone number" placement="top">
             <span
                 onClick={seePhoneNumberAdress} //
+                role="button"
                 className={[
                     CSS_REFERENCES.SOCIAL_MEDIA_ICON, //
                     contentToDisplay === "PHONE_NUMBER" ? CSS_REFERENCES.ACTIVE_SOCIAL_MEDIA_ICON : "",

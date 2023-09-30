@@ -1,36 +1,23 @@
 // Tools
-import { useSnackbar } from "@/hooks/useSnackbar";
 import { SOCIAL_MEDIA_LINKS } from "@/data/social_media_links";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import ContentToCopy from "../_ContentToCopy";
+import ContentToCopy from "../common/ContentToCopy";
 // Styled components
-import CopyMyEmailWrapper from "./Base";
+import CopyMyEmailWrapper from "../common/SectionWrapper";
 import GoToContactForm from "./GoToContactForm";
 
 const CopyMyEmail: FunctionComponent = () => {
-    const { displaySnackbar } = useSnackbar();
-
-    function copyEmailAddressToClipboard() {
-        if (!navigator) return;
-
-        navigator.clipboard.writeText(SOCIAL_MEDIA_LINKS.EMAIL);
-
-        displaySnackbar({
-            msg: "Email address has been copied to the clipboard! Make a good use of it 😎",
-            severity: "info",
-            hideAfter: 5000,
-        });
-    }
-
     return (
         <CopyMyEmailWrapper>
             <ContentToCopy
-                header="My email address"
-                content={SOCIAL_MEDIA_LINKS.EMAIL} //
-                onClick={copyEmailAddressToClipboard}
+                header="My email address" //
                 tooltip="Copy my email address to the clipboard"
+                contentToCopy={{
+                    value: SOCIAL_MEDIA_LINKS.EMAIL,
+                    snackbarMsg: "Email address has been copied to the clipboard! Make a good use of it 😎",
+                }}
             />
 
             <GoToContactForm />
