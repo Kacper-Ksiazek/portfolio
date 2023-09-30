@@ -1,0 +1,9 @@
+{
+    "routes": [
+        {
+            "src": "/api/send_email",
+            "methods": ["POST"],
+            "dest": "/api/send_email.ts"
+        }
+    ]
+}

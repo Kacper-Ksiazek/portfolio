@@ -1,4 +1,5 @@
 // Tools
+import { Fragment } from "react";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import { useContactNavigation } from "@/components/pages/landing_page/Contact/hooks/useContactNavigation";
 // Types
@@ -9,11 +10,11 @@ import Step from "./Step";
 // Styled components
 import { Divider, StyledStepper } from "./styled_components";
 
-interface NavigationBetweenStagesProps {
+interface SendMeEmailFormStagesNavigationProps {
     validSections: Record<EmailFormSubsection, boolean>;
 }
 
-const NavigationBetweenStages: FunctionComponent<NavigationBetweenStagesProps> = (props) => {
+const SendMeEmailFormStagesNavigation: FunctionComponent<SendMeEmailFormStagesNavigationProps> = (props) => {
     const contactNavigationContext = useContactNavigation();
     const { width } = useWindowSizes();
 
@@ -45,23 +46,22 @@ const NavigationBetweenStages: FunctionComponent<NavigationBetweenStagesProps> =
                     const { isActive, isBlocked, isValid } = parseSection(section);
 
                     return (
-                        <>
+                        <Fragment key={section}>
                             {index !== 0 && <Divider className="divider" />}
 
                             <Step
-                                key={index} //
-                                index={index + 1}
+                                index={index + 1} //
                                 label={label}
                                 active={isActive}
                                 completed={isValid}
                                 blocked={isBlocked}
                                 onClick={() => contactNavigationContext.updaters.setEmailFormSubsection(section)}
                             />
-                        </>
+                        </Fragment>
                     );
                 })}
         </StyledStepper>
     );
 };
 
-export default NavigationBetweenStages;
+export default SendMeEmailFormStagesNavigation;
