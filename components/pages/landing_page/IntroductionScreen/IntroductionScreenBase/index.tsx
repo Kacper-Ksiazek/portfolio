@@ -2,6 +2,7 @@
 import { COLORS } from "@/material";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { CSS_REFERENCES } from "landing_page/css_references";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
@@ -52,6 +53,7 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
 
     return (
         <IntroductionScreenBaseWrapper
+            id={CSS_REFERENCES.INTRODUCTION_SCREEN}
             className={[
                 displayAnimations ? "display-intro-animations" : "skip-intro-animation", //
                 props.scrollButtonIsHovered ? "scroll-button-is-hovered" : "",

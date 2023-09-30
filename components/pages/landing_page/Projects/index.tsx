@@ -1,6 +1,7 @@
 // Tools
 import { styled, alpha } from "@mui/material";
 import { fadeFromLeft } from "@/components/keyframes/intro";
+import { CSS_REFERENCES } from "landing_page/css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
@@ -50,7 +51,7 @@ const Projects: FunctionComponent<ProjectsProps> = ({ projects }) => {
             }}
             round="right"
             unlimitedHeight
-            id="projects"
+            id={CSS_REFERENCES.PROJECTS}
         >
             <ProjectsContextProvider>
                 <ProjectsWrapper>

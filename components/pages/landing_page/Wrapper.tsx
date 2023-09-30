@@ -1,3 +1,5 @@
+// Tools
+import { useScrollToParticularSection } from "./useScrollToParticularSection";
 // Types
 import type { FunctionComponent } from "react";
 import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
@@ -7,9 +9,10 @@ import ToDoList from "@/components/pages/landing_page/ToDoList";
 import Projects from "@/components/pages/landing_page/Projects";
 import BreakTheIce from "@/components/pages/landing_page/BreakTheIce";
 import PicturesMatchingGame from "@/components/pages/landing_page/PicturesMatchingGame";
-import ScrollToParticularSection from "@/components/pages/landing_page/ScrollToParticularSection";
 
 const LandingPageWrapper: FunctionComponent<LandingPageServerSideProps> = (props) => {
+    useScrollToParticularSection();
+
     return (
         <>
             <BreakTheIce
@@ -21,8 +24,6 @@ const LandingPageWrapper: FunctionComponent<LandingPageServerSideProps> = (props
             <Projects projects={props.projects} />
             <PicturesMatchingGame />
             <Contact />
-
-            <ScrollToParticularSection />
         </>
     );
 };

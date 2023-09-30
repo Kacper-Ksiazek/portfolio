@@ -3,12 +3,14 @@ import dynamic from "next/dynamic";
 import { useState, useMemo } from "react";
 import { useMapContext } from "./hooks/useMapContext";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
+import { CSS_REFERENCES } from "landing_page/css_references";
 import { useContactNavigation } from "./hooks/useContactNavigation";
 import { generateFadeSimpleAnimations } from "@/components/atoms/NavigationBetweenSections/helpers/generateFadeSimpleAnimations";
 // Types
 import type { Styles } from "@/@types/MUI";
 import type { GeneralContactSection } from "./@types";
 import type { FunctionComponent, ReactNode } from "react";
+import type { SectionElement } from "@/components/atoms/NavigationBetweenSections/@types";
 // Other components
 const Map = dynamic(() => import("./Map"));
 import RenderWhenVisible from "@/components/utils/RenderWhenVisible";
@@ -59,8 +61,11 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                                     {
                                         label: "Send me an email",
                                         value: "SEND_EMAIL_FORM",
+                                        props: {
+                                            id: CSS_REFERENCES.CONTACT_ME_OPEN_EMAIL_FORM_BUTTON,
+                                        },
                                     },
-                                ] as { label: string; value: GeneralContactSection }[]
+                                ] as SectionElement<GeneralContactSection>[]
                             } //
                             currentSection={generalSection}
                             onChoose={(val: string) => navigationContext.updaters.setCurrentGeneralSection(val as any)}
@@ -73,7 +78,7 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
             }}
             backgroundLetter="R"
             round="left"
-            id="contact"
+            id={CSS_REFERENCES.CONTACT_ME}
             backgroundLetterSx={backgroundLetterSx}
             childrenOutsideContentWrapper={
                 renderMap ? (

@@ -16,6 +16,7 @@ interface TransformWhenVisibleProps {
 
     rootMargin?: number;
 
+    onClick?: () => void;
     onVisible?: () => void;
 }
 
@@ -28,6 +29,7 @@ const RenderWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (props) 
         <Box
             className="render-when-visible-wrapper"
             ref={ref as any}
+            onClick={props.onClick}
             sx={{
                 ...applySxProps(props.sx, theme),
             }}
