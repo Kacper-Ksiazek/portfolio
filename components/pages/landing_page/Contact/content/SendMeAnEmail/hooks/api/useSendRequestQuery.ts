@@ -16,26 +16,23 @@ export const useSendRequestQuery = (setAlreadySentEmail: Dispatch<SetStateAction
 
         updateRequest({ status: "pending" });
 
-        await axios
-            .post(
-                window.location.href + API_ADDRESS,
-                {
-                    author,
-                    subject,
-                    message,
-                    contact: {
-                        email,
-                        country: country ? country?.label : "",
-                        ...(linkedIn.length ? { linkedIn } : null),
-                        ...(website.length ? { website } : null),
-                    },
+        await fetch(window.location.href + API_ADDRESS, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                author,
+                subject,
+                message,
+                contact: {
+                    email,
+                    country: country ? country?.label : "",
+                    ...(linkedIn.length ? { linkedIn } : null),
+                    ...(website.length ? { website } : null),
                 },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            )
+            }),
+        })
             .then(() => {
                 updateRequest({ status: "success" });
                 setAlreadySentEmail(new Date().toLocaleDateString());
