@@ -9,6 +9,7 @@ export interface HeaderProps {
     icon: ReactNode;
 
     render?: boolean;
+    updatesFrequently?: boolean;
 }
 
 export interface DarkSectionWrapperProps {

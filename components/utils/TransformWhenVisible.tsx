@@ -18,6 +18,7 @@ interface TransformWhenVisibleProps {
     to: SxProps;
 
     rootMargin?: number;
+    updatesFrequently?: boolean;
 
     onVisible?: () => void;
 
@@ -49,6 +50,8 @@ const TransformWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (prop
     function onVisible() {
         if (props.onVisible) props.onVisible();
 
+        if (props.updatesFrequently === false) return;
+
         timeout.current = setTimeout(() => {
             alreadyHasBeenVisible.current = true;
         }, 1000);
@@ -69,7 +72,7 @@ const TransformWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (prop
     const stylesWhenNOTVisible: Styles = props.from ?? {};
 
     const transformationStyles: Styles = getTransformationStyles({
-        alreadyHasBeenVisible: alreadyHasBeenVisible.current,
+        alreadyHasBeenVisible: props.updatesFrequently ? alreadyHasBeenVisible.current : false,
         elementIsVisible,
         stylesWhenVisible,
         stylesWhenNOTVisible,
