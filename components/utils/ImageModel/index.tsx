@@ -1,7 +1,6 @@
 // Tools
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
-import useFullscreen from "./hooks/useFullscreen";
+import { useFullscreen, useModalControls } from "./hooks";
 // Types
 import type { GalleryProps } from "./@types";
 import type { FunctionComponent } from "react";
@@ -28,35 +27,17 @@ interface ImageModalProps {
 
 const ImageModal: FunctionComponent<ImageModalProps> = (props) => {
     const { isFullscreenOpened, handleFullsizeToggle } = useFullscreen();
-    const [open, setOpen] = useState<boolean>(props.open);
-    const [displayOutroAnimation, setDisplayOutroAnimation] = useState<boolean>(false);
-    const [displayLoading, setDisplayLoading] = useState<boolean>(true);
 
-    useEffect(() => {
-        setDisplayOutroAnimation(false);
-        setOpen(props.open);
-    }, [props.open]);
-
-    const closeModal = () => {
-        setDisplayOutroAnimation(true);
-        setTimeout(() => {
-            setOpen(false);
-            setTimeout(() => {
-                if (isFullscreenOpened) {
-                    handleFullsizeToggle();
-                    setTimeout(() => {
-                        props.onClose();
-                    }, 30);
-                } else {
-                    props.onClose();
-                }
-            }, 150);
-        }, 120);
-    };
+    const { state, closeModal, onImageLoad } = useModalControls({
+        isFullscreenOpened,
+        modalIsOpened: props.open,
+        handleFullsizeToggle,
+        onClose: props.onClose,
+    });
 
     return (
         <Modal
-            open={open}
+            open={state.displayModal}
             onClose={closeModal}
             sx={{
                 ".MuiBackdrop-root": {
@@ -65,14 +46,16 @@ const ImageModal: FunctionComponent<ImageModalProps> = (props) => {
             }}
             id="image-modal-wrapper"
         >
-            <Fade in={open}>
+            <Fade in={state.displayModal}>
                 <ImageModelBase>
                     <TopSideButtons
                         fullscreenIsOpen={isFullscreenOpened} //
                         handleFullsizeToggle={handleFullsizeToggle}
                         handleCloseModal={closeModal}
                     />
-                    {displayLoading && <Loading />}
+                    {/* Display loading animation */}
+                    {state.displayImageLoader && <Loading />}
+
                     {props.title && (
                         <Title>
                             {(() => {
@@ -92,7 +75,7 @@ const ImageModal: FunctionComponent<ImageModalProps> = (props) => {
                         </Title>
                     )}
 
-                    <div className={["imageWrapper", displayOutroAnimation ? "outro" : displayLoading ? "" : "intro"].join(" ")}>
+                    <div className={["imageWrapper", state.displayOutroAnimation ? "outro" : state.displayImageLoader ? "" : "intro"].join(" ")}>
                         {props.gallery && <GalleryManagement {...props.gallery} />}
                         <Image
                             src={props.imageURL} //
@@ -100,7 +83,7 @@ const ImageModal: FunctionComponent<ImageModalProps> = (props) => {
                             alt="image-in-fullsize"
                             objectFit="contain"
                             onClick={closeModal}
-                            onLoad={() => setDisplayLoading(false)}
+                            onLoad={onImageLoad}
                         ></Image>
                     </div>
                 </ImageModelBase>
