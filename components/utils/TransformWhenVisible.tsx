@@ -1,6 +1,6 @@
 // Tools
-import { useRef } from "react";
 import { useTheme } from "@mui/material";
+import { useEffect, useRef } from "react";
 import { useElementVisibility } from "@/hooks/useElementVisibility";
 import { applySxProps } from "@/utils/client/styled/applyOptionalSxProps";
 // Types
@@ -44,13 +44,24 @@ const TransformWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (prop
     const ref = useRef<Element>(null);
     const alreadyHasBeenVisible = useRef<boolean>(false);
 
+    const timeout = useRef<NodeJS.Timeout | null>(null);
+
     function onVisible() {
         if (props.onVisible) props.onVisible();
 
-        setTimeout(() => {
+        timeout.current = setTimeout(() => {
             alreadyHasBeenVisible.current = true;
-        }, 100);
+        }, 1000);
     }
+
+    useEffect(() => {
+        return () => {
+            if (timeout.current !== null) {
+                clearTimeout(timeout.current);
+                timeout.current = null;
+            }
+        };
+    }, []);
 
     const elementIsVisible = useElementVisibility(ref, onVisible, props.rootMargin);
 
