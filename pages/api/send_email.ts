@@ -4,9 +4,10 @@ import HandleSendingEmailForm from "@/utils/api/HandleSendingEmailForm";
 // Types
 import type { NextApiRequest, NextApiResponse } from "next";
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function hadler(req: NextApiRequest, res: NextApiResponse) {
     try {
+        console.log(req.method);
+
         if (req.method !== "POST") {
             throw new MethodNotAllowed();
         }
@@ -23,4 +24,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         else if (e instanceof Conflict) return res.status(409).end();
         return res.status(500).end();
     }
-};
+}
