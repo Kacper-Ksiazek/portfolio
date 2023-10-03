@@ -1,13 +1,13 @@
 // Tools
 import { useState } from "react";
 
-interface UseFullscreenResult {
+export interface UseFullscreenResult {
     handleFullsizeToggle: () => void;
     isFullscreenOpened: boolean;
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (): UseFullscreenResult => {
+export function useFullscreen(): UseFullscreenResult {
     const [fullscreen, setFullscreen] = useState<boolean>(false);
     const [scrollYWhileOpeningFullscreen, setScrollYWhileOpeningFullscreen] = useState<number>(0);
 
@@ -39,4 +39,4 @@ export default (): UseFullscreenResult => {
         handleFullsizeToggle,
         isFullscreenOpened: fullscreen,
     };
-};
+}
