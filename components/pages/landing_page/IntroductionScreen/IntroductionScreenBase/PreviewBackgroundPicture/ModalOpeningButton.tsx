@@ -9,25 +9,34 @@ import Tooltip from "@mui/material/Tooltip";
 // Material UI Icons
 import Panorama from "@mui/icons-material/Panorama";
 // Styled components
+import StyledButton from "components/atoms/forms/StyledButton";
 
-const PreviewBackgroundPictureBase = styled(Button)(({ theme }) => ({
+const PreviewBackgroundPictureBase = styled(StyledButton)(({ theme }) => ({
     position: "absolute",
     zIndex: 20,
     bottom: "64px",
     right: "128px",
     minWidth: "auto",
     padding: "6px 16px",
-    color: theme.palette.background.lightAnimationBar,
     borderRadius: "4px",
     svg: {
         fontSize: "24px",
+        marginRight: "6px",
     },
     animation: `${fadeSimple} .3s 6s both linear`,
-    ["@media (max-width:1600px)"]: {
+    "@media (max-width:1600px)": {
         bottom: "32px",
         right: "32px",
     },
-    ["@media (max-width:500px)"]: {
+    "@media (max-width:1100px)": {
+        svg: {
+            marginRight: "0",
+        },
+        "span.text": {
+            display: "none",
+        },
+    },
+    "@media (max-width:500px)": {
         bottom: "16px",
         right: "16px",
     },
@@ -41,12 +50,12 @@ const ModalOpeningButton: FunctionComponent<ModalOpeningButtonProps> = (props) =
     return (
         <Tooltip title="Preview background photo" placement="top">
             <PreviewBackgroundPictureBase
-                variant="outlined" //
-                color="inherit"
+                id="background-picture-preview-button" //
+                componentThemeID="PRIMARY"
                 onClick={props.onClick}
-                id="background-picture-preview-button"
             >
                 <Panorama />
+                <span className="text">Preview background</span>
             </PreviewBackgroundPictureBase>
         </Tooltip>
     );
