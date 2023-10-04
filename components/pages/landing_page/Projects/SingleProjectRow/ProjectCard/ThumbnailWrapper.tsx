@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { useRouter } from "next/router";
+import { SELECTORS } from "../css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -11,7 +12,7 @@ const ThumbnailWrapperBase = styled("div")(({ theme }) => ({
         width: "100%",
         marginBottom: "6px",
     },
-    ".thumbnail-wrapper": {
+    [SELECTORS.THUMBNAIL.WRAPPER]: {
         height: "200px",
         width: "240px",
         position: "relative",

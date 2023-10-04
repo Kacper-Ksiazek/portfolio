@@ -3,6 +3,7 @@ import { styled } from "@mui/material";
 import { repeat } from "@/utils/client/styled/repeat";
 import { numberOfFeatures, thumbnail } from "./keyframes";
 import { fadeSimple, fadeFromLeft, fadeFromTop } from "@/components/keyframes/intro";
+import { SELECTORS as THUMBNAIL } from "components/atoms/single_project/Thumbnail/css_references";
 import { SELECTORS as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
 
 // Styled components
@@ -21,7 +22,7 @@ export default styled("div")(({ theme }) => {
         flexDirection: "column",
         alignItems: "flex-start",
 
-        ".thumbnail-wrapper": {
+        [THUMBNAIL.WRAPPER]: {
             "&::before, &::after": {
                 content: "''",
                 zIndex: 5,
@@ -75,8 +76,8 @@ export default styled("div")(({ theme }) => {
                 animation: `${fadeFromLeft} .3s 1.7s both`,
             },
 
-            ".thumbnail-wrapper": {
-                "img, span.border-shape": {
+            [THUMBNAIL.WRAPPER]: {
+                [`img, ${THUMBNAIL.CONTENT.BORDER_SHAPE}`]: {
                     animation: `${fadeSimple} .01s .9s both`,
                 },
                 "&::after": {
