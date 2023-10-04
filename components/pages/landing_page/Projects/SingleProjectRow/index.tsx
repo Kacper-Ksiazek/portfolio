@@ -4,6 +4,7 @@ import { styled } from "@mui/material";
 import * as introAnimations from "./intro_animations";
 import { hidePseudoElement } from "@/components/keyframes/outro";
 import { useProjectsContext } from "../hooks/useProjectsContext";
+import { CSS_REFERENCES as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
@@ -66,7 +67,7 @@ const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
                         animation: `${hidePseudoElement} .001s 2.6s both`,
                     },
                     ".single-project-text-content-wrapper": {
-                        ".technologies-wrapper, h4, .duration, p, .read-more ": {
+                        [`${TECHNOLOGIES_LIST.WRAPPER}, h4, .duration, p, .read-more `]: {
                             position: "relative",
                             "&::after": {
                                 content: "''",

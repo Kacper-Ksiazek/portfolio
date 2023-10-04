@@ -3,6 +3,8 @@ import { styled } from "@mui/material";
 import { repeat } from "@/utils/client/styled/repeat";
 import { numberOfFeatures, thumbnail } from "./keyframes";
 import { fadeSimple, fadeFromLeft, fadeFromTop } from "@/components/keyframes/intro";
+import { CSS_REFERENCES as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
+
 // Styled components
 export default styled("div")(({ theme }) => {
     // Selectors for intro animation
@@ -52,7 +54,7 @@ export default styled("div")(({ theme }) => {
                 animation: `${fadeFromLeft} .3s 1.1s both`,
             },
 
-            ".technologies-wrapper": {
+            [TECHNOLOGIES_LIST.WRAPPER]: {
                 ".single-technology": {
                     ...repeat(6, (index) => ({
                         [`&:nth-of-type(${index + 1})`]: {
