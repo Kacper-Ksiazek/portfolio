@@ -2,7 +2,7 @@
 import { fadeSimple, scale } from "./_keyframes";
 import { repeat } from "@/utils/client/styled/repeat";
 import { repeatForEachSelector, getAnimationsBasedOnSide } from "./utils";
-import { SELECTORS, PROJECT_CARD_ELEMENTS_CONTENTS } from "../_css_references";
+import { SELECTORS, PROJECT_CARD_ELEMENTS_CONTENTS, PROJECT_CARD_ELEMENTS } from "../css_references";
 // Types
 import type { Side } from "./@types";
 import type { Styles } from "@/@types/MUI";
@@ -11,7 +11,7 @@ function genereateAnimationsForThumbnailBasedOnSide(side: Side): Styles {
     const { thumbnail } = getAnimationsBasedOnSide(side);
 
     return {
-        [`${SELECTORS.THUMBNAIL}::after`]: {
+        [`${SELECTORS.THUMBNAIL.WRAPPER}::after`]: {
             animation: `${thumbnail.intro} .3s linear both, ${thumbnail.outro} .3s .4s forwards linear`,
         },
     };
@@ -20,7 +20,7 @@ function genereateAnimationsForThumbnailBasedOnSide(side: Side): Styles {
 function generateAnimationsForTextContentBasedOnSide(side: Side): Styles {
     const { content } = getAnimationsBasedOnSide(side);
 
-    return repeatForEachSelector(Object.values(SELECTORS.PROJECT_CARD), (index) => {
+    return repeatForEachSelector(PROJECT_CARD_ELEMENTS, (index) => {
         const diff = index * 0.05;
         return {
             "&::after": {
@@ -37,25 +37,26 @@ export const introAnimationsForThumbnail: Styles = {
         },
     })),
 
-    ".project-card": {
+    // Elements on left side
+    "&.even": genereateAnimationsForThumbnailBasedOnSide("left"),
+    // Elements on right side
+    "&.odd": genereateAnimationsForThumbnailBasedOnSide("right"),
+
+    [SELECTORS.THUMBNAIL.WRAPPER]: {
+        [SELECTORS.THUMBNAIL.CONTENT._EVERY]: {
+            animation: `${fadeSimple} .001s .35s both`,
+        },
+    },
+
+    [SELECTORS.PROJECT_CARD.WRAPPER]: {
         "&::before": {
             animation: `${scale.intro.fromTop} 1s 1.6s both ease-out`,
-        },
-        // Elements on left side
-        "&.even": genereateAnimationsForThumbnailBasedOnSide("left"),
-        // Elements on right side
-        "&.odd": genereateAnimationsForThumbnailBasedOnSide("right"),
-
-        ".thumbnail-wrapper": {
-            ".direct-img-wrapper, .border-shape": {
-                animation: `${fadeSimple} .001s .35s both`,
-            },
         },
     },
 };
 
 export const introAnimationsForTextContent: Styles = {
-    ".single-project-text-content-wrapper": {
+    [SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
         "&.even": generateAnimationsForTextContentBasedOnSide("left"),
         "&.odd": generateAnimationsForTextContentBasedOnSide("right"),
 
