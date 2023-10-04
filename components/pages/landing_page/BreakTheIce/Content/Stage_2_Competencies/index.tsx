@@ -2,6 +2,7 @@
 import { styled } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
+import { SELECTORS as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -12,7 +13,7 @@ import Paragraph from "../_styled_components/Paragraph";
 import RatedInStars from "../_styled_components/RatedInStars";
 
 const DisplayTechnologiesWrapper = styled("div")(({ theme }) => ({
-    ".single-technology": {
+    [TECHNOLOGIES_LIST.SINGLE_TECHNOLOGY]: {
         opacity: 0,
         "&:nth-of-type(9),&:nth-of-type(3),&:nth-of-type(16),&:nth-of-type(13),&:nth-of-type(6)": {
             animation: `${fadeSimple} .2s 1.2s both`,

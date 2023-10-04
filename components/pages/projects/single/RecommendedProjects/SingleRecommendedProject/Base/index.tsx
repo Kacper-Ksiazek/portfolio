@@ -3,7 +3,7 @@ import { styled } from "@mui/material";
 import { repeat } from "@/utils/client/styled/repeat";
 import { numberOfFeatures, thumbnail } from "./keyframes";
 import { fadeSimple, fadeFromLeft, fadeFromTop } from "@/components/keyframes/intro";
-import { CSS_REFERENCES as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
+import { SELECTORS as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
 
 // Styled components
 export default styled("div")(({ theme }) => {
@@ -55,14 +55,14 @@ export default styled("div")(({ theme }) => {
             },
 
             [TECHNOLOGIES_LIST.WRAPPER]: {
-                ".single-technology": {
+                [TECHNOLOGIES_LIST.SINGLE_TECHNOLOGY]: {
                     ...repeat(6, (index) => ({
                         [`&:nth-of-type(${index + 1})`]: {
                             animation: `${fadeSimple} .2s ${1.3 + index * 0.1}s both`,
                         },
                     })),
                 },
-                ".there-are-more-technologies": {
+                [TECHNOLOGIES_LIST.NO_MORE_TECHNOLOGIES_THREE_DOTS]: {
                     animation: `${fadeSimple} .2s 1.8s both`,
                 },
             },

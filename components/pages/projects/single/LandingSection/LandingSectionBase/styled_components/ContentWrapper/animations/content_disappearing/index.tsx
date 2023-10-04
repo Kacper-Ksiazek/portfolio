@@ -1,7 +1,7 @@
 // Tools
 import * as Keyframes from "./keyframes";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
-import { CSS_REFERENCES as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
+import { SELECTORS as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
 // Types
 import type { SxProps } from "@mui/material";
 

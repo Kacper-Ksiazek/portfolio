@@ -1,7 +1,7 @@
 // Tools
 import { keyframes } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
-import { CSS_REFERENCES as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
+import { SELECTORS as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
 //
 import * as Redirect from "./keyframes/RedirectAnimations";
 import * as Duration from "./keyframes/DurationAnimations";
