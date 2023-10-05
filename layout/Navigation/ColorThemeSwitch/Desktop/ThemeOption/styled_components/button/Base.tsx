@@ -44,6 +44,9 @@ export default styled("button")(({ theme }) => ({
         ".theme-name": {
             color: theme.palette.text.primary,
         },
+        ".icon-wrapper": {
+            background: theme.palette.text.primary,
+        },
     },
     "&.unfolded": {
         background: theme.palette.primary.main,
