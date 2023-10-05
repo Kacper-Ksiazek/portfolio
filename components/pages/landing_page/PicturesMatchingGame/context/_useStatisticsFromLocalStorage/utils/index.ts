@@ -30,5 +30,8 @@ export function computeIndex(gamesHistory: Statistics["history"]): GamesHistoryR
  * Returns the duration of a gameplay in seconds
  */
 export function computeDuration(time: Gameplay["time"]): GamesHistoryRecord["duration"] {
-    return Math.floor((time.end - time.start) / 1000) % 60;
+    const start: number = time.start;
+    const end: number = time.end ? time.end : Date.now();
+
+    return Math.floor((end - start) / 1000) / 60;
 }
