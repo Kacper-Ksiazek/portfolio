@@ -35,10 +35,6 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                     padding: "6px 48px",
                     height: "42px",
                     fontFamily: "Montserrat Alternates",
-                    "&:disabled": {
-                        background: "#fff",
-                        opacity: 0.5,
-                    },
                 },
                 "&.summary": {
                     height: "calc(100dvh - 40px)",
