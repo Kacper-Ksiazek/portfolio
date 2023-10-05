@@ -23,7 +23,11 @@ const ProjectLandingPage: FunctionComponent<ProjectLandingPageProps> = ({ projec
     return (
         <LandingPageBase folder={project.folder}>
             <TextWrapper id="project-landing-screen-text-wrapper">
-                <Duration start={project.start} end={project.end} />
+                <Duration
+                    start={project.start} //
+                    end={project.end}
+                    color="#fff"
+                />
                 <MainHeader id="project-title">
                     <span>{project.title}</span>
                 </MainHeader>
