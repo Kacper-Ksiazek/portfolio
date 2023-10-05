@@ -23,5 +23,5 @@ export const Description = styled("p")(({ theme }) => ({
     fontSize: "24px",
     textAlign: "center",
     margin: "10px 0 20px 0",
-    color: alpha(theme.palette.text.primary, 0.8),
+    color: alpha("#fff", 0.8),
 }));
