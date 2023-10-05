@@ -19,13 +19,15 @@ const Base = styled("div")(({ theme }) => ({
 
 interface TextContentWrapperProps {
     children: ReactNode;
+    className: string;
+    /** Defines the order of the text content and thumbnail. */
     order: "even" | "odd";
 }
 
 const TextContentWrapper: FunctionComponent<TextContentWrapperProps> = (props) => {
     const { viewport, intersectionObserverMargin } = useProjectsContext();
 
-    const body: ReactNode = <Base className={`single-project-text-content-wrapper ${props.order}`}>{props.children}</Base>;
+    const body: ReactNode = <Base className={`${props.className} ${props.order}`}>{props.children}</Base>;
 
     if (viewport !== "small") return body;
 

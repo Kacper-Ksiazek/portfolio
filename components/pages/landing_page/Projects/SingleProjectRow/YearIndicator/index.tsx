@@ -1,5 +1,5 @@
 // Tools
-import { CSS_CLASSES } from "../_css_references";
+import { CSS_REFERENCES } from "../css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
@@ -17,7 +17,7 @@ const YearIndicator: FunctionComponent<YearIndicatorProps> = (props) => {
                 .split("")
                 .map((item, index) => {
                     return (
-                        <span className={CSS_CLASSES.YEAR_DIGIT} key={index}>
+                        <span className={CSS_REFERENCES.YEAR_DIGIT} key={index}>
                             {item}
                         </span>
                     );

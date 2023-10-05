@@ -22,6 +22,7 @@ const DarkSectionHeader: FunctionComponent<DarkSectionHeaderProps> = (props) => 
         <TransformWhenVisible
             from={{ visibility: "hidden" }} //
             to={(theme) => stylesWhenVisible(theme)}
+            updatesFrequently={props.updatesFrequently}
             onVisible={() => props.setIsVisible(true)}
         >
             <HeaderBase>

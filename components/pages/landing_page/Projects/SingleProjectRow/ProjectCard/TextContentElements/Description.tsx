@@ -1,6 +1,6 @@
 // Tools
 import { styled, alpha } from "@mui/material";
-import { CSS_CLASSES } from "../../_css_references";
+import { CSS_REFERENCES } from "../../css_references";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
@@ -23,7 +23,7 @@ interface TitleProps {
 
 const Title: FunctionComponent<TitleProps> = ({ content }) => {
     return (
-        <ProjectDescriptionBase className={CSS_CLASSES.PROJECT_CARD.DESCRIPTION}>
+        <ProjectDescriptionBase className={CSS_REFERENCES.PROJECT_CARD.DESCRIPTION}>
             <span> {formatTextViaBolding(content.slice(0, 150))}</span>
             <span>{content.length > 150 ? " ..." : ""}</span>
         </ProjectDescriptionBase>

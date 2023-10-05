@@ -1,30 +1,42 @@
 // Tools
 import { repeat } from "@/utils/client/styled/repeat";
 import { repeatForEachSelector, getAnimationsBasedOnSide } from "./utils";
-import { SELECTORS, PROJECT_CARD_ELEMENTS_CONTENTS } from "../_css_references";
+import { SELECTORS, PROJECT_CARD_ELEMENTS_CONTENTS, PROJECT_CARD_ELEMENTS } from "../css_references";
 import { fadeSimple, hidePseudoElement, rectangles, scale, timeline } from "./_keyframes";
 // Types
 import type { Side } from "./@types";
 import type { Styles } from "@/@types/MUI";
 import type { SxProps } from "@mui/material";
+import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 
 function generateLineAnimations(side: Side): Styles {
     const { content, thumbnail } = getAnimationsBasedOnSide(side);
 
     return {
         // Thumbnail picture animation
-        [`${SELECTORS.THUMBNAIL}::after`]: {
-            animation: `${thumbnail.intro} .3s .7s linear both, ${thumbnail.outro} .3s 1.1s forwards linear`,
+        [`${SELECTORS.THUMBNAIL.WRAPPER}`]: {
+            "&::after": {
+                animation: chainAnimations([
+                    [thumbnail.intro, 0.4, 0.7],
+                    [thumbnail.outro, 0.24, 0.1],
+                ]),
+            },
+
+            [SELECTORS.THUMBNAIL.CONTENT._EVERY]: {
+                animation: `${fadeSimple} .001s 1.15s both`,
+            },
         },
         // Text content
-        ".single-project-text-content-wrapper": repeatForEachSelector(Object.values(SELECTORS.PROJECT_CARD), (index) => {
-            const diff = index * 0.05;
-            return {
-                "&::after": {
-                    animation: `${content.intro} .2s ${1.4 + diff}s linear both, ${content.outro} .4s ${1.7 + diff}s forwards linear`,
-                },
-            };
-        }),
+        [SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
+            ...repeatForEachSelector(Object.values(PROJECT_CARD_ELEMENTS), (index) => {
+                const diff = index * 0.05;
+                return {
+                    "&::after": {
+                        animation: `${content.intro} .2s ${1.4 + diff}s linear both, ${content.outro} .4s ${1.7 + diff}s forwards linear`,
+                    },
+                };
+            }),
+        },
     };
 }
 
@@ -40,21 +52,17 @@ export default {
             animation: `${hidePseudoElement} .001s 2.4s both linear`,
         },
 
-        ".project-card": {
+        // Elements on left side
+        "&.even": generateLineAnimations("left"),
+        // Elements on right side
+        "&.odd": generateLineAnimations("right"),
+
+        [SELECTORS.PROJECT_CARD.WRAPPER]: {
             "&::before": {
                 animation: `${scale.intro.fromTop} .4s 2s both ease-out`,
             },
-            // Elements on left side
-            "&.even": generateLineAnimations("left"),
-            // Elements on right side
-            "&.odd": generateLineAnimations("right"),
 
-            ".thumbnail-wrapper": {
-                ".direct-img-wrapper, .border-shape": {
-                    animation: `${fadeSimple} .001s 1s both`,
-                },
-            },
-            ".single-project-text-content-wrapper": {
+            [SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
                 ...repeatForEachSelector(PROJECT_CARD_ELEMENTS_CONTENTS, (index) => ({
                     animation: `${fadeSimple} .001s ${1.6 + index * 0.05}s both`,
                 })),
@@ -104,29 +112,33 @@ export default {
             animation: `${hidePseudoElement} .001s 3.2s both linear`,
         },
 
-        ".project-card": {
+        [SELECTORS.INTRO_BAR_ANIMATIONS.SECONDARY]: {
+            animation: `${rectangles.intro.firstProject} .5s linear both, ${rectangles.outro.firstProject} .5s 1s linear forwards`,
+        },
+        [SELECTORS.INTRO_BAR_ANIMATIONS.PRIMARY]: {
+            animation: `${rectangles.intro.firstProject} .5s .1s linear both, ${rectangles.outro.firstProject} .5s .9s linear forwards`,
+        },
+
+        [SELECTORS.THUMBNAIL.WRAPPER]: {
+            "&::after": {
+                animation: chainAnimations([
+                    [rectangles.intro.leftSide, 0.4, 1.6], //
+                    [scale.outro.toLeft, 0.2, 0.2],
+                ]),
+            },
+
+            [SELECTORS.THUMBNAIL.CONTENT._EVERY]: {
+                animation: `${fadeSimple} .001s 2s both`,
+            },
+        },
+
+        [SELECTORS.PROJECT_CARD.WRAPPER]: {
             "&::before": {
                 animation: `${scale.intro.fromTop} .4s 2.8s both ease-out`,
             },
 
-            [SELECTORS.INTRO_BAR_ANIMATIONS.SECONDARY]: {
-                animation: `${rectangles.intro.firstProject} .5s linear both, ${rectangles.outro.firstProject} .5s 1s linear forwards`,
-            },
-            [SELECTORS.INTRO_BAR_ANIMATIONS.PRIMARY]: {
-                animation: `${rectangles.intro.firstProject} .5s .1s linear both, ${rectangles.outro.firstProject} .5s .9s linear forwards`,
-            },
-
-            [`${SELECTORS.THUMBNAIL}::after`]: {
-                animation: `${rectangles.intro.leftSide} .3s 1.5s linear both, ${scale.outro.toLeft} .3s 1.9s forwards linear`,
-            },
-            // Text content
-            ".thumbnail-wrapper": {
-                ".direct-img-wrapper, .border-shape": {
-                    animation: `${fadeSimple} .001s 1.85s both`,
-                },
-            },
-            ".single-project-text-content-wrapper": {
-                ...repeatForEachSelector(Object.values(SELECTORS.PROJECT_CARD), (index) => {
+            [SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
+                ...repeatForEachSelector(PROJECT_CARD_ELEMENTS, (index) => {
                     const diff = index * 0.05;
                     return {
                         "&::after": {
@@ -145,6 +157,7 @@ export default {
                 },
             },
         },
+
         [SELECTORS.TIMELINE.CORE]: {
             "&.first-project": {
                 "&::before": {

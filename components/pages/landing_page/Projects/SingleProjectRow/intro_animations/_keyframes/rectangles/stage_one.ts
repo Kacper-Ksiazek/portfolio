@@ -23,7 +23,6 @@ export const stage_one_rightSide = keyframes({
     "0%": {
         left: 0,
         right: "auto",
-        display: "none",
         width: "0%",
         height: "32px",
         top: "50%",
@@ -47,7 +46,6 @@ export const stage_one_leftSide = keyframes({
     "0%": {
         left: "auto",
         right: 0,
-        display: "none",
         width: "0%",
         height: "32px",
         top: "50%",

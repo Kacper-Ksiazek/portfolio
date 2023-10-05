@@ -33,6 +33,7 @@ const ToDoListLayout = forwardRef<HTMLDivElement, ToDoListLayoutProps>((props, r
                 index: 1,
                 icon: <Code />,
                 description: <HeaderElements.Description currentRelease={currentRelease} isChanging={releaseIsChanging} />,
+                updatesFrequently: true,
             }}
             githubURL={"https://github.com/Kacper-Ksiazek/portfolio/tree/main/components/pages/landing_page"}
             id={CSS_REFERENCES.TO_DO_LIST}

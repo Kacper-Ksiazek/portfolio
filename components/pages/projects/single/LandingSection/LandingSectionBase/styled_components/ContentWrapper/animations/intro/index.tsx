@@ -1,6 +1,7 @@
 // Tools
 import { keyframes } from "@mui/material";
 import { fadeSimple } from "@/components/keyframes/intro";
+import { SELECTORS as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
 //
 import * as Redirect from "./keyframes/RedirectAnimations";
 import * as Duration from "./keyframes/DurationAnimations";
@@ -62,7 +63,7 @@ export default ((): SxProps => {
                 })(),
             },
         },
-        ".technologies-wrapper": {
+        [TECHNOLOGIES_LIST.WRAPPER]: {
             "&>*": {
                 animation: `${fadeSimple} .001s  ${makeDelay(2.05)} both`,
             },

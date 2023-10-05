@@ -1,5 +1,5 @@
 // Tools
-import { CSS_CLASSES } from "../_css_references";
+import { CSS_REFERENCES } from "../css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
@@ -12,8 +12,11 @@ import { Description, Redirections, Technologies, Title } from "./TextContentEle
 import { SingleProjectBase, IntroBar } from "./styled_components";
 
 interface ProjectCardProps {
+    /** Data of the project. */
     data: Project;
+    /* Defines if this is the first project card in the row. */
     isFirst: boolean;
+    /** Defines the order of the text content and thumbnail. */
     order: "even" | "odd";
 }
 
@@ -21,23 +24,31 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
     const { data, order } = props;
 
     return (
-        <SingleProjectBase className={[order, "project-card"].join(" ")}>
+        <SingleProjectBase className={`${order} ${CSS_REFERENCES.PROJECT_CARD.WRAPPER}`}>
             {(() => {
                 if (props.isFirst) {
                     return (
                         <>
-                            <IntroBar className={CSS_CLASSES.INTRO_BAR_ANIMATIONS.PRIMARY} />
-                            <IntroBar className={CSS_CLASSES.INTRO_BAR_ANIMATIONS.SECONDARY} />
+                            <IntroBar className={CSS_REFERENCES.INTRO_BAR_ANIMATIONS.PRIMARY} />
+                            <IntroBar className={CSS_REFERENCES.INTRO_BAR_ANIMATIONS.SECONDARY} />
                         </>
                     );
                 }
             })()}
 
-            <TextContentWrapper order={order}>
+            <TextContentWrapper
+                className={CSS_REFERENCES.PROJECT_CARD.TEXT_CONTENT_WRAPPER} //
+                order={order}
+            >
                 <Technologies data={props.data.releventTechnologies} />
 
                 <Title content={data.title} />
-                <Duration end={data.end} start={data.start} smaller />
+                <Duration
+                    className={CSS_REFERENCES.PROJECT_CARD.DURATION} //
+                    end={data.end}
+                    start={data.start}
+                    smaller
+                />
                 <Description content={data.shortDescription} />
 
                 <Redirections id={data.id} liveDemoURL={data.liveDemoURL} />

@@ -1,4 +1,5 @@
 // Tools
+import { CSS_REFERENCES } from "./css_references";
 import { fadeSimple } from "@/components/keyframes/intro";
 // Types
 import type { FunctionComponent } from "react";
@@ -20,13 +21,13 @@ export interface TechnologiesListProps {
 
 const TechnologiesList: FunctionComponent<TechnologiesListProps> = (props) => {
     return (
-        <TechnologiesListBase className="technologies-wrapper">
+        <TechnologiesListBase className={CSS_REFERENCES.WRAPPER}>
             {props.technologies.map((item, index) => {
                 return (
                     <SingleTechnology
                         key={item} //
                         className={[
-                            "single-technology", //
+                            CSS_REFERENCES.SINGLE_TECHNOLOGY, //
                             props.small ? "small" : "",
                         ].join(" ")}
                         sx={
@@ -41,7 +42,7 @@ const TechnologiesList: FunctionComponent<TechnologiesListProps> = (props) => {
             })}
             {(() => {
                 if (props.thereAreMoreTechnologies) {
-                    return <ThereAreMoreTechnologies className="there-are-more-technologies">...</ThereAreMoreTechnologies>;
+                    return <ThereAreMoreTechnologies className={CSS_REFERENCES.NO_MORE_TECHNOLOGIES_THREE_DOTS}>...</ThereAreMoreTechnologies>;
                 }
             })()}
         </TechnologiesListBase>

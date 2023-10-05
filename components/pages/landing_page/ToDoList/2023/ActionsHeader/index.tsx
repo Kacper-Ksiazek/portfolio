@@ -52,7 +52,7 @@ const ActionsHeader: FunctionComponent<ActionsHeaderProps> = (props) => {
     }, [props.tasksInTotal, stage, setStage]);
 
     return (
-        <TransformWhenVisible to={stylesWhenVisible}>
+        <TransformWhenVisible to={stylesWhenVisible} updatesFrequently>
             <ActionsHeaderBase className={responsiveHeightCSSClass} id={CSS_REFERENCES.ACTIONS_HEADER_WRAPPER}>
                 <Navigation
                     currentStage={stage} //

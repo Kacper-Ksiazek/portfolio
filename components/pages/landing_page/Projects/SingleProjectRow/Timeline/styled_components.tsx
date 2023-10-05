@@ -1,10 +1,8 @@
 // Tools
 import { styled } from "@mui/material";
-import { CSS_CLASSES } from "./_css_references";
-// Types
-import type { FunctionComponent } from "react";
-// Styled components
-const TimelineCore = styled("span")(({ theme }) => ({
+import { CSS_REFERENCES } from "landing_page/Projects/SingleProjectRow/css_references";
+
+export const TimelineCore = styled("span")(({ theme }) => ({
     position: "absolute",
     top: "0%",
     width: "10px",
@@ -31,7 +29,7 @@ const TimelineCore = styled("span")(({ theme }) => ({
     },
 }));
 
-const Connection = styled("span")(({ theme }) => ({
+export const Connection = styled("span")(({ theme }) => ({
     position: "absolute",
     top: "50%",
     width: "70px",
@@ -63,7 +61,7 @@ const Connection = styled("span")(({ theme }) => ({
     },
 }));
 
-const Dot = styled("span")(({ theme }) => ({
+export const Dot = styled("span")(({ theme }) => ({
     position: "absolute",
     top: "50%",
     transform: "translateY(-50%)",
@@ -73,52 +71,20 @@ const Dot = styled("span")(({ theme }) => ({
     height: "24px",
     // Left side
     "&.odd": {
-        [`&.${CSS_CLASSES.TIMELINE.LEFT_DOT}`]: {
+        [`&.${CSS_REFERENCES.TIMELINE.LEFT_DOT}`]: {
             left: "-17px",
         },
-        [`&.${CSS_CLASSES.TIMELINE.RIGHT_DOT}`]: {
+        [`&.${CSS_REFERENCES.TIMELINE.RIGHT_DOT}`]: {
             right: "0",
         },
     },
     // Right side
     "&.even": {
-        [`&.${CSS_CLASSES.TIMELINE.LEFT_DOT}`]: {
+        [`&.${CSS_REFERENCES.TIMELINE.LEFT_DOT}`]: {
             left: "0",
         },
-        [`&.${CSS_CLASSES.TIMELINE.RIGHT_DOT}`]: {
+        [`&.${CSS_REFERENCES.TIMELINE.RIGHT_DOT}`]: {
             right: "-17px",
         },
     },
 }));
-
-interface TimelineProps {
-    isLast: boolean;
-    isFirst: boolean;
-    order: "even" | "odd";
-    thisRowIsAYearIndicator: boolean;
-}
-
-const Timeline: FunctionComponent<TimelineProps> = (props) => {
-    return (
-        <TimelineCore
-            className={[
-                props.isFirst ? "first-project" : "", //
-                props.isLast ? "last-project" : "", //
-                "timeline-core",
-            ].join(" ")}
-        >
-            <Connection
-                className={[
-                    props.thisRowIsAYearIndicator ? "year-indicating-timeline" : "", //
-                    props.order,
-                    "timeline-connection",
-                ].join(" ")}
-            >
-                <Dot className={`${CSS_CLASSES.TIMELINE.LEFT_DOT} ${props.order}`} />
-                <Dot className={`${CSS_CLASSES.TIMELINE.RIGHT_DOT} ${props.order}`} />
-            </Connection>
-        </TimelineCore>
-    );
-};
-
-export default Timeline;

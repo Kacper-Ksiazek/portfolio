@@ -1,4 +1,6 @@
 import { SxProps } from "@/@types/MUI";
+import { SELECTORS } from "landing_page/Projects/SingleProjectRow/css_references";
+import { SELECTORS as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
 
 export default {
     "@media (max-width:1400px)": {
@@ -27,7 +29,7 @@ export default {
             padding: 0,
             flexDirection: "column-reverse",
         },
-        ".single-project-text-content-wrapper": {
+        [SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
             width: "100%",
             margin: "0 !important",
             ".MuiTypography-body2, .duration": {
@@ -37,7 +39,7 @@ export default {
                 },
             },
         },
-        ".single-technology.small": {
+        [`${TECHNOLOGIES_LIST.SINGLE_TECHNOLOGY}.small`]: {
             fontSize: "16px",
             padding: "4px 8px",
         },

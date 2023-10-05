@@ -3,6 +3,9 @@ import { styled } from "@mui/material";
 import { repeat } from "@/utils/client/styled/repeat";
 import { numberOfFeatures, thumbnail } from "./keyframes";
 import { fadeSimple, fadeFromLeft, fadeFromTop } from "@/components/keyframes/intro";
+import { SELECTORS as THUMBNAIL } from "components/atoms/single_project/Thumbnail/css_references";
+import { SELECTORS as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
+
 // Styled components
 export default styled("div")(({ theme }) => {
     // Selectors for intro animation
@@ -19,7 +22,7 @@ export default styled("div")(({ theme }) => {
         flexDirection: "column",
         alignItems: "flex-start",
 
-        ".thumbnail-wrapper": {
+        [THUMBNAIL.WRAPPER]: {
             "&::before, &::after": {
                 content: "''",
                 zIndex: 5,
@@ -52,15 +55,15 @@ export default styled("div")(({ theme }) => {
                 animation: `${fadeFromLeft} .3s 1.1s both`,
             },
 
-            ".technologies-wrapper": {
-                ".single-technology": {
+            [TECHNOLOGIES_LIST.WRAPPER]: {
+                [TECHNOLOGIES_LIST.SINGLE_TECHNOLOGY]: {
                     ...repeat(6, (index) => ({
                         [`&:nth-of-type(${index + 1})`]: {
                             animation: `${fadeSimple} .2s ${1.3 + index * 0.1}s both`,
                         },
                     })),
                 },
-                ".there-are-more-technologies": {
+                [TECHNOLOGIES_LIST.NO_MORE_TECHNOLOGIES_THREE_DOTS]: {
                     animation: `${fadeSimple} .2s 1.8s both`,
                 },
             },
@@ -73,8 +76,8 @@ export default styled("div")(({ theme }) => {
                 animation: `${fadeFromLeft} .3s 1.7s both`,
             },
 
-            ".thumbnail-wrapper": {
-                "img, span.border-shape": {
+            [THUMBNAIL.WRAPPER]: {
+                [`img, ${THUMBNAIL.CONTENT.BORDER_SHAPE}`]: {
                     animation: `${fadeSimple} .01s .9s both`,
                 },
                 "&::after": {

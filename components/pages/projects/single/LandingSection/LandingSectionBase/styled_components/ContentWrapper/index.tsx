@@ -4,6 +4,7 @@ import { styled, alpha } from "@mui/material";
 import introAnimations from "./animations/intro";
 import contentAppearing from "./animations/content_appearing";
 import contentDisappearing from "./animations/content_disappearing";
+import { SELECTORS as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
 // Styled components
 import ContentWrapperBase from "@/components/atoms/content_placement/SectionWrapper/_ContentWrapper";
 
@@ -32,7 +33,7 @@ export default styled(ContentWrapperBase)(({ theme }) => ({
     "&.display-content": contentAppearing,
     "&.intro-animation": introAnimations,
     //
-    ".duration, #project-title, .technologies-wrapper, #project-description, .redirect": {
+    [`.duration, #project-title, ${TECHNOLOGIES_LIST.WRAPPER}, #project-description, .redirect`]: {
         position: "relative",
         "&::after": {
             content: '""',

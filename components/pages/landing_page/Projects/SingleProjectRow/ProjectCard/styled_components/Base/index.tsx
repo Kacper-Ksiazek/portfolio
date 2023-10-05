@@ -1,7 +1,9 @@
 // Tools
 import RWD from "./RWD";
+import { CSS_REFERENCES } from "landing_page/Projects/SingleProjectRow/css_references";
 import { styled, alpha } from "@mui/material";
 import { shapesOnHoverAnimations } from "@/components/atoms/single_project/Thumbnail/onHover";
+import { SELECTORS as THUMBNAIL } from "components/atoms/single_project/Thumbnail/css_references";
 
 // Styled components
 export default styled("div")(({ theme }) => ({
@@ -16,7 +18,7 @@ export default styled("div")(({ theme }) => ({
     "&.odd": {
         flexDirection: "row-reverse",
         paddingLeft: "12px",
-        ".single-project-text-content-wrapper": {
+        [CSS_REFERENCES.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
             marginLeft: "16px",
         },
         "&::before": {
@@ -25,7 +27,7 @@ export default styled("div")(({ theme }) => ({
     },
     "&.even": {
         paddingRight: "12px",
-        ".single-project-text-content-wrapper": {
+        [CSS_REFERENCES.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
             marginRight: "16px",
         },
         "&::before": {
@@ -59,7 +61,7 @@ export default styled("div")(({ theme }) => ({
                 transform: "skewX(5deg) translateX(50px) scaleY(1.1)",
             },
         },
-        ".thumbnail-wrapper": {
+        [THUMBNAIL.WRAPPER]: {
             ...(shapesOnHoverAnimations as any),
         },
     },

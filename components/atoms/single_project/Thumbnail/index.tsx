@@ -1,5 +1,6 @@
 // Tools
 import { forwardRef } from "react";
+import { CSS_REFERENCES } from "./css_references";
 import { uploadedProjectImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/project";
 // Types
 import type { Styles } from "@/@types/MUI";
@@ -21,17 +22,19 @@ interface ThumbnailProps {
 const Thumbnail: ForwardRefExoticComponent<ThumbnailProps> = forwardRef((props, ref) => {
     return (
         <ThumbnailMainWrapper
-            className="thumbnail-wrapper" //
+            className={CSS_REFERENCES.WRAPPER} //
             ref={ref as any}
             onClick={props.onClick}
             sx={props.sx}
         >
             {props.children}
-            <ShapeBottomBig className="border-shape big left" />
-            <ShapeBottomSmall className="border-shape small left" />
-            <ShapeTopBig className="border-shape big right" />
-            <ShapeTopSmall className="border-shape small right" />
-            <ThumbnailSecondWrapper className="direct-img-wrapper">
+
+            <ShapeBottomBig className={`${CSS_REFERENCES.CONTENT.BORDER_SHAPE} big left`} />
+            <ShapeBottomSmall className={`${CSS_REFERENCES.CONTENT.BORDER_SHAPE} small left`} />
+            <ShapeTopBig className={`${CSS_REFERENCES.CONTENT.BORDER_SHAPE} big right`} />
+            <ShapeTopSmall className={`${CSS_REFERENCES.CONTENT.BORDER_SHAPE} small right`} />
+
+            <ThumbnailSecondWrapper className={CSS_REFERENCES.CONTENT.DIRECT_IMG_WRAPPER}>
                 <NextImageWithSkeleton
                     alt={props.folder}
                     layout="fill"
