@@ -12,6 +12,8 @@ export default styled("div")(({ theme }) => ({
         ...theme.mixins.absolute_full,
         background: `url(./main-page-logo/grayscale/${theme.palette.mode}.png)`,
         backgroundPosition: "center",
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
         opacity: 0.2,
         zIndex: 0,
     },

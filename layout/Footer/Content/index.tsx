@@ -12,8 +12,10 @@ const FooterLogoAnimation = dynamic(() => import("./FooterLogoAnimation"), { ssr
 
 // Styled components
 const FooterContentWrapper = styled("div")(({ theme }) => ({
-    height: "300px",
-    width: "504px",
+    width: "calc(100% - 16px)",
+    overflow: "hidden",
+    maxWidth: "504px",
+    aspectRatio: "1.47",
     position: "relative",
     ".smooth-conditional-render-wrapper": {
         position: "relative",

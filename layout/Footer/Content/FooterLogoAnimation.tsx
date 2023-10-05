@@ -20,6 +20,8 @@ const AnimationStep = styled("span", {
         ...theme.mixins.absolute_full,
         backgroundPosition: "center !important",
         background: `url(/main-page-logo/animations/${folderName}/${imgName})`,
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
 
         "&.step-1, &.step-2, &.step-3, &.step-6, &.step-5": {
             zIndex: 1,
