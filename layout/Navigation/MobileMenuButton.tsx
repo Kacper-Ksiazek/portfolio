@@ -12,7 +12,7 @@ import Close from "@mui/icons-material/Close";
 const MobileButton = styled(ButtonBase)(({ theme }) => ({
     position: "relative",
     zIndex: "100",
-    color: "#000",
+    color: theme.palette.text.primary,
     width: "48px",
     height: "48px",
     fontSize: "48px",
