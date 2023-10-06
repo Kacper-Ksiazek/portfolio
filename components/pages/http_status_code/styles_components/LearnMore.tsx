@@ -7,6 +7,8 @@ export default styled("a")(({ theme }) => ({
     bottom: "48px",
     left: "50%",
     cursor: "pointer",
+    width: "calc(100% - 32px)",
+    textAlign: "center",
     textDecoration: "none",
     transform: "translateX(-50%)",
     color: alpha(theme.palette.text.primary, 0.8),
@@ -32,7 +34,7 @@ export default styled("a")(({ theme }) => ({
     "&:hover": {
         color: theme.palette.text.primary,
         "&::before": {
-            width: "75%",
+            width: "240px",
         },
     },
 }));

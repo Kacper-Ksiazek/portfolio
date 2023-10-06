@@ -47,22 +47,21 @@ export default styled("section", {
     [SELECTORS.BUTTONS_WRAPPER]: {
         animation: `${fadeSimple} .3s 1.4s linear both`,
     },
-    "@media (max-width:1000px)": {
+    "@media (max-width:1400px)": {
         "&::before": {
-            width: "80vw",
+            backgroundSize: "cover",
         },
     },
-    "@media (max-width:700px)": {
-        "&::before": {
-            width: "calc(100vw - 40px)",
-            transform: `translate(-50%,-50%)`,
-        },
-    },
+
     "@media (max-width:500px)": {
-        "&::before": {
-            width: "100vw",
-            padding: "0 10px",
-            boxSizing: "border-box",
+        [SELECTORS.HTTP_STATUS_CODE_TITLE]: {
+            fontSize: "36px",
+        },
+        [SELECTORS.EXPLANATION]: {
+            fontSize: "16px",
+        },
+        [SELECTORS.AVAILABLE_RESOURCES_SUBHEADER]: {
+            fontSize: "16px",
         },
     },
 }));
