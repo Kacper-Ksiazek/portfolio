@@ -23,6 +23,7 @@ export const StyledButtonColorThemes = new ComponentColorThemesOrganizer<StyledB
     PRIMARY: (theme) => ({
         background: theme.palette.primary.main,
         fontColor: "#fff",
+        borderColor: theme.palette.primary.main,
     }),
     SUCCESS: (theme) => ({
         background: theme.palette.success.main,
@@ -35,5 +36,6 @@ export const StyledButtonColorThemes = new ComponentColorThemesOrganizer<StyledB
     TEXT: (theme) => ({
         background: theme.palette.mode == "light" ? theme.palette.text.primary : theme.palette.background.lightSectionBackground,
         fontColor: theme.palette.mode == "light" ? theme.palette.text.secondary : "#fff",
+        borderColor: theme.palette.mode == "light" ? theme.palette.text.primary : theme.palette.background.lightSectionBackground,
     }),
 });
