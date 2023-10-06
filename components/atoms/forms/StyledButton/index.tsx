@@ -25,7 +25,6 @@ export default styled(ButtonBase, {
         console.warn("Redundant usage of **subtleHoverEffect** prop; Following effect had been already obtained due to the **MuiFormElement** color mode");
     }
 
-    console.log(props.componentThemeID, borderColor);
 
     return {
         background,
