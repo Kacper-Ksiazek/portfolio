@@ -2,6 +2,8 @@
 import { CSS_REFERENCES } from "./css_references";
 // Types
 import type { FunctionComponent } from "react";
+// Material UI Components
+import Tooltip from "@mui/material/Tooltip";
 // Other components
 import Link from "next/link";
 // Styled components
@@ -35,13 +37,15 @@ const HTTPStatusCode: FunctionComponent<HTTPStatusCodeProps> = (props) => {
                 </Link>
             </ButtonsWrapper>
 
-            <LearnMore
-                id={CSS_REFERENCES.LEARN_MORE} //
-                href={learnMoreURL}
-                target="_blank"
-            >
-                learn more about {props.code} response status code <strong>here</strong>
-            </LearnMore>
+            <Tooltip title="Open mozilla developer web documentation and read more about this" placeholder="top">
+                <LearnMore
+                    id={CSS_REFERENCES.LEARN_MORE} //
+                    href={learnMoreURL}
+                    target="_blank"
+                >
+                    learn more about {props.code} response status code <strong>here</strong>
+                </LearnMore>
+            </Tooltip>
         </MainWrapper>
     );
 };
