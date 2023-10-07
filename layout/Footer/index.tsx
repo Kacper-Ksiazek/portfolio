@@ -1,3 +1,5 @@
+// Tools
+import { useState, useEffect } from "react";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -9,10 +11,17 @@ import FooterContextProvider from "./context/Provider";
 import FooterBase from "./Base";
 
 const Footer: FunctionComponent = () => {
+    const [renderFooterContent, setRenderFooterContent] = useState<boolean>(false);
+
+    // Do not render the content if javascript is disabled by your browser
+    useEffect(() => {
+        setRenderFooterContent(true);
+    }, []);
+
     return (
         <FooterContextProvider>
             <FooterBase>
-                <FooterContent />
+                {renderFooterContent && <FooterContent />}
 
                 <SocialMediasIcons />
                 <Author />
