@@ -10,13 +10,13 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
     return (
         <>
             <Head>
-                <title>404 | Not found</title>
+                <title>409 | Conflict</title>
             </Head>
 
             <HTTPStatusCode
-                code={404} //
-                title="page not found"
-                explanation="The page you are looking for does not exist."
+                code={409} //
+                title="conflict"
+                explanation="Indicates that the request could not be processed because of conflict in the request, such as an edit conflict between multiple simultaneous updates. "
             />
         </>
     );

@@ -10,13 +10,13 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
     return (
         <>
             <Head>
-                <title>404 | Not found</title>
+                <title>511 | Network authentication required</title>
             </Head>
 
             <HTTPStatusCode
-                code={404} //
-                title="page not found"
-                explanation="The page you are looking for does not exist."
+                code={511} //
+                title="network authentication required"
+                explanation="The client needs to authenticate to gain network access. Intended for use by intercepting proxies used to control access to the network (e.g., 'captive portals' used to require agreement to Terms of Service before granting full Internet access via a Wi-Fi hotspot)."
             />
         </>
     );

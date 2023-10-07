@@ -25,11 +25,12 @@ export default styled(ButtonBase, {
         console.warn("Redundant usage of **subtleHoverEffect** prop; Following effect had been already obtained due to the **MuiFormElement** color mode");
     }
 
+
     return {
         background,
         color: fontColor,
         borderRadius: "3px",
-        border: `1px solid ${borderColor ??background}`,
+        border: `1px solid ${borderColor ?? background}`,
         transition: props.color === "MUIFormElement" ? "none" : "all .3s",
         fontSize: "16px",
         padding: "4px 10px",
@@ -43,7 +44,7 @@ export default styled(ButtonBase, {
         "&:hover":
             applySubtleHoverEffect === false
                 ? {
-                      color:background,
+                      color: background,
                       background: fontColor,
                   }
                 : {

@@ -10,13 +10,13 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
     return (
         <>
             <Head>
-                <title>404 | Not found</title>
+                <title>400 | Bad Request</title>
             </Head>
 
             <HTTPStatusCode
-                code={404} //
-                title="page not found"
-                explanation="The page you are looking for does not exist."
+                code={400} //
+                title="bad request"
+                explanation="The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax)."
             />
         </>
     );

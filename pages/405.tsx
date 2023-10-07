@@ -10,13 +10,13 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
     return (
         <>
             <Head>
-                <title>404 | Not found</title>
+                <title>405 | Method not allowed</title>
             </Head>
 
             <HTTPStatusCode
-                code={404} //
-                title="page not found"
-                explanation="The page you are looking for does not exist."
+                code={405} //
+                title="method not allowed"
+                explanation="The method specified in the request is not allowed for the resource identified by the request URI."
             />
         </>
     );

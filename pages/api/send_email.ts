@@ -6,8 +6,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function hadler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        console.log(req.method);
-
         if (req.method !== "POST") {
             throw new MethodNotAllowed();
         }

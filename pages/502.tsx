@@ -10,13 +10,13 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
     return (
         <>
             <Head>
-                <title>404 | Not found</title>
+                <title>502 | Bad gateway</title>
             </Head>
 
             <HTTPStatusCode
-                code={404} //
-                title="page not found"
-                explanation="The page you are looking for does not exist."
+                code={502} //
+                title="bad gateway"
+                explanation="The server was acting as a gateway or proxy and received an invalid response from the upstream server."
             />
         </>
     );

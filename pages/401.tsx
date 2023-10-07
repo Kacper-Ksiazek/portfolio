@@ -10,13 +10,13 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
     return (
         <>
             <Head>
-                <title>404 | Not found</title>
+                <title>401 | Unauthorized</title>
             </Head>
 
             <HTTPStatusCode
-                code={404} //
-                title="page not found"
-                explanation="The page you are looking for does not exist."
+                code={401} //
+                title="unauthorized"
+                explanation="The request has not been applied because it lacks valid authentication credentials for the target resource."
             />
         </>
     );
