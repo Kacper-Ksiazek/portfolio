@@ -51,6 +51,11 @@ const SEO: FunctionComponent<SEOProps> = (props) => {
             <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#832161" />
             <meta name="msapplication-TileColor" content="#F9FAFB" />
             <meta name="theme-color" content="#161619" />
+
+            {/* Disabled javascript */}
+            <noscript>
+                <meta httpEquiv="refresh" content="0; url=/no-javascript" />
+            </noscript>
         </Head>
     );
 };
