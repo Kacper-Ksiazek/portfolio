@@ -17,7 +17,6 @@ const FooterContentWrapper = styled("div")(({ theme }) => ({
     maxWidth: "504px",
     aspectRatio: "1.47",
     position: "relative",
-    marginBottom: "24px",
     ".smooth-conditional-render-wrapper": {
         position: "relative",
         width: "100%",

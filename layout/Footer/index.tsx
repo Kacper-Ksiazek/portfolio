@@ -5,6 +5,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import Author from "./Author";
 import FooterContent from "./Content";
+import Redirections from "./Redirections";
 import SocialMediasIcons from "./SocialMediaIcons";
 import FooterContextProvider from "./context/Provider";
 // Styled components
@@ -23,6 +24,7 @@ const Footer: FunctionComponent = () => {
             <FooterBase>
                 {renderFooterContent && <FooterContent />}
 
+                <Redirections />
                 <SocialMediasIcons />
                 <Author />
             </FooterBase>
