@@ -3,7 +3,9 @@ import { alpha, styled } from "@mui/material";
 import { SELECTORS } from "../css_references";
 import { fadeSimple } from "@/components/keyframes/intro/fade";
 // Styled components
-export default styled("section")(({ theme }) => ({
+import _SectionWrapper from "@/components/atoms/content_placement/SectionWrapper/_SectionWrapper";
+
+export default styled(_SectionWrapper)(({ theme }) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -22,10 +24,12 @@ export default styled("section")(({ theme }) => ({
         animation: `${fadeSimple} 1s .6s linear both`,
     },
     [SELECTORS.HTTP_STATUS_CODE_TITLE]: {
-        margin: "10px 0 0 0",
+        margin: "10px 0 8px 0",
         fontSize: "42px",
         fontWeight: 900,
         textTransform: "uppercase",
+        lineHeight: "42px",
+        textAlign: "center",
         animation: `${fadeSimple} .3s .6s linear both`,
     },
     [SELECTORS.EXPLANATION]: {

@@ -33,7 +33,6 @@ const NoJavascriptWrapper = styled(HTTPSTatusCodeWrapper)(({ theme }) => ({
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             filter: "grayscale(1)",
-            opacity: 0.6,
         },
         "&::after": {
             content: "''",
@@ -67,6 +66,11 @@ const NoJavascriptWrapper = styled(HTTPSTatusCodeWrapper)(({ theme }) => ({
         strong: {
             fontWeight: 500,
         },
+    },
+
+    "@media (max-width:700px)": {
+        paddingTop: "96px",
+        height: "auto",
     },
 }));
 

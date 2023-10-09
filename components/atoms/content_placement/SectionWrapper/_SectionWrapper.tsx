@@ -6,6 +6,7 @@ import FullWithSectionWithResponsiveMargin from "./FullWithSectionWithResponsive
 export default styled(FullWithSectionWithResponsiveMargin)(({ theme }) => ({
     marginBottom: "64px",
     position: "relative",
+    boxSizing: "border-box",
     padding: "64px 64px 24px 64px",
     "@media (max-width:1100px)": {
         padding: "48px 32px",
