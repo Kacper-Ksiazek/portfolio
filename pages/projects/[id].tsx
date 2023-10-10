@@ -1,6 +1,5 @@
 // Tools
 import { prisma } from "@/prisma/db";
-import { useTheme } from "@mui/material";
 import { NotFound } from "@/utils/api/errors";
 import SingleProjectAPIHandler from "@/utils/api/SingleProjectAPIHandler";
 // Types
@@ -20,12 +19,10 @@ interface SingleProjectProps {
 }
 
 const SingleProject: NextPage<SingleProjectProps> = ({ project, recommendedProjects }) => {
-    const theme = useTheme();
-
     return (
         <>
             <SEO
-                title={project.title} //
+                title={`K_Książek | ${project.title}`} //
                 description={project.shortDescription}
             />
             <>
