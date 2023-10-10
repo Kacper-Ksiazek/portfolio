@@ -1,11 +1,11 @@
 // Tools
-import { styled } from "@mui/material";
+import { alpha, styled } from "@mui/material";
 import { SELECTORS } from "../css_references";
-import { fadeFromTop, fadeSimple } from "@/components/keyframes/intro";
+import { fadeSimple } from "@/components/keyframes/intro/fade";
 // Styled components
-export default styled("section", {
-    shouldForwardProp: (prop: string) => !["reversedSkew"].includes(prop),
-})<{ reversedSkew?: boolean }>(({ theme, ...props }) => ({
+import _SectionWrapper from "@/components/atoms/content_placement/SectionWrapper/_SectionWrapper";
+
+export default styled(_SectionWrapper)(({ theme }) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -21,14 +21,15 @@ export default styled("section", {
         height: "calc(100% - 80px)",
         background: `url(images/world_map/${theme.palette.mode}.png) no-repeat center center / contain`,
         zIndex: -1,
-        // opacity: theme.palette.mode === "light" ? 0.3 : 0.075,
         animation: `${fadeSimple} 1s .6s linear both`,
     },
     [SELECTORS.HTTP_STATUS_CODE_TITLE]: {
-        margin: "10px 0 0 0",
+        margin: "10px 0 8px 0",
         fontSize: "42px",
         fontWeight: 900,
         textTransform: "uppercase",
+        lineHeight: "42px",
+        textAlign: "center",
         animation: `${fadeSimple} .3s .6s linear both`,
     },
     [SELECTORS.EXPLANATION]: {
@@ -37,7 +38,7 @@ export default styled("section", {
         animation: `${fadeSimple} .3s .7s linear both`,
         maxWidth: "640px",
         textAlign: "center",
-        opacity: 0.7,
+        color: alpha(theme.palette.text.primary, 0.7),
     },
     [SELECTORS.AVAILABLE_RESOURCES_SUBHEADER]: {
         fontSize: "18px",

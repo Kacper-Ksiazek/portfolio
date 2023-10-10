@@ -4,7 +4,6 @@ import { SELECTORS } from "./Icons/css_references";
 // Styled components
 export default styled("div")(({ theme }) => ({
     display: "flex",
-    marginTop: "24px",
     gap: "18px",
     a: {
         textDecoration: "none",
