@@ -1,5 +1,5 @@
 // Tools
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { alpha, styled } from "@mui/material";
 import { renderNTimes } from "@/utils/client/renderNTimes";
 // Keyframes
@@ -65,18 +65,30 @@ const AnimationStep = styled("span", {
     };
 });
 
+const ANIMATIONS_DURATION: TimeInMS = 1600;
+
 const FooterLogoAnimation: FunctionComponent = () => {
     const pathname: string = window ? window.location.pathname : "loading";
+
     const [key, setKey] = useState<number>(1);
+    const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
 
     function incrementKey() {
+        if (debounceTimeout.current !== null) return;
+
         setKey((prevKey) => prevKey + 1);
+        debounceTimeout.current = setTimeout(() => {
+            debounceTimeout.current = null;
+        }, ANIMATIONS_DURATION);
     }
 
     return (
         <RenderWhenVisible
             key={key + pathname}
             onClick={incrementKey}
+            wrapperProps={{
+                role: "button",
+            }}
             sx={{
                 width: "100%",
                 height: "100%",
