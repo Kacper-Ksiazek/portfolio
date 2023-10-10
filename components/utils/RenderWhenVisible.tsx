@@ -1,11 +1,10 @@
 // Tools
 import { useRef } from "react";
-import { useTheme } from "@mui/material";
 import { useElementVisibility } from "@/hooks/useElementVisibility";
 import { applySxProps } from "@/utils/client/styled/applyOptionalSxProps";
 // Types
 import type { SxProps } from "@/@types/MUI";
-import type { FunctionComponent, ReactNode } from "react";
+import type { FunctionComponent, HTMLAttributes, ReactNode } from "react";
 // Material UI Components
 import Box from "@mui/material/Box";
 
@@ -14,6 +13,8 @@ interface TransformWhenVisibleProps {
     sx?: SxProps;
     children: ReactNode;
 
+    wrapperProps?: Exclude<HTMLAttributes<HTMLDivElement>, "className">;
+
     rootMargin?: number;
 
     onClick?: () => void;
@@ -21,18 +22,16 @@ interface TransformWhenVisibleProps {
 }
 
 const RenderWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (props) => {
-    const theme = useTheme();
     const ref = useRef<Element>(null);
     const elementIsVisible = useElementVisibility(ref, props.onVisible, props.rootMargin);
 
     return (
         <Box
-            className="render-when-visible-wrapper"
+            {...props.wrapperProps}
+            className="render-when-visible-wrapper" //
             ref={ref as any}
             onClick={props.onClick}
-            sx={{
-                ...applySxProps(props.sx, theme),
-            }}
+            sx={(theme) => applySxProps(props.sx, theme)}
         >
             {elementIsVisible && props.children}
         </Box>

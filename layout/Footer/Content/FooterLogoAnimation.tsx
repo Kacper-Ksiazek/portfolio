@@ -77,6 +77,9 @@ const FooterLogoAnimation: FunctionComponent = () => {
         <RenderWhenVisible
             key={key + pathname}
             onClick={incrementKey}
+            wrapperProps={{
+                role: "button",
+            }}
             sx={{
                 width: "100%",
                 height: "100%",
