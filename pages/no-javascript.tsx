@@ -8,16 +8,29 @@ import type { FunctionComponent } from "react";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 // Styled components
 import HTTPSTatusCodeWrapper from "components/pages/http_status_code/styles_components/MainWrapper";
+import { fadeSimple } from "@/components/keyframes/intro";
+import { repeat } from "@/utils/client/styled/repeat";
 
 const pulse = keyframes({
     "0%": {
-        opacity: 0,
-    },
-    "30%,70%": {
         opacity: 1,
     },
-    "100%": {
+    "40%,60%": {
         opacity: 0,
+    },
+    "100%": {
+        opacity: 1,
+    },
+});
+
+const strokeIntroAnimation = keyframes({
+    "0%": {
+        transformOrigin: "left",
+        transform: "rotate(45deg) scaleX(0)",
+    },
+    "100%": {
+        transformOrigin: "left",
+        transform: "rotate(45deg) scaleX(1)",
     },
 });
 
@@ -33,17 +46,18 @@ const NoJavascriptWrapper = styled(HTTPSTatusCodeWrapper)(({ theme }) => ({
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             filter: "grayscale(1)",
+            animation: `${fadeSimple} .3s .4s linear both`,
         },
         "&::after": {
             content: "''",
             position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%) rotate(45deg)",
+            top: "-6px",
+            left: "-6px",
             width: "150%",
             height: "8px",
             borderRadius: "2px",
             background: theme.palette.error.main,
+            animation: `${strokeIntroAnimation} .24s 1.5s linear both`,
         },
         svg: {
             position: "absolute",
@@ -51,8 +65,12 @@ const NoJavascriptWrapper = styled(HTTPSTatusCodeWrapper)(({ theme }) => ({
             right: "-36px",
             fontSize: "48px",
             color: theme.palette.error.main,
-            animation: `${pulse} 2s ease-in-out infinite`,
+            animation: `${fadeSimple} .3s 1.6s linear both, ${pulse} 1.4s 2s ease-in-out infinite`,
         },
+    },
+
+    [SELECTORS.HTTP_STATUS_CODE_TITLE]: {
+        animation: `${fadeSimple} .3s .8s linear both`,
     },
 
     [SELECTORS.EXPLANATION]: {
@@ -60,11 +78,16 @@ const NoJavascriptWrapper = styled(HTTPSTatusCodeWrapper)(({ theme }) => ({
         display: "flex",
         flexDirection: "column",
         gap: "18px",
-        span: {
-            textAlign: "left",
-        },
         strong: {
             fontWeight: 500,
+        },
+        "&>span": {
+            textAlign: "left",
+            ...repeat(4, (index) => {
+                return {
+                    animation: `${fadeSimple} .3s ${1.2 + index * 0.2}s linear both`,
+                };
+            }),
         },
     },
 
