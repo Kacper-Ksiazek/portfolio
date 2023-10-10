@@ -22,9 +22,13 @@ const Footer: FunctionComponent = () => {
     return (
         <FooterContextProvider>
             <FooterBase>
-                {renderFooterContent && <FooterContent />}
+                {renderFooterContent && (
+                    <>
+                        <FooterContent />
+                        <Redirections />
+                    </>
+                )}
 
-                <Redirections />
                 <SocialMediasIcons />
                 <Author />
             </FooterBase>

@@ -18,11 +18,7 @@ const FooterRedirectionsWrapper = styled("div")(({ theme }) => ({
     },
 }));
 
-interface FooterRedirectionsProps {
-    //
-}
-
-const FooterRedirections: FunctionComponent<FooterRedirectionsProps> = (props) => {
+const FooterRedirections: FunctionComponent = () => {
     return (
         <FooterRedirectionsWrapper>
             <SingleFooterRedirection tooltip="Go to 404 page" path="/404">
