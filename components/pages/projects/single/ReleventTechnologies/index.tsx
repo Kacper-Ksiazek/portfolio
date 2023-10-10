@@ -33,6 +33,15 @@ const ReleventTechnologies: FunctionComponent<ReleventTechnologiesProps> = (prop
 
     return (
         <TransformWhenVisible
+            from={{
+                visibility: "visible",
+                ".single-relevent-technology": {
+                    opacity: 0,
+                },
+                "#relevent-technologies-background": {
+                    opacity: 0,
+                },
+            }}
             to={{
                 "#relevent-technologies-background": {
                     animation: `${fadeSimple} 2s .1s both linear`,
