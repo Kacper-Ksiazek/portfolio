@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import * as animations from "./keyframes";
+import { SELECTORS } from "../css_reference";
 // Styled components
 
 export default styled("div")(({ theme }) => ({
@@ -8,9 +9,18 @@ export default styled("div")(({ theme }) => ({
     flexDirection: "column",
     flexGrow: "1",
     marginBottom: "10px",
-    ".MuiFormControl-root": {
+
+    gap: "12px",
+    [SELECTORS.CONTENT_ITEM]: {
         position: "relative",
         boxSizing: "border-box",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        "&>*": {
+            width: "100%",
+            animation: `${animations.contentAppearing} .001s .5s both`,
+        },
         "&::after, &::before": {
             content: "''",
             position: "absolute",
@@ -28,12 +38,18 @@ export default styled("div")(({ theme }) => ({
             zIndex: 3,
             background: theme.palette.primary.main,
         },
-        "&>*": {
-            animation: `${animations.contentAppearing} .001s .5s both`,
+        input: {
+            padding: "16px 22px",
+        },
+
+        [SELECTORS.OPTIONALITY_INDICATOR]: {
+            width: "auto !important",
+            left: "20px",
+            top: "0px",
         },
     },
     "&.form-stage-is-changing": {
-        ".MuiFormControl-root": {
+        [SELECTORS.CONTENT_ITEM]: {
             ".MuiInputLabel-root.MuiInputLabel-shrink": {
                 opacity: 0,
             },
@@ -44,7 +60,7 @@ export default styled("div")(({ theme }) => ({
     },
 
     "&.GENERAL_PURPOSE": {
-        ".MuiFormControl-root": {
+        [SELECTORS.CONTENT_ITEM]: {
             paddingRight: "16px",
             "&::before": {
                 animation: [
@@ -60,7 +76,7 @@ export default styled("div")(({ theme }) => ({
             },
         },
         "&.form-stage-is-changing": {
-            ".MuiFormControl-root": {
+            [SELECTORS.CONTENT_ITEM]: {
                 "&::before": {
                     zIndex: 1,
                     background: theme.palette.secondary.main,
@@ -79,11 +95,8 @@ export default styled("div")(({ theme }) => ({
         },
     },
     "&.CONTACT_DETAILS": {
-        ".MuiFormControl-root": {
+        [SELECTORS.CONTENT_ITEM]: {
             paddingLeft: "16px",
-            ".MuiInputLabel-root": {
-                left: "16px",
-            },
             "&::before": {
                 animation: [
                     `${animations.CONTACT_DETAILS.introStageOne} .3s .1s linear backwards`, //
@@ -98,7 +111,7 @@ export default styled("div")(({ theme }) => ({
             },
         },
         "&.form-stage-is-changing": {
-            ".MuiFormControl-root": {
+            [SELECTORS.CONTENT_ITEM]: {
                 "&::before": {
                     zIndex: 1,
                     background: theme.palette.secondary.main,

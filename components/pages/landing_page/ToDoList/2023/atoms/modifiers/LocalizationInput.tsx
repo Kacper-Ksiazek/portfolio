@@ -7,7 +7,7 @@ import type { ComponentThemeName } from "@/components/atoms/forms/_common_compon
 // Other components
 import ClearButton from "@/components/atoms/forms/_ClearButton";
 import StyledInput from "@/components/atoms/forms/StyledInput";
-import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
+import OptionalPropertyIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
 // Material UI Icons
 import PlaceIcon from "@mui/icons-material/Place";
 
@@ -37,7 +37,7 @@ const Localization: FunctionComponent<LocalizationProps> = (props) => {
 
     return (
         <div style={{ position: "relative", flexGrow: 1 }}>
-            <OptionalPropertIndicator />
+            <OptionalPropertyIndicator />
 
             <PlaceIcon
                 sx={{

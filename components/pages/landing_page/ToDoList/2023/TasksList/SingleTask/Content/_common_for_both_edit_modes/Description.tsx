@@ -7,7 +7,7 @@ import type { FunctionComponent } from "react";
 import WrapperWithWitdthIndicator from "components/atoms/forms/LengthIndicator/WithWrapper";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
-import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
+import OptionalPropertyIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
 
 interface EditTaskDescriptionInputProps {
     className?: string;
@@ -40,7 +40,7 @@ const EditTaskDescriptionInput: FunctionComponent<EditTaskDescriptionInputProps>
                 },
             }}
         >
-            <OptionalPropertIndicator />
+            <OptionalPropertyIndicator />
 
             <StyledInput
                 value={editModeContext.newState.description} //

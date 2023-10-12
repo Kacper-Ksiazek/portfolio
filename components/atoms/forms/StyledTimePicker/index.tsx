@@ -8,7 +8,7 @@ import type { ComponentThemeName } from "../_common_component_color_themes";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 // Styled components
 import StyledTimePickerBase from "./Base";
-import OptionalPropertIndicator from "../OptionalPropertyIndicator";
+import OptionalPropertyIndicator from "../OptionalPropertyIndicator";
 
 export const TIME_PICKER_CLASS_NAME: CSSClassName = "time-picker";
 
@@ -41,7 +41,7 @@ const StyledDatePicker: FunctionComponent<StyledDatePickerProps> = (props) => {
                 minWidth: "148px",
             }}
         >
-            <OptionalPropertIndicator />
+            <OptionalPropertyIndicator />
 
             <input
                 type="time" //
