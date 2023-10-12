@@ -14,6 +14,7 @@ export const StyledButtonColorThemes = new ComponentColorThemesOrganizer<StyledB
     ERROR: (theme) => ({
         background: theme.palette.error.main,
         fontColor: "#fff",
+        borderColor: theme.palette.error.main,
     }),
     ERROR_OUTLINED: (theme) => ({
         background: "transparent",
@@ -28,6 +29,7 @@ export const StyledButtonColorThemes = new ComponentColorThemesOrganizer<StyledB
     SUCCESS: (theme) => ({
         background: theme.palette.success.main,
         fontColor: "#fff",
+        borderColor: theme.palette.success.main,
     }),
     SECONDARY: (theme) => ({
         background: theme.palette.secondary.main,
