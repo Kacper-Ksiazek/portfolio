@@ -3,7 +3,7 @@ import { styled } from "@mui/material";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
-import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
+import OptionalPropertyIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
 
 const OptionalPropertyExplanationBase = styled("span")(({ theme }) => ({
     position: "relative", //
@@ -26,7 +26,7 @@ const OptionalPropertyExplanation: FunctionComponent<OptionalPropertyExplanation
             <span style={{ flexGrow: 1 }}></span>
 
             <OptionalPropertyExplanationBase id={props.id}>
-                <OptionalPropertIndicator sx={{ top: "50%", transform: "translateY(-50%)" }} />
+                <OptionalPropertyIndicator sx={{ top: "50%", transform: "translateY(-50%)" }} />
                 <span className="text">- Optional property</span>
             </OptionalPropertyExplanationBase>
         </>

@@ -5,7 +5,7 @@ import { DESCRIPTION_RESTRICTIONS } from "landing_page/ToDoList/2023/validators/
 import type { FunctionComponent } from "react";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
-import OptionalPropertIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
+import OptionalPropertyIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
 import WrapperWithWitdthIndicator from "components/atoms/forms/LengthIndicator/WithWrapper";
 
 const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
@@ -28,7 +28,7 @@ const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boole
                 width: "66px",
             }}
         >
-            <OptionalPropertIndicator />
+            <OptionalPropertyIndicator />
 
             <StyledInput
                 placeholder="Provide more context or instructions for this task (optional)" //
