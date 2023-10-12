@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { alpha, styled } from "@mui/material";
 // Types
 import type { SxProps } from "@/@types/MUI";
 import type { FunctionComponent } from "react";
@@ -11,7 +11,7 @@ const LengthIndicatorBase = styled("span", {
     invalid: boolean;
 }>(({ theme, ...props }) => ({
     fontSize: "14px",
-    opacity: 0.6,
+    color: alpha(theme.palette.text.primary, 0.6),
     display: "flex",
     gap: "6px",
     cursor: "default",
@@ -20,7 +20,7 @@ const LengthIndicatorBase = styled("span", {
     ...(props.invalid && {
         opacity: 1,
         fontWeight: 500,
-        color: theme.palette.error.main,
+        color: alpha(theme.palette.error.main, theme.palette.mode === "light" ? 0.6 : 1),
     }),
 }));
 

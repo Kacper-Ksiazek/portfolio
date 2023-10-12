@@ -21,7 +21,7 @@ const SendMeAnEmail: FunctionComponent = () => {
     useMapStatusUpdater(request.status, alreadySentEmail);
 
     return (
-        <SectionWrapper id="send-me-en-email-wrapper" sx={{ height: "460px" }}>
+        <SectionWrapper id="send-me-en-email-wrapper" sx={{ height: "490px" }}>
             {(() => {
                 if (specialWayOfRendering !== "hideIt" && !alreadySentEmail) {
                     return (
