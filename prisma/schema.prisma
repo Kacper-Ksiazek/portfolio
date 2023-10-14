@@ -62,6 +62,8 @@ enum HobbyIcon {
   TERMINAL
   MUSIC_NOTE
   SPORTS_ESPORTS
+  BOOKS
+  CUTTERY
 }
 
 enum SchoolType {

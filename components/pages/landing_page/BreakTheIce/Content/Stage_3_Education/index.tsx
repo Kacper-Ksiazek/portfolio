@@ -15,9 +15,9 @@ const Education: FunctionComponent = () => {
     return (
         <>
             <Paragraph animationDelay={0.7}>
-                {formatTextViaBolding(`I have always been *eager to learn*, because I think it is a great way to develop such qualities as *meticulousness*, *gratitude* and
-                *respectfulness* and furthermore I deem it significantly improves personality in general and also make farther life easier. Back in my school, I was always the student
-                with the best results, mainly because I was *always striving to innovate* and find more efficient solutions, but most importantly because I was
+                {formatTextViaBolding(`I have always been *eager to learn*, because I think it is a great way to develop qualities such as *meticulousness*, *gratitude* and
+                *respectfulness*. Furthermore, I deem it significantly improves personality in general and also make farther life easier. During in my high-school years, I usually achieved
+                the best results, primarily due to my *curiosity* and perpetual pursuit of *more efficient solutions*. Most importantly, because I was
                 *never making excuses* and the term of hard working was never something strange for me.`)}
             </Paragraph>
             <OverflowScrollDiv
