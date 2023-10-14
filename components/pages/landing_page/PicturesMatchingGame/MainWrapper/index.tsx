@@ -23,7 +23,7 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
             id={CSS_REFERENCES.PICTURES_MATCHING_GAME}
             shapesDirection="right"
             header={{
-                main: "React image matching game",
+                main: "React images matching game",
                 index: 2,
                 icon: <Code />,
                 description: `Another commonly seen portfolio project is an image matching game, so I decided to code my own version of it. The purpose of it is to add variety to my portfolio, and more importantly, to create a second content separator.`,
