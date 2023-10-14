@@ -6,25 +6,31 @@ export default (
             label: "Coding",
             title: "Web development",
             description:
-                "Obviously, I really like coding and it's my main form of spending free time. I used to do this simultaneously with a high school, but now I do it *simultaneously with a collage*.",
+                "Clearly, I have a deep passion for coding, and it has been my primary way to spend my free time. I used to pursue it alongside my high school studies, and I continue to do so *alongside my college education*.",
             folder: "coding.jpg",
             icon: "TERMINAL",
         },
         {
-            label: "Music",
-            title: "German gangsta rap",
-            description: `I really like the sound of the German language and I find listening to german music tranquilizing and very encouraging to learn it as my *second foreign language*.`,
-            artistReferenceURL: "https://www.youtube.com/watch?v=0NL8H1IAHVc",
-            artistReferenceTooltip: "Shot from official music video Blaues Licht by Bonez MC and Raf Camora.",
-            folder: "german_rap.jpg",
-            icon: "MUSIC_NOTE",
+            label: "Education",
+            title: "Languages learning",
+            description: "Besides coding, I am also interested in learning languages. My current focus is on *mastering English* and then German, but I also consider learning more in the future.",
+            folder: "languages.jpg",
+            icon: "BOOKS",
         },
         {
             label: "Games",
             title: "Video games",
-            description: "Due to the moving out, I play video games no more, though I still take abreast of trends, because they present the most vital factors of *UI/UX* strikingly well.",
+            description: "Due to abundance of responsibilities, I do not have much time to play video games now. However, I still enjoy them from time to time.",
             folder: "video_games.jpg",
             icon: "SPORTS_ESPORTS",
+        },
+        {
+            label: "Cooking",
+            title: "Food preparation",
+            description:
+                "I'm not a professional chef, but still I take pleasure in cooking. The aspect I enjoy most about cooking is the ongoing *organization of my workspace* and constant *tidiness maintaining*",
+            folder: "cooking.jpg",
+            icon: "CUTTERY",
         },
     ] as SeederDataItem<Hobby>[]
 ).map((el: Partial<SeederDataItem<Hobby>>) => {

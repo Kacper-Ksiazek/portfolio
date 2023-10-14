@@ -35,14 +35,15 @@ const Competencies: FunctionComponent = () => {
     return (
         <>
             <Paragraph animationDelay={0.7}>
-                {formatTextViaBolding(`I have been doing *web development* for *over 3 years* and during this period I tried a lot of different technologies and also encountered a great deal of varying approaches to tackle
+                {formatTextViaBolding(`I have been doing *web development* for *over 4 years* and during this period I tried a lot of different technologies and also encountered a great deal of various approaches to tackle
                 different problems and eventually distinguished a few favorites.`)}
             </Paragraph>
             <Label animationDelay={0.8}>Programming languages</Label>
-            <RatedInStars name="Javascript" stars={4.5} description="Almost 3 years of regular use" animationDelay={0.9} />
-            <RatedInStars name="Typescript" stars={4} description="Undoubtedly my favourite one" animationDelay={1} />
+            <RatedInStars name="Javascript" stars={4.5} description="Almost 4 years of regular use" animationDelay={0.9} />
+            <RatedInStars name="Typescript" stars={4.5} description="Undoubtedly my favourite one" animationDelay={1} />
             <RatedInStars name="Python" stars={2} description="Have some understanding, but nothing spectacular" animationDelay={1.1} />
             <RatedInStars name="PHP" stars={0.5} description="I used to know it" animationDelay={1.2} />
+            <RatedInStars name="C" stars={0.5} description="Collage usage only" animationDelay={1.3} />
             <Label animationDelay={1.2}>Technologies</Label>
             <Paragraph animationDelay={1.3} sx={{ mt: "0" }}>
                 Only those in which I feel confident

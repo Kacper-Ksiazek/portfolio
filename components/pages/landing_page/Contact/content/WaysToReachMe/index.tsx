@@ -25,7 +25,7 @@ const WaysToReachMe: FunctionComponent<{ writeToMe: () => void }> = (props) => {
         <SectionWrapper>
             <Paragraph animationDelay={0.3}>
                 {formatTextViaBolding(
-                    `I'm freshman at *AGH University of Science and Technology* at the Faculty of *Engineering and Data Analysis* (WGGiOŚ) in Cracow and due to the loads of responsibilities related to my college, at the moment I consider only part-time jobs as well as internships with an opportunity to develop.`
+                    `I'm a second-year student at *AGH University of Science and Technology* in Cracow, pursuing a degree in *Engineering and Data Analysis* (WGGiOŚ). Given the significant responsibilities associated with my college coursework, I am currently open to part-time jobs and internships that provide opportunities for personal and professional development.`
                 )}
             </Paragraph>
 

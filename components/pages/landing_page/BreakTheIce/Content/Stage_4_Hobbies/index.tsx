@@ -21,11 +21,11 @@ const Hobbies: FunctionComponent = () => {
         <>
             <Paragraph animationDelay={0.7}>
                 {formatTextViaBolding(
-                    `I have always strived to choose wisely, how will I spend my leisure time in order not to remorse afterwards. *The scope for combining amusement with productivity* has always been something, which I was looking for.`
+                    `I have consistently made thoughtful choices regarding how I spend my leisure time to avoid regrets. I have always sought ways to *balance enjoyment with productivity*.`
                 )}
             </Paragraph>
             <Carousel
-                itemsInTotal={3} //
+                itemsInTotal={4} //
                 itemsPerSlide={width <= 550 ? 1 : 2}
                 spacing={40}
                 wrapperSx={{ mt: "20px", ...(RWD as any) }}

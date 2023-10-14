@@ -18,7 +18,11 @@ const InitialIntroduction: FunctionComponent<InitialIntroductionProps> = (props)
         <IntroductionScreenBase rendering={props.rendering} disableTextElementsStyles addPaddingTop>
             <ColoredHeader className="colored-header">full-stack</ColoredHeader>
             <MainHeader className="main-header">Kacper Książek</MainHeader>
-            <Description>21 years old Engineering and Data Analysis student living in Poland, who takes sheer pleasure in coding 😎😎</Description>
+            <Description>
+                {
+                    "Hi, I'm a 21-year-old technology enthusiast, currently a second-year student of Engineering and Data Analysis at AGH in Cracow, who takes great pleasure in coding and learning new things."
+                }
+            </Description>
             <ColoredHeader className="colored-header">developer</ColoredHeader>
             <ScrollButton
                 onMouseEnter={props.onScrollButtonHover} //
