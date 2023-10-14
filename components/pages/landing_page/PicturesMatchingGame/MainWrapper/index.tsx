@@ -26,7 +26,7 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                 main: "React image matching game",
                 index: 2,
                 icon: <Code />,
-                description: `Another very frequently seen portfolio project is a images matching game, so I had decided to code my version of it either in order to spice up everything and more importantly to create second content separator.`,
+                description: `Another commonly seen portfolio project is an image matching game, so I decided to code my own version of it. The purpose of it is to add variety to my portfolio, and more importantly, to create a second content separator.`,
                 render: !props.preventHeaderFromRendering,
             }}
             sx={{
