@@ -9,6 +9,7 @@ import type { Project } from "@/@types/pages/LandingPage";
 import SingleProjectRow from "./SingleProjectRow";
 import { ProjectsContextProvider } from "./context";
 import LightSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Light";
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Styled components
 const ProjectsWrapper = styled("div")(({ theme }) => ({
     display: "flex",
@@ -38,8 +39,9 @@ const Projects: FunctionComponent<ProjectsProps> = ({ projects }) => {
                 additionalJSX: {
                     node: (
                         <ParagraphForHeader className="project-header-paragraph">
-                            I have always found building more complex and bigger projects the best way to thoroughly learn new technologies, thus in 3 years I managed to amass a nice collection of
-                            them.
+                            {formatTextViaBolding(
+                                `I've always believed that tackling more complex and larger projects is the most effective way to thoroughly learn new technologies. In the *span of 4 years*, I've accumulated a substantial collection of such projects. Here are *some* of my favorites:`
+                            )}
                         </ParagraphForHeader>
                     ),
                     whenVisible: {
