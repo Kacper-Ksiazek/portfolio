@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { CSS_REFERENCES } from "../css_references";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
@@ -32,7 +33,7 @@ interface SingleFooterRedirectionProps {
 const SingleFooterRedirection: FunctionComponent<SingleFooterRedirectionProps> = (props) => {
     return (
         <Tooltip placement="top" title={props.tooltip}>
-            <Redirection>
+            <Redirection className={CSS_REFERENCES.SINGLE_REDIRECTION}>
                 <Link href={props.path}>{props.children}</Link>
             </Redirection>
         </Tooltip>

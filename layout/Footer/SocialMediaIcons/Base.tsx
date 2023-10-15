@@ -5,6 +5,7 @@ import { SELECTORS } from "./Icons/css_references";
 export default styled("div")(({ theme }) => ({
     display: "flex",
     gap: "18px",
+    marginBottom: "8px",
     a: {
         textDecoration: "none",
     },

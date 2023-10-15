@@ -1,15 +1,16 @@
 // Tools
 import { styled } from "@mui/material";
+import { CSS_REFERENCES, SELECTORS } from "layout/Footer/css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import SingleFooterRedirection from "./Redirections/SingleRedirection";
+import SingleFooterRedirection from "./SingleRedirection";
 // Styled components
 const FooterRedirectionsWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
     gap: "4px",
-    "span.divider": {
+    [SELECTORS.REDIRECTIONS_DIVIDER]: {
         height: "4px",
         width: "4px",
         background: "#fff",
@@ -25,13 +26,13 @@ const FooterRedirections: FunctionComponent = () => {
                 404
             </SingleFooterRedirection>
 
-            <span className="divider" />
+            <span className={CSS_REFERENCES.REDIRECTIONS_DIVIDER} />
 
             <SingleFooterRedirection tooltip="Go to 500 page" path="/500">
                 500
             </SingleFooterRedirection>
 
-            <span className="divider" />
+            <span className={CSS_REFERENCES.REDIRECTIONS_DIVIDER} />
 
             <SingleFooterRedirection tooltip="Go to disabled javascript page" path="/no-javascript">
                 no-js
