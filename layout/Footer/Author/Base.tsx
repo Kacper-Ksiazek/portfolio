@@ -1,16 +1,14 @@
 // Tools
-import { styled, alpha } from "@mui/material";
-// Types
-import type { FunctionComponent } from "react";
-// Styled Components
-const AuthorHeaderBase = styled("div")(({ theme }) => ({
-    marginTop: "8px",
+import { alpha, styled } from "@mui/material";
+import { SELECTORS } from "../css_references";
+// Styled components
+export default styled("div")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     color: "#fff",
-    h4: {
+    [SELECTORS.AUTHOR_NAME]: {
         margin: "0",
         fontSize: "20px",
         fontWeight: 700,
@@ -22,20 +20,9 @@ const AuthorHeaderBase = styled("div")(({ theme }) => ({
             fontSize: "18px",
         },
     },
-    ".years": {
+    [SELECTORS.YEARS]: {
         fontSize: "14px",
         fontWeight: 300,
         color: alpha("#fff", 0.8),
     },
 }));
-
-const AuthorHeader: FunctionComponent = () => {
-    return (
-        <AuthorHeaderBase>
-            <h4 className="author">Created by: Kacper Książek</h4>
-            <span className="years">2019 - 2023</span>
-        </AuthorHeaderBase>
-    );
-};
-
-export default AuthorHeader;
