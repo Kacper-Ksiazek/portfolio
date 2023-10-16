@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { alpha, styled } from "@mui/material";
 import { CSS_REFERENCES } from "../css_references";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -9,11 +9,10 @@ import Tooltip from "@mui/material/Tooltip";
 import Link from "next/link";
 // Styled components
 const Redirection = styled("span")(({ theme }) => ({
-    opacity: 0.3,
     fontSize: "14px",
     cursor: "pointer",
     padding: "4px 12px",
-    color: "#fff",
+    color: alpha("#fff", 0.3),
     transition: "opacity 0.2s ease-in-out",
     a: {
         textDecoration: "none",

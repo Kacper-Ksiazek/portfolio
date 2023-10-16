@@ -3,37 +3,19 @@ import { useState, useEffect } from "react";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
-import Author from "./Author";
-import FooterContent from "./Content";
-import Redirections from "./Redirections";
-import SocialMediasIcons from "./SocialMediaIcons";
-import FooterContextProvider from "./context/Provider";
-// Styled components
-import FooterBase from "./Base";
+import EnabledJavascriptContent from "./EnabledJavascriptContent";
+import DisabledJavascriptContent from "./DisabledJavascriptContent";
 
 const Footer: FunctionComponent = () => {
-    const [renderFooterContent, setRenderFooterContent] = useState<boolean>(false);
+    const [javascriptIsEnabled, setJavascriptIsEnabled] = useState<boolean>(false);
 
     // Do not render the content if javascript is disabled by your browser
     useEffect(() => {
-        setRenderFooterContent(true);
+        setJavascriptIsEnabled(true);
     }, []);
 
-    return (
-        <FooterContextProvider>
-            <FooterBase>
-                {renderFooterContent && (
-                    <>
-                        <FooterContent />
-                        <Redirections />
-                    </>
-                )}
-
-                <SocialMediasIcons />
-                <Author />
-            </FooterBase>
-        </FooterContextProvider>
-    );
+    if (javascriptIsEnabled) return <EnabledJavascriptContent />;
+    return <DisabledJavascriptContent />;
 };
 
 export default Footer;

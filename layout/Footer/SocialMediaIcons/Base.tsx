@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { alpha, styled } from "@mui/material";
 import { SELECTORS } from "./Icons/css_references";
 // Styled components
 export default styled("div")(({ theme }) => ({
@@ -23,7 +23,7 @@ export default styled("div")(({ theme }) => ({
 
         [`&:not(&${SELECTORS.ACTIVE_SOCIAL_MEDIA_ICON})`]: {
             svg: {
-                opacity: 0.8,
+                color: alpha("#fff", 0.8),
                 "&:hover, &.active": {
                     opacity: 1,
                     color: theme.palette.primary.main,

@@ -1,5 +1,5 @@
 // Tools
-import { styled } from "@mui/material";
+import { alpha, styled } from "@mui/material";
 import { CSS_REFERENCES, SELECTORS } from "layout/Footer/css_references";
 // Types
 import type { FunctionComponent } from "react";
@@ -13,8 +13,7 @@ const FooterRedirectionsWrapper = styled("div")(({ theme }) => ({
     [SELECTORS.REDIRECTIONS_DIVIDER]: {
         height: "4px",
         width: "4px",
-        background: "#fff",
-        opacity: 0.3,
+        background: alpha("#fff", 0.3),
         borderRadius: "1px",
     },
 }));
