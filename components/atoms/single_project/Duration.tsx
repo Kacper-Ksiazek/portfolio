@@ -40,11 +40,13 @@ interface DurationProps {
     className?: string;
 }
 
+export const CLASS_NAME: CSSClassName = "duration";
+
 const Duration: FunctionComponent<DurationProps> = (props) => {
     return (
         <DurationBase
             className={[
-                "duration", //
+                CLASS_NAME, //
                 props.smaller ? "smaller" : "",
                 props.className ?? "",
             ].join(" ")}

@@ -1,3 +1,5 @@
+// Tyools
+import { CSS_REFERENCES } from "components/pages/projects/single/RecommendedProjects/SingleRecommendedProject/css_references";
 // Types
 import type { FunctionComponent } from "react";
 import type { RecommendedProject } from "@/@types/pages/projects/SingleProject";
@@ -19,8 +21,8 @@ interface SingleRecommendedProjectProps {
 
 const SingleRecommendedProject: FunctionComponent<SingleRecommendedProjectProps> = ({ data, numberOfTechnologiesToDisplay, ...props }) => {
     return (
-        <SingleRecommendedProjectBase className="single-recommended-project">
-            {props.index !== 0 ? <Divider className="single-recommended-project-divider" /> : <></>}
+        <SingleRecommendedProjectBase className={CSS_REFERENCES.WRAPPER}>
+            {props.index !== 0 ? <Divider className={CSS_REFERENCES.DIVIDER} /> : <></>}
             <Thumbnail
                 folder={data.folder} //
                 id={data.id}
@@ -37,7 +39,7 @@ const SingleRecommendedProject: FunctionComponent<SingleRecommendedProjectProps>
             <Title
                 className={[
                     data.title.length > 20 ? "long-header" : "", //
-                    "single-recommended-project-title",
+                    CSS_REFERENCES.TITLE,
                 ].join(" ")}
             >
                 {data.title}

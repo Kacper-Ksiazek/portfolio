@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { CSS_REFERENCES } from "components/pages/projects/single/RecommendedProjects/SingleRecommendedProject/css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Styled components
@@ -36,7 +37,7 @@ interface NumberOfFeaturesProps {
 
 const NumberOfFeatures: FunctionComponent<NumberOfFeaturesProps> = (props) => {
     return (
-        <NumberOfFeaturesBase className="single-recommended-project-number-of-features">
+        <NumberOfFeaturesBase className={CSS_REFERENCES.NUMBER_OF_FEATURES}>
             <strong>{props.numberOfFeatures}</strong>
             <span>Photos</span>
         </NumberOfFeaturesBase>

@@ -1,6 +1,7 @@
 // Tools
 import { styled, alpha } from "@mui/material";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
+import { CSS_REFERENCES } from "components/pages/projects/single/RecommendedProjects/SingleRecommendedProject/css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Styled Components
@@ -17,7 +18,7 @@ const DescriptionBase = styled("p")(({ theme }) => ({
 
 const Description: FunctionComponent<{ text: string }> = (props) => {
     return (
-        <DescriptionBase className="single-recommended-project-description">
+        <DescriptionBase className={CSS_REFERENCES.DESCRIPTION}>
             {formatTextViaBolding(props.text.slice(0, 150))}
             {/*  */}
         </DescriptionBase>
