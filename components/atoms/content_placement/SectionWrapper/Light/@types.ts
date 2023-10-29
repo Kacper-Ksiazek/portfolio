@@ -45,8 +45,3 @@ export interface LightSectionWrapperProps {
     childrenOutsideContentWrapper?: ReactNode;
     backgroundLetterSx?: Styles;
 }
-
-export interface BackgroundLetterProps {
-    letter: string;
-    sx: Styles;
-}

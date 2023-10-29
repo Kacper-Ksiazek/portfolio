@@ -25,6 +25,7 @@ const LightSectionWrapper: FunctionComponent<LightSectionWrapperProps> = (props)
                 <Header {...props.header} setDisplayBackgroundLetter={setDisplayBackgroundLetter} />
                 {props.children}
             </ContentWrapper>
+
             {displayBackgroundLetter && props.backgroundLetter && (
                 <BackgroundLetter
                     letter={props.backgroundLetter} //
