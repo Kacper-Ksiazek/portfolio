@@ -25,6 +25,7 @@ export default (
             start: new Date(2021, 10),
             end: new Date(2022, 5),
             githubURL: "https://github.com/Kacper-Ksiazek/nextjs-travel-agency-2022",
+            liveDemoURL: "https://nextjs-travel-agency-2022.vercel.app",
             shortDescription: `Undoubtedly, the *largest and most complex project* I've undertaken thus far. It's an application featuring an array of functionalities, including a user account system, JWT authentication, robust CRUD operations, review creation, user profiles with review summaries, and much more. Additionally, the project involves managing a significant amount of relational data, utilizing PostgreSQL and Prisma as the ORM.`,
             description: {
                 introduction: `I began this project near the start of my *last high school class* with the initial goal of learning React, Next.js, and a serverless approach. Due to the numerous responsibilities associated with *impending final exams*, this project took significantly more time than expected. Nonetheless, I'm rather proud of its final state, but I still see room for further improvements. The project's visual design has been entirely revamped, including everything from the color palette and fonts to content placement, and I even changed the tech stack twice. I always strive to do my best and put a significant amount of effort into ensuring the quality meets my standards.`,
