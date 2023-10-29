@@ -1,50 +1,26 @@
 // Tools
-import { useRef, useEffect } from "react";
+import { useLetterToDisplay } from "./hooks/useLetterToDisplay";
 // Types
+import type { Styles } from "@/@types/MUI";
 import type { FunctionComponent } from "react";
-import type { BackgroundLetterProps } from "../@types";
 // Styled components
 import BackgroundLetterBase from "./Base";
 
+interface BackgroundLetterProps {
+    letter: string;
+    sx: Styles;
+}
+
 const BackgroundLetter: FunctionComponent<BackgroundLetterProps> = (props) => {
-    // Styled Components
-    const previousLetter = useRef<string>("");
-
-    const previousLetterElement = useRef<HTMLDivElement | null>(null);
-    const currentLetterElement = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        previousLetter.current = props.letter;
-
-        previousLetterElement.current?.classList.remove("hide");
-        currentLetterElement.current?.classList.add("hide");
-        previousLetterElement.current?.classList.add("outro");
-        currentLetterElement.current?.classList.remove("intro");
-
-        setTimeout(() => {
-            currentLetterElement.current?.classList.remove("hide");
-            previousLetterElement.current?.classList.add("hide");
-            previousLetterElement.current?.classList.remove("outro");
-            currentLetterElement.current?.classList.add("intro");
-        }, 1800);
-    }, [props.letter]);
+    const { animation, letter } = useLetterToDisplay(props.letter);
 
     return (
-        <>
-            <BackgroundLetterBase
-                ref={previousLetterElement} //
-                sx={props.sx as any}
-                className="hide"
-            >
-                {previousLetter.current}
-            </BackgroundLetterBase>
-            <BackgroundLetterBase
-                ref={currentLetterElement} //
-                sx={props.sx as any}
-            >
-                {props.letter}
-            </BackgroundLetterBase>
-        </>
+        <BackgroundLetterBase
+            sx={props.sx} //
+            className={animation ?? ""}
+        >
+            {letter}
+        </BackgroundLetterBase>
     );
 };
 
