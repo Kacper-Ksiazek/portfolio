@@ -33,7 +33,7 @@ const FooterRedirections: FunctionComponent = () => {
 
             <span className={CSS_REFERENCES.REDIRECTIONS_DIVIDER} />
 
-            <SingleFooterRedirection tooltip="Go to disabled javascript page" path="/no-javascript">
+            <SingleFooterRedirection tooltip="Go to disabled javascript page" path="/no-javascript?preview-mode=1">
                 no-js
             </SingleFooterRedirection>
         </FooterRedirectionsWrapper>
