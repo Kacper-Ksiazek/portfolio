@@ -19,7 +19,6 @@ const NoJavascript: FunctionComponent = () => {
     const router = useRouter();
 
     useEffect(() => {
-        console.log(router.query);
         if (isInPreviewMode(router.query) === true) return;
 
         const timeout: NodeJS.Timeout = setTimeout(() => router.push("/"), 700);
