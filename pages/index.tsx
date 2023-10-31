@@ -31,6 +31,7 @@ export const getStaticProps: GetStaticProps<LandingPageServerSideProps> = async 
             id: true,
             title: true,
             folder: true,
+            type: true,
             end: true,
             start: true,
             shortDescription: true,

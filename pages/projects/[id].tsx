@@ -40,7 +40,18 @@ export default SingleProject;
 export const getStaticPaths: GetStaticPaths = async (context) => {
     await prisma.$connect();
 
-    const paths = (await prisma.project.findMany({ select: { id: true } })).map((el) => {
+    const paths = (
+        await prisma.project.findMany({
+            select: {
+                id: true,
+            },
+            where: {
+                NOT: {
+                    onlyMentioned: true,
+                },
+            },
+        })
+    ).map((el) => {
         return {
             params: { id: el.id },
         };

@@ -14,13 +14,14 @@ model Project {
   technologies         String[]
   folder               String      @unique
   type                 ProjectType
-  description          Json
-  features             Json
-  githubURL            String
+  description          Json?
+  features             Json?
+  githubURL            String?
   liveDemoURL          String?
   releventTechnologies String[]
   start                DateTime
   end                  DateTime
+  onlyMentioned        Boolean?    @default(false)
 }
 
 model Hobby {
