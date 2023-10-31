@@ -2,6 +2,45 @@ import type { Project, SeederDataItem } from "./@types";
 export default (
     [
         {
+            id: "MHACK",
+            title: "MObywatel 2.0 mHack",
+            type: "HACKATHON",
+            onlyMentioned: true,
+            folder: "MHACK",
+            releventTechnologies: ["typescript", "sass", "react", "prisma", "figma", "next"],
+            technologies: [],
+            shortDescription:
+                "Organized by the Polish government. The task for all contestans was to within 24 hours come up with an idea, blueprint, and an example of implementation of new, ground-breaking feature for mObywatel mobile app. We created feature called *mMapa*, which was an accessible, and easy-to-use for everyone map, highlighting all public institutions along with a bunch of guidance for ordinary citizens.",
+            start: new Date(2023, 9, 21),
+            end: new Date(2023, 9, 22),
+        },
+        {
+            id: "HACKNAROK_7",
+            title: "Hacknarök VII",
+            type: "HACKATHON",
+            onlyMentioned: true,
+            folder: "HACKNAROK_VII",
+            releventTechnologies: ["typescript", "sass", "react", "prisma", "figma", "next"],
+            technologies: [],
+            shortDescription:
+                "Organized by the EESTEC AGH Science Club. The assignment was to create a *mobile app blueprint*, which tackles the topic of *gamification*. With my team we created a *Try me* app that allows users to challange their friends with various daily challanges. Our strong inspiration for this project was the *BeReal* app. ",
+            start: new Date(2023, 3, 1),
+            end: new Date(2023, 3, 2),
+        },
+        {
+            id: "HACKYEAH_2022",
+            title: "HackYeah 2022",
+            type: "HACKATHON",
+            onlyMentioned: true,
+            folder: "HackYeah2022",
+            releventTechnologies: ["typescript", "sass", "react", "prisma", "figma"],
+            technologies: [],
+            shortDescription:
+                'HackYeah is the biggest stationary hackathon in Europe, organized by the Polish government. I participated in the 2022 edition, where I was a part of the *"Less Waste"* track.". My team and I created a *web app that allows users to share their leftover food with others*, thereby reducing food waste.',
+            start: new Date(2022, 10, 20),
+            end: new Date(2022, 10, 21),
+        },
+        {
             id: "PORTFOLIO",
             title: "Portfolio",
             type: "PERSONAL",
