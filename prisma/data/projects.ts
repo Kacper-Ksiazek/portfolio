@@ -10,7 +10,7 @@ export default (
             releventTechnologies: ["typescript", "sass", "react", "prisma", "figma", "next"],
             technologies: [],
             shortDescription:
-                "Organized by the Polish government. The task for all contestans was to within 24 hours come up with an idea, blueprint, and an example of implementation of new, ground-breaking feature for mObywatel mobile app. We created feature called *mMapa*, which was an accessible, and easy-to-use for everyone map, highlighting all public institutions along with a bunch of guidance for ordinary citizens.",
+                "Organized by the Polish government. The task was identical for all contestans- come up with an *idea, blueprint, and an example implementation* of new, ground-breaking feature for mObywatel mobile app. We created feature called *mMapa*, which was an accessible, and easy-to-use for everyone map, highlighting all public institutions along with a bunch of guidance for ordinary citizens.",
             start: new Date(2023, 9, 21),
             end: new Date(2023, 9, 22),
         },
