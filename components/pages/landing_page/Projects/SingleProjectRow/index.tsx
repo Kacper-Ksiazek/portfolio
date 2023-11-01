@@ -1,7 +1,7 @@
 // Tools
 import dynamic from "next/dynamic";
 import { styled } from "@mui/material";
-import { SELECTORS } from "./css_references";
+import { SELECTORS, PROJECT_CARD_ELEMENTS } from "./css_references";
 import * as introAnimations from "./intro_animations";
 import { hidePseudoElement } from "@/components/keyframes/outro";
 import { useProjectsContext } from "../hooks/useProjectsContext";
@@ -68,7 +68,7 @@ const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
                         animation: `${hidePseudoElement} .001s 2.6s both`,
                     },
                     [SELECTORS.PROJECT_CARD.WRAPPER as any]: {
-                        [`${TECHNOLOGIES_LIST.WRAPPER}, h4, .duration, p, .read-more `]: {
+                        [PROJECT_CARD_ELEMENTS.join(", ")]: {
                             position: "relative",
                             "&::after": {
                                 content: "''",

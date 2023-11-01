@@ -44,6 +44,10 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
                 ref_type: "CSS_CLASS",
                 skipAlias: true,
             },
+            PROJECT_TYPE: {
+                ref_value: "project-type",
+                ref_type: "CSS_CLASS",
+            },
             TITLE: {
                 ref_value: "project-title",
                 ref_type: "CSS_CLASS",
@@ -95,6 +99,7 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
 /** Selectors in proper order to match animations sequence */
 export const PROJECT_CARD_ELEMENTS_CONTENTS: string[] = [
     `${SELECTORS.PROJECT_CARD.TECHNOLOGIES}>*`,
+    `${SELECTORS.PROJECT_CARD.PROJECT_TYPE}>*`,
     `${SELECTORS.PROJECT_CARD.TITLE}>*`,
     `${SELECTORS.PROJECT_CARD.DURATION}>*`,
     `${SELECTORS.PROJECT_CARD.DESCRIPTION}>*`,
@@ -102,6 +107,7 @@ export const PROJECT_CARD_ELEMENTS_CONTENTS: string[] = [
 
 export const PROJECT_CARD_ELEMENTS: string[] = [
     SELECTORS.PROJECT_CARD.TECHNOLOGIES,
+    SELECTORS.PROJECT_CARD.PROJECT_TYPE,
     SELECTORS.PROJECT_CARD.TITLE,
     SELECTORS.PROJECT_CARD.DURATION,
     SELECTORS.PROJECT_CARD.DESCRIPTION,

@@ -7,6 +7,7 @@ import type { FunctionComponent } from "react";
 import Typography from "@mui/material/Typography";
 // Styled components
 const ProjectTitleBase = styled(Typography)(({ theme }) => ({
+    margin: "6px 0 0 0",
     "@media (max-width:1400px)": {
         fontSize: "36px",
         marginBottom: "4px",

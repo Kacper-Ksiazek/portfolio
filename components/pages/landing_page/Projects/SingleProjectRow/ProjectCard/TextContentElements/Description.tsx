@@ -8,7 +8,7 @@ import type { FunctionComponent } from "react";
 const ProjectDescriptionBase = styled("p")(({ theme }) => ({
     cursor: "default",
     fontSize: "16px",
-    marginTop: "16px",
+    marginTop: "8px",
     lineHeight: 1.5,
     color: alpha(theme.palette.text.primary, 0.8),
     flexGrow: 1,

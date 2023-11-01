@@ -7,7 +7,7 @@ import type { Project } from "@/@types/pages/LandingPage";
 import ThumbnailWrapper from "./ThumbnailWrapper";
 import TextContentWrapper from "./TextContentWrapper";
 import Duration from "@/components/atoms/single_project/Duration";
-import { Description, Redirections, Technologies, Title } from "./TextContentElements";
+import { Description, Redirections, Technologies, Title, ProjectType } from "./TextContentElements";
 // Styled components
 import { SingleProjectBase, IntroBar } from "./styled_components";
 
@@ -49,6 +49,9 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
                     start={data.start}
                     smaller
                 />
+
+                <ProjectType type={data.type} />
+
                 <Description content={data.shortDescription} />
 
                 <Redirections id={data.id} liveDemoURL={data.liveDemoURL} />
