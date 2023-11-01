@@ -1,11 +1,7 @@
 // Tools
 import dynamic from "next/dynamic";
-import { styled } from "@mui/material";
-import { SELECTORS, PROJECT_CARD_ELEMENTS } from "./css_references";
-import * as introAnimations from "./intro_animations";
-import { hidePseudoElement } from "@/components/keyframes/outro";
 import { useProjectsContext } from "../hooks/useProjectsContext";
-import { SELECTORS as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
+import { stylesWhenVisible } from "./styles_when_finished";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
@@ -15,37 +11,7 @@ import YearIndicator from "./YearIndicator";
 const Timeline = dynamic(() => import("./Timeline"));
 import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 // Styled components
-
-const SingleProjectRow = styled("div")(({ theme }) => ({
-    display: "flex",
-    width: "100%",
-    position: "relative",
-    justifyContent: "flex-end",
-    ["@media (min-width:751px)"]: {
-        "&::after": {
-            content: "''",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "50%",
-            height: "100%",
-            zIndex: 10,
-        },
-        "&.odd::after": {
-            left: "auto",
-            right: 0,
-        },
-    },
-    "&.even": {
-        flexDirection: "row-reverse",
-    },
-    "&.year-indicating": {
-        paddingTop: "160px",
-    },
-    "&.visible": {
-        visibility: "visible",
-    },
-}));
+import SingleProjectRowBase from "./Base";
 
 interface SingleProjectProps {
     index: number;
@@ -61,42 +27,8 @@ const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
     const thisRowIsAYearIndicator: boolean = !isFirst && Boolean(props.data.yearToIndicate);
 
     return (
-        <TransformWhenVisible
-            to={(theme) => ({
-                ".single-project-row": {
-                    "&::after": {
-                        animation: `${hidePseudoElement} .001s 2.6s both`,
-                    },
-                    [SELECTORS.PROJECT_CARD.WRAPPER as any]: {
-                        [PROJECT_CARD_ELEMENTS.join(", ")]: {
-                            position: "relative",
-                            "&::after": {
-                                content: "''",
-                                ...theme.mixins.absolute_full,
-                                background: theme.palette.background.lightAnimationBar,
-                            },
-                        },
-                    },
-                    "@media (min-width:1401px)": {
-                        ...introAnimations.over_1400px,
-                    },
-                    "@media (min-width:750px) and (max-width: 1400px)": {
-                        ...introAnimations.between_750px_and_1400px,
-                    },
-                    "@media (max-width: 750px)": {
-                        ...introAnimations.below_750px.introAnimationsForThumbnail,
-                    },
-                    "@media (max-width:1000px)": {
-                        flexDirection: "column",
-                        "&.year-indicating": {
-                            paddingTop: "16px",
-                        },
-                    },
-                },
-            })}
-            rootMargin={context.intersectionObserverMargin}
-        >
-            <SingleProjectRow
+        <TransformWhenVisible to={stylesWhenVisible} rootMargin={context.intersectionObserverMargin}>
+            <SingleProjectRowBase
                 className={[
                     "single-project-row",
                     thisRowIsAYearIndicator ? "year-indicating" : "", //
@@ -125,7 +57,7 @@ const SingleProject: FunctionComponent<SingleProjectProps> = (props) => {
                         );
                     }
                 })()}
-            </SingleProjectRow>
+            </SingleProjectRowBase>
         </TransformWhenVisible>
     );
 };

@@ -18,18 +18,12 @@ export default styled("div")(({ theme }) => ({
     "&.odd": {
         flexDirection: "row-reverse",
         paddingLeft: "12px",
-        [CSS_REFERENCES.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
-            marginLeft: "16px",
-        },
         "&::before": {
             left: 0,
         },
     },
     "&.even": {
         paddingRight: "12px",
-        [CSS_REFERENCES.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
-            marginRight: "16px",
-        },
         "&::before": {
             right: 0,
         },

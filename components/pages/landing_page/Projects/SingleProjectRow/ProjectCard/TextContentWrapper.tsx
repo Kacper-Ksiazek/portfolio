@@ -15,6 +15,13 @@ const Base = styled("div")(({ theme }) => ({
     boxSizing: "border-box",
     position: "relative",
     zIndex: 2,
+
+    "&.even": {
+        marginRight: "20px",
+    },
+    "&.odd": {
+        marginLeft: "20px",
+    },
 }));
 
 interface TextContentWrapperProps {
