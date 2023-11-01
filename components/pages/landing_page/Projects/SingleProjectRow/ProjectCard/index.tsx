@@ -1,7 +1,7 @@
 // Tools
 import { CSS_REFERENCES } from "../css_references";
 // Types
-import type { FunctionComponent } from "react";
+import { useState, type FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
 // Other components
 import ThumbnailWrapper from "./ThumbnailWrapper";
@@ -23,6 +23,8 @@ interface ProjectCardProps {
 const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
     const { data, order } = props;
 
+    const [showEntireDescription, setShowEntireDescription] = useState<boolean>(false);
+
     return (
         <SingleProjectBase className={`${order} ${CSS_REFERENCES.PROJECT_CARD.WRAPPER}`}>
             {(() => {
@@ -43,6 +45,7 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
                 <Technologies data={props.data.releventTechnologies} />
 
                 <Title content={data.title} />
+
                 <Duration
                     className={CSS_REFERENCES.PROJECT_CARD.DURATION} //
                     end={data.end}
@@ -52,9 +55,12 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
 
                 <ProjectType type={data.type} />
 
-                <Description content={data.shortDescription} />
+                <Description content={data.shortDescription} //
+                    showEntireText={showEntireDescription}
+                    setShowEntireText={setShowEntireDescription}
+                />
 
-                <Redirections id={data.id} liveDemoURL={data.liveDemoURL} />
+                {data.type !== "HACKATHON" && <Redirections id={data.id} liveDemoURL={data.liveDemoURL} />}
             </TextContentWrapper>
 
             <ThumbnailWrapper folder={data.folder} id={data.id} />
