@@ -9,7 +9,8 @@ import TextContentWrapper from "./TextContentWrapper";
 import Duration from "@/components/atoms/single_project/Duration";
 import { Description, Redirections, Technologies, Title, ProjectType } from "./TextContentElements";
 // Styled components
-import { SingleProjectBase, IntroBar } from "./styled_components";
+import SingleProjectBase from './Base'
+import IntroAnimationBars from "./IntroAnimationBars";
 
 interface ProjectCardProps {
     /** Data of the project. */
@@ -27,16 +28,7 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
 
     return (
         <SingleProjectBase className={`${order} ${CSS_REFERENCES.PROJECT_CARD.WRAPPER}`}>
-            {(() => {
-                if (props.isFirst) {
-                    return (
-                        <>
-                            <IntroBar className={CSS_REFERENCES.INTRO_BAR_ANIMATIONS.PRIMARY} />
-                            <IntroBar className={CSS_REFERENCES.INTRO_BAR_ANIMATIONS.SECONDARY} />
-                        </>
-                    );
-                }
-            })()}
+            <IntroAnimationBars projectIsFirst={props.isFirst}/>
 
             <TextContentWrapper
                 className={CSS_REFERENCES.PROJECT_CARD.TEXT_CONTENT_WRAPPER} //

@@ -1,6 +1,5 @@
 // Tools
 import RWD from "./RWD";
-import { CSS_REFERENCES } from "landing_page/Projects/SingleProjectRow/css_references";
 import { styled, alpha } from "@mui/material";
 import { shapesOnHoverAnimations } from "@/components/atoms/single_project/Thumbnail/onHover";
 import { SELECTORS as THUMBNAIL } from "components/atoms/single_project/Thumbnail/css_references";

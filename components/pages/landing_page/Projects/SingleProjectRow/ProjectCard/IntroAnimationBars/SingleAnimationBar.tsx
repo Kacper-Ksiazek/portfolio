@@ -1,12 +1,8 @@
 // Tools
 import { styled } from "@mui/material";
 import { CSS_REFERENCES } from "../../css_references";
-
-import SingleProjectBase from "./Base";
-
-export { SingleProjectBase };
-
-export const IntroBar = styled("span")(({ theme }) => ({
+// Styled components
+export default styled("span")(({ theme }) => ({
     position: "absolute",
 
     [`&.${CSS_REFERENCES.INTRO_BAR_ANIMATIONS.PRIMARY}`]: {
