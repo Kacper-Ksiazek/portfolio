@@ -4,13 +4,14 @@ import { useExpansiveText } from "./hooks/useExpansiveText";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
-import type { ReadMoreButtonProps } from "./@types";
+import type { Order, ReadMoreButtonProps } from "./@types";
 // Styled components
 import ReadMoreButton from "./ReadMoreButton";
 import { ProjectDescriptionBase } from "./_Base";
 
 interface SimpleDescriptionProps extends ReadMoreButtonProps {
     content: string;
+    order: Order;
 }
 
 const SimpleDescription: FunctionComponent<SimpleDescriptionProps> = (props) => {
@@ -22,7 +23,10 @@ const SimpleDescription: FunctionComponent<SimpleDescriptionProps> = (props) => 
     const className = `${CSS_REFERENCES.PROJECT_CARD.DESCRIPTION} ${textExpandAnimation}`;
 
     return (
-        <ProjectDescriptionBase className={className}>
+        <ProjectDescriptionBase
+            order={props.order} //
+            className={className}
+        >
             <span>{formatTextViaBolding(text)}</span>
 
             <ReadMoreButton

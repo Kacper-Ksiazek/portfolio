@@ -55,7 +55,8 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
                 <ProjectType type={data.type} />
 
                 <Description
-                    content={data.shortDescription} //
+                    order={order} //
+                    content={data.shortDescription}
                     showEntireText={showEntireDescription}
                     setShowEntireText={setShowEntireDescription}
                 />

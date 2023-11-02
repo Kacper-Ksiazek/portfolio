@@ -22,7 +22,6 @@ export default styled("div")(({ theme }) => ({
         maxHeight: "96px",
         overflowY: "hidden",
         transition: "max-height .3s .1s ease-out !important",
-        // opacity: 0,
     },
     [SELECTORS.THUMBNAIL.WRAPPER]: {
         [SELECTORS.THUMBNAIL.CONTENT.DIRECT_IMG_WRAPPER]: {
