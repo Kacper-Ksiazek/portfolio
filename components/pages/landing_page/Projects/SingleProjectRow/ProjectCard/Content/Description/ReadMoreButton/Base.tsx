@@ -1,9 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
-// Types
-import type { FunctionComponent } from "react";
 // Styled components
-const ReadMoreButtonWrapperBase = styled("strong")(({ theme }) => ({
+export default styled("strong")(({ theme }) => ({
     fontWeight: 700,
     marginLeft: "2px",
     position: "relative",
@@ -45,18 +43,3 @@ const ReadMoreButtonWrapperBase = styled("strong")(({ theme }) => ({
         },
     },
 }));
-
-interface ReadMoreButtonProps {
-    //
-}
-
-const ReadMoreButton: FunctionComponent<ReadMoreButtonProps> = (props) => {
-    const content: string = "READ MORE";
-    return (
-        <ReadMoreButtonWrapperBase role="button">
-            <span>{content}</span>
-        </ReadMoreButtonWrapperBase>
-    );
-};
-
-export default ReadMoreButton;

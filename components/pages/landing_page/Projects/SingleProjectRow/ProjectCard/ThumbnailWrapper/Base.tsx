@@ -12,7 +12,6 @@ export default styled("div")(({ theme }) => ({
         height: "200px",
         width: "240px",
         position: "relative",
-        transition: "width .3s easie-in-out",
 
         "&::after": {
             content: "''",

@@ -1,15 +1,16 @@
 // Tools
+import { useState } from "react";
 import { CSS_REFERENCES } from "../css_references";
 // Types
-import { useState, type FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
 // Other components
 import ThumbnailWrapper from "./ThumbnailWrapper";
 import TextContentWrapper from "./TextContentWrapper";
 import Duration from "@/components/atoms/single_project/Duration";
-import { Description, Redirections, Technologies, Title, ProjectType } from "./TextContentElements";
+import { Description, Redirections, Technologies, Title, ProjectType } from "./Content";
 // Styled components
-import SingleProjectBase from './Base'
+import SingleProjectBase from "./Base";
 import IntroAnimationBars from "./IntroAnimationBars";
 
 interface ProjectCardProps {
@@ -27,8 +28,14 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
     const [showEntireDescription, setShowEntireDescription] = useState<boolean>(false);
 
     return (
-        <SingleProjectBase className={`${order} ${CSS_REFERENCES.PROJECT_CARD.WRAPPER}`}>
-            <IntroAnimationBars projectIsFirst={props.isFirst}/>
+        <SingleProjectBase
+            className={[
+                order, //
+                CSS_REFERENCES.PROJECT_CARD.WRAPPER,
+                showEntireDescription ? "hide-thumbnail" : "",
+            ].join(" ")}
+        >
+            <IntroAnimationBars projectIsFirst={props.isFirst} />
 
             <TextContentWrapper
                 className={CSS_REFERENCES.PROJECT_CARD.TEXT_CONTENT_WRAPPER} //
@@ -47,7 +54,8 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
 
                 <ProjectType type={data.type} />
 
-                <Description content={data.shortDescription} //
+                <Description
+                    content={data.shortDescription} //
                     showEntireText={showEntireDescription}
                     setShowEntireText={setShowEntireDescription}
                 />
