@@ -1,5 +1,6 @@
 // Tools
 import { CSS_REFERENCES } from "../../../css_references";
+import { useExpansiveText } from "./hooks/useExpansiveText";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
@@ -12,16 +13,17 @@ interface SimpleDescriptionProps extends ReadMoreButtonProps {
     content: string;
 }
 
-const MAXIMUM_LENGTH: number = 140;
-
 const SimpleDescription: FunctionComponent<SimpleDescriptionProps> = (props) => {
-    const text: string = props.showEntireText ? props.content : props.content.slice(0, MAXIMUM_LENGTH);
-    const threeDots: string = !props.showEntireText && props.content.length > MAXIMUM_LENGTH ? " ..." : "";
+    const { text, textExpandAnimation } = useExpansiveText({
+        originalText: props.content,
+        showEntireText: props.showEntireText,
+    });
+
+    const className = `${CSS_REFERENCES.PROJECT_CARD.DESCRIPTION} ${textExpandAnimation}`;
 
     return (
-        <ProjectDescriptionBase className={CSS_REFERENCES.PROJECT_CARD.DESCRIPTION}>
+        <ProjectDescriptionBase className={className}>
             <span>{formatTextViaBolding(text)}</span>
-            <span>{threeDots}</span>
 
             <ReadMoreButton
                 showEntireText={props.showEntireText} //

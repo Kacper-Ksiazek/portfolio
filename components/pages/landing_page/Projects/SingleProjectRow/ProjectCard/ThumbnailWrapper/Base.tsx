@@ -13,6 +13,10 @@ export default styled("div")(({ theme }) => ({
         width: "240px",
         position: "relative",
 
+        img: {
+            transition: "transform .3s",
+        },
+
         "&::after": {
             content: "''",
             zIndex: 5,

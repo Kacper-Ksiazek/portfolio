@@ -16,31 +16,32 @@ export default styled("div")(({ theme }) => ({
     alignItems: "center",
 
     [`${SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER}, ${SELECTORS.THUMBNAIL.WRAPPER}`]: {
-        transition: "width .2s ease-out",
+        transition: "width .2s .3s ease-out",
     },
     [SELECTORS.PROJECT_CARD.DESCRIPTION]: {
-        height: "96px",
+        maxHeight: "96px",
         overflowY: "hidden",
-        transition: "height 0.001s .3s ease-out",
+        transition: "max-height .3s .1s ease-out !important",
+        // opacity: 0,
     },
     [SELECTORS.THUMBNAIL.WRAPPER]: {
         [SELECTORS.THUMBNAIL.CONTENT.DIRECT_IMG_WRAPPER]: {
             background: "#fff",
             img: {
-                transition: "opacity .2s .2s ease-out",
+                transition: "opacity .2s .5s ease-out, transform .3s ease-out",
             },
         },
     },
 
     "&.hide-thumbnail": {
         [`${SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER}, ${SELECTORS.THUMBNAIL.WRAPPER}`]: {
-            transition: "width .2s .1s ease-out",
+            transition: "width .2s .4s ease-out",
         },
         [SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
             width: "calc(100% - 8px) !important",
         },
         [SELECTORS.PROJECT_CARD.DESCRIPTION]: {
-            height: "auto",
+            maxHeight: "150px",
         },
         [SELECTORS.THUMBNAIL.WRAPPER]: {
             width: "8px !important",
