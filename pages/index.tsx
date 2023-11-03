@@ -48,7 +48,8 @@ export const getStaticProps: GetStaticProps<LandingPageServerSideProps> = async 
     const previousJobs = await prisma.previousJob.findMany();
 
     const yearsToIndicate: Record<string, number> = {
-        PORTFOLIO: 2022,
+        MHACK: 2023,
+        HACKYEAH_2022: 2022,
         ELECTRON_WORDS_LEARNING_APP: 2021,
         GAMES_APP: 2020,
     };
