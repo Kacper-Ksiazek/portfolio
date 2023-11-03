@@ -5,8 +5,8 @@ const _ShapeBig = styled("span")(({ theme }) => ({
     position: "absolute",
     zIndex: 1,
     background: theme.palette.secondary.main,
-    width: "60%",
     height: "60%",
+    minWidth: "10px",
     transition: "all .3s",
 }));
 const _ShapeSmall = styled("span")(({ theme }) => ({
@@ -14,7 +14,9 @@ const _ShapeSmall = styled("span")(({ theme }) => ({
     zIndex: 2,
     background: theme.palette.primary.main,
     width: "40%",
-    height: "40%",
+    aspectRatio: "1",
+    borderRadius: "4px",
+    minWidth: "24px",
     transition: "all .3s",
 }));
 
