@@ -66,12 +66,14 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+    const API = new SingleProjectAPIHandler(context.params?.id as string);
     try {
-        const API = new SingleProjectAPIHandler(context.params?.id as string);
         return {
             props: await API.getData(),
         };
     } catch (e: unknown) {
+        console.error(e);
+
         if (e instanceof NotFound) {
             return {
                 redirect: {

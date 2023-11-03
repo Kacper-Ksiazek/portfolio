@@ -40,7 +40,7 @@ const ProjectLandingPage: FunctionComponent<ProjectLandingPageProps> = ({ projec
             <BottomControlsWrapper id="landing-screen-bottom-controls">
                 <div className="simple-flex">
                     <Redirect
-                        url={project.githubURL} //
+                        url={project.githubURL ?? ""} //
                         title="Github repo"
                     />
 
