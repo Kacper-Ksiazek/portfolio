@@ -1,6 +1,6 @@
 // Tools
 import { CSS_REFERENCES } from "../../../css_references";
-import { useExpansiveText } from "./hooks/useExpansiveText";
+import { useExpansiveText, useMobileLayout } from "./hooks";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { FunctionComponent } from "react";
@@ -15,9 +15,12 @@ interface SimpleDescriptionProps extends ReadMoreButtonProps {
 }
 
 const SimpleDescription: FunctionComponent<SimpleDescriptionProps> = (props) => {
+    const applyMobileLayout = useMobileLayout();
+
     const { text, textExpandAnimation } = useExpansiveText({
         originalText: props.content,
         showEntireText: props.showEntireText,
+        applyMobileLayout,
     });
 
     const className = `${CSS_REFERENCES.PROJECT_CARD.DESCRIPTION} ${textExpandAnimation}`;
