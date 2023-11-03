@@ -59,12 +59,18 @@ export const getStaticProps: GetStaticProps<LandingPageServerSideProps> = async 
     return {
         props: {
             projects: projects.map((el) => {
+                const isHackathon: boolean = el.type === "HACKATHON";
+
+                const end = isHackathon ? formatProjectDate(el.end, true, "end") : formatProjectDate(el.end);
+                const start = isHackathon ? formatProjectDate(el.start, true, "start") : formatProjectDate(el.start);
+
                 if (yearsToIndicate.hasOwnProperty(el.id)) {
                     (el as any).yearToIndicate = yearsToIndicate[el.id];
                 }
 
-                (el as any).end = formatProjectDate(el.end);
-                (el as any).start = formatProjectDate(el.start);
+                (el as any).end = end;
+                (el as any).start = start;
+
                 return el;
             }) as any,
             previousJobs: previousJobs.map((el) => {
