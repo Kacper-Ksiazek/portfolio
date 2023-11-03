@@ -64,7 +64,11 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
                 {data.type !== "HACKATHON" && <Redirections id={data.id} liveDemoURL={data.liveDemoURL} />}
             </TextContentWrapper>
 
-            <ThumbnailWrapper folder={data.folder} id={data.id} />
+            <ThumbnailWrapper
+                id={data.id} //
+                folder={data.folder}
+                disableOnClick={data.type === "HACKATHON"}
+            />
         </SingleProjectBase>
     );
 };

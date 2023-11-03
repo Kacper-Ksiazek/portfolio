@@ -10,6 +10,7 @@ import ThumbnailWrapperBase from "./Base";
 interface ThumbnailWrapperProps {
     id: string;
     folder: string;
+    disableOnClick: boolean;
 }
 
 const ThumbnailWrapper: FunctionComponent<ThumbnailWrapperProps> = (props) => {
@@ -21,7 +22,10 @@ const ThumbnailWrapper: FunctionComponent<ThumbnailWrapperProps> = (props) => {
 
     return (
         <ThumbnailWrapperBase>
-            <Thumbnail folder={props.folder} onClick={redirect} />
+            <Thumbnail
+                folder={props.folder} //
+                onClick={props.disableOnClick ? undefined : redirect}
+            />
         </ThumbnailWrapperBase>
     );
 };
