@@ -8,6 +8,7 @@ export const TimelineCore = styled("span")(({ theme }) => ({
     width: "10px",
     left: "50%",
     height: "101%",
+    zIndex: 1,
     transform: "translateX(-50%)",
     "&::before": {
         content: "''",

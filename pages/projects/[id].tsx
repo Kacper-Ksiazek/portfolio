@@ -40,7 +40,18 @@ export default SingleProject;
 export const getStaticPaths: GetStaticPaths = async (context) => {
     await prisma.$connect();
 
-    const paths = (await prisma.project.findMany({ select: { id: true } })).map((el) => {
+    const paths = (
+        await prisma.project.findMany({
+            select: {
+                id: true,
+            },
+            where: {
+                NOT: {
+                    onlyMentioned: true,
+                },
+            },
+        })
+    ).map((el) => {
         return {
             params: { id: el.id },
         };
@@ -55,12 +66,14 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+    const API = new SingleProjectAPIHandler(context.params?.id as string);
     try {
-        const API = new SingleProjectAPIHandler(context.params?.id as string);
         return {
             props: await API.getData(),
         };
     } catch (e: unknown) {
+        console.error(e);
+
         if (e instanceof NotFound) {
             return {
                 redirect: {

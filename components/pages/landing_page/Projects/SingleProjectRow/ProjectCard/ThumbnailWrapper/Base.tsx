@@ -1,13 +1,9 @@
 // Tools
 import { styled } from "@mui/material";
-import { useRouter } from "next/router";
-import { SELECTORS } from "../css_references";
-// Types
-import type { FunctionComponent } from "react";
-// Other components
-import Thumbnail from "@/components/atoms/single_project/Thumbnail";
-// Styled Components
-const ThumbnailWrapperBase = styled("div")(({ theme }) => ({
+import { SELECTORS } from "../../css_references";
+// Styled components
+
+export default styled("div")(({ theme }) => ({
     "@media (max-width:750px)": {
         width: "100%",
         marginBottom: "6px",
@@ -16,6 +12,11 @@ const ThumbnailWrapperBase = styled("div")(({ theme }) => ({
         height: "200px",
         width: "240px",
         position: "relative",
+
+        img: {
+            transition: "transform .3s",
+        },
+
         "&::after": {
             content: "''",
             zIndex: 5,
@@ -39,24 +40,3 @@ const ThumbnailWrapperBase = styled("div")(({ theme }) => ({
         },
     },
 }));
-
-interface ThumbnailWrapperProps {
-    id: string;
-    folder: string;
-}
-
-const ThumbnailWrapper: FunctionComponent<ThumbnailWrapperProps> = (props) => {
-    const router = useRouter();
-
-    function redirect() {
-        router.push(`/projects/${props.id}`);
-    }
-
-    return (
-        <ThumbnailWrapperBase>
-            <Thumbnail folder={props.folder} onClick={redirect} />
-        </ThumbnailWrapperBase>
-    );
-};
-
-export default ThumbnailWrapper;

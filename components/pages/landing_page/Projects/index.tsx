@@ -15,6 +15,7 @@ const ProjectsWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     flexDirection: "column",
     margin: "24px 0 50px 0",
+    // background: "red",
     ["@media (max-width:750px)"]: {
         alignItems: "center",
     },

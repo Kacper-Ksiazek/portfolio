@@ -31,6 +31,7 @@ export const getStaticProps: GetStaticProps<LandingPageServerSideProps> = async 
             id: true,
             title: true,
             folder: true,
+            type: true,
             end: true,
             start: true,
             shortDescription: true,
@@ -47,7 +48,8 @@ export const getStaticProps: GetStaticProps<LandingPageServerSideProps> = async 
     const previousJobs = await prisma.previousJob.findMany();
 
     const yearsToIndicate: Record<string, number> = {
-        PORTFOLIO: 2022,
+        MHACK: 2023,
+        HACKYEAH_2022: 2022,
         ELECTRON_WORDS_LEARNING_APP: 2021,
         GAMES_APP: 2020,
     };
@@ -57,12 +59,18 @@ export const getStaticProps: GetStaticProps<LandingPageServerSideProps> = async 
     return {
         props: {
             projects: projects.map((el) => {
+                const isHackathon: boolean = el.type === "HACKATHON";
+
+                const end = isHackathon ? formatProjectDate(el.end, true, "end") : formatProjectDate(el.end);
+                const start = isHackathon ? formatProjectDate(el.start, true, "start") : formatProjectDate(el.start);
+
                 if (yearsToIndicate.hasOwnProperty(el.id)) {
                     (el as any).yearToIndicate = yearsToIndicate[el.id];
                 }
 
-                (el as any).end = formatProjectDate(el.end);
-                (el as any).start = formatProjectDate(el.start);
+                (el as any).end = end;
+                (el as any).start = start;
+
                 return el;
             }) as any,
             previousJobs: previousJobs.map((el) => {

@@ -56,7 +56,7 @@ interface RedirectionsProps {
 const Redirections: FunctionComponent<RedirectionsProps> = (props) => {
     return (
         <RedirectionsBase className={`${CSS_REFERENCES.PROJECT_CARD.REDIRECTIONS} ${props.liveDemoURL ? "double" : ""}`}>
-            <InternalRedirection url={`/projects/${props.id}`}>Read more</InternalRedirection>
+            <InternalRedirection url={`/projects/${props.id}`}>See details</InternalRedirection>
 
             {(() => {
                 if (props.liveDemoURL) {

@@ -72,9 +72,10 @@ export type ReleventTechnology =
     | "figma";
 
 // Change prisma's json types into something more accurate
-export interface Project extends Omit<_Project, "features" | "description" | "technologies" | "releventTechnologies"> {
+export interface Project extends Omit<_Project, "features" | "description" | "technologies" | "releventTechnologies" | "onlyMentioned"> {
     features: Feature[];
     description: Description;
     technologies: Technology[];
+    onlyMentioned?: boolean;
     releventTechnologies: ReleventTechnology[];
 }

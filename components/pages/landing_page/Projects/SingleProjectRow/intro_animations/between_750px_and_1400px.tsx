@@ -7,6 +7,7 @@ import { fadeSimple, hidePseudoElement, rectangles, scale } from "./_keyframes";
 import type { Side } from "./@types";
 import type { Styles } from "@/@types/MUI";
 import type { SxProps } from "@mui/material";
+import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 
 function generateLineAnimations(side: Side): Styles {
     const { content, thumbnail } = getAnimationsBasedOnSide(side);
@@ -113,8 +114,14 @@ export default {
                 })),
 
                 [SELECTORS.PROJECT_CARD.REDIRECTIONS]: {
+                    "&::after": {
+                        animation: chainAnimations([
+                            [scale.intro.fromRight, 0.2, 2.7],
+                            [rectangles.outro.leftSide, 0.4, 0.2],
+                        ]),
+                    },
                     a: {
-                        animation: `${fadeSimple} .3s ${2}s both`,
+                        animation: `${fadeSimple} .3s ${3}s both`,
                     },
                 },
             },

@@ -9,12 +9,17 @@ export default styled("div")(({ theme }) => ({
     width: "calc(100% - 10px)",
     height: "calc(100% - 10px)",
     zIndex: 3,
-    img: {
-        transition: "transform .5s",
-    },
-    "&:hover": {
+    cursor: "default",
+
+    "&[role='button']": {
+        cursor: "pointer",
         img: {
-            transform: "scale(1.1)",
+            transition: "transform .5s",
+        },
+        "&:hover": {
+            img: {
+                transform: "scale(1.1)",
+            },
         },
     },
 }));

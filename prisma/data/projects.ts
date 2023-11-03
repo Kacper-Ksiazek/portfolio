@@ -2,8 +2,48 @@ import type { Project, SeederDataItem } from "./@types";
 export default (
     [
         {
+            id: "MHACK",
+            title: "MObywatel 2.0 mHack",
+            type: "HACKATHON",
+            onlyMentioned: true,
+            folder: "MHACK",
+            releventTechnologies: ["typescript", "sass", "react", "prisma", "figma", "next"],
+            technologies: [],
+            shortDescription:
+                "Organized by the Polish government. The task was identical for all contestans- come up with an *idea, blueprint, and an example implementation* of new, ground-breaking feature for mObywatel mobile app. We created feature called *mMapa*, which was an accessible, and easy-to-use for everyone map, highlighting all public institutions along with a bunch of guidance for ordinary citizens.",
+            start: new Date(2023, 9, 21),
+            end: new Date(2023, 9, 22),
+        },
+        {
+            id: "HACKNAROK_7",
+            title: "Hacknarök VII",
+            type: "HACKATHON",
+            onlyMentioned: true,
+            folder: "HACKNAROK_VII",
+            releventTechnologies: ["typescript", "sass", "react", "prisma", "figma", "next"],
+            technologies: [],
+            shortDescription:
+                "Organized by the EESTEC AGH Science Club. The assignment was to create a *mobile app blueprint*, which tackles the topic of *gamification*. With my team we created a *Try me* app that allows users to challange their friends with various daily challanges. Our strong inspiration for this project was the *BeReal* app. ",
+            start: new Date(2023, 3, 1),
+            end: new Date(2023, 3, 2),
+        },
+        {
+            id: "HACKYEAH_2022",
+            title: "HackYeah 2022",
+            type: "HACKATHON",
+            onlyMentioned: true,
+            folder: "HackYeah2022",
+            releventTechnologies: ["typescript", "sass", "react", "prisma", "figma"],
+            technologies: [],
+            shortDescription:
+                'HackYeah is the biggest stationary hackathon in Europe, organized by the Polish government. I participated in the 2022 edition, where I was a part of the *"Less Waste"* track.". My team and I created a *web app that allows users to share their leftover food with others*, thereby reducing food waste.',
+            start: new Date(2022, 10, 20),
+            end: new Date(2022, 10, 21),
+        },
+        {
             id: "PORTFOLIO",
             title: "Portfolio",
+            type: "PERSONAL",
             folder: "portfolio",
             start: new Date(2022, 6),
             end: new Date(2022, 7),
@@ -21,6 +61,7 @@ export default (
         {
             id: "ABU_DHABI",
             title: "Abu Dhabi- Travel Agency",
+            type: "PERSONAL",
             folder: "abu_dhabi",
             start: new Date(2021, 10),
             end: new Date(2022, 5),
@@ -72,6 +113,8 @@ export default (
         },
         {
             id: "ELECTRON_WORDS_LEARNING_APP",
+            title: "Electron words learning app",
+            type: "PERSONAL",
             start: new Date(2021, 5),
             end: new Date(2021, 8),
             githubURL: "https://github.com/Kacper-Ksiazek/electron-words-learning-app-2021",
@@ -81,7 +124,6 @@ export default (
                 conclusion: `I am immensely proud of the final result to the extent that I've been using this app for over *2 years* and have observed a significant improvement in my English. The primary purpose of the application was fulfilled, so I can't complain about some of the obvious downsides resulting from my lack of experience in UX and UI at that time.`,
             },
             folder: "electron_words_learning_app",
-            title: "Electron words learning app",
             releventTechnologies: ["electron", "vue", "typescript", "sass"],
             technologies: ["Vue 3", "Composition API", "Typescript", "Electron", "SASS"],
             shortDescription: `A seemingly straightforward application created to assist me with my English vocabulary. I have been using it regularly for over 2 year, and I'm content with the results.`,
@@ -118,9 +160,10 @@ export default (
         },
         {
             id: "OLX_2",
+            title: "Olx clone",
+            type: "PERSONAL",
             start: new Date(2021, 2),
             end: new Date(2021, 3),
-            title: "Olx clone",
             shortDescription: `My *TypeScript learning sandbox*. The app focuses on adding sale offers for various items, along with a rich user profile that summarizes all previous user activity.`,
             folder: "olx_clone",
             githubURL: "https://github.com/Kacper-Ksiazek/fullstack-web-store-2021/tree/main",
@@ -148,9 +191,10 @@ export default (
         },
         {
             id: "TRENUJ_PROSTO",
+            title: "Trenuj Prosto",
+            type: "COMMERCIAL",
             start: new Date(2021, 0),
             end: new Date(2021, 1),
-            title: "Trenuj Prosto",
             shortDescription: `My second commercial project, built for my high school PE teacher during remote education due to *COVID 2019* pandemic in January and February 2021.`,
             folder: "trenuj_prosto",
             githubURL: "https://github.com/Kacper-Ksiazek/trenuj_prosto-2021",
@@ -188,6 +232,7 @@ export default (
         {
             id: "GAMES_APP",
             title: "Games app",
+            type: "PERSONAL",
             start: new Date(2020, 10),
             end: new Date(2020, 11),
             folder: "games_app",
@@ -214,6 +259,7 @@ export default (
         {
             id: "DAC_SZANSE",
             title: "Dac szanse",
+            type: "COMMERCIAL",
             folder: "dac_szanse",
             start: new Date(2020, 3),
             end: new Date(2020, 7),

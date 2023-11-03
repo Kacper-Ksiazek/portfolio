@@ -1,4 +1,5 @@
 // Tools
+import { useState } from "react";
 import { CSS_REFERENCES } from "../css_references";
 // Types
 import type { FunctionComponent } from "react";
@@ -7,9 +8,10 @@ import type { Project } from "@/@types/pages/LandingPage";
 import ThumbnailWrapper from "./ThumbnailWrapper";
 import TextContentWrapper from "./TextContentWrapper";
 import Duration from "@/components/atoms/single_project/Duration";
-import { Description, Redirections, Technologies, Title } from "./TextContentElements";
+import { Description, Redirections, Technologies, Title, ProjectType } from "./Content";
 // Styled components
-import { SingleProjectBase, IntroBar } from "./styled_components";
+import SingleProjectBase from "./Base";
+import IntroAnimationBars from "./IntroAnimationBars";
 
 interface ProjectCardProps {
     /** Data of the project. */
@@ -23,18 +25,17 @@ interface ProjectCardProps {
 const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
     const { data, order } = props;
 
+    const [showEntireDescription, setShowEntireDescription] = useState<boolean>(false);
+
     return (
-        <SingleProjectBase className={`${order} ${CSS_REFERENCES.PROJECT_CARD.WRAPPER}`}>
-            {(() => {
-                if (props.isFirst) {
-                    return (
-                        <>
-                            <IntroBar className={CSS_REFERENCES.INTRO_BAR_ANIMATIONS.PRIMARY} />
-                            <IntroBar className={CSS_REFERENCES.INTRO_BAR_ANIMATIONS.SECONDARY} />
-                        </>
-                    );
-                }
-            })()}
+        <SingleProjectBase
+            className={[
+                order, //
+                CSS_REFERENCES.PROJECT_CARD.WRAPPER,
+                showEntireDescription ? "hide-thumbnail" : "",
+            ].join(" ")}
+        >
+            <IntroAnimationBars projectIsFirst={props.isFirst} />
 
             <TextContentWrapper
                 className={CSS_REFERENCES.PROJECT_CARD.TEXT_CONTENT_WRAPPER} //
@@ -43,18 +44,31 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
                 <Technologies data={props.data.releventTechnologies} />
 
                 <Title content={data.title} />
+
                 <Duration
                     className={CSS_REFERENCES.PROJECT_CARD.DURATION} //
                     end={data.end}
                     start={data.start}
                     smaller
                 />
-                <Description content={data.shortDescription} />
 
-                <Redirections id={data.id} liveDemoURL={data.liveDemoURL} />
+                <ProjectType type={data.type} />
+
+                <Description
+                    order={order} //
+                    content={data.shortDescription}
+                    showEntireText={showEntireDescription}
+                    setShowEntireText={setShowEntireDescription}
+                />
+
+                {data.type !== "HACKATHON" && <Redirections id={data.id} liveDemoURL={data.liveDemoURL} />}
             </TextContentWrapper>
 
-            <ThumbnailWrapper folder={data.folder} id={data.id} />
+            <ThumbnailWrapper
+                id={data.id} //
+                folder={data.folder}
+                disableOnClick={data.type === "HACKATHON"}
+            />
         </SingleProjectBase>
     );
 };

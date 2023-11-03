@@ -1,8 +1,8 @@
 // Tools
 import { repeat } from "@/utils/client/styled/repeat";
 import { repeatForEachSelector, getAnimationsBasedOnSide } from "./utils";
-import { SELECTORS, PROJECT_CARD_ELEMENTS_CONTENTS, PROJECT_CARD_ELEMENTS } from "../css_references";
 import { fadeSimple, hidePseudoElement, rectangles, scale, timeline } from "./_keyframes";
+import { SELECTORS, PROJECT_CARD_ELEMENTS_CONTENTS, PROJECT_CARD_ELEMENTS } from "../css_references";
 // Types
 import type { Side } from "./@types";
 import type { Styles } from "@/@types/MUI";
@@ -150,9 +150,16 @@ export default {
                     animation: `${fadeSimple} .001s ${2.3 + index * 0.05}s both`,
                 })),
 
+                // Redirections have to be overriden
                 [SELECTORS.PROJECT_CARD.REDIRECTIONS]: {
+                    "&::after": {
+                        animation: chainAnimations([
+                            [scale.intro.fromRight, 0.2, 2],
+                            [rectangles.outro.leftSide, 0.4, 0.2],
+                        ]),
+                    },
                     a: {
-                        animation: `${fadeSimple} .3s ${2}s both`,
+                        animation: `${fadeSimple} .001s ${2.3}s both !important`,
                     },
                 },
             },

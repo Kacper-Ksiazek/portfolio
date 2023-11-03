@@ -34,7 +34,10 @@ const Thumbnail: ForwardRefExoticComponent<ThumbnailProps> = forwardRef((props, 
             <ShapeTopBig className={`${CSS_REFERENCES.CONTENT.BORDER_SHAPE} big right`} />
             <ShapeTopSmall className={`${CSS_REFERENCES.CONTENT.BORDER_SHAPE} small right`} />
 
-            <ThumbnailSecondWrapper className={CSS_REFERENCES.CONTENT.DIRECT_IMG_WRAPPER}>
+            <ThumbnailSecondWrapper
+                role={props.onClick ? "button" : "img"} //
+                className={CSS_REFERENCES.CONTENT.DIRECT_IMG_WRAPPER}
+            >
                 <NextImageWithSkeleton
                     alt={props.folder}
                     layout="fill"

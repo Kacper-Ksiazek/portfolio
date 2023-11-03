@@ -4,22 +4,24 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL")
+  url      = env("POSTGRES_PRISMA_URL")
 }
 
 model Project {
-  id                   String   @id @default(cuid())
-  title                String   @unique
+  id                   String      @id @default(cuid())
+  title                String      @unique
   shortDescription     String
   technologies         String[]
-  folder               String   @unique
-  description          Json
-  features             Json
-  githubURL            String
+  folder               String      @unique
+  type                 ProjectType
+  description          Json?
+  features             Json?
+  githubURL            String?
   liveDemoURL          String?
   releventTechnologies String[]
   start                DateTime
   end                  DateTime
+  onlyMentioned        Boolean?    @default(false)
 }
 
 model Hobby {
@@ -71,4 +73,10 @@ enum SchoolType {
   EXTRA_CLASSES
   UNIVERSITY
   COURSE
+}
+
+enum ProjectType {
+  PERSONAL
+  HACKATHON
+  COMMERCIAL
 }
