@@ -21,8 +21,6 @@ const SimpleDescription: FunctionComponent<SimpleDescriptionProps> = (props) => 
         originalText: props.content,
         showEntireText: props.showEntireText,
         applyMobileLayout,
-
-        setShowEntireText: props.setShowEntireText,
     });
 
     const className = `${CSS_REFERENCES.PROJECT_CARD.DESCRIPTION} ${textExpandAnimation}`;
