@@ -4,5 +4,5 @@ import useWindowSizes from "@/hooks/useWindowSizes";
 export function useMobileLayout(): boolean {
     const { width } = useWindowSizes();
 
-    return useMemo<boolean>(() => width <= 1000, [width]);
+    return useMemo<boolean>(() => width !== 0 && width <= 1000, [width]);
 }

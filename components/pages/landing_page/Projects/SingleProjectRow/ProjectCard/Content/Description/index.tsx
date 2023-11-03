@@ -21,6 +21,8 @@ const SimpleDescription: FunctionComponent<SimpleDescriptionProps> = (props) => 
         originalText: props.content,
         showEntireText: props.showEntireText,
         applyMobileLayout,
+
+        setShowEntireText: props.setShowEntireText,
     });
 
     const className = `${CSS_REFERENCES.PROJECT_CARD.DESCRIPTION} ${textExpandAnimation}`;
@@ -32,10 +34,12 @@ const SimpleDescription: FunctionComponent<SimpleDescriptionProps> = (props) => 
         >
             <span>{formatTextViaBolding(text)}</span>
 
-            <ReadMoreButton
-                showEntireText={props.showEntireText} //
-                setShowEntireText={props.setShowEntireText}
-            />
+            {applyMobileLayout === false && (
+                <ReadMoreButton
+                    showEntireText={props.showEntireText} //
+                    setShowEntireText={props.setShowEntireText}
+                />
+            )}
         </ProjectDescriptionBase>
     );
 };

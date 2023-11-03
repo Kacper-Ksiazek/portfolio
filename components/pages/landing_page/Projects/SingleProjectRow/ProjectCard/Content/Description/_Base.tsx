@@ -3,12 +3,12 @@ import { styled, alpha, keyframes } from "@mui/material";
 import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 // Types
 import type { Order } from "./@types";
-import type { TextExpandAnimation } from "./hooks/useExpansiveText";
+import type { TextStage } from "./hooks/useExpansiveText/@types";
 // Keyframes
 import { scaleToBottom, scaleToLeft, scaleToRight } from "@/components/keyframes/outro";
 import { scaleFromBottom, scaleFromLeft, scaleFromRight } from "@/components/keyframes/intro";
 
-type AnimationSelector = `&.${Exclude<TextExpandAnimation, "none">}`;
+type AnimationSelector = `&.${TextStage}`;
 type Keyframe = ReturnType<typeof keyframes>;
 
 interface AnimationsSet {
@@ -16,7 +16,7 @@ interface AnimationsSet {
     outro: Keyframe;
 }
 
-const ANIMATIONS: Record<Order, Record<Exclude<TextExpandAnimation, "none">, AnimationsSet>> = {
+const ANIMATIONS: Record<Order, Record<TextStage, AnimationsSet>> = {
     odd: {
         collapse: {
             intro: scaleFromRight,
@@ -55,24 +55,26 @@ export const ProjectDescriptionBase = styled("p", {
             fontSize: "18px",
         },
 
-        ["&.expand" as AnimationSelector]: {
-            "&::after": {
-                animation:
-                    chainAnimations([
-                        [expand.intro, 0.3, 0.1],
-                        [expand.outro, 0.3, 0.2],
-                    ]) + " !important",
+        "@media (min-width:1001px)": {
+            ["&.expand" as AnimationSelector]: {
+                "&::after": {
+                    animation:
+                        chainAnimations([
+                            [expand.intro, 0.3, 0.1],
+                            [expand.outro, 0.3, 0.2],
+                        ]) + " !important",
+                },
+                //
             },
-            //
-        },
 
-        ["&.collapse" as AnimationSelector]: {
-            "&::after": {
-                animation:
-                    chainAnimations([
-                        [collapse.intro, 0.3],
-                        [collapse.outro, 0.3, 0.1],
-                    ]) + " !important",
+            ["&.collapse" as AnimationSelector]: {
+                "&::after": {
+                    animation:
+                        chainAnimations([
+                            [collapse.intro, 0.3],
+                            [collapse.outro, 0.3, 0.1],
+                        ]) + " !important",
+                },
             },
         },
     };

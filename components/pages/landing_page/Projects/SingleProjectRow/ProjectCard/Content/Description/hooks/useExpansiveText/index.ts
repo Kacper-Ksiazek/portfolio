@@ -6,7 +6,7 @@ import { useAnimationUpdater, useTextUpdater } from "./hooks";
 import type { TextExpandAnimation, TextStage, UseExpansiveTextParams, UseExpansiveTextResult } from "./@types";
 
 export function useExpansiveText(params: UseExpansiveTextParams): UseExpansiveTextResult {
-    const { showEntireText, originalText } = params;
+    const { showEntireText, originalText, applyMobileLayout } = params;
 
     const textHaveBeenNeverExpanded = useRef<boolean>(true);
     const latestTextStage = useRef<TextStage>("collapse");
@@ -14,9 +14,20 @@ export function useExpansiveText(params: UseExpansiveTextParams): UseExpansiveTe
     const [text, setText] = useState<string>(shortenText(originalText));
     const [textExpandAnimation, setTextExpandAnimation] = useState<TextExpandAnimation>("none");
 
-    useTextUpdater({ originalText, textExpandAnimation, setText, latestTextStage });
+    useTextUpdater({
+        originalText, //
+        textExpandAnimation,
+        latestTextStage,
+        setText,
+    });
 
-    useAnimationUpdater({ setTextExpandAnimation, showEntireText, textHaveBeenNeverExpanded });
+    useAnimationUpdater({
+        showEntireText, //
+        applyMobileLayout,
+        textHaveBeenNeverExpanded,
+
+        setTextExpandAnimation,
+    });
 
     return {
         text,

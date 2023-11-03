@@ -1,5 +1,5 @@
 // Tools
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { getNewTextValue } from "../utils/_functions";
 import { ANIMATION_DURATION } from "../utils/_constants";
 // Types
@@ -9,8 +9,9 @@ import type { MutableRefObject, Dispatch, SetStateAction } from "react";
 interface UseTextUpdaterParams {
     originalText: string;
     textExpandAnimation: TextExpandAnimation;
-    setText: Dispatch<SetStateAction<string>>;
     latestTextStage: MutableRefObject<TextStage>;
+
+    setText: Dispatch<SetStateAction<string>>;
 }
 
 export function useTextUpdater(params: UseTextUpdaterParams): void {
@@ -18,6 +19,8 @@ export function useTextUpdater(params: UseTextUpdaterParams): void {
 
     useEffect(() => {
         let timeout: NodeJS.Timeout | null = null;
+
+        // When the mobile layout is detected
 
         if (textExpandAnimation !== "none" && latestTextStage.current !== textExpandAnimation) {
             timeout = setTimeout(() => {
