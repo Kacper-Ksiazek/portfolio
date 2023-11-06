@@ -40,6 +40,9 @@ const ContactWrapper: FunctionComponent<ContactWrapperProps> = (props) => {
                 return {
                     opacity: 1,
                     transition: "opacity 1s .8s",
+                    "@media (max-width:1300px)": {
+                        display: "none",
+                    },
                 };
         }
     }, [generalSection]);
