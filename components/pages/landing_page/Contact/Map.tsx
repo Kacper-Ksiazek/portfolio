@@ -57,7 +57,7 @@ const MapBase = styled("span")(({ theme }) => ({
         },
     },
     "@media (max-width:1300px)": {
-        width: "60%",
+        width: "70%",
     },
     "@media (max-width:1000px)": {
         width: "80%",
