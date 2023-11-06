@@ -44,22 +44,24 @@ export default styled("div")(({ theme }) => ({
         borderRadius: "3px",
         transition: "width .3s ease-out, transform .3s linear, background .3s linear",
     },
-    "&:hover": {
-        "&::before": {
-            width: "130%",
-        },
-        "&.odd": {
+    "@media (min-width:1001px)": {
+        "&:hover": {
             "&::before": {
-                transform: "skewX(-5deg) translateX(-50px) scaleY(1.1)",
+                width: "130%",
             },
-        },
-        "&.even": {
-            "&::before": {
-                transform: "skewX(5deg) translateX(50px) scaleY(1.1)",
+            "&.odd": {
+                "&::before": {
+                    transform: "skewX(-5deg) translateX(-50px) scaleY(1.1)",
+                },
             },
-        },
-        [THUMBNAIL.WRAPPER]: {
-            ...(shapesOnHoverAnimations as any),
+            "&.even": {
+                "&::before": {
+                    transform: "skewX(5deg) translateX(50px) scaleY(1.1)",
+                },
+            },
+            [THUMBNAIL.WRAPPER]: {
+                ...(shapesOnHoverAnimations as any),
+            },
         },
     },
     //
