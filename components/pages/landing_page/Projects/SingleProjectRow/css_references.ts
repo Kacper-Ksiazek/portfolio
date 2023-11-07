@@ -65,16 +65,6 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
                 ref_type: "CSS_CLASS",
             },
         },
-        INTRO_BAR_ANIMATIONS: {
-            PRIMARY: {
-                ref_value: "intro-bar-primary",
-                ref_type: "CSS_CLASS",
-            },
-            SECONDARY: {
-                ref_value: "intro-bar-secondary",
-                ref_type: "CSS_CLASS",
-            },
-        },
         TIMELINE: {
             CORE: {
                 ref_value: "timeline-core",

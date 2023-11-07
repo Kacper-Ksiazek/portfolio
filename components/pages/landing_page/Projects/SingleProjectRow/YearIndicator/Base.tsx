@@ -18,7 +18,7 @@ export default styled("span")(({ theme }) => ({
     "&.odd": {
         marginRight: "200px",
     },
-    ["@media (max-width:1400px)"]: {
+    ["@media (max-width:1520px)"]: {
         paddingTop: "48px",
         fontSize: "128px",
         lineHeight: "144px",

@@ -11,7 +11,6 @@ import Duration from "@/components/atoms/single_project/Duration";
 import { Description, Redirections, Technologies, Title, ProjectType } from "./Content";
 // Styled components
 import SingleProjectBase from "./Base";
-import IntroAnimationBars from "./IntroAnimationBars";
 
 interface ProjectCardProps {
     /** Data of the project. */
@@ -35,8 +34,6 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
                 showEntireDescription ? "hide-thumbnail" : "",
             ].join(" ")}
         >
-            <IntroAnimationBars projectIsFirst={props.isFirst} />
-
             <TextContentWrapper
                 className={CSS_REFERENCES.PROJECT_CARD.TEXT_CONTENT_WRAPPER} //
                 order={order}
