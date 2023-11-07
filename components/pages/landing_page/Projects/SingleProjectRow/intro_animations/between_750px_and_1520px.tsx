@@ -15,17 +15,32 @@ function generateLineAnimations(side: Side): Styles {
     return {
         // Thumbnail picture animation
         [`${SELECTORS.THUMBNAIL.WRAPPER}::after`]: {
-            animation: `${thumbnail.intro} .3s linear both, ${thumbnail.outro} .3s .4s forwards linear`,
+            animation: chainAnimations([
+                [thumbnail.intro, 0.3, 0],
+                [thumbnail.outro, 0.3, 0.1],
+            ]),
         },
         // Text content
-        [SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: repeatForEachSelector(PROJECT_CARD_ELEMENTS, (index) => {
-            const diff = index * 0.05;
-            return {
-                "&::after": {
-                    animation: `${content.intro} .2s ${0.7 + diff}s linear both, ${content.outro} .4s ${1 + diff}s forwards linear`,
-                },
-            };
-        }),
+        [SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
+            ...repeatForEachSelector(PROJECT_CARD_ELEMENTS, (index) => {
+                const diff = index * 0.05;
+                return {
+                    "&::after": {
+                        animation: chainAnimations([
+                            [content.intro, 0.2, 0.4 + diff],
+                            [content.outro, 0.4, 0.1],
+                        ]),
+                    },
+                };
+            }),
+            ...repeatForEachSelector(PROJECT_CARD_ELEMENTS_CONTENTS, (index) => ({
+                animation: `${fadeSimple} .001s ${0.8 + index * 0.05}s both`,
+            })),
+
+            [SELECTORS.PROJECT_CARD.REDIRECTIONS + " a"]: {
+                animation: `${fadeSimple} .3s ${0.9}s both`,
+            },
+        },
     };
 }
 
@@ -59,17 +74,6 @@ export default {
             "&::before": {
                 animation: `${scale.intro.fromTop} .4s 1.4s both ease-out`,
             },
-            [SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
-                ...repeatForEachSelector(PROJECT_CARD_ELEMENTS_CONTENTS, (index) => ({
-                    animation: `${fadeSimple} .001s ${1 + index * 0.05}s both`,
-                })),
-
-                [SELECTORS.PROJECT_CARD.REDIRECTIONS]: {
-                    a: {
-                        animation: `${fadeSimple} .3s ${1.4}s both`,
-                    },
-                },
-            },
         },
     },
 
@@ -80,11 +84,14 @@ export default {
 
         [SELECTORS.THUMBNAIL.WRAPPER]: {
             "&::after": {
-                animation: `${rectangles.intro.leftSide} .3s 1.5s linear both, ${scale.outro.toLeft} .3s 1.9s forwards linear`,
+                animation: chainAnimations([
+                    [rectangles.intro.leftSide, 0.3, 0.2], //
+                    [scale.outro.toLeft, 0.3, 0.1],
+                ]),
             },
 
             [SELECTORS.THUMBNAIL.CONTENT._EVERY]: {
-                animation: `${fadeSimple} .001s 1.85s both`,
+                animation: `${fadeSimple} .001s .55s both`,
             },
         },
 
@@ -93,24 +100,20 @@ export default {
                 animation: `${scale.intro.fromTop} .4s 2.8s both ease-out`,
             },
 
-            [SELECTORS.INTRO_BAR_ANIMATIONS.SECONDARY]: {
-                animation: `${rectangles.intro.firstProject} .5s linear both, ${rectangles.outro.firstProject} .5s 1s linear forwards`,
-            },
-            [SELECTORS.INTRO_BAR_ANIMATIONS.PRIMARY]: {
-                animation: `${rectangles.intro.firstProject} .5s .1s linear both, ${rectangles.outro.firstProject} .5s .9s linear forwards`,
-            },
-
             [SELECTORS.PROJECT_CARD.TEXT_CONTENT_WRAPPER]: {
                 ...repeatForEachSelector(PROJECT_CARD_ELEMENTS, (index) => {
                     const diff = index * 0.05;
                     return {
                         "&::after": {
-                            animation: `${scale.intro.fromRight} .2s ${2.1 + diff}s linear both, ${rectangles.outro.leftSide} .4s ${2.4 + diff}s forwards linear`,
+                            animation: chainAnimations([
+                                [scale.intro.fromRight, 0.2, 0.4 + diff],
+                                [rectangles.outro.leftSide, 0.3, 0.2],
+                            ]),
                         },
                     };
                 }),
                 ...repeatForEachSelector(PROJECT_CARD_ELEMENTS_CONTENTS, (index) => ({
-                    animation: `${fadeSimple} .001s ${2.3 + index * 0.05}s both`,
+                    animation: `${fadeSimple} .001s ${0.7 + index * 0.05}s both`,
                 })),
 
                 [SELECTORS.PROJECT_CARD.REDIRECTIONS]: {
