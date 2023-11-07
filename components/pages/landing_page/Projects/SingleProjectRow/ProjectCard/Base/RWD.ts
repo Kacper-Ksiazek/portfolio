@@ -3,7 +3,7 @@ import { SELECTORS } from "landing_page/Projects/SingleProjectRow/css_references
 import { SELECTORS as TECHNOLOGIES_LIST } from "components/atoms/TechnologiesList/css_references";
 
 export default {
-    "@media (max-width:1400px)": {
+    "@media (max-width:1520px)": {
         width: "calc(50% + 40px)",
         marginBottom: "32px",
     },

@@ -33,7 +33,7 @@ export const ProjectsContextProvider: FunctionComponent<{ children: ReactNode }>
     }, [width]);
 
     const viewport = useMemo<ProjectContext["viewport"]>(() => {
-        if (width > 1400) return "large";
+        if (width > 1520) return "large";
         else if (width > 750) return "medium";
         return "small";
     }, [width]);

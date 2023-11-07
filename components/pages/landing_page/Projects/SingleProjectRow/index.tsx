@@ -1,7 +1,7 @@
 // Tools
 import dynamic from "next/dynamic";
+import { stylesWhenVisible } from "./intro_animations";
 import { useProjectsContext } from "../hooks/useProjectsContext";
-import { stylesWhenVisible } from "./styles_when_finished";
 // Types
 import type { FunctionComponent } from "react";
 import type { Project } from "@/@types/pages/LandingPage";
