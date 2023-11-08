@@ -8,7 +8,7 @@ import type { FunctionComponent, HTMLAttributes, ReactNode } from "react";
 // Material UI Components
 import Box from "@mui/material/Box";
 
-interface TransformWhenVisibleProps {
+export interface DirectRenderWhenVisibleProps {
     /** Styles applied to the wrapper */
     sx?: SxProps;
     children: ReactNode;
@@ -21,7 +21,7 @@ interface TransformWhenVisibleProps {
     onVisible?: () => void;
 }
 
-const RenderWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (props) => {
+const RenderWhenVisible: FunctionComponent<DirectRenderWhenVisibleProps> = (props) => {
     const ref = useRef<Element>(null);
     const elementIsVisible = useElementVisibility(ref, props.onVisible, props.rootMargin);
 
