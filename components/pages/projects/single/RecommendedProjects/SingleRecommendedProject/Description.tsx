@@ -19,8 +19,8 @@ const DescriptionBase = styled("p")(({ theme }) => ({
 const Description: FunctionComponent<{ text: string }> = (props) => {
     return (
         <DescriptionBase className={CSS_REFERENCES.DESCRIPTION}>
-            {formatTextViaBolding(props.text.slice(0, 150))}
-            {/*  */}
+            {formatTextViaBolding(props.text.slice(0, 130))}
+            <span>...</span>
         </DescriptionBase>
     );
 };

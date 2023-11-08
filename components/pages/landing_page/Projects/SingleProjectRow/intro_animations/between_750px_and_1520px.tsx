@@ -1,13 +1,13 @@
 // Tools
 import { repeat } from "@/utils/client/styled/repeat";
+import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 import { getAnimationsBasedOnSide, repeatForEachSelector } from "./utils";
-import { SELECTORS, PROJECT_CARD_ELEMENTS_CONTENTS, PROJECT_CARD_ELEMENTS } from "../css_references";
 import { fadeSimple, hidePseudoElement, rectangles, scale } from "./_keyframes";
+import { SELECTORS, PROJECT_CARD_ELEMENTS_CONTENTS, PROJECT_CARD_ELEMENTS } from "../css_references";
 // Types
 import type { Side } from "./@types";
 import type { Styles } from "@/@types/MUI";
 import type { SxProps } from "@mui/material";
-import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 
 function generateLineAnimations(side: Side): Styles {
     const { content, thumbnail } = getAnimationsBasedOnSide(side);
@@ -34,7 +34,7 @@ function generateLineAnimations(side: Side): Styles {
                 };
             }),
             ...repeatForEachSelector(PROJECT_CARD_ELEMENTS_CONTENTS, (index) => ({
-                animation: `${fadeSimple} .001s ${0.8 + index * 0.05}s both`,
+                animation: `${fadeSimple} .001s ${0.7 + index * 0.05}s both`,
             })),
 
             [SELECTORS.PROJECT_CARD.REDIRECTIONS + " a"]: {
@@ -51,7 +51,7 @@ export default {
 
     [SELECTORS.YEAR_DIGIT]: repeat(4, (index) => ({
         [`&:nth-of-type(${index + 1})`]: {
-            animation: `${fadeSimple} .2s ${0.9 + index * 0.3}s both linear`,
+            animation: `${fadeSimple} .2s ${0.7 + index * 0.2}s both linear`,
         },
     })),
     "&:not(&.first-row)": {

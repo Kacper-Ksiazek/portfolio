@@ -1,15 +1,15 @@
 // Tools
-import { useTheme } from "@mui/material";
 import { useEffect, useRef } from "react";
 import { useElementVisibility } from "@/hooks/useElementVisibility";
 import { applySxProps } from "@/utils/client/styled/applyOptionalSxProps";
+import { getTransformationStyles } from "./utils/getTransformationStyles";
 // Types
-import type { Styles, SxProps } from "@/@types/MUI";
+import type { Styles, SxProps, SxPropsFn } from "@/@types/MUI";
 import type { FunctionComponent, ReactNode } from "react";
 // Material UI Components
 import Box from "@mui/material/Box";
 
-interface TransformWhenVisibleProps {
+export interface DirectTransformWhenVisibleProps {
     /** Styles applied to the wrapper */
     sx?: SxProps;
     /** Styles before animation */
@@ -25,23 +25,7 @@ interface TransformWhenVisibleProps {
     children: ReactNode;
 }
 
-interface GetTransformationStylesParams {
-    alreadyHasBeenVisible: boolean;
-    elementIsVisible: boolean;
-    stylesWhenVisible: Styles;
-    stylesWhenNOTVisible: Styles;
-}
-
-function getTransformationStyles(params: GetTransformationStylesParams): Styles {
-    const { alreadyHasBeenVisible, elementIsVisible, stylesWhenVisible, stylesWhenNOTVisible } = params;
-    if (alreadyHasBeenVisible === true) return {};
-
-    return elementIsVisible ? stylesWhenVisible : stylesWhenNOTVisible;
-}
-
-const TransformWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (props) => {
-    const theme = useTheme();
-
+const DirectTransformWhenVisible: FunctionComponent<DirectTransformWhenVisibleProps> = (props) => {
     const ref = useRef<Element>(null);
     const alreadyHasBeenVisible = useRef<boolean>(false);
 
@@ -68,29 +52,28 @@ const TransformWhenVisible: FunctionComponent<TransformWhenVisibleProps> = (prop
 
     const elementIsVisible = useElementVisibility(ref, onVisible, props.rootMargin);
 
-    const stylesWhenVisible: Styles = applySxProps(props.to, theme);
-    const stylesWhenNOTVisible: Styles = props.from ?? {};
-
-    const transformationStyles: Styles = getTransformationStyles({
-        alreadyHasBeenVisible: props.updatesFrequently ? alreadyHasBeenVisible.current : false,
-        elementIsVisible,
-        stylesWhenVisible,
-        stylesWhenNOTVisible,
-    });
+    const transformationStyles: SxPropsFn = function (theme) {
+        return getTransformationStyles({
+            elementIsVisible,
+            stylesWhenNOTVisible: props.from ?? {},
+            stylesWhenVisible: applySxProps(props.to, theme),
+            alreadyHasBeenVisible: props.updatesFrequently ? alreadyHasBeenVisible.current : false,
+        });
+    };
 
     return (
         <Box
             className="transform-when-visible-wrapper"
             ref={ref as any}
-            sx={{
+            sx={(theme) => ({
                 visibility: elementIsVisible ? "visible" : "hidden",
                 ...applySxProps(props.sx, theme),
-                ...transformationStyles,
-            }}
+                ...transformationStyles(theme),
+            })}
         >
             {props.children}
         </Box>
     );
 };
 
-export default TransformWhenVisible;
+export default DirectTransformWhenVisible;
