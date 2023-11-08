@@ -57,7 +57,7 @@ function generateLineAnimations(side: Side): Styles {
 export default {
     [SELECTORS.YEAR_DIGIT]: repeat(4, (index) => ({
         [`&:nth-of-type(${index + 1})`]: {
-            animation: `${fadeSimple} .2s ${0.9 + index * 0.3}s both linear`,
+            animation: `${fadeSimple} .2s ${0.7 + index * 0.2}s both linear`,
         },
     })),
 

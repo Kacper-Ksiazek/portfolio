@@ -36,12 +36,6 @@ export const stylesWhenVisible: SxPropsFn = (theme) => {
             "@media (max-width: 750px)": {
                 ...introAnimations.below_750px.introAnimationsForThumbnail,
             },
-            "@media (max-width:1000px)": {
-                flexDirection: "column",
-                "&.year-indicating": {
-                    paddingTop: "16px",
-                },
-            },
         },
     };
 };

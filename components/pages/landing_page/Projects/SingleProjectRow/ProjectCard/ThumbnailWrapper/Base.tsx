@@ -17,11 +17,13 @@ export default styled("div")(({ theme }) => ({
             transition: "transform .3s",
         },
 
-        "&::after": {
-            content: "''",
-            zIndex: 5,
-            ...theme.mixins.absolute_full,
-            background: theme.palette.primary.main,
+        "@media (min-width:1000px)": {
+            "&::after": {
+                content: "''",
+                zIndex: 5,
+                ...theme.mixins.absolute_full,
+                background: theme.palette.primary.main,
+            },
         },
         "@media (max-width:1000px)": {
             height: "240px",

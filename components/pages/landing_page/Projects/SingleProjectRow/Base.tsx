@@ -30,4 +30,11 @@ export default styled("div")(({ theme }) => ({
     "&.visible": {
         visibility: "visible",
     },
+
+    "@media (max-width:1000px)": {
+        flexDirection: "column !important",
+        "&.year-indicating": {
+            paddingTop: "16px",
+        },
+    },
 }));

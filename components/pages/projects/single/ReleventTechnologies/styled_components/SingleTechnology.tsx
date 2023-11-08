@@ -10,6 +10,7 @@ const square = (size: string): any => {
 
 export default styled("span")(({ theme }) => ({
     position: "relative",
+    opacity: 0.5,
     ...square("80px"),
     "&:not(&:nth-of-type(1))": {
         marginLeft: "50px",
