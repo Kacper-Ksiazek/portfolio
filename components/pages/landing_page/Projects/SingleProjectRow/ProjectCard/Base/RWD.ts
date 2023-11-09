@@ -21,6 +21,8 @@ export default {
 
     "@media (max-width:750px)": {
         maxWidth: "500px",
+        marginLeft: "auto",
+        marginRight: "auto",
         "&.even": {
             padding: 0,
             flexDirection: "column-reverse",
