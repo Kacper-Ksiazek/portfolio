@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { styled, alpha } from "@mui/material";
 // Types
 import type { FunctionComponent } from "react";
+import { fadeSimple } from "../../Projects/SingleProjectRow/intro_animations/_keyframes";
 // Styled components
-
 const BackgroundPictureWrapper = styled("div")(({ theme }) => ({
     position: "absolute",
     top: 0,
@@ -54,16 +54,17 @@ const BackgroundPictureImage = styled("div")(({ theme }) => ({
     height: "calc(100% + 32px)",
     backgroundSize: "cover",
     filter: "blur(10px)",
+    animation: `${fadeSimple} 3s 6s linear both`,
     transition: "transform 1s, background-position 60s linear, filter 2s",
     backgroundPosition: "center top",
     backgroundImage: `url('./images/landing-page/introduction-screen/${theme.palette.mode}/fullsize.jpg')`,
-    ["@media (max-width:1450px)"]: {
+    "@media (max-width:1450px)": {
         backgroundImage: `url('./images/landing-page/introduction-screen/${theme.palette.mode}/width1450px.jpg')`,
     },
-    ["@media (max-width:1000px)"]: {
+    "@media (max-width:1000px)": {
         backgroundImage: `url('./images/landing-page/introduction-screen/${theme.palette.mode}/width1000px.jpg')`,
     },
-    ["@media (max-width:750px)"]: {
+    "@media (max-width:750px)": {
         backgroundImage: `url('./images/landing-page/introduction-screen/${theme.palette.mode}/width750px.jpg')`,
     },
 }));

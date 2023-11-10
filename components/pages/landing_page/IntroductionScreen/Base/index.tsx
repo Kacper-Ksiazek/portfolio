@@ -1,7 +1,6 @@
 // Tools
 import { COLORS } from "@/material";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useIntroAnimationControls } from "./hooks";
 import { CSS_REFERENCES } from "landing_page/css_references";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
@@ -23,33 +22,7 @@ interface IntroductionScreenBaseProps {
 }
 
 const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (props) => {
-    const [renderContent, setRenderContent] = useState<boolean>(false);
-
-    const [displayAnimations, setDisplayAnimations] = useState<boolean>(true);
-    const router = useRouter();
-
-    useEffect(() => {
-        if (router.asPath.split("skipIntroductionAnimationEvenThoughItsCool=")[1]) {
-            setRenderContent(true);
-            setDisplayAnimations(false);
-        } else {
-            setDisplayAnimations(true);
-            if (document.body) {
-                document.body.style.position = "fixed";
-                document.body.style.height = "100vh";
-                document.body.style.overflowY = "hidden";
-            }
-            setTimeout(() => {
-                setRenderContent(true);
-            }, 2800);
-
-            setTimeout(() => {
-                document.body.style.position = "static";
-                document.body.style.height = "auto";
-                document.body.style.overflowY = "visible";
-            }, 6000);
-        }
-    }, [router.query, router.asPath]);
+    const { displayAnimations, renderContent } = useIntroAnimationControls();
 
     return (
         <IntroductionScreenBaseWrapper
@@ -59,8 +32,9 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
                 props.scrollButtonIsHovered ? "scroll-button-is-hovered" : "",
             ].join(" ")}
         >
-            <PreviewBackgroundPicture />
             <BackgroundPicture scrollButtonIsHovered={props.scrollButtonIsHovered} />
+
+            <PreviewBackgroundPicture />
 
             {(() => {
                 if (renderContent) {

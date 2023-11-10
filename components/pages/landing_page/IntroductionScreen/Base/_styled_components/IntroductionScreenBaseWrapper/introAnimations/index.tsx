@@ -1,15 +1,9 @@
 // Tools
-import { fadeSimple } from "@/components/keyframes/intro";
 import * as WrapperIntroAnimations from "./keyframes";
 // Types
 import type { SxProps } from "@mui/material";
 
 export default {
-    "&.display-intro-animations": {
-        "#landing-page-picture": {
-            animation: `${fadeSimple} 1s 1.6s both linear`,
-        },
-    },
     "&.skip-intro-animation": {
         borderRadius: "20px 100px 20px 100px",
         maxHeight: "calc(100vh - 40px)",

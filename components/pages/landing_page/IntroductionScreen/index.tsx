@@ -14,7 +14,7 @@ const GenderPicking = dynamic(() => import("./MinigameStages/2_GenderPicking"));
 const TrophyCollecting = dynamic(() => import("./MinigameStages/3_TrophyCollecting"));
 import InitialIntroduction from "./MinigameStages/1_InitialIntroduction";
 // Styled components
-import IntroductionScreenBase from "./IntroductionScreenBase";
+import IntroductionScreenBase from "./Base";
 
 const IntroductionScreen: FunctionComponent = () => {
     const { width } = useWindowSizes();
