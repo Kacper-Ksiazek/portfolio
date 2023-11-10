@@ -6,7 +6,6 @@ import { CSS_REFERENCES } from "landing_page/css_references";
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import BackgroundPicture from "./BackgroundPicture";
-import PreviewBackgroundPicture from "./PreviewBackgroundPicture";
 // Styled Components
 import { CircleOne, CircleTwo } from "./_styled_components/Circles";
 import { BackgroundShape, SimpleBackgroundShape } from "./_styled_components/BackgroundShapes";
@@ -33,8 +32,6 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
             ].join(" ")}
         >
             <BackgroundPicture scrollButtonIsHovered={props.scrollButtonIsHovered} />
-
-            <PreviewBackgroundPicture />
 
             {(() => {
                 if (renderContent) {

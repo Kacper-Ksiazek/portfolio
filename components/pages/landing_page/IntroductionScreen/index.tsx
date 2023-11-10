@@ -8,6 +8,7 @@ import { useRenderingManager } from "./hooks/useRenderingManager";
 import type { FunctionComponent } from "react";
 // Other components
 import Technologies from "./Technologies";
+import PreviewBackgroundPicture from "./PreviewBackgroundPicture";
 import { MinigameContextProvider } from "./context/MinigameContext";
 // Minigame's stages
 const GenderPicking = dynamic(() => import("./MinigameStages/2_GenderPicking"));
@@ -27,7 +28,12 @@ const IntroductionScreen: FunctionComponent = () => {
         <IntroductionScreenBase
             scrollButtonIsHovered={scrollButtonIsHovered} //
             renderBigCircle={width > 1450 || width <= 1150}
-            elementsOutsideContent={width > 1150 && <Technologies />}
+            elementsOutsideContent={
+                <>
+                    {width > 1150 && <Technologies />}
+                    <PreviewBackgroundPicture />
+                </>
+            }
         >
             {(() => {
                 /* Render minigame only when viewport width is larger than 1150px */
