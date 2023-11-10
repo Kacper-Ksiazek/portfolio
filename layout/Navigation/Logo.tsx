@@ -72,6 +72,7 @@ const Logo: FunctionComponent<LogoProps> = (props) => {
                     src="/main-page-logo/XS.png" //
                     alt="page-logo"
                     layout="fill"
+                    priority
                 />
             </ImageWrapper>
 
