@@ -2,7 +2,7 @@ type Mode = "CSS_REFERENCES" | "SELECTORS";
 
 type Reference = {
     ref_value: string;
-    /** ID by default */
+    /** **ID** by default */
     ref_type?: "ID" | "CSS_CLASS";
     skipAlias?: boolean;
 };

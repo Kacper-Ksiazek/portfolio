@@ -1,16 +1,20 @@
 // Tools
 import { COLORS } from "@/material";
 import { useIntroAnimationControls } from "./hooks";
-import { CSS_REFERENCES } from "landing_page/css_references";
+import { CSS_REFERENCES as INTRODUCTION_SCREEN } from "./css_references";
+import { CSS_REFERENCES as LANDING_PAGE_SECTIONS } from "landing_page/css_references";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import BackgroundPicture from "./BackgroundPicture";
 // Styled Components
-import { CircleOne, CircleTwo } from "./_styled_components/Circles";
-import { BackgroundShape, SimpleBackgroundShape } from "./_styled_components/BackgroundShapes";
-import IntroductionScreenBaseContent from "./_styled_components/IntroductionScreenBaseContent";
-import IntroductionScreenBaseWrapper from "./_styled_components/IntroductionScreenBaseWrapper";
+import {
+    RotatingCircle, //
+    BackgroundShape,
+    SimpleBackgroundShape,
+    IntroductionScreenBaseContent as Content,
+    IntroductionScreenBaseWrapper as Wrapper,
+} from "./_styled_components";
 
 interface IntroductionScreenBaseProps {
     children: ReactNode;
@@ -24,8 +28,8 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
     const { displayAnimations, renderContent } = useIntroAnimationControls();
 
     return (
-        <IntroductionScreenBaseWrapper
-            id={CSS_REFERENCES.INTRODUCTION_SCREEN}
+        <Wrapper
+            id={LANDING_PAGE_SECTIONS.INTRODUCTION_SCREEN}
             className={[
                 displayAnimations ? "display-intro-animations" : "skip-intro-animation", //
                 props.scrollButtonIsHovered ? "scroll-button-is-hovered" : "",
@@ -37,10 +41,10 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
                 if (renderContent) {
                     return (
                         <>
-                            <CircleOne />
-                            {props.renderBigCircle && <CircleTwo />}
+                            <RotatingCircle id={INTRODUCTION_SCREEN.SMALL_CIRCLE} />
+                            {props.renderBigCircle && <RotatingCircle id={INTRODUCTION_SCREEN.BIG_CIRCLE} />}
                             {props.elementsOutsideContent}
-                            <IntroductionScreenBaseContent>{props.children}</IntroductionScreenBaseContent>
+                            <Content>{props.children}</Content>
                         </>
                     );
                 } else {
@@ -69,7 +73,7 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
                     );
                 }
             })()}
-        </IntroductionScreenBaseWrapper>
+        </Wrapper>
     );
 };
 

@@ -19,7 +19,7 @@ const rotate = keyframes({
     },
 });
 
-const CircleBase = styled("span")(({ theme }) => ({
+export const RotatingCircle = styled("span")(({ theme }) => ({
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -29,18 +29,18 @@ const CircleBase = styled("span")(({ theme }) => ({
     backgroundPosition: "center",
     backgroundSize: "cover",
     borderRadius: "50%",
-}));
 
-export const CircleOne = styled(CircleBase)(({ theme }) => ({
-    width: "500px",
-    height: "500px",
-    animation: `${fadeSimple} 1s .5s linear both , ${rotate} 10s infinite linear`,
-    backgroundImage: 'url("/images/landing-page/circle_smaller.png")',
-}));
+    "&#small-circle": {
+        width: "500px",
+        height: "500px",
+        animation: `${fadeSimple} 1s .5s linear both , ${rotate} 10s infinite linear`,
+        backgroundImage: 'url("/images/landing-page/circle_smaller.png")',
+    },
 
-export const CircleTwo = styled(CircleBase)(({ theme }) => ({
-    width: "800px",
-    height: "800px",
-    animation: `${fadeSimple} 1s .8s linear both , ${rotate} 15s reverse infinite linear`,
-    backgroundImage: 'url("/images/landing-page/circle_larger.png")',
+    "&#big-circle": {
+        width: "800px",
+        height: "800px",
+        animation: `${fadeSimple} 1s .8s linear both , ${rotate} 15s reverse infinite linear`,
+        backgroundImage: 'url("/images/landing-page/circle_larger.png")',
+    },
 }));
