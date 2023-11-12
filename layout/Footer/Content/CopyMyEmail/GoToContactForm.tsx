@@ -1,6 +1,7 @@
 // Tools
 import { useRouter } from "next/router";
 import { SELECTORS, CSS_REFERENCES } from "landing_page/css_references";
+import { URL_QUERY_NAME } from "@/components/pages/landing_page/IntroductionScreen/Base/hooks/useIntroAnimationControls/constatns";
 // Types
 import type { MouseEvent, FunctionComponent } from "react";
 // Other components
@@ -34,7 +35,7 @@ const GoToContactForm: FunctionComponent = () => {
             router.push({
                 pathname: "/",
                 query: {
-                    skipIntroductionAnimationEvenThoughItsCool: "1",
+                    [URL_QUERY_NAME]: "1",
                     scrollToElement: CSS_REFERENCES.CONTACT_ME_OPEN_EMAIL_FORM_BUTTON,
                 },
             });

@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { useRouter } from "next/router";
+import { URL_QUERY_NAME } from "@/components/pages/landing_page/IntroductionScreen/Base/hooks/useIntroAnimationControls/constatns";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -61,7 +62,7 @@ const Logo: FunctionComponent<LogoProps> = (props) => {
                 scrollTo({ top: 0, behavior: "smooth" });
             }
         } else {
-            router.push("/?skipIntroductionAnimationEvenThoughItsCool=1");
+            router.push(`/?${URL_QUERY_NAME}=1`);
         }
     };
 

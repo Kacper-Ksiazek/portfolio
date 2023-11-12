@@ -1,6 +1,7 @@
 // Tools
 import { useRouter } from "next/router";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
+import { URL_QUERY_NAME } from "@/components/pages/landing_page/IntroductionScreen/Base/hooks/useIntroAnimationControls/constatns";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Styled components
@@ -52,7 +53,7 @@ const SingleNavigationRoute: FunctionComponent<SingleNavigationRouteProps> = (pr
                 pathname: "/",
 
                 query: {
-                    skipIntroductionAnimationEvenThoughItsCool: "1",
+                    [URL_QUERY_NAME]: "1",
                     scrollToElement: props.idOfElementToScroll,
                 },
             });
