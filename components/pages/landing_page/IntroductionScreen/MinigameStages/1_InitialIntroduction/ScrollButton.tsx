@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { useState, useEffect } from "react";
+import { CSS_REFERENCES } from "./css_references";
 // Types
 import type { FunctionComponent } from "react";
 // Material UI Components
@@ -80,7 +81,7 @@ const ScrollButton: FunctionComponent<ScrollButtonProps> = (props) => {
     return (
         <ScrollButtonBase
             onClick={onClick} //
-            id="scroll-down-button"
+            id={CSS_REFERENCES.SCROLL_DOWN_BUTTON}
             onMouseEnter={() => onlyWhenVisible(props.onMouseEnter)}
             onMouseLeave={() => onlyWhenVisible(props.onMouseLeave)}
         >
