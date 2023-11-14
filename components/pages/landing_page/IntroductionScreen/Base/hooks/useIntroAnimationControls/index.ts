@@ -1,8 +1,10 @@
 // Tools
-import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { useSimpleReducer } from "@/hooks/useSimpleReducer";
 import { blockUserScroll, shouldSkipAnimation, unlockUserScroll } from "./_utils";
+// Constants
+import { LINES_INTRO_ANIMATION_DURATION, TIME_TO_UNLOCK_SCROLL } from "./constatns";
 
 interface IntroAnimationControlsReducer {
     renderContent: boolean;
@@ -31,9 +33,9 @@ export function useIntroAnimationControls(): IntroAnimationControlsReducer {
 
             setTimeout(() => {
                 updateState({ renderContent: true });
-            }, 2800);
+            }, LINES_INTRO_ANIMATION_DURATION);
 
-            setTimeout(unlockUserScroll, 3200);
+            setTimeout(unlockUserScroll, TIME_TO_UNLOCK_SCROLL);
         }
     }, [router.query, updateState]);
 

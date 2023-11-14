@@ -1,3 +1,6 @@
+// Tools
+import { URL_QUERY_NAME } from "./constatns";
+// Types
 import type { NextRouter } from "next/router";
 
 export function blockUserScroll() {
@@ -13,5 +16,5 @@ export function unlockUserScroll() {
 }
 
 export function shouldSkipAnimation(query: NextRouter["query"]) {
-    return query.hasOwnProperty("skipIntroductionAnimationEvenThoughItsCool");
+    return query.hasOwnProperty(URL_QUERY_NAME);
 }
