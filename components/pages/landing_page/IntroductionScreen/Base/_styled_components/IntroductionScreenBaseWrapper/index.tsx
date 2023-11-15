@@ -3,11 +3,19 @@ import { styled } from "@mui/material";
 import { mergeSXObjects } from "@/utils/client/mergeSXObjects";
 //
 import RWD from "./RWD";
-import introAnimatins from "./introAnimations";
+import { getIntroAnimationsStyles } from "./introAnimations";
 // Styled components
 import Section from "@/components/atoms/content_placement/SectionWrapper/_SectionWrapper";
 
-export default styled(Section)(({ theme }) => ({
+interface IntroductionScreenBaseWrapperProps {
+    displayIntroAnimations: boolean;
+}
+
+export default styled(Section, {
+    shouldForwardProp: (prop: string) => {
+        return !(["displayIntroAnimations"] as (keyof IntroductionScreenBaseWrapperProps | string)[]).includes(prop);
+    },
+})<IntroductionScreenBaseWrapperProps>(({ theme, ...props }) => ({
     position: "relative",
     margin: "0 auto",
     overflow: "hidden",
@@ -18,6 +26,9 @@ export default styled(Section)(({ theme }) => ({
     boxSizing: "border-box",
     height: "100vh",
     marginBottom: "60px",
-    //
-    ...mergeSXObjects(introAnimatins, RWD),
+
+    ...mergeSXObjects(
+        getIntroAnimationsStyles(theme, props.displayIntroAnimations), //
+        RWD
+    ),
 }));

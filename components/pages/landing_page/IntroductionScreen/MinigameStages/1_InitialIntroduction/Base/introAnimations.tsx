@@ -21,6 +21,12 @@ export const introAnimations: SxPropsFn = function (theme) {
             },
         },
 
+        [SELECTORS.MAIN_HEADER]: {
+            "&::after": {
+                animation: "fadeFromTop .2s .1s linear both",
+            },
+        },
+
         // ".colored-header": {
         //     "&:nth-of-type(1)": {
         //         animation: `${fadeFromTop} .2s linear both`,

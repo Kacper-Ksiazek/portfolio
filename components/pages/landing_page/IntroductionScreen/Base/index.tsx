@@ -25,20 +25,18 @@ interface IntroductionScreenBaseProps {
 }
 
 const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (props) => {
-    const { displayAnimations, renderContent } = useIntroAnimationControls();
+    const { contentToRender } = useIntroAnimationControls();
 
     return (
         <Wrapper
             id={LANDING_PAGE_SECTIONS.INTRODUCTION_SCREEN}
-            className={[
-                displayAnimations ? "display-intro-animations" : "skip-intro-animation", //
-                props.scrollButtonIsHovered ? "scroll-button-is-hovered" : "",
-            ].join(" ")}
+            displayIntroAnimations={contentToRender === "INTRO_ANIMATIONS"}
+            className={[props.scrollButtonIsHovered ? "scroll-button-is-hovered" : ""].join(" ")}
         >
             <BackgroundPicture scrollButtonIsHovered={props.scrollButtonIsHovered} />
 
             {(() => {
-                if (renderContent) {
+                if (contentToRender === "INTRODUCTION_SCREEN_CONTENT") {
                     return (
                         <>
                             <RotatingCircle id={INTRODUCTION_SCREEN.SMALL_CIRCLE} />
@@ -47,27 +45,11 @@ const IntroductionScreenBase: FunctionComponent<IntroductionScreenBaseProps> = (
                             <Content>{props.children}</Content>
                         </>
                     );
-                } else {
+                } else if (contentToRender === "INTRO_ANIMATIONS") {
                     return (
                         <>
-                            <BackgroundShape
-                                backgroundColor="#000000" //
-                                initialHeight="100px"
-                                zIndex={11}
-                                delays={{
-                                    intro: 0.6,
-                                    outro: 1.8,
-                                }}
-                            />
-                            <BackgroundShape
-                                backgroundColor={COLORS.secondary} //
-                                initialHeight="200px"
-                                zIndex={9}
-                                delays={{
-                                    intro: 0.3,
-                                    outro: 2.1,
-                                }}
-                            />
+                            <BackgroundShape color="BLACK" />
+                            <BackgroundShape color="SECONDARY" />
                             <SimpleBackgroundShape />
                         </>
                     );

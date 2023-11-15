@@ -1,7 +1,11 @@
+import { keyframes } from "@mui/material";
+
 import type { Theme } from "@mui/material";
 import type { SystemStyleObject } from "@mui/system";
 
 export { Theme };
+
+export type Keyframes = ReturnType<typeof keyframes>;
 
 export type Styles = SystemStyleObject<Theme>;
 

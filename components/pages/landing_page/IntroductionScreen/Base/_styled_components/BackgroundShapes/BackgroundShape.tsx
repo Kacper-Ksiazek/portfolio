@@ -1,16 +1,52 @@
 // Tools
-import { styled, keyframes } from "@mui/material";
+import { styled } from "@mui/material";
+import { getKeyframes } from "./_keyframes";
+import { chainAnimations } from "@/utils/client/styled/chainAnimations";
+// Types
+import type { Theme } from "@/@types/MUI";
 // Styled components
 import BackgroundShapeBase from "./_BackgroundShapeBase";
 
 interface LineProps {
-    initialHeight: `${string}px`;
-    backgroundColor: string;
-    zIndex: number;
-    delays: {
-        intro: number;
-        outro: number;
-    };
+    color: "BLACK" | "SECONDARY";
+}
+
+type Styles = Record<
+    LineProps["color"],
+    {
+        initialHeight: `${string}px`;
+        backgroundColor: string;
+        zIndex: number;
+        delays: {
+            intro: number;
+            outro: number;
+        };
+    }
+>;
+
+function getStylesBasedOnColor(theme: Theme, color: LineProps["color"]): Styles["BLACK"] {
+    switch (color) {
+        case "BLACK":
+            return {
+                initialHeight: "100px",
+                backgroundColor: "#000000",
+                zIndex: 11,
+                delays: {
+                    intro: 0.6,
+                    outro: 0.4,
+                },
+            };
+        case "SECONDARY":
+            return {
+                initialHeight: "200px",
+                backgroundColor: theme.palette.secondary.main,
+                zIndex: 9,
+                delays: {
+                    intro: 0.3,
+                    outro: 1,
+                },
+            };
+    }
 }
 
 export default styled(BackgroundShapeBase, {
@@ -18,71 +54,22 @@ export default styled(BackgroundShapeBase, {
         return !(["initialHeight", "backgroundColor", "zIndex", "delays"] as (keyof LineProps | string)[]).includes(prop);
     },
 })<LineProps>(({ theme, ...props }) => {
-    const introAnimationOne = keyframes({
-        "0%": {
-            maxHeight: props.initialHeight,
-            transform: "translate(calc(-100% - 20px - 50%), -50%)",
-        },
-        "40%,60%": {
-            maxHeight: props.initialHeight,
-            transform: "translate(-50%,-50%)",
-        },
-        "100%": {
-            maxHeight: "100%",
-            transform: "translate(-50%,-50%)",
-        },
-    });
-
-    const outroAnimationOneVertical = keyframes({
-        "0%": {
-            width: "100%",
-            transform: "translate(-50%,-50%)",
-        },
-        "40%,60%": {
-            width: props.initialHeight,
-            transform: "translate(-50%,-50%)",
-        },
-        "100%": {
-            width: props.initialHeight,
-            transform: "translate(-50%,calc(-50% + 100% + 20px))",
-        },
-    });
-
-    const outroAnimationOneHorizontal = keyframes({
-        "0%": {
-            width: "100%",
-            height: "100%",
-            maxHeight: "100%",
-            transform: "translate(-50%,-50%)",
-        },
-        "100%": {
-            width: "100%",
-            height: "100%",
-            maxHeight: "100%",
-            transform: "translate(calc(100vw + 100px),-50%)",
-            visibility: "hidden",
-        },
-    });
+    const { initialHeight, backgroundColor, zIndex, delays } = getStylesBasedOnColor(theme, props.color);
+    const { introAnimationOne, outroAnimationOneHorizontal, outroAnimationOneVertical } = getKeyframes(initialHeight);
 
     return {
-        background: props.backgroundColor,
-        zIndex: props.zIndex,
+        background: backgroundColor,
+        zIndex: zIndex,
         borderRadius: "5px",
-        animation: [
-            `${introAnimationOne} .8s ${props.delays.intro}s linear both`, //
-            `${outroAnimationOneHorizontal} .8s ${props.delays.outro}s linear forwards`,
-        ].join(", "),
+        animation: chainAnimations([
+            [introAnimationOne, 0.8, delays.intro],
+            [outroAnimationOneHorizontal, 0.8, delays.outro],
+        ]),
         "@media (min-width:1001px)": {
-            animation: [
-                `${introAnimationOne} .8s ${props.delays.intro}s linear both`, //
-                `${outroAnimationOneVertical} .8s ${props.delays.outro}s linear forwards`,
-            ].join(", "),
-        },
-        "@media (max-width:1000px)": {
-            animation: [
-                `${introAnimationOne} .7s ${props.delays.intro}s linear both`, //
-                `${outroAnimationOneHorizontal} .5s ${props.delays.outro}s linear forwards`,
-            ].join(", "),
+            animation: chainAnimations([
+                [introAnimationOne, 0.8, delays.intro],
+                [outroAnimationOneVertical, 0.8, delays.outro],
+            ]),
         },
     };
 });
