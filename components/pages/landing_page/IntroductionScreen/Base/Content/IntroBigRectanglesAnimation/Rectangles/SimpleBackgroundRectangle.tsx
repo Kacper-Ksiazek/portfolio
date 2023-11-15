@@ -2,7 +2,7 @@
 import { styled, keyframes } from "@mui/material";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
 // Styled components
-import BackgroundShapeBase from "./_BackgroundShapeBase";
+import RectangleBase from "./_RectangleBase";
 
 const introAnimationThree = keyframes({
     "0%": {
@@ -19,7 +19,7 @@ const introAnimationThree = keyframes({
     },
 });
 
-export default styled(BackgroundShapeBase)(({ theme }) => ({
+export default styled(RectangleBase)(({ theme }) => ({
     background: theme.palette.background.paper,
     zIndex: 8,
     animation: `${introAnimationThree} .8s linear both, ${fadeSimpleOUT} .01s 1.7s both`,

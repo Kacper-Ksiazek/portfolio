@@ -1,4 +1,5 @@
 // Tools
+import { SELECTORS } from "./css_references";
 import { styled, keyframes } from "@mui/material";
 // Styled components
 const fadeSimple = keyframes({
@@ -19,7 +20,7 @@ const rotate = keyframes({
     },
 });
 
-export const RotatingCircle = styled("span")(({ theme }) => ({
+export default styled("span")(({ theme }) => ({
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -30,14 +31,14 @@ export const RotatingCircle = styled("span")(({ theme }) => ({
     backgroundSize: "cover",
     borderRadius: "50%",
 
-    "&#small-circle": {
+    [`&${SELECTORS.SMALL_CIRCLE}`]: {
         width: "500px",
         height: "500px",
         animation: `${fadeSimple} 1s .5s linear both , ${rotate} 10s infinite linear`,
         backgroundImage: 'url("/images/landing-page/circle_smaller.png")',
     },
 
-    "&#big-circle": {
+    [`&${SELECTORS.BIG_CIRCLE}`]: {
         width: "800px",
         height: "800px",
         animation: `${fadeSimple} 1s .8s linear both , ${rotate} 15s reverse infinite linear`,

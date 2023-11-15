@@ -5,7 +5,7 @@ import { blockUserScroll, shouldSkipAnimation, unlockUserScroll } from "./_utils
 // Constants
 import { LINES_INTRO_ANIMATION_DURATION, TIME_TO_UNLOCK_SCROLL } from "./constatns";
 
-type ContentToRender = "INTRODUCTION_SCREEN_CONTENT" | "INTRO_ANIMATIONS" | null;
+export type ContentToRender = "INTRODUCTION_SCREEN_CONTENT" | "INTRO_ANIMATIONS" | null;
 
 interface UseIntroAnimationControlsResult {
     contentToRender: ContentToRender;
