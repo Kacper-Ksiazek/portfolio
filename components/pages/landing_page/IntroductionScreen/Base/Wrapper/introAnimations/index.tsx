@@ -1,5 +1,6 @@
 // Tools
 import * as WrapperIntroAnimations from "./keyframes";
+import { LINES_INTRO_ANIMATION_DURATION } from "../../hooks/useIntroAnimationControls/constatns";
 // Types
 import type { Theme, SxProps } from "@/@types/MUI";
 
@@ -11,13 +12,13 @@ export function getIntroAnimationsStyles(theme: Theme, shouldDisplayIntroAnimati
                 top: "-10px",
             },
             "@media (min-width:1551px)": {
-                animation: `${WrapperIntroAnimations.largeDisplay} .2s 2.8s both linear`,
+                animation: `${WrapperIntroAnimations.largeDisplay} .2s ${LINES_INTRO_ANIMATION_DURATION - 200}ms both linear`,
             },
             "@media (max-width:1550px)": {
-                animation: `${WrapperIntroAnimations.mediumDisplay} .2s 3s both linear`,
+                animation: `${WrapperIntroAnimations.mediumDisplay} .2s ${LINES_INTRO_ANIMATION_DURATION - 200}ms 3s both linear`,
             },
             "@media (max-width:1100px)": {
-                animation: `${WrapperIntroAnimations.mediumDisplayWithEqualRadius} .2s 2.6s both linear`,
+                animation: `${WrapperIntroAnimations.mediumDisplayWithEqualRadius} .2s ${LINES_INTRO_ANIMATION_DURATION - 200} both linear`,
             },
         };
     }
