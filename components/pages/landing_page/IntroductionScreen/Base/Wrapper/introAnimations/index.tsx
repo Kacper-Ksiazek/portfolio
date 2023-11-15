@@ -15,10 +15,10 @@ export function getIntroAnimationsStyles(theme: Theme, shouldDisplayIntroAnimati
                 animation: `${WrapperIntroAnimations.largeDisplay} .2s ${LINES_INTRO_ANIMATION_DURATION - 200}ms both linear`,
             },
             "@media (max-width:1550px)": {
-                animation: `${WrapperIntroAnimations.mediumDisplay} .2s ${LINES_INTRO_ANIMATION_DURATION - 200}ms 3s both linear`,
+                animation: `${WrapperIntroAnimations.mediumDisplay} .2s ${LINES_INTRO_ANIMATION_DURATION - 200}ms both linear`,
             },
             "@media (max-width:1100px)": {
-                animation: `${WrapperIntroAnimations.mediumDisplayWithEqualRadius} .2s ${LINES_INTRO_ANIMATION_DURATION - 200} both linear`,
+                animation: `${WrapperIntroAnimations.mediumDisplayWithEqualRadius} .2s ${LINES_INTRO_ANIMATION_DURATION - 200}ms both linear`,
             },
         };
     }
