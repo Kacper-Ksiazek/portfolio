@@ -1,48 +1,83 @@
 // Tools
+import { chainAnimations } from "@/utils/client/styled/chainAnimations";
 import { SELECTORS } from "../css_references";
-// import { fadeFromTop } from "@/components/keyframes/intro";
+// Keyframes
+import { scaleToBottom, scaleToLeft, scaleToRight, scaleToTop } from "@/components/keyframes/outro/scale";
+import { scaleFromLeft, fadeSimple, scaleFromRight, scaleFromBottom, scaleFromTop } from "@/components/keyframes/intro";
 // Types
 import type { SxPropsFn } from "@/@types/MUI";
 
-const LINES_INTRO_ANIMATIONS_SELECTOR: string = [
-    SELECTORS.MAIN_HEADER, //
-    SELECTORS.COLORED_SUBHEADER,
-    SELECTORS.DESCRIPTION,
-].join(", ");
-
 export const introAnimations: SxPropsFn = function (theme) {
     return {
-        [LINES_INTRO_ANIMATIONS_SELECTOR]: {
+        [SELECTORS._EVERY]: {
             position: "relative",
             "&::after": {
                 content: "''",
                 ...theme.mixins.absolute_full,
-                background: "red",
+                background: theme.palette.background.darkAnimationBar,
+                zIndex: 10,
+                borderRadius: "3px",
             },
         },
 
         [SELECTORS.MAIN_HEADER]: {
+            span: {
+                animation: `${fadeSimple} .01s .4s linear both`,
+            },
             "&::after": {
-                animation: "fadeFromTop .2s .1s linear both",
+                animation: chainAnimations([
+                    [scaleFromLeft, 0.3], //
+                    [scaleToTop, 0.24, 0.2],
+                ]),
             },
         },
 
-        // ".colored-header": {
-        //     "&:nth-of-type(1)": {
-        //         animation: `${fadeFromTop} .2s linear both`,
-        //     },
-        //     "&:nth-of-type(2)": {
-        //         animation: `${fadeFromTop} .2s .3s linear both`,
-        //     },
-        // },
-        // ".main-header": {
-        //     animation: `${fadeFromTop} .2s .1s linear both`,
-        // },
-        // p: {
-        //     animation: `${fadeFromTop} .2s .2s linear both`,
-        // },
-        // button: {
-        //     animation: `${fadeFromTop} .2s .5s linear both`,
-        // },
+        [SELECTORS.DESCRIPTION]: {
+            span: {
+                animation: `${fadeSimple} .01s .5s linear both`,
+            },
+            "&::after": {
+                animation: chainAnimations([
+                    [scaleFromRight, 0.3, 0.1], //
+                    [scaleToBottom, 0.24, 0.2],
+                ]),
+            },
+        },
+
+        [SELECTORS.SUBHEADER.TOP]: {
+            span: {
+                animation: `${fadeSimple} .01s .9s linear both`,
+            },
+            "&::after": {
+                animation: chainAnimations([
+                    [scaleFromBottom, 0.2, 0.7], //
+                    [scaleToLeft, 0.24, 0.2],
+                ]),
+            },
+        },
+
+        [SELECTORS.SUBHEADER.BOTTOM]: {
+            span: {
+                animation: `${fadeSimple} .01s .9s linear both`,
+            },
+            "&::after": {
+                animation: chainAnimations([
+                    [scaleFromTop, 0.2, 0.7], //
+                    [scaleToBottom, 0.24, 0.2],
+                ]),
+            },
+        },
+
+        [SELECTORS.SCROLL_DOWN_BUTTON]: {
+            ">*": {
+                animation: `${fadeSimple} .01s 1.4s linear both`,
+            },
+            "&::after": {
+                animation: chainAnimations([
+                    [scaleFromTop, 0.2, 1.1], //
+                    [scaleToRight, 0.24, 0.2],
+                ]),
+            },
+        },
     };
 };

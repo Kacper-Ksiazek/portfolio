@@ -17,14 +17,13 @@ const ScrollButtonBase = styled(ButtonBase)(({ theme }) => ({
     fontFamily: "Montserrat Alternates",
     boxSizing: "border-box",
     overflow: "hidden",
-    marginTop: "64px",
     "span.text": {
         position: "relative",
         zIndex: 2,
         transition: "color .3s",
     },
     transition: "padding .3s",
-    "&::after": {
+    "&::before": {
         content: "''",
         position: "absolute",
         width: "110%",
@@ -38,7 +37,7 @@ const ScrollButtonBase = styled(ButtonBase)(({ theme }) => ({
         "span.text": {
             color: "#fff",
         },
-        "&::after": {
+        "&::before": {
             transform: "translateY(-5px)",
         },
     },
@@ -79,14 +78,15 @@ const ScrollButton: FunctionComponent<ScrollButtonProps> = (props) => {
     };
 
     return (
-        <ScrollButtonBase
-            onClick={onClick} //
-            id={CSS_REFERENCES.SCROLL_DOWN_BUTTON}
-            onMouseEnter={() => onlyWhenVisible(props.onMouseEnter)}
-            onMouseLeave={() => onlyWhenVisible(props.onMouseLeave)}
-        >
-            <span className="text">Scroll down</span>
-        </ScrollButtonBase>
+        <span id={CSS_REFERENCES.SCROLL_DOWN_BUTTON} style={{ marginTop: "64px" }}>
+            <ScrollButtonBase
+                onClick={onClick} //
+                onMouseEnter={() => onlyWhenVisible(props.onMouseEnter)}
+                onMouseLeave={() => onlyWhenVisible(props.onMouseLeave)}
+            >
+                <span className="text">Scroll down</span>
+            </ScrollButtonBase>
+        </span>
     );
 };
 

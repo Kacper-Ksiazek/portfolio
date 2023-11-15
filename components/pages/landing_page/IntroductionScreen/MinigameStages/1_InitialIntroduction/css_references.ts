@@ -7,9 +7,13 @@ export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
         MAIN_HEADER: {
             ref_value: "main-header",
         },
-        COLORED_SUBHEADER: {
-            ref_type: "CSS_CLASS",
-            ref_value: "colored-subheader",
+        SUBHEADER: {
+            TOP: {
+                ref_value: "top-colored-subheader",
+            },
+            BOTTOM: {
+                ref_value: "bottom-colored-subheader",
+            },
         },
         DESCRIPTION: {
             ref_value: "description",

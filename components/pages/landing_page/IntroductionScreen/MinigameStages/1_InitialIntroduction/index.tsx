@@ -18,14 +18,25 @@ interface InitialIntroductionProps {
 const InitialIntroduction: FunctionComponent<InitialIntroductionProps> = (props) => {
     return (
         <IntroductionScreenBase rendering={props.rendering} disableTextElementsStyles addPaddingTop>
-            <ColoredHeader className={CSS_REFERENCES.COLORED_SUBHEADER}>full-stack</ColoredHeader>
-            <MainHeader id={CSS_REFERENCES.MAIN_HEADER}>Kacper Książek</MainHeader>
+            <ColoredHeader id={CSS_REFERENCES.SUBHEADER.TOP}>
+                <span>full-stack</span>
+            </ColoredHeader>
+
+            <MainHeader id={CSS_REFERENCES.MAIN_HEADER}>
+                <span>Kacper Książek</span>
+            </MainHeader>
+
             <Description id={CSS_REFERENCES.DESCRIPTION}>
-                {
-                    "Hi, I'm a 21-year-old technology enthusiast, currently a second-year student of Engineering and Data Analysis at AGH in Cracow, who takes great pleasure in coding and learning new things."
-                }
+                <span>
+                    {
+                        "Hi, I'm a 21-year-old technology enthusiast, currently a second-year student of Engineering and Data Analysis at AGH in Cracow, who takes great pleasure in coding and learning new things."
+                    }
+                </span>
             </Description>
-            <ColoredHeader className={CSS_REFERENCES.COLORED_SUBHEADER}>developer</ColoredHeader>
+
+            <ColoredHeader id={CSS_REFERENCES.SUBHEADER.BOTTOM}>
+                <span>developer</span>
+            </ColoredHeader>
 
             <ScrollButton
                 onMouseEnter={props.onScrollButtonHover} //
