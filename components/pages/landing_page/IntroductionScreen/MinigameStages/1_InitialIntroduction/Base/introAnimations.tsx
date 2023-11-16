@@ -14,7 +14,7 @@ export const introAnimations: SxPropsFn = function (theme) {
             "&::after": {
                 content: "''",
                 ...theme.mixins.absolute_full,
-                background: theme.palette.background.darkAnimationBar,
+                background: theme.palette.secondary.main,
                 zIndex: 10,
                 borderRadius: "3px",
             },
@@ -26,7 +26,7 @@ export const introAnimations: SxPropsFn = function (theme) {
             },
             "&::after": {
                 animation: chainAnimations([
-                    [scaleFromLeft, 0.3], //
+                    [scaleFromLeft, 0.24], //
                     [scaleToTop, 0.24, 0.2],
                 ]),
             },
@@ -38,7 +38,7 @@ export const introAnimations: SxPropsFn = function (theme) {
             },
             "&::after": {
                 animation: chainAnimations([
-                    [scaleFromRight, 0.3, 0.1], //
+                    [scaleFromRight, 0.24, 0.1], //
                     [scaleToBottom, 0.24, 0.2],
                 ]),
             },

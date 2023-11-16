@@ -23,7 +23,7 @@ const InitialIntroduction: FunctionComponent<InitialIntroductionProps> = (props)
             </ColoredHeader>
 
             <MainHeader id={CSS_REFERENCES.MAIN_HEADER}>
-                <span>Kacper Książek</span>
+                <span>Lorem ipsum</span>
             </MainHeader>
 
             <Description id={CSS_REFERENCES.DESCRIPTION}>

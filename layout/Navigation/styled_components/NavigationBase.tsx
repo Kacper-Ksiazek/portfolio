@@ -141,10 +141,10 @@ export default styled("div")(({ theme }) => ({
     },
     //
     "&.intro-landing-page-but-faster": {
-        animation: `${fadeFromTop} .2s .8s both linear`,
+        animation: `${fadeFromTop} .2s 2s both linear`,
     },
     "&.intro-landing-page": {
-        animation: `${fadeFromTop} .2s 2.6s both linear`,
+        animation: `${fadeFromTop} .2s 4.8s both linear`,
     },
     "&.intro-single-project": {
         animation: `${fadeSimple} .2s 3.3s both linear`,

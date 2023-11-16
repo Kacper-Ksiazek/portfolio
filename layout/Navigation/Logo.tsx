@@ -77,7 +77,7 @@ const Logo: FunctionComponent<LogoProps> = (props) => {
                 />
             </ImageWrapper>
 
-            <Header id="portfolio-logo-header">K_Książek</Header>
+            <Header id="portfolio-logo-header">_____</Header>
         </SingleFlexWrapper>
     );
 };
