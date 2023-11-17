@@ -1,7 +1,7 @@
 // Tools
 import { useRouter } from "next/router";
 import { SELECTORS, CSS_REFERENCES } from "landing_page/css_references";
-import { URL_QUERY_NAME } from "@/components/pages/landing_page/IntroductionScreen/Base/hooks/useIntroAnimationControls/constatns";
+import { URL_QUERY_NAME } from "@/components/pages/landing_page/IntroductionScreen/Base/hooks/useIntroAnimationControls/constans";
 // Types
 import type { MouseEvent, FunctionComponent } from "react";
 // Other components

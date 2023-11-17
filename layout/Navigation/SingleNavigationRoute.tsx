@@ -1,7 +1,7 @@
 // Tools
 import { useRouter } from "next/router";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
-import { URL_QUERY_NAME } from "@/components/pages/landing_page/IntroductionScreen/Base/hooks/useIntroAnimationControls/constatns";
+import { URL_QUERY_NAME } from "@/components/pages/landing_page/IntroductionScreen/Base/hooks/useIntroAnimationControls/constans";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
 // Styled components

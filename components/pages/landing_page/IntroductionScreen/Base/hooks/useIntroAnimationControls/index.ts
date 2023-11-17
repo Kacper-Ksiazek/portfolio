@@ -1,9 +1,10 @@
 // Tools
 import { useRouter } from "next/router";
+import useWindowSizes from "@/hooks/useWindowSizes";
 import { useEffect, useRef, useState } from "react";
 import { blockUserScroll, shouldSkipAnimation, unlockUserScroll } from "./_utils";
 // Constants
-import { LINES_INTRO_ANIMATION_DURATION, TIME_TO_UNLOCK_SCROLL } from "./constatns";
+import * as constans from "./constans";
 
 export type ContentToRender = "INTRODUCTION_SCREEN_CONTENT" | "INTRO_ANIMATIONS" | null;
 
@@ -13,6 +14,7 @@ interface UseIntroAnimationControlsResult {
 
 export function useIntroAnimationControls(): UseIntroAnimationControlsResult {
     const router = useRouter();
+    const { width } = useWindowSizes();
 
     const timeoutHasBeenSet = useRef<boolean>(false);
     const [contentToRender, setContentToRender] = useState<ContentToRender>(null);
@@ -20,9 +22,16 @@ export function useIntroAnimationControls(): UseIntroAnimationControlsResult {
     useEffect(() => {
         if (!window || !document || !document.body) return;
 
+        const viewportIsSmall: boolean = width !== 0 && width < 1000;
         // If the user has skipped the animation
-        if (shouldSkipAnimation(router.query)) {
-            setContentToRender("INTRODUCTION_SCREEN_CONTENT");
+        if (shouldSkipAnimation(router.query) || viewportIsSmall) {
+            const { REGULAR, SMALL_VIEWPORTS } = constans.CONTENT_RENDERING_DELAY_WHEN_LINES_ANIMATIONS_ARE_DISABLED;
+
+            const timeoutDelay: TimeInMS = viewportIsSmall ? SMALL_VIEWPORTS : REGULAR;
+
+            setTimeout(() => {
+                setContentToRender("INTRODUCTION_SCREEN_CONTENT");
+            }, timeoutDelay);
         }
         // Alternatively, but only if the animation has not started yet
         else if (timeoutHasBeenSet.current === false) {
@@ -36,13 +45,13 @@ export function useIntroAnimationControls(): UseIntroAnimationControlsResult {
             // Change the content to render after the animation is done
             setTimeout(() => {
                 setContentToRender("INTRODUCTION_SCREEN_CONTENT");
-            }, LINES_INTRO_ANIMATION_DURATION);
+            }, constans.LINES_INTRO_ANIMATION_DURATION);
 
             // Unlock the user scroll after the animation is done
-            setTimeout(unlockUserScroll, TIME_TO_UNLOCK_SCROLL);
+            setTimeout(unlockUserScroll, constans.TIME_TO_UNLOCK_SCROLL);
         }
         // Otherwise, to nothing
-    }, [router.query]);
+    }, [router.query, width]);
 
     return {
         contentToRender,

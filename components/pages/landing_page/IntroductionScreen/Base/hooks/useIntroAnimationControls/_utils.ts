@@ -1,5 +1,5 @@
 // Tools
-import { URL_QUERY_NAME } from "./constatns";
+import { URL_QUERY_NAME } from "./constans";
 // Types
 import type { NextRouter } from "next/router";
 

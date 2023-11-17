@@ -1,7 +1,7 @@
 // Tools
 import { useMemo } from "react";
 import { useRouter } from "next/router";
-import { URL_QUERY_NAME } from "@/components/pages/landing_page/IntroductionScreen/Base/hooks/useIntroAnimationControls/constatns";
+import { URL_QUERY_NAME } from "@/components/pages/landing_page/IntroductionScreen/Base/hooks/useIntroAnimationControls/constans";
 
 interface UseExceptionalIntroAnimations {
     /** Apply the set of styles which improves the contrast */
