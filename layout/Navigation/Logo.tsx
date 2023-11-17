@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { useRouter } from "next/router";
-import { URL_QUERY_NAME } from "@/components/pages/landing_page/IntroductionScreen/Base/hooks/useIntroAnimationControls/constatns";
+import { URL_QUERY_NAME } from "@/components/pages/landing_page/IntroductionScreen/Base/hooks/useIntroAnimationControls/constans";
 // Types
 import type { FunctionComponent } from "react";
 // Other components
@@ -77,7 +77,7 @@ const Logo: FunctionComponent<LogoProps> = (props) => {
                 />
             </ImageWrapper>
 
-            <Header id="portfolio-logo-header">_____</Header>
+            <Header id="portfolio-logo-header">K_Książek</Header>
         </SingleFlexWrapper>
     );
 };
