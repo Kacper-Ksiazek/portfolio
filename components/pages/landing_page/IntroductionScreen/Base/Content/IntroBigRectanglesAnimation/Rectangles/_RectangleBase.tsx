@@ -7,4 +7,7 @@ export default styled("span")(({ theme }) => ({
     left: "50%",
     width: "100%",
     height: "100%",
+    "@media (max-width:1000px)": {
+        display: "none",
+    },
 }));
