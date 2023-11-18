@@ -1,4 +1,5 @@
 // Tools
+import { fadeSimple } from "@/components/keyframes/intro";
 import { styled } from "@mui/material";
 // Styled components
 export default styled("main")(({ theme }) => ({
@@ -8,7 +9,7 @@ export default styled("main")(({ theme }) => ({
     transform: "translateX(-50%)",
     position: "relative",
     minHeight: "100vh",
-    ["@media (max-width:500px)"]: {
+    "@media (max-width:500px)": {
         marginTop: "10px",
     },
 }));

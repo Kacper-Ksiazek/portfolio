@@ -139,13 +139,23 @@ export default styled("div")(({ theme }) => ({
             },
         },
     },
-    //
+
+    // Landing page
+
     "&.intro-landing-page-but-faster": {
-        animation: `${fadeFromTop} .2s .8s both linear`,
+        animation: `${fadeFromTop} .2s 3.6s both linear`,
     },
     "&.intro-landing-page": {
-        animation: `${fadeFromTop} .2s 2.6s both linear`,
+        animation: `${fadeFromTop} .2s 5.6s both linear`,
     },
+    "&.intro-landing-page-but-faster, &.intro-landing-page": {
+        "@media (max-width:1000px)": {
+            animation: `${fadeFromTop} .2s 1.4s both linear`,
+        },
+    },
+
+    // Single project
+
     "&.intro-single-project": {
         animation: `${fadeSimple} .2s 3.3s both linear`,
     },
