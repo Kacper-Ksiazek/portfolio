@@ -50,8 +50,8 @@ export const introAnimations: SxPropsFn = function (theme) {
             },
             "&::after": {
                 animation: chainAnimations([
-                    [scaleFromBottom, 0.2, 0.7], //
-                    [scaleToLeft, 0.24, 0.2],
+                    [scaleFromBottom, 0.16, 0.7], //
+                    [scaleToLeft, 0.2, 0.2],
                 ]),
             },
         },
@@ -62,8 +62,8 @@ export const introAnimations: SxPropsFn = function (theme) {
             },
             "&::after": {
                 animation: chainAnimations([
-                    [scaleFromTop, 0.2, 0.7], //
-                    [scaleToBottom, 0.24, 0.2],
+                    [scaleFromTop, 0.16, 0.7], //
+                    [scaleToBottom, 0.2, 0.2],
                 ]),
             },
         },
