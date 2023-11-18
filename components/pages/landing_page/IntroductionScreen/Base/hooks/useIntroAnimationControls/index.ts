@@ -2,6 +2,7 @@
 import { useRouter } from "next/router";
 import useWindowSizes from "@/hooks/useWindowSizes";
 import { useEffect, useRef, useState } from "react";
+import { updateURLQueries } from "@/utils/client/updateURLQueries";
 import { blockUserScroll, shouldSkipAnimation, unlockUserScroll } from "./_utils";
 // Constants
 import * as constans from "./constans";
@@ -44,6 +45,9 @@ export function useIntroAnimationControls(): UseIntroAnimationControlsResult {
 
             // Change the content to render after the animation is done
             setTimeout(() => {
+                updateURLQueries({
+                    [constans.URL_QUERY_NAME]: true,
+                });
                 setContentToRender("INTRODUCTION_SCREEN_CONTENT");
             }, constans.LINES_INTRO_ANIMATION_DURATION);
 
@@ -51,7 +55,7 @@ export function useIntroAnimationControls(): UseIntroAnimationControlsResult {
             setTimeout(unlockUserScroll, constans.TIME_TO_UNLOCK_SCROLL);
         }
         // Otherwise, to nothing
-    }, [router.query, width]);
+    }, [router, router.query, width]);
 
     return {
         contentToRender,
