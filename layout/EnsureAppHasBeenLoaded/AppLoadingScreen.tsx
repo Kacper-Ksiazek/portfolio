@@ -5,6 +5,7 @@ import { fadeSimpleOUT } from "@/components/keyframes/outro";
 import type { FunctionComponent } from "react";
 // Other components
 import Image from "next/image";
+import Head from "next/head";
 // Styled components
 const AppLoaderWrapper = styled("div")(({ theme }) => ({
     position: "fixed",
@@ -29,16 +30,22 @@ const AppLoaderWrapper = styled("div")(({ theme }) => ({
 
 const AppLoadingScreen: FunctionComponent<{ outro: boolean }> = (props) => {
     return (
-        <AppLoaderWrapper className={props.outro ? "outro" : ""}>
-            <div className="img-wrapper">
-                <Image
-                    src={`/main-page-logo/app-loader.png`} //
-                    alt="page-logo"
-                    layout="fill"
-                    priority
-                />
-            </div>
-        </AppLoaderWrapper>
+        <>
+            <Head>
+                <title key="loading-title">Loading...</title>
+            </Head>
+
+            <AppLoaderWrapper className={props.outro ? "outro" : ""}>
+                <div className="img-wrapper">
+                    <Image
+                        src={`/main-page-logo/app-loader.png`} //
+                        alt="page-logo"
+                        layout="fill"
+                        priority
+                    />
+                </div>
+            </AppLoaderWrapper>
+        </>
     );
 };
 
