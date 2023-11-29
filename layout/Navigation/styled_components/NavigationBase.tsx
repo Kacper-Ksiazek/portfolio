@@ -168,7 +168,22 @@ export default styled("div")(({ theme }) => ({
         },
     },
     //
-    ["@media (max-width:500px)"]: {
+    "@media (max-width:1140px)": {
+        paddingLeft: "64px",
+        paddingRight: "64px",
+    },
+
+    "@media (max-width:1080px)": {
+        paddingLeft: "48px",
+        paddingRight: "48px",
+    },
+
+    "@media (max-width:1000px)": {
+        paddingLeft: "64px",
+        paddingRight: "64px",
+    },
+
+    "@media (max-width:500px)": {
         paddingLeft: "32px",
         paddingRight: "32px",
         paddingTop: "24px",
