@@ -13,18 +13,13 @@ export function useFullscreen(): UseFullscreenResult {
 
     const handleFullsizeToggle = () => {
         if (!fullscreen) {
-            const el = document.getElementById("image-modal-wrapper");
-
             setScrollYWhileOpeningFullscreen(window.scrollY);
             setFullscreen(true);
 
-            if (el) {
-                el.requestFullscreen();
-            }
+            if (document) document.body.requestFullscreen();
         } else {
-            if (document) {
-                document.exitFullscreen();
-            }
+            if (document) document.exitFullscreen();
+
             setFullscreen(false);
             setTimeout(() => {
                 scrollTo({
