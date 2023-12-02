@@ -19,6 +19,12 @@ const PreviewBackgroundPictureBase = styled(StyledButton)(({ theme }) => ({
     minWidth: "auto",
     padding: "6px 16px",
     borderRadius: "4px",
+    background: "transparent",
+    borderWidth: "2px",
+    "&:hover": {
+        background: theme.palette.primary.main,
+        color: "#fff",
+    },
     svg: {
         fontSize: "24px",
         marginRight: "6px",
