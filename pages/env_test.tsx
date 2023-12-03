@@ -2,7 +2,7 @@
 // Types
 import type { FunctionComponent } from "react";
 
-const ENVIRONEMNT = process.env.NODE_ENV;
+const ENVIRONEMNT = process.env.VERCEL_ENV || "Development";
 
 interface DotEnvProps {
     //
