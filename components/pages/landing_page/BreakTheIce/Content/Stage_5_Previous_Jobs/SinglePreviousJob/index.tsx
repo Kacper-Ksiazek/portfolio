@@ -45,7 +45,6 @@ const SinglePreviousJob: FunctionComponent<SinglePreviousJobProps> = ({ data, ..
                                 <ExternalRedirection
                                     url={data.projectPortfolioURL} //
                                     tooltip="See more details about this project"
-                                    small
                                 >
                                     Read more
                                 </ExternalRedirection>

@@ -19,6 +19,9 @@ export const Description = styled("p")(({ theme }) => ({
 export const RedirectionsWrapper = styled("div")(({ theme }) => ({
     display: "flex",
     marginTop: "12px",
+    button: {
+        height: "36px",
+    },
     ["@media (max-width:500px)"]: {
         marginTop: "32px",
     },

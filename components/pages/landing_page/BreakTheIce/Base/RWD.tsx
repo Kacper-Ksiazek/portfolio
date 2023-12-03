@@ -38,6 +38,7 @@ export default {
     },
     "@media (max-width:1000px)": {
         flexDirection: "column-reverse",
+        justifyContent: "flex-end",
         "#content-main-wrapper, #picture-main-wrapper": {
             width: "100%",
         },
