@@ -3,7 +3,7 @@ export {};
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
-            VERCEL_ENV: string;
+            NEXT_VERCEL_ENV: string;
             //
             POSTGRES_URL: string;
             POSTGREPOSTGRES_URL: string;
