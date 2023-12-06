@@ -8,16 +8,16 @@ export const leftVertical: AnimationsOrganizer = {
         _8px: keyframes({
             "0%": {
                 zIndex: 7,
-                width: "calc(100% + 8px)",
-                height: "calc(100% + 8px)",
+                height: "65%",
+                width: "8px",
             },
             "40%, 60%": {
                 height: "calc(100% + 8px)",
                 width: "8px",
             },
             "100%": {
-                height: "65%",
-                width: "8px",
+                width: "calc(100% + 8px)",
+                height: "calc(100% + 8px)",
                 zIndex: 7,
             },
         }),
@@ -57,7 +57,7 @@ export const leftVertical: AnimationsOrganizer = {
     outro: {
         _8px: keyframes({
             "0%": {
-                zIndex: 5,
+                zIndex: 7,
                 width: "calc(100% + 8px)",
                 height: "calc(100% + 8px)",
             },
@@ -68,7 +68,7 @@ export const leftVertical: AnimationsOrganizer = {
             "100%": {
                 width: "75%",
                 height: "8px",
-                zIndex: 5,
+                zIndex: 7,
             },
         }),
         _10px: keyframes({

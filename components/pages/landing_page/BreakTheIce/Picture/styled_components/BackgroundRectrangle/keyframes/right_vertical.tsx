@@ -7,18 +7,18 @@ export const rightVertical: AnimationsOrganizer = {
     intro: {
         _8px: keyframes({
             "0%": {
-                zIndex: 7,
-                width: "calc(100% + 8px)",
-                height: "calc(100% + 8px)",
+                zIndex: 6,
+                width: "8px",
+                height: "calc(65% - 100px)",
             },
             "40%, 60%": {
-                height: "calc(100% + 8px)",
+                height: "calc(100% + 10px)",
                 width: "8px",
             },
             "100%": {
-                height: "65%",
-                width: "8px",
-                zIndex: 7,
+                width: "calc(100% + 8px)",
+                height: "calc(100% + 8px)",
+                zIndex: 6,
             },
         }),
         _10px: keyframes({
