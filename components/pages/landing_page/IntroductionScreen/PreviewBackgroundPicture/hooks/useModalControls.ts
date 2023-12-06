@@ -32,6 +32,6 @@ namespace ModalControlsReducer {
 
 export function useModalControls() {
     return useReducer(ModalControlsReducer.reducer, {
-        isOpened: true,
+        isOpened: false,
     } as ModalControlsReducer.State);
 }
