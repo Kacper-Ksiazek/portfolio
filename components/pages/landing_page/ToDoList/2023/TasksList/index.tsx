@@ -38,13 +38,13 @@ const TasksList: FunctionComponent<TasksListProps> = (props) => {
                 labelFilter={props.labelFilter}
                 fadeContentOut={props.fadeContentOut}
             >
-                {filteredTasks.map((task) => {
+                {filteredTasks.map((task, index) => {
                     const { id } = task;
                     return (
                         <SingleTask
                             key={id} //
                             data={task}
-                            introAnimationsHaveEnded={introAnimationsHaveEnded}
+                            introAnimationsHaveEnded={index >= 3 || introAnimationsHaveEnded}
                             remove={deleteTaskWithID(id)}
                             update={editTaskWithID(id)}
                         />
