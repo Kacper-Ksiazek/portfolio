@@ -26,7 +26,7 @@ const Hobbies: FunctionComponent = () => {
             </Paragraph>
             <Carousel
                 itemsInTotal={4} //
-                itemsPerSlide={width <= 550 ? 1 : 2}
+                itemsPerSlide={width <= 650 ? 1 : 2}
                 spacing={40}
                 wrapperSx={{ mt: "20px", ...(RWD as any) }}
                 navigationSx={{
