@@ -23,10 +23,11 @@ const MobileBottomNavigation: FunctionComponent = () => {
     const nextStage: IceBreakingStage = stages[context.currentIceBreakingStage];
 
     const changeStage = () => {
-        const el = document.getElementById(SELECTORS.ABOUT_ME);
+        const el = document.querySelector(SELECTORS.ABOUT_ME);
+
         if (el) {
             scrollTo({
-                top: el.getBoundingClientRect().top + window.pageYOffset - 80,
+                top: el.getBoundingClientRect().top + window.scrollY - 80,
                 behavior: "smooth",
             });
             setTimeout(() => {
