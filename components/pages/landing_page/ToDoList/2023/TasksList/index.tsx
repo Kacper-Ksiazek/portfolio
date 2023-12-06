@@ -44,7 +44,7 @@ const TasksList: FunctionComponent<TasksListProps> = (props) => {
                         <SingleTask
                             key={id} //
                             data={task}
-                            introAnimationsHaveEnded={index >= 3 || introAnimationsHaveEnded}
+                            introAnimationsHaveEnded={index >= 4 || introAnimationsHaveEnded}
                             remove={deleteTaskWithID(id)}
                             update={editTaskWithID(id)}
                         />

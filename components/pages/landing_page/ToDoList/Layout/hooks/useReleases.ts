@@ -28,7 +28,7 @@ export function useReleases(mainWrapperRef: MutableRefObject<HTMLDivElement | nu
         alignViewToTop(mainWrapperRef);
         setTimeout(
             () => {
-                releaseToDisplay.setValue(releaseToDisplay.value === "2023" ? "legacy" : "2023");
+                releaseToDisplay.setValue((prev) => (prev === "2023" ? "legacy" : "2023"));
             },
             releaseToDisplay.value === "legacy" ? 50 : 350
         );
