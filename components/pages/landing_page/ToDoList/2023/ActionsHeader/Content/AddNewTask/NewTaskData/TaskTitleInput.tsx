@@ -3,9 +3,10 @@ import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
 import { TITLE_RESTRICTIONS } from "landing_page/ToDoList/2023/validators/length_restrictions";
 // Types
 import type { FunctionComponent } from "react";
+// Other components
+import LengthIndicatorWrapper from "./_LengthIndicatorWrapper";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
-import WrapperWithWitdthIndicator from "components/atoms/forms/LengthIndicator/WithWrapper";
 
 const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
@@ -17,17 +18,11 @@ const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (p
     }
 
     return (
-        <WrapperWithWitdthIndicator
-            wrapperProps={{
-                id: props.id,
-            }}
-            lengthIndicator={{
-                currentLength: titleLength, //
-                min: TITLE_RESTRICTIONS.min,
-                max: TITLE_RESTRICTIONS.max,
-                optional: true,
-                width: "50px",
-            }}
+        <LengthIndicatorWrapper
+            id={props.id} //
+            width="50px"
+            length={titleLength}
+            restrictions={TITLE_RESTRICTIONS}
         >
             <StyledInput
                 placeholder="What do you have to do?" //
@@ -40,7 +35,7 @@ const TaskTitleInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (p
                     },
                 }}
             />
-        </WrapperWithWitdthIndicator>
+        </LengthIndicatorWrapper>
     );
 };
 

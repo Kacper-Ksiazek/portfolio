@@ -3,10 +3,11 @@ import { useAddNewTaskContext } from "../hooks/useAddNewTaskContext";
 import { DESCRIPTION_RESTRICTIONS } from "landing_page/ToDoList/2023/validators/length_restrictions";
 // Types
 import type { FunctionComponent } from "react";
+// Other components
+import LengthIndicatorWrapper from "./_LengthIndicatorWrapper";
 // Styled components
 import StyledInput from "@/components/atoms/forms/StyledInput";
 import OptionalPropertyIndicator from "@/components/atoms/forms/OptionalPropertyIndicator";
-import WrapperWithWitdthIndicator from "components/atoms/forms/LengthIndicator/WithWrapper";
 
 const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boolean }> = (props) => {
     const { newTaskBody, updateNewTaskBody } = useAddNewTaskContext();
@@ -16,17 +17,11 @@ const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boole
     }
 
     return (
-        <WrapperWithWitdthIndicator
-            wrapperProps={{
-                id: props.id,
-            }}
-            lengthIndicator={{
-                currentLength: newTaskBody.description?.length ?? 0, //
-                max: DESCRIPTION_RESTRICTIONS.max,
-                min: DESCRIPTION_RESTRICTIONS.min,
-                optional: true,
-                width: "66px",
-            }}
+        <LengthIndicatorWrapper
+            id={props.id} //
+            length={newTaskBody.description?.length ?? 0}
+            restrictions={DESCRIPTION_RESTRICTIONS}
+            width="66px"
         >
             <OptionalPropertyIndicator />
 
@@ -42,7 +37,7 @@ const TaskTaskDescriptionInput: FunctionComponent<{ id: string; isInvalid: boole
                     },
                 }}
             />
-        </WrapperWithWitdthIndicator>
+        </LengthIndicatorWrapper>
     );
 };
 

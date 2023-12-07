@@ -1,4 +1,5 @@
 // Tools
+import { alpha } from "@mui/material";
 import { LOCALIZATION_RESTRICTIONS } from "landing_page/ToDoList/2023/validators/length_restrictions";
 import { useEditModeContext, useValidationResultContext } from "landing_page/ToDoList/2023/TasksList/SingleTask/hooks";
 // Types
@@ -28,7 +29,10 @@ const EditTaskDueTimePickerInput: FunctionComponent<LocalizationInputProps> = (p
                 max: LOCALIZATION_RESTRICTIONS.max,
                 min: LOCALIZATION_RESTRICTIONS.min,
                 optional: true,
-                width: "60px",
+                sx: {
+                    width: "60px",
+                    color: alpha("#fff", 0.6),
+                },
             }}
             wrapperProps={{
                 className: props.className,

@@ -10,6 +10,6 @@ export interface WrapperWithWitdthIndicatorProps {
     wrapperProps?: { sx?: SxProps } & HTMLAttributes<HTMLSpanElement>;
 
     lengthIndicator: {
-        width: `${number}px`;
+        sx: SxProps;
     } & Pick<LengthIndicatorProps, "currentLength" | "max" | "min" | "optional">;
 }

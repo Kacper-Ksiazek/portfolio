@@ -1,4 +1,5 @@
 // Tools
+import { alpha } from "@mui/material";
 import { DESCRIPTION_RESTRICTIONS } from "landing_page/ToDoList/2023/validators/length_restrictions";
 import { useEditModeContext, useValidationResultContext } from "landing_page/ToDoList/2023/TasksList/SingleTask/hooks";
 // Types
@@ -30,7 +31,10 @@ const EditTaskDescriptionInput: FunctionComponent<EditTaskDescriptionInputProps>
                 max: DESCRIPTION_RESTRICTIONS.max,
                 min: DESCRIPTION_RESTRICTIONS.min,
                 optional: true,
-                width: "66px",
+                sx: {
+                    width: "66px",
+                    color: alpha("#fff", 0.6),
+                },
             }}
             wrapperProps={{
                 className: props.className,

@@ -10,7 +10,6 @@ import WrapperWithLengthIndicatorBase from "./Base";
 
 const WrapperWithWitdthIndicator: FunctionComponent<WrapperWithWitdthIndicatorProps> = (props) => {
     const { width: viewportWidth } = useWindowSize();
-    const { width: lengthIndicatorWidth, ...lengthIndicatorPropsToForward } = props.lengthIndicator;
 
     const applyColumnLayout: boolean = props.column ? true : viewportWidth < 500;
 
@@ -19,8 +18,7 @@ const WrapperWithWitdthIndicator: FunctionComponent<WrapperWithWitdthIndicatorPr
             {props.children}
 
             <LengthIndicator
-                {...lengthIndicatorPropsToForward} //
-                sx={{ width: lengthIndicatorWidth }}
+                {...props.lengthIndicator} //
                 disableErrorMessages
             />
         </WrapperWithLengthIndicatorBase>

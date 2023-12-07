@@ -1,4 +1,5 @@
 // Tools
+import { alpha } from "@mui/material";
 import { TITLE_RESTRICTIONS } from "landing_page/ToDoList/2023/validators/length_restrictions";
 import { useEditModeContext, useValidationResultContext } from "landing_page/ToDoList/2023/TasksList/SingleTask/hooks";
 // Types
@@ -27,7 +28,10 @@ const EditTaskTitleInput: FunctionComponent<EditTaskTitleInputProps> = (props) =
                 currentLength: editModeContext.newState.title.length,
                 max: TITLE_RESTRICTIONS.max,
                 min: TITLE_RESTRICTIONS.min,
-                width: "66px",
+                sx: {
+                    width: "66px",
+                    color: alpha("#fff", 0.6),
+                },
             }}
             wrapperProps={{
                 className: props.className,
