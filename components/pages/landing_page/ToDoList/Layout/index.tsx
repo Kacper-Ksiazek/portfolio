@@ -45,7 +45,7 @@ const ToDoListLayout = forwardRef<HTMLDivElement, ToDoListLayoutProps>((props, r
                     opacity: releaseIsChanging ? 0 : 1,
                     transition: "opacity 0.3s ease-in-out",
                     //
-                    animation: `${fadeSimple} .001s .3s both`,
+                    animation: `${fadeSimple} .001s .4s both`,
                 }}
             >
                 {props.children}
