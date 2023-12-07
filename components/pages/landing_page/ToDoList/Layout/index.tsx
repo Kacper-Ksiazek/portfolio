@@ -12,6 +12,7 @@ import Box from "@mui/material/Box";
 import Footer from "./Footer";
 import * as HeaderElements from "./HeaderElements";
 import DarkSectionWrapper from "@/components/atoms/content_placement/SectionWrapper/Dark";
+import { fadeSimple } from "../../Projects/SingleProjectRow/intro_animations/_keyframes";
 
 interface ToDoListLayoutProps {
     currentRelease: Release;
@@ -39,9 +40,12 @@ const ToDoListLayout = forwardRef<HTMLDivElement, ToDoListLayoutProps>((props, r
             id={CSS_REFERENCES.TO_DO_LIST}
         >
             <Box
+                key={currentRelease} //
                 sx={{
                     opacity: releaseIsChanging ? 0 : 1,
                     transition: "opacity 0.3s ease-in-out",
+                    //
+                    animation: `${fadeSimple} .001s .4s both`,
                 }}
             >
                 {props.children}
