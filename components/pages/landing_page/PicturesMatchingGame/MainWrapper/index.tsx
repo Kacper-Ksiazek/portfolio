@@ -36,6 +36,11 @@ const PicturesMatchingGameWrapper: FunctionComponent<PicturesMatchingGameWrapper
                     height: "42px",
                     fontFamily: "Montserrat Alternates",
                 },
+                ".dark-section-content-wrapper": {
+                    "@media (min-width:650px)": {
+                        justifyContent: "center",
+                    },
+                },
                 "&.summary": {
                     height: "calc(100dvh - 40px)",
                     ".dark-section-content-wrapper": {
