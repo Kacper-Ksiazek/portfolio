@@ -1,5 +1,6 @@
 // Tools
 import { useEffect } from "react";
+import { CSS_REFERENCES } from "./css_references";
 import { usePicturesMatchingGameContext } from "@/components/pages/landing_page/PicturesMatchingGame/hooks/usePicturesMatchingGameContext";
 // Types
 import type { FunctionComponent } from "react";
@@ -15,7 +16,9 @@ const Clock: FunctionComponent<{ limitContent: boolean }> = () => {
     const { isCounting } = context.gameplay.time;
 
     useEffect(() => {
+        // Stop counting time when game is over
         if (context.gameplay.isOver && context.gameplay.time.isCounting) context.methods.recordTime("stop");
+        // Start counting time when game is started
         else if (!context.gameplay.time.isCounting && !context.gameplay.isOver) {
             setTimeout(() => {
                 context.methods.recordTime("start");
@@ -25,19 +28,22 @@ const Clock: FunctionComponent<{ limitContent: boolean }> = () => {
 
     return (
         <ClockWrapper
-            id="pictures-matching-progress-wrapper"
+            id={CSS_REFERENCES.WRAPPER} //
             className={[
                 context.gameplay.time.isCounting ? "counting-active" : "", //
                 context.gameplay.isOver ? "is-over" : "",
             ].join(" ")}
         >
-            <ClockRow>
+            <ClockRow id={CSS_REFERENCES.MOVES_COUNTER}>
                 Moves: <strong>{context.gameplay.moves.inTotal}</strong>
             </ClockRow>
 
-            <Timer countTime={isCounting} />
+            <Timer
+                id={CSS_REFERENCES.TIMER} //
+                countTime={isCounting}
+            />
 
-            <ClockRow>
+            <ClockRow id={CSS_REFERENCES.DIFFICULTY}>
                 Mode: <strong>{context.difficulty}</strong>
             </ClockRow>
         </ClockWrapper>

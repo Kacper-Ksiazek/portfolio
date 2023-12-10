@@ -1,6 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 import { fadeSimpleOUT } from "@/components/keyframes/outro";
+import { SELECTORS as CLOCK } from "./Clock/css_references";
 // Types
 import type { SxProps } from "@mui/material";
 // Styled components
@@ -32,7 +33,7 @@ export default styled("section")(({ theme }) => ({
     position: "relative",
     "&.exiting": {
         animation: `${fadeSimpleOUT} .3s linear both`,
-        "&+#pictures-matching-progress-wrapper": {
+        [`&+${CLOCK.WRAPPER}`]: {
             animation: `${fadeSimpleOUT} .2s linear both !important`,
         },
     },

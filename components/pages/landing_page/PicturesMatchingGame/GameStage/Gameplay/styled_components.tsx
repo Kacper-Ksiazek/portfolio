@@ -19,8 +19,10 @@ export const ButtonsWrapper = styled("div")(({ theme }) => ({
     "@media (max-width:600px)": {
         paddingTop: "36px",
         width: "100%",
+        justifyContent: "space-between",
         button: {
-            width: "calc(50% - 5px)",
+            width: "calc(50% - 2px)",
+            margin: "0 !important",
         },
     },
 }));

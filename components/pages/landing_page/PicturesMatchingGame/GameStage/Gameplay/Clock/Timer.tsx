@@ -3,13 +3,14 @@ import { useEffect, useReducer } from "react";
 import { formatTime } from "@/utils/client/formatTime";
 // Types
 import type { FunctionComponent } from "react";
+import type { BoxProps } from "@mui/material/Box";
 import type { MinSecTimeFormat } from "@/utils/client/formatTime";
 // Material UI Icons
 import AccessTime from "@mui/icons-material/AccessTime";
 // Styled components
 import { ClockRow } from "./styled_components";
 
-interface TimerProps {
+interface TimerProps extends BoxProps {
     countTime: boolean;
 }
 
@@ -27,19 +28,25 @@ const timeReducer = (state: MinSecTimeFormat): MinSecTimeFormat => {
     }
 };
 
-const Timer: FunctionComponent<TimerProps> = (props) => {
+const Timer: FunctionComponent<TimerProps> = ({ countTime, ...propsToForward }) => {
     const [time, incrementTime] = useReducer(timeReducer, { minutes: 0, seconds: 0 } as MinSecTimeFormat);
 
     useEffect(() => {
-        const interval: ReturnType<typeof setInterval> | null = props.countTime ? setInterval(incrementTime, 1000) : null;
+        const interval: ReturnType<typeof setInterval> | null = countTime ? setInterval(incrementTime, 1000) : null;
 
         return function () {
             if (interval !== null) clearTimeout(interval);
         };
-    }, [props.countTime]);
+    }, [countTime]);
 
     return (
-        <ClockRow sx={{ fontSize: "30px !important" }}>
+        <ClockRow
+            {...propsToForward}
+            sx={{
+                fontSize: "30px !important",
+                ...propsToForward.sx,
+            }}
+        >
             <AccessTime />
             <span>
                 {formatTime({

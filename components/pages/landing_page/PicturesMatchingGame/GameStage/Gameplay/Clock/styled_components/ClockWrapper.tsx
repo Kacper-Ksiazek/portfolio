@@ -1,5 +1,6 @@
 // Tools
 import { alpha, styled } from "@mui/material";
+import { SELECTORS } from "../css_references";
 import { fadeSimple } from "@/components/keyframes/intro";
 // Styled components
 const ProgressWrapper = styled("div")(({ theme }) => ({
@@ -8,35 +9,33 @@ const ProgressWrapper = styled("div")(({ theme }) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        ".progress-row": {
+        gap: "8px",
+        ">*": {
             height: "50px",
-            "&:not(&:nth-of-type(1))": {
-                marginLeft: "10px",
-                marginTop: "0",
+            width: "200px",
+            "@media (max-width:800px)": {
+                width: "166px",
             },
         },
     },
     "@media (max-width:600px)": {
-        flexWrap: "wrap",
-        justifyContent: "space-between",
         width: "100%",
-        ".progress-row": {
-            boxSizing: "border-box !important",
-            marginTop: "0 !important",
-            marginLeft: "0 !important",
-            height: "58px",
-            "&:nth-of-type(1)": {
-                width: "100%",
-                marginBottom: "10px",
-            },
-            "&:nth-of-type(2), &:nth-of-type(3)": {
-                width: "calc(50% - 5px)",
-            },
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        gridTemplateRows: "repeat(2, 1fr)",
+        gap: "4px",
+        [SELECTORS.MOVES_COUNTER]: {
+            gridArea: "1 / 1 / 2 / 3",
+        },
+        [SELECTORS.TIMER]: {
+            gridArea: "2 / 1 / 3 / 2",
+        },
+        [SELECTORS.DIFFICULTY]: {
+            gridArea: "2 / 2 / 3 / 3",
         },
     },
     ".progress-row, button": {
         padding: "6px 12px",
-        width: "166px",
         fontSize: "18px",
         textAlign: "center",
         borderRadius: "5px",
@@ -44,8 +43,11 @@ const ProgressWrapper = styled("div")(({ theme }) => ({
         boxSizing: "content-box",
     },
     ".progress-row": {
-        background: alpha(theme.palette.mode === "dark" ? "#fff" : "#000", 0.04),
         color: alpha("#fff", 0.3),
+        background:
+            theme.palette.mode === "dark" //
+                ? alpha("#fff", 0.04)
+                : alpha("#000", 0.2),
     },
     "&.counting-active": {
         ".progress-row": {
