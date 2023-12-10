@@ -1,8 +1,8 @@
 // Tools
 import { styled } from "@mui/material";
 // Types
-import type { BoxProps } from "@mui/material";
 import type { FunctionComponent } from "react";
+import type { BoxProps } from "@mui/material/Box";
 // Styled components
 const ProgressRowBase = styled("div")(({ theme, ...props }) => ({
     userSelect: "none",
@@ -14,9 +14,6 @@ const ProgressRowBase = styled("div")(({ theme, ...props }) => ({
     svg: {
         fontSize: "inherit",
         margin: "0 8px 0 0px",
-    },
-    "&:not(&:nth-of-type(1))": {
-        marginTop: "4px",
     },
     strong: {
         marginLeft: "4px",
