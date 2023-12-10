@@ -33,5 +33,5 @@ export function computeDuration(time: Gameplay["time"]): GamesHistoryRecord["dur
     const start: number = time.start;
     const end: number = time.end ? time.end : Date.now();
 
-    return Math.floor((end - start) / 1000) / 60;
+    return Math.floor((end - start) / 1000);
 }
