@@ -4,6 +4,9 @@ import { HTMLStructureOrganizer } from "@/utils/client/HTMLStructureOrganizer";
 export const { CSS_REFERENCES, SELECTORS } = new HTMLStructureOrganizer({
     alias: "footer",
     structure: {
+        MAIN_FOOTER_WRAPPER: {
+            ref_value: "mainwrapper",
+        },
         AUTHOR_NAME: {
             ref_value: "author-name",
         },

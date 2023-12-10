@@ -1,5 +1,6 @@
 // Tools
-import { SELECTORS } from "landing_page/css_references";
+import { SELECTORS as LAYOUT_FOOTER } from "@/layout/Footer/css_references";
+import { SELECTORS as LANDING_PAGE_SECTIONS } from "landing_page/css_references";
 
 type ReleventHTMLElement =
     | "SVG_BACKGROUND" //
@@ -7,11 +8,13 @@ type ReleventHTMLElement =
     | "PICTURES_WRAPPER_SCROLL_ANCHOR"
     | "USER_CHOICE_ANIMATION_BASE"
     | "GAME_BUTTONS_WRAPPER"
-    | "BODY_OF_GAMES_HISTORY_TABLE";
+    | "BODY_OF_GAMES_HISTORY_TABLE"
+    | "LAYOUT_FOOTER";
 
 const selectors: Record<ReleventHTMLElement, string> = Object.seal({
-    SVG_BACKGROUND: `${SELECTORS.PICTURES_MATCHING_GAME} .dark-section-wrapper-background-svg`,
-    MAIN_WRAPPER: SELECTORS.PICTURES_MATCHING_GAME,
+    SVG_BACKGROUND: `${LANDING_PAGE_SECTIONS.PICTURES_MATCHING_GAME} .dark-section-wrapper-background-svg`,
+    MAIN_WRAPPER: LANDING_PAGE_SECTIONS.PICTURES_MATCHING_GAME,
+    LAYOUT_FOOTER: LAYOUT_FOOTER.MAIN_FOOTER_WRAPPER,
     PICTURES_WRAPPER: "#picture-matching-game-pictures-wrapper",
     PICTURES_WRAPPER_SCROLL_ANCHOR: "#picture-matching-game-pictures-wrapper-user-scroll-anchor",
     USER_CHOICE_ANIMATION_BASE: "#user-choice-animaiton-base",

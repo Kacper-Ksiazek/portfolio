@@ -1,5 +1,5 @@
 // Tools
-import { requstDOMNode } from "../utils/getDOMNode";
+import * as utils from "./utils";
 import { useCallback } from "react";
 import useBlockUserScroll from "@/hooks/useBlockUserScroll";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
@@ -13,29 +13,38 @@ export const usePositionFixedWindow = (): UsePositionFixedWindowResult => {
     const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
     const { hideNavigationBar } = useMainNavigationBarContext();
 
+    // Open the position fixed window
     const open = useCallback(() => {
         const userScroll = window.scrollY;
-        const mainWrapper = requstDOMNode("MAIN_WRAPPER");
-
         setTimeout(() => {
-            [mainWrapper, requstDOMNode("SVG_BACKGROUND"), requstDOMNode("USER_CHOICE_ANIMATION_BASE")].forEach((node) => {
+            // Hide the footer
+            utils.hideLayoutFooter();
+
+            // Move the relevent nodes to the top of the screen
+            utils.performActionOnEveryReleventNode((node) => {
                 node.style.top = `${userScroll - 20}px`;
             });
-            setTimeout(() => {
-                requstDOMNode("PICTURES_WRAPPER_SCROLL_ANCHOR").scrollIntoView();
-            }, 100);
+
+            // Scroll to the anchor
+            setTimeout(utils.scrollToTheAnchor, 100);
         }, 2);
 
         hideNavigationBar();
         disableUserScroll();
     }, [disableUserScroll, hideNavigationBar]);
 
+    // Close the position fixed window
     const close = useCallback(() => {
-        const mainWrapper = requstDOMNode("MAIN_WRAPPER");
         setTimeout(() => {
-            [mainWrapper, requstDOMNode("SVG_BACKGROUND"), requstDOMNode("USER_CHOICE_ANIMATION_BASE")].forEach((node) => {
+            // Show the footer
+            utils.showLayoutFooter();
+
+            // Move the relevent nodes to the top of the screen
+            utils.performActionOnEveryReleventNode((node) => {
                 node.style.top = `0`;
             });
+
+            // Scroll to the anchor
             enableUserScroll();
         }, 2);
     }, [enableUserScroll]);

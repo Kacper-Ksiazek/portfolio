@@ -1,4 +1,5 @@
 // Tools
+import { CSS_REFERENCES } from "../css_references";
 import { stylesWhenVisible } from "./styles_when_visible";
 // Types
 import type { FunctionComponent } from "react";
@@ -15,7 +16,7 @@ import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
 const EnabledJavascriptContent: FunctionComponent = () => {
     return (
         <FooterContextProvider>
-            <FooterBase>
+            <FooterBase id={CSS_REFERENCES.MAIN_FOOTER_WRAPPER}>
                 <FooterContent />
                 <TransformWhenVisible
                     to={stylesWhenVisible} //
