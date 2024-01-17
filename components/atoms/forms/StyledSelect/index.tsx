@@ -1,3 +1,5 @@
+// Tools
+import { generateAliasFromValue } from "./utils";
 // Types
 import type { SxProps } from "@mui/material";
 import type { ChangeEvent, HTMLAttributes, ReactNode } from "react";
@@ -29,6 +31,7 @@ interface StyledSelectProps<T> extends Omit<HTMLAttributes<HTMLSelectElement>, "
     className?: string;
     startAdornment?: ReactNode;
     componentThemeID?: ComponentThemeName;
+    disableAutomaticallyGeneratedAlias?: boolean;
 }
 
 export default function StyledSelect<T extends number | string | Record<any, any>>(props: StyledSelectProps<T>) {
@@ -63,10 +66,10 @@ export default function StyledSelect<T extends number | string | Record<any, any
                         </MenuItem>
                     );
                 }
-                if (item instanceof Object) throw new Error("You cannot use an object standalone without an alias to it!");
+
                 return (
                     <MenuItem value={item} key={index}>
-                        {item}
+                        {props.disableAutomaticallyGeneratedAlias !== true && typeof item === "string" ? generateAliasFromValue(item) : item}
                     </MenuItem>
                 );
             })}
