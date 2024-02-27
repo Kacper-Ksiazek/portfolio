@@ -79,4 +79,5 @@ enum ProjectType {
   PERSONAL
   HACKATHON
   COMMERCIAL
+  COLLEGE
 }

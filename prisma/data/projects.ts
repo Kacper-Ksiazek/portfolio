@@ -2,6 +2,20 @@ import type { Project, SeederDataItem } from "./@types";
 export default (
     [
         {
+            id: "ETHREAL",
+            title: "Ethreal",
+            type: "COLLEGE",
+            onlyMentioned: true,
+            folder: "ethreal",
+            releventTechnologies: ["figma", "UI/UX", "javascript", "work organization"],
+            technologies: [],
+            shortDescription:
+                "The project created during my undergraduate course at *AGH UST*. The task was to create any kind of webpage, so we decided to create one for a fictional luxury theatre. My main responsibilities were to create the entire visual layout of the project using *Figma* and organize the project's structure and workflow by setting up our all objectives in github issues. ",
+            start: new Date(2023, 11, 1),
+            end: new Date(2024, 0, 12),
+            liveDemoURL: "https://theatre-project.vercel.app",
+        },
+        {
             id: "MHACK",
             title: "MObywatel 2.0 mHack",
             type: "HACKATHON",
