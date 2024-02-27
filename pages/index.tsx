@@ -1,6 +1,6 @@
 // Tools
 import { prisma } from "@/prisma/db";
-import { formatProjectDate } from "@/utils/api/date-formatter";
+import { formatPreviousJob, formatProject } from "@/utils/serverless/landing_page";
 // Types
 import type { NextPage, GetStaticProps } from "next";
 import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
@@ -47,37 +47,12 @@ export const getStaticProps: GetStaticProps<LandingPageServerSideProps> = async 
     const schools = await prisma.school.findMany();
     const previousJobs = await prisma.previousJob.findMany();
 
-    const yearsToIndicate: Record<string, number> = {
-        MHACK: 2023,
-        HACKYEAH_2022: 2022,
-        ELECTRON_WORDS_LEARNING_APP: 2021,
-        GAMES_APP: 2020,
-    };
-
     await prisma.$disconnect();
 
     return {
         props: {
-            projects: projects.map((el) => {
-                const isHackathon: boolean = el.type === "HACKATHON";
-
-                const end = isHackathon ? formatProjectDate(el.end, true, "end") : formatProjectDate(el.end);
-                const start = isHackathon ? formatProjectDate(el.start, true, "start") : formatProjectDate(el.start);
-
-                if (yearsToIndicate.hasOwnProperty(el.id)) {
-                    (el as any).yearToIndicate = yearsToIndicate[el.id];
-                }
-
-                (el as any).end = end;
-                (el as any).start = start;
-
-                return el;
-            }) as any,
-            previousJobs: previousJobs.map((el) => {
-                (el as any).end = formatProjectDate(el.end);
-                (el as any).start = formatProjectDate(el.start);
-                return el;
-            }) as any,
+            projects: projects.map(formatProject),
+            previousJobs: previousJobs.map(formatPreviousJob),
             hobbies,
             schools,
         },
