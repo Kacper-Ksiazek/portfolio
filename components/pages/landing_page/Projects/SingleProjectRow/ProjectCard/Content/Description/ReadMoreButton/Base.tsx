@@ -8,6 +8,7 @@ export default styled("strong")(({ theme }) => ({
     color: theme.palette.text.primary,
     padding: "0 6px",
     overflow: "hidden",
+    transition: "color .3s",
     "&::before, &::after": {
         content: '""',
         position: "absolute",
@@ -32,6 +33,7 @@ export default styled("strong")(({ theme }) => ({
     },
     "&:hover": {
         cursor: "pointer",
+        color: "#fff",
         "&::before, &::after": {
             transform: "scaleY(1)",
         },
