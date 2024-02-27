@@ -7,6 +7,7 @@ const COLORS: Record<I_ProjectType, string> = {
     COMMERCIAL: "#ED701D",
     PERSONAL: "#31C451",
     HACKATHON: "#2C3CC9",
+    COLLEGE: "#C93131",
 };
 
 function shouldForwardProp(prop: string) {
