@@ -46,7 +46,7 @@ export default (
             type: "PERSONAL",
             folder: "portfolio",
             start: new Date(2022, 6),
-            end: new Date(2022, 7),
+            end: new Date(2023, 9),
             githubURL: "https://github.com/Kacper-Ksiazek/portfolio",
             shortDescription: `After more than *2 years of daily coding*, I decided to compile a showcase of the most relevant projects I've created during this period. I deeply immersed myself in coding, acquiring substantial knowledge. Through this project, I aim to demonstrate my acquired competences and showcase some of my skills`,
             description: {
