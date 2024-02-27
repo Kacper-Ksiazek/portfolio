@@ -6,7 +6,7 @@ export default styled("span")(({ theme }) => ({
     fontWeight: 900,
     color:
         theme.palette.mode === "light" //
-            ? alpha(theme.palette.secondary.main, 0.05)
+            ? alpha(theme.palette.secondary.main, 0.1)
             : alpha("#fff", 0.05),
     letterSpacing: "10px",
     userSelect: "none",
