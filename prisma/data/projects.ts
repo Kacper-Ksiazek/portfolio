@@ -7,7 +7,7 @@ export default (
             type: "COLLEGE",
             onlyMentioned: true,
             folder: "ethreal",
-            releventTechnologies: ["figma", "UI/UX", "javascript", "work organization", "css", "html"],
+            releventTechnologies: ["figma", "UI/UX", "javascript", "work organization"],
             technologies: [],
             shortDescription:
                 "The project created during my undergraduate course at *AGH UST*. The task was to create any kind of webpage, so we decided to create one for a fictional luxury theatre. My main responsibilities were to create the entire visual layout of the project using *Figma* and organize the project's structure and workflow by setting up our all objectives in github issues. ",
