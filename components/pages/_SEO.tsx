@@ -66,6 +66,7 @@ const SEO: FunctionComponent<SEOProps> = (props) => {
                                 position: 1,
                                 item: {
                                     "@type": "WebPage",
+                                    "@id": "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--about-me",
                                     name: "About me",
                                     url: "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--about-me",
                                 },
@@ -75,6 +76,7 @@ const SEO: FunctionComponent<SEOProps> = (props) => {
                                 position: 2,
                                 item: {
                                     "@type": "WebPage",
+                                    "@id": "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects",
                                     name: "My projects",
                                     url: "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects",
                                 },
@@ -84,6 +86,7 @@ const SEO: FunctionComponent<SEOProps> = (props) => {
                                 position: 3,
                                 item: {
                                     "@type": "WebPage",
+                                    "@id": "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--contact-me",
                                     name: "Contact",
                                     url: "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--contact-me",
                                 },
@@ -93,6 +96,7 @@ const SEO: FunctionComponent<SEOProps> = (props) => {
                                 position: 4,
                                 item: {
                                     "@type": "WebPage",
+                                    "@id": "/cv",
                                     name: "CV",
                                     url: "/cv",
                                 },
