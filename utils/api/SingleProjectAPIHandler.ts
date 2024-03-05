@@ -48,7 +48,12 @@ export default class SingleProjectAPIHandler {
         await prisma.$connect();
 
         const recommendedProjects: RawRecommendedProject[] = await prisma.project.findMany({
-            where: { id: { not: this.projectID }, onlyMentioned: { not: true } },
+            where: {
+                id: {
+                    not: this.projectID,
+                },
+                hasSubpage: true,
+            },
             select: {
                 id: true,
                 end: true,

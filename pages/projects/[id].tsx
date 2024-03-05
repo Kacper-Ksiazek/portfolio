@@ -46,9 +46,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
                 id: true,
             },
             where: {
-                NOT: {
-                    onlyMentioned: true,
-                },
+                hasSubpage: true,
             },
         })
     ).map((el) => {

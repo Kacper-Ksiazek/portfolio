@@ -21,7 +21,7 @@ model Project {
   releventTechnologies String[]
   start                DateTime
   end                  DateTime
-  onlyMentioned        Boolean?    @default(false)
+  hasSubpage           Boolean?    @default(true)
 }
 
 model Hobby {
