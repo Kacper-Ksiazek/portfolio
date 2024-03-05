@@ -3,7 +3,7 @@ export default (
     [
         {
             id: "ETHREAL",
-            title: "Ethreal",
+            title: "Ethereal",
             type: "COLLEGE",
             hasSubpage: false,
             folder: "ethreal",

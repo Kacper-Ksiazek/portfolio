@@ -12,7 +12,7 @@ import IntroductionScreen from "@/components/pages/landing_page/IntroductionScre
 const Home: NextPage<LandingPageServerSideProps> = (props) => {
     return (
         <>
-            <SEO description="Since the age of 16 software engineering enjoyer, then freelancer, now Data Science at AGH in Cracow freshman. This portfolio is an extensive introduction of my person including information regarding my previous education and working experience, my current hobbies and foremost my motives and goals. " />
+            <SEO description="Fullstack developer portfolio website. I specialize in the typescript. Second year student of Engineering and Data Analysis at AGH UST in Cracow, Poland." />
             <>
                 <IntroductionScreen />
                 <LandingPageContent {...props} />

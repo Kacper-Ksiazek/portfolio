@@ -6,6 +6,7 @@ import type { FunctionComponent } from "react";
 // Other components
 import Image from "next/image";
 import Head from "next/head";
+import SEO from "@/components/pages/_SEO";
 // Styled components
 const AppLoaderWrapper = styled("div")(({ theme }) => ({
     position: "fixed",
@@ -31,9 +32,7 @@ const AppLoaderWrapper = styled("div")(({ theme }) => ({
 const AppLoadingScreen: FunctionComponent<{ outro: boolean }> = (props) => {
     return (
         <>
-            <Head>
-                <title key="loading-title">Loading...</title>
-            </Head>
+            <SEO description="Fullstack developer portfolio website. I specialize in the typescript. Second year student of Engineering and Data Analysis at AGH UST in Cracow, Poland." />
 
             <AppLoaderWrapper className={props.outro ? "outro" : ""}>
                 <div className="img-wrapper">
