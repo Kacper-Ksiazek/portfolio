@@ -53,52 +53,54 @@ const SEO: FunctionComponent<SEOProps> = (props) => {
             <meta name="theme-color" content="#161619" />
 
             {/* JSON-LD */}
-            <script type="application/ld+json">
-                {`
-                {
-                    "@context": "https://schema.org/",
-                    "@type": "BreadcrumbList",
-                    "itemListElement": [
-                        {
-                            "@type": "ListItem",
-                            "position": 1,
-                            "item": {
-                                "@type": "WebPage",
-                                "name": "About me",
-                                "url": "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects"
-                            }
-                        },
-                        {
-                            "@type": "ListItem",
-                            "position": 2,
-                            "item": {
-                                "@type": "WebPage",
-                                "name": "My projects",
-                                "url": "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects"
-                            }
-                        },
-                        {
-                            "@type": "ListItem",
-                            "position": 3,
-                            "item": {
-                                "@type": "WebPage",
-                                "name": "Contact",
-                                "url": "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects"
-                            }
-                        },
-                        {
-                            "@type": "ListItem",
-                            "position": 4,
-                            "item": {
-                                "@type": "WebPage",
-                                "name": "CV",
-                                "url": "/cv"
-                            }
-                        }
-                    ]
-                }
-            `}
-            </script>
+            <script
+                key="json-ld" //
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org/",
+                        "@type": "BreadcrumbList",
+                        itemListElement: [
+                            {
+                                "@type": "ListItem",
+                                position: 1,
+                                item: {
+                                    "@type": "WebPage",
+                                    name: "About me",
+                                    url: "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects",
+                                },
+                            },
+                            {
+                                "@type": "ListItem",
+                                position: 2,
+                                item: {
+                                    "@type": "WebPage",
+                                    name: "My projects",
+                                    url: "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects",
+                                },
+                            },
+                            {
+                                "@type": "ListItem",
+                                position: 3,
+                                item: {
+                                    "@type": "WebPage",
+                                    name: "Contact",
+                                    url: "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects",
+                                },
+                            },
+                            {
+                                "@type": "ListItem",
+                                position: 4,
+                                item: {
+                                    "@type": "WebPage",
+                                    name: "CV",
+                                    url: "/cv",
+                                },
+                            },
+                        ],
+                    }),
+                }}
+            />
 
             {/* Disabled javascript */}
             <noscript>
