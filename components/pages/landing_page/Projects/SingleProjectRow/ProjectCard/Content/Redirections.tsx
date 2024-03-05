@@ -50,13 +50,16 @@ const RedirectionsBase = styled("div")(({ theme }) => ({
 
 interface RedirectionsProps {
     id: string;
+    hasSubpage: boolean;
     liveDemoURL: string | null;
 }
 
 const Redirections: FunctionComponent<RedirectionsProps> = (props) => {
+    if (props.hasSubpage === false && props.liveDemoURL === null) return <></>;
+
     return (
         <RedirectionsBase className={`${CSS_REFERENCES.PROJECT_CARD.REDIRECTIONS} ${props.liveDemoURL ? "double" : ""}`}>
-            <InternalRedirection url={`/projects/${props.id}`}>See details</InternalRedirection>
+            {props.hasSubpage && <InternalRedirection url={`/projects/${props.id}`}>See details</InternalRedirection>}
 
             {(() => {
                 if (props.liveDemoURL) {

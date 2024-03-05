@@ -58,7 +58,11 @@ const ProjectCard: FunctionComponent<ProjectCardProps> = (props) => {
                     setShowEntireText={setShowEntireDescription}
                 />
 
-                {data.type !== "HACKATHON" && <Redirections id={data.id} liveDemoURL={data.liveDemoURL} />}
+                <Redirections
+                    id={data.id} //
+                    hasSubpage={data.hasSubpage}
+                    liveDemoURL={data.liveDemoURL}
+                />
             </TextContentWrapper>
 
             <ThumbnailWrapper

@@ -15,7 +15,7 @@ export interface Project {
     releventTechnologies: _Project["releventTechnologies"];
     yearToIndicate?: number;
     liveDemoURL: _Project["liveDemoURL"];
-    hasSubpage: _Project["hasSubpage"];
+    hasSubpage: boolean;
 }
 
 export interface PreviousJob extends Omit<_PreviousJob, "start" | "end"> {
