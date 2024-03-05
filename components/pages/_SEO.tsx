@@ -52,6 +52,54 @@ const SEO: FunctionComponent<SEOProps> = (props) => {
             <meta name="msapplication-TileColor" content="#F9FAFB" />
             <meta name="theme-color" content="#161619" />
 
+            {/* JSON-LD */}
+            <script type="application/ld+json">
+                {`
+                {
+                    "@context": "https://schema.org/",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "item": {
+                                "@type": "WebPage",
+                                "name": "About me",
+                                "url": "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects"
+                            }
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "item": {
+                                "@type": "WebPage",
+                                "name": "My projects",
+                                "url": "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects"
+                            }
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 3,
+                            "item": {
+                                "@type": "WebPage",
+                                "name": "Contact",
+                                "url": "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects"
+                            }
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 4,
+                            "item": {
+                                "@type": "WebPage",
+                                "name": "CV",
+                                "url": "/cv"
+                            }
+                        }
+                    ]
+                }
+            `}
+            </script>
+
             {/* Disabled javascript */}
             <noscript>
                 <meta httpEquiv="refresh" content="0; url=/no-javascript" />
