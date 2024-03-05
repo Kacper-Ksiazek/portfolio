@@ -5,7 +5,19 @@ import type { Project as PrismaProject } from "@prisma/client";
 import type { ReleventTechnology } from "@/@types/prisma/Project";
 import type { Project as FinalProject } from "@/@types/pages/LandingPage";
 
-type RawProject = Pick<PrismaProject, "id" | "title" | "folder" | "type" | "end" | "start" | "shortDescription" | "releventTechnologies" | "liveDemoURL">;
+type RawProject = Pick<
+    PrismaProject,
+    | "id" //
+    | "title"
+    | "folder"
+    | "type"
+    | "end"
+    | "start"
+    | "shortDescription"
+    | "releventTechnologies"
+    | "liveDemoURL"
+    | "hasSubpage"
+>;
 
 /** Formats the date of a project depending on whether formatting project is a hackathon or not. */
 function _formatDate<T extends "start" | "end">(date: RawProject[T], isHackathon: boolean, type: T): string {
@@ -42,6 +54,7 @@ export function formatProject(raw: RawProject): FinalProject {
         shortDescription: raw.shortDescription,
         releventTechnologies: raw.releventTechnologies as ReleventTechnology[],
         liveDemoURL: raw.liveDemoURL,
+        hasSubpage: Boolean(raw.hasSubpage),
 
         // If yearToIndicate is null, it won't be included in the object
         ...(yearToIndicate && { yearToIndicate }),

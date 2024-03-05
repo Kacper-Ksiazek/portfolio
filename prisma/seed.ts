@@ -27,10 +27,12 @@ class PrismaSeeder extends ConsolePrettier {
     protected seeders: ModelToSeed[];
     protected uploadFoldersToRefresh: string[];
 
+    protected DB_URL = process.env.POSTGRES_URL;
+
     protected prisma = new PrismaClient({
         datasources: {
             db: {
-                url: process.env.POSTGRES_URL,
+                url: this.DB_URL,
             },
         },
     });
@@ -88,6 +90,9 @@ class PrismaSeeder extends ConsolePrettier {
         if (process.env.NODE_ENV === "production") return;
         console.clear();
 
+        this.consoleMsg("0. Prisma connected");
+        console.log(`Database URL:\n${this.DB_URL}\n`);
+
         await this.deleteCurrentImages();
 
         for (const { model, data } of this.seeders) {
@@ -99,7 +104,7 @@ class PrismaSeeder extends ConsolePrettier {
     }
 }
 
-const main = async () => {
+async function main() {
     await fse.ensureDir(uploadDir);
 
     await new PrismaSeeder({
@@ -123,6 +128,6 @@ const main = async () => {
         ],
         uploadFoldersToRefresh: ["projects", "hobbies", "schools", "previous_jobs"],
     }).main();
-};
+}
 
 main();

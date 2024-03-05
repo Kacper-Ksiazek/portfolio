@@ -37,6 +37,7 @@ export const getStaticProps: GetStaticProps<LandingPageServerSideProps> = async 
             shortDescription: true,
             releventTechnologies: true,
             liveDemoURL: true,
+            hasSubpage: true,
         },
         orderBy: {
             end: "desc",

@@ -1,6 +1,6 @@
 // Types
-import type { Hobby, School, PreviousJob as _PreviousJob } from "@prisma/client";
 import type { Project as _Project } from "@/@types/prisma/Project";
+import type { Hobby, School, PreviousJob as _PreviousJob } from "@prisma/client";
 
 export type ScrollableToSections = "about-me" | "projects" | "contact-me" | "contact-me-open-form-button";
 
@@ -15,6 +15,7 @@ export interface Project {
     releventTechnologies: _Project["releventTechnologies"];
     yearToIndicate?: number;
     liveDemoURL: _Project["liveDemoURL"];
+    hasSubpage: boolean;
 }
 
 export interface PreviousJob extends Omit<_PreviousJob, "start" | "end"> {
