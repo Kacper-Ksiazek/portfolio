@@ -67,7 +67,7 @@ const SEO: FunctionComponent<SEOProps> = (props) => {
                                 item: {
                                     "@type": "WebPage",
                                     name: "About me",
-                                    url: "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects",
+                                    url: "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--about-me",
                                 },
                             },
                             {
@@ -85,7 +85,7 @@ const SEO: FunctionComponent<SEOProps> = (props) => {
                                 item: {
                                     "@type": "WebPage",
                                     name: "Contact",
-                                    url: "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--projects",
+                                    url: "/?skip-introduction-screen-rectangle-animations=1&scrollToElement=landing-page--contact-me",
                                 },
                             },
                             {
