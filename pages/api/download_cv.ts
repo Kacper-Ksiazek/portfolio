@@ -12,6 +12,12 @@ interface Request extends Omit<NextApiRequest, "query"> {
     query: DownloadCVQueryParams;
 }
 
+export const config = {
+    api: {
+        responseLimit: "24mb",
+    },
+};
+
 export default function handler(req: Request, res: NextApiResponse) {
     try {
         // Check if the request method is allowed
