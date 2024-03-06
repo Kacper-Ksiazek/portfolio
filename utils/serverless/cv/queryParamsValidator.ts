@@ -11,7 +11,7 @@ const PROPER_VALUES: ProperValues_I = {
     variant: ["dark", "light"],
     lang: ["en", "pl"],
     format: ["pdf", "png"],
-} as const;
+};
 
 function isProperVariant(value: string): value is CV.Variant {
     return PROPER_VALUES.variant.includes(value as CV.Variant);
