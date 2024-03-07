@@ -18,6 +18,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
     const { hideNavigationBar, showNavigationBar } = useMainNavigationBarContext();
 
     const [language, setLanguage] = useState<CV.Language>("en");
+    const [variant, setVariant] = useState<CV.Variant>("light");
 
     useEffect(() => {
         disableUserScroll();
@@ -63,12 +64,10 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
 
                     <h1 className="alternative-font-family">Curriculum vitae</h1>
 
-                    <CVComponents.PickLanguage value={language} setValue={setLanguage} />
-
-                    <Box sx={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "8px" }}>
-                        <button>light</button>
-                        <button>dark</button>
-                    </Box>
+                    <Stack direction="row" justifyContent="space-between">
+                        <CVComponents.PickLanguage value={language} setValue={setLanguage} />
+                        <CVComponents.PickColorTheme value={variant} setValue={setVariant} />
+                    </Stack>
 
                     <h3>Save me</h3>
                     <StyledButton componentThemeID="PRIMARY">Open preview cv</StyledButton>
