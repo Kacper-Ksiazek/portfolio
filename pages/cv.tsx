@@ -1,20 +1,23 @@
 // Tools
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useBlockUserScroll from "@/hooks/useBlockUserScroll";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
 // Types
 import type { NextPage } from "next";
+import type { CV } from "@/@types/pages/CV";
 import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
 // Other components
 import Head from "next/head";
-import Image from "next/image";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import { StyledButton } from "@/components/atoms/forms";
+import * as CVComponents from "@/components/pages/cv";
+import StyledButton from "@/components/atoms/forms/StyledButton";
 
 const Home: NextPage<LandingPageServerSideProps> = (props) => {
     const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
     const { hideNavigationBar, showNavigationBar } = useMainNavigationBarContext();
+
+    const [language, setLanguage] = useState<CV.Language>("en");
 
     useEffect(() => {
         disableUserScroll();
@@ -60,11 +63,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
 
                     <h1 className="alternative-font-family">Curriculum vitae</h1>
 
-                    <h3>Adjust me</h3>
-                    <Box sx={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "8px" }}>
-                        <button>pl</button>
-                        <button>en</button>
-                    </Box>
+                    <CVComponents.PickLanguage value={language} setValue={setLanguage} />
 
                     <Box sx={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "8px" }}>
                         <button>light</button>
@@ -85,7 +84,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
 
                     <span style={{ flexGrow: 1 }}></span>
 
-                    <StyledButton componentThemeID="ERROR">Return Home</StyledButton>
+                    {/* <StyledButton componentThemeID="ERROR">Return Home</StyledButton> */}
                 </Stack>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
