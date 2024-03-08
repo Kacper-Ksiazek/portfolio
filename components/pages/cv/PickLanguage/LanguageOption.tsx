@@ -6,13 +6,13 @@ export default styled("div")(({ theme }) => ({
     cursor: "pointer",
     img: {
         width: "64px",
-        aspectRatio: "4/3",
         filter: "grayscale(100%)",
         transition: "filter .3s ease-in-out",
     },
     "&::after": {
         content: "''",
         ...theme.mixins.absolute_full,
+        height: "40px",
         background: "#000",
         opacity: 0.5,
         transition: "opacity .3s ease-in-out",
