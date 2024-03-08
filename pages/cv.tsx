@@ -108,13 +108,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
                         <span>Return Home</span>
                     </StyledButton>
 
-                    <button>
-                        <GitHubIcon />
-                    </button>
-
-                    <button>
-                        <LinkedInIcon />
-                    </button>
+                    <CVComponents.SocialMediaRedirections />
                 </Stack>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
