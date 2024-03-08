@@ -6,7 +6,7 @@ export namespace CV {
     export type Language = "en" | "pl";
 
     /** Supported file extensions of the CV */
-    export type Format = "pdf" | "png";
+    export type Format = "pdf" | "png-valid-a4" | "png-high-res";
 }
 
 export type CVPath = `${CV.Language}/${CV.Variant}.${CV.Format}`;
