@@ -1,7 +1,5 @@
 // Tools
 import { styled } from "@mui/material";
-// Types
-import type { FunctionComponent } from "react";
 // MUI Icons
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";

@@ -1,32 +1,36 @@
 // Tools
 import { useEffect, useState } from "react";
+import { getParticularCVPath } from "@/utils/paths";
 import useBlockUserScroll from "@/hooks/useBlockUserScroll";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
 // Types
 import type { NextPage } from "next";
 import type { CV } from "@/@types/pages/CV";
-import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
 // Other components
 import Link from "next/link";
 import Head from "next/head";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import * as CVComponents from "@/components/pages/cv";
+import StyledSelect from "@/components/atoms/forms/StyledSelect";
 import StyledButton from "@/components/atoms/forms/StyledButton";
+import InternalRedirection from "@/components/atoms/redirections/InternalRedirection";
 // MUI Icons
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import HdRoundedIcon from "@mui/icons-material/HdRounded";
 import QrCode2RoundedIcon from "@mui/icons-material/QrCode2Rounded";
 import SaveAltRoundedIcon from "@mui/icons-material/SaveAltRounded";
-import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import PictureAsPdfRoundedIcon from "@mui/icons-material/PictureAsPdfRounded";
 
-const Home: NextPage<LandingPageServerSideProps> = (props) => {
+type PNGResolution = Exclude<CV.Format, "pdf">;
+
+const Home: NextPage = () => {
     const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
     const { hideNavigationBar, showNavigationBar } = useMainNavigationBarContext();
 
     const [language, setLanguage] = useState<CV.Language>("en");
     const [variant, setVariant] = useState<CV.Variant>("light");
+
+    const [resolutionToDownload, setResolutionToDownload] = useState<PNGResolution>("png-high-res");
 
     useEffect(() => {
         disableUserScroll();
@@ -38,6 +42,19 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
         };
     }, [disableUserScroll, enableUserScroll, hideNavigationBar, showNavigationBar]);
 
+    function handleOpenPDFPreview() {
+        console.log("Opening PDF preview");
+        window.open(
+            getParticularCVPath({
+                format: "pdf", //
+                lang: language,
+                variant,
+                clientSide: true,
+            }),
+            "_blank"
+        );
+    }
+
     return (
         <>
             <Head>
@@ -47,18 +64,18 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
             <Box
                 sx={{
                     maxWidth: "1200px",
-                    margin: "128px auto 64px auto",
+                    margin: "112px auto 64px auto",
                     gap: "96px",
                     display: "flex",
-                    maxHeight: "76vh",
+                    maxHeight: "80vh",
                     ".MuiButtonBase-root": {
-                        height: "42px",
+                        height: "50px",
                         marginLeft: "0 !important",
                     },
                     h1: {
                         fontSize: "42px",
                         fontFamily: '"Montserrat Alternates", sans-serif',
-                        margin: "0 0 32px 0",
+                        margin: "0 0 24px 0",
                     },
                     h3: {
                         fontSize: "20px",
@@ -86,34 +103,56 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
 
                     <p>Due to the size of the document (over 12mb), it is not possible to download it directly from the website, but you can open a PDF preview and download it from there.</p>
 
-                    <StyledButton componentThemeID="PRIMARY">
-                        <PictureAsPdfRoundedIcon sx={{ mr: "8px" }} />
-                        <span>Open PDF preview</span>
-                    </StyledButton>
+                    <Box
+                        sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }} //
+                    >
+                        <StyledButton componentThemeID="PRIMARY" onClick={handleOpenPDFPreview}>
+                            <PictureAsPdfRoundedIcon sx={{ mr: "8px" }} />
+                            <span>Open PDF preview</span>
+                        </StyledButton>
 
-                    <StyledButton componentThemeID="SUCCESS">
-                        <SaveAltRoundedIcon sx={{ mr: "8px" }} />
-                        <span>Download A4 png (324kb)</span>
-                    </StyledButton>
+                        <StyledButton componentThemeID="TEXT_PRIMARY" subtleHoverEffect>
+                            <QrCode2RoundedIcon sx={{ mr: "8px" }} />
+                            <span>Show QR code</span>
+                        </StyledButton>
 
-                    <StyledButton componentThemeID="TEXT_PRIMARY" subtleHoverEffect>
-                        <QrCode2RoundedIcon sx={{ mr: "8px" }} />
-                        <span>Open QR code</span>
-                    </StyledButton>
+                        <StyledButton componentThemeID="SUCCESS">
+                            <SaveAltRoundedIcon sx={{ mr: "8px" }} />
+                            <span>Download png (324kb)</span>
+                        </StyledButton>
+
+                        <StyledSelect
+                            value={resolutionToDownload} //
+                            onChange={(e) => setResolutionToDownload(e.target.value as PNGResolution)}
+                            options={[
+                                { value: "png-valid-a4", alias: "A4 Format" },
+                                { value: "png-high-res", alias: "Higher Resolution" },
+                            ]}
+                        />
+                    </Box>
 
                     <span style={{ flexGrow: 1 }}></span>
 
-                    <StyledButton componentThemeID="ERROR">
-                        <ChevronLeftRoundedIcon sx={{ mr: "0" }} />
-                        <span>Return Home</span>
-                    </StyledButton>
+                    <div>
+                        <InternalRedirection
+                            reverseArrow //
+                            componentThemeID="ERROR"
+                            url="/?skip-introduction-screen-rectangle-animations=true"
+                            sx={{ width: "100%", marginLeft: "0 !important" }}
+                        >
+                            <span>Return Home</span>
+                        </InternalRedirection>
+                    </div>
 
                     <CVComponents.SocialMediaRedirections />
                 </Stack>
+
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                    src="/assets/cv/en/dark.png" //
+                    onClick={handleOpenPDFPreview} //
+                    src={getParticularCVPath({ clientSide: true, format: "png-high-res", lang: language, variant })} //
                     alt="cv preview"
+                    style={{ width: "550px", cursor: "pointer" }}
                 />
             </Box>
         </>
