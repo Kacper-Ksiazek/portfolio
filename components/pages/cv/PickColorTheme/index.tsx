@@ -7,6 +7,7 @@ import StyledButton from "@/components/atoms/forms/StyledButton";
 // MUI Icons
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
+import RowWithLabel from "../_RowWithLabel";
 
 interface PickColorThemeProps {
     value: CV.Variant;
@@ -24,8 +25,7 @@ const PickColorTheme: React.FunctionComponent<PickColorThemeProps> = (props) => 
     }
 
     return (
-        <Stack direction="row" sx={{ gap: "8px" }} alignItems="center">
-            <h3 style={{ margin: "0 8px 0 0" }}>Mode: </h3>
+        <RowWithLabel label="Mode:">
             {OPTIONS.map((item, index) => {
                 return (
                     <StyledButton
@@ -46,7 +46,7 @@ const PickColorTheme: React.FunctionComponent<PickColorThemeProps> = (props) => 
                     </StyledButton>
                 );
             })}
-        </Stack>
+        </RowWithLabel>
     );
 };
 

@@ -1,8 +1,7 @@
 // Types
 import type { CV } from "@/@types/pages/CV";
-// MUI Components
-import Stack from "@mui/material/Stack";
 // Styled Components
+import RowWithLabel from "../_RowWithLabel";
 import LanguageOption from "./LanguageOption";
 
 interface PickLanguageProps {
@@ -22,7 +21,7 @@ const PickLanguage: React.FunctionComponent<PickLanguageProps> = (props) => {
     }
 
     return (
-        <Stack direction="row" spacing={"8px"}>
+        <RowWithLabel label="Language:">
             {OPTIONS.map((language, index) => {
                 return (
                     <LanguageOption
@@ -36,7 +35,7 @@ const PickLanguage: React.FunctionComponent<PickLanguageProps> = (props) => {
                     </LanguageOption>
                 );
             })}
-        </Stack>
+        </RowWithLabel>
     );
 };
 
