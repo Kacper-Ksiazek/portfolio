@@ -7,11 +7,19 @@ import type { NextPage } from "next";
 import type { CV } from "@/@types/pages/CV";
 import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
 // Other components
+import Link from "next/link";
 import Head from "next/head";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import * as CVComponents from "@/components/pages/cv";
 import StyledButton from "@/components/atoms/forms/StyledButton";
+// MUI Icons
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import QrCode2RoundedIcon from "@mui/icons-material/QrCode2Rounded";
+import SaveAltRoundedIcon from "@mui/icons-material/SaveAltRounded";
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
+import PictureAsPdfRoundedIcon from "@mui/icons-material/PictureAsPdfRounded";
 
 const Home: NextPage<LandingPageServerSideProps> = (props) => {
     const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
@@ -39,10 +47,10 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
             <Box
                 sx={{
                     maxWidth: "1200px",
-                    margin: "112px auto 64px auto",
+                    margin: "128px auto 64px auto",
                     gap: "96px",
                     display: "flex",
-                    maxHeight: "80vh",
+                    maxHeight: "76vh",
                     ".MuiButtonBase-root": {
                         height: "42px",
                         marginLeft: "0 !important",
@@ -50,6 +58,7 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
                     h1: {
                         fontSize: "42px",
                         fontFamily: '"Montserrat Alternates", sans-serif',
+                        margin: "0 0 32px 0",
                     },
                     h3: {
                         fontSize: "20px",
@@ -62,6 +71,12 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
                 <Stack gap={1} sx={{ flexGrow: 1 }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
 
+                    <Stack direction="row" spacing="8px" sx={{ a: { color: "white", textDecoration: "none" } }}>
+                        <Link href="/?skip-introduction-screen-rectangle-animations=true">Home</Link>
+                        <span>/</span>
+                        <strong>CV</strong>
+                    </Stack>
+
                     <h1 className="alternative-font-family">Curriculum vitae</h1>
 
                     <Stack direction="row" justifyContent="space-between">
@@ -69,21 +84,37 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
                         <CVComponents.PickColorTheme value={variant} setValue={setVariant} />
                     </Stack>
 
-                    <h3>Save me</h3>
-                    <StyledButton componentThemeID="PRIMARY">Open preview cv</StyledButton>
-                    <StyledButton componentThemeID="SUCCESS">Download A4 png (324kb)</StyledButton>
+                    <p>Due to the size of the document (over 12mb), it is not possible to download it directly from the website, but you can open a PDF preview and download it from there.</p>
 
-                    <h3>More me</h3>
-                    <StyledButton componentThemeID="TEXT_PRIMARY" subtleHoverEffect>
-                        Linked in
+                    <StyledButton componentThemeID="PRIMARY">
+                        <PictureAsPdfRoundedIcon sx={{ mr: "8px" }} />
+                        <span>Open PDF preview</span>
                     </StyledButton>
+
+                    <StyledButton componentThemeID="SUCCESS">
+                        <SaveAltRoundedIcon sx={{ mr: "8px" }} />
+                        <span>Download A4 png (324kb)</span>
+                    </StyledButton>
+
                     <StyledButton componentThemeID="TEXT_PRIMARY" subtleHoverEffect>
-                        Github
+                        <QrCode2RoundedIcon sx={{ mr: "8px" }} />
+                        <span>Open QR code</span>
                     </StyledButton>
 
                     <span style={{ flexGrow: 1 }}></span>
 
-                    {/* <StyledButton componentThemeID="ERROR">Return Home</StyledButton> */}
+                    <StyledButton componentThemeID="ERROR">
+                        <ChevronLeftRoundedIcon sx={{ mr: "0" }} />
+                        <span>Return Home</span>
+                    </StyledButton>
+
+                    <button>
+                        <GitHubIcon />
+                    </button>
+
+                    <button>
+                        <LinkedInIcon />
+                    </button>
                 </Stack>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
