@@ -5,7 +5,7 @@ import useBlockUserScroll from "@/hooks/useBlockUserScroll";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
 // Types
 import type { NextPage } from "next";
-import type { CV } from "@/@types/pages/CV";
+import type { CV, PNGResolution } from "@/@types/pages/CV";
 // Other components
 import Link from "next/link";
 import Head from "next/head";
@@ -16,12 +16,29 @@ import StyledSelect from "@/components/atoms/forms/StyledSelect";
 import StyledButton from "@/components/atoms/forms/StyledButton";
 import InternalRedirection from "@/components/atoms/redirections/InternalRedirection";
 // MUI Icons
-import HdRoundedIcon from "@mui/icons-material/HdRounded";
 import QrCode2RoundedIcon from "@mui/icons-material/QrCode2Rounded";
 import SaveAltRoundedIcon from "@mui/icons-material/SaveAltRounded";
 import PictureAsPdfRoundedIcon from "@mui/icons-material/PictureAsPdfRounded";
 
-type PNGResolution = Exclude<CV.Format, "pdf">;
+type PNG_ID = `${PNGResolution}_${CV.Language}_${CV.Variant}`;
+
+const PNG_SIZES: Record<PNG_ID, string> = {
+    "png-valid-a4_en_light": "200kb",
+    "png-valid-a4_en_dark": "196kb",
+    //
+    "png-valid-a4_pl_light": "202kb",
+    "png-valid-a4_pl_dark": "200kb",
+    //
+    "png-high-res_en_light": "595kb",
+    "png-high-res_en_dark": "581kb",
+    //
+    "png-high-res_pl_light": "613lb",
+    "png-high-res_pl_dark": "564kb",
+};
+
+function getSizeOfPNG(resolution: PNGResolution, lang: CV.Language, variant: CV.Variant) {
+    return PNG_SIZES[`${resolution}_${lang}_${variant}`];
+}
 
 const Home: NextPage = () => {
     const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
@@ -30,7 +47,9 @@ const Home: NextPage = () => {
     const [language, setLanguage] = useState<CV.Language>("en");
     const [variant, setVariant] = useState<CV.Variant>("light");
 
-    const [resolutionToDownload, setResolutionToDownload] = useState<PNGResolution>("png-high-res");
+    const [resolutionToDownload, setResolutionToDownload] = useState<PNGResolution>("png-valid-a4");
+
+    const selectedCVPictureSize: string = getSizeOfPNG(resolutionToDownload, language, variant);
 
     useEffect(() => {
         disableUserScroll();
@@ -118,7 +137,7 @@ const Home: NextPage = () => {
 
                         <StyledButton componentThemeID="SUCCESS">
                             <SaveAltRoundedIcon sx={{ mr: "8px" }} />
-                            <span>Download png (324kb)</span>
+                            <span>Download png ({selectedCVPictureSize})</span>
                         </StyledButton>
 
                         <StyledSelect

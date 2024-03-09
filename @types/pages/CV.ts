@@ -19,3 +19,5 @@ export interface DownloadCVQueryParams {
 }
 
 export type ResponseContentType = "application/pdf" | "image/png";
+
+export type PNGResolution = Exclude<CV.Format, "pdf">;
