@@ -1,7 +1,7 @@
 // Tools
 import { useEffect, useState } from "react";
-import { getParticularCVPath } from "@/utils/paths";
 import useBlockUserScroll from "@/hooks/useBlockUserScroll";
+import { getParticularCV } from "@/utils/serverless/cv/getParticularCV";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
 // Types
 import type { NextPage } from "next";
@@ -40,16 +40,19 @@ const Home: NextPage = () => {
     }, [disableUserScroll, enableUserScroll, hideNavigationBar, showNavigationBar]);
 
     function handleOpenPDFPreview() {
-        console.log("Opening PDF preview");
-        window.open(
-            getParticularCVPath({
-                format: "pdf", //
-                lang: language,
-                variant,
-                clientSide: true,
-            }),
-            "_blank"
-        );
+        const CVFile = getParticularCV({
+            clientSide: true, //
+            format: "pdf",
+            lang: language,
+            variant,
+        });
+
+        window.open(CVFile.path, "_blank");
+    }
+
+    function handleDownloadCVPNG() {
+        const url = `/api/download_cv?format=${resolutionToDownload}&lang=${language}&variant=${variant}`;
+        window.open(url, "_blank");
     }
 
     return (
@@ -113,7 +116,7 @@ const Home: NextPage = () => {
                             <span>Show QR code</span>
                         </StyledButton>
 
-                        <StyledButton componentThemeID="SUCCESS">
+                        <StyledButton componentThemeID="SUCCESS" onClick={handleDownloadCVPNG}>
                             <SaveAltRoundedIcon sx={{ mr: "8px" }} />
                             <span>Download png </span>
                             <CVComponents.CVPictureSize
@@ -152,7 +155,7 @@ const Home: NextPage = () => {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     onClick={handleOpenPDFPreview} //
-                    src={getParticularCVPath({ clientSide: true, format: "png-high-res", lang: language, variant })} //
+                    src={getParticularCV({ clientSide: true, format: "png-high-res", lang: language, variant }).path} //
                     alt="cv preview"
                     style={{ width: "550px", cursor: "pointer" }}
                 />
