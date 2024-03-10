@@ -13,7 +13,7 @@ export default styled("div")(({ theme }) => ({
         content: "''",
         ...theme.mixins.absolute_full,
         height: "40px",
-        background: "#000",
+        background: theme.palette.text.secondary,
         opacity: 0.5,
         transition: "opacity .3s ease-in-out",
     },
