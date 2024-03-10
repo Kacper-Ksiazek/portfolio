@@ -1,38 +1,38 @@
 // Tools
 import { styled } from "@mui/material";
 import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
-import { applyCVAsBackground, getListOfAllPossiblePhotos } from "./utils";
+import { getListOfAllPossiblePhotos } from "./utils";
 // Types
-import type { CV } from "@/@types/pages/CV";
-import type { FunctionComponent } from "react";
-// Styled components
+import type { DataToVisualizeCV } from "./@types";
+// Other components
+import CVAsPicture from "./CVAsPicture";
+import SmoothConditionalRender from "@/components/utils/SmoothConditionalRender";
+
 const CVPreviewBase = styled("div")(({ theme }) => ({
-    backgroundPosition: "top center",
-    backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    transition: "background-image 0.3s ease-in-out",
+    position: "relative",
+
+    ".smooth-conditional-render-wrapper": {
+        ...theme.mixins.absolute_full,
+    },
 }));
 
-interface CVPreviewProps {
+interface CVPreviewProps extends DataToVisualizeCV {
     displayQRCode: boolean;
-    language: CV.Language;
-    variant: CV.Variant;
 
-    onClick: () => void;
+    openPDFPreview: () => void;
 }
 
-const CVPreview: FunctionComponent<CVPreviewProps> = (props) => {
+const CVPreview: React.FunctionComponent<CVPreviewProps> = (props) => {
     useLazyLoadedImages({
         id: "cv-preview-images", //
         srcsToLazyLoad: getListOfAllPossiblePhotos(),
     });
 
     return (
-        <CVPreviewBase
-            onClick={props.onClick} //
-            sx={props.displayQRCode === false ? applyCVAsBackground(props) : {}}
-        >
-            {/*  */}
+        <CVPreviewBase>
+            <SmoothConditionalRender when={props.displayQRCode === false}>
+                <CVAsPicture {...props} />
+            </SmoothConditionalRender>
         </CVPreviewBase>
     );
 };

@@ -159,10 +159,11 @@ const Home: NextPage = () => {
                 </Stack>
 
                 <CVComponents.CVPreview
-                    displayQRCode={displayQRCode} //
+                    displayQRCode={displayQRCode}
                     language={language}
                     variant={variant}
-                    onClick={handleOpenPDFPreview}
+                    //
+                    openPDFPreview={handleOpenPDFPreview}
                 />
             </Box>
         </>
