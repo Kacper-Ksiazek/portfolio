@@ -1,7 +1,5 @@
 // Types
 import type { CV } from "@/@types/pages/CV";
-// MUI Components
-import Stack from "@mui/material/Stack";
 // Other components
 import StyledButton from "@/components/atoms/forms/StyledButton";
 // MUI Icons
@@ -25,7 +23,7 @@ const PickColorTheme: React.FunctionComponent<PickColorThemeProps> = (props) => 
     }
 
     return (
-        <RowWithLabel label="Mode:">
+        <RowWithLabel label="Theme:">
             {OPTIONS.map((item, index) => {
                 return (
                     <StyledButton

@@ -16,6 +16,7 @@ import StyledSelect from "@/components/atoms/forms/StyledSelect";
 import StyledButton from "@/components/atoms/forms/StyledButton";
 import InternalRedirection from "@/components/atoms/redirections/InternalRedirection";
 // MUI Icons
+import HdRoundedIcon from "@mui/icons-material/HdRounded";
 import QrCode2RoundedIcon from "@mui/icons-material/QrCode2Rounded";
 import SaveAltRoundedIcon from "@mui/icons-material/SaveAltRounded";
 import PictureAsPdfRoundedIcon from "@mui/icons-material/PictureAsPdfRounded";
@@ -28,6 +29,8 @@ const Home: NextPage = () => {
     const [variant, setVariant] = useState<CV.Variant>("light");
 
     const [resolutionToDownload, setResolutionToDownload] = useState<PNGResolution>("png-valid-a4");
+
+    const [displayQRCode, setDisplayQRCode] = useState(false);
 
     useEffect(() => {
         disableUserScroll();
@@ -65,9 +68,10 @@ const Home: NextPage = () => {
                 sx={{
                     maxWidth: "1200px",
                     margin: "112px auto 64px auto",
-                    gap: "96px",
-                    display: "flex",
-                    maxHeight: "80vh",
+                    gap: "36px",
+                    display: "grid",
+                    height: "80vh",
+                    gridTemplateColumns: "1fr 1fr",
                     ".MuiButtonBase-root": {
                         height: "50px",
                         marginLeft: "0 !important",
@@ -85,7 +89,7 @@ const Home: NextPage = () => {
                     },
                 }}
             >
-                <Stack gap={1} sx={{ flexGrow: 1 }}>
+                <Stack gap={1}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
 
                     <Stack direction="row" spacing="8px" sx={{ a: { color: "white", textDecoration: "none" } }}>
@@ -104,7 +108,7 @@ const Home: NextPage = () => {
                     <p>Due to the size of the document (over 12mb), it is not possible to download it directly from the website, but you can open a PDF preview and download it from there.</p>
 
                     <Box
-                        sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }} //
+                        sx={{ display: "grid", gridTemplateColumns: "3fr 2fr", gap: "8px" }} //
                     >
                         <StyledButton componentThemeID="PRIMARY" onClick={handleOpenPDFPreview}>
                             <PictureAsPdfRoundedIcon sx={{ mr: "8px" }} />
@@ -116,7 +120,7 @@ const Home: NextPage = () => {
                             <span>Show QR code</span>
                         </StyledButton>
 
-                        <StyledButton componentThemeID="SUCCESS" onClick={handleDownloadCVPNG}>
+                        <StyledButton componentThemeID="TEXT_PRIMARY" subtleHoverEffect onClick={handleDownloadCVPNG}>
                             <SaveAltRoundedIcon sx={{ mr: "8px" }} />
                             <span>Download png </span>
                             <CVComponents.CVPictureSize
@@ -129,6 +133,8 @@ const Home: NextPage = () => {
                         <StyledSelect
                             value={resolutionToDownload} //
                             onChange={(e) => setResolutionToDownload(e.target.value as PNGResolution)}
+                            componentThemeID="TEXT_PRIMARY"
+                            startAdornment={<HdRoundedIcon />}
                             options={[
                                 { value: "png-valid-a4", alias: "A4 Format" },
                                 { value: "png-high-res", alias: "Higher Resolution" },
@@ -152,12 +158,11 @@ const Home: NextPage = () => {
                     <CVComponents.SocialMediaRedirections />
                 </Stack>
 
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    onClick={handleOpenPDFPreview} //
-                    src={getParticularCV({ clientSide: true, format: "png-high-res", lang: language, variant }).path} //
-                    alt="cv preview"
-                    style={{ width: "550px", cursor: "pointer" }}
+                <CVComponents.CVPreview
+                    displayQRCode={displayQRCode} //
+                    language={language}
+                    variant={variant}
+                    onClick={handleOpenPDFPreview}
                 />
             </Box>
         </>
