@@ -14,7 +14,7 @@ const PNG_SIZES: Record<PNG_ID, string> = {
     "png-high-res_en_light": "595kb",
     "png-high-res_en_dark": "581kb",
     //
-    "png-high-res_pl_light": "613lb",
+    "png-high-res_pl_light": "613kb",
     "png-high-res_pl_dark": "564kb",
 };
 
