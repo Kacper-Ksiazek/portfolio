@@ -13,14 +13,19 @@ const CVAsPicture: React.FunctionComponent<CVAsPictureProps> = (props) => {
 
     return (
         <CVPreviewBase
-            sx={{
-                backgroundImage: generateBackgroundImagePropertyValue({
-                    language: cvToDownload.lang,
-                    variant: cvToDownload.variant,
-                }),
-            }}
+            className={cvToDownload.variant} //
             onClick={props.openPDFPreview}
-        />
+        >
+            <div
+                className="image" //
+                style={{
+                    backgroundImage: generateBackgroundImagePropertyValue({
+                        language: cvToDownload.lang,
+                        variant: cvToDownload.variant,
+                    }),
+                }}
+            ></div>
+        </CVPreviewBase>
     );
 };
 

@@ -52,7 +52,7 @@ const CVPage: React.FunctionComponent = () => {
                 <Stack gap={1}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
 
-                    <Stack direction="row" spacing="8px" sx={{ a: { color: "white", textDecoration: "none" } }}>
+                    <Stack direction="row" spacing="8px" sx={{ a: { color: "inherit", textDecoration: "none" } }}>
                         <Link href="/?skip-introduction-screen-rectangle-animations=true">Home</Link>
                         <span>/</span>
                         <strong>CV</strong>
