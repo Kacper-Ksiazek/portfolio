@@ -4,6 +4,7 @@ import useBlockUserScroll from "@/hooks/useBlockUserScroll";
 import { useCVContext } from "@/hooks/pages/cv/useCVContext";
 import { getParticularCV } from "@/utils/serverless/cv/getParticularCV";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
+import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 // Types
 import type { NextPage } from "next";
 // Other components
@@ -64,7 +65,14 @@ const CVPage: React.FunctionComponent = () => {
                         <CVComponents.Actions.PickColorTheme />
                     </Stack>
 
-                    <p>Due to the size of the document (over 12mb), it is not possible to download it directly from the website, but you can open a PDF preview and download it from there.</p>
+                    <p>
+                        {formatTextViaBolding(
+                            `
+                            You can save my CV in either *PDF* or *PNG* format.
+                            Also, you can preview it in your browser buit-in PDF viewer by clicking the *Open PDF preview* button or at the image itself.
+                            ` //
+                        )}
+                    </p>
 
                     <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
                         <CVComponents.Actions.OpenPDFPreviewButton handleOpenPDFPreview={handleOpenPDFPreview} />
