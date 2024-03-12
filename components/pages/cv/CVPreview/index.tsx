@@ -4,6 +4,7 @@ import { getListOfAllPossiblePhotos } from "./utils";
 import { useCVContext } from "@/hooks/pages/cv/useCVContext";
 import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
 // Other components
+import CVQRCode from "./CVQRCode";
 import CVAsPicture from "./CVAsPicture";
 import SmoothConditionalRender from "@/components/utils/SmoothConditionalRender";
 
@@ -31,6 +32,10 @@ const CVPreview: React.FunctionComponent<CVPreviewProps> = (props) => {
         <CVPreviewBase>
             <SmoothConditionalRender when={displayQRCode === false}>
                 <CVAsPicture {...props} />
+            </SmoothConditionalRender>
+
+            <SmoothConditionalRender when={displayQRCode === true}>
+                <CVQRCode />
             </SmoothConditionalRender>
         </CVPreviewBase>
     );
