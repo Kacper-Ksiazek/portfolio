@@ -20,3 +20,5 @@ export interface CVParams {
 export type ResponseContentType = "application/pdf" | "image/png";
 
 export type PNGResolution = Exclude<CV.Format, "pdf">;
+
+export type CVFileID = `${CV.Format}_${CV.Language}_${CV.Variant}`;

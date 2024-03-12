@@ -1,13 +1,10 @@
+// Tools
+import { useCVContext } from "@/hooks/pages/cv/useCVContext";
 // Types
 import type { CV } from "@/@types/pages/CV";
 // Styled Components
-import RowWithLabel from "../_RowWithLabel";
+import RowWithLabel from "../../_RowWithLabel";
 import LanguageOption from "./LanguageOption";
-
-interface PickLanguageProps {
-    value: CV.Language;
-    setValue: React.Dispatch<React.SetStateAction<CV.Language>>;
-}
 
 function _getImgPath(lang: CV.Language): string {
     return `/images/langs/${lang}.jpg`;
@@ -15,9 +12,11 @@ function _getImgPath(lang: CV.Language): string {
 
 const OPTIONS: CV.Language[] = ["en", "pl"];
 
-const PickLanguage: React.FunctionComponent<PickLanguageProps> = (props) => {
-    function handleOnClick(language: CV.Language): void {
-        props.setValue(language);
+const PickLanguage: React.FunctionComponent = () => {
+    const { cvToDownload, updateCVToDownload } = useCVContext();
+
+    function handleOnClick(lang: CV.Language): void {
+        updateCVToDownload({ lang });
     }
 
     return (
@@ -28,7 +27,7 @@ const PickLanguage: React.FunctionComponent<PickLanguageProps> = (props) => {
                         role="button"
                         key={language} //
                         onClick={() => handleOnClick(language)}
-                        className={language === props.value ? "current" : ""}
+                        className={language === cvToDownload.lang ? "current" : ""}
                     >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={_getImgPath(language)} alt={language} />

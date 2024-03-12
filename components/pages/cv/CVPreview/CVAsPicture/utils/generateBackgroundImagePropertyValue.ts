@@ -1,7 +1,12 @@
 // Tools
 import { getParticularCV } from "@/utils/serverless/cv/getParticularCV";
 // Types
-import type { DataToVisualizeCV } from "../../@types";
+import type { CV } from "@/@types/pages/CV";
+
+interface DataToVisualizeCV {
+    language: CV.Language;
+    variant: CV.Variant;
+}
 
 export function generateBackgroundImagePropertyValue(params: DataToVisualizeCV): string {
     const { path: url } = getParticularCV({

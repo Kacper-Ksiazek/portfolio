@@ -1,13 +1,16 @@
 import CVPreview from "./CVPreview";
-import PickLanguage from "./PickLanguage";
-import CVPictureSize from "./CVPictureSize";
-import PickColorTheme from "./PickColorTheme";
 import SocialMediaRedirections from "./SocialMediaRedirections";
+
+import PageWrapper from "./Wrapper";
+import CVContextProvider from "./_context/Provider";
+
+import * as Actions from "./actions";
 
 export {
     CVPreview,
-    PickLanguage, //
-    CVPictureSize,
-    PickColorTheme,
+    PageWrapper,
+    CVContextProvider,
     SocialMediaRedirections,
+    // Packages
+    Actions,
 };
