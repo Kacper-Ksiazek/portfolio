@@ -27,19 +27,19 @@ export default styled("div")(({ theme }) => ({
         },
 
         "&>div.image": {
-            opacity: 0.5,
+            opacity: 0.4,
         },
     },
 
     "&.dark": {
         "&::after": {
-            color: "white",
+            color: "#fff",
         },
     },
 
     "&.light": {
         "&::after": {
-            color: "black",
+            color: theme.palette.mode === "dark" ? "#fff" : "#000",
         },
     },
 }));
