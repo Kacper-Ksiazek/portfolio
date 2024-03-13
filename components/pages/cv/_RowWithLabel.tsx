@@ -18,7 +18,7 @@ interface RowWithLabelProps {
 const RowWithLabel: React.FunctionComponent<RowWithLabelProps> = (props) => {
     return (
         <RowWithLabelWrapper>
-            <h3 className="label">{props.label}</h3>
+            <h3 className="label only-big-viewports">{props.label}</h3>
 
             {props.children}
         </RowWithLabelWrapper>

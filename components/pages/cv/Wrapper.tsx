@@ -1,7 +1,9 @@
 // Tools
 import { styled } from "@mui/material";
 // Styled components
-export default styled("section")(({ theme }) => ({
+import SectionWrapper from "@/components/atoms/content_placement/SectionWrapper/_SectionWrapper";
+
+export default styled(SectionWrapper)(({ theme }) => ({
     maxWidth: "1200px",
     margin: "112px auto 64px auto",
     gap: "36px",
@@ -22,5 +24,30 @@ export default styled("section")(({ theme }) => ({
     },
     img: {
         objectFit: "contain",
+    },
+    "@media (max-height:800px)": {
+        paddingTop: "24px",
+    },
+    "@media (max-height:700px)": {
+        paddingTop: "8px",
+    },
+
+    "@media (max-width:1400px)": {
+        "#cv-redirections, #cv-breadcrumbs": {
+            display: "none",
+        },
+    },
+
+    "@media (max-width:1000px)": {
+        ".only-big-viewports": {
+            display: "none",
+        },
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        gap: "8px",
+        height: "90vh",
+        paddingTop: "0",
+        maxWidth: "500px",
     },
 }));

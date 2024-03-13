@@ -13,6 +13,8 @@ import StyledButton from "@/components/atoms/forms/StyledButton";
 const CVQRCodeBase = styled("div")(({ theme }) => ({
     ...theme.mixins.absolute_full,
     paddingTop: "64px",
+    maxWidth: "calc(100vw - 16px)",
+    margin: "0 auto",
 
     "div.content": {
         margin: "0 auto",
@@ -22,13 +24,16 @@ const CVQRCodeBase = styled("div")(({ theme }) => ({
         alignItems: "stretch",
         gap: "32px",
         width: "100%",
-        maxWidth: "420px",
+        maxWidth: "500px",
 
         "div.buttons-wrapper": {
             gap: "8px",
             width: "100%",
             display: "grid",
             gridTemplateColumns: "2fr 1fr",
+            "@media (max-width: 1000px)": {
+                gridTemplateColumns: "1fr",
+            },
         },
     },
 
@@ -39,6 +44,12 @@ const CVQRCodeBase = styled("div")(({ theme }) => ({
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         transition: "background-image 0.3s",
+    },
+
+    "@media (max-width:1000px)": {
+        paddingTop: "0",
+        position: "relative",
+        width: "100%",
     },
 }));
 
@@ -72,7 +83,7 @@ const CVQRCode: React.FunctionComponent = () => {
         navigator.clipboard.writeText(urlToCopy);
 
         displaySnackbar({
-            msg: "The url to my CV in PDF format has been copied to your clipboard.",
+            msg: "The url to my CV has been copied to the clipboard!",
             severity: "info",
             hideAfter: 3000,
         });
@@ -98,7 +109,11 @@ const CVQRCode: React.FunctionComponent = () => {
                         <span>Copy PDF url</span>
                     </StyledButton>
 
-                    <StyledButton onClick={closeQRCodePreview} componentThemeID="ERROR">
+                    <StyledButton
+                        className="only-big-viewports" //
+                        onClick={closeQRCodePreview}
+                        componentThemeID="ERROR"
+                    >
                         <CloseRoundedIcon sx={{ mr: "2px" }} />
                         <span>Close</span>
                     </StyledButton>

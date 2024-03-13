@@ -26,7 +26,7 @@ const OPTIONS: { icon: React.ReactElement; url: string }[] = [
 
 const SocialMediaRedirections: React.FunctionComponent = () => {
     return (
-        <SocialMediaRedirectionsBase>
+        <SocialMediaRedirectionsBase id="cv-redirections">
             {OPTIONS.map((item, index) => {
                 return (
                     <Redirection
