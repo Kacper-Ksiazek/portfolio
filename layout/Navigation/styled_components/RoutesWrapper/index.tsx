@@ -1,5 +1,6 @@
 // Tools
 import { styled } from "@mui/material";
+import { repeat } from "@/utils/client/styled/repeat";
 import * as outro from "@/components/keyframes/outro";
 import * as intro from "@/components/keyframes/intro";
 import * as wrapperKeyframes from "./wrapperKeyframes";
@@ -40,15 +41,13 @@ export default styled("div")(({ theme }) => ({
                 animation: `${wrapperKeyframes.backgroundImageIntro} 1s .4s both linear`,
             },
             ".single-main-navigation-route": {
-                "&:nth-of-type(1)": {
-                    animation: `${intro.fadeFromBottom} .2s .5s both linear`,
-                },
-                "&:nth-of-type(2)": {
-                    animation: `${intro.fadeFromBottom} .2s .55s both linear`,
-                },
-                "&:nth-of-type(3)": {
-                    animation: `${intro.fadeFromBottom} .2s .6s both linear`,
-                },
+                ...repeat(4, (index) => {
+                    const delta: number = 0.05;
+                    const delay = 0.5 + index * delta;
+                    return {
+                        animation: `${intro.fadeFromBottom} .2s ${delay}s both linear`,
+                    };
+                }),
             },
             "#theme-switch": {
                 animation: `${intro.fadeFromBottom} .2s .65s both linear`,
@@ -66,15 +65,13 @@ export default styled("div")(({ theme }) => ({
                 animation: `${wrapperKeyframes.backgroundImageOutro} .3s both linear`,
             },
             ".single-main-navigation-route": {
-                "&:nth-of-type(1)": {
-                    animation: `${outro.fadeToTop} .2s .15s both linear`,
-                },
-                "&:nth-of-type(2)": {
-                    animation: `${outro.fadeToTop} .2s .1s both linear`,
-                },
-                "&:nth-of-type(3)": {
-                    animation: `${outro.fadeToTop} .2s .05s both linear`,
-                },
+                ...repeat(4, (index) => {
+                    const delta: number = -0.05;
+                    const delay = 0.25 + index * delta;
+                    return {
+                        animation: `${outro.fadeToTop} .2s ${delay}s both linear`,
+                    };
+                }),
             },
             "#theme-switch": {
                 animation: `${outro.fadeToTop} .2s  both linear`,

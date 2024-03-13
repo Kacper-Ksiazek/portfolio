@@ -49,7 +49,7 @@ const CVPage: React.FunctionComponent = () => {
 
             <CVComponents.PageWrapper>
                 {(() => {
-                    if (width >= 1000) {
+                    if (width > 1000) {
                         return <CVScreens.Desktop handleOpenPDFPreview={handleOpenPDFPreview} />;
                     } else {
                         return <CVScreens.Mobile handleOpenPDFPreview={handleOpenPDFPreview} />;

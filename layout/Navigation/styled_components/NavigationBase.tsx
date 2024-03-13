@@ -168,14 +168,24 @@ export default styled("div")(({ theme }) => ({
         },
     },
     //
-    "@media (max-width:1140px)": {
+    "@media (max-width:1200px)": {
         paddingLeft: "64px",
         paddingRight: "64px",
     },
 
-    "@media (max-width:1080px)": {
+    "@media (max-width:1140px)": {
         paddingLeft: "48px",
         paddingRight: "48px",
+    },
+
+    "@media (max-width:1080px)": {
+        paddingLeft: "36px",
+        paddingRight: "36px",
+    },
+
+    "@media (max-width:1040px)": {
+        paddingLeft: "20px",
+        paddingRight: "20px",
     },
 
     "@media (max-width:1000px)": {

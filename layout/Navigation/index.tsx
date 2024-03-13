@@ -82,7 +82,7 @@ const Navigation: FunctionComponent = () => {
                     </SingleNavigationRoute>
 
                     <SingleNavigationRoute
-                        idOfElementToScroll={CSS_REFERENCES.CONTACT_ME} //
+                        url="/cv" //
                         mobileMenuIsOpened={mobileMenuIsOpened}
                         closeMobileMenu={toogleVisibility}
                     >
