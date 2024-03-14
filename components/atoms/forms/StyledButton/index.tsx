@@ -7,7 +7,7 @@ import type { ButtonBaseProps } from "@mui/material/ButtonBase";
 import ButtonBase from "@mui/material/ButtonBase";
 // Styled components
 
-interface StyledButtonProps extends ButtonBaseProps {
+export interface StyledButtonProps extends ButtonBaseProps {
     color?: never;
     iconButton?: boolean;
     subtleHoverEffect?: boolean;

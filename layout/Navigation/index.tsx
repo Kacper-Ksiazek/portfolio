@@ -64,6 +64,7 @@ const Navigation: FunctionComponent = () => {
                     >
                         About me
                     </SingleNavigationRoute>
+
                     <SingleNavigationRoute
                         idOfElementToScroll={CSS_REFERENCES.PROJECTS} //
                         mobileMenuIsOpened={mobileMenuIsOpened}
@@ -71,12 +72,21 @@ const Navigation: FunctionComponent = () => {
                     >
                         Projects
                     </SingleNavigationRoute>
+
                     <SingleNavigationRoute
                         idOfElementToScroll={CSS_REFERENCES.CONTACT_ME} //
                         mobileMenuIsOpened={mobileMenuIsOpened}
                         closeMobileMenu={toogleVisibility}
                     >
                         Contact
+                    </SingleNavigationRoute>
+
+                    <SingleNavigationRoute
+                        url="/cv" //
+                        mobileMenuIsOpened={mobileMenuIsOpened}
+                        closeMobileMenu={toogleVisibility}
+                    >
+                        CV
                     </SingleNavigationRoute>
 
                     <ColorThemeSwitch

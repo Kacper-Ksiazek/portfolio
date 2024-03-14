@@ -1,19 +1,80 @@
+// Tools
+import { useEffect } from "react";
+import useWindowSizes from "@/hooks/useWindowSizes";
+import useBlockUserScroll from "@/hooks/useBlockUserScroll";
+import { useCVContext } from "@/hooks/pages/cv/useCVContext";
+import { getParticularCV } from "@/utils/serverless/cv/getParticularCV";
+import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
+import { useGeneralGlobalContext } from "@/hooks/contexts/useGeneralGlobalContext";
 // Types
 import type { NextPage } from "next";
-import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
 // Other components
 import Head from "next/head";
+import * as CVComponents from "@/components/pages/cv";
+import * as CVScreens from "@/components/pages/cv/screens";
 
-const Home: NextPage<LandingPageServerSideProps> = (props) => {
+const CVPage: React.FunctionComponent = () => {
+    const { userScrollIsBlocked } = useGeneralGlobalContext();
+
+    const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
+    const { hideNavigationBar, showNavigationBar } = useMainNavigationBarContext();
+
+    const { cvToDownload } = useCVContext();
+    const { width } = useWindowSizes();
+
+    useEffect(() => {
+        disableUserScroll();
+
+        return () => {
+            enableUserScroll();
+            showNavigationBar();
+        };
+    }, [disableUserScroll, enableUserScroll, hideNavigationBar, showNavigationBar]);
+
+    useEffect(() => {
+        if (userScrollIsBlocked === false) {
+            disableUserScroll();
+        }
+    }, [disableUserScroll, userScrollIsBlocked]);
+
+    function handleOpenPDFPreview() {
+        const { variant, lang } = cvToDownload;
+
+        const CVFile = getParticularCV({
+            clientSide: true, //
+            format: "pdf",
+            lang,
+            variant,
+        });
+
+        window.open(CVFile.path, "_blank");
+    }
+
     return (
         <>
             <Head>
-                <title>CV</title>
+                <title>Kacper Książek | CV</title>
             </Head>
 
-            <h1>my cv will be here</h1>
+            <CVComponents.PageWrapper>
+                {(() => {
+                    if (width > 1000) {
+                        return <CVScreens.Desktop handleOpenPDFPreview={handleOpenPDFPreview} />;
+                    } else {
+                        return <CVScreens.Mobile handleOpenPDFPreview={handleOpenPDFPreview} />;
+                    }
+                })()}
+            </CVComponents.PageWrapper>
         </>
     );
 };
 
-export default Home;
+const CVPageWithContext: NextPage = () => {
+    return (
+        <CVComponents.CVContextProvider>
+            <CVPage />
+        </CVComponents.CVContextProvider>
+    );
+};
+
+export default CVPageWithContext;

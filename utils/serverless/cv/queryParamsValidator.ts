@@ -1,5 +1,5 @@
 // Types
-import type { CV, DownloadCVQueryParams } from "@/@types/pages/CV";
+import type { CV, CVParams } from "@/@types/pages/CV";
 
 interface ProperValues_I {
     variant: CV.Variant[];
@@ -10,7 +10,7 @@ interface ProperValues_I {
 const PROPER_VALUES: ProperValues_I = {
     variant: ["dark", "light"],
     lang: ["en", "pl"],
-    format: ["pdf", "png"],
+    format: ["pdf", "png-high-res", "png-valid-a4"],
 };
 
 function isProperVariant(value: string): value is CV.Variant {
@@ -31,7 +31,7 @@ function isProperFormat(value: string): value is CV.Format {
  * @param query A query object to validate
  * @returns Whether the query object is valid
  */
-export function validateQueryParams(query: DownloadCVQueryParams): boolean {
+export function validateQueryParams(query: CVParams): boolean {
     return (
         isProperVariant(query.variant) && //
         isProperLanguage(query.lang) &&

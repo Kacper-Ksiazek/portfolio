@@ -10,7 +10,7 @@ export default styled(ButtonBase)(({ theme }) => ({
     height: "32px",
     padding: "2px 32px",
     fontWeight: "500",
-    marginRight: "20px",
+    marginRight: "18px",
     fontSize: "16px",
     overflow: "hidden",
     "span.text": {

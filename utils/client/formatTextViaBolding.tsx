@@ -1,17 +1,15 @@
 // Tools
-import { styled, alpha } from "@mui/material";
+import { styled } from "@mui/material";
 // Types
 import type { ReactNode } from "react";
 // Styled components
-const StyledStrong = styled("strong")(({ theme }) => ({
-    color: theme.palette.primary.main,
-}));
+const StyledStrong = styled("strong")(({ theme }) => ({}));
 const StyledPrimaryStrong = styled("strong")(({ theme }) => ({
     color: theme.palette.primary.main,
 }));
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (text: string, usePrimaryColorInstead?: boolean): ReactNode => {
+export default (text: string, usePrimaryColorInstead: boolean = true): ReactNode => {
     return text.split("*").map((textPiece, index) => {
         if (!(index % 2)) return textPiece;
         else {
