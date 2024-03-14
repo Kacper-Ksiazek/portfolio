@@ -30,4 +30,13 @@ export default styled("div")(({ theme }) => ({
             opacity: 0,
         },
     },
+
+    "@media (max-width:1000px)": {
+        img: {
+            width: "84px",
+        },
+        "&::after": {
+            height: "53px",
+        },
+    },
 }));

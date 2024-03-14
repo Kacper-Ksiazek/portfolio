@@ -36,6 +36,13 @@ const PickColorTheme: React.FunctionComponent = () => {
                             svg: {
                                 fontSize: "32px",
                             },
+                            "@media (max-width:1000px)": {
+                                width: "56px",
+                                height: "56px !important",
+                                svg: {
+                                    fontSize: "36px",
+                                },
+                            },
                         }}
                         onClick={() => handleOnClick(item.option)}
                     >
