@@ -33,7 +33,7 @@ export function getParticularCV(params: GetParticularCVOptions): GetParticularCV
     const lang = params.lang.toUpperCase();
 
     const fileName: string = `Kacper_Ksiazek_CV_${lang}${variant}${suffix}.${extension}`;
-    const result: string = path.join(cvDir, lang, directory, fileName);
+    const result: string = path.join(cvDir, lang.toLowerCase(), directory, fileName);
 
     return {
         path: params.clientSide ? result.replace("public/", "/") : result,
