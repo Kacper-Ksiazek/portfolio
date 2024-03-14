@@ -11,6 +11,7 @@ import LazyLoadedImages from "./LazyLoadedImagesWrapper";
 import TransitionBetweenPages from "./TransitionBetweenPages";
 import EnsureAppHasBeenLoaded from "./EnsureAppHasBeenLoaded";
 import { SnackbarContextProvider } from "./global/SnackbarContext";
+import { GeneralGlobalContextProvider } from "./global/GeneralGlobalContext";
 import { MainNavigationBarContextProvider } from "./global/MainNavigationBarContext";
 // Styled components
 import MainWrapper from "./MainWrapper";
@@ -26,14 +27,16 @@ const Layout: FunctionComponent<LayoutProps> = (props) => {
         <EnsureAppHasBeenLoaded>
             <MainNavigationBarContextProvider pathname={router.asPath}>
                 <SnackbarContextProvider>
-                    <Navigation />
-                    <MainWrapper key={`${router.asPath}-content-wrapper`}>{props.children}</MainWrapper>
-                    <ScrollButton />
-                    <Footer />
-                    <TransitionBetweenPages />
-                    <Snackbar />
-                    <LazyLoadedImages key={`${router.asPath}-lazy-loaded-images`} />
-                    <div id="modals-wrapper"></div>
+                    <GeneralGlobalContextProvider>
+                        <Navigation />
+                        <MainWrapper key={`${router.asPath}-content-wrapper`}>{props.children}</MainWrapper>
+                        <ScrollButton />
+                        <Footer />
+                        <TransitionBetweenPages />
+                        <Snackbar />
+                        <LazyLoadedImages key={`${router.asPath}-lazy-loaded-images`} />
+                        <div id="modals-wrapper"></div>
+                    </GeneralGlobalContextProvider>
                 </SnackbarContextProvider>
             </MainNavigationBarContextProvider>
         </EnsureAppHasBeenLoaded>

@@ -5,6 +5,7 @@ import useBlockUserScroll from "@/hooks/useBlockUserScroll";
 import { useCVContext } from "@/hooks/pages/cv/useCVContext";
 import { getParticularCV } from "@/utils/serverless/cv/getParticularCV";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
+import { useGeneralGlobalContext } from "@/hooks/contexts/useGeneralGlobalContext";
 // Types
 import type { NextPage } from "next";
 // Other components
@@ -13,6 +14,8 @@ import * as CVComponents from "@/components/pages/cv";
 import * as CVScreens from "@/components/pages/cv/screens";
 
 const CVPage: React.FunctionComponent = () => {
+    const { userScrollIsBlocked } = useGeneralGlobalContext();
+
     const { disableUserScroll, enableUserScroll } = useBlockUserScroll();
     const { hideNavigationBar, showNavigationBar } = useMainNavigationBarContext();
 
@@ -27,6 +30,12 @@ const CVPage: React.FunctionComponent = () => {
             showNavigationBar();
         };
     }, [disableUserScroll, enableUserScroll, hideNavigationBar, showNavigationBar]);
+
+    useEffect(() => {
+        if (userScrollIsBlocked === false) {
+            disableUserScroll();
+        }
+    }, [disableUserScroll, userScrollIsBlocked]);
 
     function handleOpenPDFPreview() {
         const { variant, lang } = cvToDownload;

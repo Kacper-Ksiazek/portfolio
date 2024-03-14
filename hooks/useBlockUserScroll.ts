@@ -2,6 +2,7 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useRef } from "react";
 import { useMainNavigationBarContext } from "@/hooks/useMainNavigation";
+import { useGeneralGlobalContext } from "./contexts/useGeneralGlobalContext";
 // Types
 interface UseBlockUserScrollResult {
     disableUserScroll: () => any;
@@ -12,17 +13,18 @@ interface UseBlockUserScrollResult {
 export default (): UseBlockUserScrollResult => {
     const router = useRouter();
     const { blockOnScroll } = useMainNavigationBarContext();
-
-    const formerScollY = useRef<number | null>(null);
+    const { setUserScrollIsBlocked, _formerScrollY } = useGeneralGlobalContext();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const disableUserScroll = useCallback(
         onlyOnLoadedDOM(() => {
-            if (formerScollY.current !== null) return;
-            formerScollY.current = window.scrollY;
+            if (_formerScrollY.current !== null) return;
+            _formerScrollY.current = window.scrollY;
 
             document.body.style.top = `-${window.scrollY}px`; // ⚠️ This style has to be wrtitten first!
             document.body.style.position = "fixed";
+
+            setUserScrollIsBlocked(true);
         }),
         []
     );
@@ -30,15 +32,16 @@ export default (): UseBlockUserScrollResult => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const enableUserScroll = useCallback(
         onlyOnLoadedDOM(() => {
-            if (formerScollY.current === null) return;
+            if (_formerScrollY.current === null) return;
 
             blockOnScroll({ time: 100 });
             document.body.style.top = "0";
             document.body.style.position = "static";
 
-            window.scrollTo({ top: formerScollY.current });
+            window.scrollTo({ top: _formerScrollY.current });
 
-            formerScollY.current = null;
+            _formerScrollY.current = null;
+            setUserScrollIsBlocked(false);
         }),
         []
     );
@@ -46,8 +49,8 @@ export default (): UseBlockUserScrollResult => {
     useEffect(() => {
         document.body.style.top = "0";
         document.body.style.position = "static";
-        formerScollY.current = null;
-    }, [router.asPath]);
+        _formerScrollY.current = null;
+    }, [_formerScrollY, router.asPath]);
 
     return { disableUserScroll, enableUserScroll };
 };

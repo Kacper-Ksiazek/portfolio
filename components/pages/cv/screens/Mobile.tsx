@@ -12,7 +12,7 @@ const CVMobileScreen: React.FunctionComponent<CVMobileScreenProps> = (props) => 
 
     return (
         <>
-            <h2 style={{ fontSize: "32px", margin: "0 0 24px 0" }}>Kacper Książek | CV</h2>
+            <h2 style={{ fontSize: "32px", margin: "0 0 24px 0", textAlign: "center" }}>Kacper Książek | CV</h2>
 
             <QRCode />
 
