@@ -9,7 +9,7 @@ const AuthorHeader: FunctionComponent = () => {
     return (
         <AuthorHeaderBase>
             <h4 id={CSS_REFERENCES.AUTHOR_NAME}>Created by: Kacper Książek</h4>
-            <span id={CSS_REFERENCES.YEARS}>2019 - 2023</span>
+            <span id={CSS_REFERENCES.YEARS}>2019 - 2025</span>
         </AuthorHeaderBase>
     );
 };
