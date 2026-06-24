@@ -5,6 +5,7 @@ import type { FunctionComponent, ReactNode } from "react";
 // Other components
 import Footer from "./Footer";
 import Snackbar from "./Snackbar";
+import DeprecationBanner from "./DeprecationBanner";
 import Navigation from "./Navigation";
 import ScrollButton from "./ScrollButton";
 import LazyLoadedImages from "./LazyLoadedImagesWrapper";
@@ -34,6 +35,7 @@ const Layout: FunctionComponent<LayoutProps> = (props) => {
                         <Footer />
                         <TransitionBetweenPages />
                         <Snackbar />
+                        <DeprecationBanner />
                         <LazyLoadedImages key={`${router.asPath}-lazy-loaded-images`} />
                         <div id="modals-wrapper"></div>
                     </GeneralGlobalContextProvider>

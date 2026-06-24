@@ -35,6 +35,7 @@ const GlobalStyles: FunctionComponent = (props) => {
                     body: {
                         margin: 0,
                         padding: 0,
+                        paddingBottom: "88px",
                         fontFamily: '"Noto Sans", sans-serif',
                         background: theme.palette.background.default,
                         color: theme.palette.text.primary,
