@@ -9,7 +9,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 
 export default styled(ButtonBase)(({ theme }) => ({
     position: "fixed",
-    bottom: "30px",
+    bottom: "110px",
     right: "30px",
     zIndex: 10,
     width: "0px",
@@ -62,7 +62,7 @@ export default styled(ButtonBase)(({ theme }) => ({
         borderRadius: "5px 10px 5px 10px !important",
     },
     ["@media (max-width:500px)"]: {
-        bottom: "12px",
+        bottom: "130px",
         right: "12px",
     },
 }));

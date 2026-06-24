@@ -9,13 +9,14 @@ import SingleSnackbar from "./SingleSnackbar";
 // Styled components
 const SnackbarsWrapper = styled("section")(({ theme }) => ({
     position: "fixed",
-    bottom: "8px",
+    bottom: "96px",
     right: "8px",
     zIndex: 200,
     display: "flex",
     alignItems: "flex-end",
     flexDirection: "column-reverse",
     ["@media (max-width:500px)"]: {
+        bottom: "120px",
         right: "0",
         width: "100%",
         padding: "0 10px",

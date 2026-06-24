@@ -87,7 +87,6 @@ class PrismaSeeder extends ConsolePrettier {
 
     async main() {
         await this.prisma.$connect();
-        if (process.env.NODE_ENV === "production") return;
         console.clear();
 
         this.consoleMsg("0. Prisma connected");
@@ -105,6 +104,10 @@ class PrismaSeeder extends ConsolePrettier {
 }
 
 async function main() {
+    if (process.env.NODE_ENV === "production") {
+        return;
+    }
+
     await fse.ensureDir(uploadDir);
 
     await new PrismaSeeder({
