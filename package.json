@@ -3,6 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "browser": {},
+    "engines": {
+        "node": "22.x"
+    },
     "scripts": {
         "dev": "next dev -p 8080",
         "build": "next build",
