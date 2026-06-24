@@ -14,7 +14,8 @@
         "seed": "ts-node ./prisma/seed.ts",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
-        "build-vercel": "prisma db push && prisma generate && next build"
+        "build-vercel": "prisma db push && prisma generate && next build",
+        "vercel-build": "prisma db push && prisma generate && next build"
     },
     "dependencies": {
         "@emotion/react": "^11.9.3",
