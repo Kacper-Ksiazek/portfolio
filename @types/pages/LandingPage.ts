@@ -1,24 +1,24 @@
 // Types
-import type { Project as _Project } from "@/@types/prisma/Project";
-import type { Hobby, School, PreviousJob as _PreviousJob } from "@prisma/client";
+import type { Project as ContentProject } from "@/content/types";
+import type { Hobby, School, PreviousJob as ContentPreviousJob } from "@/content/types";
 
 export type ScrollableToSections = "about-me" | "projects" | "contact-me" | "contact-me-open-form-button";
 
 export interface Project {
-    id: _Project["id"];
-    title: _Project["title"];
-    folder: _Project["folder"];
-    type: _Project["type"];
+    id: ContentProject["id"];
+    title: ContentProject["title"];
+    folder: ContentProject["folder"];
+    type: ContentProject["type"];
     end: string;
     start: string;
-    shortDescription: _Project["shortDescription"];
-    releventTechnologies: _Project["releventTechnologies"];
+    shortDescription: ContentProject["shortDescription"];
+    releventTechnologies: ContentProject["releventTechnologies"];
     yearToIndicate?: number;
-    liveDemoURL: _Project["liveDemoURL"];
+    liveDemoURL: string | null;
     hasSubpage: boolean;
 }
 
-export interface PreviousJob extends Omit<_PreviousJob, "start" | "end"> {
+export interface PreviousJob extends Omit<ContentPreviousJob, "start" | "end"> {
     start: string;
     end: string;
 }
@@ -29,3 +29,5 @@ export interface LandingPageServerSideProps {
     schools: School[];
     previousJobs: PreviousJob[];
 }
+
+export type { Hobby, School };

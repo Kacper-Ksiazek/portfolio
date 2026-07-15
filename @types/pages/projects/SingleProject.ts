@@ -1,11 +1,13 @@
-import type { Project as _Project } from "@/@types/prisma/Project";
+import type { Description, Feature, Project as ContentProject, ReleventTechnology, Technology } from "@/content/types";
 
-export interface SingleProjectAPIHandlerResponse {
-    project: Project;
-    recommendedProjects: RecommendedProject[];
-}
+export type { Description, Feature, ReleventTechnology, Technology };
 
-export interface Project extends Omit<_Project, "start" | "end"> {
+export interface Project extends Omit<ContentProject, "features" | "description" | "technologies" | "releventTechnologies" | "hasSubpage" | "start" | "end"> {
+    features: Feature[];
+    description: Description;
+    technologies: (Technology | string)[];
+    hasSubpage?: boolean;
+    releventTechnologies: (ReleventTechnology | string)[];
     start: string;
     end: string;
 }

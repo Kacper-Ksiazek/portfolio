@@ -5,7 +5,7 @@ import { useState, useRef } from "react";
 import { useFeatureListManagement } from "./hooks/useFeatureListManagement";
 // Types
 import type { FunctionComponent } from "react";
-import type { Feature } from "@/@types/prisma/Project";
+import type { Feature } from "@/content/types";
 // Other components
 import ShowMore from "./ShowMore";
 import SingleFeature from "./SingleFeature";

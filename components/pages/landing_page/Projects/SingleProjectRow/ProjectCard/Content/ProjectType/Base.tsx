@@ -1,7 +1,7 @@
 // Tools
 import { styled } from "@mui/material";
 // Types
-import { ProjectType as I_ProjectType } from "@prisma/client";
+import { ProjectType as I_ProjectType } from "@/content/types";
 // Styled components
 const COLORS: Record<I_ProjectType, string> = {
     COMMERCIAL: "#ED701D",

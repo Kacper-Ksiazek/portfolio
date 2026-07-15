@@ -1,6 +1,6 @@
 // Tools
-import { prisma } from "@/prisma/db";
 import { formatPreviousJob, formatProject } from "@/utils/serverless/landing_page";
+import { getHobbies, getLandingProjects, getPreviousJobs, getSchools } from "@/lib/content";
 // Types
 import type { NextPage, GetStaticProps } from "next";
 import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
@@ -8,6 +8,8 @@ import type { LandingPageServerSideProps } from "@/@types/pages/LandingPage";
 import SEO from "@/components/pages/_SEO";
 import LandingPageContent from "@/components/pages/landing_page/Wrapper";
 import IntroductionScreen from "@/components/pages/landing_page/IntroductionScreen";
+
+const REVALIDATE_SECONDS = 86400;
 
 const Home: NextPage<LandingPageServerSideProps> = (props) => {
     return (
@@ -24,38 +26,13 @@ const Home: NextPage<LandingPageServerSideProps> = (props) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps<LandingPageServerSideProps> = async () => {
-    await prisma.$connect();
-
-    const projects = await prisma.project.findMany({
-        select: {
-            id: true,
-            title: true,
-            folder: true,
-            type: true,
-            end: true,
-            start: true,
-            shortDescription: true,
-            releventTechnologies: true,
-            liveDemoURL: true,
-            hasSubpage: true,
-        },
-        orderBy: {
-            end: "desc",
-        },
-    });
-
-    const hobbies = await prisma.hobby.findMany();
-    const schools = await prisma.school.findMany();
-    const previousJobs = await prisma.previousJob.findMany();
-
-    await prisma.$disconnect();
-
     return {
         props: {
-            projects: projects.map(formatProject),
-            previousJobs: previousJobs.map(formatPreviousJob),
-            hobbies,
-            schools,
+            projects: getLandingProjects().map(formatProject),
+            previousJobs: getPreviousJobs().map(formatPreviousJob),
+            hobbies: getHobbies(),
+            schools: getSchools(),
         },
+        revalidate: REVALIDATE_SECONDS,
     };
 };

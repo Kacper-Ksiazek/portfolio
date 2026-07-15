@@ -3,7 +3,7 @@ import { styled } from "@mui/material";
 import { useLandingScreenTechnologiesContext } from "./hooks/useLandingScreenTechnologiesContext";
 // Types
 import type { FunctionComponent } from "react";
-import type { ReleventTechnology } from "@/@types/prisma/Project";
+import type { ReleventTechnology } from "@/content/types";
 // Styled components
 
 const SingleTechnologyBase = styled("div")(({ theme }) => ({

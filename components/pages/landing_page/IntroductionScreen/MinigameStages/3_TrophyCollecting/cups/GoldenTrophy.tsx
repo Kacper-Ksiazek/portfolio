@@ -5,7 +5,7 @@ import { styled, keyframes } from "@mui/material";
 import EmojiEvents from "@mui/icons-material/EmojiEvents";
 // Types
 import type { FunctionComponent } from "react";
-import type { ReleventTechnology } from "@/@types/prisma/Project";
+import type { ReleventTechnology } from "@/content/types";
 // Other components
 const lightBounce = keyframes({
     from: {

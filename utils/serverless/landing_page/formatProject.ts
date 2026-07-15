@@ -1,13 +1,13 @@
 // Tools
 import { formatProjectDate } from "@/utils/api/date-formatter";
 // Types
-import type { Project as PrismaProject } from "@prisma/client";
-import type { ReleventTechnology } from "@/@types/prisma/Project";
+import type { Project as ContentProject } from "@/content/types";
+import type { ReleventTechnology } from "@/content/types";
 import type { Project as FinalProject } from "@/@types/pages/LandingPage";
 
 type RawProject = Pick<
-    PrismaProject,
-    | "id" //
+    ContentProject,
+    | "id"
     | "title"
     | "folder"
     | "type"
@@ -53,7 +53,7 @@ export function formatProject(raw: RawProject): FinalProject {
         start: _formatDate(raw.start, isHackathon, "start"),
         shortDescription: raw.shortDescription,
         releventTechnologies: raw.releventTechnologies as ReleventTechnology[],
-        liveDemoURL: raw.liveDemoURL,
+        liveDemoURL: raw.liveDemoURL ?? null,
         hasSubpage: Boolean(raw.hasSubpage),
 
         // If yearToIndicate is null, it won't be included in the object

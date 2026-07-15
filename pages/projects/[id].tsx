@@ -1,7 +1,6 @@
 // Tools
-import { prisma } from "@/prisma/db";
 import { NotFound } from "@/utils/api/errors";
-import SingleProjectAPIHandler from "@/utils/api/SingleProjectAPIHandler";
+import { getAllProjects, getProjectById, getRecommendedProjects } from "@/lib/content";
 // Types
 import type { NextPage } from "next";
 import type { GetStaticPaths, GetStaticProps } from "next";
@@ -12,6 +11,8 @@ import Content from "@/components/pages/projects/single/Content";
 import LandingSection from "@/components/pages/projects/single/LandingSection";
 import RecommendedProjects from "@/components/pages/projects/single/RecommendedProjects";
 import ReleventTechnologies from "@/components/pages/projects/single/ReleventTechnologies";
+
+const REVALIDATE_SECONDS = 86400;
 
 interface SingleProjectProps {
     project: Project;
@@ -37,37 +38,32 @@ const SingleProject: NextPage<SingleProjectProps> = ({ project, recommendedProje
 
 export default SingleProject;
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
-    await prisma.$connect();
-
-    const paths = (
-        await prisma.project.findMany({
-            select: {
-                id: true,
-            },
-            where: {
-                hasSubpage: true,
-            },
-        })
-    ).map((el) => {
-        return {
-            params: { id: el.id },
-        };
-    });
-
-    await prisma.$disconnect();
+export const getStaticPaths: GetStaticPaths = async () => {
+    const paths = getAllProjects()
+        .filter((project) => project.hasSubpage !== false)
+        .map((project) => ({
+            params: { id: project.id },
+        }));
 
     return {
         paths,
-        fallback: "blocking",
+        fallback: false,
     };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const API = new SingleProjectAPIHandler(context.params?.id as string);
+    const projectId = context.params?.id as string;
+
     try {
+        const project = getProjectById(projectId);
+        if (!project) throw new NotFound();
+
         return {
-            props: await API.getData(),
+            props: {
+                project,
+                recommendedProjects: getRecommendedProjects(projectId),
+            },
+            revalidate: REVALIDATE_SECONDS,
         };
     } catch (e: unknown) {
         console.error(e);
