@@ -2,7 +2,7 @@
 import { useState, createContext, useEffect } from "react";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { ReleventTechnology } from "@/@types/prisma/Project";
+import type { ReleventTechnology } from "@/content/types";
 import type { MinigameStage } from "@/components/pages/landing_page/IntroductionScreen/context/MinigameContext";
 
 interface LandingScreenTechnologiesContextInterface {

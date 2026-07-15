@@ -3,12 +3,6 @@
 # develepment scripts
 format-images.ts
 
-# uploaded content
-*/upload/projects/*
-*/upload/hobbies/*
-*/upload/schools/*
-*/upload/previous_jobs/*
-
 # dependencies
 /node_modules
 /.pnp

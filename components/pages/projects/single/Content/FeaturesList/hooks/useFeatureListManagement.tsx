@@ -3,7 +3,7 @@ import { useResponsivity } from "./useResponsivity";
 import { useState, useMemo, useCallback, MutableRefObject } from "react";
 // Types
 import type { SxProps } from "@mui/material";
-import type { Feature } from "@/@types/prisma/Project";
+import type { Feature } from "@/content/types";
 
 interface UseFeatureListManagement {
     wrapperExtraCSS: SxProps;

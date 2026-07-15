@@ -2,7 +2,7 @@
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { uploadedSchoolImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/school";
 // Types
-import type { School } from "@prisma/client";
+import type { School } from "@/content/types";
 import type { FunctionComponent } from "react";
 // Other components
 import NextImageWithSkeleton from "@/components/atoms/NextImageWithSkeleton";

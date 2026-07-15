@@ -4,7 +4,7 @@ import getHobbyIcon from "@/utils/client/getHobbyIcon";
 import formatTextViaBolding from "@/utils/client/formatTextViaBolding";
 import { uploadedHobbyImageURLBuilder } from "@/utils/client/uploaded_image_url_builder/hobby";
 // Types
-import type { Hobby } from "@prisma/client";
+import type { Hobby } from "@/content/types";
 import type { FunctionComponent } from "react";
 // Other components
 import Image from "next/image";

@@ -1,7 +1,7 @@
 // Tools
 import { createContext, useState, useRef, useCallback } from "react";
 // Types
-import type { Hobby, School } from "@prisma/client";
+import type { Hobby, School } from "@/content/types";
 import type { ReactNode, FunctionComponent } from "react";
 import type { PreviousJob } from "@/@types/pages/LandingPage";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";

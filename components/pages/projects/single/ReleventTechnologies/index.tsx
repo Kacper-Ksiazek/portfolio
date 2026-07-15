@@ -5,7 +5,7 @@ import { fadeSimple } from "@/components/keyframes/intro";
 import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
 // Types
 import type { FunctionComponent } from "react";
-import type { ReleventTechnology } from "@/@types/prisma/Project";
+import type { ReleventTechnology } from "@/content/types";
 // Other components
 import Image from "next/image";
 import TransformWhenVisible from "@/components/utils/TransformWhenVisible";
@@ -22,7 +22,7 @@ const fadeSimpleButWithSmallerOpacity = keyframes({
 });
 
 interface ReleventTechnologiesProps {
-    techStack: ReleventTechnology[];
+    techStack: (ReleventTechnology | string)[];
 }
 
 const ReleventTechnologies: FunctionComponent<ReleventTechnologiesProps> = (props) => {

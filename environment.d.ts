@@ -3,14 +3,6 @@ export {};
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
-            POSTGRES_URL: string;
-            POSTGREPOSTGRES_URL: string;
-            POSTGRES_URLPOSTGRES_URL: string;
-            PPOSTGRES_URL: string;
-            PPOSTGRES_URL: string;
-            POSTGPOSTGRES_URL: string;
-            POSTGPOSTGRES_URL: string;
-            //
             EMAIL_ACCOUNT_ADDRESS: string;
             EMAIL_ACCOUNT_PASSWORD: string;
             EMAIL_RECEIVING_MESSAGES: string;

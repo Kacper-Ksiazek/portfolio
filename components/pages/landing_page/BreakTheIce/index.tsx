@@ -5,7 +5,7 @@ import { useLazyLoadedImages } from "@/hooks/useLazyLoadedImages";
 import { generateFadeSimpleAnimations } from "@/components/atoms/NavigationBetweenSections/helpers/generateFadeSimpleAnimations";
 // Types
 import type { FunctionComponent } from "react";
-import type { Hobby, School } from "@prisma/client";
+import type { Hobby, School } from "@/content/types";
 import type { PreviousJob } from "@/@types/pages/LandingPage";
 import type { IceBreakingStage } from "@/components/pages/landing_page/BreakTheIce/@types";
 // Other components

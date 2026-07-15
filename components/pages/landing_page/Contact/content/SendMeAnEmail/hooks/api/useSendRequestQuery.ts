@@ -1,5 +1,4 @@
 // Tools
-import axios from "axios";
 import { useRequestContext } from "../useRequestContext";
 import { useFormContext } from "@/components/pages/landing_page/Contact/hooks/useFormContext";
 // Types
@@ -16,7 +15,7 @@ export const useSendRequestQuery = (setAlreadySentEmail: Dispatch<SetStateAction
 
         updateRequest({ status: "pending" });
 
-        await fetch(window.location.href + API_ADDRESS, {
+        await fetch(API_ADDRESS, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -33,13 +32,16 @@ export const useSendRequestQuery = (setAlreadySentEmail: Dispatch<SetStateAction
                 },
             }),
         })
-            .then(() => {
+            .then(async (response) => {
+                if (!response.ok) {
+                    throw { response: { status: response.status } };
+                }
                 updateRequest({ status: "success" });
                 setAlreadySentEmail(new Date().toLocaleDateString());
             })
             .catch((res) =>
                 updateRequest({
-                    errorCode: res.response.status,
+                    errorCode: res.response?.status ?? 500,
                     status: "error",
                 })
             );

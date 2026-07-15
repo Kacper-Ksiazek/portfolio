@@ -1,6 +1,6 @@
 // Types
 import type { ReactNode } from "react";
-import type { HobbyIcon } from "@prisma/client";
+import type { HobbyIcon } from "@/content/types";
 // Material UI Icons
 import Terminal from "@mui/icons-material/Terminal";
 import MusicNote from "@mui/icons-material/MusicNote";

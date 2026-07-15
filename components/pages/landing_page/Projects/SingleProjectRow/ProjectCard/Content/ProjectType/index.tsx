@@ -2,7 +2,7 @@
 import { CSS_REFERENCES } from "../../../css_references";
 // Types
 import type { FunctionComponent, ReactNode } from "react";
-import type { ProjectType as I_ProjectType } from "@prisma/client";
+import type { ProjectType as I_ProjectType } from "@/content/types";
 // Material UI Icons
 import WorkRoundedIcon from "@mui/icons-material/WorkRounded";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
